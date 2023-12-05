@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="100"
+   height="100"
+   viewBox="0 0 100 100"
+   version="1.1"
+   id="svg1035"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   sodipodi:docname="tl_onset_0.svg"
+   inkscape:export-filename="v_a_1_0.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1037"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="3.7415825"
+     inkscape:cx="2.4053993"
+     inkscape:cy="26.860292"
+     inkscape:window-width="1350"
+     inkscape:window-height="728"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1"
+     showguides="false" />
+  <defs
+     id="defs1032" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="path5053"
+       style="color:#000000;fill:#000000;stroke-linejoin:bevel"
+       d="M 14 0 C 6.4818713 0 0.9557376 4.1913674 -2.4550781 6.84375 L 2.4550781 13.158203 C 5.6915311 10.641412 9.5181523 8 14 8 C 15.666569 8 16.948215 8.7321777 18.09375 10.205078 C 19.239285 11.677979 20 13.888891 20 16 C 20 19.333335 19.308121 21.212999 17.876953 23.001953 C 16.445786 24.790907 13.972439 26.541142 10.210938 28.421875 L 13.789062 35.578125 C 18.027594 33.458879 21.556169 31.21103 24.125 28 C 26.693831 24.78897 28 20.666661 28 16 C 28 12.111121 26.762655 8.3222178 24.408203 5.2949219 C 22.053751 2.2676258 18.333418 0 14 0 z M 37.578125 10.212891 L 30.423828 13.789062 L 38.423828 29.789062 L 45.578125 26.212891 L 37.578125 10.212891 z " />
+  </g>
+</svg>

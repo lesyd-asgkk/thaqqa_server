@@ -7,8 +7,8 @@ export class Thaqqa_DB {
         Thaqqa_DB.table = [];//中身をリセットする
         try {
             const k = await DB.data.exec("select name from sqlite_master where type='table';");
-            for (let v of k[0]["values"]) {
-                let newtable = new DataTable(v[0]);
+            for (const v of k[0]["values"]) {
+              const newtable = new DataTable(v[0]);
                 await newtable.async_loadTable();
                 Thaqqa_DB.table.push(newtable);
             }
@@ -21,7 +21,7 @@ export class Thaqqa_DB {
         }
     }
     static async async_saveData() {
-        let saved = new SQL.Database();
+      const saved = new SQL.Database();
         try {
             const sqlt = Thaqqa_DB.table;
             for (let j = 0; j < sqlt.length; j++) {
@@ -136,7 +136,7 @@ export class DataTable {
         const l = (await DB.data.exec("SELECT * FROM " + this.name))[0];
         if (l == null) return true;
         for (const v of l["values"]) {
-            let new_data = new Data(this);
+          const new_data = new Data(this);
             for (const w of l["columns"]) {
                 new_data.values[w] = v[l["columns"].indexOf(w)];
             }
