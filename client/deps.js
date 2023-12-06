@@ -18,7 +18,7 @@ async function init(){
 
 let k = Khehyelu_lib.Parser.parse("suzus'ha koratl", 0);
 
-k = Khehyelu_lib.Parser_Alt.test("suzus'ha koratl", 0);
+k = Khehyelu_lib.Parser_Alt.test("suzus'ha koratlaa", 0);
 console.log(k);
 //S(null,*)S(null,s_0-d_0,u_0,s_0)S(null,h_0,a_0,)P(space_0)S(null,k_0,o_0,)S(null,r_0,a_0,tl_0)
 

@@ -49,8 +49,9 @@ class REK_def {
         const str = self.intent.subtype;
         let AL;
         if (typeof str == "string") {
-          AL = LetterManager.getLetter_B(table[str], { Name: /.*/g });
+          AL = LetterManager.getLetter_B(table[str], { Name: /(|.*)/g });
         }
+        console.log(AL);
         if (AL == null || AL instanceof Error) throw AL;
         for (const a_ in AL) {
           const k = AL[a_].values;
@@ -365,7 +366,7 @@ class REK_def {
       return REK_def.PREsub_END(self, ans, pattern, msg, msg);
     },
     ["Q\\(\\)"]: (self, ans, pattern, msg) => {
-        return REK_def.PREsub_END(self, ans, pattern, msg, msg);
+        return REK_def.PREsub_END(self, ans, pattern, "Q\\(\\)", "Q\\(\\)");
       },
     ["L\\(\\)"]: //PREsub_br_Cを用いる。
       (self, ans, pattern, msg) => {
