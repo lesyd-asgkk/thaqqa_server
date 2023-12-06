@@ -1,69 +1,19 @@
 
-export class Thaqqa_DB {
+class Thaqqa_DB {
     static table = [];
+    static data;
 
-    static async async_loadData() {
-        const table_backup = Thaqqa_DB.table;
-        Thaqqa_DB.table = [];//中身をリセットする
-        try {
-            const k = await DB.data.exec("select name from sqlite_master where type='table';");
-            for (const v of k[0]["values"]) {
-              const newtable = new DataTable(v[0]);
-                await newtable.async_loadTable();
-                Thaqqa_DB.table.push(newtable);
-            }
-        }
-        catch (error) {
-            console.error(error);
-            Thaqqa_DB.table = table_backup;
-            const errmessage = "databaseの読み込みに失敗しました";
-            return new Promise(resolve => { resolve(new Error(errmessage)); });
-        }
+    static export_as_Json() {
+      const tablelist = Thaqqa_DB.table;
+      for (let j = 0; j < tablelist.length; j++) {
+        const t = tablelist[j];
+        // table -> name,column,data
+  
+        // column -> name,type
+        // data -> value
+      }
     }
-    static async async_saveData() {
-      const saved = new SQL.Database();
-        try {
-            const sqlt = Thaqqa_DB.table;
-            for (let j = 0; j < sqlt.length; j++) {
-                const table = sqlt[j];
-                let create = "CREATE TABLE IF NOT EXISTS " + table.name + "(";
-                for (let i = 0; i < table.columns.length; i++) {
-                    const c = table.columns[i]["name"];
-                    create += c + " ";//columns
-                    create += table.columns[i]["type"];//columnsの型
-                    create += (i != table.columns.length - 1 ? ", " : "");//最後じゃなかったらコンマをつける
-                }
-                create += ");"; //);で終わってろ
-                //console.log(create);
-                await saved.run(create);
 
-                let sqlstr = "";
-
-                for (let h = 0; h < table.data.length; h++) {
-                    sqlstr += "INSERT INTO " + table.name + " VALUES ("
-                    for (let i = 0; i < table.columns.length; i++) {
-                        
-                        const c = table.columns[i]["name"];
-                        const isnumber = (table.columns[i]["type"] == "INTEGER" || table.columns[i]["type"] == "float");//数字の場合の例外処理
-                        const isnumberb = (table.columns[i]["type"] == "INTEGER" || table.columns[i]["type"] == "float" || table.columns[i]["type"] == "bool");//数字の場合の例外処理
-                        const str = isnumber ? "" : "'";
-                        const val = isnumberb ? table.data[h].values[c] : table.data[h].values[c].split("'").join("''");//'の対策
-                        sqlstr += str + val + str + (i != table.columns.length - 1 ? ", " : "");
-                    }
-                    sqlstr += ");"; //);で終わってろ
-                    //console.log(sqlstr);
-                    
-                }
-                console.log(sqlstr);
-                await saved.run(sqlstr);
-            }
-        }
-        catch (error) {
-            console.error(error);
-            const errmessage = "databaseの保存に失敗しました";
-            return new Promise(resolve => { resolve(new Error(errmessage)); });
-        }
-    }
   static isavailableType(str) {
     if (str == "char" || str == "float" || str == "INTEGER" || str == "bool") {
       return true;
@@ -117,7 +67,7 @@ export class Thaqqa_DB {
   }
 }
 
-export class DataTable {
+class DataTable {
   static type = "DataTable";
   constructor(name) {
     this.name = name;
@@ -128,12 +78,12 @@ export class DataTable {
   async async_loadTable() {
     try {
         //中身の一覧
-        const k = await DB.data.exec('PRAGMA table_info (' + this.name + ")");
+        const k = await Thaqqa_DB.data.exec('PRAGMA table_info (' + this.name + ")");
         //const k = await DB.data.exec("SELECT * FROM " + this.name );
         for (const v of k[0]["values"]) {
             this.columns.push({name:v[1],type:v[2]});
         }
-        const l = (await DB.data.exec("SELECT * FROM " + this.name))[0];
+        const l = (await Thaqqa_DB.data.exec("SELECT * FROM " + this.name))[0];
         if (l == null) return true;
         for (const v of l["values"]) {
           const new_data = new Data(this);
@@ -350,7 +300,7 @@ export class DataTable {
     }
   }
 }
-export class Data {
+class Data {
     constructor(parent) {
     this.parent = parent;
     this.values = {}; //{name:"",val:""}

@@ -1,4 +1,4 @@
-export class SVG {
+class SVG {
     constructor(name){
         this.name = name;
         this.loadname = loadname;

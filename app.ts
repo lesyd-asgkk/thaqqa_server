@@ -2,6 +2,7 @@
 import { Application, Router, send } from "./deps.ts";
 import { path } from "./deps.ts";
 import { fs } from "./deps.ts";
+import { loadFile } from "./deps.ts";
 
 const app = new Application();
 const router = new Router();
@@ -26,6 +27,14 @@ const srcPath_def = path.join(Deno.cwd());
     });
   }
 }
+
+router.get(`/server/default.db`, async (ctx) => {
+  console.log("works");
+  const data = loadFile.loadDB("./server/default.db");
+  console.log(data);
+  ctx.response.body = data.buffer; // Uint8Arrayをバイナリデータとしてクライアントに送信
+  ctx.response.headers.set("Content-Type", "application/octet-stream"); // コンテンツタイプを設定
+});
 
 app.use(router.routes());
 app.use(router.allowedMethods());

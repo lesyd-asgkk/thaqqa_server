@@ -1,4 +1,4 @@
-export class GlyphManager{
+class GlyphManager{
     static async async_loadSVGall(folder,isoverwrite){
     //現在使用されているVOWEL,CONSONANT,PUNCTUATION,DIACRITIC_C,DIACRITIC_V,DIACRITIC_Pから全てのsvgを取得する。
     //SolGlyphNum: 1, InitGlyphNum: 1, MidGlyphNum: 2, FinGlyphNum: 4,
@@ -57,7 +57,7 @@ export class GlyphManager{
     }
 }
 
-export class Glyph{
+class Glyph{
 
     constructor(name,offx,offy,algx,algy){
         this.name = name;
