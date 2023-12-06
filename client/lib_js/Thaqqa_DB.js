@@ -3,7 +3,7 @@ class Thaqqa_DB {
     static table = [];
     static data;
 
-    static export_as_Json() {
+    static import() {
       const tablelist = Thaqqa_DB.table;
       for (let j = 0; j < tablelist.length; j++) {
         const t = tablelist[j];
@@ -13,7 +13,62 @@ class Thaqqa_DB {
         // data -> value
       }
     }
+   static async load(){
+    await fetch('/server/init.json')
+  .then(response => response.json())
+  .then(data => {
+    console.log('Received data:', data);
+    // データを処理する（表示するなど）
+    for(const t_n in data){
+      const t = new DataTable(data[t_n]);
+      Thaqqa_DB.table.push(t);
+    }
+    console.log(Thaqqa_DB.table);
+  })
+  .catch(error => console.error('Error fetching data:', error));
+  }
 
+  /*
+    static export_as_Json() {
+    const sqlt = Thaqqa_DB.table;
+
+    // deno-lint-ignore no-explicit-any
+    const json_data: { [index: string]: any } = {};
+
+    for (let j = 0; j < sqlt.length; j++) {
+      const table = sqlt[j];
+      // deno-lint-ignore no-explicit-any
+      const table_data: { [index: string]: any } = {};
+
+      const column_data: { [index: string]: any } = {};
+      for (let i = 0; i < table.columns.length; i++) {
+        column_data[table.columns[i]["name"]] = table.columns[i]["type"];
+      }
+      table_data.name = table.name;
+      table_data.column = column_data;
+
+      const data_data: { [index: string]: any } = {};
+      for (let h = 0; h < table.data.length; h++) {
+        // deno-lint-ignore no-explicit-any
+        const value_data: { [index: string]: any } = {};
+        for (let i = 0; i < table.columns.length; i++) {
+          const c = table.columns[i]["name"];
+          value_data[c] = table.data[h].values[c];
+        }
+        data_data[table.data[h].values.Name as string] = value_data;
+      }
+
+      table_data.data = data_data;
+      // table -> name,column\,data
+
+      // column -> name,type
+      // data -> value
+      json_data[table.name] = table_data;
+    }
+    console.log(json_data);
+    Deno.writeTextFileSync("./init.json", JSON.stringify(json_data));
+  }
+   */
   static isavailableType(str) {
     if (str == "char" || str == "float" || str == "INTEGER" || str == "bool") {
       return true;
@@ -69,36 +124,37 @@ class Thaqqa_DB {
 
 class DataTable {
   static type = "DataTable";
-  constructor(name) {
-    this.name = name;
+  constructor(dt) {
+    this.name = dt.Name;
     this.columns = []; //{name:"",type:""}
     this.data = [];
+    this.load(dt)
   }
 
-  async async_loadTable() {
-    try {
-        //中身の一覧
-        const k = await Thaqqa_DB.data.exec('PRAGMA table_info (' + this.name + ")");
-        //const k = await DB.data.exec("SELECT * FROM " + this.name );
-        for (const v of k[0]["values"]) {
-            this.columns.push({name:v[1],type:v[2]});
-        }
-        const l = (await Thaqqa_DB.data.exec("SELECT * FROM " + this.name))[0];
-        if (l == null) return true;
-        for (const v of l["values"]) {
-          const new_data = new Data(this);
-            for (const w of l["columns"]) {
-                new_data.values[w] = v[l["columns"].indexOf(w)];
-            }
-            this.data.push(new_data);
-        }
+    load(dt){
+
+    const COLUMN = dt.column;
+    const DATA = dt.data;
+    for(const cn in COLUMN){
+      const k = {name:cn,type:COLUMN[cn]};
+      this.columns.push(k);
     }
-    catch (error) {
-        console.error(error);
-        const errmessage = "tablename" + this.name + "の読み込みに失敗しました";
-        return new Promise(resolve => { resolve(new Error(errmessage)); });
+    
+    for(const dn in DATA){
+      const d = new Data(this);
+      for(const k in DATA[dn]){
+        //console.log(k);
+        const type = dt.column[k];
+        //console.log(type);
+        if(type == "char"){DATA[dn][k] = DATA[dn][k].toString()}
+        else if(type == "bool"){DATA[dn][k] = typeof DATA[dn][k] == "boolean" ? DATA[dn][k] : DATA[dn][k]=="true"}
+        else{DATA[dn][k] = Number(DATA[dn][k]);}
+        //console.log(DATA[dn][k]);
+      }
+      d.values = DATA[dn];
+      this.data.push(d);
     }
-}
+  }
 
   getColumn(name) {
     try {
@@ -300,9 +356,12 @@ class DataTable {
     }
   }
 }
-class Data {
+
+export default class Data {
     constructor(parent) {
     this.parent = parent;
     this.values = {}; //{name:"",val:""}
   }
 }
+
+export {Thaqqa_DB,DataTable,Data}

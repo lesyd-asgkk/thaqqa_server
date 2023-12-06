@@ -1,12 +1,5 @@
-class SVG {
-    constructor(name){
-        this.name = name;
-        this.loadname = loadname;
-        this.d = ""; //setDを後で読み込むこと。
-    }
-    async setD(){
-        this.d = await FileStorage.loadFile(this.loadname);
-    }
+export default class SVG {
+
     static convertSVG(param){
         //console.log(param);
         return Snap.path.toRelative(param).toString().toLowerCase();
@@ -36,3 +29,5 @@ class SVG {
         return d0+" M "+x+","+y+" "+d1+" M "+x1+","+y1+" "+d2;
     }
 }
+
+export {SVG}

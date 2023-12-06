@@ -1,10 +1,6 @@
-import {
-  DOMParser,
-  Element,
-} from "https://deno.land/x/deno_dom@v0.1.43/deno-dom-wasm.ts";
-
-export class loadFile {
-  static loadDB(path: string) {
+import { DOMParser, Element } from "./deps.ts";
+export class LoadFile {
+  static loadJSON(path: string) {
     try {
       const file = Deno.readFileSync(path);
       return file;

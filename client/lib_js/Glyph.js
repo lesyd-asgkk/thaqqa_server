@@ -1,52 +1,10 @@
-class GlyphManager{
-    static async async_loadSVGall(folder,isoverwrite){
-    //現在使用されているVOWEL,CONSONANT,PUNCTUATION,DIACRITIC_C,DIACRITIC_V,DIACRITIC_Pから全てのsvgを取得する。
-    //SolGlyphNum: 1, InitGlyphNum: 1, MidGlyphNum: 2, FinGlyphNum: 4,
-    //OnsetGlyphNum: 1, CodaGlyphNum: 1,
-    ///GlyphNum: 1
 
-    //とりあえず、folderの中身から一致するものを全部抜き取る
-    //isoverwriteがtrueなら上書きする
-    
-        const tablename = ["VOWEL","CONSONANT","DIACRITIC_C","DIACRITIC_V","PUNCTUATION","DIACRITIC_P"]
-        const tables = (function(tn){let j = [];for(let i = 0 ; i<tn.length;i++){j.push(SQLDatabase.getTable(tn[i]))}return j;})(tablename);
-        let ans = [];
-        for(let i = 0;i<tables.length;i++){
-            
-            for(let j = 0;j<tables[i].data.length;j++){
-                switch(tables[i].name){
-                    case "VOWEL":
-                    case "DIACRITIC_V":
-                    for(let k = 0;k<tables[i].data[j].values.InitGlyphNum;k++) ans.push(FileStorage.loadSvg(folder,tables[i].data[j].values.Name+"_"+"init_"+k));
-                    for(let k = 0;k<tables[i].data[j].values.MidGlyphNum;k++) ans.push(FileStorage.loadSvg(folder,tables[i].data[j].values.Name+"_"+"mid_"+k));
-                    for(let k = 0;k<tables[i].data[j].values.FinGlyphNum;k++) ans.push(FileStorage.loadSvg(folder,tables[i].data[j].values.Name+"_"+"fin_"+k));
-                    for(let k = 0;k<tables[i].data[j].values.SolGlyphNum;k++) ans.push(FileStorage.loadSvg(folder,tables[i].data[j].values.Name+"_"+"sol_"+k));
-                    break;
-                    case "CONSONANT":
-                    case "DIACRITIC_C":
-                    for(let k = 0;k<tables[i].data[j].values.OnsetGlyphNum;k++) ans.push(FileStorage.loadSvg(folder,tables[i].data[j].values.Name+"_"+"onset_"+k));
-                    for(let k = 0;k<tables[i].data[j].values.CodaGlyphNum;k++) ans.push(FileStorage.loadSvg(folder,tables[i].data[j].values.Name+"_"+"coda_"+k));
-                    break;
-                    case "PUNCTUATION":
-                    case "DIACRITIC_P":
-                        for(let k = 0;k<tables[i].data[j].values.GlyphNum;k++) ans.push(FileStorage.loadSvg(folder,tables[i].data[j].values.Name+"_"+"_"+k));
-                    break;
-                }
-                
-            }
-        }
-        const table = SQLDatabase.getTable("GLYPH");
-        if(table != null){
-            if(isoverwrite == true) table.data = [];
-        ans = await Promise.all(ans).then((values) => {
-            for(let i = 0;i<values.length;i++){
-            if(table.getData({Name:values[i][0]}) != null) table.createData({Name: values[i][0], Path: values[i][1]}) 
-        }
-          });}
-    }
+import { Thaqqa_DB,DataTable,Data } from "./Thaqqa_DB.js";
+class GlyphManager{
+
     static getSVG(name){
         const ans = [];
-        const table = SQLDatabase.getTable("GLYPH");
+        const table = Thaqqa_DB.getTable("GLYPH");
         if(table != null){
             const data = table.getData({Name:name});
             for(let i = 0;i<data.length;i++){
@@ -261,3 +219,5 @@ class Glyph{
     }
 
 }
+
+export {Glyph,GlyphManager};
