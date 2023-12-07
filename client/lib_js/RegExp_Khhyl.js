@@ -126,6 +126,7 @@ class RegExp_Khhyl {
         else if(this.intent.subtypeb != null && this.intent.subtypeb.match(/^\[/)!=null){
             ans = "(?:" + ans + ")"; 
         }
+
         return ans;
     }
 

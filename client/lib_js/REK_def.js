@@ -51,7 +51,6 @@ class REK_def {
         if (typeof str == "string") {
           AL = LetterManager.getLetter_B(table[str], { Name: /(|.*)/g });
         }
-        console.log(AL);
         if (AL == null || AL instanceof Error) throw AL;
         for (const a_ in AL) {
           const k = AL[a_].values;
@@ -59,9 +58,7 @@ class REK_def {
           const val = Function("_", `return ${msg}`);
           
           const val2 = val(k);
-          console.log(k);
-          console.log(`return ${msg}`);
-          console.log(val2);
+
           if (typeof val2 == "boolean" && val2 == true) {
 
             hensuu.push(AL[a_].values.Name.toString());
@@ -166,6 +163,7 @@ class REK_def {
   }
 
   static rule_G = {
+
     ["\\*"]: (self, ans, pattern, msg) => {
       if (self.intent.isFirst == "FALSE") {
         return REK_def.PREsub_END(self, ans, pattern, msg, msg);
@@ -366,7 +364,7 @@ class REK_def {
       return REK_def.PREsub_END(self, ans, pattern, msg, msg);
     },
     ["Q\\(\\)"]: (self, ans, pattern, msg) => {
-        return REK_def.PREsub_END(self, ans, pattern, "Q\\(\\)", "Q\\(\\)");
+        return REK_def.PREsub_END(self, ans, pattern, "Q\\(\\)", msg);
       },
     ["L\\(\\)"]: //PREsub_br_Cを用いる。
       (self, ans, pattern, msg) => {

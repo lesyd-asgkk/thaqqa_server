@@ -182,7 +182,7 @@ class Alphabet{
                             syl[i].coda = new_alpha("C","ng");
                             break;
                             }
-                        else if(syl[i].constructor.name == "Syllable" && syl[j].vowel != null&& LetterManager.getLetter(syl[j].vowel.featual[0].name)[0].values.isVowel){
+                        else if(syl[i].constructor.name == "Syllable" && (syl[j].vowel.featual[0].name == "L" || syl[j].vowel.featual[0].name == "N" ||  syl[j].vowel != null&& LetterManager.getLetter(syl[j].vowel.featual[0].name)[0].values.isVowel)){
                         //ちゃんと母音なら
                             if(syl[j].onset == null){
                             //なにもないなら N->N
@@ -340,7 +340,7 @@ class Alphabet{
         const ans = [];let current = [];
         for(const l of raw){
             current.push(l);
-            console.log(current);
+            //console.log(current);
 
             if(stack_cvdp([l],false)=="p"){
             current = tosyl(ans,current,true,true);
@@ -395,7 +395,7 @@ class Alphabet{
         }
         if(stack_cvdp(current,false).length==3){
             if(stack_cvdp_n(current,false,3) == "vcv"){
-                if(LetterManager.getLetter(l.featual[0].name)[0].values.hasGreedyBond){
+                if(l.getAlphabet() == "L" || l.getAlphabet() == "N" || LetterManager.getLetter(l.featual[0].name)[0].values.hasGreedyBond){
                     current = tosyl(ans,current,false,false);
                     //音節化処理関数をここに。CV|CVで分ける
                     continue;
@@ -409,7 +409,7 @@ class Alphabet{
         }
         if(stack_cvdp(current,false).length>=4){
             if(stack_cvdp_n(current,false,4) == "cvcv"){
-                if(LetterManager.getLetter(l.featual[0].name)[0].values.hasGreedyBond){
+                if(l.getAlphabet() == "L" || l.getAlphabet() == "N" || LetterManager.getLetter(l.featual[0].name)[0].values.hasGreedyBond){
                     current = tosyl(ans,current,false,false);
                     //音節化処理関数をここに。CV|CVで分ける
                     continue;
@@ -440,7 +440,8 @@ class Alphabet{
             if(typ.length == 0) ty = "reigai";
             else ty = typ[0].parent.name;
             raw[i].type = TYPE[ty];
-            if(ans_sub.length != 0 && TYPE[ty] == "C" || TYPE[ty] == "V" || TYPE[ty] == "P" || TYPE[ty] == "\\ex" ){
+            if(ans_sub.length != 0 && (TYPE[ty] == "C" || TYPE[ty] == "V" || TYPE[ty] == "P" || TYPE[ty] == "\\ex") ){
+
                 ans.push(new Alphabet(ans_sub));
                 ans_sub = []; //空にする
             }
@@ -479,13 +480,18 @@ class Alphabet{
                 //H -> h
                 if(ans[0].type == "\\ex" && ans[0].getAlphabet() == "H") ans[0] = new Alphabet([new Featual("C,h_0")]);
                 if(ans[0].type == "V" && ans[1].getAlphabet() == "N") ans[1] = new Alphabet([new Featual("C,n_0")]);
-                if(ans[0].getAlphabet() == "N" && !(ans[1].type == "V") && !(ans[1].getAlphabet() == "C")) ans[0] = new Alphabet([new Featual("C,n_0")]);
+                // (^|P(*))R(n)(V(*,a|e|i|o|u|v|eold|iold|abig)|C(*,c)) 
+                // -> $1C(null,n)$2
+
+                // R(n) -> C(null,n)$1
+                if(ans[0].getAlphabet() == "N" && (ans[1].type == "V" || ans[1].getAlphabet() == "C")) ans[0] = new Alphabet([new Featual("C,n_0")]);
                 for(let i = 1 ;i<ans.length-1;i++){
-                    //頭が[母音]N,またはN[母音]なら放置。
-                    //H -> kh
+                    //H -> kh 
+                    // R(n)(V(*,a|e|i|o|u|v|eold|iold|abig)|C(*,c)|R(l)) -> C(null,n)$1
+                    // V(*,a|e|i|o|u|v|eold|iold|abig)|C(*,c))R(n) -> $1C(null,n)
                     if(ans[i].type == "\\ex" && ans[i].getAlphabet() == "H") ans[i] = new Alphabet([new Featual("C,kh_0")]);
-                    if( (ans[i].type == "V" || !(ans[i].getAlphabet() == "L")) && ans[i+1].getAlphabet() == "N") ans[i+1] = new Alphabet([new Featual("C,n_0")]);
-                    if(ans[i].getAlphabet() == "N" && !(ans[i+1].type == "V") && !(ans[i+1].getAlphabet() == "C")) ans[i] = new Alphabet([new Featual("C,n_0")]);
+                    if( (ans[i].type == "V" && !(ans[i].getAlphabet() == "L")) && ans[i+1].getAlphabet() == "N") ans[i+1] = new Alphabet([new Featual("C,n_0")]);
+                    if(ans[i].getAlphabet() == "N" && (ans[i+1].type == "V" || ans[i+1].getAlphabet() == "C")) ans[i] = new Alphabet([new Featual("C,n_0")]);
                 }
             }
         }
