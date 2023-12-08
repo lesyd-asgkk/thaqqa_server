@@ -1,5 +1,5 @@
 
-import * as KhHyL_TH from "./lib_js/deps.js";
+import * as khhyl from "./lib_js/deps.js";
 let SQL;
 async function init(){
 
@@ -14,21 +14,21 @@ async function init(){
   }
   
   async function main(){
-    await KhHyL_TH.Thaqqa_DB.load();
+    await khhyl.Thaqqa_DB.load();
 
 
 
     console.log("----------");
     let k;
-    k = KhHyL_TH.Parser.test("suzus'ha koratl", 0);
-    k = KhHyL_TH.GSUBManager.gsub(k, 0);
+    k = khhyl.Parser.test("suzus'ha koratl", 0);
+    k = khhyl.GSUBManager.gsub(k, 0);
     console.log(k);
-    k = KhHyL_TH.Parser.test("rlryoi knngwahye", 1);
-    k = KhHyL_TH.GSUBManager.gsub("rlryoi knngwahye", 1);
+    k = khhyl.Parser.test("rlryoi knngwahye", 1);
+    k = khhyl.GSUBManager.gsub("rlryoi knngwahye", 1);
     console.log(k);
 //S(null,*)S(null,s_0-d_0,u_0,s_0)S(null,h_0,a_0,)P(space_0)S(null,k_0,o_0,)S(null,r_0,a_0,tl_0)
-    k = KhHyL_TH.Parser.test("nnrenl rnteknpa", 1);
-    k = KhHyL_TH.GSUBManager.gsub("nnrenl rnteknpa", 1);
+    k = khhyl.Parser.test("nnrenl rnteknpa", 1);
+    k = khhyl.GSUBManager.gsub("nnrenl rnteknpa", 1);
     console.log(k);
 
   }

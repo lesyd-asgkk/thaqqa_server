@@ -128,6 +128,7 @@ class DataTable {
     this.name = dt.Name;
     this.columns = []; //{name:"",type:""}
     this.data = [];
+    this.desc = ""; //データの説明
     this.load(dt)
   }
 
@@ -136,7 +137,7 @@ class DataTable {
     const COLUMN = dt.column;
     const DATA = dt.data;
     for(const cn in COLUMN){
-      const k = {name:cn,type:COLUMN[cn]};
+      const k = {name:cn,type:COLUMN[cn],desc:"",priorty:0};
       this.columns.push(k);
     }
     
@@ -167,11 +168,7 @@ class DataTable {
     }
   }
 
-  createColumn(
-    name,
-    type,
-    val_init,
-  ) {
+  createColumn(name,type,desc,priorty,val_init) {
     //val_initは未使用 一応後付で作るかも
     try {
       let errmessage = "";
@@ -205,7 +202,7 @@ class DataTable {
             }
             */
       if (errmessage != "") throw new Error(errmessage);
-      this.columns.push({ name: name, type: type });
+      this.columns.push({ name: name, type: type ,desc : desc,priorty : priorty});
       for (let i = 0; i < this.data.length; i++) {
         this.data[i].values[name] = val_init;
       }

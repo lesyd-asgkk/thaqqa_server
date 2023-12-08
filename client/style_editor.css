@@ -57,11 +57,47 @@ body {
     background-color: #888;
 }
 
+table {
+    border-collapse: collapse;
+    border: 2px solid rgb(0,0,0);
+    letter-spacing: 1px;
+    font-size: 0.8rem;
+  }
+
+  td, th {
+    border: 1px solid rgb(0,0,0);
+    background-color: rgb(255,255,255);
+    padding: 3px 3px;
+  }
+  
+tr.項目 td{
+    text-align: center;
+    font-size :14px;
+    padding: 1px 1px;
+}
+tr.項目:nth-child(2) td{
+    font-size :9px;
+}
+tr.data td{
+    text-align: center;
+    font-size :14px;
+    padding: 1px 1px;
+}
+tr.data.svg td{
+    text-align:left;
+    font-size :14px;
+    padding: 1px 1px;
+}
 main{
     float: right;
     padding: 10px;
     background-color: #b3d874;
     overflow: scroll;
-    width:100%;
-    height:100%;
+
   }
+
+  tr.項目 td{
+    text-align: center;
+    font-size :14px;
+    padding: 1px 1px;
+}
