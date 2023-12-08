@@ -1,0 +1,68 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deno Client</title>
+  <link rel="stylesheet" href="style_editor.css">
+</head>
+<body>
+  <div class="wrapper">
+    <aside class="tab-container" id = "tab-container">
+        <div id="tab-scroll">
+            <div class="tabs">
+                <div class="tab_select" active id = "sandbox">表記</div>
+                <div class="tab_select" id = "gpos">GPOS</div>
+                <div class="tab_select" id = "gsub">GSUB</div>
+                <div class="tab_select" id = "parser">Parser</div>
+                <div class="tab_select" id = "letter">Letter</div>
+
+                <!-- Add more tabs here -->
+            </div>
+        </div>
+    </aside>
+
+    <main>
+        <!-- Main content goes here -->
+        <div id="tab-contents">
+          <div id="sandbox" class="tab">
+            <p>sandbox</p>
+              </div>
+          <div id="gpos" class="tab">
+            <p>gpos</p>
+            </div>
+          <div id="gsub" class="tab">
+            <p>gsub</p>
+            </div>
+          <div id="parser" class="tab">
+            <p>parser</p>
+            </div>
+          <div id="letter" class="tab">
+            <p>letter</p>
+            </div>
+          </div>
+          
+    </main>
+</div>
+<script src="deps_ex.js"></script>
+<script> 
+$(document).ready(function() {
+  $('#tab-contents .tab[id != "sandbox"]').hide();
+
+$('.tab_select').on('click', function (event) {
+  
+    $("#tab-contents .tab").hide();
+    $("#tab-scroll .active").removeClass("active");
+    $(this).addClass("active");
+    $(`#tab-contents .tab[id = "${$(this).attr("id")}"]`).show();
+    event.preventDefault();
+});
+});
+
+</script>
+
+<script type = "module" src="deps.js"></script>
+
+</body>
+</html>

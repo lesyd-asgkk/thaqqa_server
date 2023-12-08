@@ -16,24 +16,20 @@ async function init(){
   async function main(){
     await KhHyL_TH.Thaqqa_DB.load();
 
-    let l = new KhHyL_TH.RegExp_Khhyl("C((*),_ng(_.)(-*))Q()C((*),_r(_.)(-*))",{});
-    l=l.ParseRegExp();
-    l=l.toNormalRegExp();
-    console.log(l);
-    let k = KhHyL_TH.Parser.ParseAll("suzus'ha koratl", 0);
-    console.log(k);
-    k = KhHyL_TH.Parser.ParseAll("rlryoi knngwahye", 1);
-    console.log(k);
-    k = KhHyL_TH.Parser.ParseAll("nnrenl knlta", 1);
-    console.log(k);
+
+
     console.log("----------");
-    k = KhHyL_TH.Parser.ParseAll("suzus'ha koratl", 0);
+    let k;
+    k = KhHyL_TH.Parser.test("suzus'ha koratl", 0);
+    k = KhHyL_TH.GSUBManager.gsub(k, 0);
     console.log(k);
-k = KhHyL_TH.Parser_Alt.test("rlryoi knngwahye", 1);
-console.log(k);
+    k = KhHyL_TH.Parser.test("rlryoi knngwahye", 1);
+    k = KhHyL_TH.GSUBManager.gsub("rlryoi knngwahye", 1);
+    console.log(k);
 //S(null,*)S(null,s_0-d_0,u_0,s_0)S(null,h_0,a_0,)P(space_0)S(null,k_0,o_0,)S(null,r_0,a_0,tl_0)
-k = KhHyL_TH.Parser_Alt.test("nnrenl knrlta", 1);
-console.log(k);
+    k = KhHyL_TH.Parser.test("nnrenl rnteknpa", 1);
+    k = KhHyL_TH.GSUBManager.gsub("nnrenl rnteknpa", 1);
+    console.log(k);
 
   }
 

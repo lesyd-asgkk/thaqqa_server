@@ -11,7 +11,7 @@ const srcPath_def = path.join(Deno.cwd());
   let srcPath = path.join(Deno.cwd(), "client");
   let htmlFiles = fs.walkSync(srcPath, {
     includeDirs: true,
-    exts: [".html", ".js"],
+    exts: [".html", ".js", ".css"],
   });
 
   for (const entry of htmlFiles) {
