@@ -1,5 +1,6 @@
 
 import * as khhyl from "./lib_js/deps.js";
+import * as webjs from "./web_js/deps.js";
 let SQL;
 async function init(){
 
@@ -31,6 +32,9 @@ async function init(){
     k = khhyl.GSUBManager.gsub("nnrenl rnteknpa", 1);
     console.log(k);
 
+    const tb = new webjs.Table_web("GSUB",$("div.area_tb#gsub")[0]);
+    tb.draw();
+    //$(this.where)[0]
   }
 
 

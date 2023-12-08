@@ -28,34 +28,32 @@ class Thaqqa_DB {
   .catch(error => console.error('Error fetching data:', error));
   }
 
-  /*
+  //*
     static export_as_Json() {
     const sqlt = Thaqqa_DB.table;
 
-    // deno-lint-ignore no-explicit-any
-    const json_data: { [index: string]: any } = {};
+    const json_data= {};
 
     for (let j = 0; j < sqlt.length; j++) {
       const table = sqlt[j];
-      // deno-lint-ignore no-explicit-any
-      const table_data: { [index: string]: any } = {};
+      const table_data= {};
 
-      const column_data: { [index: string]: any } = {};
+      const column_data = {};
       for (let i = 0; i < table.columns.length; i++) {
-        column_data[table.columns[i]["name"]] = table.columns[i]["type"];
+        column_data[table.columns[i]["name"]] = {name:table.columns[i]["name"],id:table.columns[i]["id"],type:table.columns[i]["type"],order:table.columns[i]["order"]};
       }
       table_data.name = table.name;
       table_data.column = column_data;
+      
 
-      const data_data: { [index: string]: any } = {};
+      const data_data = {};
       for (let h = 0; h < table.data.length; h++) {
-        // deno-lint-ignore no-explicit-any
-        const value_data: { [index: string]: any } = {};
+        const value_data = {};
         for (let i = 0; i < table.columns.length; i++) {
           const c = table.columns[i]["name"];
           value_data[c] = table.data[h].values[c];
         }
-        data_data[table.data[h].values.Name as string] = value_data;
+        data_data[table.data[h].values.Name] = value_data;
       }
 
       table_data.data = data_data;
@@ -68,7 +66,7 @@ class Thaqqa_DB {
     console.log(json_data);
     Deno.writeTextFileSync("./init.json", JSON.stringify(json_data));
   }
-   */
+   //*/
   static isavailableType(str) {
     if (str == "char" || str == "float" || str == "INTEGER" || str == "bool") {
       return true;
@@ -126,7 +124,7 @@ class DataTable {
   static type = "DataTable";
   constructor(dt) {
     this.name = dt.Name;
-    this.columns = []; //{name:"",type:""}
+    this.columns = []; //{name:"",type:"",desc:"",order:0}
     this.data = [];
     this.desc = ""; //データの説明
     this.load(dt)
@@ -137,7 +135,7 @@ class DataTable {
     const COLUMN = dt.column;
     const DATA = dt.data;
     for(const cn in COLUMN){
-      const k = {name:cn,type:COLUMN[cn],desc:"",priorty:0};
+      const k = {name:cn,type:COLUMN[cn],desc:"",order:0};
       this.columns.push(k);
     }
     
