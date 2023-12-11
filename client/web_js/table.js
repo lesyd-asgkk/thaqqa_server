@@ -2,34 +2,67 @@ import * as Khhyl from "../lib_js/deps.js"
 import {DIVparam_web,DIVselect_web,Button_web,SVGField_web} from "./deps.js"
 
 class Row_web{
-    constructor(parent){
+    constructor(id,parent){
+        this.id = id;
         this.content = [];//1行目
         this.contentsub = [];//2行目
         this.parent=parent;
     }
-    SortByOrder(columndesc){
+    setContent(value,table){
+        const DTTB = Khhyl.Thaqqa_DB.getTable(table);
+        for(const v in value){
+            const type = DTTB.getColumn(v).type;
+            switch(type){
+                case "INTEGER":
+                    this.content.push(new DIVparam_web(this.id,value[v],v,"int"));
+                break;
+                case "float":
+                    this.content.push(new DIVparam_web(this.id,value[v],v,"float"));
+                break;
+                case "char":
+                    this.content.push(new DIVparam_web(this.id,value[v],v,"char"));
+                break;
+                case "bool":
+                    this.content.push(new DIVselect_web(this.id,value[v],v,"bool"));
+                break;
+                default:
+                break;
+            }
+        }
+    }
+    SortbyOrder(table){
+        const DTTB = Khhyl.Thaqqa_DB.getTable(table);
         const sortalg = function(first, second){//Priorityの小さい順に並び替える
-            const f = columndesc.indexOf(first.col).order;
-            const s = columndesc.indexOf(second.col).order;
-            if (f < s) return -1;
-            else if (f  > s)return 1;
+            const f = DTTB.getColumn(first.col).order;
+            const s = DTTB.getColumn(second.col).order;
+            if ( f < s ) return -1;
+            else if ( f > s )return 1;
             else return 0;
           }
           this.content.sort(sortalg);
     }
     draw(table){
-        const tr = document.createElement('tr'); 
         const len = this.content.length;
-        for(let x=0;x<len;x++){
+        //1行目はここ
+        {
+            const tr = document.createElement('tr'); 
+            tr.name = this.id;
+        for(let x = 0;x<len;x++){
             const td = document.createElement('td');
-            const obj = new Button_web("","","Add");
-    
-            td.appendChild(obj.draw());
+
+            td.appendChild(this.content[x].draw());
             tr.appendChild(td);
         }
+        table.appendChild(tr);
+    }
+        //2行目はここ
+        {
+        const tr = document.createElement('tr'); 
+        tr.name = this.id;
+        
         {
         const td = document.createElement('td');
-        const obj = new Button_web("","","Add");
+        const obj = new Button_web(this.id,"","","Add");
 
         td.appendChild(obj.draw());
         tr.appendChild(td);
@@ -44,8 +77,10 @@ class Row_web{
             tr.appendChild(td);
             }
             table.appendChild(tr);
+        }
             {
                 const tr = document.createElement('tr'); 
+                tr.name = this.id;
 
                 const td = document.createElement('td');
                 const obj = new Button_web("","","Delete");
@@ -57,17 +92,20 @@ class Row_web{
     }
 }
 class ColumnDesc_web{
+    static drawlist = ["order","name","desc","type","subtype"];
     constructor(parent){
         this.name;
         this.type;
         this.desc;
         this.order;
+        this.subtype;
         this.parentloc=parent;
     }
     setElm(cl){
         this.name = cl.name;
         this.desc = cl.desc;
         this.order = cl.order;
+        this.subtype = cl.subtype;
         switch(cl.type){
             case "INTEGER":
                 this.type = "int";
@@ -79,14 +117,14 @@ class ColumnDesc_web{
                 this.type = cl.type;
             break;
         }
+        this.order = cl.order;
     }
-    draw(tr){
-        const drawlist = ["order","name","desc","type"];
-        for(let y = 0;y<4;y++){
+    draw(tr){ 
+        for(let y = 0;y<ColumnDesc_web.drawlist.length;y++){
             const td = document.createElement('td');
             const obj = document.createElement('div');
             obj.contentEditable = true;
-            obj.textContent = this[drawlist[y]];
+            obj.textContent = this[ColumnDesc_web.drawlist[y]];
             td.appendChild(obj);
             tr[y].appendChild(td);
             }
@@ -99,9 +137,8 @@ class RowDesc_web{
         this.parent=parent;
     }
     draw(table){
-        
         const tr = []; 
-        for(let y = 0;y<4;y++){
+        for(let y = 0;y<ColumnDesc_web.drawlist.length;y++){
             const tr_ = document.createElement('tr');
             tr_.classList.add("項目");
             tr.push(tr_);
@@ -118,7 +155,6 @@ class RowDesc_web{
         if(DTTB != null){
             this.content = [];
             const CL = DTTB.columns;
-            console.log(CL);
             for(const cl of CL){
                 const ct = new ColumnDesc_web(this);
                 ct.setElm(cl);
@@ -142,16 +178,34 @@ class Table_web{
         this.row_desc = new RowDesc_web(this.loc); //
         this.row = [];
     }
-
+    createRow(){
+        const DTTB = Khhyl.Thaqqa_DB.getTable(this.tablename);
+        if(DTTB != null){
+            this.content = [];
+            const VALUES = DTTB.data;
+            for(let v =0;v<VALUES.length;v++){
+                const d = new Row_web(VALUES[v].values.ID,this);
+                d.setContent(VALUES[v].values,this.tablename);
+                this.row.push(d);
+            }
+        }
+    }
     draw(){   
         const tb = document.createElement('table');
         this.row_desc.SetColumns(this.tablename);
         this.row_desc.SortbyOrder()
         this.row_desc.draw(tb);
         
-        const tr = document.createElement('tr'); 
-        const len = this.row_desc.content.length;
+
+        this.createRow();
+        for(let y = 0;y<this.row.length;y++){
+            this.row[y].SortbyOrder(this.tablename);
+            this.row[y].draw(tb);
+        }
         //for(let y = 0;y<row.length;y++) this.row.draw(tb);
+        /*
+                const tr = document.createElement('tr'); 
+        const len = this.row_desc.content.length;
         {
             const td = document.createElement('td');
             const obj = new Button_web("","","Add");
@@ -179,7 +233,7 @@ class Table_web{
                 td.appendChild(obj.draw());
                 tr.appendChild(td);
                 tb.appendChild(tr);
-                }
+                }*/
         this.loc.appendChild(tb);
         
     }

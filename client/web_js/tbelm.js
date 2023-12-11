@@ -3,21 +3,51 @@ import * as webjs from "./deps.js"
 
 
 class DIVparam_web{
-    constructor(col,type,subtype){
+    constructor(id,val,col,type,subtype){
+        this.id = id;
         this.col = col; //
+        this.val = val;
         this.type = type; //float,char,intのいずれか
         this.subtype = subtype; //編集拒否用
     }
+    draw(){
+        const object = document.createElement('div');
+        object.contentEditable = true;//編集拒否依存
+        object.classList.add(this.col);
+        object.textContent = this.val;
+        object.name = this.id;
+        return object;
+    }
+    rewrite_content(table){
+        const f_numcheck = function(val){//数字かどうかを確かめる。演算式ok
+            val = val.split(/[^0-9\+\-\*\/~\(\)\{\}\.]/g).join("");
+            if(val == "") val = 0; //空欄の場合、適当に0か1を埋めとく
+            val = Function('return ('+val+');')();
+            return val;
+        }
+    }
 }
 class DIVselect_web{
-    constructor(col,type,subtype){
+    constructor(id,val,col,type,subtype){
+        this.id = id;
         this.col = col; //
+        this.val = val;
         this.type = type;//bool,selectのいずれか
         this.subtype = subtype;//selectの選択肢用
     }
+    draw(){
+        const object = document.createElement("input");
+        object.type = "checkbox";
+        object.contentEditable = false;
+        object.classList.add(this.col);
+        object.name = this.id;
+        object.checked = this.val;
+        return object;
+    }
 }
 class Button_web{
-    constructor(col,parent,type){
+    constructor(id,col,parent,type){
+        this.id = id;
         this.col = col; //
         this.parent = parent;//親の名前
         this.type = type;//削除か追加か
@@ -28,6 +58,7 @@ class Button_web{
         object.type = "button";
         object.style.display ="block";
         object.value = this.type;
+        object.name = this.id;
         object.addEventListener("click",() => {},true);
         return object;
     }

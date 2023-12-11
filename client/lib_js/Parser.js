@@ -192,7 +192,7 @@ class Parser {
       for(const r of r_){
         raw += `R(${r})`
       }
-      let array = (type==0?_ParserClose:_ParserOpen).concat(_ParserUniv).concat(_toSyl);
+      const array = (type==0?_ParserClose:_ParserOpen).concat(_ParserUniv).concat(_toSyl);
       const sortalg = function(first, second ){//Priorityの大きい順に並び替える
         if (first[2] > second[2] ) return -1;
         else if (first[2]  < second[2] )return 1;

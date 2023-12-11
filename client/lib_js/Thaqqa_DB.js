@@ -29,6 +29,17 @@ class Thaqqa_DB {
   }
 
   //*
+  static export(){
+    const binaryArray = Thaqqa_DB.export_as_Json();
+    const blob = new Blob([JSON.stringify(binaryArray, null, '  ')], {type: 'application\/json'});
+    const url = URL.createObjectURL(blob); // BlobオブジェクトのURLを作成
+    
+    const link = document.createElement("a"); // リンクを作成
+    link.href = url; // リンクのhref属性にBlobオブジェクトのURLを設定
+    link.download = "example.json"; // ファイル名を指定
+    link.click(); // リンクをクリックしてダウンロードを開始
+  }
+
     static export_as_Json() {
     const sqlt = Thaqqa_DB.table;
 
@@ -40,7 +51,7 @@ class Thaqqa_DB {
 
       const column_data = {};
       for (let i = 0; i < table.columns.length; i++) {
-        column_data[table.columns[i]["name"]] = {name:table.columns[i]["name"],id:table.columns[i]["id"],type:table.columns[i]["type"],order:table.columns[i]["order"]};
+        column_data[table.columns[i]["name"]] = {name:table.columns[i]["name"],id:table.columns[i]["id"],type:table.columns[i]["type"],order:table.columns[i]["order"],subtype:table.columns[i]["subtype"]};
       }
       table_data.name = table.name;
       table_data.column = column_data;
@@ -64,7 +75,7 @@ class Thaqqa_DB {
       json_data[table.name] = table_data;
     }
     console.log(json_data);
-    Deno.writeTextFileSync("./init.json", JSON.stringify(json_data));
+    return json_data;
   }
    //*/
   static isavailableType(str) {
@@ -123,7 +134,7 @@ class Thaqqa_DB {
 class DataTable {
   static type = "DataTable";
   constructor(dt) {
-    this.name = dt.Name;
+    this.name = dt.name;
     this.columns = []; //{name:"",type:"",desc:"",order:0}
     this.data = [];
     this.desc = ""; //データの説明
@@ -135,7 +146,7 @@ class DataTable {
     const COLUMN = dt.column;
     const DATA = dt.data;
     for(const cn in COLUMN){
-      const k = {name:cn,type:COLUMN[cn],desc:"",order:0};
+      const k = {name:COLUMN[cn].name,type:COLUMN[cn].type,desc:COLUMN[cn].desc,order:COLUMN[cn].order,subtype:COLUMN[cn].subtype};
       this.columns.push(k);
     }
     
@@ -143,7 +154,7 @@ class DataTable {
       const d = new Data(this);
       for(const k in DATA[dn]){
         //console.log(k);
-        const type = dt.column[k];
+        const type = dt.column[k].type;
         //console.log(type);
         if(type == "char"){DATA[dn][k] = DATA[dn][k].toString()}
         else if(type == "bool"){DATA[dn][k] = typeof DATA[dn][k] == "boolean" ? DATA[dn][k] : DATA[dn][k]=="true"}
@@ -302,10 +313,8 @@ class DataTable {
     }
   }
   //delMAXに負の値を指定してください
-  deleteData(
-    param_reg,
-    delMAX,
-  ) { //param_regは{Name://,...}って感じ
+  deleteData(param_reg,delMAX) 
+  { //param_regは{Name://,...}って感じ
     delMAX ??= 1;
     let errmessage = "";
     const data_del = this.getData(param_reg);
@@ -326,11 +335,8 @@ class DataTable {
 
     return data_del; //削除したデータ数を返す？
   }
-  rewriteData(
-    param_reg,
-    param,
-    reMAX,
-  ) { //param_regは{Name://,...}って感じ
+  rewriteData(param_reg,param,reMAX,) { 
+    //param_regは{Name://,...}って感じ
     reMAX ??= 1;
     //干渉したデータ数を返す？
     let errmessage = "";
