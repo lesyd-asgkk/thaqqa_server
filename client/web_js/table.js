@@ -55,7 +55,7 @@ class Row_web{
         }
         table.appendChild(tr);
     }
-        //2行目はここ
+        //2,3行目はここ
         {
         const tr = document.createElement('tr'); 
         tr.name = this.id;

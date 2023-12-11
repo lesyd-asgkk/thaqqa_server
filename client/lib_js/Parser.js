@@ -180,6 +180,7 @@ class Parser {
         ["V((*),(*))C(*,(*))", "S($1,,$2,$3)",-20],
         ["C(*,(*))V((*),(*))", "S($2,$1,$3,)",-20],
         ["V((*),(*))", "S($1,,$2,)",-20],
+        ["Q()", "",-30],
       ];
       /*
 
@@ -187,10 +188,10 @@ class Parser {
 
          */
       //
-      let r_ = raw.split("");
-    raw = "";
+      const r_ = raw.split("");
+      let raw_new = "";
       for(const r of r_){
-        raw += `R(${r})`
+        raw_new += `R(${r})`
       }
       const array = (type==0?_ParserClose:_ParserOpen).concat(_ParserUniv).concat(_toSyl);
       const sortalg = function(first, second ){//Priorityの大きい順に並び替える
@@ -211,10 +212,10 @@ class Parser {
         console.log(array[i][0]);
         console.log(r_fin);
         */
-        raw = raw.replaceAll(r_fin,array[i][1]);
+        raw_new = raw_new.replaceAll(r_fin,array[i][1]);
         //console.log(text)
     }
-    return raw;
+    return raw_new;
     }
   }
   
