@@ -1,9 +1,15 @@
 
 import * as khhyl from "./lib_js/deps.js";
 import * as webjs from "./web_js/deps.js";
-
+let SQL;
 async function init(){
 
+    const initSqlJs = window.initSqlJs;
+    SQL = await initSqlJs({
+      // Required to load the wasm binary asynchronously. Of course, you can host it wherever you want
+      // You can omit locateFile completely when running in node
+      locateFile: file => `https://sql.js.org/dist/${file}`
+    });
 
     //document.write(`<script src=\"./main.js\"></script> `);
   }

@@ -3,32 +3,47 @@ import * as webjs from "./deps.js"
 
 
 class DIVparam_web{
-    constructor(id,val,col,type,subtype){
+    constructor(parent,id,val,col,type,subtype){
+        this.parent = parent;
         this.id = id;
         this.col = col; //
         this.val = val;
         this.type = type; //float,char,intのいずれか
         this.subtype = subtype; //編集拒否用
+        console.log(this.val);
     }
+
+    rewrite_content(parent,self,obj){
+        const f_numcheck = function(val){//数字かどうかを確かめる。演算式ok
+            val = val.split(/[^0-9\+\-\*\/~\(\)\{\}\.]/g);
+            if(val.length != 1 ) return null;
+            if(val == "") val = 0; //空欄の場合、適当に0か1を埋めとく
+            val.join("");
+            val = Function('return ('+val+');')();
+            return val;
+        }
+        let val = obj.textContent;
+        val = f_numcheck(val);//計算する
+        console.log(val);
+        if(val == null) val = self.val;
+        obj.textContent = val;
+        self.val = val;
+    }
+    
     draw(){
         const object = document.createElement('div');
         object.contentEditable = true;//編集拒否依存
         object.classList.add(this.col);
         object.textContent = this.val;
         object.name = this.id;
+        object.addEventListener("blur",() => {this.rewrite_content(this.parent,this,object);},true);
         return object;
     }
-    rewrite_content(table){
-        const f_numcheck = function(val){//数字かどうかを確かめる。演算式ok
-            val = val.split(/[^0-9\+\-\*\/~\(\)\{\}\.]/g).join("");
-            if(val == "") val = 0; //空欄の場合、適当に0か1を埋めとく
-            val = Function('return ('+val+');')();
-            return val;
-        }
-    }
+
 }
 class DIVselect_web{
-    constructor(id,val,col,type,subtype){
+    constructor(parent,id,val,col,type,subtype){
+        this.parent = parent;
         this.id = id;
         this.col = col; //
         this.val = val;
@@ -46,7 +61,8 @@ class DIVselect_web{
     }
 }
 class Button_web{
-    constructor(id,col,parent,type){
+    constructor(parent,id,col,type){
+        this.parent = parent;
         this.id = id;
         this.col = col; //
         this.parent = parent;//親の名前
@@ -82,8 +98,8 @@ class SVGField_web{
 
         path.setAttribute("d","M10,0 L90,100 L100,100 L100,90 L0,10 L0,0 Z");
         object.appendChild(path);
-        object.setAttribute("width","100");
-        object.setAttribute("height","100");
+        object.setAttribute("width","16");
+        object.setAttribute("height","16");
         object.setAttribute("viewBox","-10 0 100 100");
         return object;
     }

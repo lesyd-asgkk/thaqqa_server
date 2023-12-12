@@ -135,7 +135,7 @@ class DataTable {
   static type = "DataTable";
   constructor(dt) {
     this.name = dt.name;
-    this.columns = []; //{name:"",type:"",desc:"",order:0}
+    this.columns = []; //{name:"",type:"",desc:"",order:0,subtype : ""}
     this.data = [];
     this.desc = ""; //データの説明
     this.load(dt)
@@ -236,18 +236,20 @@ class DataTable {
       throw e;
     }
   }
-  rewriteColumn(name_old, name_new) { //あんま使う機会ない
+  rewriteColumn(name_old, name_new,genre) { //あんま使う機会ない
     try {
+      genre ??= "name";
       let errmessage = "";
       const rewrite = this.getColumn(name_old);
       if (rewrite == null) { //そんなものがない時の処理
         errmessage += name_old + "というColumnは存在しません　　";
       }
-      if (this.getColumn(name_new) != null) { //既にそれがある場合の処理
+      if (genre == "name"&& this.getColumn(name_new) != null) { //既にそれがある場合の処理
         errmessage += name_new + "というColumnは既に存在します　　";
       }
+      //genre = [name,type,desc,order,subtype] 以外だったら
       if (errmessage != "") throw new Error(errmessage);
-      if (rewrite != null) rewrite["name"] = name_new;
+      if (rewrite != null) rewrite[genre] = name_new;
       for (let i = 0; i < this.data.length; i++) {
         this.data[i].values[name_new] = this.data[i].values[name_old];
         this.data[i].values[name_old] = "";
