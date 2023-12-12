@@ -11,67 +11,67 @@
       "Name": {
         "name": "Name",
         "type": "char",
-        "order": 0,
+        "order": 2,
         "subtype": "none"
       },
       "LoadName": {
         "name": "LoadName",
         "type": "char",
-        "order": 0,
+        "order": 3,
         "subtype": "none"
       },
       "SolGlyphNum": {
         "name": "SolGlyphNum",
         "type": "INTEGER",
-        "order": 0,
+        "order": 4,
         "subtype": "none"
       },
       "InitGlyphNum": {
         "name": "InitGlyphNum",
         "type": "INTEGER",
-        "order": 0,
+        "order": 5,
         "subtype": "none"
       },
       "MidGlyphNum": {
         "name": "MidGlyphNum",
         "type": "INTEGER",
-        "order": 0,
+        "order": 6,
         "subtype": "none"
       },
       "FinGlyphNum": {
         "name": "FinGlyphNum",
         "type": "INTEGER",
-        "order": 0,
+        "order": 7,
         "subtype": "none"
       },
       "isVowel": {
         "name": "isVowel",
         "type": "bool",
-        "order": 0,
+        "order": 8,
         "subtype": "none"
       },
       "hasGreedyBond": {
         "name": "hasGreedyBond",
         "type": "bool",
-        "order": 0,
+        "order": 9,
         "subtype": "none"
       },
       "isBondtoPrev": {
         "name": "isBondtoPrev",
         "type": "bool",
-        "order": 0,
+        "order": 10,
         "subtype": "none"
       },
       "isBondtoNext": {
         "name": "isBondtoNext",
         "type": "bool",
-        "order": 0,
+        "order": 11,
         "subtype": "none"
       },
-      "Priority": {
-        "name": "Priority",
+      "Order": {
+        "name": "Order",
         "type": "INTEGER",
-        "order": 0,
+        "order": 1,
         "subtype": "none"
       }
     },
@@ -88,7 +88,7 @@
         "hasGreedyBond": true,
         "isBondtoPrev": true,
         "isBondtoNext": true,
-        "Priority": 0
+        "Order": 0
       },
       "abig": {
         "ID": 1,
@@ -102,7 +102,7 @@
         "hasGreedyBond": true,
         "isBondtoPrev": true,
         "isBondtoNext": true,
-        "Priority": 1
+        "Order": 1
       },
       "e": {
         "ID": 2,
@@ -116,7 +116,7 @@
         "hasGreedyBond": true,
         "isBondtoPrev": true,
         "isBondtoNext": true,
-        "Priority": 2
+        "Order": 2
       },
       "i": {
         "ID": 3,
@@ -130,7 +130,7 @@
         "hasGreedyBond": true,
         "isBondtoPrev": true,
         "isBondtoNext": true,
-        "Priority": 3
+        "Order": 3
       },
       "o": {
         "ID": 4,
@@ -144,7 +144,7 @@
         "hasGreedyBond": true,
         "isBondtoPrev": true,
         "isBondtoNext": true,
-        "Priority": 4
+        "Order": 4
       },
       "u": {
         "ID": 5,
@@ -158,7 +158,7 @@
         "hasGreedyBond": true,
         "isBondtoPrev": true,
         "isBondtoNext": true,
-        "Priority": 5
+        "Order": 5
       },
       "v": {
         "ID": 6,
@@ -172,7 +172,7 @@
         "hasGreedyBond": true,
         "isBondtoPrev": true,
         "isBondtoNext": true,
-        "Priority": 6
+        "Order": 6
       },
       "omit": {
         "ID": 7,
@@ -186,7 +186,7 @@
         "hasGreedyBond": true,
         "isBondtoPrev": true,
         "isBondtoNext": true,
-        "Priority": 7
+        "Order": 7
       },
       "eold": {
         "ID": 8,
@@ -200,7 +200,7 @@
         "hasGreedyBond": true,
         "isBondtoPrev": true,
         "isBondtoNext": true,
-        "Priority": 8
+        "Order": 8
       },
       "iold": {
         "ID": 9,
@@ -214,7 +214,7 @@
         "hasGreedyBond": true,
         "isBondtoPrev": true,
         "isBondtoNext": true,
-        "Priority": 9
+        "Order": 9
       },
       "br": {
         "ID": 10,
@@ -228,7 +228,7 @@
         "hasGreedyBond": false,
         "isBondtoPrev": true,
         "isBondtoNext": true,
-        "Priority": 10
+        "Order": 10
       },
       "hyphen": {
         "ID": 11,
@@ -242,7 +242,7 @@
         "hasGreedyBond": false,
         "isBondtoPrev": false,
         "isBondtoNext": false,
-        "Priority": 11
+        "Order": 11
       }
     }
   },
@@ -258,43 +258,43 @@
       "Name": {
         "name": "Name",
         "type": "char",
-        "order": 0,
+        "order": 2,
         "subtype": "none"
       },
       "LoadName": {
         "name": "LoadName",
         "type": "char",
-        "order": 0,
+        "order": 3,
         "subtype": "none"
       },
       "OnsetGlyphNum": {
         "name": "OnsetGlyphNum",
         "type": "INTEGER",
-        "order": 0,
+        "order": 4,
         "subtype": "none"
       },
       "CodaGlyphNum": {
         "name": "CodaGlyphNum",
         "type": "INTEGER",
-        "order": 0,
+        "order": 5,
         "subtype": "none"
       },
       "isBondAsFirst": {
         "name": "isBondAsFirst",
         "type": "bool",
-        "order": 0,
+        "order": 6,
         "subtype": "none"
       },
       "isBondAsLast": {
         "name": "isBondAsLast",
         "type": "bool",
-        "order": 0,
+        "order": 7,
         "subtype": "none"
       },
-      "Priority": {
-        "name": "Priority",
+      "Order": {
+        "name": "Order",
         "type": "INTEGER",
-        "order": 0,
+        "order": 1,
         "subtype": "none"
       }
     },
@@ -307,7 +307,7 @@
         "CodaGlyphNum": 2,
         "isBondAsFirst": true,
         "isBondAsLast": true,
-        "Priority": 0
+        "Order": 0
       },
       "k": {
         "ID": 1,
@@ -317,7 +317,7 @@
         "CodaGlyphNum": 1,
         "isBondAsFirst": true,
         "isBondAsLast": true,
-        "Priority": 1
+        "Order": 1
       },
       "q": {
         "ID": 2,
@@ -327,7 +327,7 @@
         "CodaGlyphNum": 1,
         "isBondAsFirst": true,
         "isBondAsLast": true,
-        "Priority": 2
+        "Order": 2
       },
       "c": {
         "ID": 3,
@@ -337,7 +337,7 @@
         "CodaGlyphNum": 1,
         "isBondAsFirst": true,
         "isBondAsLast": true,
-        "Priority": 3
+        "Order": 3
       },
       "n": {
         "ID": 4,
@@ -347,7 +347,7 @@
         "CodaGlyphNum": 1,
         "isBondAsFirst": true,
         "isBondAsLast": true,
-        "Priority": 4
+        "Order": 4
       },
       "ng": {
         "ID": 5,
@@ -357,7 +357,7 @@
         "CodaGlyphNum": 1,
         "isBondAsFirst": true,
         "isBondAsLast": true,
-        "Priority": 5
+        "Order": 5
       },
       "th": {
         "ID": 6,
@@ -367,7 +367,7 @@
         "CodaGlyphNum": 1,
         "isBondAsFirst": true,
         "isBondAsLast": true,
-        "Priority": 6
+        "Order": 6
       },
       "s": {
         "ID": 7,
@@ -377,7 +377,7 @@
         "CodaGlyphNum": 1,
         "isBondAsFirst": true,
         "isBondAsLast": true,
-        "Priority": 7
+        "Order": 7
       },
       "hy": {
         "ID": 8,
@@ -387,7 +387,7 @@
         "CodaGlyphNum": 1,
         "isBondAsFirst": true,
         "isBondAsLast": true,
-        "Priority": 8
+        "Order": 8
       },
       "kh": {
         "ID": 9,
@@ -397,7 +397,7 @@
         "CodaGlyphNum": 1,
         "isBondAsFirst": true,
         "isBondAsLast": true,
-        "Priority": 9
+        "Order": 9
       },
       "qh": {
         "ID": 10,
@@ -407,7 +407,7 @@
         "CodaGlyphNum": 1,
         "isBondAsFirst": true,
         "isBondAsLast": true,
-        "Priority": 10
+        "Order": 10
       },
       "h": {
         "ID": 11,
@@ -417,7 +417,7 @@
         "CodaGlyphNum": 1,
         "isBondAsFirst": true,
         "isBondAsLast": true,
-        "Priority": 11
+        "Order": 11
       },
       "l": {
         "ID": 12,
@@ -427,7 +427,7 @@
         "CodaGlyphNum": 1,
         "isBondAsFirst": true,
         "isBondAsLast": true,
-        "Priority": 12
+        "Order": 12
       },
       "tl": {
         "ID": 13,
@@ -437,7 +437,7 @@
         "CodaGlyphNum": 1,
         "isBondAsFirst": true,
         "isBondAsLast": true,
-        "Priority": 13
+        "Order": 13
       },
       "r": {
         "ID": 14,
@@ -447,7 +447,7 @@
         "CodaGlyphNum": 1,
         "isBondAsFirst": true,
         "isBondAsLast": true,
-        "Priority": 14
+        "Order": 14
       },
       "w": {
         "ID": 15,
@@ -457,7 +457,7 @@
         "CodaGlyphNum": 1,
         "isBondAsFirst": true,
         "isBondAsLast": true,
-        "Priority": 15
+        "Order": 15
       },
       "y": {
         "ID": 16,
@@ -467,7 +467,7 @@
         "CodaGlyphNum": 1,
         "isBondAsFirst": true,
         "isBondAsLast": true,
-        "Priority": 16
+        "Order": 16
       },
       "x": {
         "ID": 17,
@@ -477,7 +477,7 @@
         "CodaGlyphNum": 0,
         "isBondAsFirst": true,
         "isBondAsLast": false,
-        "Priority": 17
+        "Order": 17
       }
     }
   },
@@ -493,25 +493,25 @@
       "Name": {
         "name": "Name",
         "type": "char",
-        "order": 0,
+        "order": 2,
         "subtype": "none"
       },
       "LoadName": {
         "name": "LoadName",
         "type": "char",
-        "order": 0,
+        "order": 3,
         "subtype": "none"
       },
       "GlyphNum": {
         "name": "GlyphNum",
         "type": "INTEGER",
-        "order": 0,
+        "order": 4,
         "subtype": "none"
       },
-      "Priority": {
-        "name": "Priority",
+      "Order": {
+        "name": "Order",
         "type": "INTEGER",
-        "order": 0,
+        "order": 1,
         "subtype": "none"
       }
     },
@@ -521,28 +521,28 @@
         "Name": "comma",
         "LoadName": "comma",
         "GlyphNum": 1,
-        "Priority": 0
+        "Order": 0
       },
       "period": {
         "ID": 1,
         "Name": "period",
         "LoadName": "period",
         "GlyphNum": 1,
-        "Priority": 1
+        "Order": 1
       },
       "space": {
         "ID": 2,
         "Name": "space",
         "LoadName": "space",
         "GlyphNum": 1,
-        "Priority": 2
+        "Order": 2
       },
       "NEWLINE": {
         "ID": 3,
         "Name": "NEWLINE",
         "LoadName": "NEWLINE",
         "GlyphNum": 1,
-        "Priority": 3
+        "Order": 3
       }
     }
   },
@@ -558,55 +558,55 @@
       "Name": {
         "name": "Name",
         "type": "char",
-        "order": 0,
+        "order": 2,
         "subtype": "none"
       },
       "LoadName": {
         "name": "LoadName",
         "type": "char",
-        "order": 0,
+        "order": 3,
         "subtype": "none"
       },
       "SolGlyphNum": {
         "name": "SolGlyphNum",
         "type": "INTEGER",
-        "order": 0,
+        "order": 4,
         "subtype": "none"
       },
       "InitGlyphNum": {
         "name": "InitGlyphNum",
         "type": "INTEGER",
-        "order": 0,
+        "order": 5,
         "subtype": "none"
       },
       "MidGlyphNum": {
         "name": "MidGlyphNum",
         "type": "INTEGER",
-        "order": 0,
+        "order": 6,
         "subtype": "none"
       },
       "FinGlyphNum": {
         "name": "FinGlyphNum",
         "type": "INTEGER",
-        "order": 0,
+        "order": 7,
         "subtype": "none"
       },
       "x_Align": {
         "name": "x_Align",
         "type": "INTEGER",
-        "order": 0,
+        "order": 8,
         "subtype": "none"
       },
       "y_Align": {
         "name": "y_Align",
         "type": "INTEGER",
-        "order": 0,
+        "order": 9,
         "subtype": "none"
       },
-      "Priority": {
-        "name": "Priority",
+      "Order": {
+        "name": "Order",
         "type": "INTEGER",
-        "order": 0,
+        "order": 1,
         "subtype": "none"
       }
     },
@@ -624,43 +624,43 @@
       "Name": {
         "name": "Name",
         "type": "char",
-        "order": 0,
+        "order": 2,
         "subtype": "none"
       },
       "LoadName": {
         "name": "LoadName",
         "type": "char",
-        "order": 0,
+        "order": 3,
         "subtype": "none"
       },
       "OnsetGlyphNum": {
         "name": "OnsetGlyphNum",
         "type": "INTEGER",
-        "order": 0,
+        "order": 4,
         "subtype": "none"
       },
       "CodaGlyphNum": {
         "name": "CodaGlyphNum",
         "type": "INTEGER",
-        "order": 0,
+        "order": 5,
         "subtype": "none"
       },
       "x_Align": {
         "name": "x_Align",
         "type": "INTEGER",
-        "order": 0,
+        "order": 6,
         "subtype": "none"
       },
       "y_Align": {
         "name": "y_Align",
         "type": "INTEGER",
-        "order": 0,
+        "order": 7,
         "subtype": "none"
       },
-      "Priority": {
-        "name": "Priority",
+      "Order": {
+        "name": "Order",
         "type": "INTEGER",
-        "order": 0,
+        "order": 1,
         "subtype": "none"
       }
     },
@@ -673,7 +673,7 @@
         "CodaGlyphNum": 1,
         "x_Align": 0,
         "y_Align": 1,
-        "Priority": 0
+        "Order": 0
       },
       "hd": {
         "ID": 1,
@@ -683,7 +683,7 @@
         "CodaGlyphNum": 1,
         "x_Align": 1,
         "y_Align": 0,
-        "Priority": 1
+        "Order": 1
       },
       "sw": {
         "ID": 2,
@@ -693,7 +693,7 @@
         "CodaGlyphNum": 1,
         "x_Align": 0,
         "y_Align": 1,
-        "Priority": 2
+        "Order": 2
       },
       "sy": {
         "ID": 3,
@@ -703,7 +703,7 @@
         "CodaGlyphNum": 1,
         "x_Align": 1,
         "y_Align": 0,
-        "Priority": 3
+        "Order": 3
       }
     }
   },
@@ -719,37 +719,37 @@
       "Name": {
         "name": "Name",
         "type": "char",
-        "order": 0,
+        "order": 2,
         "subtype": "none"
       },
       "LoadName": {
         "name": "LoadName",
         "type": "char",
-        "order": 0,
+        "order": 3,
         "subtype": "none"
       },
       "GlyphNum": {
         "name": "GlyphNum",
         "type": "INTEGER",
-        "order": 0,
+        "order": 4,
         "subtype": "none"
       },
       "x_Align": {
         "name": "x_Align",
         "type": "INTEGER",
-        "order": 0,
+        "order": 5,
         "subtype": "none"
       },
       "y_Align": {
         "name": "y_Align",
         "type": "INTEGER",
-        "order": 0,
+        "order": 6,
         "subtype": "none"
       },
-      "Priority": {
-        "name": "Priority",
+      "Order": {
+        "name": "Order",
         "type": "INTEGER",
-        "order": 0,
+        "order": 1,
         "subtype": "none"
       }
     },
@@ -2160,25 +2160,25 @@
       "Name": {
         "name": "Name",
         "type": "char",
-        "order": 0,
+        "order": 3,
         "subtype": "none"
       },
       "NameAlt": {
         "name": "NameAlt",
         "type": "char",
-        "order": 0,
+        "order": 4,
         "subtype": "none"
       },
-      "Group": {
-        "name": "Group",
+      "Order_S": {
+        "name": "Order_S",
         "type": "char",
-        "order": 0,
+        "order": 1,
         "subtype": "none"
       },
-      "Priority": {
-        "name": "Priority",
+      "Order": {
+        "name": "Order",
         "type": "INTEGER",
-        "order": 0,
+        "order": 2,
         "subtype": "none"
       }
     },
@@ -2187,29 +2187,29 @@
         "ID": 0,
         "Name": "S(mid,(t-*),(._)0(-*),(*))",
         "NameAlt": "S(mid,$1,$21$3,$4)",
-        "Group": "",
-        "Priority": 1000
+        "Order_S": "",
+        "Order": 1000
       },
       "S(fin,(t-*),(._)0(-*),(*))": {
         "ID": 1,
         "Name": "S(fin,(t-*),(._)0(-*),(*))",
         "NameAlt": "S(,fin,$1,$21$3,$4)",
-        "Group": "",
-        "Priority": 1010
+        "Order_S": "",
+        "Order": 1010
       },
       "S(fin,(*),(._)0(-*),t_0(-*))": {
         "ID": 2,
         "Name": "S(fin,(*),(._)0(-*),t_0(-*))",
         "NameAlt": "S(fin,$1,$22$3,t_1$5)",
-        "Group": "",
-        "Priority": 1020
+        "Order_S": "",
+        "Order": 1020
       },
       "S(fin,(t-*),(._)1(-*),t_0(-*))": {
         "ID": 3,
         "Name": "S(fin,(t-*),(._)1(-*),t_0(-*))",
         "NameAlt": "S(fin,$1,$23$3,t_1$5)",
-        "Group": "",
-        "Priority": 1030
+        "Order_S": "",
+        "Order": 1030
       }
     }
   },

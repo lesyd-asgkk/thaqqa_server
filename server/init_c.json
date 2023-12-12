@@ -1,0 +1,2246 @@
+{
+  "VOWEL": {
+    "name": "VOWEL",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "LoadName": {
+        "name": "LoadName",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "SolGlyphNum": {
+        "name": "SolGlyphNum",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "InitGlyphNum": {
+        "name": "InitGlyphNum",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "MidGlyphNum": {
+        "name": "MidGlyphNum",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "FinGlyphNum": {
+        "name": "FinGlyphNum",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "isVowel": {
+        "name": "isVowel",
+        "type": "bool",
+        "order": 0,
+        "subtype": "none"
+      },
+      "hasGreedyBond": {
+        "name": "hasGreedyBond",
+        "type": "bool",
+        "order": 0,
+        "subtype": "none"
+      },
+      "isBondtoPrev": {
+        "name": "isBondtoPrev",
+        "type": "bool",
+        "order": 0,
+        "subtype": "none"
+      },
+      "isBondtoNext": {
+        "name": "isBondtoNext",
+        "type": "bool",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Priority": {
+        "name": "Priority",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      }
+    },
+    "data": {
+      "a": {
+        "ID": 0,
+        "Name": "a",
+        "LoadName": "a",
+        "SolGlyphNum": 1,
+        "InitGlyphNum": 1,
+        "MidGlyphNum": 2,
+        "FinGlyphNum": 4,
+        "isVowel": true,
+        "hasGreedyBond": true,
+        "isBondtoPrev": true,
+        "isBondtoNext": true,
+        "Priority": 0
+      },
+      "abig": {
+        "ID": 1,
+        "Name": "abig",
+        "LoadName": "abig",
+        "SolGlyphNum": 1,
+        "InitGlyphNum": 1,
+        "MidGlyphNum": 2,
+        "FinGlyphNum": 4,
+        "isVowel": true,
+        "hasGreedyBond": true,
+        "isBondtoPrev": true,
+        "isBondtoNext": true,
+        "Priority": 1
+      },
+      "e": {
+        "ID": 2,
+        "Name": "e",
+        "LoadName": "e",
+        "SolGlyphNum": 1,
+        "InitGlyphNum": 1,
+        "MidGlyphNum": 2,
+        "FinGlyphNum": 4,
+        "isVowel": true,
+        "hasGreedyBond": true,
+        "isBondtoPrev": true,
+        "isBondtoNext": true,
+        "Priority": 2
+      },
+      "i": {
+        "ID": 3,
+        "Name": "i",
+        "LoadName": "i",
+        "SolGlyphNum": 1,
+        "InitGlyphNum": 1,
+        "MidGlyphNum": 2,
+        "FinGlyphNum": 4,
+        "isVowel": true,
+        "hasGreedyBond": true,
+        "isBondtoPrev": true,
+        "isBondtoNext": true,
+        "Priority": 3
+      },
+      "o": {
+        "ID": 4,
+        "Name": "o",
+        "LoadName": "o",
+        "SolGlyphNum": 1,
+        "InitGlyphNum": 1,
+        "MidGlyphNum": 2,
+        "FinGlyphNum": 4,
+        "isVowel": true,
+        "hasGreedyBond": true,
+        "isBondtoPrev": true,
+        "isBondtoNext": true,
+        "Priority": 4
+      },
+      "u": {
+        "ID": 5,
+        "Name": "u",
+        "LoadName": "u",
+        "SolGlyphNum": 1,
+        "InitGlyphNum": 1,
+        "MidGlyphNum": 2,
+        "FinGlyphNum": 4,
+        "isVowel": true,
+        "hasGreedyBond": true,
+        "isBondtoPrev": true,
+        "isBondtoNext": true,
+        "Priority": 5
+      },
+      "v": {
+        "ID": 6,
+        "Name": "v",
+        "LoadName": "v",
+        "SolGlyphNum": 1,
+        "InitGlyphNum": 1,
+        "MidGlyphNum": 2,
+        "FinGlyphNum": 4,
+        "isVowel": true,
+        "hasGreedyBond": true,
+        "isBondtoPrev": true,
+        "isBondtoNext": true,
+        "Priority": 6
+      },
+      "omit": {
+        "ID": 7,
+        "Name": "omit",
+        "LoadName": "omit",
+        "SolGlyphNum": 1,
+        "InitGlyphNum": 1,
+        "MidGlyphNum": 2,
+        "FinGlyphNum": 4,
+        "isVowel": true,
+        "hasGreedyBond": true,
+        "isBondtoPrev": true,
+        "isBondtoNext": true,
+        "Priority": 7
+      },
+      "eold": {
+        "ID": 8,
+        "Name": "eold",
+        "LoadName": "eold",
+        "SolGlyphNum": 1,
+        "InitGlyphNum": 1,
+        "MidGlyphNum": 2,
+        "FinGlyphNum": 4,
+        "isVowel": true,
+        "hasGreedyBond": true,
+        "isBondtoPrev": true,
+        "isBondtoNext": true,
+        "Priority": 8
+      },
+      "iold": {
+        "ID": 9,
+        "Name": "iold",
+        "LoadName": "iold",
+        "SolGlyphNum": 1,
+        "InitGlyphNum": 1,
+        "MidGlyphNum": 2,
+        "FinGlyphNum": 4,
+        "isVowel": true,
+        "hasGreedyBond": true,
+        "isBondtoPrev": true,
+        "isBondtoNext": true,
+        "Priority": 9
+      },
+      "br": {
+        "ID": 10,
+        "Name": "br",
+        "LoadName": "br",
+        "SolGlyphNum": 1,
+        "InitGlyphNum": 1,
+        "MidGlyphNum": 1,
+        "FinGlyphNum": 1,
+        "isVowel": false,
+        "hasGreedyBond": false,
+        "isBondtoPrev": true,
+        "isBondtoNext": true,
+        "Priority": 10
+      },
+      "hyphen": {
+        "ID": 11,
+        "Name": "hyphen",
+        "LoadName": "hyphen",
+        "SolGlyphNum": 1,
+        "InitGlyphNum": 1,
+        "MidGlyphNum": 1,
+        "FinGlyphNum": 1,
+        "isVowel": false,
+        "hasGreedyBond": false,
+        "isBondtoPrev": false,
+        "isBondtoNext": false,
+        "Priority": 11
+      }
+    }
+  },
+  "CONSONANT": {
+    "name": "CONSONANT",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "LoadName": {
+        "name": "LoadName",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "OnsetGlyphNum": {
+        "name": "OnsetGlyphNum",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "CodaGlyphNum": {
+        "name": "CodaGlyphNum",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "isBondAsFirst": {
+        "name": "isBondAsFirst",
+        "type": "bool",
+        "order": 0,
+        "subtype": "none"
+      },
+      "isBondAsLast": {
+        "name": "isBondAsLast",
+        "type": "bool",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Priority": {
+        "name": "Priority",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      }
+    },
+    "data": {
+      "t": {
+        "ID": 0,
+        "Name": "t",
+        "LoadName": "t",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 2,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Priority": 0
+      },
+      "k": {
+        "ID": 1,
+        "Name": "k",
+        "LoadName": "k",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Priority": 1
+      },
+      "q": {
+        "ID": 2,
+        "Name": "q",
+        "LoadName": "q",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Priority": 2
+      },
+      "c": {
+        "ID": 3,
+        "Name": "c",
+        "LoadName": "c",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Priority": 3
+      },
+      "n": {
+        "ID": 4,
+        "Name": "n",
+        "LoadName": "n",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Priority": 4
+      },
+      "ng": {
+        "ID": 5,
+        "Name": "ng",
+        "LoadName": "ng",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Priority": 5
+      },
+      "th": {
+        "ID": 6,
+        "Name": "th",
+        "LoadName": "th",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Priority": 6
+      },
+      "s": {
+        "ID": 7,
+        "Name": "s",
+        "LoadName": "s",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Priority": 7
+      },
+      "hy": {
+        "ID": 8,
+        "Name": "hy",
+        "LoadName": "hy",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Priority": 8
+      },
+      "kh": {
+        "ID": 9,
+        "Name": "kh",
+        "LoadName": "kh",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Priority": 9
+      },
+      "qh": {
+        "ID": 10,
+        "Name": "qh",
+        "LoadName": "qh",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Priority": 10
+      },
+      "h": {
+        "ID": 11,
+        "Name": "h",
+        "LoadName": "h",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Priority": 11
+      },
+      "l": {
+        "ID": 12,
+        "Name": "l",
+        "LoadName": "l",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Priority": 12
+      },
+      "tl": {
+        "ID": 13,
+        "Name": "tl",
+        "LoadName": "tl",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Priority": 13
+      },
+      "r": {
+        "ID": 14,
+        "Name": "r",
+        "LoadName": "r",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Priority": 14
+      },
+      "w": {
+        "ID": 15,
+        "Name": "w",
+        "LoadName": "w",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Priority": 15
+      },
+      "y": {
+        "ID": 16,
+        "Name": "y",
+        "LoadName": "y",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Priority": 16
+      },
+      "x": {
+        "ID": 17,
+        "Name": "x",
+        "LoadName": "x",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 0,
+        "isBondAsFirst": true,
+        "isBondAsLast": false,
+        "Priority": 17
+      }
+    }
+  },
+  "PUNCTUATION": {
+    "name": "PUNCTUATION",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "LoadName": {
+        "name": "LoadName",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "GlyphNum": {
+        "name": "GlyphNum",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Priority": {
+        "name": "Priority",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      }
+    },
+    "data": {
+      "comma": {
+        "ID": 0,
+        "Name": "comma",
+        "LoadName": "comma",
+        "GlyphNum": 1,
+        "Priority": 0
+      },
+      "period": {
+        "ID": 1,
+        "Name": "period",
+        "LoadName": "period",
+        "GlyphNum": 1,
+        "Priority": 1
+      },
+      "space": {
+        "ID": 2,
+        "Name": "space",
+        "LoadName": "space",
+        "GlyphNum": 1,
+        "Priority": 2
+      },
+      "NEWLINE": {
+        "ID": 3,
+        "Name": "NEWLINE",
+        "LoadName": "NEWLINE",
+        "GlyphNum": 1,
+        "Priority": 3
+      }
+    }
+  },
+  "DIACRITIC_V": {
+    "name": "DIACRITIC_V",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "LoadName": {
+        "name": "LoadName",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "SolGlyphNum": {
+        "name": "SolGlyphNum",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "InitGlyphNum": {
+        "name": "InitGlyphNum",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "MidGlyphNum": {
+        "name": "MidGlyphNum",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "FinGlyphNum": {
+        "name": "FinGlyphNum",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "x_Align": {
+        "name": "x_Align",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "y_Align": {
+        "name": "y_Align",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Priority": {
+        "name": "Priority",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      }
+    },
+    "data": {}
+  },
+  "DIACRITIC_C": {
+    "name": "DIACRITIC_C",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "LoadName": {
+        "name": "LoadName",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "OnsetGlyphNum": {
+        "name": "OnsetGlyphNum",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "CodaGlyphNum": {
+        "name": "CodaGlyphNum",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "x_Align": {
+        "name": "x_Align",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "y_Align": {
+        "name": "y_Align",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Priority": {
+        "name": "Priority",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      }
+    },
+    "data": {
+      "d": {
+        "ID": 0,
+        "Name": "d",
+        "LoadName": "d",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "x_Align": 0,
+        "y_Align": 1,
+        "Priority": 0
+      },
+      "hd": {
+        "ID": 1,
+        "Name": "hd",
+        "LoadName": "hd",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "x_Align": 1,
+        "y_Align": 0,
+        "Priority": 1
+      },
+      "sw": {
+        "ID": 2,
+        "Name": "sw",
+        "LoadName": "sw",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "x_Align": 0,
+        "y_Align": 1,
+        "Priority": 2
+      },
+      "sy": {
+        "ID": 3,
+        "Name": "sy",
+        "LoadName": "sy",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "x_Align": 1,
+        "y_Align": 0,
+        "Priority": 3
+      }
+    }
+  },
+  "DIACRITIC_P": {
+    "name": "DIACRITIC_P",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "LoadName": {
+        "name": "LoadName",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "GlyphNum": {
+        "name": "GlyphNum",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "x_Align": {
+        "name": "x_Align",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "y_Align": {
+        "name": "y_Align",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Priority": {
+        "name": "Priority",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      }
+    },
+    "data": {}
+  },
+  "GLYPH": {
+    "name": "GLYPH",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Path": {
+        "name": "Path",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      }
+    },
+    "data": {
+      "abig_fin_0": {
+        "ID": 0,
+        "Name": "abig_fin_0",
+        "Path": "m0,0 m-24,0 v8 h48 v-8 zm24,0 "
+      },
+      "abig_fin_1": {
+        "ID": 1,
+        "Name": "abig_fin_1",
+        "Path": "m0,0 m-24,0 v8 h38 v-8 zm24,0 "
+      },
+      "abig_fin_2": {
+        "ID": 2,
+        "Name": "abig_fin_2",
+        "Path": "m0,0 m-14,0 v8 h38 v-8 zm14,0 "
+      },
+      "abig_fin_3": {
+        "ID": 3,
+        "Name": "abig_fin_3",
+        "Path": "m0,0 m-14,0 v8 h38 v-8 zm14,0 "
+      },
+      "abig_init_0": {
+        "ID": 4,
+        "Name": "abig_init_0",
+        "Path": "m0,0 m-24,0 v8 h48 v-8 zm24,0 "
+      },
+      "abig_mid_0": {
+        "ID": 5,
+        "Name": "abig_mid_0",
+        "Path": "m0,0 m-24,0 v8 h48 v-8 zm24,0 "
+      },
+      "abig_mid_1": {
+        "ID": 6,
+        "Name": "abig_mid_1",
+        "Path": "m0,0 m-24,0 v8 h36 v-8 zm24,0 "
+      },
+      "abig_sol_0": {
+        "ID": 7,
+        "Name": "abig_sol_0",
+        "Path": "m0,0 m8,1 l-2,14.5 l17,3 l-2,8 l-16,-3.5 l-2,12.5 l16,3 l-2,8 l-15,-3 l-2,13.5 l-8,-1 l2,-14 l-17,-3.5 l1.5,-8 l16.5,3.5 l2,-12.5 l-15.5,-3 l1.5,-8 l15.5,3 l1.5,-13.5 zm-8,-1 "
+      },
+      "a_fin_0": {
+        "ID": 8,
+        "Name": "a_fin_0",
+        "Path": "m0,0 "
+      },
+      "a_fin_1": {
+        "ID": 9,
+        "Name": "a_fin_1",
+        "Path": "m0,0 "
+      },
+      "a_fin_2": {
+        "ID": 10,
+        "Name": "a_fin_2",
+        "Path": "m0,0 "
+      },
+      "a_fin_3": {
+        "ID": 11,
+        "Name": "a_fin_3",
+        "Path": "m0,0 "
+      },
+      "a_init_0": {
+        "ID": 12,
+        "Name": "a_init_0",
+        "Path": "m0,0 "
+      },
+      "a_mid_0": {
+        "ID": 13,
+        "Name": "a_mid_0",
+        "Path": "m0,0 "
+      },
+      "a_mid_1": {
+        "ID": 14,
+        "Name": "a_mid_1",
+        "Path": "m0,0 "
+      },
+      "a_sol_0": {
+        "ID": 15,
+        "Name": "a_sol_0",
+        "Path": "m0,0 "
+      },
+      "br_fin_0": {
+        "ID": 16,
+        "Name": "br_fin_0",
+        "Path": "m0,0 m-18,0 v4 v5 h9 v-9 zm18,0 m9,0 v4 v5 h9 v-9 zm-9,0 m-4,0 v4 v5 h9 v-9 zm4,0 "
+      },
+      "br_fin_1": {
+        "ID": 17,
+        "Name": "br_fin_1",
+        "Path": "m0,0 m-18,0 v4 v5 h9 v-9 zm18,0 m9,0 v4 v5 h9 v-9 zm-9,0 m-4,0 v4 v5 h9 v-9 zm4,0 "
+      },
+      "br_fin_2": {
+        "ID": 18,
+        "Name": "br_fin_2",
+        "Path": "m0,0 m-18,0 v4 v5 h9 v-9 zm18,0 m9,0 v4 v5 h9 v-9 zm-9,0 m-4,0 v4 v5 h9 v-9 zm4,0 "
+      },
+      "br_fin_3": {
+        "ID": 19,
+        "Name": "br_fin_3",
+        "Path": "m0,0 m-18,0 v4 v5 h9 v-9 zm18,0 m9,0 v4 v5 h9 v-9 zm-9,0 m-4,0 v4 v5 h9 v-9 zm4,0 "
+      },
+      "br_init_0": {
+        "ID": 20,
+        "Name": "br_init_0",
+        "Path": "m0,0 m-18,0 v4 v5 h9 v-9 zm18,0 m9,0 v4 v5 h9 v-9 zm-9,0 m-4,0 v4 v5 h9 v-9 zm4,0 "
+      },
+      "br_mid_0": {
+        "ID": 21,
+        "Name": "br_mid_0",
+        "Path": "m0,0 m-18,0 v4 v5 h9 v-9 zm18,0 m9,0 v4 v5 h9 v-9 zm-9,0 m-4,0 v4 v5 h9 v-9 zm4,0 "
+      },
+      "br_mid_1": {
+        "ID": 22,
+        "Name": "br_mid_1",
+        "Path": "m0,0 m-18,0 v4 v5 h9 v-9 zm18,0 m9,0 v4 v5 h9 v-9 zm-9,0 m-4,0 v4 v5 h9 v-9 zm4,0 "
+      },
+      "br_sol_0": {
+        "ID": 23,
+        "Name": "br_sol_0",
+        "Path": "m0,0 m-18,0 v4 v5 h9 v-9 zm18,0 m9,0 v4 v5 h9 v-9 zm-9,0 m-4,0 v4 v5 h9 v-9 zm4,0 "
+      },
+      "comma__0": {
+        "ID": 24,
+        "Name": "comma__0",
+        "Path": "m0,0 m17.5,0 c-7,2.5 -38,12 -38,12 l2.5,7.5 c0,0 30.5,-9.5 38,-12 zm-17.5,0 "
+      },
+      "c_coda_0": {
+        "ID": 25,
+        "Name": "c_coda_0",
+        "Path": "m0,0 m-10.5,0 l-16,14 l0,6 l24,22 l5,-6 l-20.5,-19 l12.5,-11 zm10.5,0 "
+      },
+      "c_onset_0": {
+        "ID": 26,
+        "Name": "c_onset_0",
+        "Path": "m0,0 m10.5,0 l-5,6 l12.5,11 l-20.5,19 l5.5,6 l24,-22 l-0.5,-6 zm-10.5,0 "
+      },
+      "d_coda_0": {
+        "ID": 27,
+        "Name": "d_coda_0",
+        "Path": "m0,0 m5,0 v4 v5 h9 v-9 zm-5,0 m-14,0 v4 v5 h9 v-9 zm14,0 "
+      },
+      "d_onset_0": {
+        "ID": 28,
+        "Name": "d_onset_0",
+        "Path": "m0,0 m5,0 v4 v5 h9 v-9 zm-5,0 m-14,0 v4 v5 h9 v-9 zm14,0 "
+      },
+      "eold_fin_0": {
+        "ID": 29,
+        "Name": "eold_fin_0",
+        "Path": "m0,0 m-4,0 c0,3 -1,5 -2.5,7 c-1.5,2 -4,4 -6.5,6.5 c-5,4.5 -11.5,11 -11.5,22.5 c0,10 8,18 18,18 h0 c1.5,0 2.5,-0.5 4,-0.5 c-1,1 -1,1.5 -2,2.5 c-1,1.5 -2.5,3.5 -3.5,5 c-1,1.5 -1.5,2.5 -2,3 l7,4 c0,0 1,-1 2,-2.5 c1,-1.5 2,-3 3.5,-4.5 c2.5,-3.5 4.5,-6.5 4.5,-6.5 l0,0 l14,-20 l0,0 c0,0 0,0 0,0 l-6.5,-4.5 l0,0 l0,0 c0,0 -3,4 -7,8.5 c-4,4 -9.5,8 -13.5,8 c-6,0 -10,-4 -10,-10 c0,-8.5 4,-12 8.5,-16.5 c2.5,-2 5,-4.5 7.5,-7.5 c2.5,-3.5 4,-7.5 4,-12.5 zm4,0 "
+      },
+      "eold_fin_1": {
+        "ID": 30,
+        "Name": "eold_fin_1",
+        "Path": "m0,0 m-4,0 v12 c0,2.5 -1,4.5 -2.5,6.5 c-1.5,2 -4,4.5 -6.5,6.5 c-5,5 -11,11 -11,20.5 c0,4.5 1,9.5 3.5,13 c2.5,4 7,7 12.5,7 h0 c1,0 2.5,0 3.5,-0.5 l-3.5,12 l8,2 l8,-28 l0,0 l0.5,-2.5 c2.5,-7 3.5,-14 3.5,-14 l-8,-1.5 l-3.5,14 c-1,3 -2.5,6.5 -4.5,8.5 c-1.5,2 -3,3 -4.5,3 c-2,-0.5 -3.5,-1.5 -5,-3.5 c-1.5,-2.5 -2.5,-5.5 -2.5,-9 c0,-6.5 4,-10 9,-15 c2.5,-2.5 5,-5 7.5,-8 c2,-2.5 3.5,-6.5 3.5,-11 v-12 zm4,0 "
+      },
+      "eold_fin_2": {
+        "ID": 31,
+        "Name": "eold_fin_2",
+        "Path": "m0,0 m-4,0 c0,3 -1,5 -2.5,7 c-1.5,2 -4,4 -6.5,6.5 c-5,4.5 -11.5,11 -11.5,22.5 c0,10 8,18 18,18 h0 c1.5,0 2.5,-0.5 4,-0.5 c-1,1 -1,1.5 -2,2.5 c-1,1.5 -2.5,3.5 -3.5,5 c-1,1.5 -1.5,2.5 -2,3 l7,4 c0,0 1,-1 2,-2.5 c1,-1.5 2,-3 3.5,-4.5 c2.5,-3.5 4.5,-6.5 4.5,-6.5 l0,0 l14,-20 l0,0 c0,0 0,0 0,0 l-6.5,-4.5 l0,0 l0,0 c0,0 -3,4 -7,8.5 c-4,4 -9.5,8 -13.5,8 c-6,0 -10,-4 -10,-10 c0,-8.5 4,-12 8.5,-16.5 c2.5,-2 5,-4.5 7.5,-7.5 c2.5,-3.5 4,-7.5 4,-12.5 zm4,0 "
+      },
+      "eold_fin_3": {
+        "ID": 32,
+        "Name": "eold_fin_3",
+        "Path": "m0,0 m-4,0 v12 c0,2.5 -1,4.5 -2.5,6.5 c-1.5,2 -4,4.5 -6.5,6.5 c-5,5 -11,11 -11,20.5 c0,4.5 1,9.5 3.5,13 c2.5,4 7,7 12.5,7 h0 c1,0 2.5,0 3.5,-0.5 l-3.5,12 l8,2 l8,-28 l0,0 l0.5,-2.5 c2.5,-7 3.5,-14 3.5,-14 l-8,-1.5 l-3.5,14 c-1,3 -2.5,6.5 -4.5,8.5 c-1.5,2 -3,3 -4.5,3 c-2,-0.5 -3.5,-1.5 -5,-3.5 c-1.5,-2.5 -2.5,-5.5 -2.5,-9 c0,-6.5 4,-10 9,-15 c2.5,-2.5 5,-5 7.5,-8 c2,-2.5 3.5,-6.5 3.5,-11 v-12 zm4,0 "
+      },
+      "eold_init_0": {
+        "ID": 33,
+        "Name": "eold_init_0",
+        "Path": "m0,0 m3,0 c-8.5,2 -15,5.5 -20,10.5 c-4.5,5 -7,12 -7,19.5 v0 c0,4.5 1,9.5 3.5,14 c2.5,4.5 7,8 12.5,8 h0 c2,0 4,-0.5 6,-1 c-2,6 -2,12 -2,15 h8 c0,-4 0.5,-11 3.5,-15.5 l13.5,-16 l0,0 l-6,-5.5 c0,0 0,0 0,0 c0,0 -3.5,3.5 -8,7.5 c-4.5,4 -11,7.5 -15,7.5 c-2.5,0 -4,-1.5 -5.5,-4 c-1.5,-2.5 -2.5,-6.5 -2.5,-10 v0 c0,-6.5 1.5,-10.5 5,-14 c3.5,-3.5 8.5,-6 16,-8 zm-3,0 "
+      },
+      "eold_mid_0": {
+        "ID": 34,
+        "Name": "eold_mid_0",
+        "Path": "m0,0 m-4,0 c0,3 -1,5 -2.5,7 c-1.5,2 -4,4 -6.5,6.5 c-5,4.5 -11.5,11 -11.5,22.5 c0,4.5 1,9.5 3.5,13 c2.5,4 7,7 12.5,7 h0 c1.5,0 3.5,-0.5 5,-1 c-0.5,4.5 -0.5,8.5 -0.5,11 h8 c0,-4 0.5,-11 3.5,-15.5 l4,-4.5 c0.5,-0.5 1,-0.5 1,-1 c5.5,-5.5 9,-10.5 9,-10.5 l-6.5,-5 l-9.5,10.5 c-4.5,4.5 -10,8 -13.5,8 c-2.5,0 -4.5,-1 -5.5,-3.5 c-1.5,-2 -2.5,-5.5 -2.5,-8.5 c0,-8.5 4,-12 8.5,-16.5 c2.5,-2 5,-4.5 7.5,-7.5 c2.5,-3 4,-7 4,-12 zm4,0 "
+      },
+      "eold_mid_1": {
+        "ID": 35,
+        "Name": "eold_mid_1",
+        "Path": "m0,0 m-4,0 l0,10 c0,2.5 -1,4.5 -2.5,6.5 c-1.5,2 -4,4.5 -6.5,6.5 c-5,5 -11,11 -11,20.5 c0,4.5 1,9.5 3.5,13 c2.5,4 7,7 12.5,7 h0 c1.5,0 3,-0.5 4.5,-1 c-0.5,5 -0.5,9.5 -0.5,11.5 h8 c0,-2 0,-6.5 0.5,-11 c0.5,-4.5 1.5,-9 3,-10.5 l0.5,-1.5 l2.5,-11 c1,-4 1.5,-6.5 1.5,-7 c0,0 0,0 0,0 c0,0 0,-0.5 0,-0.5 l-8,-1.5 l-1.5,7.5 c-0.5,2 -1,4 -2,6.5 c-1,3.5 -2.5,6.5 -4.5,8.5 c-1.5,2 -3,3 -4.5,3 c-2.5,0 -4,-1 -5.5,-3.5 c-1.5,-2 -2.5,-5.5 -2.5,-8.5 c0,-6.5 4,-10 9,-15 c2.5,-2.5 5,-5 7.5,-8 c2.5,-3 4,-7 4,-11.5 l0,-10 zm4,0 "
+      },
+      "eold_sol_0": {
+        "ID": 36,
+        "Name": "eold_sol_0",
+        "Path": "m0,0 m4.5,0 c-8.5,2 -15.5,5.5 -20,10.5 c-4.5,5 -7,12 -7,19.5 v0 c0,4.5 1,9.5 3.5,14 c2.5,4.5 7,8 12.5,8 h0 c3,0 6.5,-1 9,-2 c0,0 0,0 0,0.5 c-6,9 -12,17.5 -12,17.5 l6.5,4.5 c0,0 6,-8.5 12.5,-17.5 c2.5,-5 5.5,-9.5 8,-13 c2.5,-4 4,-6 5,-8 l-6.5,-4.5 c0,0 -3.5,3.5 -8,7.5 c-4.5,3.5 -11,7 -15,7 c-2.5,0 -4,-1.5 -5.5,-4 c-1.5,-2.5 -2.5,-6.5 -2.5,-10 c0,-6.5 1.5,-10.5 5,-14 c3.5,-3.5 8.5,-6 16,-8 zm-4.5,0 "
+      },
+      "error": {
+        "ID": 37,
+        "Name": "error",
+        "Path": "m0,0 "
+      },
+      "e_fin_0": {
+        "ID": 38,
+        "Name": "e_fin_0",
+        "Path": "m0,0 m-4,0 c0,0 0,0.5 0,0.5 c-7,1 -12,4 -15,7.5 c-3.5,4 -5,8.5 -5,12 c0,2 0,6.5 1.5,11 c1,2 2,4.5 4,6.5 c2,1.5 5,2.5 8.5,2.5 c3.5,0 6.5,-1.5 8.5,-3.5 c2,-2 3.5,-4.5 4,-7 c1.5,-5 1.5,-10.5 1.5,-13.5 c0,-3 0,-5.5 0,-7.5 c4.5,0.5 7,2 9,4 c2,3 3,7 3,11.5 c0,6 -2,9 -5.5,12 c-3.5,3 -8,4.5 -12,6.5 l3,7 c4,-1.5 9.5,-3.5 14,-7.5 c4.5,-4 8.5,-10 8.5,-18 c0,-5.5 -1,-11.5 -5,-16 c-3,-4 -8,-7 -15,-7.5 c0,-0.5 0,-0.5 0,-0.5 h-4 zm0,8.5 c0,2.5 0,5 0,7.5 c0,3 0,7.5 -1,11 c-0.5,1.5 -1,3 -2,4 c-1,0.5 -1.5,1 -3,1 c-1.5,0 -2.5,-0.5 -3,-1 c-0.5,-0.5 -1.5,-1.5 -2,-3 c-1,-2.5 -1,-6 -1,-8 c0,-0.5 0.5,-4 3,-7 c2,-2 4.5,-4 9,-4.5 zm4,-8.5 "
+      },
+      "e_fin_1": {
+        "ID": 39,
+        "Name": "e_fin_1",
+        "Path": "m0,0 m-8,0 c-7.5,0 -12,4.5 -14,9 c-2,4.5 -2,9 -2,11 c0,2 0,6.5 1.5,11 c1,2 2,4.5 4,6.5 c2,1.5 5,2.5 8.5,2.5 c2.5,0 5,-0.5 7,-2 c-1,4.5 -3.5,8 -8.5,10 l3,7.5 c9,-3 13,-11.5 14,-19.5 c1.5,-8 0.5,-16 0.5,-20 v0 v0 c0,-3.5 -0.5,-7 -2,-10 v-6 h-8 v0.5 c-1.5,-0.5 -2.5,-0.5 -4,-0.5 zm0,8 c2.5,0 3.5,0.5 4,1 v11 c0,4 0,7.5 -1,9.5 c-0.5,2 -1,2.5 -5,2.5 c-1.5,0 -2.5,-0.5 -3,-1 c-0.5,-0.5 -1.5,-1.5 -2,-3 c-1,-2.5 -1,-6 -1,-8 c0,-2 0,-5.5 1,-8 c1,-2.5 2.5,-4 7,-4 zm8,-8 "
+      },
+      "e_fin_2": {
+        "ID": 40,
+        "Name": "e_fin_2",
+        "Path": "m0,0 m-4,0 c0,0 0,0.5 0,0.5 c-7,1 -12,4 -15,7.5 c-3.5,4 -5,8.5 -5,12 c0,2 0,6.5 1.5,11 c1,2 2,4.5 4,6.5 c2,1.5 5,2.5 8.5,2.5 c3.5,0 6.5,-1.5 8.5,-3.5 c2,-2 3.5,-4.5 4,-7 c1.5,-5 1.5,-10.5 1.5,-13.5 c0,-3 0,-5.5 0,-7.5 c4.5,0.5 7,2 9,4 c2,3 3,7 3,11.5 c0,6 -2,9 -5.5,12 c-3.5,3 -8,4.5 -12,6.5 l3,7 c4,-1.5 9.5,-3.5 14,-7.5 c4.5,-4 8.5,-10 8.5,-18 c0,-5.5 -1,-11.5 -5,-16 c-3,-4 -8,-7 -15,-7.5 c0,-0.5 0,-0.5 0,-0.5 h-4 zm0,8.5 c0,2.5 0,5 0,7.5 c0,3 0,7.5 -1,11 c-0.5,1.5 -1,3 -2,4 c-1,0.5 -1.5,1 -3,1 c-1.5,0 -2.5,-0.5 -3,-1 c-0.5,-0.5 -1.5,-1.5 -2,-3 c-1,-2.5 -1,-6 -1,-8 c0,-0.5 0.5,-4 3,-7 c2,-2 4.5,-4 9,-4.5 zm4,-8.5 "
+      },
+      "e_fin_3": {
+        "ID": 41,
+        "Name": "e_fin_3",
+        "Path": "m0,0 m-8,0 c-7.5,0 -12,4.5 -14,9 c-2,4.5 -2,9 -2,11 c0,2 0,6.5 1.5,11 c1,2 2,4.5 4,6.5 c2,1.5 5,2.5 8.5,2.5 c2.5,0 5,-0.5 7,-2 c-1,4.5 -3.5,8 -8.5,10 l3,7.5 c9,-3 13,-11.5 14,-19.5 c1.5,-8 0.5,-16 0.5,-20 v0 v0 c0,-3.5 -0.5,-7 -2,-10 v-6 h-8 v0.5 c-1.5,-0.5 -2.5,-0.5 -4,-0.5 zm0,8 c2.5,0 3.5,0.5 4,1 v11 c0,4 0,7.5 -1,9.5 c-0.5,2 -1,2.5 -5,2.5 c-1.5,0 -2.5,-0.5 -3,-1 c-0.5,-0.5 -1.5,-1.5 -2,-3 c-1,-2.5 -1,-6 -1,-8 c0,-2 0,-5.5 1,-8 c1,-2.5 2.5,-4 7,-4 zm8,-8 "
+      },
+      "e_init_0": {
+        "ID": 42,
+        "Name": "e_init_0",
+        "Path": "m0,0 m-2,0 v0 c-8,0.5 -13.5,4 -17,8 c-3.5,4 -5,8.5 -5,12 c0,2 0,6.5 1.5,11 c1,2 2,4.5 4,6.5 c2,1.5 5,2.5 8.5,2.5 c3.5,0 6.5,-1 8.5,-3 c2,-2 3.5,-4.5 4,-7 c1.5,-4.5 1.5,-10 1.5,-14 c0,-2 0,-5 -0.5,-8 c5,0.5 8,2 9.5,4 c2,2.5 3,6.5 3,12 c0,6.5 -4,10 -8.5,14.5 c-2.5,2 -5.5,4.5 -7.5,7 c-2,3 -4,6.5 -4,10.5 h8 c0,-2 0.5,-3.5 2,-5.5 c2,-1.5 4,-3.5 6.5,-6 c5.5,-4.5 11.5,-11 11.5,-20.5 c0,-6.5 -1,-12.5 -5,-17 c-4,-4.5 -10.5,-7 -19,-7 c-0.5,0 -1,0 -1.5,0 c0,0 -0.5,0 -0.5,0 zm-2.5,8.5 c0,0 0,0.5 0,0.5 c0.5,2 0.5,5 0.5,7 c0,4 0,8.5 -1,12 c-0.5,1.5 -1,2.5 -2,3 c-0.5,0.5 -1.5,1 -3,1 c-1.5,0 -2.5,-0.5 -3,-1 c-0.5,-0.5 -1.5,-1.5 -2,-3 c-1,-2.5 -1,-6 -1,-8 c0,-0.5 0.5,-4 3,-7 c2,-2 4.5,-4 8.5,-4.5 zm4.5,-8.5 "
+      },
+      "e_mid_0": {
+        "ID": 43,
+        "Name": "e_mid_0",
+        "Path": "m0,0 m-4,0 v0.5 c-7,1 -12,4 -15,7.5 c-3.5,4 -5,8.5 -5,12 c0,2 0,6.5 1.5,11 c1,2 2,4.5 4,6.5 c2,1.5 5,2.5 8.5,2.5 c3.5,0 6.5,-1 8.5,-3 c2,-2 3.5,-4.5 4,-7 c1.5,-4.5 1.5,-10 1.5,-14 v-7.5 c4.5,0.5 7.5,2 9,4 c2,2 3,6 3,11.5 c0,6.5 -4,10.5 -8.5,15 c-2.5,2 -5,4.5 -7.5,7 c-2,2.5 -4,6 -4,10 l0,0 v4 h8 v-4 c0,-1.5 0.5,-3 2.5,-5 c1.5,-2 4,-4 6.5,-6 c5,-5 11,-11.5 11,-21 c0,-6.5 -1,-12.5 -5,-17 c-3.5,-4 -8.5,-6 -15,-6.5 v-0.5 h-4 zm0,8.5 v7.5 c0,4 0,8.5 -1,12 c-0.5,1.5 -1,2.5 -2,3 c-0.5,0.5 -1.5,1 -3,1 c-1.5,0 -2.5,-0.5 -3,-1 c-0.5,-0.5 -1.5,-1.5 -2,-3 c-1,-2.5 -1,-6 -1,-8 c0,-0.5 0.5,-4 3,-7 c2,-2 4.5,-4 9,-4.5 zm4,-8.5 "
+      },
+      "e_mid_1": {
+        "ID": 44,
+        "Name": "e_mid_1",
+        "Path": "m0,0 m-8,0 c-7.5,0 -12,4.5 -14,9 c-2,4.5 -2,9 -2,11 c0,2 0,6.5 1.5,11 c1,2 2,4.5 4,6.5 c2,1.5 5,2.5 8.5,2.5 c2.5,0 4.5,-0.5 6.5,-1.5 c-0.5,2.5 -0.5,5.5 -0.5,9.5 h8 c0,-11.5 2,-15.5 2,-32 c0,-3.5 -0.5,-7 -2,-10 v-6 h-8 v0.5 c-1.5,-0.5 -2.5,-0.5 -4,-0.5 zm0,8 c2.5,0 3.5,0.5 4,1 v11 c0,4 0,7.5 -1,9.5 c-0.5,2 -1,2.5 -5,2.5 c-1.5,0 -2.5,-0.5 -3,-1 c-1,-0.5 -1.5,-1.5 -2,-3 c-1,-2.5 -1,-6 -1,-8 c0,-2 0,-5.5 1,-8 c1,-2.5 2.5,-4 7,-4 zm8,-8 "
+      },
+      "e_sol_0": {
+        "ID": 45,
+        "Name": "e_sol_0",
+        "Path": "m0,0 m0,0 c-9,0 -15.5,3.5 -19,8 c-3.5,4 -5,8.5 -5,12 c0,2 0,6.5 1.5,11 c1,2 2,4.5 4,6.5 c2,1.5 5,2.5 8.5,2.5 c3.5,0 6.5,-1 8.5,-3 c2,-2 3.5,-4.5 4,-7 c1.5,-4.5 1.5,-10 1.5,-14 c0,-2 0,-5 -0.5,-7.5 c0,0 0,0 0,0 c5,0.5 8,2 9.5,4 c2,2.5 3,6.5 3,12 c0,3.5 -2,7 -5.5,10.5 c-3.5,3.5 -8.5,6 -12,8 l3.5,7 c4,-2.5 9.5,-5.5 13.5,-10 c4.5,-4 8.5,-9.5 8.5,-16 c0,-6.5 -1,-12.5 -5,-17 c-4,-4.5 -10.5,-7 -19,-7 zm-5,8.5 c0,0.5 0.5,1 0.5,1.5 c0.5,2 0.5,4 0.5,6 c0,4 0,8.5 -1,12 c-0.5,1.5 -1,2.5 -2,3 c-0.5,0.5 -1.5,1 -3,1 c-1.5,0 -2.5,-0.5 -3,-1 c-0.5,-0.5 -1.5,-1.5 -2,-3 c-1,-2.5 -1,-6 -1,-8 c0,-0.5 0.5,-4 3,-7 c1.5,-2 4,-3.5 8,-4.5 zm5,-8.5 "
+      },
+      "hd_coda_0": {
+        "ID": 46,
+        "Name": "hd_coda_0",
+        "Path": "m0,0 m0,0 c-4,0 -7,3 -7,7 c0,4 3,7 7,7 c4,0 7,-3 7,-7 c0,-4 -3,-7 -7,-7 zm0,4 c1.5,0 3,1.5 3,3 c0,1.5 -1.5,3 -3,3 c-1.5,0 -3,-1.5 -3,-3 c0,-1.5 1.5,-3 3,-3 zm0,-4 "
+      },
+      "hd_onset_0": {
+        "ID": 47,
+        "Name": "hd_onset_0",
+        "Path": "m0,0 m0,0 c-4,0 -7,3 -7,7 c0,4 3,7 7,7 c4,0 7,-3 7,-7 c0,-4 -3,-7 -7,-7 zm0,4 c1.5,0 3,1.5 3,3 c0,1.5 -1.5,3 -3,3 c-1.5,0 -3,-1.5 -3,-3 c0,-1.5 1.5,-3 3,-3 zm0,-4 "
+      },
+      "hyphen_fin_0": {
+        "ID": 48,
+        "Name": "hyphen_fin_0",
+        "Path": "m0,0 "
+      },
+      "hyphen_fin_1": {
+        "ID": 49,
+        "Name": "hyphen_fin_1",
+        "Path": "m0,0 "
+      },
+      "hyphen_fin_2": {
+        "ID": 50,
+        "Name": "hyphen_fin_2",
+        "Path": "m0,0 "
+      },
+      "hyphen_fin_3": {
+        "ID": 51,
+        "Name": "hyphen_fin_3",
+        "Path": "m0,0 "
+      },
+      "hyphen_init_0": {
+        "ID": 52,
+        "Name": "hyphen_init_0",
+        "Path": "m0,0 "
+      },
+      "hyphen_mid_0": {
+        "ID": 53,
+        "Name": "hyphen_mid_0",
+        "Path": "m0,0 "
+      },
+      "hyphen_mid_1": {
+        "ID": 54,
+        "Name": "hyphen_mid_1",
+        "Path": "m0,0 "
+      },
+      "hyphen_sol_0": {
+        "ID": 55,
+        "Name": "hyphen_sol_0",
+        "Path": "m0,0 "
+      },
+      "hy_coda_0": {
+        "ID": 56,
+        "Name": "hy_coda_0",
+        "Path": "m0,0 m-21.5,0 l-5,6 l21,19 l-15.5,17.5 l6,5 l18,-20 l-0.5,-5.5 l-24,-22 zm0.5,18 c-4.5,4.5 -8.5,10.5 -10.5,15 l7,3.5 c2,-3.5 6,-9 9.5,-12.5 l-6,-6 zm21,-18 "
+      },
+      "hy_onset_0": {
+        "ID": 57,
+        "Name": "hy_onset_0",
+        "Path": "m0,0 m21.5,0 l-24,22 l-0.5,5.5 l18,20 l6,-5 l-15.5,-17.5 l21,-19 l-5,-6 zm-0.5,18 l-6,6 c3.5,3.5 7.5,9 9.5,12.5 l7,-3.5 c-2,-4.5 -6,-10.5 -10.5,-15 zm-21,-18 "
+      },
+      "h_coda_0": {
+        "ID": 58,
+        "Name": "h_coda_0",
+        "Path": "m0,0 m-14,0 c-5,0 -10,2 -13,6 c-3.5,4 -5,9.5 -5,16 c0,6.5 1.5,12 5,16 c3,4 8,6 13,6 c5,0 10,-2 13,-6 c3.5,-4 5,-9.5 5,-16 c0,-6.5 -1.5,-12 -5,-16 c-3,-4 -8,-6 -13,-6 zm0,8 c3,0 5,1 7,3 c1.5,2 3,5.5 3,11 c0,5.5 -1.5,9 -3,11 c-2,2 -4,3 -7,3 c-3,0 -5,-1 -7,-3 c-1.5,-2 -3,-5.5 -3,-11 c0,-5.5 1.5,-9 3,-11 c2,-2 4,-3 7,-3 zm14,-8 "
+      },
+      "h_onset_0": {
+        "ID": 59,
+        "Name": "h_onset_0",
+        "Path": "m0,0 m14,0 c-5,0 -10,2 -13,6 c-3.5,4 -5,9.5 -5,16 c0,6.5 1.5,12 5,16 c3,4 8,6 13,6 c5,0 10,-2 13,-6 c3.5,-4 5,-9.5 5,-16 c0,-6.5 -1.5,-12 -5,-16 c-3,-4 -8,-6 -13,-6 zm0,8 c3,0 5,1 7,3 c1.5,2 3,5.5 3,11 c0,5.5 -1.5,9 -3,11 c-2,2 -4,3 -7,3 c-3,0 -5,-1 -7,-3 c-1.5,-2 -3,-5.5 -3,-11 c0,-5.5 1.5,-9 3,-11 c2,-2 4,-3 7,-3 zm-14,-8 "
+      },
+      "iold_fin_0": {
+        "ID": 60,
+        "Name": "iold_fin_0",
+        "Path": "m0,0 m-4,0 c0,5 -3.5,8.5 -8,13.5 c-4.5,4.5 -10,11 -10,20.5 c0,5 0.5,10 2.5,14.5 c-1.5,2 -2.5,3.5 -3.5,5.5 l6.5,4.5 c0.5,-1 1.5,-2.5 2.5,-3.5 c3.5,2 8,3 14,3 c9,0 15,-3.5 18.5,-8 c3,-4.5 3.5,-9.5 3.5,-12 c0,-2.5 -0.5,-6.5 -2.5,-9.5 c-2,-3.5 -6,-6.5 -11.5,-6.5 c-4.5,0 -8.5,1.5 -11,3.5 c-2.5,2.5 -4.5,5 -6,8 c-1,2 -3,4 -4.5,6 c-0.5,-1.5 -0.5,-3.5 -0.5,-5.5 c0,-6.5 3.5,-10.5 8,-15 c4.5,-5 10,-10.5 10,-19 zm12,30 c2.5,0 3.5,1 4.5,2.5 c1,1.5 1.5,4 1.5,5.5 v0 c0,1.5 -0.5,4.5 -2.5,7 c-1.5,2.5 -4.5,5 -11.5,5 c-5,0 -8,-1 -9.5,-2 c2.5,-3.5 5,-7 7,-10 c2,-3 3.5,-5 4.5,-6 c1.5,-1.5 2.5,-2 6,-2 zm-8,-30 "
+      },
+      "iold_fin_1": {
+        "ID": 61,
+        "Name": "iold_fin_1",
+        "Path": "m0,0 m-4,0 c0,5 -3.5,8.5 -8,13.5 c-4.5,4.5 -10,11 -10,20.5 c0,5 0.5,10 2.5,14.5 c-1.5,2 -2.5,3.5 -3.5,5.5 l6.5,4.5 c0.5,-1 1.5,-2.5 2.5,-3.5 c3.5,2 8,3 14,3 c9,0 15,-3.5 18.5,-8 c3,-4.5 3.5,-9.5 3.5,-12 c0,-2.5 -0.5,-6.5 -2.5,-9.5 c-2,-3.5 -6,-6.5 -11.5,-6.5 c-4.5,0 -8.5,1.5 -11,3.5 c-2.5,2.5 -4.5,5 -6,8 c-1,2 -3,4 -4.5,6 c-0.5,-1.5 -0.5,-3.5 -0.5,-5.5 c0,-6.5 3.5,-10.5 8,-15 c4.5,-5 10,-10.5 10,-19 zm12,30 c2.5,0 3.5,1 4.5,2.5 c1,1.5 1.5,4 1.5,5.5 v0 c0,1.5 -0.5,4.5 -2.5,7 c-1.5,2.5 -4.5,5 -11.5,5 c-5,0 -8,-1 -9.5,-2 c2.5,-3.5 5,-7 7,-10 c2,-3 3.5,-5 4.5,-6 c1.5,-1.5 2.5,-2 6,-2 zm-8,-30 "
+      },
+      "iold_fin_2": {
+        "ID": 62,
+        "Name": "iold_fin_2",
+        "Path": "m0,0 m-4,0 c0,5 -3.5,8.5 -8,13.5 c-4.5,4.5 -10,11 -10,20.5 c0,5 0.5,10 2.5,14.5 c-1.5,2 -2.5,3.5 -3.5,5.5 l6.5,4.5 c0.5,-1 1.5,-2.5 2.5,-3.5 c3.5,2 8,3 14,3 c9,0 15,-3.5 18.5,-8 c3,-4.5 3.5,-9.5 3.5,-12 c0,-2.5 -0.5,-6.5 -2.5,-9.5 c-2,-3.5 -6,-6.5 -11.5,-6.5 c-4.5,0 -8.5,1.5 -11,3.5 c-2.5,2.5 -4.5,5 -6,8 c-1,2 -3,4 -4.5,6 c-0.5,-1.5 -0.5,-3.5 -0.5,-5.5 c0,-6.5 3.5,-10.5 8,-15 c4.5,-5 10,-10.5 10,-19 zm12,30 c2.5,0 3.5,1 4.5,2.5 c1,1.5 1.5,4 1.5,5.5 v0 c0,1.5 -0.5,4.5 -2.5,7 c-1.5,2.5 -4.5,5 -11.5,5 c-5,0 -8,-1 -9.5,-2 c2.5,-3.5 5,-7 7,-10 c2,-3 3.5,-5 4.5,-6 c1.5,-1.5 2.5,-2 6,-2 zm-8,-30 "
+      },
+      "iold_fin_3": {
+        "ID": 63,
+        "Name": "iold_fin_3",
+        "Path": "m0,0 m-4,0 c0,5 -3.5,8.5 -8,13.5 c-4.5,4.5 -10,11 -10,20.5 c0,5 0.5,10 2.5,14.5 c-1.5,2 -2.5,3.5 -3.5,5.5 l6.5,4.5 c0.5,-1 1.5,-2.5 2.5,-3.5 c3.5,2 8,3 14,3 c9,0 15,-3.5 18.5,-8 c3,-4.5 3.5,-9.5 3.5,-12 c0,-2.5 -0.5,-6.5 -2.5,-9.5 c-2,-3.5 -6,-6.5 -11.5,-6.5 c-4.5,0 -8.5,1.5 -11,3.5 c-2.5,2.5 -4.5,5 -6,8 c-1,2 -3,4 -4.5,6 c-0.5,-1.5 -0.5,-3.5 -0.5,-5.5 c0,-6.5 3.5,-10.5 8,-15 c4.5,-5 10,-10.5 10,-19 zm12,30 c2.5,0 3.5,1 4.5,2.5 c1,1.5 1.5,4 1.5,5.5 v0 c0,1.5 -0.5,4.5 -2.5,7 c-1.5,2.5 -4.5,5 -11.5,5 c-5,0 -8,-1 -9.5,-2 c2.5,-3.5 5,-7 7,-10 c2,-3 3.5,-5 4.5,-6 c1.5,-1.5 2.5,-2 6,-2 zm-8,-30 "
+      },
+      "iold_init_0": {
+        "ID": 64,
+        "Name": "iold_init_0",
+        "Path": "m0,0 m-6,0 c-8.5,4.5 -18,13.5 -18,27.5 c0,6.5 1,12.5 5,17 c3.5,4 8.5,6 15,6.5 c0,0 0,0 0,0 h2.5 c0.5,0 1,0 1.5,0 c0.5,0 0.5,0 1,0 h3 c0,0 0,0 0,-0.5 c7,0 12,-3 15,-7 c3.5,-4 5,-8.5 5,-12 c0,-2 0,-6.5 -1.5,-10.5 c-1,-2.5 -2,-4.5 -4,-6.5 c-2,-2 -5,-3 -8.5,-3 c-3.5,0 -6.5,1 -8.5,3 c-2,2 -3.5,4.5 -4,7 c-1.5,5 -1.5,10 -1.5,14 c0,2 0,5 0,8 c-4.5,-0.5 -7.5,-2 -9,-4 c-2,-2.5 -3,-6.5 -3,-12 c0,-10 6.5,-17 14,-20.5 zm16,19.5 c1.5,0 2.5,0.5 3,1 c0.5,0.5 1.5,1.5 2,3 c1,2.5 1,6 1,8 c0,0.5 -0.5,4 -3,7 c-2,2 -4.5,4 -9,4.5 c0,-2.5 0,-5.5 0,-7.5 c0,-4 0,-8.5 1,-11.5 c0.5,-2 1,-3 2,-3.5 c0.5,-0.5 1.5,-1 3,-1 zm-10,-19.5 "
+      },
+      "iold_mid_0": {
+        "ID": 65,
+        "Name": "iold_mid_0",
+        "Path": "m0,0 m-4,0 c0,2.5 -1,4.5 -2.5,6.5 c-1.5,2 -4,4.5 -6.5,6.5 c-5,5 -11,11.5 -11,21 c0,6.5 1,12.5 5,17 c3.5,4 8.5,6 15,6.5 v0.5 h4 l4,0 v0 v-0.5 c7,-1 12,-4 15,-7.5 c3.5,-4 5,-8.5 5,-12 c0,-2 0,-6.5 -1.5,-11 c-1,-2 -2,-4.5 -4,-6 c-2,-2 -5,-3 -8.5,-3 c-3.5,0 -6.5,1 -8.5,3 c-2,2 -3.5,4.5 -4,7 c-1.5,4.5 -1.5,10 -1.5,14 v8 c-4.5,-1 -7.5,-2 -9,-4 c-2,-2.5 -3,-6.5 -3,-12 c0,-6.5 4,-10 9,-15 c2.5,-2.5 5,-5 7.5,-8 c2,-3 3.5,-6.5 3.5,-11 zm14,26 c1.5,0 2.5,0.5 3,1 c0.5,0.5 1.5,1.5 2,3 c1,2.5 1,6 1,8 c0,0.5 -0.5,4 -3,7 c-2,2 -4.5,4 -9,4.5 v-7.5 c0,-4 0,-8.5 1,-12 c0.5,-1.5 1,-2.5 2,-3 c0.5,-0.5 1.5,-1 3,-1 zm-10,-26 "
+      },
+      "iold_mid_1": {
+        "ID": 66,
+        "Name": "iold_mid_1",
+        "Path": "m0,0 m-4,0 l0,6 c0,2.5 -1,4.5 -2.5,6.5 c-1.5,2 -4,4.5 -6.5,6.5 c-5,5 -11,11 -11,20.5 c0,7 2.5,12.5 6.5,16.5 c3,2.5 6.5,4.5 10.5,5 c0.5,2.5 1,5 1,9 v4 h8 v-4 c0,-3.5 -0.5,-6 -0.5,-8 c5.5,-0.5 9.5,-2 11.5,-5 c3,-3 3,-7 3,-9 c0,-1.5 0.5,-6 -0.5,-10.5 c-1,-2.5 -2,-5 -4.5,-6.5 c-2,-2 -5.5,-3 -9,-3 c-4.5,0 -8,2.5 -9.5,6 c-2,3 -2.5,6.5 -2.5,10 c0,3.5 0.5,6 1,8.5 c-1,-0.5 -2,-1 -3,-2 c-2.5,-2 -4,-5.5 -4,-10.5 c0,-6.5 4,-10 9,-15 c2.5,-2.5 5,-5 7.5,-8 c2,-2.5 3.5,-6.5 3.5,-11 l0,-6 zm6,36 h0 h0 c2.5,0 3.5,0.5 4,1 c0.5,0.5 1,1.5 1.5,2.5 c0.5,2.5 0.5,6 0.5,8.5 c0,2 0,3 -0.5,4 c-1,0.5 -3,1.5 -8,2 c-1,-3 -1.5,-5 -1.5,-10 c0,-2.5 0.5,-5 1,-6.5 c0.5,-1.5 1,-1.5 2.5,-1.5 zm-2,-36 "
+      },
+      "iold_sol_0": {
+        "ID": 67,
+        "Name": "iold_sol_0",
+        "Path": "m0,0 m3,0 c-13,6.5 -23,17.5 -24.5,31.5 c-0.5,5.5 0,11 2.5,16 c-1,2 -2.5,4.5 -3.5,6 l6.5,4.5 c1,-1.5 1.5,-2.5 2.5,-4 c3.5,2.5 8.5,4 14,4 c9,0 15.5,-4.5 18.5,-9.5 c3,-5 3.5,-10 3.5,-12.5 c0,-2.5 -0.5,-6.5 -2.5,-9.5 c-2,-3.5 -6,-6.5 -11.5,-6.5 c-5,0 -9,2 -12,5 c-3,2.5 -5,6 -7,9 c-1,1.5 -1.5,3 -2.5,4.5 c0,-2 -0.5,-3.5 0,-5.5 c0.5,-11.5 8.5,-20.5 19.5,-26 zm6,27.5 c2.5,0 3.5,1 4.5,2.5 c1,1.5 1.5,4 1.5,5.5 v0 c0,1.5 -0.5,5.5 -2.5,8.5 c-2,3 -5,5.5 -11.5,5.5 c-5,0 -8,-1 -10,-2.5 c2,-3.5 3.5,-6.5 5.5,-9 c2,-3 4,-5.5 6,-7.5 c2,-2 4,-2.5 7,-3 zm-9,-27.5 "
+      },
+      "i_fin_0": {
+        "ID": 68,
+        "Name": "i_fin_0",
+        "Path": "m0,0 m-4,0 l0,22 l6,3.5 l24,-16 l-4,-7 l-18,12 l0,-14.5 l-8,0 zm25.5,18.5 l-20,14 l5,7 l20,-14 l-5,-7 zm-21.5,-18.5 "
+      },
+      "i_fin_1": {
+        "ID": 69,
+        "Name": "i_fin_1",
+        "Path": "m0,0 m-4,0 l0,12 l-12.5,8.5 l5,7 l25.5,-18 l0.5,0 l-4.5,-7 l-0.5,0 l-5.5,4 l0,-6.5 l-8,0 zm13.5,18.5 l-20,14 l5,7 l20,-14 l-5,-7 zm-9.5,-18.5 "
+      },
+      "i_fin_2": {
+        "ID": 70,
+        "Name": "i_fin_2",
+        "Path": "m0,0 m-4,0 l0,22 l6,3.5 l24,-16 l-4,-7 l-18,12 l0,-14.5 l-8,0 zm25.5,18.5 l-20,14 l5,7 l20,-14 l-5,-7 zm-21.5,-18.5 "
+      },
+      "i_fin_3": {
+        "ID": 71,
+        "Name": "i_fin_3",
+        "Path": "m0,0 m-4,0 l0,12 l-12.5,8.5 l5,7 l25.5,-18 l0.5,0 l-4.5,-7 l-0.5,0 l-5.5,4 l0,-6.5 l-8,0 zm13.5,18.5 l-20,14 l5,7 l20,-14 l-5,-7 zm-9.5,-18.5 "
+      },
+      "i_init_0": {
+        "ID": 72,
+        "Name": "i_init_0",
+        "Path": "m0,0 m-24,0 v8 h37 l-15.5,13 l-1.5,3 v16 h8 v-14 l22.5,-19 l-2.5,-7 zm24,0 "
+      },
+      "i_mid_0": {
+        "ID": 73,
+        "Name": "i_mid_0",
+        "Path": "m0,0 m-4,0 c0,6.5 -3,11.5 -7.5,15 c-4.5,3.5 -10,5 -12.5,5 v8 h37 l-15.5,13 l-1.5,3 v4 h8 v-2 l22.5,-19 l-2.5,-7 h-29.5 c5.5,-4.5 9.5,-11.5 9.5,-20 zm4,0 "
+      },
+      "i_mid_1": {
+        "ID": 74,
+        "Name": "i_mid_1",
+        "Path": "m0,0 m-4,0 c0,6.5 -3,11.5 -7.5,15 c-4.5,3.5 -10,5 -12.5,5 v8 h27.5 l-7,14 l-0.5,2 v4 h8 v-3 l9.5,-19 l-3.5,-6 h-15.5 c5.5,-4.5 9.5,-11.5 9.5,-20 zm4,0 "
+      },
+      "i_sol_0": {
+        "ID": 75,
+        "Name": "i_sol_0",
+        "Path": "m0,0 m12,0 l-34,22 l4,6.5 l34,-22 l-4,-6.5 zm6,22 l-34,22 l4,6.5 l34,-22 l-4,-6.5 zm-18,-22 "
+      },
+      "kh_coda_0": {
+        "ID": 76,
+        "Name": "kh_coda_0",
+        "Path": "m0,0 m-22,0 l-6,3.5 v42 h8 v-35 l18,10.5 l4,-7 zm22,0 "
+      },
+      "kh_onset_0": {
+        "ID": 77,
+        "Name": "kh_onset_0",
+        "Path": "m0,0 m20,0 v35 l-18,-10.5 l-4,7 l24,14 l6,-3.5 v-42 zm-20,0 "
+      },
+      "k_coda_0": {
+        "ID": 78,
+        "Name": "k_coda_0",
+        "Path": "m0,0 m-18,0 l-4,6.5 l12,8 l4,-6.5 l-12,-8 zm0.5,14 l-6.5,3.5 l0,36 l8,0 l0,-28.5 l13.5,9.5 l5,-6.5 l-20,-14 zm17.5,-14 "
+      },
+      "k_onset_0": {
+        "ID": 79,
+        "Name": "k_onset_0",
+        "Path": "m0,0 m16,0 l0,35 l-14,-8.5 l-4,7 l20,12 l6,-3.5 l0,-42 l-8,0 zm17.5,20 l-7,4 l8,16 l7,-4 l-8,-16 zm-33.5,-20 "
+      },
+      "l_coda_0": {
+        "ID": 80,
+        "Name": "l_coda_0",
+        "Path": "m0,0 m-3,0 l-20,24 l6,5 l20,-24 zm3,0 "
+      },
+      "l_onset_0": {
+        "ID": 81,
+        "Name": "l_onset_0",
+        "Path": "m0,0 m17,0 l-20,24 l6,5 l20,-24 zm-17,0 "
+      },
+      "ng_coda_0": {
+        "ID": 82,
+        "Name": "ng_coda_0",
+        "Path": "m0,0 m-32,0 l0,8 c10,0 18,-0.5 29,11 l6,-6 c-13,-12.5 -25,-13 -35,-13 zm12.5,14.5 c-4,9.5 -8,15 -11.5,18.5 l6,6 c4.5,-4.5 8.5,-11 12.5,-21.5 l-7,-3 zm19.5,-14.5 "
+      },
+      "ng_onset_0": {
+        "ID": 83,
+        "Name": "ng_onset_0",
+        "Path": "m0,0 m27,0 c-4.5,4.5 -8.5,11 -12.5,21.5 l7,3 c4,-10 8,-15.5 11.5,-19 l-6,-5.5 zm-27,25 l0,8 c10,0 18,-0.5 29,10.5 l6,-5.5 c-13,-13 -25,-13 -35,-13 zm0,-25 "
+      },
+      "null": {
+        "ID": 84,
+        "Name": "null",
+        "Path": "m0,0 "
+      },
+      "n_coda_0": {
+        "ID": 85,
+        "Name": "n_coda_0",
+        "Path": "m0,0 m-22,0 l-8,0 c0,9 0.5,16 2,21 c1,5 3,9 6.5,11 c3,2.5 7,2.5 11,2 c3.5,-0.5 7.5,-1.5 12,-2.5 l-2,-8 c-4.5,1 -8,2 -11,2.5 c-3,0.5 -4,0 -5,-0.5 c-1,-0.5 -2.5,-2.5 -3,-6.5 c-2,-4 -2.5,-10 -2.5,-19 zm22,0 "
+      },
+      "n_onset_0": {
+        "ID": 86,
+        "Name": "n_onset_0",
+        "Path": "m0,0 m22,0 c0,9 -0.5,15 -1.5,19 c-1,4.5 -2.5,6 -3.5,6.5 c-1,1 -2.5,1 -5,1 c-3,-0.5 -6.5,-1.5 -11,-2.5 l-2,8 c4.5,1 8,2 12,2.5 c3.5,0.5 7.5,0 11,-2 c3,-2.5 5,-6 6.5,-11 c1,-5.5 1.5,-12.5 1.5,-21.5 zm-22,0 "
+      },
+      "omit_fin_0": {
+        "ID": 87,
+        "Name": "omit_fin_0",
+        "Path": "m0,0 m-4,0 c0,5 0,13.5 -0.5,21 c-0.5,-0.5 -1,-1 -1.5,-1.5 c-2,-2 -5,-3.5 -8.5,-3.5 c-4.5,0 -8,2.5 -10.5,6 c-2.5,3.5 -3.5,7.5 -3.5,11.5 c0,4 0.5,10 4,16.5 c3.5,6.5 10,13 21,17.5 l3,-7.5 c-9,-3.5 -14,-8.5 -16.5,-13.5 c-2.5,-5 -3,-10 -3,-13 c0,-2.5 1,-5.5 2,-7 c1.5,-2 2.5,-2.5 4,-2.5 c0.5,0 1.5,0.5 3,1.5 c1.5,1.5 3,3.5 5,5.5 c0.5,0.5 1,1 1,1.5 c0,4.5 -0.5,9.5 -0.5,11.5 c0,0 0,0.5 0,0.5 l8,1 c0,0 0,0 0,0 h0 c0,0 0,-3.5 0.5,-5.5 c1.5,1 3.5,1.5 5.5,1.5 c10.5,0 19.5,-8 19.5,-18.5 c0,-4.5 -1.5,-8.5 -4,-11.5 c-3,-3 -7,-4 -11,-4 c-3.5,0 -6.5,1.5 -9,3.5 c0,-4 0,-8 0,-11 zm17,15.5 c2.5,0 4.5,0.5 5,1.5 c1,1 1.5,2.5 1.5,6 c0,5.5 -5.5,10.5 -11.5,10.5 c-0.5,0 -2,-0.5 -3,-1.5 c-0.5,-1 -1,-1.5 -1.5,-2 c0,-2 0,-3.5 0.5,-4.5 c0,-1.5 1.5,-4.5 3,-6.5 c2,-2 4.5,-3.5 6,-3.5 zm-13,-15.5 "
+      },
+      "omit_fin_1": {
+        "ID": 88,
+        "Name": "omit_fin_1",
+        "Path": "m0,0 m-4,0 c0,6 0,18 -0.5,30 c0,0.5 0,1 0,1.5 c-3,-2.5 -6.5,-3.5 -9.5,-3.5 h0 h0 c-4.5,0 -8,2.5 -10.5,6 c-2.5,3.5 -3.5,7.5 -3.5,11.5 c0,4 0.5,10 4,16.5 c3.5,6.5 10,13 21,17.5 l3,-7.5 c-9.5,-3.5 -14.5,-8.5 -17,-13.5 c-2.5,-5 -3,-10 -3,-13 c0,-2.5 1,-5.5 2,-7 c1.5,-2 2.5,-2.5 4,-2.5 c2,0 4,0.5 6,3 c2,2.5 3.5,8 2.5,18 l8,1 c0,0 0,0 0,0 h0 c0,0 0,0 0,0 c0.5,-5.5 1,-16.5 1,-28 c0.5,-11.5 0.5,-24 0.5,-30 zm4,0 "
+      },
+      "omit_fin_2": {
+        "ID": 89,
+        "Name": "omit_fin_2",
+        "Path": "m0,0 m-4,0 c0,5 0,13.5 -0.5,21 c-0.5,-0.5 -1,-1 -1.5,-1.5 c-2,-2 -5,-3.5 -8.5,-3.5 c-4.5,0 -8,2.5 -10.5,6 c-2.5,3.5 -3.5,7.5 -3.5,11.5 c0,4 0.5,10 4,16.5 c3.5,6.5 10,13 21,17.5 l3,-7.5 c-9,-3.5 -14,-8.5 -16.5,-13.5 c-2.5,-5 -3,-10 -3,-13 c0,-2.5 1,-5.5 2,-7 c1.5,-2 2.5,-2.5 4,-2.5 c0.5,0 1.5,0.5 3,1.5 c1.5,1.5 3,3.5 5,5.5 c0.5,0.5 1,1 1,1.5 c0,4.5 -0.5,9.5 -0.5,11.5 c0,0 0,0.5 0,0.5 l8,1 c0,0 0,0 0,0 h0 c0,0 0,-3.5 0.5,-5.5 c1.5,1 3.5,1.5 5.5,1.5 c10.5,0 19.5,-8 19.5,-18.5 c0,-4.5 -1.5,-8.5 -4,-11.5 c-3,-3 -7,-4 -11,-4 c-3.5,0 -6.5,1.5 -9,3.5 c0,-4 0,-8 0,-11 zm17,15.5 c2.5,0 4.5,0.5 5,1.5 c1,1 1.5,2.5 1.5,6 c0,5.5 -5.5,10.5 -11.5,10.5 c-0.5,0 -2,-0.5 -3,-1.5 c-0.5,-1 -1,-1.5 -1.5,-2 c0,-2 0,-3.5 0.5,-4.5 c0,-1.5 1.5,-4.5 3,-6.5 c2,-2 4.5,-3.5 6,-3.5 zm-13,-15.5 "
+      },
+      "omit_fin_3": {
+        "ID": 90,
+        "Name": "omit_fin_3",
+        "Path": "m0,0 m-4,0 c0,6 0,18 -0.5,30 c0,0.5 0,1 0,1.5 c-3,-2.5 -6.5,-3.5 -9.5,-3.5 h0 h0 c-4.5,0 -8,2.5 -10.5,6 c-2.5,3.5 -3.5,7.5 -3.5,11.5 c0,4 0.5,10 4,16.5 c3.5,6.5 10,13 21,17.5 l3,-7.5 c-9.5,-3.5 -14.5,-8.5 -17,-13.5 c-2.5,-5 -3,-10 -3,-13 c0,-2.5 1,-5.5 2,-7 c1.5,-2 2.5,-2.5 4,-2.5 c2,0 4,0.5 6,3 c2,2.5 3.5,8 2.5,18 l8,1 c0,0 0,0 0,0 h0 c0,0 0,0 0,0 c0.5,-5.5 1,-16.5 1,-28 c0.5,-11.5 0.5,-24 0.5,-30 zm4,0 "
+      },
+      "omit_init_0": {
+        "ID": 91,
+        "Name": "omit_init_0",
+        "Path": "m0,0 m13,0 c-5,0 -9,3 -12,6 c-2,2.5 -4,5.5 -4.5,8.5 c-1,-1 -1.5,-1.5 -2,-2.5 c-2.5,-2 -5,-3.5 -8.5,-3.5 c-4.5,0 -8,2.5 -10.5,6 c-2,3.5 -3.5,7.5 -3.5,11.5 c0,8.5 5,16 14,22 c6,4 10,9.5 10,12.5 v7.5 h8 v-7.5 c0,-8 -6,-14.5 -14,-19 c-7.5,-5 -10,-10 -10,-15.5 c0,-2.5 1,-5.5 2,-7 c1.5,-2 2.5,-2.5 4,-2.5 c0.5,0 1.5,0.5 3,1.5 c1.5,1.5 3,3.5 5,5.5 c0.5,0.5 1,1 1.5,1.5 c-0.5,5.5 -1,12 -1,12 l8,0.5 c0,0 0,-3.5 0.5,-5.5 c1.5,1 3.5,1.5 5.5,1.5 c10,0.5 19.5,-7.5 19.5,-18 c0,-4.5 -1.5,-9 -4,-11.5 c-3,-3 -7,-4 -11,-4 zm0,8 c3,0 4.5,0.5 5.5,1.5 c0.5,1 1.5,2.5 1.5,6 c0,5.5 -5.5,10.5 -11.5,10.5 c-0.5,0 -2,-0.5 -3,-1.5 c-1,-1 -1.5,-1.5 -2,-2 c0,-2 0,-3.5 0.5,-4.5 c0,-1.5 1,-4.5 3,-6.5 c2,-2 4,-3.5 6,-3.5 zm-13,-8 "
+      },
+      "omit_mid_0": {
+        "ID": 92,
+        "Name": "omit_mid_0",
+        "Path": "m0,0 m-4,0 c0,5 0,13.5 -0.5,21 c-0.5,-0.5 -1,-1 -1.5,-1.5 c-2,-2 -5,-3.5 -8.5,-3.5 c-4.5,0 -8,2.5 -10.5,6 c-1.5,3.5 -3,7.5 -3,11.5 c0,8.5 5,16 14,22 c6,4 10,9.5 10,12.5 v8 h8 v-8 c0,-8 -6,-14.5 -14,-19 c-7.5,-5 -10,-10 -10,-15.5 c0,-2.5 1,-5.5 2,-7 c1.5,-2 2.5,-2.5 4,-2.5 c0.5,0 1.5,0.5 3,1.5 c1.5,1.5 3,3.5 5,5.5 c0.5,0.5 1,1 1,1.5 c0,4 -0.5,9.5 -0.5,11.5 c0,0 0,0.5 0,0.5 l8,1 c0,0 0,0 0,0 h0 c0,0 0,-3.5 0.5,-5.5 c1.5,1 3.5,1.5 5.5,1.5 c10,-0.5 19.5,-8 19.5,-18.5 c0,-5 -1.5,-9 -4,-11.5 c-3,-3 -7,-4 -11,-4 c-3.5,0 -6.5,1.5 -9,3.5 c0,-4 0,-8 0,-11 zm17,15.5 c2.5,0 4.5,0.5 5,1.5 c1,1 2,2.5 2,6 c0,5.5 -5.5,10.5 -11.5,10.5 c-0.5,0 -2,-0.5 -3,-1.5 c-1,-1 -1.5,-1.5 -2,-2 c0,-2 0,-3.5 0.5,-4.5 c0,-1.5 1.5,-4.5 3,-6.5 c2,-2 4.5,-3.5 6,-3.5 zm-13,-15.5 "
+      },
+      "omit_mid_1": {
+        "ID": 93,
+        "Name": "omit_mid_1",
+        "Path": "m0,0 m-4,0 c0,5 0,13 -0.5,20.5 c0,0 -0.5,-0.5 -0.5,-0.5 c-2.5,-2 -5.5,-4 -9,-4 h0 h0 c-4.5,0 -8,2.5 -10.5,6 c-2.5,3.5 -3.5,7.5 -3.5,11.5 c0,8.5 5,16 14,22 c6.5,4 10,9.5 10,12.5 v8 h8 v-8 c0,-8 -6,-14.5 -14,-19.5 c-7.5,-4.5 -10,-9.5 -10,-15 c0,-2.5 1,-5.5 2,-7 c1.5,-2 2.5,-2.5 4,-2.5 c1.5,0 2.5,0.5 3.5,1.5 c1,1 2.5,3 3,5 c1.5,4 2,9.5 1.5,13.5 c0,0 0,0.5 0,0.5 l8,1 c0,0 0,0 0,0 l0,0 c0,0 0,0 0,-0.5 c0.5,-1.5 0.5,-3.5 0.5,-5 c1,-11 1.5,-29.5 1.5,-40 zm4,0 "
+      },
+      "omit_sol_0": {
+        "ID": 94,
+        "Name": "omit_sol_0",
+        "Path": "m0,0 m13,0 c-5,0 -9,3 -12,6 c-2,2.5 -4,5.5 -4.5,8.5 c-1,-1 -1.5,-1.5 -2,-2.5 c-2.5,-2 -5,-3.5 -8.5,-3.5 c-4.5,0 -8,2.5 -10.5,6 c-2,3.5 -3.5,7.5 -3.5,11.5 c0,4 0.5,10 4,16.5 c3.5,6.5 10,13 21,17.5 l3,-7.5 c-9.5,-4 -14.5,-9 -17,-13.5 c-2.5,-5 -3,-9.5 -3,-13 c0,-2.5 1,-5.5 2,-7 c1.5,-2 2.5,-2.5 4,-2.5 c0.5,0 1.5,0.5 3,1.5 c1.5,1.5 3,3.5 5,5.5 c0.5,0.5 1,1 1.5,1.5 c-0.5,5.5 -1,12 -1,12 l8,0.5 c0,0 0,-3.5 0.5,-5.5 c1.5,1 3.5,1.5 5.5,1.5 c10,0.5 19.5,-7.5 19.5,-18 c0,-4.5 -1.5,-9 -4,-11.5 c-3,-3 -7,-4 -11,-4 zm0,8 c2.5,0 4.5,0.5 5,1.5 c1,1 2,2.5 2,6 c0,5.5 -5.5,10.5 -11.5,10.5 c-0.5,0 -2,-0.5 -3,-1.5 c-1,-1 -1.5,-1.5 -2,-2 c0,-2 0,-3.5 0.5,-4.5 c0,-1.5 1,-4.5 3,-6.5 c2,-2 4,-3.5 6,-3.5 zm-13,-8 "
+      },
+      "o_fin_0": {
+        "ID": 95,
+        "Name": "o_fin_0",
+        "Path": "m0,0 m-4,0 c0,8.5 -6.5,15.5 -12.5,21 c-2.5,2 -4.5,4.5 -6.5,6 l5.5,5.5 c1.5,-1.5 4.5,-4.5 7.5,-7 c1,-1 2,-2 3,-2.5 c4.5,-3 8.5,-5 11,-5 c5.5,0 8,1.5 9.5,3 c1.5,1.5 2.5,3.5 2.5,7 c0,3.5 -2.5,7.5 -6,11 c-3.5,3.5 -8,6 -11,7 l2,8 c5,-1.5 10.5,-4.5 15,-9 c4.5,-4.5 8,-10.5 8,-17 c0,-4.5 -1,-9.5 -4.5,-13 c-3.5,-3.5 -9,-5 -15.5,-5 c-0.5,0 -1.5,0 -2,0.5 c1,-3.5 2,-7 2,-10.5 zm4,0 "
+      },
+      "o_fin_1": {
+        "ID": 96,
+        "Name": "o_fin_1",
+        "Path": "m0,0 m-4,0 c0,4.5 -3,10 -7,14.5 c-4,5 -9,9.5 -12,12.5 l5.5,5.5 c3,-3 7.5,-7 11,-10 c2,-1.5 4,-3 5,-4 c0.5,-0.5 1,-0.5 1.5,-1 c0.5,0 1,0.5 1.5,1.5 c1.5,2 2.5,5.5 2.5,11 c0,11 -3,13 -7,17 l5.5,5.5 c4.5,-3.5 9.5,-9.5 9.5,-22.5 c0,-6.5 -1,-11 -3,-14.5 c-2,-3 -4.5,-5 -7.5,-5.5 c1.5,-3 2.5,-6.5 2.5,-10 zm4,0 "
+      },
+      "o_fin_2": {
+        "ID": 97,
+        "Name": "o_fin_2",
+        "Path": "m0,0 m-4,0 c0,8.5 -6.5,15.5 -12.5,21 c-2.5,2 -4.5,4.5 -6.5,6 l5.5,5.5 c1.5,-1.5 4.5,-4.5 7.5,-7 c1,-1 2,-2 3,-2.5 c4.5,-3 8.5,-5 11,-5 c5.5,0 8,1.5 9.5,3 c1.5,1.5 2.5,3.5 2.5,7 c0,3.5 -2.5,7.5 -6,11 c-3.5,3.5 -8,6 -11,7 l2,8 c5,-1.5 10.5,-4.5 15,-9 c4.5,-4.5 8,-10.5 8,-17 c0,-4.5 -1,-9.5 -4.5,-13 c-3.5,-3.5 -9,-5 -15.5,-5 c-0.5,0 -1.5,0 -2,0.5 c1,-3.5 2,-7 2,-10.5 zm4,0 "
+      },
+      "o_fin_3": {
+        "ID": 98,
+        "Name": "o_fin_3",
+        "Path": "m0,0 m-4,0 c0,4.5 -3,10 -7,14.5 c-4,5 -9,9.5 -12,12.5 l5.5,5.5 c3,-3 7.5,-7 11,-10 c2,-1.5 4,-3 5,-4 c0.5,-0.5 1,-0.5 1.5,-1 c0.5,0 1,0.5 1.5,1.5 c1.5,2 2.5,5.5 2.5,11 c0,11 -3,13 -7,17 l5.5,5.5 c4.5,-3.5 9.5,-9.5 9.5,-22.5 c0,-6.5 -1,-11 -3,-14.5 c-2,-3 -4.5,-5 -7.5,-5.5 c1.5,-3 2.5,-6.5 2.5,-10 zm4,0 "
+      },
+      "o_init_0": {
+        "ID": 99,
+        "Name": "o_init_0",
+        "Path": "m0,0 m-24,0 v8 h20 v10 v16 h8 v-2 c3,1.5 6,2 8,2 c4,0 7,-2.5 9.5,-5.5 c2.5,-3 4.5,-7.5 4.5,-12.5 c0,-3.5 -1,-6.5 -2.5,-9 c-1.5,-2.5 -4,-4.5 -6.5,-5 c-5,-2 -11,-2 -17,-2 zm28,8 c4,0 8,0.5 10,1 c1.5,0.5 2,1 3,2 c0.5,1 1,2.5 1,5 c0,3 -1,5.5 -2.5,7.5 c-1.5,2 -3.5,2.5 -3.5,2.5 c-1.5,0 -3.5,-0.5 -5,-1.5 c-2,-1 -3,-2.5 -3,-6.5 zm-4,-8 "
+      },
+      "o_mid_0": {
+        "ID": 100,
+        "Name": "o_mid_0",
+        "Path": "m0,0 m-4,0 c0,8.5 -6.5,15.5 -12.5,21 c-2.5,2 -4.5,4.5 -6.5,6 l5.5,5.5 c1.5,-1.5 4.5,-4.5 7.5,-7 c1,-1 2,-2 3,-2.5 c4.5,-3 8.5,-5 11,-5 c5.5,0 8,1.5 9.5,3 c1.5,1.5 2.5,3.5 2.5,7 c0,1 -0.5,2 -2,3.5 c-1.5,1.5 -3.5,3 -6,4.5 c-2.5,1.5 -5,3 -7.5,5 c-2.5,2.5 -4.5,5.5 -4.5,9 h8 c0,-0.5 0.5,-1 2,-2.5 c1.5,-1.5 4,-3 6.5,-4.5 c2.5,-1.5 5.5,-3.5 7.5,-6 c2,-2 4,-5 4,-9 c0,-4.5 -1,-9.5 -4.5,-13 c-3.5,-3.5 -9,-5 -15.5,-5 c-0.5,0 -1.5,0 -2,0.5 c1,-3.5 2,-7 2,-10.5 zm4,0 "
+      },
+      "o_mid_1": {
+        "ID": 101,
+        "Name": "o_mid_1",
+        "Path": "m0,0 m-4,0 c0,11.5 -12,20.5 -19,27 l5.5,5.5 c3,-3 7.5,-7 11,-10 c2,-1.5 4,-3 5,-4 c0.5,-0.5 1,-0.5 1.5,-1 c0.5,0 1,0.5 1.5,1.5 c1.5,2 2.5,5.5 2.5,11 c0,7.5 -1.5,8.5 -3,11 c-2,2.5 -5,6 -5,13 h8 c0,-5 1,-5.5 3,-8 c2.5,-2.5 5,-7.5 5,-16 c0,-6.5 -1,-11 -3,-14.5 c-2,-3 -4.5,-4.5 -7,-5 c1,-3.5 2,-7 2,-10.5 zm4,0 "
+      },
+      "o_sol_0": {
+        "ID": 102,
+        "Name": "o_sol_0",
+        "Path": "m0,0 m16,0 l-34,2 l0.5,8 l27,-1.5 c-0.5,0.5 -1,1 -1.5,2 c-2.5,3 -6.5,7.5 -10.5,11.5 c-8,8 -17,16 -20,19.5 l5.5,5.5 c3,-3 6.5,-6 10.5,-8.5 c4,-3 8,-4.5 10.5,-4.5 c5.5,0 8,1.5 9.5,3 c1.5,1.5 2.5,3.5 2.5,7 c0,3 -3,6.5 -7.5,9.5 c-4.5,3 -10.5,5.5 -13.5,6.5 l2,8 c4.5,-1.5 11,-4 16.5,-7.5 c5.5,-4 10.5,-9.5 10.5,-16.5 c0,-4.5 -1,-9.5 -4.5,-13 c-3.5,-3 -8.5,-5 -15,-5 c3.5,-3.5 7,-7.5 10,-10.5 c1.5,-2 2.5,-4 3.5,-6 c1,-1.5 2,-3.5 2,-5.5 zm-16,0 "
+      },
+      "period__0": {
+        "ID": 103,
+        "Name": "period__0",
+        "Path": "m0,0 m0,0 c-5,0 -9,4 -9,9 c0,5 4,9 9,9 c5,0 9,-4 9,-9 c0,-5 -4,-9 -9,-9 zm0,4 c3,0 5,2 5,5 c0,3 -2,5 -5,5 c-3,0 -5,-2 -5,-5 c0,-3 2,-5 5,-5 zm0,-4 "
+      },
+      "qh_coda_0": {
+        "ID": 104,
+        "Name": "qh_coda_0",
+        "Path": "m0,0 m-23,0 c-11.5,2.5 -17.5,10 -17.5,18 c0,4 1.5,8 5,11.5 c3.5,3 8.5,5 15,5 c9.5,0 18,-4 23,-9 l-6,-6 c-2.5,2.5 -10,6.5 -16.5,6.5 c-5.5,0 -8,-1.5 -10,-2.5 c-1.5,-1.5 -2,-3 -2,-5 c0,-4 2,-8 10.5,-10 zm23,0 "
+      },
+      "qh_onset_0": {
+        "ID": 105,
+        "Name": "qh_onset_0",
+        "Path": "m0,0 m20,0 c-9.5,0 -18,4 -23,9 l6,6 c3,-3 10.5,-7 17,-7 c5.5,0 8,1.5 10,2.5 c1.5,1.5 2,3 2,5 c0,4 -2,8 -10.5,10 l1.5,8 c11,-1.5 17,-9.5 17,-17.5 c0,-4 -1.5,-8 -5,-11 c-3,-3.5 -8.5,-5 -15,-5 zm-20,0 "
+      },
+      "q_coda_0": {
+        "ID": 106,
+        "Name": "q_coda_0",
+        "Path": "m0,0 m-27,0 c-3,3 -5,5.5 -6,8 c-1,2.5 -1,5 -1,7 c0,4.5 2.5,8 5.5,11 c3.5,3 8,5 12.5,5 l0,0 c7.5,0 14.5,-4 18.5,-7 l-5,-6.5 c-2.5,2 -9,5.5 -13.5,5.5 c-2.5,0 -5,-1.5 -7,-3 c-2,-1.5 -3,-3.5 -3,-5 c0,-2 0,-3 0.5,-4 c0.5,-1 1.5,-2.5 4.5,-5.5 l-6,-5.5 zm16.5,1.5 c-1,1 -2.5,2 -4,4.5 c-2,2 -3.5,5 -5,9.5 l7,3 c2,-4.5 3,-6.5 4,-8 c1,-1 1.5,-1.5 3,-2.5 l-5,-6.5 zm10.5,-1.5 "
+      },
+      "q_onset_0": {
+        "ID": 107,
+        "Name": "q_onset_0",
+        "Path": "m0,0 m16,0 c-7.5,0 -14.5,3.5 -18.5,7 l5,6 c2.5,-2 9,-5 13.5,-5 c2.5,0 5,1 7,3 c2,1.5 3,3.5 3,5 c0,2 0,2.5 -0.5,3.5 c-0.5,1 -1.5,3 -4.5,5.5 l6,6 c3,-3.5 5,-5.5 6,-8 c1,-2.5 1,-5 1,-7 c0,-4.5 -2.5,-8.5 -5.5,-11 c-3.5,-3 -8,-5 -12.5,-5 l0,0 zm-1.5,10.5 c-2,4 -3,6.5 -4,7.5 c-1,1.5 -1.5,2 -3,3 l5,6 c1,-0.5 2.5,-2 4,-4 c2,-2 3.5,-5 5,-9.5 l-7,-3 zm-14.5,-10.5 "
+      },
+      "r_coda_0": {
+        "ID": 108,
+        "Name": "r_coda_0",
+        "Path": "m0,0 m-22,0 l0,26 c-5,4 -9.5,8 -13,11 l6,6 c3.5,-4 9.5,-9 15.5,-13 c5.5,-4 11.5,-7.5 14.5,-8 l-2,-8 c-4,1 -8.5,3.5 -13,6.5 l0,-20.5 l-8,0 zm22,0 "
+      },
+      "r_onset_0": {
+        "ID": 109,
+        "Name": "r_onset_0",
+        "Path": "m0,0 m29,0 c-3.5,4 -9.5,8.5 -15.5,13 c-5.5,4 -11.5,7.5 -14.5,8 l2,7.5 c4,-1 8.5,-3 13,-6 l0,20.5 l8,0 l0,-26.5 c5,-3.5 9.5,-7.5 13,-11 l-6,-5.5 zm-29,0 "
+      },
+      "space__0": {
+        "ID": 110,
+        "Name": "space__0",
+        "Path": "m0,0 "
+      },
+      "sw_coda_0": {
+        "ID": 111,
+        "Name": "sw_coda_0",
+        "Path": "m0,0 m-10,0 v5 h20 v-5 zm10,0 "
+      },
+      "sw_onset_0": {
+        "ID": 112,
+        "Name": "sw_onset_0",
+        "Path": "m0,0 m-10,0 v5 h20 v-5 zm10,0 "
+      },
+      "sy_coda_0": {
+        "ID": 113,
+        "Name": "sy_coda_0",
+        "Path": "m0,0 m-2.5,0 v23 h5 v-23 zm2.5,0 "
+      },
+      "sy_onset_0": {
+        "ID": 114,
+        "Name": "sy_onset_0",
+        "Path": "m0,0 m-2.5,0 v23 h5 v-23 zm2.5,0 "
+      },
+      "s_coda_0": {
+        "ID": 115,
+        "Name": "s_coda_0",
+        "Path": "m0,0 m-24.5,0 l-7,4 l14,24 h7 l14,-24 l-7,-4 l-10.5,18 zm24.5,0 "
+      },
+      "s_onset_0": {
+        "ID": 116,
+        "Name": "s_onset_0",
+        "Path": "m0,0 m3.5,0 l-7,4 l14,24 h7 l14,-24 l-7,-4 l-10.5,18 zm-3.5,0 "
+      },
+      "th_coda_0": {
+        "ID": 117,
+        "Name": "th_coda_0",
+        "Path": "m0,0 m-17.5,0 c-2,0 -4,0.5 -6,1 c-4.5,2 -8.5,6 -10,13 l7.5,2 c1.5,-5 3,-6.5 5.5,-7.5 c2,-1 5.5,-0.5 9,0.5 c2.5,0.5 3.5,2 4,5 c0.5,2.5 0.5,6 0,8.5 c-0.5,2.5 -1.5,4.5 -3,6 c-1.5,1.5 -3.5,2.5 -7,3.5 l1.5,8 c5,-1 8.5,-3 11.5,-5.5 c2.5,-2.5 4,-6 5,-9 c0.5,-5 0.5,-9.5 -0.5,-14 c-1.5,-4.5 -4.5,-9 -10,-10.5 c-2,-0.5 -4.5,-1 -6.5,-1 c-0.5,0 -1,0 -1,0 zm-8.5,19.5 l-7.5,2.5 l5,14 l7.5,-2.5 zm26,-19.5 "
+      },
+      "th_onset_0": {
+        "ID": 118,
+        "Name": "th_onset_0",
+        "Path": "m0,0 m25.5,0 l-6.5,4.5 l8,12 l6.5,-4.5 zm-13.5,0.5 c-4,2.5 -7.5,4.5 -9.5,8 c-2,3 -2.5,6.5 -2.5,9.5 c0,4 1,8.5 3.5,12.5 c2.5,4 7,7.5 12.5,7.5 c4.5,0 9,-0.5 12.5,-3.5 c3.5,-2.5 5.5,-7.5 5.5,-14.5 h-8 c0,5.5 -1,7.5 -2.5,8.5 c-1.5,1 -4,1.5 -7.5,1.5 c-2.5,0 -4,-1.5 -5.5,-4 c-1.5,-2 -2.5,-5.5 -2.5,-8 c0,-2.5 0.5,-4 1.5,-5.5 c1,-1.5 2.5,-3 6.5,-4.5 zm-12,-0.5 "
+      },
+      "tl_coda_0": {
+        "ID": 119,
+        "Name": "tl_coda_0",
+        "Path": "m0,0 m-24,0 l0,42 l6,3.5 l20,-12 l-4,-7 l-14,8.5 l0,-35 l-8,0 zm-10.5,20 l-7,4 l8,16 l7,-4 l-8,-16 zm34.5,-20 "
+      },
+      "tl_onset_0": {
+        "ID": 120,
+        "Name": "tl_onset_0",
+        "Path": "m0,0 m14,0 c-7.5,0 -13,4 -16.5,7 l5,6 c3,-2.5 7,-5 11.5,-5 c1.5,0 3,0.5 4,2 c1,1.5 2,4 2,6 c0,3.5 -0.5,5 -2,7 c-1.5,2 -4,3.5 -8,5.5 l4,7 c4,-2 7.5,-4.5 10,-7.5 c2.5,-3 4,-7.5 4,-12 c0,-4 -1,-7.5 -3.5,-10.5 c-2.5,-3 -6,-5.5 -10.5,-5.5 zm23.5,10 l-7,4 l8,16 l7,-4 l-8,-16 zm-37.5,-10 "
+      },
+      "t_coda_0": {
+        "ID": 121,
+        "Name": "t_coda_0",
+        "Path": "m0,0 m-3,0 l-25,25 v33.5 h8 v-30 l23,-23 zm3,0 "
+      },
+      "t_coda_1": {
+        "ID": 122,
+        "Name": "t_coda_1",
+        "Path": "m0,0 m-12,0 l-18,10 l4,7 l18,-10 l-4,-7 zm10,12 l-24,12 l4,7 l24,-12 l-4,-7 zm2,-12 "
+      },
+      "t_onset_0": {
+        "ID": 123,
+        "Name": "t_onset_0",
+        "Path": "m0,0 m3,0 l-6,5.5 l23,23 v30.5 h8 v-33.5 zm-3,0 "
+      },
+      "u_fin_0": {
+        "ID": 124,
+        "Name": "u_fin_0",
+        "Path": "m0,0 m-21.5,0 l-5,6.5 l24,18 l6.5,-3.5 v-21 h-8 v13 zm21.5,0 "
+      },
+      "u_fin_1": {
+        "ID": 125,
+        "Name": "u_fin_1",
+        "Path": "m0,0 m-21.5,0 l-5,6.5 l24,18 l6.5,-3.5 v-21 h-8 v13 zm21.5,0 "
+      },
+      "u_fin_2": {
+        "ID": 126,
+        "Name": "u_fin_2",
+        "Path": "m0,0 m-10.5,0 l-4.5,7 l0,0 l25,15.5 l4,-6.5 l-10,-6.5 v-9.5 l-8,0 v4 l-6.5,-4 zm10.5,0 "
+      },
+      "u_fin_3": {
+        "ID": 127,
+        "Name": "u_fin_3",
+        "Path": "m0,0 m-10.5,0 l-4.5,6.5 l0,0 l25,16 l4,-6.5 l-10,-6.5 v-9.5 h-8 v4 l-6.5,-4 zm10.5,0 "
+      },
+      "u_init_0": {
+        "ID": 128,
+        "Name": "u_init_0",
+        "Path": "m0,0 m-19.5,0 l-5,6.5 c4.5,3 12,7 20.5,11 l0,9.5 l8,0 l0,-6 c5.5,2.5 11.5,4.5 17,6 l2,-7.5 c-16.5,-5 -36.5,-15 -42.5,-19.5 zm19.5,0 "
+      },
+      "u_mid_0": {
+        "ID": 129,
+        "Name": "u_mid_0",
+        "Path": "m0,0 m-20.5,0 l-7,4 l12,20 l7,-4 l-12,-20 zm16.5,0 l0,24 l8,0 l0,-24 l-8,0 zm4,0 "
+      },
+      "u_mid_1": {
+        "ID": 130,
+        "Name": "u_mid_1",
+        "Path": "m0,0 m-20.5,0 l-7,4 l12,20 l7,-4 l-12,-20 zm16.5,0 l0,24 l8,0 l0,-24 l-8,0 zm4,0 "
+      },
+      "u_sol_0": {
+        "ID": 131,
+        "Name": "u_sol_0",
+        "Path": "m0,0 m-14,0 l-6.5,4.5 c9,13.5 24,26 36.5,35 l4.5,-6.5 c-12,-8.5 -26.5,-21 -34.5,-33 zm14,0 "
+      },
+      "v_fin_0": {
+        "ID": 132,
+        "Name": "v_fin_0",
+        "Path": "m0,0 m-4,0 c0,16.5 -1.5,38 -2,48.5 c-1.5,5 -5,8 -9,10.5 c-3.5,2 -8.5,3 -9,3 v8 c3.5,0 8,-1 13.5,-4 c2,-1 4,-3 6,-4.5 c0.5,1 1,2 1.5,3 c2.5,3.5 7,5.5 13,5.5 c6.5,0 11,-4 12.5,-8 c1.5,-4 1.5,-8 1.5,-10 c0,-4 -1,-8 -4,-11.5 c-2.5,-3.5 -6.5,-6.5 -12,-6.5 c-2,0 -3.5,0.5 -5,1.5 c0.5,-11 1,-24 1,-35.5 zm12,42 c2.5,0 4.5,1 6,3 c1,2 2,5 2,7 c0,2 0,5 -1,7 c-1,2 -1.5,3 -5,3 c-4,0 -5.5,-1 -6.5,-2.5 c-1,-1 -1.5,-4 -1.5,-7.5 c0,-0.5 0,-1.5 0,-2 c1,-3 2,-5 3,-6.5 c1.5,-1 2,-1.5 3,-1.5 zm-8,-42 "
+      },
+      "v_fin_1": {
+        "ID": 133,
+        "Name": "v_fin_1",
+        "Path": "m0,0 m-4,0 c0,15.5 0,40 0,49 c-1.5,4.5 -5,7 -9,9 c-4.5,1.5 -10,2 -11,2 v8 c3,0 8,-0.5 14,-3 c4.5,-2 9,-4.5 12,-9.5 c1,1 2.5,2.5 3.5,3.5 c3.5,4.5 7.5,9.5 7.5,9.5 l6.5,-5 c0,0 0,0 0,0 l0,0 c0,0 0,-0.5 -0.5,-0.5 c-0.5,0 -3.5,-4 -7,-8.5 c-0.5,0 -0.5,0 -0.5,-0.5 c-0.5,0 -0.5,0 -0.5,0 c-2,-2.5 -4,-4.5 -6,-6.5 c0,0 -0.5,-0.5 -1,-0.5 c0,-10 0,-32 0,-47 zm4,0 "
+      },
+      "v_fin_2": {
+        "ID": 134,
+        "Name": "v_fin_2",
+        "Path": "m0,0 m-4,0 c0,16.5 -1.5,38 -2,48.5 c-1.5,5 -5,8 -9,10.5 c-3.5,2 -8.5,3 -9,3 v8 c3.5,0 8,-1 13.5,-4 c2,-1 4,-3 6,-4.5 c0.5,1 1,2 1.5,3 c2.5,3.5 7,5.5 13,5.5 c6.5,0 11,-4 12.5,-8 c1.5,-4 1.5,-8 1.5,-10 c0,-4 -1,-8 -4,-11.5 c-2.5,-3.5 -6.5,-6.5 -12,-6.5 c-2,0 -3.5,0.5 -5,1.5 c0.5,-11 1,-24 1,-35.5 zm12,42 c2.5,0 4.5,1 6,3 c1,2 2,5 2,7 c0,2 0,5 -1,7 c-1,2 -1.5,3 -5,3 c-4,0 -5.5,-1 -6.5,-2.5 c-1,-1 -1.5,-4 -1.5,-7.5 c0,-0.5 0,-1.5 0,-2 c1,-3 2,-5 3,-6.5 c1.5,-1 2,-1.5 3,-1.5 zm-8,-42 "
+      },
+      "v_fin_3": {
+        "ID": 135,
+        "Name": "v_fin_3",
+        "Path": "m0,0 m-4,0 c0,15.5 0,40 0,49 c-1.5,4.5 -5,7 -9,9 c-4.5,1.5 -10,2 -11,2 v8 c3,0 8,-0.5 14,-3 c4.5,-2 9,-4.5 12,-9.5 c1,1 2.5,2.5 3.5,3.5 c3.5,4.5 7.5,9.5 7.5,9.5 l6.5,-5 c0,0 0,0 0,0 l0,0 c0,0 0,-0.5 -0.5,-0.5 c-0.5,0 -3.5,-4 -7,-8.5 c-0.5,0 -0.5,0 -0.5,-0.5 c-0.5,0 -0.5,0 -0.5,0 c-2,-2.5 -4,-4.5 -6,-6.5 c0,0 -0.5,-0.5 -1,-0.5 c0,-10 0,-32 0,-47 zm4,0 "
+      },
+      "v_init_0": {
+        "ID": 136,
+        "Name": "v_init_0",
+        "Path": "m0,0 m12,0 c-2,0 -6,0 -10,2.5 c-3.5,2.5 -6,7.5 -6,15.5 v8.5 l-16.5,1.5 l1,8 l15.5,-1.5 v5.5 h8 v-6.5 c8,-1 13.5,-2.5 17,-5 c2,-1.5 3.5,-3.5 4.5,-6 c0.5,-2 0.5,-4.5 0.5,-6.5 c0,-6.5 -2,-11 -5,-13.5 c-3.5,-2.5 -7,-2.5 -9,-2.5 zm0,8 c2,0 3.5,0 4,0.5 c1,0.5 2,2 2,7.5 c0,2 0,3 -0.5,4 c-0.5,1 -0.5,1.5 -1.5,2 c-1.5,1 -5.5,2.5 -12,3.5 v-7.5 c0,-6 1.5,-8 3,-9 c1,-1 3,-1 5,-1 zm-12,-8 "
+      },
+      "v_mid_0": {
+        "ID": 137,
+        "Name": "v_mid_0",
+        "Path": "m0,0 m-4,0 c0,7.5 -0.5,14.5 -1,20.5 c-4.5,1 -9,3 -11.5,6.5 c-4,4.5 -5.5,10.5 -5.5,17 c0,9.5 5.5,15.5 10,20 c2.5,2 4.5,4 6,5.5 c1.5,1.5 2,3 2,4.5 c0,2 0,2 0,6 l8,0 c0,-4 0,-4 0,-6 v0 l0,0 c0,-4 -2,-7 -4,-9.5 c-2,-2.5 -4,-4.5 -6.5,-6.5 c-4,-4 -7.5,-7.5 -7.5,-14 c0,-5.5 1.5,-9.5 3.5,-12 c1.5,-1.5 3,-2.5 5,-3.5 c0,3.5 -0.5,7 -0.5,9.5 c0,4.5 0.5,8.5 3,12.5 c2.5,3.5 7,5.5 13,5.5 c6.5,0 11,-4 12.5,-8 c1.5,-4 1.5,-8 1.5,-10 c0,-4 -1.5,-8.5 -5.5,-12 c-3,-3.5 -8.5,-5.5 -15.5,-6 c0.5,-6 1,-12.5 1,-20 zm6.5,28 c5.5,0.5 9,2 10.5,3.5 c2.5,2 3,4.5 3,6.5 c0,2 0,5 -1,7 c-1,2 -1.5,3 -5,3 c-4,0 -5.5,-1 -6.5,-2.5 c-1,-1 -1.5,-4 -1.5,-7.5 c0,-2.5 0.5,-6.5 0.5,-10 zm-2.5,-28 "
+      },
+      "v_mid_1": {
+        "ID": 138,
+        "Name": "v_mid_1",
+        "Path": "m0,0 m-4,0 c0,12 0,18.5 0,25.5 c-0.5,-0.5 -1,-1 -1.5,-1.5 c-1,-1 -2,-2 -4.5,-2 c-4,0 -7,3 -9,6.5 c-2,4 -3,9 -3,15.5 c0,9.5 5.5,15.5 10,20 c2.5,2 4.5,4 6,5.5 c1.5,1.5 2,3 2,4.5 c0,2 0,2 0,6 l8,0 c0,-4 0,-4 0,-6 l0,0 c0,-4 -2,-7 -4,-9.5 c-2,-2.5 -4,-4.5 -6.5,-6.5 c-4,-4 -7.5,-7.5 -7.5,-14 c0,-5.5 1,-9.5 2,-11.5 c0.5,-1.5 1,-2 1.5,-2 c0.5,0.5 1.5,1.5 2.5,2.5 c2,2 4.5,5 6.5,8 c1,2 2.5,4 3.5,5.5 c2.5,3.5 4.5,6 4.5,6 l6.5,-4.5 c0,0 -2.5,-5 -8,-11.5 c0,0 0,0 0,0 c0,-1.5 -0.5,-2.5 -1,-3.5 c0,-7.5 0,-17.5 0,-33 zm4,0 "
+      },
+      "v_sol_0": {
+        "ID": 139,
+        "Name": "v_sol_0",
+        "Path": "m0,0 m-2,0 c-7,0 -12.5,2.5 -16.5,7 c-4,4.5 -5.5,10.5 -5.5,17 c0,10 7.5,25.5 29,30 l1.5,-8 c-18,-3.5 -22.5,-16 -22.5,-22 c0,-5.5 1.5,-9.5 3.5,-12 c1.5,-2 4,-3.5 7.5,-4 c-1,4.5 -1,8.5 -1,14 c0,4.5 1,8.5 3.5,11.5 c3,3 6.5,4.5 10.5,4.5 c3.5,0 6.5,-1 8.5,-3 c2,-2 3.5,-4 4,-6.5 c1.5,-4 1.5,-8.5 1.5,-10.5 c0,-4 -1.5,-8.5 -5.5,-12 c-3.5,-4 -10,-6 -18.5,-6 zm5,8.5 c4,0.5 7,2 8.5,3 c2,2 2.5,4.5 2.5,6.5 c0,2 0,5.5 -1,8 c-0.5,1.5 -1,2.5 -2,3 c-0.5,0.5 -1.5,1 -3,1 c-2,0 -3.5,-0.5 -4,-1.5 c-1,-1 -2,-3 -2,-6.5 c0,-6.5 0,-10 1,-13.5 zm-3,-8.5 "
+      },
+      "w_coda_0": {
+        "ID": 140,
+        "Name": "w_coda_0",
+        "Path": "m0,0 m-26,0 v8 h26 v-8 zm26,0 "
+      },
+      "w_onset_0": {
+        "ID": 141,
+        "Name": "w_onset_0",
+        "Path": "m0,0 m0,0 v8 h26 v-8 zm0,0 "
+      },
+      "x_coda_0": {
+        "ID": 142,
+        "Name": "x_coda_0",
+        "Path": "m0,0 m15,0 c-4,0 -7,3 -7,7 c0,4 3,7 7,7 c4,0 7,-3 7,-7 c0,-4 -3,-7 -7,-7 zm0,4 c1.5,0 3,1.5 3,3 c0,1.5 -1.5,3 -3,3 c-1.5,0 -3,-1.5 -3,-3 c0,-1.5 1.5,-3 3,-3 zm-15,-4 "
+      },
+      "x_onset_0": {
+        "ID": 143,
+        "Name": "x_onset_0",
+        "Path": "m0,0 m15,0 c-4,0 -7,3 -7,7 c0,4 3,7 7,7 c4,0 7,-3 7,-7 c0,-4 -3,-7 -7,-7 zm0,4 c1.5,0 3,1.5 3,3 c0,1.5 -1.5,3 -3,3 c-1.5,0 -3,-1.5 -3,-3 c0,-1.5 1.5,-3 3,-3 zm-15,-4 "
+      },
+      "y_coda_0": {
+        "ID": 144,
+        "Name": "y_coda_0",
+        "Path": "m0,0 m-22,0 v36 h8 v-36 zm22,0 "
+      },
+      "y_onset_0": {
+        "ID": 145,
+        "Name": "y_onset_0",
+        "Path": "m0,0 m14,0 v36 h8 v-36 zm-14,0 "
+      },
+      "__": {
+        "ID": 146,
+        "Name": "__",
+        "Path": "m0,0 "
+      },
+      "__bar": {
+        "ID": 147,
+        "Name": "__bar",
+        "Path": "m0,0 m-4,0 c0,3 0,6 0,9 h9 v-9 zm4,0 "
+      }
+    }
+  },
+  "GPOS_DIAC": {
+    "name": "GPOS_DIAC",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "OffsetX": {
+        "name": "OffsetX",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "OffsetY": {
+        "name": "OffsetY",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Group": {
+        "name": "Group",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Priority": {
+        "name": "Priority",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      }
+    },
+    "data": {
+      "C(onset,s_0-d_0)": {
+        "ID": 0,
+        "Name": "C(onset,s_0-d_0)",
+        "OffsetX": 0,
+        "OffsetY": 10,
+        "Group": "",
+        "Priority": 0
+      },
+      "C(onset,.-d_0)": {
+        "ID": 1,
+        "Name": "C(onset,.-d_0)",
+        "OffsetX": 0,
+        "OffsetY": 10,
+        "Group": "",
+        "Priority": 0
+      }
+    }
+  },
+  "GPOS_IN_V": {
+    "name": "GPOS_IN_V",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "OffsetX0": {
+        "name": "OffsetX0",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "OffsetY0": {
+        "name": "OffsetY0",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "OffsetX1": {
+        "name": "OffsetX1",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "OffsetY1": {
+        "name": "OffsetY1",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Group": {
+        "name": "Group",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Priority": {
+        "name": "Priority",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      }
+    },
+    "data": {}
+  },
+  "GPOS_IN_H": {
+    "name": "GPOS_IN_H",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "OffsetX0": {
+        "name": "OffsetX0",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "OffsetY0": {
+        "name": "OffsetY0",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "OffsetX1": {
+        "name": "OffsetX1",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "OffsetY1": {
+        "name": "OffsetY1",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Group": {
+        "name": "Group",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Priority": {
+        "name": "Priority",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      }
+    },
+    "data": {}
+  },
+  "GPOS_EX_V": {
+    "name": "GPOS_EX_V",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "OffsetY": {
+        "name": "OffsetY",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Group": {
+        "name": "Group",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Priority": {
+        "name": "Priority",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      }
+    },
+    "data": {}
+  },
+  "GPOS_EX_H": {
+    "name": "GPOS_EX_H",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "OffsetY": {
+        "name": "OffsetY",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Group": {
+        "name": "Group",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Priority": {
+        "name": "Priority",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      }
+    },
+    "data": {}
+  },
+  "GSUB_V": {
+    "name": "GSUB_V",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "NameAlt": {
+        "name": "NameAlt",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Group": {
+        "name": "Group",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Priority": {
+        "name": "Priority",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      }
+    },
+    "data": {
+      "(^|P(*))S(null,,(+),)($|P(*))": {
+        "ID": 0,
+        "Name": "(^|P(*))S(null,,(+),)($|P(*))",
+        "NameAlt": "$1S(sol,,$2,,$3)$4",
+        "Group": "",
+        "Priority": 0
+      },
+      "(^|P(*))S(null,(+),(+),)($|P(*))": {
+        "ID": 1,
+        "Name": "(^|P(*))S(null,(+),(+),)($|P(*))",
+        "NameAlt": "$1S(fin,$2,$3,)$4",
+        "Group": "",
+        "Priority": 10
+      },
+      "(^|P(*))S(null,,(+),(+))($|P(*))": {
+        "ID": 2,
+        "Name": "(^|P(*))S(null,,(+),(+))($|P(*))",
+        "NameAlt": "$1S(init,,$2,$3)$4",
+        "Group": "",
+        "Priority": 20
+      },
+      "(^|P(*))S(null,(+),(+),(+))($|P(*))": {
+        "ID": 3,
+        "Name": "(^|P(*))S(null,(+),(+),(+))($|P(*))",
+        "NameAlt": "$1S(mid,$2,$3,$4)$5",
+        "Group": "",
+        "Priority": 30
+      },
+      "(^|P(*))S(null,(*),(+),(*))": {
+        "ID": 4,
+        "Name": "(^|P(*))S(null,(*),(+),(*))",
+        "NameAlt": "$1S(init,$2,$3,$4)",
+        "Group": "",
+        "Priority": 40
+      },
+      "S(null,(*),(+),(*))($|P(*))": {
+        "ID": 5,
+        "Name": "S(null,(*),(+),(*))($|P(*))",
+        "NameAlt": "S(fin,$1,$2,$3,$4)",
+        "Group": "",
+        "Priority": 50
+      },
+      "S(null,(*),(+),(*))": {
+        "ID": 6,
+        "Name": "S(null,(*),(+),(*))",
+        "NameAlt": "S(mid,$1,$2,$3)",
+        "Group": "",
+        "Priority": 60
+      },
+      "S(*,,hyphen,)": {
+        "ID": 7,
+        "Name": "S(*,,hyphen,)",
+        "NameAlt": "",
+        "Group": "",
+        "Priority": 2000
+      },
+      "S(init,,a_(_.-*),)S((*),(*),a_(_.-*),(*))": {
+        "ID": 8,
+        "Name": "S(init,,a_(_.-*),)S((*),(*),a_(_.-*),(*))",
+        "NameAlt": "S(init,,abig_$1,)S($2,$3,abig$4,$5)",
+        "Group": "",
+        "Priority": 2010
+      },
+      "S(init,,a_(_.-*),)S((*),(*),(*),(*))": {
+        "ID": 9,
+        "Name": "S(init,,a_(_.-*),)S((*),(*),(*),(*))",
+        "NameAlt": "S(init,,abig_$1,)S($2,$3,$4,$5)",
+        "Group": "",
+        "Priority": 2020
+      },
+      "S(init,,(*),)S((*),(*),a_(_.-*),(*))": {
+        "ID": 10,
+        "Name": "S(init,,(*),)S((*),(*),a_(_.-*),(*))",
+        "NameAlt": "S(init,,$1,)S($2,$3,abig_$4,$5)",
+        "Group": "",
+        "Priority": 2030
+      },
+      "S((*),(*),a_(_.-*),(+))S(fin,,a_(_.-*),(*))": {
+        "ID": 11,
+        "Name": "S((*),(*),a_(_.-*),(+))S(fin,,a_(_.-*),(*))",
+        "NameAlt": "S($1,$2,abig_$3,$4)S(fin,,abig_$5,$6)",
+        "Group": "",
+        "Priority": 2040
+      },
+      "S((*),(*),a_(_.-*),(+))S(fin,,(*),(*))": {
+        "ID": 12,
+        "Name": "S((*),(*),a_(_.-*),(+))S(fin,,(*),(*))",
+        "NameAlt": "S($1,$2,abig_$3,$4)S(fin,,$5,$6)",
+        "Group": "",
+        "Priority": 2050
+      },
+      "S(init,(+),(*),(*))S((*),,(*),(*))": {
+        "ID": 13,
+        "Name": "S(init,(+),(*),(*))S((*),,(*),(*))",
+        "NameAlt": "S(init,$1,$2,$3)S($4,x_0,$5,$6)",
+        "Group": "",
+        "Priority": 2060
+      },
+      "S((*),(*),(*),(+))S(fin,,(*),(*))": {
+        "ID": 14,
+        "Name": "S((*),(*),(*),(+))S(fin,,(*),(*))",
+        "NameAlt": "S($1,$2,$3,$4)S(fin,x_0,$5,$6)",
+        "Group": "",
+        "Priority": 2070
+      },
+      "S((*),(x),a_(_.-*),(*))": {
+        "ID": 15,
+        "Name": "S((*),(x),a_(_.-*),(*))",
+        "NameAlt": "S($1,($2),abig_$3,$4)",
+        "Group": "",
+        "Priority": 2080
+      }
+    }
+  },
+  "GSUB_H": {
+    "name": "GSUB_H",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "NameAlt": {
+        "name": "NameAlt",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Group": {
+        "name": "Group",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Priority": {
+        "name": "Priority",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      }
+    },
+    "data": {
+      "S(null,,a,)": {
+        "ID": 0,
+        "Name": "S(null,,a,)",
+        "NameAlt": "S(sol,,abig_0,)",
+        "Group": "",
+        "Priority": 0
+      },
+      "S(null,,(*),)": {
+        "ID": 1,
+        "Name": "S(null,,(*),)",
+        "NameAlt": "S(sol,,$1,)",
+        "Group": "",
+        "Priority": 10
+      },
+      "S(null,(*),(a|abig),)": {
+        "ID": 2,
+        "Name": "S(null,(*),(a|abig),)",
+        "NameAlt": "S(mid,$1,abig_0,)",
+        "Group": "",
+        "Priority": 20
+      },
+      "S(null,,(a|abig),(*))": {
+        "ID": 3,
+        "Name": "S(null,,(a|abig),(*))",
+        "NameAlt": "S(init,,abig_0,$1)",
+        "Group": "",
+        "Priority": 30
+      },
+      "S(null,(*),(a|abig),(*))": {
+        "ID": 4,
+        "Name": "S(null,(*),(a|abig),(*))",
+        "NameAlt": "S(mid,$1,a_0,$2)",
+        "Group": "",
+        "Priority": 40
+      },
+      "S(null,(*),e,)": {
+        "ID": 5,
+        "Name": "S(null,(*),e,)",
+        "NameAlt": "S(fin,$1,e_0,)",
+        "Group": "",
+        "Priority": 50
+      },
+      "S(null,,e,(*))": {
+        "ID": 6,
+        "Name": "S(null,,e,(*))",
+        "NameAlt": "S(fin,x_0,e_0,$1)",
+        "Group": "",
+        "Priority": 60
+      },
+      "S(null,(*),e,(*))": {
+        "ID": 7,
+        "Name": "S(null,(*),e,(*))",
+        "NameAlt": "S(fin,$1,e_0,$2)",
+        "Group": "",
+        "Priority": 70
+      },
+      "S(null,(*),i,)": {
+        "ID": 8,
+        "Name": "S(null,(*),i,)",
+        "NameAlt": "S(fin,$1,i_0,)",
+        "Group": "",
+        "Priority": 80
+      },
+      "S(null,,i,(*))": {
+        "ID": 9,
+        "Name": "S(null,,i,(*))",
+        "NameAlt": "S(init,,i_0,$1)",
+        "Group": "",
+        "Priority": 90
+      },
+      "S(null,(*),i,(*))": {
+        "ID": 10,
+        "Name": "S(null,(*),i,(*))",
+        "NameAlt": "S(fin,$1,i_1,$2)",
+        "Group": "",
+        "Priority": 100
+      },
+      "S(null,(*),o,)": {
+        "ID": 11,
+        "Name": "S(null,(*),o,)",
+        "NameAlt": "S(fin,$1,o_0,)",
+        "Group": "",
+        "Priority": 110
+      },
+      "S(null,,o,(*))": {
+        "ID": 12,
+        "Name": "S(null,,o,(*))",
+        "NameAlt": "S(,init,,o_0,$1)",
+        "Group": "",
+        "Priority": 120
+      },
+      "S(null,(*),o,(*))": {
+        "ID": 13,
+        "Name": "S(null,(*),o,(*))",
+        "NameAlt": "S(init,$1,o_0,$2)",
+        "Group": "",
+        "Priority": 130
+      },
+      "S(null,(*),u,)": {
+        "ID": 14,
+        "Name": "S(null,(*),u,)",
+        "NameAlt": "S(fin,$1,u_0,)",
+        "Group": "",
+        "Priority": 140
+      },
+      "S(null,,u,(*))": {
+        "ID": 15,
+        "Name": "S(null,,u,(*))",
+        "NameAlt": "S(init,,u_0,$1)",
+        "Group": "",
+        "Priority": 150
+      },
+      "S(null,(*),u,(*))": {
+        "ID": 16,
+        "Name": "S(null,(*),u,(*))",
+        "NameAlt": "S(fin,$1,u_1,$2)",
+        "Group": "",
+        "Priority": 160
+      },
+      "S(null,(*),v,)": {
+        "ID": 17,
+        "Name": "S(null,(*),v,)",
+        "NameAlt": "S(fin,$1,v_1,)",
+        "Group": "",
+        "Priority": 170
+      },
+      "S(null,,v,(*))": {
+        "ID": 18,
+        "Name": "S(null,,v,(*))",
+        "NameAlt": "S(init,,v_0,$1)",
+        "Group": "",
+        "Priority": 180
+      },
+      "S(null,(*),v,(*))": {
+        "ID": 19,
+        "Name": "S(null,(*),v,(*))",
+        "NameAlt": "S(fin,$1,v_1,$2)",
+        "Group": "",
+        "Priority": 190
+      },
+      "S(null,(*),eold,)": {
+        "ID": 20,
+        "Name": "S(null,(*),eold,)",
+        "NameAlt": "S(fin,$1,eold_0,)",
+        "Group": "",
+        "Priority": 200
+      },
+      "S(null,,eold,(*))": {
+        "ID": 21,
+        "Name": "S(null,,eold,(*))",
+        "NameAlt": "S(init,,eold_0,$1)",
+        "Group": "",
+        "Priority": 210
+      },
+      "S(null,(*),eold,(*))": {
+        "ID": 22,
+        "Name": "S(null,(*),eold,(*))",
+        "NameAlt": "S(fin,$1,eold_0,$2)",
+        "Group": "",
+        "Priority": 220
+      },
+      "S(null,(*),iold,)": {
+        "ID": 23,
+        "Name": "S(null,(*),iold,)",
+        "NameAlt": "S(fin,$1,iold_0,)",
+        "Group": "",
+        "Priority": 230
+      },
+      "S(null,,iold,(*))": {
+        "ID": 24,
+        "Name": "S(null,,iold,(*))",
+        "NameAlt": "S(init,,iold_0,$1)",
+        "Group": "",
+        "Priority": 240
+      },
+      "S(null,(*),iold,(*))": {
+        "ID": 25,
+        "Name": "S(null,(*),iold,(*))",
+        "NameAlt": "S(init,$1,iold_0,$2)",
+        "Group": "",
+        "Priority": 250
+      },
+      "S(null,(*),(br|omit),)": {
+        "ID": 26,
+        "Name": "S(null,(*),(br|omit),)",
+        "NameAlt": "S(mid,$1,a,,)S(sol,,$2_0,)S(mid,,a,)",
+        "Group": "",
+        "Priority": 260
+      },
+      "S(null,,(br|omit),(*))": {
+        "ID": 27,
+        "Name": "S(null,,(br|omit),(*))",
+        "NameAlt": "S(mid,,a,,)S(sol,,$1_0,)S(mid,,a,$2)",
+        "Group": "",
+        "Priority": 270
+      },
+      "S(null,(*),(br|omit),(*))": {
+        "ID": 28,
+        "Name": "S(null,(*),(br|omit),(*))",
+        "NameAlt": "S(mid,$1,a,,)S(sol,,$2_0,)S(mid,,a,$3)",
+        "Group": "",
+        "Priority": 280
+      }
+    }
+  },
+  "GSUB": {
+    "name": "GSUB",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "NameAlt": {
+        "name": "NameAlt",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Group": {
+        "name": "Group",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Priority": {
+        "name": "Priority",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      }
+    },
+    "data": {
+      "S(mid,(t-*),(._)0(-*),(*))": {
+        "ID": 0,
+        "Name": "S(mid,(t-*),(._)0(-*),(*))",
+        "NameAlt": "S(mid,$1,$21$3,$4)",
+        "Group": "",
+        "Priority": 1000
+      },
+      "S(fin,(t-*),(._)0(-*),(*))": {
+        "ID": 1,
+        "Name": "S(fin,(t-*),(._)0(-*),(*))",
+        "NameAlt": "S(,fin,$1,$21$3,$4)",
+        "Group": "",
+        "Priority": 1010
+      },
+      "S(fin,(*),(._)0(-*),t_0(-*))": {
+        "ID": 2,
+        "Name": "S(fin,(*),(._)0(-*),t_0(-*))",
+        "NameAlt": "S(fin,$1,$22$3,t_1$5)",
+        "Group": "",
+        "Priority": 1020
+      },
+      "S(fin,(t-*),(._)1(-*),t_0(-*))": {
+        "ID": 3,
+        "Name": "S(fin,(t-*),(._)1(-*),t_0(-*))",
+        "NameAlt": "S(fin,$1,$23$3,t_1$5)",
+        "Group": "",
+        "Priority": 1030
+      }
+    }
+  },
+  "TEXTDATA": {
+    "name": "TEXTDATA",
+    "column": {
+      "Thickness": {
+        "name": "Thickness",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Width": {
+        "name": "Width",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Height": {
+        "name": "Height",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      }
+    },
+    "data": {
+      "undefined": {
+        "Thickness": 8,
+        "Width": 100,
+        "Height": 100
+      }
+    }
+  }
+}

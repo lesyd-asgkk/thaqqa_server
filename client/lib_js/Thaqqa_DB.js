@@ -171,7 +171,7 @@ class DataTable {
       for (let i = 0; i < this.columns.length; i++) {
         if (this.columns[i]["name"] == name) return this.columns[i];
       }
-      throw new Error("name=" + name + "のcolumnは存在しません");
+      return null;
     } catch (e) {
       throw e;
     }
@@ -241,6 +241,8 @@ class DataTable {
       genre ??= "name";
       let errmessage = "";
       const rewrite = this.getColumn(name_old);
+      console.log(rewrite);
+      console.log(rewrite == null);
       if (rewrite == null) { //そんなものがない時の処理
         errmessage += name_old + "というColumnは存在しません　　";
       }
@@ -250,10 +252,12 @@ class DataTable {
       //genre = [name,type,desc,order,subtype] 以外だったら
       if (errmessage != "") throw new Error(errmessage);
       if (rewrite != null) rewrite[genre] = name_new;
+      if(genre == "name"){
       for (let i = 0; i < this.data.length; i++) {
-        this.data[i].values[name_new] = this.data[i].values[name_old];
-        this.data[i].values[name_old] = "";
+        let newdata = this.data[i].values[name_old];
+        this.data[i].values[name_new] = newdata;
         delete this.data[i].values[name_old];
+        }
       }
     } catch (e) {
       throw e;
@@ -274,15 +278,16 @@ class DataTable {
       const ans = [];
       skip: for (let i = 0; i < this.data.length; i++) {
         for (const col in param_reg) {
-          if (typeof param_reg[col] === "string") {
-            if (param_reg[col] != this.data[i].values[col]) continue skip;
-          } else if (param_reg[col] instanceof RegExp) {
+          if (param_reg[col] instanceof RegExp) {
             if (
               !(param_reg[col]).exec(
                 this.data[i].values[col].toString(),
               )
             ) continue skip;
           }
+          else{
+            if (param_reg[col] != this.data[i].values[col]) continue skip;
+          } 
         }
         ans.push(this.data[i]);
       }
@@ -291,9 +296,26 @@ class DataTable {
       throw e;
     }
   }
-  createData(param) { //paramは{Name:"",...}って感じ
+
+  getLeastID(){
+    let IDs = [];
+    for(let i;i<this.data;i++){
+      IDs.push(this.data[i].values.ID);
+    }
+    IDs.sort((a,b) => (a-b));
+    let last = -1;
+    for(let i;i<this.IDs;i++){
+      if(this.IDs[i]-last != 1) return last+1;
+      else last++;
+    }
+    return last;
+  }
+
+  createData(param) { //paramは{Name:"",...}って感じ。IDは不要（自動で付与します）
     let errmessage = "";
     const errorcol = [];
+    const ID_ = this.getLeastID();
+    param.ID =ID_;
     try {
       skip: for (const col of this.columns) {
         for (const p in param) {

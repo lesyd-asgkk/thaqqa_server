@@ -10,7 +10,7 @@ class DIVparam_web{
         this.val = val;
         this.type = type; //float,char,intのいずれか
         this.subtype = subtype; //編集拒否用
-        console.log(this.val);
+        console.log(this.col);
     }
 
     rewrite_content(parent,self,obj){
@@ -26,10 +26,14 @@ class DIVparam_web{
         val = f_numcheck(val);//計算する
         console.log(val);
         if(val == null) val = self.val;
-        obj.textContent = val;
-        self.val = val;
+        console.log({ID:this.id});
+        console.log(Khhyl.Thaqqa_DB.getTable(parent.tablename).getData({ID:this.id}));
+        if(Khhyl.Thaqqa_DB.getTable(parent.tablename).rewriteData({ID:this.id},{[self.col]:val}))
+        {obj.textContent = val;
+        self.val = val;}
+        parent.draw();
     }
-    
+
     draw(){
         const object = document.createElement('div');
         object.contentEditable = true;//編集拒否依存
