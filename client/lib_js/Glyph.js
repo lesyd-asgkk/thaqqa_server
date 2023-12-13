@@ -1,6 +1,29 @@
 
 import { Thaqqa_DB,DataTable,Data } from "./Thaqqa_DB.js";
 class GlyphManager{
+    
+    static async load(){
+        await fetch('/server/FontData.svg')
+      .then(response => response.json())
+      .then(data => {
+        console.log('Received data:', data);
+        try{
+        Thaqqa_DB.getTable("SVG");
+        }
+        catch(e_){
+            Thaqqa_DB.createTable({name:"SVG"});
+            const table = Thaqqa_DB.getTable("SVG");
+            table.createColumn("ID","INTEGER","",0);
+            table.createColumn("Name","char","",1);
+            table.createColumn("Path","char","",2);
+            for(const d in data){
+                table.createData({Name:d,Path:data[d]});
+            }
+            console.log(table);
+        }
+      })
+      .catch(error => console.error('Error fetching data:', error));
+      }
 
     static getSVG(name){
         const ans = [];

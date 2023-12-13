@@ -305,10 +305,10 @@ class DataTable {
     IDs.sort((a,b) => (a-b));
     let last = -1;
     for(let i;i<this.IDs;i++){
-      if(this.IDs[i]-last != 1) return last+1;
+      if(this.IDs[i]-last > 1) return last+1;
       else last++;
     }
-    return last;
+    return Math.max(last,0);
   }
 
   createData(param) { //paramは{Name:"",...}って感じ。IDは不要（自動で付与します）

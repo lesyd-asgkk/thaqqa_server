@@ -6,13 +6,13 @@
         "name": "ID",
         "type": "INTEGER",
         "order": 0,
-        "subtype": "none"
+        "subtype": "ID"
       },
       "Name": {
         "name": "Name",
         "type": "char",
         "order": 2,
-        "subtype": "none"
+        "subtype": "NAME"
       },
       "LoadName": {
         "name": "LoadName",
@@ -24,25 +24,25 @@
         "name": "SolGlyphNum",
         "type": "INTEGER",
         "order": 4,
-        "subtype": "none"
+        "subtype": "n>=0"
       },
       "InitGlyphNum": {
         "name": "InitGlyphNum",
         "type": "INTEGER",
         "order": 5,
-        "subtype": "none"
+        "subtype": "n>=0"
       },
       "MidGlyphNum": {
         "name": "MidGlyphNum",
         "type": "INTEGER",
         "order": 6,
-        "subtype": "none"
+        "subtype": "n>=0"
       },
       "FinGlyphNum": {
         "name": "FinGlyphNum",
         "type": "INTEGER",
         "order": 7,
-        "subtype": "none"
+        "subtype": "n>=0"
       },
       "isVowel": {
         "name": "isVowel",
@@ -253,13 +253,13 @@
         "name": "ID",
         "type": "INTEGER",
         "order": 0,
-        "subtype": "none"
+        "subtype": "ID"
       },
       "Name": {
         "name": "Name",
         "type": "char",
         "order": 2,
-        "subtype": "none"
+        "subtype": "NAME"
       },
       "LoadName": {
         "name": "LoadName",
@@ -271,13 +271,13 @@
         "name": "OnsetGlyphNum",
         "type": "INTEGER",
         "order": 4,
-        "subtype": "none"
+        "subtype": "n>=0"
       },
       "CodaGlyphNum": {
         "name": "CodaGlyphNum",
         "type": "INTEGER",
         "order": 5,
-        "subtype": "none"
+        "subtype": "n>=0"
       },
       "isBondAsFirst": {
         "name": "isBondAsFirst",
@@ -488,13 +488,13 @@
         "name": "ID",
         "type": "INTEGER",
         "order": 0,
-        "subtype": "none"
+        "subtype": "ID"
       },
       "Name": {
         "name": "Name",
         "type": "char",
         "order": 2,
-        "subtype": "none"
+        "subtype": "NAME"
       },
       "LoadName": {
         "name": "LoadName",
@@ -506,7 +506,7 @@
         "name": "GlyphNum",
         "type": "INTEGER",
         "order": 4,
-        "subtype": "none"
+        "subtype": "n>=0"
       },
       "Order": {
         "name": "Order",
@@ -553,13 +553,13 @@
         "name": "ID",
         "type": "INTEGER",
         "order": 0,
-        "subtype": "none"
+        "subtype": "ID"
       },
       "Name": {
         "name": "Name",
         "type": "char",
         "order": 2,
-        "subtype": "none"
+        "subtype": "NAME"
       },
       "LoadName": {
         "name": "LoadName",
@@ -571,37 +571,37 @@
         "name": "SolGlyphNum",
         "type": "INTEGER",
         "order": 4,
-        "subtype": "none"
+        "subtype": "n>=0"
       },
       "InitGlyphNum": {
         "name": "InitGlyphNum",
         "type": "INTEGER",
         "order": 5,
-        "subtype": "none"
+        "subtype": "n>=0"
       },
       "MidGlyphNum": {
         "name": "MidGlyphNum",
         "type": "INTEGER",
         "order": 6,
-        "subtype": "none"
+        "subtype": "n>=0"
       },
       "FinGlyphNum": {
         "name": "FinGlyphNum",
         "type": "INTEGER",
         "order": 7,
-        "subtype": "none"
+        "subtype": "n>=0"
       },
       "x_Align": {
         "name": "x_Align",
         "type": "INTEGER",
         "order": 8,
-        "subtype": "none"
+        "subtype": "n={-1,0,1}"
       },
       "y_Align": {
         "name": "y_Align",
         "type": "INTEGER",
         "order": 9,
-        "subtype": "none"
+        "subtype": "n={-1,0,1}"
       },
       "Order": {
         "name": "Order",
@@ -619,13 +619,13 @@
         "name": "ID",
         "type": "INTEGER",
         "order": 0,
-        "subtype": "none"
+        "subtype": "ID"
       },
       "Name": {
         "name": "Name",
         "type": "char",
         "order": 2,
-        "subtype": "none"
+        "subtype": "NAME"
       },
       "LoadName": {
         "name": "LoadName",
@@ -637,25 +637,25 @@
         "name": "OnsetGlyphNum",
         "type": "INTEGER",
         "order": 4,
-        "subtype": "none"
+        "subtype": "n>=0"
       },
       "CodaGlyphNum": {
         "name": "CodaGlyphNum",
         "type": "INTEGER",
         "order": 5,
-        "subtype": "none"
+        "subtype": "n>=0"
       },
       "x_Align": {
         "name": "x_Align",
         "type": "INTEGER",
         "order": 6,
-        "subtype": "none"
+        "subtype": "n={-1,0,1}"
       },
       "y_Align": {
         "name": "y_Align",
         "type": "INTEGER",
         "order": 7,
-        "subtype": "none"
+        "subtype": "n={-1,0,1}"
       },
       "Order": {
         "name": "Order",
@@ -714,13 +714,13 @@
         "name": "ID",
         "type": "INTEGER",
         "order": 0,
-        "subtype": "none"
+        "subtype": "ID"
       },
       "Name": {
         "name": "Name",
         "type": "char",
         "order": 2,
-        "subtype": "none"
+        "subtype": "NAME"
       },
       "LoadName": {
         "name": "LoadName",
@@ -732,19 +732,19 @@
         "name": "GlyphNum",
         "type": "INTEGER",
         "order": 4,
-        "subtype": "none"
+        "subtype": "n>=0"
       },
       "x_Align": {
         "name": "x_Align",
         "type": "INTEGER",
         "order": 5,
-        "subtype": "none"
+        "subtype": "n={-1,0,1}"
       },
       "y_Align": {
         "name": "y_Align",
         "type": "INTEGER",
         "order": 6,
-        "subtype": "none"
+        "subtype": "n={-1,0,1}"
       },
       "Order": {
         "name": "Order",
@@ -2155,13 +2155,13 @@
         "name": "ID",
         "type": "INTEGER",
         "order": 0,
-        "subtype": "none"
+        "subtype": "ID"
       },
       "Name": {
         "name": "Name",
         "type": "char",
         "order": 3,
-        "subtype": "none"
+        "subtype": "NAME"
       },
       "NameAlt": {
         "name": "NameAlt",
@@ -2171,7 +2171,7 @@
       },
       "Order_S": {
         "name": "Order_S",
-        "type": "char",
+        "type": "INTEGER",
         "order": 1,
         "subtype": "none"
       },

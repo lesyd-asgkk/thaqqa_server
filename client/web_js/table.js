@@ -11,42 +11,36 @@ class Row_web{
     setContent(value,table){
         const DTTB = Khhyl.Thaqqa_DB.getTable(table);
         for(const v in value){
-            console.log(DTTB.getColumn(v));
-            console.log(v);
-            console.log(value[v]);
+
             const type = DTTB.getColumn(v).type;
+            const subtype = DTTB.getColumn(v).subtype;
             switch(type){
                 case "INTEGER":
-                    this.content.push(new DIVparam_web(this.parent,this.id,value[v],v,"int"));
+                    this.content.push(new DIVparam_web(this.parent,this.id,value[v],v,"int",subtype));
                 break;
                 case "float":
-                    this.content.push(new DIVparam_web(this.parent,this.id,value[v],v,"float"));
+                    this.content.push(new DIVparam_web(this.parent,this.id,value[v],v,"float",subtype));
                 break;
                 case "char":
-                    this.content.push(new DIVparam_web(this.parent,this.id,value[v],v,"char"));
+                    this.content.push(new DIVparam_web(this.parent,this.id,value[v],v,"char",subtype));
                 break;
                 case "bool":
-                    this.content.push(new DIVselect_web(this.parent,this.id,value[v],v,"bool"));
+                    this.content.push(new DIVselect_web(this.parent,this.id,value[v],v,"bool",subtype));
                 break;
                 default:
                 break;
             }
         }
-        console.log(this.content);
     }
     SortbyOrder(table){
         const DTTB = Khhyl.Thaqqa_DB.getTable(table);
         const sortalg = function(first, second){//Priorityの小さい順に並び替える
-            console.log(DTTB.columns);
-            console.log(first);
-            console.log(second);
             const f = DTTB.getColumn(first.col).order;
             const s = DTTB.getColumn(second.col).order;
             if ( f < s ) return -1;
             else if ( f > s )return 1;
             else return 0;
           }
-          console.log(this.content);
           this.content.sort(sortalg);
     }
     draw_first(table){
@@ -75,14 +69,14 @@ class Row_web{
             }
             {
                 const td = document.createElement('td');
-                const obj = new SVGField_web();
-                td.appendChild(obj.draw());
+                const obj = new SVGField_web(this.id,this.parent);
+                td.appendChild(obj.draw(this.id));
                 td.setAttribute("rowspan",2);
                 td.setAttribute("colspan",(len-1).toString());
                 tr.appendChild(td);
-                }
-                table.appendChild(tr);
             }
+            table.appendChild(tr);
+        }
         {
             const tr = document.createElement('tr'); 
             tr.name = this.id;
@@ -96,16 +90,22 @@ class Row_web{
         }
     }
     draw(table){
-        
-        //1行目はここ
         this.draw_first(table);
         this.draw_second(table);
-        //2,3行目はここ
-        
     }
 }
 class ColumnDesc_web{
     static drawlist = ["order","name","desc","type","subtype"];
+    static sublist = {
+        //ID:ID(変更不能) Alig:[-1,0,1] FREE_0:0以上 FREE_1:1以上
+        "int":["none","n>=0","n>=1","ID","n={-1,0,1}"],
+        //NAME:名前用（重複不可）
+        "char":["none","NAME_L","NAME"],
+        
+        "bool":["none"],
+        
+        "float":["none"]
+    };
     constructor(parent){
         this.name;
         this.type;
@@ -124,15 +124,22 @@ class ColumnDesc_web{
             val = Function('return ('+val+');')();
             return val;
         }
-        let val = obj.textContent;
+        let val = "";
+        switch(obj.name){
+            case "name":
+            case "desc":
+            case "order":
+                val = obj.textContent;
+                break;
+            case "subtype":
+            case "type":
+                val = obj.value;
+        }
         if(obj.name == "order"){
         val = f_numcheck(val);//計算する
-        console.log(val);
         if(val == null) val = self.val;
         }
-        console.log(self.name);
-        console.log(val);
-        console.log(obj.name);
+
         Khhyl.Thaqqa_DB.getTable(parent.tablename).rewriteColumn(self.name,val,obj.name);
         parent.draw();
         }
@@ -150,9 +157,6 @@ class ColumnDesc_web{
             case "INTEGER":
                 this.type = "int";
             break;
-            case "boolean":
-                this.type = "bool";
-            break;
             default:
                 this.type = cl.type;
             break;
@@ -162,14 +166,40 @@ class ColumnDesc_web{
     draw(tr){ 
         for(let y = 0;y<ColumnDesc_web.drawlist.length;y++){
             const td = document.createElement('td');
-            const object = document.createElement('div');
-            object.contentEditable = true;
-            object.name = ColumnDesc_web.drawlist[y];
-            object.textContent = this[ColumnDesc_web.drawlist[y]];
-            object.addEventListener("blur",() => {this.rewrite_content(this.parent,this,object);},true);
-            td.appendChild(object);
-            tr[y].appendChild(td);
+            if(ColumnDesc_web.drawlist[y] == "type" || ColumnDesc_web.drawlist[y] == "subtype"){
+                const object = document.createElement("select");
+                object.contentEditable = false;
+                object.name = ColumnDesc_web.drawlist[y];
+                let text = ["int","char","bool","float"];
+                let textB = ["INTEGER","char","bool","float"];
+
+                if(ColumnDesc_web.drawlist[y] == "subtype"){
+                    text = ColumnDesc_web.sublist[this.type];
+                    textB = ColumnDesc_web.sublist[this.type];
+                }
+                for(let i = 0;i<text.length;i++){
+                    const option = document.createElement("option");
+                    option.value = textB[i];
+                    option.selected = (this[ColumnDesc_web.drawlist[y]] == text[i]);
+                    option.textContent = text[i];
+                    object.appendChild(option);
+                }
+                object.addEventListener("change",() => {this.rewrite_content(this.parent,this,object);},true);
+                td.appendChild(object);
+                tr[y].appendChild(td);
             }
+            else{
+                const object = document.createElement('div');
+                object.contentEditable = true;
+                object.name = ColumnDesc_web.drawlist[y];
+                object.textContent = this[ColumnDesc_web.drawlist[y]];
+                object.addEventListener("blur",() => {this.rewrite_content(this.parent,this,object);},true);
+                td.appendChild(object);
+                tr[y].appendChild(td);
+                }
+            }
+
+
     }
 }
 
@@ -206,8 +236,7 @@ class RowDesc_web{
     }
     SortbyOrder(){
         const sortalg = function(first, second){//Priorityの小さい順に並び替える
-            console.log(first.order);
-            console.log(second.order);
+
             if (first.order < second.order ) return -1;
             else if (first.order  > second.order )return 1;
             else return 0;
@@ -230,7 +259,7 @@ class Table_web{
            
             for(let v =0;v<VALUES.length;v++){
                 const d = new Row_web(VALUES[v].values.ID,this);
-                console.log(VALUES[v].values);
+
                 d.setContent(VALUES[v].values,this.tablename);
                 this.row.push(d);
             }
@@ -246,7 +275,7 @@ class Table_web{
         this.row_desc.SortbyOrder()
         this.row_desc.draw(tb);
         this.row = [];
-        
+
         this.createRow();
         
         const len = this.row_desc.content.length;

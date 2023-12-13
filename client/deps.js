@@ -17,7 +17,7 @@ async function init(){
   async function main(){
     await khhyl.Thaqqa_DB.load();
 
-
+    await khhyl.GlyphManager.load();
 
     console.log("----------");
     let k;
