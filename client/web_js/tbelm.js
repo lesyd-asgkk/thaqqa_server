@@ -10,7 +10,6 @@ class DIVparam_web{
         this.val = val;
         this.type = type; //float,char,intのいずれか
         this.subtype = subtype; //編集拒否用
-
     }
 
     rewrite_content(parent,self,obj){
@@ -47,6 +46,7 @@ class DIVparam_web{
         val = f_numcheck(val);
             if(val == null) val = self.val;
         }
+        console.log(this.id);
         if(Khhyl.Thaqqa_DB.getTable(parent.tablename).rewriteData({ID:this.id},{[self.col]:val}))
         {obj.textContent = val;
         self.val = val;}

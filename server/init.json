@@ -1766,7 +1766,7 @@
         "name": "ID",
         "type": "INTEGER",
         "order": 0,
-        "subtype": "none"
+        "subtype": "ID"
       },
       "Name": {
         "name": "Name",
@@ -1780,8 +1780,8 @@
         "order": 4,
         "subtype": "none"
       },
-      "Group": {
-        "name": "Group",
+      "Order": {
+        "name": "Order",
         "type": "INTEGER",
         "order": 1,
         "subtype": "none"
@@ -1798,112 +1798,112 @@
         "ID": 0,
         "Name": "(^|P(*))S(null,,(+),)($|P(*))",
         "NameAlt": "$1S(sol,,$2,,$3)$4",
-        "Group": 0,
+        "Order": 0,
         "Priority": 0
       },
       "(^|P(*))S(null,(+),(+),)($|P(*))": {
         "ID": 1,
         "Name": "(^|P(*))S(null,(+),(+),)($|P(*))",
         "NameAlt": "$1S(fin,$2,$3,)$4",
-        "Group": 0,
+        "Order": 0,
         "Priority": 10
       },
       "(^|P(*))S(null,,(+),(+))($|P(*))": {
         "ID": 2,
         "Name": "(^|P(*))S(null,,(+),(+))($|P(*))",
         "NameAlt": "$1S(init,,$2,$3)$4",
-        "Group": 0,
+        "Order": 0,
         "Priority": 20
       },
       "(^|P(*))S(null,(+),(+),(+))($|P(*))": {
         "ID": 3,
         "Name": "(^|P(*))S(null,(+),(+),(+))($|P(*))",
         "NameAlt": "$1S(mid,$2,$3,$4)$5",
-        "Group": 0,
+        "Order": 0,
         "Priority": 30
       },
       "(^|P(*))S(null,(*),(+),(*))": {
         "ID": 4,
         "Name": "(^|P(*))S(null,(*),(+),(*))",
         "NameAlt": "$1S(init,$2,$3,$4)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 40
       },
       "S(null,(*),(+),(*))($|P(*))": {
         "ID": 5,
         "Name": "S(null,(*),(+),(*))($|P(*))",
         "NameAlt": "S(fin,$1,$2,$3,$4)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 50
       },
       "S(null,(*),(+),(*))": {
         "ID": 6,
         "Name": "S(null,(*),(+),(*))",
         "NameAlt": "S(mid,$1,$2,$3)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 60
       },
       "S(*,,hyphen,)": {
         "ID": 7,
         "Name": "S(*,,hyphen,)",
         "NameAlt": "",
-        "Group": 0,
+        "Order": 0,
         "Priority": 2000
       },
       "S(init,,a_(_.-*),)S((*),(*),a_(_.-*),(*))": {
         "ID": 8,
         "Name": "S(init,,a_(_.-*),)S((*),(*),a_(_.-*),(*))",
         "NameAlt": "S(init,,abig_$1,)S($2,$3,abig$4,$5)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 2010
       },
       "S(init,,a_(_.-*),)S((*),(*),(*),(*))": {
         "ID": 9,
         "Name": "S(init,,a_(_.-*),)S((*),(*),(*),(*))",
         "NameAlt": "S(init,,abig_$1,)S($2,$3,$4,$5)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 2020
       },
       "S(init,,(*),)S((*),(*),a_(_.-*),(*))": {
         "ID": 10,
         "Name": "S(init,,(*),)S((*),(*),a_(_.-*),(*))",
         "NameAlt": "S(init,,$1,)S($2,$3,abig_$4,$5)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 2030
       },
       "S((*),(*),a_(_.-*),(+))S(fin,,a_(_.-*),(*))": {
         "ID": 11,
         "Name": "S((*),(*),a_(_.-*),(+))S(fin,,a_(_.-*),(*))",
         "NameAlt": "S($1,$2,abig_$3,$4)S(fin,,abig_$5,$6)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 2040
       },
       "S((*),(*),a_(_.-*),(+))S(fin,,(*),(*))": {
         "ID": 12,
         "Name": "S((*),(*),a_(_.-*),(+))S(fin,,(*),(*))",
         "NameAlt": "S($1,$2,abig_$3,$4)S(fin,,$5,$6)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 2050
       },
       "S(init,(+),(*),(*))S((*),,(*),(*))": {
         "ID": 13,
         "Name": "S(init,(+),(*),(*))S((*),,(*),(*))",
         "NameAlt": "S(init,$1,$2,$3)S($4,x_0,$5,$6)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 2060
       },
       "S((*),(*),(*),(+))S(fin,,(*),(*))": {
         "ID": 14,
         "Name": "S((*),(*),(*),(+))S(fin,,(*),(*))",
         "NameAlt": "S($1,$2,$3,$4)S(fin,x_0,$5,$6)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 2070
       },
       "S((*),(x),a_(_.-*),(*))": {
         "ID": 15,
         "Name": "S((*),(x),a_(_.-*),(*))",
         "NameAlt": "S($1,($2),abig_$3,$4)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 2080
       }
     }
@@ -1915,7 +1915,7 @@
         "name": "ID",
         "type": "INTEGER",
         "order": 0,
-        "subtype": "none"
+        "subtype": "ID"
       },
       "Name": {
         "name": "Name",
@@ -1929,8 +1929,8 @@
         "order": 4,
         "subtype": "none"
       },
-      "Group": {
-        "name": "Group",
+      "Order": {
+        "name": "Order",
         "type": "INTEGER",
         "order": 1,
         "subtype": "none"
@@ -1947,203 +1947,203 @@
         "ID": 0,
         "Name": "S(null,,a,)",
         "NameAlt": "S(sol,,abig_0,)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 0
       },
       "S(null,,(*),)": {
         "ID": 1,
         "Name": "S(null,,(*),)",
         "NameAlt": "S(sol,,$1,)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 10
       },
       "S(null,(*),(a|abig),)": {
         "ID": 2,
         "Name": "S(null,(*),(a|abig),)",
         "NameAlt": "S(mid,$1,abig_0,)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 20
       },
       "S(null,,(a|abig),(*))": {
         "ID": 3,
         "Name": "S(null,,(a|abig),(*))",
         "NameAlt": "S(init,,abig_0,$1)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 30
       },
       "S(null,(*),(a|abig),(*))": {
         "ID": 4,
         "Name": "S(null,(*),(a|abig),(*))",
         "NameAlt": "S(mid,$1,a_0,$2)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 40
       },
       "S(null,(*),e,)": {
         "ID": 5,
         "Name": "S(null,(*),e,)",
         "NameAlt": "S(fin,$1,e_0,)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 50
       },
       "S(null,,e,(*))": {
         "ID": 6,
         "Name": "S(null,,e,(*))",
         "NameAlt": "S(fin,x_0,e_0,$1)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 60
       },
       "S(null,(*),e,(*))": {
         "ID": 7,
         "Name": "S(null,(*),e,(*))",
         "NameAlt": "S(fin,$1,e_0,$2)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 70
       },
       "S(null,(*),i,)": {
         "ID": 8,
         "Name": "S(null,(*),i,)",
         "NameAlt": "S(fin,$1,i_0,)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 80
       },
       "S(null,,i,(*))": {
         "ID": 9,
         "Name": "S(null,,i,(*))",
         "NameAlt": "S(init,,i_0,$1)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 90
       },
       "S(null,(*),i,(*))": {
         "ID": 10,
         "Name": "S(null,(*),i,(*))",
         "NameAlt": "S(fin,$1,i_1,$2)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 100
       },
       "S(null,(*),o,)": {
         "ID": 11,
         "Name": "S(null,(*),o,)",
         "NameAlt": "S(fin,$1,o_0,)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 110
       },
       "S(null,,o,(*))": {
         "ID": 12,
         "Name": "S(null,,o,(*))",
         "NameAlt": "S(,init,,o_0,$1)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 120
       },
       "S(null,(*),o,(*))": {
         "ID": 13,
         "Name": "S(null,(*),o,(*))",
         "NameAlt": "S(init,$1,o_0,$2)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 130
       },
       "S(null,(*),u,)": {
         "ID": 14,
         "Name": "S(null,(*),u,)",
         "NameAlt": "S(fin,$1,u_0,)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 140
       },
       "S(null,,u,(*))": {
         "ID": 15,
         "Name": "S(null,,u,(*))",
         "NameAlt": "S(init,,u_0,$1)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 150
       },
       "S(null,(*),u,(*))": {
         "ID": 16,
         "Name": "S(null,(*),u,(*))",
         "NameAlt": "S(fin,$1,u_1,$2)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 160
       },
       "S(null,(*),v,)": {
         "ID": 17,
         "Name": "S(null,(*),v,)",
         "NameAlt": "S(fin,$1,v_1,)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 170
       },
       "S(null,,v,(*))": {
         "ID": 18,
         "Name": "S(null,,v,(*))",
         "NameAlt": "S(init,,v_0,$1)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 180
       },
       "S(null,(*),v,(*))": {
         "ID": 19,
         "Name": "S(null,(*),v,(*))",
         "NameAlt": "S(fin,$1,v_1,$2)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 190
       },
       "S(null,(*),eold,)": {
         "ID": 20,
         "Name": "S(null,(*),eold,)",
         "NameAlt": "S(fin,$1,eold_0,)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 200
       },
       "S(null,,eold,(*))": {
         "ID": 21,
         "Name": "S(null,,eold,(*))",
         "NameAlt": "S(init,,eold_0,$1)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 210
       },
       "S(null,(*),eold,(*))": {
         "ID": 22,
         "Name": "S(null,(*),eold,(*))",
         "NameAlt": "S(fin,$1,eold_0,$2)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 220
       },
       "S(null,(*),iold,)": {
         "ID": 23,
         "Name": "S(null,(*),iold,)",
         "NameAlt": "S(fin,$1,iold_0,)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 230
       },
       "S(null,,iold,(*))": {
         "ID": 24,
         "Name": "S(null,,iold,(*))",
         "NameAlt": "S(init,,iold_0,$1)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 240
       },
       "S(null,(*),iold,(*))": {
         "ID": 25,
         "Name": "S(null,(*),iold,(*))",
         "NameAlt": "S(init,$1,iold_0,$2)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 250
       },
       "S(null,(*),(br|omit),)": {
         "ID": 26,
         "Name": "S(null,(*),(br|omit),)",
         "NameAlt": "S(mid,$1,a,,)S(sol,,$2_0,)S(mid,,a,)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 260
       },
       "S(null,,(br|omit),(*))": {
         "ID": 27,
         "Name": "S(null,,(br|omit),(*))",
         "NameAlt": "S(mid,,a,,)S(sol,,$1_0,)S(mid,,a,$2)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 270
       },
       "S(null,(*),(br|omit),(*))": {
         "ID": 28,
         "Name": "S(null,(*),(br|omit),(*))",
         "NameAlt": "S(mid,$1,a,,)S(sol,,$2_0,)S(mid,,a,$3)",
-        "Group": 0,
+        "Order": 0,
         "Priority": 280
       }
     }
@@ -2169,14 +2169,14 @@
         "order": 4,
         "subtype": "none"
       },
-      "Order_S": {
-        "name": "Order_S",
+      "Order": {
+        "name": "Order",
         "type": "INTEGER",
         "order": 1,
         "subtype": "none"
       },
-      "Order": {
-        "name": "Order",
+      "Priority": {
+        "name": "Priority",
         "type": "INTEGER",
         "order": 2,
         "subtype": "none"
@@ -2187,29 +2187,29 @@
         "ID": 0,
         "Name": "S(mid,(t-*),(._)0(-*),(*))",
         "NameAlt": "S(mid,$1,$21$3,$4)",
-        "Order_S": 0,
-        "Order": 1000
+        "Order": 0,
+        "Priority": 1000
       },
       "S(fin,(t-*),(._)0(-*),(*))": {
         "ID": 1,
         "Name": "S(fin,(t-*),(._)0(-*),(*))",
         "NameAlt": "S(,fin,$1,$21$3,$4)",
-        "Order_S": 0,
-        "Order": 1010
+        "Order": 0,
+        "Priority": 1010
       },
       "S(fin,(*),(._)0(-*),t_0(-*))": {
         "ID": 2,
         "Name": "S(fin,(*),(._)0(-*),t_0(-*))",
         "NameAlt": "S(fin,$1,$22$3,t_1$5)",
-        "Order_S": 0,
-        "Order": 1020
+        "Order": 0,
+        "Priority": 1020
       },
       "S(fin,(t-*),(._)1(-*),t_0(-*))": {
         "ID": 3,
         "Name": "S(fin,(t-*),(._)1(-*),t_0(-*))",
         "NameAlt": "S(fin,$1,$23$3,t_1$5)",
-        "Order_S": 0,
-        "Order": 1030
+        "Order": 0,
+        "Priority": 1030
       }
     }
   },
@@ -3007,811 +3007,818 @@
     "column": {
       "ID": {
         "name": "ID",
-        "type": "INTEGER"
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "ID"
       },
       "Pattern": {
         "name": "Pattern",
-        "type": "char"
+        "type": "char",
+        "order": 1
       },
       "Order": {
         "name": "Order",
-        "type": "INTEGER"
+        "type": "INTEGER",
+        "order": 2
       },
       "Priority": {
         "name": "Priority",
-        "type": "INTEGER"
+        "type": "INTEGER",
+        "order": 3
       },
       "Name": {
         "name": "Name",
-        "type": "char"
+        "type": "char",
+        "order": 4
       },
       "NameAlt": {
         "name": "NameAlt",
-        "type": "char"
+        "type": "char",
+        "order": 5
       }
     },
     "data": {
       "R(A)": {
         "ID": 0,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(A)",
         "NameAlt": "V(null,abig_0)"
       },
       "R(a)": {
-        "ID": 0,
+        "ID": 1,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(a)",
         "NameAlt": "V(null,a_0)"
       },
       "R(e)": {
-        "ID": 0,
+        "ID": 2,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(e)",
         "NameAlt": "V(null,e_0)"
       },
       "R(i)": {
-        "ID": 0,
+        "ID": 3,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(i)",
         "NameAlt": "V(null,i_0)"
       },
       "R(o)": {
-        "ID": 0,
+        "ID": 4,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(o)",
         "NameAlt": "V(null,o_0)"
       },
       "R(u)": {
-        "ID": 0,
+        "ID": 5,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(u)",
         "NameAlt": "V(null,u_0)"
       },
       "R(v|ö)": {
-        "ID": 0,
+        "ID": 6,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(v|ö)",
         "NameAlt": "V(null,v_0)"
       },
       "R(E|ë)": {
-        "ID": 0,
+        "ID": 7,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(E|ë)",
         "NameAlt": "V(null,eold_0)"
       },
       "R(I|ï)": {
-        "ID": 0,
+        "ID": 8,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(I|ï)",
         "NameAlt": "V(null,iold_0)"
       },
       "R(t)": {
-        "ID": 0,
+        "ID": 9,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(t)",
         "NameAlt": "C(null,t_0)"
       },
       "R(k)": {
-        "ID": 0,
+        "ID": 10,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(k)",
         "NameAlt": "C(null,k_0)"
       },
       "R(q)": {
-        "ID": 0,
+        "ID": 11,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(q)",
         "NameAlt": "C(null,q_0)"
       },
       "R(')": {
-        "ID": 0,
+        "ID": 12,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(')",
         "NameAlt": "C(null,c_0)"
       },
       "R(n)": {
-        "ID": 0,
+        "ID": 13,
         "Pattern": "u",
         "Order": 0,
-        "Priority": -20,
+        "Priority": 12,
         "Name": "R(n)",
         "NameAlt": "V(null,v_0)"
       },
       "R(n)R(g)": {
-        "ID": 0,
+        "ID": 97,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 2,
         "Name": "R(n)R(g)",
         "NameAlt": "C(null,ng_0)"
       },
       "R(t)R(h)": {
-        "ID": 0,
+        "ID": 14,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 2,
         "Name": "R(t)R(h)",
         "NameAlt": "C(null,th_0)"
       },
       "R(s)": {
-        "ID": 0,
+        "ID": 15,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(s)",
         "NameAlt": "C(null,s_0)"
       },
       "R(h)R(y)": {
-        "ID": 0,
+        "ID": 16,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 2,
         "Name": "R(h)R(y)",
         "NameAlt": "C(null,hy_0)"
       },
       "R(k)R(h)": {
-        "ID": 0,
+        "ID": 17,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 2,
         "Name": "R(k)R(h)",
         "NameAlt": "C(null,kh_0)"
       },
       "R(q)R(h)": {
-        "ID": 0,
+        "ID": 18,
         "Pattern": "c",
-        "Order": 0,
+        "Order": 20,
         "Priority": 2,
         "Name": "R(q)R(h)",
         "NameAlt": "C(null,qh_0)"
       },
       "R(h)": {
-        "ID": 0,
+        "ID": 19,
         "Pattern": "c",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(h)",
         "NameAlt": "C(null,h_0)"
       },
       "R(d)R(h)": {
-        "ID": 0,
+        "ID": 20,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 2,
         "Name": "R(d)R(h)",
         "NameAlt": "C(null,th_0-d_0)"
       },
       "R(z)": {
-        "ID": 0,
+        "ID": 21,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(z)",
         "NameAlt": "C(null,s_0-d_0)"
       },
       "R(z)R(h)": {
-        "ID": 0,
+        "ID": 22,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 2,
         "Name": "R(z)R(h)",
         "NameAlt": "C(null,hy_0-d_0)"
       },
       "R(g)R(h)": {
-        "ID": 0,
+        "ID": 23,
         "Pattern": "c",
-        "Order": 0,
+        "Order": 20,
         "Priority": 2,
         "Name": "R(g)R(h)",
         "NameAlt": "C(null,kh_0-d_0)"
       },
       "R(r)R(h)": {
-        "ID": 0,
+        "ID": 24,
         "Pattern": "c",
-        "Order": 0,
+        "Order": 20,
         "Priority": 2,
         "Name": "R(r)R(h)",
         "NameAlt": "C(null,qh_0-d_0)"
       },
       "R(c)": {
-        "ID": 0,
+        "ID": 25,
         "Pattern": "c",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(c)",
         "NameAlt": "C(null,h_0-d_0)"
       },
       "R(l)": {
-        "ID": 0,
+        "ID": 26,
         "Pattern": "u",
         "Order": 0,
-        "Priority": -20,
+        "Priority": 18,
         "Name": "R(l)",
         "NameAlt": "V(null,v_0)C(null,l_0)"
       },
       "R(r)": {
-        "ID": 0,
+        "ID": 27,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(r)",
         "NameAlt": "C(null,r_0)"
       },
       "R(t)R(l)": {
-        "ID": 0,
+        "ID": 28,
         "Pattern": "c",
-        "Order": 0,
+        "Order": 20,
         "Priority": 2,
         "Name": "R(t)R(l)",
         "NameAlt": "C(null,tl_0)"
       },
       "R(y)": {
-        "ID": 0,
+        "ID": 29,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(y)",
         "NameAlt": "C(null,y_0)"
       },
       "R(w)": {
-        "ID": 0,
+        "ID": 30,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(w)",
         "NameAlt": "C(null,w_0)"
       },
       "(V(*,(?:a|e|i|o|u|v|eold|iold|abig))){2}(C(*)|(P(*)|$))": {
-        "ID": 0,
+        "ID": 31,
         "Pattern": "c",
-        "Order": 0,
+        "Order": 20,
         "Priority": 0,
         "Name": "(V(*,(?:a|e|i|o|u|v|eold|iold|abig))){2}(C(*)|(P(*)|$))",
         "NameAlt": "$1C(null,c_0)$2"
       },
       "(V(*,a)){2}(V(*,[_.Name!='a']))": {
-        "ID": 0,
+        "ID": 32,
         "Pattern": "c",
-        "Order": 0,
+        "Order": 20,
         "Priority": 0,
         "Name": "(V(*,a)){2}(V(*,[_.Name!='a']))",
         "NameAlt": "$1C(null,c_0)$2"
       },
       "(V(*,e)){2}(V(*,[_.Name!='e']))": {
-        "ID": 0,
+        "ID": 33,
         "Pattern": "c",
-        "Order": 0,
+        "Order": 20,
         "Priority": 0,
         "Name": "(V(*,e)){2}(V(*,[_.Name!='e']))",
         "NameAlt": "$1C(null,c_0)$2"
       },
       "(V(*,i)){2}(V(*,[_.Name!='i']))": {
-        "ID": 0,
+        "ID": 34,
         "Pattern": "c",
-        "Order": 0,
+        "Order": 20,
         "Priority": 0,
         "Name": "(V(*,i)){2}(V(*,[_.Name!='i']))",
         "NameAlt": "$1C(null,c_0)$2"
       },
       "(V(*,o)){2}(V(*,[_.Name!='o']))": {
-        "ID": 0,
+        "ID": 35,
         "Pattern": "c",
-        "Order": 0,
+        "Order": 20,
         "Priority": 0,
         "Name": "(V(*,o)){2}(V(*,[_.Name!='o']))",
         "NameAlt": "$1C(null,c_0)$2"
       },
       "(V(*,u)){2}(V(*,[_.Name!='u']))": {
-        "ID": 0,
+        "ID": 36,
         "Pattern": "c",
-        "Order": 0,
+        "Order": 20,
         "Priority": 0,
         "Name": "(V(*,u)){2}(V(*,[_.Name!='u']))",
         "NameAlt": "$1C(null,c_0)$2"
       },
       "(V(*,v)){2}(V(*,[_.Name!='v']))": {
-        "ID": 0,
+        "ID": 37,
         "Pattern": "c",
-        "Order": 0,
+        "Order": 20,
         "Priority": 0,
         "Name": "(V(*,v)){2}(V(*,[_.Name!='v']))",
         "NameAlt": "$1C(null,c_0)$2"
       },
       "(V(*,eold)){2}(V(*,[_.Name!='eold']))": {
-        "ID": 0,
+        "ID": 38,
         "Pattern": "c",
-        "Order": 0,
+        "Order": 20,
         "Priority": 0,
         "Name": "(V(*,eold)){2}(V(*,[_.Name!='eold']))",
         "NameAlt": "$1C(null,c_0)$2"
       },
       "(V(*,iold)){2}(V(*,[_.Name!='iold']))": {
-        "ID": 0,
+        "ID": 39,
         "Pattern": "c",
-        "Order": 0,
+        "Order": 20,
         "Priority": 0,
         "Name": "(V(*,iold)){2}(V(*,[_.Name!='iold']))",
         "NameAlt": "$1C(null,c_0)$2"
       },
       "(V(*,abig)){2}(V(*,[_.Name!='abig']))": {
-        "ID": 0,
+        "ID": 40,
         "Pattern": "c",
-        "Order": 0,
+        "Order": 20,
         "Priority": 0,
         "Name": "(V(*,abig)){2}(V(*,[_.Name!='abig']))",
         "NameAlt": "$1C(null,c_0)$2"
       },
       "(V(*)|C(*,[_.Name!='c']_.))C(*,c)(V(*)|C(*,[_.Name!='c']_.))": {
-        "ID": 0,
+        "ID": 41,
         "Pattern": "c",
-        "Order": 0,
+        "Order": 20,
         "Priority": 0,
         "Name": "(V(*)|C(*,[_.Name!='c']_.))C(*,c)(V(*)|C(*,[_.Name!='c']_.))",
         "NameAlt": "$1$2"
       },
       "R(p)": {
-        "ID": 0,
+        "ID": 42,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(p)",
         "NameAlt": "C(null,t_0-hd_0)"
       },
       "R(h)R(p)": {
-        "ID": 0,
+        "ID": 43,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(h)R(p)",
         "NameAlt": "C(null,th_0-hd_0)"
       },
       "R(h)R(p)R(y)": {
-        "ID": 0,
+        "ID": 44,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 3,
         "Name": "R(h)R(p)R(y)",
         "NameAlt": "C(null,th_0-hd_0-sy_0)"
       },
       "R(b)": {
-        "ID": 0,
+        "ID": 45,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(b)",
         "NameAlt": "C(null,t_0-d_0-hd_0)"
       },
       "R(t)R(s)": {
-        "ID": 0,
+        "ID": 46,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 2,
         "Name": "R(t)R(s)",
         "NameAlt": "C(null,tl_0)"
       },
       "R(h)R(t)": {
-        "ID": 0,
+        "ID": 47,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 2,
         "Name": "R(h)R(t)",
         "NameAlt": "C(null,tl_0-hd_0)"
       },
       "R(c)R(h)": {
-        "ID": 0,
+        "ID": 48,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 2,
         "Name": "R(c)R(h)",
         "NameAlt": "C(null,tl_0-sy_0)"
       },
       "R(t)R(y)": {
-        "ID": 0,
+        "ID": 49,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 2,
         "Name": "R(t)R(y)",
         "NameAlt": "C(null,t_0-sy_0)"
       },
       "R(d)": {
-        "ID": 0,
+        "ID": 50,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(d)",
         "NameAlt": "C(null,t_0-d_0)"
       },
       "R(k)R(y)": {
-        "ID": 0,
+        "ID": 51,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 2,
         "Name": "R(k)R(y)",
         "NameAlt": "C(null,k_0-sy_0)"
       },
       "R(k)R(w)": {
-        "ID": 0,
+        "ID": 52,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 2,
         "Name": "R(k)R(w)",
         "NameAlt": "C(null,k_0-sw_0)"
       },
       "R(q)R(w)": {
-        "ID": 0,
+        "ID": 53,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 2,
         "Name": "R(q)R(w)",
         "NameAlt": "C(null,q_0-sw_0)"
       },
       "R(h)R(q)": {
-        "ID": 0,
+        "ID": 54,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 2,
         "Name": "R(h)R(q)",
         "NameAlt": "C(null,q_0-hd_0)"
       },
       "R(m)": {
-        "ID": 0,
+        "ID": 55,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(m)",
         "NameAlt": "C(null,n_0-hd_0)"
       },
       "R(m)R(y)": {
-        "ID": 0,
+        "ID": 56,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 2,
         "Name": "R(m)R(y)",
         "NameAlt": "C(null,n_0-hd_0-sy_0)"
       },
       "R(n)R(y)": {
-        "ID": 0,
+        "ID": 57,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 2,
         "Name": "R(n)R(y)",
         "NameAlt": "C(null,n_0-sy_0)"
       },
       "R(n)R(g)R(y)": {
-        "ID": 0,
+        "ID": 58,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 3,
         "Name": "R(n)R(g)R(y)",
         "NameAlt": "C(null,ng_0-sy_0)"
       },
       "R(n)R(g)R(w)": {
-        "ID": 0,
+        "ID": 59,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 3,
         "Name": "R(n)R(g)R(w)",
         "NameAlt": "C(null,ng_0-sw_0)"
       },
       "R(s)R(y)": {
-        "ID": 0,
+        "ID": 60,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 2,
         "Name": "R(s)R(y)",
         "NameAlt": "C(null,s_0-sy_0)"
       },
       "R(h)R(w)": {
-        "ID": 0,
+        "ID": 61,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 2,
         "Name": "R(h)R(w)",
         "NameAlt": "C(null,qh_0-sw_0)"
       },
       "R(r)R(y)": {
-        "ID": 0,
+        "ID": 62,
         "Pattern": "o",
-        "Order": 0,
+        "Order": 20,
         "Priority": 2,
         "Name": "R(r)R(y)",
         "NameAlt": "C(null,r_0-sy_0)"
       },
       "(C(*)|V(*))R(h)": {
-        "ID": 0,
+        "ID": 63,
         "Pattern": "o",
-        "Order": 0,
-        "Priority": -10,
+        "Order": 10,
+        "Priority": 5,
         "Name": "(C(*)|V(*))R(h)",
         "NameAlt": "$1C(null,kh_0)"
       },
       "(^|P(*))R(h)": {
-        "ID": 0,
+        "ID": 64,
         "Pattern": "o",
-        "Order": 0,
-        "Priority": -10,
+        "Order": 10,
+        "Priority": 4,
         "Name": "(^|P(*))R(h)",
         "NameAlt": "$1C(null,h_0)"
       },
       "(^|P(*))R(n)(V(*,(?:a|e|i|o|u|v|eold|iold|abig))|C(*,c)|R(l))": {
-        "ID": 0,
+        "ID": 65,
         "Pattern": "o",
-        "Order": 0,
-        "Priority": -15,
+        "Order": 10,
+        "Priority": 3,
         "Name": "(^|P(*))R(n)(V(*,(?:a|e|i|o|u|v|eold|iold|abig))|C(*,c)|R(l))",
         "NameAlt": "$1C(null,n_0)$2"
       },
       "(V(*,(?:a|e|i|o|u|v|eold|iold|abig))|R(l))R(n)(V(*,(?:a|e|i|o|u|v|eold|iold|abig))|R(l))": {
-        "ID": 0,
+        "ID": 66,
         "Pattern": "o",
-        "Order": 0,
-        "Priority": -15,
+        "Order": 10,
+        "Priority": 2,
         "Name": "(V(*,(?:a|e|i|o|u|v|eold|iold|abig))|R(l))R(n)(V(*,(?:a|e|i|o|u|v|eold|iold|abig))|R(l))",
         "NameAlt": "$1C(null,n_0)$2"
       },
       "(^|P(*))R(n)R(n)": {
-        "ID": 0,
+        "ID": 67,
         "Pattern": "o",
-        "Order": 0,
-        "Priority": -15,
+        "Order": 10,
+        "Priority": 1,
         "Name": "(^|P(*))R(n)R(n)",
         "NameAlt": "$1C(null,n_0)R(n)"
       },
       "R(n)R(n)": {
-        "ID": 0,
+        "ID": 68,
         "Pattern": "o",
-        "Order": 0,
-        "Priority": -15,
+        "Order": 10,
+        "Priority": 0,
         "Name": "R(n)R(n)",
         "NameAlt": "R(n)C(null,n_0)"
       },
       "(V(*)|C(null,[_.Name!='c']_.))C(null,c)*(V(*)|C(null,[_.Name!='c']_.))": {
-        "ID": 0,
+        "ID": 69,
         "Pattern": "o",
         "Order": 0,
-        "Priority": -20,
+        "Priority": 39,
         "Name": "(V(*)|C(null,[_.Name!='c']_.))C(null,c)*(V(*)|C(null,[_.Name!='c']_.))",
         "NameAlt": "$1$2"
       },
       "R( )": {
-        "ID": 0,
+        "ID": 70,
         "Pattern": "u",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R( )",
         "NameAlt": "P(space_0)"
       },
       "R(\\\")": {
-        "ID": 0,
+        "ID": 71,
         "Pattern": "u",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(\\\")",
         "NameAlt": "V(null,br_0)"
       },
       "R(\\.)": {
-        "ID": 0,
+        "ID": 72,
         "Pattern": "u",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(\\.)",
         "NameAlt": "P(period_0)"
       },
       "R(,)": {
-        "ID": 0,
+        "ID": 73,
         "Pattern": "u",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(,)",
         "NameAlt": "P(comma_0)"
       },
       "R(-)": {
-        "ID": 0,
+        "ID": 74,
         "Pattern": "u",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(-)",
         "NameAlt": "V(null,hyphen_0)"
       },
       "R(\\n)": {
-        "ID": 0,
+        "ID": 75,
         "Pattern": "u",
-        "Order": 0,
+        "Order": 20,
         "Priority": 1,
         "Name": "R(\\n)",
         "NameAlt": "P(newline_0)"
       },
       "(V(*,[!_.isBondtoPrev&&!_.isBondtoNext]_.))": {
-        "ID": 0,
+        "ID": 76,
         "Pattern": "u",
         "Order": 0,
-        "Priority": -20,
+        "Priority": 38,
         "Name": "(V(*,[!_.isBondtoPrev&&!_.isBondtoNext]_.))",
         "NameAlt": "Q()$1Q()"
       },
       "(V(*,[!_.isBondtoPrev&&_.isBondtoNext]_.))": {
-        "ID": 0,
+        "ID": 77,
         "Pattern": "u",
         "Order": 0,
-        "Priority": -20,
+        "Priority": 37,
         "Name": "(V(*,[!_.isBondtoPrev&&_.isBondtoNext]_.))",
         "NameAlt": "Q()$1"
       },
       "(V(*,[_.isBondtoPrev&&!_.isBondtoNext]_.))": {
-        "ID": 0,
+        "ID": 78,
         "Pattern": "u",
         "Order": 0,
-        "Priority": -20,
+        "Priority": 36,
         "Name": "(V(*,[_.isBondtoPrev&&!_.isBondtoNext]_.))",
         "NameAlt": "$1Q()"
       },
       "(V(*)|R(n)|R(l))(V(*)|R(n)|R(l))": {
-        "ID": 0,
+        "ID": 79,
         "Pattern": "u",
         "Order": 0,
-        "Priority": -20,
+        "Priority": 35,
         "Name": "(V(*)|R(n)|R(l))(V(*)|R(n)|R(l))",
         "NameAlt": "$1Q()$2"
       },
       "(C(*))(C(*))": {
-        "ID": 0,
+        "ID": 80,
         "Pattern": "u",
         "Order": 0,
-        "Priority": -20,
+        "Priority": 34,
         "Name": "(C(*))(C(*))",
         "NameAlt": "$1Q()$2"
       },
       "(V(*)|R(n)|R(l))(C(*))(V(*,[_.hasGreedyBond]_.)|R(n)|R(l))": {
-        "ID": 0,
+        "ID": 81,
         "Pattern": "u",
         "Order": 0,
-        "Priority": -20,
+        "Priority": 33,
         "Name": "(V(*)|R(n)|R(l))(C(*))(V(*,[_.hasGreedyBond]_.)|R(n)|R(l))",
         "NameAlt": "$1Q()$2$3"
       },
       "(V(*)|R(n)|R(l))(C(*))(V(*,[!_.hasGreedyBond]_.))": {
-        "ID": 0,
+        "ID": 82,
         "Pattern": "u",
         "Order": 0,
-        "Priority": -20,
+        "Priority": 32,
         "Name": "(V(*)|R(n)|R(l))(C(*))(V(*,[!_.hasGreedyBond]_.))",
         "NameAlt": "$1$2Q()$3"
       },
       "(Q())+P()(Q())+": {
-        "ID": 0,
+        "ID": 83,
         "Pattern": "u",
         "Order": 0,
-        "Priority": -20,
+        "Priority": 31,
         "Name": "(Q())+P()(Q())+",
         "NameAlt": "P()"
       },
       "(Q())+": {
-        "ID": 0,
+        "ID": 84,
         "Pattern": "u",
         "Order": 0,
-        "Priority": -20,
+        "Priority": 30,
         "Name": "(Q())+",
         "NameAlt": "Q()"
       },
       "(^|P())R(n)(P()|$)": {
-        "ID": 0,
+        "ID": 85,
         "Pattern": "u",
         "Order": 0,
-        "Priority": -20,
+        "Priority": 17,
         "Name": "(^|P())R(n)(P()|$)",
         "NameAlt": "$1C(null,ng_0)V(null,v_0)C(null,ng_0)$2"
       },
       "R(n)(Q()C(*,(?:t|d|n|tl)|(?:(?:t|tl|n)-sy)|(?:(?:t|th|s|hy)-d)|(?:tl-w)))": {
-        "ID": 0,
+        "ID": 86,
         "Pattern": "u",
         "Order": 0,
-        "Priority": -20,
+        "Priority": 16,
         "Name": "R(n)(Q()C(*,(?:t|d|n|tl)|(?:(?:t|tl|n)-sy)|(?:(?:t|th|s|hy)-d)|(?:tl-w)))",
         "NameAlt": "V(null,v_0)C(null,n_0)$1"
       },
       "R(n)(Q()C(*,(?:(?:t|th|n)-hd)|(?:(?:t)-d-hd)|(?:(?:tl|n)-hd-sy)|(?:th-hd-sw))": {
-        "ID": 0,
+        "ID": 87,
         "Pattern": "u",
         "Order": 0,
-        "Priority": -20,
+        "Priority": 15,
         "Name": "R(n)(Q()C(*,(?:(?:t|th|n)-hd)|(?:(?:t)-d-hd)|(?:(?:tl|n)-hd-sy)|(?:th-hd-sw))",
         "NameAlt": "V(null,v_0)C(null,n_0+hd_0)$1"
       },
       "R(n)Q()R(l)": {
-        "ID": 0,
+        "ID": 88,
         "Pattern": "u",
         "Order": 0,
-        "Priority": -20,
+        "Priority": 14,
         "Name": "R(n)Q()R(l)",
         "NameAlt": "V(null,v_0)C(null,n_0)Q()C(null,l_0)R(l)"
       },
       "R(n)(Q()(?:C(*)|V(*)|P(*)|$))": {
-        "ID": 0,
+        "ID": 89,
         "Pattern": "u",
         "Order": 0,
-        "Priority": -20,
+        "Priority": 13,
         "Name": "R(n)(Q()(?:C(*)|V(*)|P(*)|$))",
         "NameAlt": "V(null,v_0)C(null,ng_0)$1"
       },
       "(C(*,r))R(l)": {
-        "ID": 0,
+        "ID": 90,
         "Pattern": "u",
         "Order": 0,
-        "Priority": -20,
+        "Priority": 11,
         "Name": "(C(*,r))R(l)",
         "NameAlt": "$1V(null,v_0)C(null,r_0)"
       },
       "(P()|Q())R(l)(P()|Q())": {
-        "ID": 0,
+        "ID": 91,
         "Pattern": "u",
         "Order": 0,
-        "Priority": -20,
+        "Priority": 10,
         "Name": "(P()|Q())R(l)(P()|Q())",
         "NameAlt": "$1C(null,l_0)V(null,v_0)C(null,l_0)$2"
       },
       "C(*,(*))V((*),(*))C(*,(*))": {
-        "ID": 0,
+        "ID": 92,
         "Pattern": "u",
         "Order": 0,
-        "Priority": -20,
+        "Priority": 4,
         "Name": "C(*,(*))V((*),(*))C(*,(*))",
         "NameAlt": "S($2,$1,$3,$4)"
       },
       "V((*),(*))C(*,(*))": {
-        "ID": 0,
+        "ID": 93,
         "Pattern": "u",
         "Order": 0,
-        "Priority": -20,
+        "Priority": 3,
         "Name": "V((*),(*))C(*,(*))",
         "NameAlt": "S($1,,$2,$3)"
       },
       "C(*,(*))V((*),(*))": {
-        "ID": 0,
+        "ID": 94,
         "Pattern": "u",
         "Order": 0,
-        "Priority": -20,
+        "Priority": 2,
         "Name": "C(*,(*))V((*),(*))",
         "NameAlt": "S($2,$1,$3,)"
       },
       "V((*),(*))": {
-        "ID": 0,
+        "ID": 95,
         "Pattern": "u",
         "Order": 0,
-        "Priority": -20,
+        "Priority": 1,
         "Name": "V((*),(*))",
         "NameAlt": "S($1,,$2,)"
       },
       "Q()": {
-        "ID": 0,
+        "ID": 96,
         "Pattern": "u",
-        "Order": 0,
-        "Priority": -30,
+        "Order": -1,
+        "Priority": 0,
         "Name": "Q()",
         "NameAlt": ""
       }

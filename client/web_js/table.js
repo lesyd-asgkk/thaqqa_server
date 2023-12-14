@@ -59,14 +59,15 @@ class Row_web{
         const len = this.content.length;
         {
             const tr = document.createElement('tr'); 
+            tr.classList.add("svg");
             tr.name = this.id;
             {
             const td = document.createElement('td');
-            const obj = new Button_web(this.id,"","","Add");
-    
+            const obj = new Button_web(this.id,"","","Delete");
             td.appendChild(obj.draw());
             tr.appendChild(td);
             }
+
             {
                 const td = document.createElement('td');
                 const obj = new SVGField_web(this.id,this.parent);
@@ -79,15 +80,14 @@ class Row_web{
         }
         {
             const tr = document.createElement('tr'); 
-            tr.name = this.id;
-    
+            tr.classList.add("svg");
             const td = document.createElement('td');
-            const obj = new Button_web(this.id,"","","Delete");
-            
+            const obj = new Button_web(this.id,"","","Add");
             td.appendChild(obj.draw());
             tr.appendChild(td);
             table.appendChild(tr);
         }
+
     }
     draw(table){
         this.draw_first(table);
@@ -114,7 +114,7 @@ class ColumnDesc_web{
         this.subtype;
         this.parent=parent;
     }
-    rewrite_content(parent,self,obj){
+    rewrite_content(parent,self,obj,older){
         try{
         const f_numcheck = function(val){//数字かどうかを確かめる。演算式ok
             val = val.split(/[^0-9\+\-\*\/~\(\)\{\}\.]/g);
@@ -137,14 +137,14 @@ class ColumnDesc_web{
         }
         if(obj.name == "order"){
         val = f_numcheck(val);//計算する
-        if(val == null) val = self.val;
+        if(val == null) val = older;
         }
 
         Khhyl.Thaqqa_DB.getTable(parent.tablename).rewriteColumn(self.name,val,obj.name);
         parent.draw();
         }
         catch(e){
-            obj.textContent = self.val
+            obj.textContent = older;
             console.log(e);}
             
     }
@@ -193,7 +193,7 @@ class ColumnDesc_web{
                 object.contentEditable = true;
                 object.name = ColumnDesc_web.drawlist[y];
                 object.textContent = this[ColumnDesc_web.drawlist[y]];
-                object.addEventListener("blur",() => {this.rewrite_content(this.parent,this,object);},true);
+                object.addEventListener("blur",() => {this.rewrite_content(this.parent,this,object,this[ColumnDesc_web.drawlist[y]]);},true);
                 td.appendChild(object);
                 tr[y].appendChild(td);
                 }
@@ -256,7 +256,7 @@ class Table_web{
         if(DTTB != null){
             this.content = [];
             const VALUES = DTTB.data;
-           
+
             for(let v =0;v<VALUES.length;v++){
                 const d = new Row_web(VALUES[v].values.ID,this);
 
@@ -281,11 +281,17 @@ class Table_web{
         const len = this.row_desc.content.length;
         {
             const tr = document.createElement('tr'); 
+            tr.classList.add("svg");
             tr.name = this.id;
+            for(let _i = 0;_i<0;_i++){
+                const td = document.createElement('td');
+                const obj = document.createElement('div');
+                td.appendChild(obj);
+                tr.appendChild(td);
+                }
             {
             const td = document.createElement('td');
             const obj = new Button_web(0,"","","Add");
-    
             td.appendChild(obj.draw());
             tr.appendChild(td);
             }
@@ -297,16 +303,11 @@ class Table_web{
             }
             tb.appendChild(tr);
         }
-
         for(let y = 0;y<this.row.length;y++){
             this.row[y].SortbyOrder(this.tablename);
             this.row[y].draw(tb);
         }
-
-        
-
         this.loc.appendChild(tb);
-        
     }
 }
 

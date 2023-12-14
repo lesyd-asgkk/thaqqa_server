@@ -39,7 +39,8 @@ import * as webjs from "./web_js/deps.js";
     tb.draw();
     tb = new webjs.Table_web("GSUB_V",$("div.area_tb#gsubv")[0]);
     tb.draw();
-
+    tb = new webjs.Table_web("Parser",$("div.area_tb#parser")[0]);
+    tb.draw();
 
     const object = document.createElement("input");
     object.contentEditable = false;

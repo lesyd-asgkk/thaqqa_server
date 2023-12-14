@@ -6,7 +6,7 @@ class GlyphManager{
         await fetch('/server/FontData.svg')
       .then(response => response.json())
       .then(data => {
-        console.log('Received data:', data);
+        //console.log('Received data:', data);
         try{
         Thaqqa_DB.getTable("SVG");
         }
