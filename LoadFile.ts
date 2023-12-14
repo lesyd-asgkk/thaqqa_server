@@ -13,6 +13,7 @@ export class LoadFile {
     const decoder = new TextDecoder("utf-8");
     const ans: { [index: string]: string } = {};
     for (const filename of Deno.readDirSync(path)) {
+      //console.log(path+"/"+filename.name);
       const file = Deno.readFileSync(path + "/" + filename.name);
       const doc = new DOMParser().parseFromString(
         decoder.decode(file),

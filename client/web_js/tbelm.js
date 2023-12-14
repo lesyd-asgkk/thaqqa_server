@@ -148,7 +148,7 @@ class SVGField_web{
         for(let j = 0 ; j<listb.length;j++){
         const list = Khhyl.GlyphManager.getSVG((new RegExp("^"+n+"_"+listb[j])))
                 for(let i = 0;i<list.length;i++){
-                d = Khhyl.SVG.merge2(d,list[i],(1+i_+j)*100,0);
+                d = Khhyl.SVG.merge2(d,list[i],(1+i_+j/2)*100,0);
                 i_++;
                 }
             }

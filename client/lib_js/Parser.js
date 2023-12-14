@@ -1,7 +1,16 @@
 import { Thaqqa_DB,DataTable,Data } from "./Thaqqa_DB.js";
 import { RegExp_Khhyl } from "./RegExp_Khhyl.js";
 class Parser {
+
+    static Define(){
+      
+            const table = Thaqqa_DB.getTable("Parser");
+
+      console.log(table);
+    }
+
     static test(raw,type) {
+    //あとでやる
       const _ParserClose = [
         ["R(A)", "V(null,abig_0)",1],
         ["R(a)", "V(null,a_0)",1],
@@ -213,7 +222,6 @@ class Parser {
         console.log(r_fin);
         */
         raw_new = raw_new.replaceAll(r_fin,array[i][1]);
-        //console.log(text)
     }
     return raw_new;
     }

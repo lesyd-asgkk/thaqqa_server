@@ -1,24 +1,13 @@
 
 import * as khhyl from "./lib_js/deps.js";
 import * as webjs from "./web_js/deps.js";
-let SQL;
-async function init(){
 
-    const initSqlJs = window.initSqlJs;
-    SQL = await initSqlJs({
-      // Required to load the wasm binary asynchronously. Of course, you can host it wherever you want
-      // You can omit locateFile completely when running in node
-      locateFile: file => `https://sql.js.org/dist/${file}`
-    });
-
-    //document.write(`<script src=\"./main.js\"></script> `);
-  }
   
   async function main(){
     await khhyl.Thaqqa_DB.load();
 
     await khhyl.GlyphManager.load();
-
+    await khhyl.Parser.Define();
     console.log("----------");
     let k;
     k = khhyl.Parser.test("suzus'ha koratl", 0);
@@ -44,8 +33,13 @@ async function init(){
     ta.draw();
     ta = new webjs.Table_web("DIACRITIC_P",$("div.area_tb#punctuationd")[0]);
     ta.draw();
-    const tb = new webjs.Table_web("GSUB",$("div.area_tb#gsub")[0]);
+    let tb = new webjs.Table_web("GSUB_P",$("div.area_tb#gsubp")[0]);
     tb.draw();
+    tb = new webjs.Table_web("GSUB_H",$("div.area_tb#gsubh")[0]);
+    tb.draw();
+    tb = new webjs.Table_web("GSUB_V",$("div.area_tb#gsubv")[0]);
+    tb.draw();
+
 
     const object = document.createElement("input");
     object.contentEditable = false;
@@ -63,7 +57,7 @@ async function init(){
 
   self.addEventListener("load", async () => {
     console.log("ページが完全に読み込まれました");
-    await init();
+   
     await main();
 
   });
