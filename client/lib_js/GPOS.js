@@ -3,7 +3,7 @@ import { RegExp_Khhyl } from "./RegExp_Khhyl.js";
 class GPOSManager {
     
     static getGPOS(table,param) {
-            if(table.match(/^(GPOS_DIAC|GPOS_IN_V|GPOS_IN_H|GPOS_EX_V|GPOS_EX_H)$/) == null) throw new Error("テーブル指定エラー");
+            if(table.match(/^(GPOS|GPOS_DIAC|GPOS_IN_V|GPOS_IN_H|GPOS_EX_V|GPOS_EX_H)$/) == null) throw new Error("テーブル指定エラー");
             if(typeof param == "string") param = {Name:param};
             if(param instanceof RegExp) param = {Name:param};
             const tables = Thaqqa_DB.getTable(table);
@@ -15,7 +15,7 @@ class GPOSManager {
     
         
         static rewriteGPOS(table ,param){
-            if(table.match(/^(GPOS_DIAC|GPOS_IN_V|GPOS_IN_H|GPOS_EX_V|GPOS_EX_H)$/) == null) return new Error("テーブル指定エラー");
+            if(table.match(/^(GPOS|GPOS_DIAC|GPOS_IN_V|GPOS_IN_H|GPOS_EX_V|GPOS_EX_H)$/) == null) return new Error("テーブル指定エラー");
             if(typeof param == "string") param = {Name:param};
             else if(param instanceof RegExp) param = {Name:param};
             if(typeof param2 == "string") param2 = {Name:param2};
@@ -34,7 +34,7 @@ class GPOSManager {
         }
     
         static deleteGPOS(table, param,safety){
-            if(table.match(/^(GPOS_DIAC|GPOS_IN_V|GPOS_IN_H|GPOS_EX_V|GPOS_EX_H)$/) == null) return new Error("テーブル指定エラー");
+            if(table.match(/^(GPOS|GPOS_DIAC|GPOS_IN_V|GPOS_IN_H|GPOS_EX_V|GPOS_EX_H)$/) == null) return new Error("テーブル指定エラー");
             safety ??= true;
             if(typeof param == "string") param = {Name:param};
             if(param instanceof RegExp) param = {Name:param};
@@ -49,7 +49,7 @@ class GPOSManager {
 
         }
         static createGPOS(table,param){//
-            if(table.match(/^(GPOS_DIAC|GPOS_IN_V|GPOS_IN_H|GPOS_EX_V|GPOS_EX_H)$/) == null) return new Error("テーブル指定エラー");
+            if(table.match(/^(GPOS|GPOS_DIAC|GPOS_IN_V|GPOS_IN_H|GPOS_EX_V|GPOS_EX_H)$/) == null) return new Error("テーブル指定エラー");
             if(typeof param == "string") param = {Name:param};
     
             if(GPOSManager.getGPOS(table,param).length != 0) return new Error(param+"はすでに存在しています");

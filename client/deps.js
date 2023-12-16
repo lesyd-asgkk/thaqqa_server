@@ -38,13 +38,16 @@ import * as webjs from "./web_js/deps.js";
     ta = new webjs.Table_web("DIACRITIC_P",$("div.area_tb#punctuationd")[0]);
     ta.draw();
     let tb;
-
-
     tb = new webjs.Table_web("GSUB",$("div.area_tb#gsub")[0]);
     tb.draw();
     tb = new webjs.Table_web("Parser",$("div.area_tb#parser")[0]);
     tb.draw();
 
+    tb = new webjs.Table_web("GPOS",$("div.area_tb#gpos")[0]);
+    tb.draw();
+
+    tb = new webjs.Sandbox_web($("div.area_tb#sandbox")[0]);
+    tb.draw();
     const object = document.createElement("input");
     object.contentEditable = false;
     object.type = "button";

@@ -114,14 +114,20 @@ class Button_web{
             switch(self.parent.tablename){
                 case "GSUB":
                     {
-                    const p = self.id != null? Khhyl.Thaqqa_DB.getTable(parent.tablename).getData({ID:self.id})[0].values:{Priority:0,Order:0};
-                    Khhyl.Thaqqa_DB.getTable("GSUB").createData({Priority:p.Priority,Pattern:"u",Name:"",NameAlt:"",Order:p.Order});
+                    const p = self.id != null? Khhyl.Thaqqa_DB.getTable(parent.tablename).getData({ID:self.id})[0].values:{Pattern:"u",Priority:0,Order:0};
+                    Khhyl.Thaqqa_DB.getTable("GSUB").createData({Priority:p.Priority,Pattern:p.Pattern,Name:"",NameAlt:"",Order:p.Order});
                     }
                 break;
                 case "Parser":
                     {
-                        const p = self.id != null? Khhyl.Thaqqa_DB.getTable(parent.tablename).getData({ID:self.id})[0].values:{Priority:0,Order:0};
-                    Khhyl.Thaqqa_DB.getTable("Parser").createData({Priority:p.Priority,Pattern:"u",Name:"",NameAlt:"",Order:p.Order});
+                        const p = self.id != null? Khhyl.Thaqqa_DB.getTable(parent.tablename).getData({ID:self.id})[0].values:{Pattern:"u",Priority:0,Order:0};
+                    Khhyl.Thaqqa_DB.getTable("Parser").createData({Priority:p.Priority,Pattern:p.Pattern,Name:"",NameAlt:"",Order:p.Order});
+                    }
+                break;
+                case "GPOS":
+                    {
+                        const p = self.id != null? Khhyl.Thaqqa_DB.getTable(parent.tablename).getData({ID:self.id})[0].values:{Pattern:"u",Pattern_sub:"d"};
+                    Khhyl.Thaqqa_DB.getTable("GPOS").createData({Pattern:p.Pattern,Pattern_sub:p.Pattern_sub,Name:"",OffsetX0:0,OffsetY0:0,OffsetX1:0,OffsetY1:0});
                     }
                 break;
             }

@@ -57,18 +57,6 @@ class GSUBManager {
 
         if(GSUBManager.getGSUB(table,param).length != 0) throw new Error(param+"はすでに存在しています");
 
-        if(typeof param == "string"){
-            const TEMPLATE= {
-                ["GSUB"]:{
-                    Name: param, NameAlt:"", Priority:0},
-                ["GSUB_H"]:{
-                    Name: param, NameAlt:"", Priority:0},
-                ["GSUB_V"]:{
-                    Name: param, NameAlt:"", Priority:0},
-            };
-
-            param = TEMPLATE[table];
-        }
         const table_ = Thaqqa_DB.getTable(table);
         table_.createData(param);
         }

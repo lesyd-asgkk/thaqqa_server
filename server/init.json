@@ -1759,460 +1759,6 @@
     },
     "data": {}
   },
-  "GSUB_V": {
-    "name": "GSUB_V",
-    "column": {
-      "ID": {
-        "name": "ID",
-        "type": "INTEGER",
-        "order": 0,
-        "subtype": "ID"
-      },
-      "Name": {
-        "name": "Name",
-        "type": "char",
-        "order": 3,
-        "subtype": "none"
-      },
-      "NameAlt": {
-        "name": "NameAlt",
-        "type": "char",
-        "order": 4,
-        "subtype": "none"
-      },
-      "Order": {
-        "name": "Order",
-        "type": "INTEGER",
-        "order": 1,
-        "subtype": "none"
-      },
-      "Priority": {
-        "name": "Priority",
-        "type": "INTEGER",
-        "order": 2,
-        "subtype": "none"
-      }
-    },
-    "data": {
-      "0": {
-        "ID": 6,
-        "Name": "S(null,(*),(+),(*))",
-        "NameAlt": "S(mid,$1,$2,$3)",
-        "Order": 0,
-        "Priority": 0
-      },
-      "1": {
-        "ID": 5,
-        "Name": "S(null,(*),(+),(*))($|P(*))",
-        "NameAlt": "S(fin,$1,$2,$3,$4)",
-        "Order": 0,
-        "Priority": 1
-      },
-      "2": {
-        "ID": 4,
-        "Name": "(^|P(*))S(null,(*),(+),(*))",
-        "NameAlt": "$1S(init,$2,$3,$4)",
-        "Order": 0,
-        "Priority": 2
-      },
-      "3": {
-        "ID": 3,
-        "Name": "(^|P(*))S(null,(+),(+),(+))($|P(*))",
-        "NameAlt": "$1S(mid,$2,$3,$4)$5",
-        "Order": 0,
-        "Priority": 3
-      },
-      "4": {
-        "ID": 2,
-        "Name": "(^|P(*))S(null,,(+),(+))($|P(*))",
-        "NameAlt": "$1S(init,,$2,$3)$4",
-        "Order": 0,
-        "Priority": 4
-      },
-      "5": {
-        "ID": 1,
-        "Name": "(^|P(*))S(null,(+),(+),)($|P(*))",
-        "NameAlt": "$1S(fin,$2,$3,)$4",
-        "Order": 0,
-        "Priority": 5
-      },
-      "6": {
-        "ID": 0,
-        "Name": "(^|P(*))S(null,,(+),)($|P(*))",
-        "NameAlt": "$1S(sol,,$2,,$3)$4",
-        "Order": 0,
-        "Priority": 6
-      },
-      "7": {
-        "ID": 7,
-        "Name": "S(*,,hyphen,)",
-        "NameAlt": "",
-        "Order": 20,
-        "Priority": 2000
-      },
-      "8": {
-        "ID": 8,
-        "Name": "S(init,,a_(_.-*),)S((*),(*),a_(_.-*),(*))",
-        "NameAlt": "S(init,,abig_$1,)S($2,$3,abig$4,$5)",
-        "Order": 20,
-        "Priority": 2010
-      },
-      "9": {
-        "ID": 9,
-        "Name": "S(init,,a_(_.-*),)S((*),(*),(*),(*))",
-        "NameAlt": "S(init,,abig_$1,)S($2,$3,$4,$5)",
-        "Order": 20,
-        "Priority": 2020
-      },
-      "10": {
-        "ID": 10,
-        "Name": "S(init,,(*),)S((*),(*),a_(_.-*),(*))",
-        "NameAlt": "S(init,,$1,)S($2,$3,abig_$4,$5)",
-        "Order": 20,
-        "Priority": 2030
-      },
-      "11": {
-        "ID": 11,
-        "Name": "S((*),(*),a_(_.-*),(+))S(fin,,a_(_.-*),(*))",
-        "NameAlt": "S($1,$2,abig_$3,$4)S(fin,,abig_$5,$6)",
-        "Order": 20,
-        "Priority": 2040
-      },
-      "12": {
-        "ID": 12,
-        "Name": "S((*),(*),a_(_.-*),(+))S(fin,,(*),(*))",
-        "NameAlt": "S($1,$2,abig_$3,$4)S(fin,,$5,$6)",
-        "Order": 20,
-        "Priority": 2050
-      },
-      "13": {
-        "ID": 13,
-        "Name": "S(init,(+),(*),(*))S((*),,(*),(*))",
-        "NameAlt": "S(init,$1,$2,$3)S($4,x_0,$5,$6)",
-        "Order": 20,
-        "Priority": 2060
-      },
-      "14": {
-        "ID": 14,
-        "Name": "S((*),(*),(*),(+))S(fin,,(*),(*))",
-        "NameAlt": "S($1,$2,$3,$4)S(fin,x_0,$5,$6)",
-        "Order": 20,
-        "Priority": 2070
-      },
-      "15": {
-        "ID": 15,
-        "Name": "S((*),(x),a_(_.-*),(*))",
-        "NameAlt": "S($1,($2),abig_$3,$4)",
-        "Order": 20,
-        "Priority": 2080
-      }
-    }
-  },
-  "GSUB_H": {
-    "name": "GSUB_H",
-    "column": {
-      "ID": {
-        "name": "ID",
-        "type": "INTEGER",
-        "order": 0,
-        "subtype": "ID"
-      },
-      "Name": {
-        "name": "Name",
-        "type": "char",
-        "order": 3,
-        "subtype": "none"
-      },
-      "NameAlt": {
-        "name": "NameAlt",
-        "type": "char",
-        "order": 4,
-        "subtype": "none"
-      },
-      "Order": {
-        "name": "Order",
-        "type": "INTEGER",
-        "order": 1,
-        "subtype": "none"
-      },
-      "Priority": {
-        "name": "Priority",
-        "type": "INTEGER",
-        "order": 2,
-        "subtype": "none"
-      }
-    },
-    "data": {
-      "0": {
-        "ID": 28,
-        "Name": "S(null,(*),(br|omit),(*))",
-        "NameAlt": "S(mid,$1,a,,)S(sol,,$2_0,)S(mid,,a,$3)",
-        "Order": 0,
-        "Priority": 0
-      },
-      "1": {
-        "ID": 27,
-        "Name": "S(null,,(br|omit),(*))",
-        "NameAlt": "S(mid,,a,,)S(sol,,$1_0,)S(mid,,a,$2)",
-        "Order": 0,
-        "Priority": 1
-      },
-      "2": {
-        "ID": 26,
-        "Name": "S(null,(*),(br|omit),)",
-        "NameAlt": "S(mid,$1,a,,)S(sol,,$2_0,)S(mid,,a,)",
-        "Order": 0,
-        "Priority": 2
-      },
-      "3": {
-        "ID": 25,
-        "Name": "S(null,(*),iold,(*))",
-        "NameAlt": "S(init,$1,iold_0,$2)",
-        "Order": 0,
-        "Priority": 3
-      },
-      "4": {
-        "ID": 24,
-        "Name": "S(null,,iold,(*))",
-        "NameAlt": "S(init,,iold_0,$1)",
-        "Order": 0,
-        "Priority": 4
-      },
-      "5": {
-        "ID": 23,
-        "Name": "S(null,(*),iold,)",
-        "NameAlt": "S(fin,$1,iold_0,)",
-        "Order": 0,
-        "Priority": 5
-      },
-      "6": {
-        "ID": 22,
-        "Name": "S(null,(*),eold,(*))",
-        "NameAlt": "S(fin,$1,eold_0,$2)",
-        "Order": 0,
-        "Priority": 6
-      },
-      "7": {
-        "ID": 21,
-        "Name": "S(null,,eold,(*))",
-        "NameAlt": "S(init,,eold_0,$1)",
-        "Order": 0,
-        "Priority": 7
-      },
-      "8": {
-        "ID": 20,
-        "Name": "S(null,(*),eold,)",
-        "NameAlt": "S(fin,$1,eold_0,)",
-        "Order": 0,
-        "Priority": 8
-      },
-      "9": {
-        "ID": 19,
-        "Name": "S(null,(*),v,(*))",
-        "NameAlt": "S(fin,$1,v_1,$2)",
-        "Order": 0,
-        "Priority": 9
-      },
-      "10": {
-        "ID": 18,
-        "Name": "S(null,,v,(*))",
-        "NameAlt": "S(init,,v_0,$1)",
-        "Order": 0,
-        "Priority": 10
-      },
-      "11": {
-        "ID": 17,
-        "Name": "S(null,(*),v,)",
-        "NameAlt": "S(fin,$1,v_1,)",
-        "Order": 0,
-        "Priority": 11
-      },
-      "12": {
-        "ID": 16,
-        "Name": "S(null,(*),u,(*))",
-        "NameAlt": "S(fin,$1,u_1,$2)",
-        "Order": 0,
-        "Priority": 12
-      },
-      "13": {
-        "ID": 15,
-        "Name": "S(null,,u,(*))",
-        "NameAlt": "S(init,,u_0,$1)",
-        "Order": 0,
-        "Priority": 13
-      },
-      "14": {
-        "ID": 14,
-        "Name": "S(null,(*),u,)",
-        "NameAlt": "S(fin,$1,u_0,)",
-        "Order": 0,
-        "Priority": 14
-      },
-      "15": {
-        "ID": 13,
-        "Name": "S(null,(*),o,(*))",
-        "NameAlt": "S(init,$1,o_0,$2)",
-        "Order": 0,
-        "Priority": 15
-      },
-      "16": {
-        "ID": 12,
-        "Name": "S(null,,o,(*))",
-        "NameAlt": "S(,init,,o_0,$1)",
-        "Order": 0,
-        "Priority": 16
-      },
-      "17": {
-        "ID": 11,
-        "Name": "S(null,(*),o,)",
-        "NameAlt": "S(fin,$1,o_0,)",
-        "Order": 0,
-        "Priority": 17
-      },
-      "18": {
-        "ID": 10,
-        "Name": "S(null,(*),i,(*))",
-        "NameAlt": "S(fin,$1,i_1,$2)",
-        "Order": 0,
-        "Priority": 18
-      },
-      "19": {
-        "ID": 9,
-        "Name": "S(null,,i,(*))",
-        "NameAlt": "S(init,,i_0,$1)",
-        "Order": 0,
-        "Priority": 19
-      },
-      "20": {
-        "ID": 8,
-        "Name": "S(null,(*),i,)",
-        "NameAlt": "S(fin,$1,i_0,)",
-        "Order": 0,
-        "Priority": 20
-      },
-      "21": {
-        "ID": 7,
-        "Name": "S(null,(*),e,(*))",
-        "NameAlt": "S(fin,$1,e_0,$2)",
-        "Order": 0,
-        "Priority": 21
-      },
-      "22": {
-        "ID": 6,
-        "Name": "S(null,,e,(*))",
-        "NameAlt": "S(fin,x_0,e_0,$1)",
-        "Order": 0,
-        "Priority": 22
-      },
-      "23": {
-        "ID": 5,
-        "Name": "S(null,(*),e,)",
-        "NameAlt": "S(fin,$1,e_0,)",
-        "Order": 0,
-        "Priority": 23
-      },
-      "24": {
-        "ID": 4,
-        "Name": "S(null,(*),(?:a|abig),(*))",
-        "NameAlt": "S(mid,$1,a_0,$2)",
-        "Order": 0,
-        "Priority": 24
-      },
-      "25": {
-        "ID": 3,
-        "Name": "S(null,,(?:a|abig),(*))",
-        "NameAlt": "S(init,,abig_0,$1)",
-        "Order": 0,
-        "Priority": 25
-      },
-      "26": {
-        "ID": 2,
-        "Name": "S(null,(*),(?:a|abig),)",
-        "NameAlt": "S(mid,$1,abig_0,)",
-        "Order": 0,
-        "Priority": 26
-      },
-      "27": {
-        "ID": 0,
-        "Name": "S(null,,a,)",
-        "NameAlt": "S(sol,,abig_0,)",
-        "Order": 0,
-        "Priority": 27
-      },
-      "28": {
-        "ID": 1,
-        "Name": "S(null,,(*),)",
-        "NameAlt": "S(sol,,$1,)",
-        "Order": 0,
-        "Priority": 28
-      }
-    }
-  },
-  "GSUB_P": {
-    "name": "GSUB_P",
-    "column": {
-      "ID": {
-        "name": "ID",
-        "type": "INTEGER",
-        "order": 0,
-        "subtype": "ID"
-      },
-      "Name": {
-        "name": "Name",
-        "type": "char",
-        "order": 3,
-        "subtype": "NAME"
-      },
-      "NameAlt": {
-        "name": "NameAlt",
-        "type": "char",
-        "order": 4,
-        "subtype": "none"
-      },
-      "Order": {
-        "name": "Order",
-        "type": "INTEGER",
-        "order": 1,
-        "subtype": "none"
-      },
-      "Priority": {
-        "name": "Priority",
-        "type": "INTEGER",
-        "order": 2,
-        "subtype": "none"
-      }
-    },
-    "data": {
-      "0": {
-        "ID": 3,
-        "Name": "S(fin,(t-*),(._)1(-*),t_0(-*))",
-        "NameAlt": "S(fin,$1,$23$3,t_1$5)",
-        "Order": 10,
-        "Priority": 0
-      },
-      "1": {
-        "ID": 2,
-        "Name": "S(fin,(*),(._)0(-*),t_0(-*))",
-        "NameAlt": "S(fin,$1,$22$3,t_1$5)",
-        "Order": 10,
-        "Priority": 1
-      },
-      "2": {
-        "ID": 1,
-        "Name": "S(fin,(t-*),(._)0(-*),(*))",
-        "NameAlt": "S(,fin,$1,$21$3,$4)",
-        "Order": 10,
-        "Priority": 2
-      },
-      "3": {
-        "ID": 0,
-        "Name": "S(mid,(t-*),(._)0(-*),(*))",
-        "NameAlt": "S(mid,$1,$21$3,$4)",
-        "Order": 10,
-        "Priority": 3
-      }
-    }
-  },
   "TEXTDATA": {
     "name": "TEXTDATA",
     "column": {
@@ -4461,5 +4007,52 @@
         "NameAlt": ""
       }
     }
+  },
+  "GPOS": {
+    "name": "GPOS",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "ID"
+      },
+      "Pattern": {
+        "name": "Pattern",
+        "type": "char",
+        "order": 1
+      },
+      "Pattern_sub": {
+        "name": "Pattern_sub",
+        "type": "char",
+        "order": 2
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 3
+      },
+      "OffsetX0": {
+        "name": "OffsetX0",
+        "type": "float",
+        "order": 4
+      },
+      "OffsetY0": {
+        "name": "OffsetY0",
+        "type": "float",
+        "order": 5
+      },
+      "OffsetX1": {
+        "name": "OffsetX1",
+        "type": "float",
+        "order": 6
+      },
+      "OffsetY1": {
+        "name": "OffsetY1",
+        "type": "float",
+        "order": 7
+      }
+    },
+    "data": {}
   }
 }
