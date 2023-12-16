@@ -64,7 +64,7 @@ class Thaqqa_DB {
           const c = table.columns[i]["name"];
           value_data[c] = table.data[h].values[c];
         }
-        data_data[table.data[h].values.Name] = value_data;
+        data_data[h] = value_data;
       }
 
       table_data.data = data_data;
@@ -298,17 +298,19 @@ class DataTable {
   }
 
   getLeastID(){
-    let IDs = [];
-    for(let i;i<this.data;i++){
+    const IDs = [];
+    for(let i=0;i<this.data.length;i++){
       IDs.push(this.data[i].values.ID);
     }
     IDs.sort((a,b) => (a-b));
     let last = -1;
-    for(let i;i<this.IDs;i++){
-      if(this.IDs[i]-last > 1) return last+1;
+    console.log(IDs);
+    for(let i=0;i<IDs.length;i++){
+      console.log(IDs[i]-last);
+      if(IDs[i]-last > 1) return last+1;
       else last++;
     }
-    return Math.max(last,0);
+    return Math.max(last+1,0);
   }
 
   createData(param) { //paramは{Name:"",...}って感じ。IDは不要（自動で付与します）

@@ -109,6 +109,29 @@ class Button_web{
         this.parent = parent;//親の名前
         this.type = type;//削除か追加か
     }
+    rewrite_content(parent,self){
+        if(self.type == "Add"){
+            switch(self.parent.tablename){
+                case "GSUB":
+                    {
+                    const p = self.id != null? Khhyl.Thaqqa_DB.getTable(parent.tablename).getData({ID:self.id})[0].values:{Priority:0,Order:0};
+                    Khhyl.Thaqqa_DB.getTable("GSUB").createData({Priority:p.Priority,Pattern:"u",Name:"",NameAlt:"",Order:p.Order});
+                    }
+                break;
+                case "Parser":
+                    {
+                        const p = self.id != null? Khhyl.Thaqqa_DB.getTable(parent.tablename).getData({ID:self.id})[0].values:{Priority:0,Order:0};
+                    Khhyl.Thaqqa_DB.getTable("Parser").createData({Priority:p.Priority,Pattern:"u",Name:"",NameAlt:"",Order:p.Order});
+                    }
+                break;
+            }
+        }
+        else if(self.type == "Delete"){
+            if(!window.confirm("ID = "+ self.id +"\nを消去します")) return false;//削除しなかった
+            Khhyl.Thaqqa_DB.getTable(parent.tablename).deleteData({ID:self.id})
+        }
+        parent.draw();
+    }
     draw(){
         const object = document.createElement("input");
         object.contentEditable = false;
@@ -116,7 +139,7 @@ class Button_web{
         object.style.display ="block";
         object.value = this.type;
         object.name = this.id;
-        object.addEventListener("click",() => {},true);
+        object.addEventListener("click",() => {this.rewrite_content(this.parent,this);},true);
         return object;
     }
 }

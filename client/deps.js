@@ -7,19 +7,23 @@ import * as webjs from "./web_js/deps.js";
     await khhyl.Thaqqa_DB.load();
 
     await khhyl.GlyphManager.load();
-    await khhyl.Parser.Define();
     console.log("----------");
     let k;
-    k = khhyl.Parser.test("suzus'ha koratl", 0);
+    k = khhyl.Parser.test("suzus'ha\nkoratl", 0);
     k = khhyl.GSUBManager.gsub(k, 0);
     console.log(k);
+    k = khhyl.Parser.test("aterui itet iret itel", 0);
+    k = khhyl.GSUBManager.gsub(k, 0);
+    console.log(k);
+
     k = khhyl.Parser.test("rlryoi knngwahye", 1);
-    k = khhyl.GSUBManager.gsub("rlryoi knngwahye", 1);
+    k = khhyl.GSUBManager.gsub(k, 1);
     console.log(k);
 //S(null,*)S(null,s_0-d_0,u_0,s_0)S(null,h_0,a_0,)P(space_0)S(null,k_0,o_0,)S(null,r_0,a_0,tl_0)
     k = khhyl.Parser.test("nnrenl rnteknpa", 1);
-    k = khhyl.GSUBManager.gsub("nnrenl rnteknpa", 1);
+    k = khhyl.GSUBManager.gsub(k, 1);
     console.log(k);
+
 
     let ta = new webjs.Table_web("VOWEL",$("div.area_tb#vowel")[0]);
     ta.draw();
@@ -33,11 +37,10 @@ import * as webjs from "./web_js/deps.js";
     ta.draw();
     ta = new webjs.Table_web("DIACRITIC_P",$("div.area_tb#punctuationd")[0]);
     ta.draw();
-    let tb = new webjs.Table_web("GSUB_P",$("div.area_tb#gsubp")[0]);
-    tb.draw();
-    tb = new webjs.Table_web("GSUB_H",$("div.area_tb#gsubh")[0]);
-    tb.draw();
-    tb = new webjs.Table_web("GSUB_V",$("div.area_tb#gsubv")[0]);
+    let tb;
+
+
+    tb = new webjs.Table_web("GSUB",$("div.area_tb#gsub")[0]);
     tb.draw();
     tb = new webjs.Table_web("Parser",$("div.area_tb#parser")[0]);
     tb.draw();

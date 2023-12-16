@@ -63,7 +63,7 @@ class Row_web{
             tr.name = this.id;
             {
             const td = document.createElement('td');
-            const obj = new Button_web(this.id,"","","Delete");
+            const obj = new Button_web(this.parent,this.id,"","Delete");
             td.appendChild(obj.draw());
             tr.appendChild(td);
             }
@@ -82,7 +82,7 @@ class Row_web{
             const tr = document.createElement('tr'); 
             tr.classList.add("svg");
             const td = document.createElement('td');
-            const obj = new Button_web(this.id,"","","Add");
+            const obj = new Button_web(this.parent,this.id,"","Add");
             td.appendChild(obj.draw());
             tr.appendChild(td);
             table.appendChild(tr);
@@ -256,13 +256,31 @@ class Table_web{
         if(DTTB != null){
             this.content = [];
             const VALUES = DTTB.data;
-
-            for(let v =0;v<VALUES.length;v++){
+            const sortalg = function(first, second){//Priorityの小さい順に並び替える
+                if (first.values.Order < second.values.Order ) return -1;
+                else if (first.values.Order  > second.values.Order )return 1;
+                else return 0;
+              }
+              const sortalg_OP = function(first, second ){//Priorityの大きい順に並び替える
+                if (first.values.Order > second.values.Order ) return 1;
+                else if (first.values.Order  < second.values.Order )return -1;
+                else{
+                if (first.values.Priority > second.values.Priority ) return 1;
+                else if (first.values.Priority  < second.values.Priority )return -1;
+                  return 0};
+              }
+              if(VALUES.length > 0 && DTTB.getColumn("Order") != null)
+              {if(DTTB.getColumn("Priority") != null) VALUES.sort(sortalg_OP);
+              else VALUES.sort(sortalg);}
+            
+              for(let v =0;v<VALUES.length;v++){
                 const d = new Row_web(VALUES[v].values.ID,this);
 
                 d.setContent(VALUES[v].values,this.tablename);
                 this.row.push(d);
             }
+
+
         }
     }
     draw(){
@@ -291,7 +309,7 @@ class Table_web{
                 }
             {
             const td = document.createElement('td');
-            const obj = new Button_web(0,"","","Add");
+            const obj = new Button_web(this,null,"","Add");
             td.appendChild(obj.draw());
             tr.appendChild(td);
             }

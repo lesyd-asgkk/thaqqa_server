@@ -17,24 +17,6 @@ class LetterManager{
             return ans;
     }
 
-    static getLetter_B(table,param){
-        if(typeof param == "string") param = {Name:param};
-        if(param instanceof RegExp) param = {Name:param};
-        if(table.match(/^(VOWEL|CONSONANT|DIACRITIC_C|DIACRITIC_V|PUNCTUATION|DIACRITIC_P)$/) == null) return new Error("テーブル指定エラー");
-        const tablename = [table]
-        const tables = (function(tn){const j = [];for(let i = 0 ; i<tn.length;i++){
-            j.push(Thaqqa_DB.getTable(tn[i]))
-        }return j;})(tablename);
-
-        let ans  = [];
-            for(let i = 0;i<tables.length;i++){
-                if(tables[i] instanceof Error){throw tables[i];}
-                const data = tables[i].getData(param);
-                ans = ans.concat(data);
-            }
-            return ans;
-    }
-
     static rewriteLetter(param,param2){
         if(typeof param == "string") param = {Name:param};
         if(param instanceof RegExp) param = {Name:param};

@@ -10,7 +10,7 @@ class GlyphManager{
         try{
         Thaqqa_DB.getTable("SVG");
         }
-        catch(e_){
+        catch(_e){
             Thaqqa_DB.createTable({name:"SVG"});
             const table = Thaqqa_DB.getTable("SVG");
             table.createColumn("ID","INTEGER","",0);

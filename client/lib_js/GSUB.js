@@ -3,7 +3,7 @@ import { RegExp_Khhyl } from "./RegExp_Khhyl.js";
 class GSUBManager {
 
     static getGSUB(table, param){
-        if(table.match(/^(GSUB_P|GSUB_V|GSUB_H)$/) == null) throw new Error("テーブル指定エラー");
+        if(table.match(/^(GSUB)$/) == null) throw new Error("テーブル指定エラー");
         if(typeof param == "string") param = {Name:param};
         if(param instanceof RegExp) param = {Name:param};
         const tables = Thaqqa_DB.getTable(table);
@@ -19,7 +19,7 @@ class GSUBManager {
 
     
     static rewriteGSUB(table,param,param2){
-        if(table.match(/^(GSUB_P|GSUB_V|GSUB_H)$/) == null) throw new Error("テーブル指定エラー");
+        if(table.match(/^(GSUB)$/) == null) throw new Error("テーブル指定エラー");
         if(typeof param == "string") param = {Name:param};
         else if(param instanceof RegExp) param = {Name:param};
         if(typeof param2 == "string") param2 = {Name:param2};
@@ -38,7 +38,7 @@ class GSUBManager {
     }
 
     static deleteGSUB(table, param,safety){
-        if(table.match(/^(GSUB_P|GSUB_V|GSUB_H)$/) == null) throw new Error("テーブル指定エラー");
+        if(table.match(/^(GSUB)$/) == null) throw new Error("テーブル指定エラー");
         safety ??= true;
         if(typeof param == "string") param = {Name:param};
         if(param instanceof RegExp) param = {Name:param};
@@ -52,7 +52,7 @@ class GSUBManager {
             return ans;
     }
     static createGSUB(table,param){//
-        if(table.match(/^(GSUB_P|GSUB_V|GSUB_H)$/) == null) throw new Error("テーブル指定エラー");
+        if(table.match(/^(GSUB)$/) == null) throw new Error("テーブル指定エラー");
         if(typeof param == "string") param = {Name:param};
 
         if(GSUBManager.getGSUB(table,param).length != 0) throw new Error(param+"はすでに存在しています");
@@ -76,28 +76,26 @@ class GSUBManager {
         
     static gsub(text,vec){
 
-        const array = []; 
-        let table = Thaqqa_DB.getTable("GSUB_P");
-            if(table instanceof Error) throw table;
-            for(let i = 0;i<table.data.length;i++){
-            array.push(table.data[i].values);
-        } 
-        table = Thaqqa_DB.getTable(vec == 0?"GSUB_H":"GSUB_V");
-            if(table instanceof Error) throw table;
-            for(let i = 0;i<table.data.length;i++){
-                array.push(table.data[i].values);
-        }
-        const sortalg = function(first , second){//Priorityの大きい順に並び替える
-            if (first.Priority > second.Priority ) return 1;
-                else if (first.Priority  < second.Priority )return -1;
-                else return 0;
-                }
-    array.sort(sortalg);
+        const table = Thaqqa_DB.getTable("GSUB");
+        
+      const _Vertical = table.getData({Pattern:"v"});
+      const _Univ = table.getData({Pattern:"u"});
+      const _Horizon =table.getData({Pattern:"h"});
+      const array = (vec==0?_Vertical:_Horizon).concat(_Univ);
+      const sortalg = function(first, second ){//Priorityの大きい順に並び替える
+        if (first.values.Order > second.values.Order ) return 1;
+        else if (first.values.Order  < second.values.Order )return -1;
+        else{
+        if (first.values.Priority > second.values.Priority ) return 1;
+        else if (first.values.Priority  < second.values.Priority )return -1;
+          return 0};
+      }
+      array.sort(sortalg);
     //console.log(array);
     for(let i = 0;i<array.length;i++){
-        if(typeof array[i].Name == "string"){
+        if(typeof array[i].values.Name == "string"){
         
-        let r = new RegExp_Khhyl(array[i].Name,{});
+        let r = new RegExp_Khhyl(array[i].values.Name,{});
         r = r.ParseRegExp()
         const r_ = r.toNormalRegExp();
         //console.log("-------");
@@ -106,12 +104,14 @@ class GSUBManager {
 
         const r_fin = new RegExp(r_, "g");
         //console.log(r_fin);
-        text = text.replaceAll(r_fin,array[i].NameAlt);
+        text = text.replaceAll(r_fin,array[i].values.NameAlt);
         //console.log(text);
     }
     }
     return text;
     }
+
+    
 }
 
 export{GSUBManager};

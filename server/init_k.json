@@ -1,0 +1,3864 @@
+{
+  "VOWEL": {
+    "name": "VOWEL",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "ID"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 2,
+        "subtype": "NAME"
+      },
+      "LoadName": {
+        "name": "LoadName",
+        "type": "char",
+        "order": 3,
+        "subtype": "none"
+      },
+      "SolGlyphNum": {
+        "name": "SolGlyphNum",
+        "type": "INTEGER",
+        "order": 4,
+        "subtype": "n>=0"
+      },
+      "InitGlyphNum": {
+        "name": "InitGlyphNum",
+        "type": "INTEGER",
+        "order": 5,
+        "subtype": "n>=0"
+      },
+      "MidGlyphNum": {
+        "name": "MidGlyphNum",
+        "type": "INTEGER",
+        "order": 6,
+        "subtype": "n>=0"
+      },
+      "FinGlyphNum": {
+        "name": "FinGlyphNum",
+        "type": "INTEGER",
+        "order": 7,
+        "subtype": "n>=0"
+      },
+      "isVowel": {
+        "name": "isVowel",
+        "type": "bool",
+        "order": 8,
+        "subtype": "none"
+      },
+      "hasGreedyBond": {
+        "name": "hasGreedyBond",
+        "type": "bool",
+        "order": 9,
+        "subtype": "none"
+      },
+      "isBondtoPrev": {
+        "name": "isBondtoPrev",
+        "type": "bool",
+        "order": 10,
+        "subtype": "none"
+      },
+      "isBondtoNext": {
+        "name": "isBondtoNext",
+        "type": "bool",
+        "order": 11,
+        "subtype": "none"
+      },
+      "Order": {
+        "name": "Order",
+        "type": "INTEGER",
+        "order": 1,
+        "subtype": "none"
+      }
+    },
+    "data": {
+      "0": {
+        "ID": 0,
+        "Name": "a",
+        "LoadName": "a",
+        "SolGlyphNum": 1,
+        "InitGlyphNum": 1,
+        "MidGlyphNum": 2,
+        "FinGlyphNum": 4,
+        "isVowel": true,
+        "hasGreedyBond": true,
+        "isBondtoPrev": true,
+        "isBondtoNext": true,
+        "Order": 0
+      },
+      "1": {
+        "ID": 1,
+        "Name": "abig",
+        "LoadName": "abig",
+        "SolGlyphNum": 1,
+        "InitGlyphNum": 1,
+        "MidGlyphNum": 2,
+        "FinGlyphNum": 4,
+        "isVowel": true,
+        "hasGreedyBond": true,
+        "isBondtoPrev": true,
+        "isBondtoNext": true,
+        "Order": 1
+      },
+      "2": {
+        "ID": 2,
+        "Name": "e",
+        "LoadName": "e",
+        "SolGlyphNum": 1,
+        "InitGlyphNum": 1,
+        "MidGlyphNum": 2,
+        "FinGlyphNum": 4,
+        "isVowel": true,
+        "hasGreedyBond": true,
+        "isBondtoPrev": true,
+        "isBondtoNext": true,
+        "Order": 2
+      },
+      "3": {
+        "ID": 3,
+        "Name": "i",
+        "LoadName": "i",
+        "SolGlyphNum": 1,
+        "InitGlyphNum": 1,
+        "MidGlyphNum": 2,
+        "FinGlyphNum": 4,
+        "isVowel": true,
+        "hasGreedyBond": true,
+        "isBondtoPrev": true,
+        "isBondtoNext": true,
+        "Order": 3
+      },
+      "4": {
+        "ID": 4,
+        "Name": "o",
+        "LoadName": "o",
+        "SolGlyphNum": 1,
+        "InitGlyphNum": 1,
+        "MidGlyphNum": 2,
+        "FinGlyphNum": 4,
+        "isVowel": true,
+        "hasGreedyBond": true,
+        "isBondtoPrev": true,
+        "isBondtoNext": true,
+        "Order": 4
+      },
+      "5": {
+        "ID": 5,
+        "Name": "u",
+        "LoadName": "u",
+        "SolGlyphNum": 1,
+        "InitGlyphNum": 1,
+        "MidGlyphNum": 2,
+        "FinGlyphNum": 4,
+        "isVowel": true,
+        "hasGreedyBond": true,
+        "isBondtoPrev": true,
+        "isBondtoNext": true,
+        "Order": 5
+      },
+      "6": {
+        "ID": 6,
+        "Name": "v",
+        "LoadName": "v",
+        "SolGlyphNum": 1,
+        "InitGlyphNum": 1,
+        "MidGlyphNum": 2,
+        "FinGlyphNum": 4,
+        "isVowel": true,
+        "hasGreedyBond": true,
+        "isBondtoPrev": true,
+        "isBondtoNext": true,
+        "Order": 6
+      },
+      "7": {
+        "ID": 7,
+        "Name": "omit",
+        "LoadName": "omit",
+        "SolGlyphNum": 1,
+        "InitGlyphNum": 1,
+        "MidGlyphNum": 2,
+        "FinGlyphNum": 4,
+        "isVowel": true,
+        "hasGreedyBond": true,
+        "isBondtoPrev": true,
+        "isBondtoNext": true,
+        "Order": 7
+      },
+      "8": {
+        "ID": 8,
+        "Name": "eold",
+        "LoadName": "eold",
+        "SolGlyphNum": 1,
+        "InitGlyphNum": 1,
+        "MidGlyphNum": 2,
+        "FinGlyphNum": 4,
+        "isVowel": true,
+        "hasGreedyBond": true,
+        "isBondtoPrev": true,
+        "isBondtoNext": true,
+        "Order": 8
+      },
+      "9": {
+        "ID": 9,
+        "Name": "iold",
+        "LoadName": "iold",
+        "SolGlyphNum": 1,
+        "InitGlyphNum": 1,
+        "MidGlyphNum": 2,
+        "FinGlyphNum": 4,
+        "isVowel": true,
+        "hasGreedyBond": true,
+        "isBondtoPrev": true,
+        "isBondtoNext": true,
+        "Order": 9
+      },
+      "10": {
+        "ID": 10,
+        "Name": "br",
+        "LoadName": "br",
+        "SolGlyphNum": 1,
+        "InitGlyphNum": 1,
+        "MidGlyphNum": 1,
+        "FinGlyphNum": 1,
+        "isVowel": false,
+        "hasGreedyBond": false,
+        "isBondtoPrev": true,
+        "isBondtoNext": true,
+        "Order": 10
+      },
+      "11": {
+        "ID": 11,
+        "Name": "hyphen",
+        "LoadName": "hyphen",
+        "SolGlyphNum": 1,
+        "InitGlyphNum": 1,
+        "MidGlyphNum": 1,
+        "FinGlyphNum": 1,
+        "isVowel": false,
+        "hasGreedyBond": false,
+        "isBondtoPrev": false,
+        "isBondtoNext": false,
+        "Order": 11
+      }
+    }
+  },
+  "CONSONANT": {
+    "name": "CONSONANT",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "ID"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 2,
+        "subtype": "NAME"
+      },
+      "LoadName": {
+        "name": "LoadName",
+        "type": "char",
+        "order": 3,
+        "subtype": "none"
+      },
+      "OnsetGlyphNum": {
+        "name": "OnsetGlyphNum",
+        "type": "INTEGER",
+        "order": 4,
+        "subtype": "n>=0"
+      },
+      "CodaGlyphNum": {
+        "name": "CodaGlyphNum",
+        "type": "INTEGER",
+        "order": 5,
+        "subtype": "n>=0"
+      },
+      "isBondAsFirst": {
+        "name": "isBondAsFirst",
+        "type": "bool",
+        "order": 6,
+        "subtype": "none"
+      },
+      "isBondAsLast": {
+        "name": "isBondAsLast",
+        "type": "bool",
+        "order": 7,
+        "subtype": "none"
+      },
+      "Order": {
+        "name": "Order",
+        "type": "INTEGER",
+        "order": 1,
+        "subtype": "none"
+      }
+    },
+    "data": {
+      "0": {
+        "ID": 0,
+        "Name": "t",
+        "LoadName": "t",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 2,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Order": 0
+      },
+      "1": {
+        "ID": 1,
+        "Name": "k",
+        "LoadName": "k",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Order": 1
+      },
+      "2": {
+        "ID": 2,
+        "Name": "q",
+        "LoadName": "q",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Order": 2
+      },
+      "3": {
+        "ID": 3,
+        "Name": "c",
+        "LoadName": "c",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Order": 3
+      },
+      "4": {
+        "ID": 4,
+        "Name": "n",
+        "LoadName": "n",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Order": 4
+      },
+      "5": {
+        "ID": 5,
+        "Name": "ng",
+        "LoadName": "ng",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Order": 5
+      },
+      "6": {
+        "ID": 6,
+        "Name": "th",
+        "LoadName": "th",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Order": 6
+      },
+      "7": {
+        "ID": 7,
+        "Name": "s",
+        "LoadName": "s",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Order": 7
+      },
+      "8": {
+        "ID": 8,
+        "Name": "hy",
+        "LoadName": "hy",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Order": 8
+      },
+      "9": {
+        "ID": 9,
+        "Name": "kh",
+        "LoadName": "kh",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Order": 9
+      },
+      "10": {
+        "ID": 10,
+        "Name": "qh",
+        "LoadName": "qh",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Order": 10
+      },
+      "11": {
+        "ID": 11,
+        "Name": "h",
+        "LoadName": "h",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Order": 11
+      },
+      "12": {
+        "ID": 12,
+        "Name": "l",
+        "LoadName": "l",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Order": 12
+      },
+      "13": {
+        "ID": 13,
+        "Name": "tl",
+        "LoadName": "tl",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Order": 13
+      },
+      "14": {
+        "ID": 14,
+        "Name": "r",
+        "LoadName": "r",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Order": 14
+      },
+      "15": {
+        "ID": 15,
+        "Name": "w",
+        "LoadName": "w",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Order": 15
+      },
+      "16": {
+        "ID": 16,
+        "Name": "y",
+        "LoadName": "y",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "isBondAsFirst": true,
+        "isBondAsLast": true,
+        "Order": 16
+      },
+      "17": {
+        "ID": 17,
+        "Name": "x",
+        "LoadName": "x",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 0,
+        "isBondAsFirst": true,
+        "isBondAsLast": false,
+        "Order": 17
+      }
+    }
+  },
+  "PUNCTUATION": {
+    "name": "PUNCTUATION",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "ID"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 2,
+        "subtype": "NAME"
+      },
+      "LoadName": {
+        "name": "LoadName",
+        "type": "char",
+        "order": 3,
+        "subtype": "none"
+      },
+      "GlyphNum": {
+        "name": "GlyphNum",
+        "type": "INTEGER",
+        "order": 4,
+        "subtype": "n>=0"
+      },
+      "Order": {
+        "name": "Order",
+        "type": "INTEGER",
+        "order": 1,
+        "subtype": "none"
+      }
+    },
+    "data": {
+      "0": {
+        "ID": 0,
+        "Name": "comma",
+        "LoadName": "comma",
+        "GlyphNum": 1,
+        "Order": 0
+      },
+      "1": {
+        "ID": 1,
+        "Name": "period",
+        "LoadName": "period",
+        "GlyphNum": 1,
+        "Order": 1
+      },
+      "2": {
+        "ID": 2,
+        "Name": "space",
+        "LoadName": "space",
+        "GlyphNum": 1,
+        "Order": 2
+      },
+      "3": {
+        "ID": 3,
+        "Name": "NEWLINE",
+        "LoadName": "NEWLINE",
+        "GlyphNum": 1,
+        "Order": 3
+      }
+    }
+  },
+  "DIACRITIC_V": {
+    "name": "DIACRITIC_V",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "ID"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 2,
+        "subtype": "NAME"
+      },
+      "LoadName": {
+        "name": "LoadName",
+        "type": "char",
+        "order": 3,
+        "subtype": "none"
+      },
+      "SolGlyphNum": {
+        "name": "SolGlyphNum",
+        "type": "INTEGER",
+        "order": 4,
+        "subtype": "n>=0"
+      },
+      "InitGlyphNum": {
+        "name": "InitGlyphNum",
+        "type": "INTEGER",
+        "order": 5,
+        "subtype": "n>=0"
+      },
+      "MidGlyphNum": {
+        "name": "MidGlyphNum",
+        "type": "INTEGER",
+        "order": 6,
+        "subtype": "n>=0"
+      },
+      "FinGlyphNum": {
+        "name": "FinGlyphNum",
+        "type": "INTEGER",
+        "order": 7,
+        "subtype": "n>=0"
+      },
+      "x_Align": {
+        "name": "x_Align",
+        "type": "INTEGER",
+        "order": 8,
+        "subtype": "n={-1,0,1}"
+      },
+      "y_Align": {
+        "name": "y_Align",
+        "type": "INTEGER",
+        "order": 9,
+        "subtype": "n={-1,0,1}"
+      },
+      "Order": {
+        "name": "Order",
+        "type": "INTEGER",
+        "order": 1,
+        "subtype": "none"
+      }
+    },
+    "data": {}
+  },
+  "DIACRITIC_C": {
+    "name": "DIACRITIC_C",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "ID"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 2,
+        "subtype": "NAME"
+      },
+      "LoadName": {
+        "name": "LoadName",
+        "type": "char",
+        "order": 3,
+        "subtype": "none"
+      },
+      "OnsetGlyphNum": {
+        "name": "OnsetGlyphNum",
+        "type": "INTEGER",
+        "order": 4,
+        "subtype": "n>=0"
+      },
+      "CodaGlyphNum": {
+        "name": "CodaGlyphNum",
+        "type": "INTEGER",
+        "order": 5,
+        "subtype": "n>=0"
+      },
+      "x_Align": {
+        "name": "x_Align",
+        "type": "INTEGER",
+        "order": 6,
+        "subtype": "n={-1,0,1}"
+      },
+      "y_Align": {
+        "name": "y_Align",
+        "type": "INTEGER",
+        "order": 7,
+        "subtype": "n={-1,0,1}"
+      },
+      "Order": {
+        "name": "Order",
+        "type": "INTEGER",
+        "order": 1,
+        "subtype": "none"
+      }
+    },
+    "data": {
+      "0": {
+        "ID": 0,
+        "Name": "d",
+        "LoadName": "d",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "x_Align": 0,
+        "y_Align": 1,
+        "Order": 0
+      },
+      "1": {
+        "ID": 1,
+        "Name": "hd",
+        "LoadName": "hd",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "x_Align": 1,
+        "y_Align": 0,
+        "Order": 1
+      },
+      "2": {
+        "ID": 2,
+        "Name": "sw",
+        "LoadName": "sw",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "x_Align": 0,
+        "y_Align": 1,
+        "Order": 2
+      },
+      "3": {
+        "ID": 3,
+        "Name": "sy",
+        "LoadName": "sy",
+        "OnsetGlyphNum": 1,
+        "CodaGlyphNum": 1,
+        "x_Align": 1,
+        "y_Align": 0,
+        "Order": 3
+      }
+    }
+  },
+  "DIACRITIC_P": {
+    "name": "DIACRITIC_P",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "ID"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 2,
+        "subtype": "NAME"
+      },
+      "LoadName": {
+        "name": "LoadName",
+        "type": "char",
+        "order": 3,
+        "subtype": "none"
+      },
+      "GlyphNum": {
+        "name": "GlyphNum",
+        "type": "INTEGER",
+        "order": 4,
+        "subtype": "n>=0"
+      },
+      "x_Align": {
+        "name": "x_Align",
+        "type": "INTEGER",
+        "order": 5,
+        "subtype": "n={-1,0,1}"
+      },
+      "y_Align": {
+        "name": "y_Align",
+        "type": "INTEGER",
+        "order": 6,
+        "subtype": "n={-1,0,1}"
+      },
+      "Order": {
+        "name": "Order",
+        "type": "INTEGER",
+        "order": 1,
+        "subtype": "none"
+      }
+    },
+    "data": {}
+  },
+  "GLYPH": {
+    "name": "GLYPH",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Path": {
+        "name": "Path",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      }
+    },
+    "data": {
+      "0": {
+        "ID": 0,
+        "Name": "abig_fin_0",
+        "Path": "m0,0 m-24,0 v8 h48 v-8 zm24,0 "
+      },
+      "1": {
+        "ID": 1,
+        "Name": "abig_fin_1",
+        "Path": "m0,0 m-24,0 v8 h38 v-8 zm24,0 "
+      },
+      "2": {
+        "ID": 2,
+        "Name": "abig_fin_2",
+        "Path": "m0,0 m-14,0 v8 h38 v-8 zm14,0 "
+      },
+      "3": {
+        "ID": 3,
+        "Name": "abig_fin_3",
+        "Path": "m0,0 m-14,0 v8 h38 v-8 zm14,0 "
+      },
+      "4": {
+        "ID": 4,
+        "Name": "abig_init_0",
+        "Path": "m0,0 m-24,0 v8 h48 v-8 zm24,0 "
+      },
+      "5": {
+        "ID": 5,
+        "Name": "abig_mid_0",
+        "Path": "m0,0 m-24,0 v8 h48 v-8 zm24,0 "
+      },
+      "6": {
+        "ID": 6,
+        "Name": "abig_mid_1",
+        "Path": "m0,0 m-24,0 v8 h36 v-8 zm24,0 "
+      },
+      "7": {
+        "ID": 7,
+        "Name": "abig_sol_0",
+        "Path": "m0,0 m8,1 l-2,14.5 l17,3 l-2,8 l-16,-3.5 l-2,12.5 l16,3 l-2,8 l-15,-3 l-2,13.5 l-8,-1 l2,-14 l-17,-3.5 l1.5,-8 l16.5,3.5 l2,-12.5 l-15.5,-3 l1.5,-8 l15.5,3 l1.5,-13.5 zm-8,-1 "
+      },
+      "8": {
+        "ID": 8,
+        "Name": "a_fin_0",
+        "Path": "m0,0 "
+      },
+      "9": {
+        "ID": 9,
+        "Name": "a_fin_1",
+        "Path": "m0,0 "
+      },
+      "10": {
+        "ID": 10,
+        "Name": "a_fin_2",
+        "Path": "m0,0 "
+      },
+      "11": {
+        "ID": 11,
+        "Name": "a_fin_3",
+        "Path": "m0,0 "
+      },
+      "12": {
+        "ID": 12,
+        "Name": "a_init_0",
+        "Path": "m0,0 "
+      },
+      "13": {
+        "ID": 13,
+        "Name": "a_mid_0",
+        "Path": "m0,0 "
+      },
+      "14": {
+        "ID": 14,
+        "Name": "a_mid_1",
+        "Path": "m0,0 "
+      },
+      "15": {
+        "ID": 15,
+        "Name": "a_sol_0",
+        "Path": "m0,0 "
+      },
+      "16": {
+        "ID": 16,
+        "Name": "br_fin_0",
+        "Path": "m0,0 m-18,0 v4 v5 h9 v-9 zm18,0 m9,0 v4 v5 h9 v-9 zm-9,0 m-4,0 v4 v5 h9 v-9 zm4,0 "
+      },
+      "17": {
+        "ID": 17,
+        "Name": "br_fin_1",
+        "Path": "m0,0 m-18,0 v4 v5 h9 v-9 zm18,0 m9,0 v4 v5 h9 v-9 zm-9,0 m-4,0 v4 v5 h9 v-9 zm4,0 "
+      },
+      "18": {
+        "ID": 18,
+        "Name": "br_fin_2",
+        "Path": "m0,0 m-18,0 v4 v5 h9 v-9 zm18,0 m9,0 v4 v5 h9 v-9 zm-9,0 m-4,0 v4 v5 h9 v-9 zm4,0 "
+      },
+      "19": {
+        "ID": 19,
+        "Name": "br_fin_3",
+        "Path": "m0,0 m-18,0 v4 v5 h9 v-9 zm18,0 m9,0 v4 v5 h9 v-9 zm-9,0 m-4,0 v4 v5 h9 v-9 zm4,0 "
+      },
+      "20": {
+        "ID": 20,
+        "Name": "br_init_0",
+        "Path": "m0,0 m-18,0 v4 v5 h9 v-9 zm18,0 m9,0 v4 v5 h9 v-9 zm-9,0 m-4,0 v4 v5 h9 v-9 zm4,0 "
+      },
+      "21": {
+        "ID": 21,
+        "Name": "br_mid_0",
+        "Path": "m0,0 m-18,0 v4 v5 h9 v-9 zm18,0 m9,0 v4 v5 h9 v-9 zm-9,0 m-4,0 v4 v5 h9 v-9 zm4,0 "
+      },
+      "22": {
+        "ID": 22,
+        "Name": "br_mid_1",
+        "Path": "m0,0 m-18,0 v4 v5 h9 v-9 zm18,0 m9,0 v4 v5 h9 v-9 zm-9,0 m-4,0 v4 v5 h9 v-9 zm4,0 "
+      },
+      "23": {
+        "ID": 23,
+        "Name": "br_sol_0",
+        "Path": "m0,0 m-18,0 v4 v5 h9 v-9 zm18,0 m9,0 v4 v5 h9 v-9 zm-9,0 m-4,0 v4 v5 h9 v-9 zm4,0 "
+      },
+      "24": {
+        "ID": 24,
+        "Name": "comma__0",
+        "Path": "m0,0 m17.5,0 c-7,2.5 -38,12 -38,12 l2.5,7.5 c0,0 30.5,-9.5 38,-12 zm-17.5,0 "
+      },
+      "25": {
+        "ID": 25,
+        "Name": "c_coda_0",
+        "Path": "m0,0 m-10.5,0 l-16,14 l0,6 l24,22 l5,-6 l-20.5,-19 l12.5,-11 zm10.5,0 "
+      },
+      "26": {
+        "ID": 26,
+        "Name": "c_onset_0",
+        "Path": "m0,0 m10.5,0 l-5,6 l12.5,11 l-20.5,19 l5.5,6 l24,-22 l-0.5,-6 zm-10.5,0 "
+      },
+      "27": {
+        "ID": 27,
+        "Name": "d_coda_0",
+        "Path": "m0,0 m5,0 v4 v5 h9 v-9 zm-5,0 m-14,0 v4 v5 h9 v-9 zm14,0 "
+      },
+      "28": {
+        "ID": 28,
+        "Name": "d_onset_0",
+        "Path": "m0,0 m5,0 v4 v5 h9 v-9 zm-5,0 m-14,0 v4 v5 h9 v-9 zm14,0 "
+      },
+      "29": {
+        "ID": 29,
+        "Name": "eold_fin_0",
+        "Path": "m0,0 m-4,0 c0,3 -1,5 -2.5,7 c-1.5,2 -4,4 -6.5,6.5 c-5,4.5 -11.5,11 -11.5,22.5 c0,10 8,18 18,18 h0 c1.5,0 2.5,-0.5 4,-0.5 c-1,1 -1,1.5 -2,2.5 c-1,1.5 -2.5,3.5 -3.5,5 c-1,1.5 -1.5,2.5 -2,3 l7,4 c0,0 1,-1 2,-2.5 c1,-1.5 2,-3 3.5,-4.5 c2.5,-3.5 4.5,-6.5 4.5,-6.5 l0,0 l14,-20 l0,0 c0,0 0,0 0,0 l-6.5,-4.5 l0,0 l0,0 c0,0 -3,4 -7,8.5 c-4,4 -9.5,8 -13.5,8 c-6,0 -10,-4 -10,-10 c0,-8.5 4,-12 8.5,-16.5 c2.5,-2 5,-4.5 7.5,-7.5 c2.5,-3.5 4,-7.5 4,-12.5 zm4,0 "
+      },
+      "30": {
+        "ID": 30,
+        "Name": "eold_fin_1",
+        "Path": "m0,0 m-4,0 v12 c0,2.5 -1,4.5 -2.5,6.5 c-1.5,2 -4,4.5 -6.5,6.5 c-5,5 -11,11 -11,20.5 c0,4.5 1,9.5 3.5,13 c2.5,4 7,7 12.5,7 h0 c1,0 2.5,0 3.5,-0.5 l-3.5,12 l8,2 l8,-28 l0,0 l0.5,-2.5 c2.5,-7 3.5,-14 3.5,-14 l-8,-1.5 l-3.5,14 c-1,3 -2.5,6.5 -4.5,8.5 c-1.5,2 -3,3 -4.5,3 c-2,-0.5 -3.5,-1.5 -5,-3.5 c-1.5,-2.5 -2.5,-5.5 -2.5,-9 c0,-6.5 4,-10 9,-15 c2.5,-2.5 5,-5 7.5,-8 c2,-2.5 3.5,-6.5 3.5,-11 v-12 zm4,0 "
+      },
+      "31": {
+        "ID": 31,
+        "Name": "eold_fin_2",
+        "Path": "m0,0 m-4,0 c0,3 -1,5 -2.5,7 c-1.5,2 -4,4 -6.5,6.5 c-5,4.5 -11.5,11 -11.5,22.5 c0,10 8,18 18,18 h0 c1.5,0 2.5,-0.5 4,-0.5 c-1,1 -1,1.5 -2,2.5 c-1,1.5 -2.5,3.5 -3.5,5 c-1,1.5 -1.5,2.5 -2,3 l7,4 c0,0 1,-1 2,-2.5 c1,-1.5 2,-3 3.5,-4.5 c2.5,-3.5 4.5,-6.5 4.5,-6.5 l0,0 l14,-20 l0,0 c0,0 0,0 0,0 l-6.5,-4.5 l0,0 l0,0 c0,0 -3,4 -7,8.5 c-4,4 -9.5,8 -13.5,8 c-6,0 -10,-4 -10,-10 c0,-8.5 4,-12 8.5,-16.5 c2.5,-2 5,-4.5 7.5,-7.5 c2.5,-3.5 4,-7.5 4,-12.5 zm4,0 "
+      },
+      "32": {
+        "ID": 32,
+        "Name": "eold_fin_3",
+        "Path": "m0,0 m-4,0 v12 c0,2.5 -1,4.5 -2.5,6.5 c-1.5,2 -4,4.5 -6.5,6.5 c-5,5 -11,11 -11,20.5 c0,4.5 1,9.5 3.5,13 c2.5,4 7,7 12.5,7 h0 c1,0 2.5,0 3.5,-0.5 l-3.5,12 l8,2 l8,-28 l0,0 l0.5,-2.5 c2.5,-7 3.5,-14 3.5,-14 l-8,-1.5 l-3.5,14 c-1,3 -2.5,6.5 -4.5,8.5 c-1.5,2 -3,3 -4.5,3 c-2,-0.5 -3.5,-1.5 -5,-3.5 c-1.5,-2.5 -2.5,-5.5 -2.5,-9 c0,-6.5 4,-10 9,-15 c2.5,-2.5 5,-5 7.5,-8 c2,-2.5 3.5,-6.5 3.5,-11 v-12 zm4,0 "
+      },
+      "33": {
+        "ID": 33,
+        "Name": "eold_init_0",
+        "Path": "m0,0 m3,0 c-8.5,2 -15,5.5 -20,10.5 c-4.5,5 -7,12 -7,19.5 v0 c0,4.5 1,9.5 3.5,14 c2.5,4.5 7,8 12.5,8 h0 c2,0 4,-0.5 6,-1 c-2,6 -2,12 -2,15 h8 c0,-4 0.5,-11 3.5,-15.5 l13.5,-16 l0,0 l-6,-5.5 c0,0 0,0 0,0 c0,0 -3.5,3.5 -8,7.5 c-4.5,4 -11,7.5 -15,7.5 c-2.5,0 -4,-1.5 -5.5,-4 c-1.5,-2.5 -2.5,-6.5 -2.5,-10 v0 c0,-6.5 1.5,-10.5 5,-14 c3.5,-3.5 8.5,-6 16,-8 zm-3,0 "
+      },
+      "34": {
+        "ID": 34,
+        "Name": "eold_mid_0",
+        "Path": "m0,0 m-4,0 c0,3 -1,5 -2.5,7 c-1.5,2 -4,4 -6.5,6.5 c-5,4.5 -11.5,11 -11.5,22.5 c0,4.5 1,9.5 3.5,13 c2.5,4 7,7 12.5,7 h0 c1.5,0 3.5,-0.5 5,-1 c-0.5,4.5 -0.5,8.5 -0.5,11 h8 c0,-4 0.5,-11 3.5,-15.5 l4,-4.5 c0.5,-0.5 1,-0.5 1,-1 c5.5,-5.5 9,-10.5 9,-10.5 l-6.5,-5 l-9.5,10.5 c-4.5,4.5 -10,8 -13.5,8 c-2.5,0 -4.5,-1 -5.5,-3.5 c-1.5,-2 -2.5,-5.5 -2.5,-8.5 c0,-8.5 4,-12 8.5,-16.5 c2.5,-2 5,-4.5 7.5,-7.5 c2.5,-3 4,-7 4,-12 zm4,0 "
+      },
+      "35": {
+        "ID": 35,
+        "Name": "eold_mid_1",
+        "Path": "m0,0 m-4,0 l0,10 c0,2.5 -1,4.5 -2.5,6.5 c-1.5,2 -4,4.5 -6.5,6.5 c-5,5 -11,11 -11,20.5 c0,4.5 1,9.5 3.5,13 c2.5,4 7,7 12.5,7 h0 c1.5,0 3,-0.5 4.5,-1 c-0.5,5 -0.5,9.5 -0.5,11.5 h8 c0,-2 0,-6.5 0.5,-11 c0.5,-4.5 1.5,-9 3,-10.5 l0.5,-1.5 l2.5,-11 c1,-4 1.5,-6.5 1.5,-7 c0,0 0,0 0,0 c0,0 0,-0.5 0,-0.5 l-8,-1.5 l-1.5,7.5 c-0.5,2 -1,4 -2,6.5 c-1,3.5 -2.5,6.5 -4.5,8.5 c-1.5,2 -3,3 -4.5,3 c-2.5,0 -4,-1 -5.5,-3.5 c-1.5,-2 -2.5,-5.5 -2.5,-8.5 c0,-6.5 4,-10 9,-15 c2.5,-2.5 5,-5 7.5,-8 c2.5,-3 4,-7 4,-11.5 l0,-10 zm4,0 "
+      },
+      "36": {
+        "ID": 36,
+        "Name": "eold_sol_0",
+        "Path": "m0,0 m4.5,0 c-8.5,2 -15.5,5.5 -20,10.5 c-4.5,5 -7,12 -7,19.5 v0 c0,4.5 1,9.5 3.5,14 c2.5,4.5 7,8 12.5,8 h0 c3,0 6.5,-1 9,-2 c0,0 0,0 0,0.5 c-6,9 -12,17.5 -12,17.5 l6.5,4.5 c0,0 6,-8.5 12.5,-17.5 c2.5,-5 5.5,-9.5 8,-13 c2.5,-4 4,-6 5,-8 l-6.5,-4.5 c0,0 -3.5,3.5 -8,7.5 c-4.5,3.5 -11,7 -15,7 c-2.5,0 -4,-1.5 -5.5,-4 c-1.5,-2.5 -2.5,-6.5 -2.5,-10 c0,-6.5 1.5,-10.5 5,-14 c3.5,-3.5 8.5,-6 16,-8 zm-4.5,0 "
+      },
+      "37": {
+        "ID": 37,
+        "Name": "error",
+        "Path": "m0,0 "
+      },
+      "38": {
+        "ID": 38,
+        "Name": "e_fin_0",
+        "Path": "m0,0 m-4,0 c0,0 0,0.5 0,0.5 c-7,1 -12,4 -15,7.5 c-3.5,4 -5,8.5 -5,12 c0,2 0,6.5 1.5,11 c1,2 2,4.5 4,6.5 c2,1.5 5,2.5 8.5,2.5 c3.5,0 6.5,-1.5 8.5,-3.5 c2,-2 3.5,-4.5 4,-7 c1.5,-5 1.5,-10.5 1.5,-13.5 c0,-3 0,-5.5 0,-7.5 c4.5,0.5 7,2 9,4 c2,3 3,7 3,11.5 c0,6 -2,9 -5.5,12 c-3.5,3 -8,4.5 -12,6.5 l3,7 c4,-1.5 9.5,-3.5 14,-7.5 c4.5,-4 8.5,-10 8.5,-18 c0,-5.5 -1,-11.5 -5,-16 c-3,-4 -8,-7 -15,-7.5 c0,-0.5 0,-0.5 0,-0.5 h-4 zm0,8.5 c0,2.5 0,5 0,7.5 c0,3 0,7.5 -1,11 c-0.5,1.5 -1,3 -2,4 c-1,0.5 -1.5,1 -3,1 c-1.5,0 -2.5,-0.5 -3,-1 c-0.5,-0.5 -1.5,-1.5 -2,-3 c-1,-2.5 -1,-6 -1,-8 c0,-0.5 0.5,-4 3,-7 c2,-2 4.5,-4 9,-4.5 zm4,-8.5 "
+      },
+      "39": {
+        "ID": 39,
+        "Name": "e_fin_1",
+        "Path": "m0,0 m-8,0 c-7.5,0 -12,4.5 -14,9 c-2,4.5 -2,9 -2,11 c0,2 0,6.5 1.5,11 c1,2 2,4.5 4,6.5 c2,1.5 5,2.5 8.5,2.5 c2.5,0 5,-0.5 7,-2 c-1,4.5 -3.5,8 -8.5,10 l3,7.5 c9,-3 13,-11.5 14,-19.5 c1.5,-8 0.5,-16 0.5,-20 v0 v0 c0,-3.5 -0.5,-7 -2,-10 v-6 h-8 v0.5 c-1.5,-0.5 -2.5,-0.5 -4,-0.5 zm0,8 c2.5,0 3.5,0.5 4,1 v11 c0,4 0,7.5 -1,9.5 c-0.5,2 -1,2.5 -5,2.5 c-1.5,0 -2.5,-0.5 -3,-1 c-0.5,-0.5 -1.5,-1.5 -2,-3 c-1,-2.5 -1,-6 -1,-8 c0,-2 0,-5.5 1,-8 c1,-2.5 2.5,-4 7,-4 zm8,-8 "
+      },
+      "40": {
+        "ID": 40,
+        "Name": "e_fin_2",
+        "Path": "m0,0 m-4,0 c0,0 0,0.5 0,0.5 c-7,1 -12,4 -15,7.5 c-3.5,4 -5,8.5 -5,12 c0,2 0,6.5 1.5,11 c1,2 2,4.5 4,6.5 c2,1.5 5,2.5 8.5,2.5 c3.5,0 6.5,-1.5 8.5,-3.5 c2,-2 3.5,-4.5 4,-7 c1.5,-5 1.5,-10.5 1.5,-13.5 c0,-3 0,-5.5 0,-7.5 c4.5,0.5 7,2 9,4 c2,3 3,7 3,11.5 c0,6 -2,9 -5.5,12 c-3.5,3 -8,4.5 -12,6.5 l3,7 c4,-1.5 9.5,-3.5 14,-7.5 c4.5,-4 8.5,-10 8.5,-18 c0,-5.5 -1,-11.5 -5,-16 c-3,-4 -8,-7 -15,-7.5 c0,-0.5 0,-0.5 0,-0.5 h-4 zm0,8.5 c0,2.5 0,5 0,7.5 c0,3 0,7.5 -1,11 c-0.5,1.5 -1,3 -2,4 c-1,0.5 -1.5,1 -3,1 c-1.5,0 -2.5,-0.5 -3,-1 c-0.5,-0.5 -1.5,-1.5 -2,-3 c-1,-2.5 -1,-6 -1,-8 c0,-0.5 0.5,-4 3,-7 c2,-2 4.5,-4 9,-4.5 zm4,-8.5 "
+      },
+      "41": {
+        "ID": 41,
+        "Name": "e_fin_3",
+        "Path": "m0,0 m-8,0 c-7.5,0 -12,4.5 -14,9 c-2,4.5 -2,9 -2,11 c0,2 0,6.5 1.5,11 c1,2 2,4.5 4,6.5 c2,1.5 5,2.5 8.5,2.5 c2.5,0 5,-0.5 7,-2 c-1,4.5 -3.5,8 -8.5,10 l3,7.5 c9,-3 13,-11.5 14,-19.5 c1.5,-8 0.5,-16 0.5,-20 v0 v0 c0,-3.5 -0.5,-7 -2,-10 v-6 h-8 v0.5 c-1.5,-0.5 -2.5,-0.5 -4,-0.5 zm0,8 c2.5,0 3.5,0.5 4,1 v11 c0,4 0,7.5 -1,9.5 c-0.5,2 -1,2.5 -5,2.5 c-1.5,0 -2.5,-0.5 -3,-1 c-0.5,-0.5 -1.5,-1.5 -2,-3 c-1,-2.5 -1,-6 -1,-8 c0,-2 0,-5.5 1,-8 c1,-2.5 2.5,-4 7,-4 zm8,-8 "
+      },
+      "42": {
+        "ID": 42,
+        "Name": "e_init_0",
+        "Path": "m0,0 m-2,0 v0 c-8,0.5 -13.5,4 -17,8 c-3.5,4 -5,8.5 -5,12 c0,2 0,6.5 1.5,11 c1,2 2,4.5 4,6.5 c2,1.5 5,2.5 8.5,2.5 c3.5,0 6.5,-1 8.5,-3 c2,-2 3.5,-4.5 4,-7 c1.5,-4.5 1.5,-10 1.5,-14 c0,-2 0,-5 -0.5,-8 c5,0.5 8,2 9.5,4 c2,2.5 3,6.5 3,12 c0,6.5 -4,10 -8.5,14.5 c-2.5,2 -5.5,4.5 -7.5,7 c-2,3 -4,6.5 -4,10.5 h8 c0,-2 0.5,-3.5 2,-5.5 c2,-1.5 4,-3.5 6.5,-6 c5.5,-4.5 11.5,-11 11.5,-20.5 c0,-6.5 -1,-12.5 -5,-17 c-4,-4.5 -10.5,-7 -19,-7 c-0.5,0 -1,0 -1.5,0 c0,0 -0.5,0 -0.5,0 zm-2.5,8.5 c0,0 0,0.5 0,0.5 c0.5,2 0.5,5 0.5,7 c0,4 0,8.5 -1,12 c-0.5,1.5 -1,2.5 -2,3 c-0.5,0.5 -1.5,1 -3,1 c-1.5,0 -2.5,-0.5 -3,-1 c-0.5,-0.5 -1.5,-1.5 -2,-3 c-1,-2.5 -1,-6 -1,-8 c0,-0.5 0.5,-4 3,-7 c2,-2 4.5,-4 8.5,-4.5 zm4.5,-8.5 "
+      },
+      "43": {
+        "ID": 43,
+        "Name": "e_mid_0",
+        "Path": "m0,0 m-4,0 v0.5 c-7,1 -12,4 -15,7.5 c-3.5,4 -5,8.5 -5,12 c0,2 0,6.5 1.5,11 c1,2 2,4.5 4,6.5 c2,1.5 5,2.5 8.5,2.5 c3.5,0 6.5,-1 8.5,-3 c2,-2 3.5,-4.5 4,-7 c1.5,-4.5 1.5,-10 1.5,-14 v-7.5 c4.5,0.5 7.5,2 9,4 c2,2 3,6 3,11.5 c0,6.5 -4,10.5 -8.5,15 c-2.5,2 -5,4.5 -7.5,7 c-2,2.5 -4,6 -4,10 l0,0 v4 h8 v-4 c0,-1.5 0.5,-3 2.5,-5 c1.5,-2 4,-4 6.5,-6 c5,-5 11,-11.5 11,-21 c0,-6.5 -1,-12.5 -5,-17 c-3.5,-4 -8.5,-6 -15,-6.5 v-0.5 h-4 zm0,8.5 v7.5 c0,4 0,8.5 -1,12 c-0.5,1.5 -1,2.5 -2,3 c-0.5,0.5 -1.5,1 -3,1 c-1.5,0 -2.5,-0.5 -3,-1 c-0.5,-0.5 -1.5,-1.5 -2,-3 c-1,-2.5 -1,-6 -1,-8 c0,-0.5 0.5,-4 3,-7 c2,-2 4.5,-4 9,-4.5 zm4,-8.5 "
+      },
+      "44": {
+        "ID": 44,
+        "Name": "e_mid_1",
+        "Path": "m0,0 m-8,0 c-7.5,0 -12,4.5 -14,9 c-2,4.5 -2,9 -2,11 c0,2 0,6.5 1.5,11 c1,2 2,4.5 4,6.5 c2,1.5 5,2.5 8.5,2.5 c2.5,0 4.5,-0.5 6.5,-1.5 c-0.5,2.5 -0.5,5.5 -0.5,9.5 h8 c0,-11.5 2,-15.5 2,-32 c0,-3.5 -0.5,-7 -2,-10 v-6 h-8 v0.5 c-1.5,-0.5 -2.5,-0.5 -4,-0.5 zm0,8 c2.5,0 3.5,0.5 4,1 v11 c0,4 0,7.5 -1,9.5 c-0.5,2 -1,2.5 -5,2.5 c-1.5,0 -2.5,-0.5 -3,-1 c-1,-0.5 -1.5,-1.5 -2,-3 c-1,-2.5 -1,-6 -1,-8 c0,-2 0,-5.5 1,-8 c1,-2.5 2.5,-4 7,-4 zm8,-8 "
+      },
+      "45": {
+        "ID": 45,
+        "Name": "e_sol_0",
+        "Path": "m0,0 m0,0 c-9,0 -15.5,3.5 -19,8 c-3.5,4 -5,8.5 -5,12 c0,2 0,6.5 1.5,11 c1,2 2,4.5 4,6.5 c2,1.5 5,2.5 8.5,2.5 c3.5,0 6.5,-1 8.5,-3 c2,-2 3.5,-4.5 4,-7 c1.5,-4.5 1.5,-10 1.5,-14 c0,-2 0,-5 -0.5,-7.5 c0,0 0,0 0,0 c5,0.5 8,2 9.5,4 c2,2.5 3,6.5 3,12 c0,3.5 -2,7 -5.5,10.5 c-3.5,3.5 -8.5,6 -12,8 l3.5,7 c4,-2.5 9.5,-5.5 13.5,-10 c4.5,-4 8.5,-9.5 8.5,-16 c0,-6.5 -1,-12.5 -5,-17 c-4,-4.5 -10.5,-7 -19,-7 zm-5,8.5 c0,0.5 0.5,1 0.5,1.5 c0.5,2 0.5,4 0.5,6 c0,4 0,8.5 -1,12 c-0.5,1.5 -1,2.5 -2,3 c-0.5,0.5 -1.5,1 -3,1 c-1.5,0 -2.5,-0.5 -3,-1 c-0.5,-0.5 -1.5,-1.5 -2,-3 c-1,-2.5 -1,-6 -1,-8 c0,-0.5 0.5,-4 3,-7 c1.5,-2 4,-3.5 8,-4.5 zm5,-8.5 "
+      },
+      "46": {
+        "ID": 46,
+        "Name": "hd_coda_0",
+        "Path": "m0,0 m0,0 c-4,0 -7,3 -7,7 c0,4 3,7 7,7 c4,0 7,-3 7,-7 c0,-4 -3,-7 -7,-7 zm0,4 c1.5,0 3,1.5 3,3 c0,1.5 -1.5,3 -3,3 c-1.5,0 -3,-1.5 -3,-3 c0,-1.5 1.5,-3 3,-3 zm0,-4 "
+      },
+      "47": {
+        "ID": 47,
+        "Name": "hd_onset_0",
+        "Path": "m0,0 m0,0 c-4,0 -7,3 -7,7 c0,4 3,7 7,7 c4,0 7,-3 7,-7 c0,-4 -3,-7 -7,-7 zm0,4 c1.5,0 3,1.5 3,3 c0,1.5 -1.5,3 -3,3 c-1.5,0 -3,-1.5 -3,-3 c0,-1.5 1.5,-3 3,-3 zm0,-4 "
+      },
+      "48": {
+        "ID": 48,
+        "Name": "hyphen_fin_0",
+        "Path": "m0,0 "
+      },
+      "49": {
+        "ID": 49,
+        "Name": "hyphen_fin_1",
+        "Path": "m0,0 "
+      },
+      "50": {
+        "ID": 50,
+        "Name": "hyphen_fin_2",
+        "Path": "m0,0 "
+      },
+      "51": {
+        "ID": 51,
+        "Name": "hyphen_fin_3",
+        "Path": "m0,0 "
+      },
+      "52": {
+        "ID": 52,
+        "Name": "hyphen_init_0",
+        "Path": "m0,0 "
+      },
+      "53": {
+        "ID": 53,
+        "Name": "hyphen_mid_0",
+        "Path": "m0,0 "
+      },
+      "54": {
+        "ID": 54,
+        "Name": "hyphen_mid_1",
+        "Path": "m0,0 "
+      },
+      "55": {
+        "ID": 55,
+        "Name": "hyphen_sol_0",
+        "Path": "m0,0 "
+      },
+      "56": {
+        "ID": 56,
+        "Name": "hy_coda_0",
+        "Path": "m0,0 m-21.5,0 l-5,6 l21,19 l-15.5,17.5 l6,5 l18,-20 l-0.5,-5.5 l-24,-22 zm0.5,18 c-4.5,4.5 -8.5,10.5 -10.5,15 l7,3.5 c2,-3.5 6,-9 9.5,-12.5 l-6,-6 zm21,-18 "
+      },
+      "57": {
+        "ID": 57,
+        "Name": "hy_onset_0",
+        "Path": "m0,0 m21.5,0 l-24,22 l-0.5,5.5 l18,20 l6,-5 l-15.5,-17.5 l21,-19 l-5,-6 zm-0.5,18 l-6,6 c3.5,3.5 7.5,9 9.5,12.5 l7,-3.5 c-2,-4.5 -6,-10.5 -10.5,-15 zm-21,-18 "
+      },
+      "58": {
+        "ID": 58,
+        "Name": "h_coda_0",
+        "Path": "m0,0 m-14,0 c-5,0 -10,2 -13,6 c-3.5,4 -5,9.5 -5,16 c0,6.5 1.5,12 5,16 c3,4 8,6 13,6 c5,0 10,-2 13,-6 c3.5,-4 5,-9.5 5,-16 c0,-6.5 -1.5,-12 -5,-16 c-3,-4 -8,-6 -13,-6 zm0,8 c3,0 5,1 7,3 c1.5,2 3,5.5 3,11 c0,5.5 -1.5,9 -3,11 c-2,2 -4,3 -7,3 c-3,0 -5,-1 -7,-3 c-1.5,-2 -3,-5.5 -3,-11 c0,-5.5 1.5,-9 3,-11 c2,-2 4,-3 7,-3 zm14,-8 "
+      },
+      "59": {
+        "ID": 59,
+        "Name": "h_onset_0",
+        "Path": "m0,0 m14,0 c-5,0 -10,2 -13,6 c-3.5,4 -5,9.5 -5,16 c0,6.5 1.5,12 5,16 c3,4 8,6 13,6 c5,0 10,-2 13,-6 c3.5,-4 5,-9.5 5,-16 c0,-6.5 -1.5,-12 -5,-16 c-3,-4 -8,-6 -13,-6 zm0,8 c3,0 5,1 7,3 c1.5,2 3,5.5 3,11 c0,5.5 -1.5,9 -3,11 c-2,2 -4,3 -7,3 c-3,0 -5,-1 -7,-3 c-1.5,-2 -3,-5.5 -3,-11 c0,-5.5 1.5,-9 3,-11 c2,-2 4,-3 7,-3 zm-14,-8 "
+      },
+      "60": {
+        "ID": 60,
+        "Name": "iold_fin_0",
+        "Path": "m0,0 m-4,0 c0,5 -3.5,8.5 -8,13.5 c-4.5,4.5 -10,11 -10,20.5 c0,5 0.5,10 2.5,14.5 c-1.5,2 -2.5,3.5 -3.5,5.5 l6.5,4.5 c0.5,-1 1.5,-2.5 2.5,-3.5 c3.5,2 8,3 14,3 c9,0 15,-3.5 18.5,-8 c3,-4.5 3.5,-9.5 3.5,-12 c0,-2.5 -0.5,-6.5 -2.5,-9.5 c-2,-3.5 -6,-6.5 -11.5,-6.5 c-4.5,0 -8.5,1.5 -11,3.5 c-2.5,2.5 -4.5,5 -6,8 c-1,2 -3,4 -4.5,6 c-0.5,-1.5 -0.5,-3.5 -0.5,-5.5 c0,-6.5 3.5,-10.5 8,-15 c4.5,-5 10,-10.5 10,-19 zm12,30 c2.5,0 3.5,1 4.5,2.5 c1,1.5 1.5,4 1.5,5.5 v0 c0,1.5 -0.5,4.5 -2.5,7 c-1.5,2.5 -4.5,5 -11.5,5 c-5,0 -8,-1 -9.5,-2 c2.5,-3.5 5,-7 7,-10 c2,-3 3.5,-5 4.5,-6 c1.5,-1.5 2.5,-2 6,-2 zm-8,-30 "
+      },
+      "61": {
+        "ID": 61,
+        "Name": "iold_fin_1",
+        "Path": "m0,0 m-4,0 c0,5 -3.5,8.5 -8,13.5 c-4.5,4.5 -10,11 -10,20.5 c0,5 0.5,10 2.5,14.5 c-1.5,2 -2.5,3.5 -3.5,5.5 l6.5,4.5 c0.5,-1 1.5,-2.5 2.5,-3.5 c3.5,2 8,3 14,3 c9,0 15,-3.5 18.5,-8 c3,-4.5 3.5,-9.5 3.5,-12 c0,-2.5 -0.5,-6.5 -2.5,-9.5 c-2,-3.5 -6,-6.5 -11.5,-6.5 c-4.5,0 -8.5,1.5 -11,3.5 c-2.5,2.5 -4.5,5 -6,8 c-1,2 -3,4 -4.5,6 c-0.5,-1.5 -0.5,-3.5 -0.5,-5.5 c0,-6.5 3.5,-10.5 8,-15 c4.5,-5 10,-10.5 10,-19 zm12,30 c2.5,0 3.5,1 4.5,2.5 c1,1.5 1.5,4 1.5,5.5 v0 c0,1.5 -0.5,4.5 -2.5,7 c-1.5,2.5 -4.5,5 -11.5,5 c-5,0 -8,-1 -9.5,-2 c2.5,-3.5 5,-7 7,-10 c2,-3 3.5,-5 4.5,-6 c1.5,-1.5 2.5,-2 6,-2 zm-8,-30 "
+      },
+      "62": {
+        "ID": 62,
+        "Name": "iold_fin_2",
+        "Path": "m0,0 m-4,0 c0,5 -3.5,8.5 -8,13.5 c-4.5,4.5 -10,11 -10,20.5 c0,5 0.5,10 2.5,14.5 c-1.5,2 -2.5,3.5 -3.5,5.5 l6.5,4.5 c0.5,-1 1.5,-2.5 2.5,-3.5 c3.5,2 8,3 14,3 c9,0 15,-3.5 18.5,-8 c3,-4.5 3.5,-9.5 3.5,-12 c0,-2.5 -0.5,-6.5 -2.5,-9.5 c-2,-3.5 -6,-6.5 -11.5,-6.5 c-4.5,0 -8.5,1.5 -11,3.5 c-2.5,2.5 -4.5,5 -6,8 c-1,2 -3,4 -4.5,6 c-0.5,-1.5 -0.5,-3.5 -0.5,-5.5 c0,-6.5 3.5,-10.5 8,-15 c4.5,-5 10,-10.5 10,-19 zm12,30 c2.5,0 3.5,1 4.5,2.5 c1,1.5 1.5,4 1.5,5.5 v0 c0,1.5 -0.5,4.5 -2.5,7 c-1.5,2.5 -4.5,5 -11.5,5 c-5,0 -8,-1 -9.5,-2 c2.5,-3.5 5,-7 7,-10 c2,-3 3.5,-5 4.5,-6 c1.5,-1.5 2.5,-2 6,-2 zm-8,-30 "
+      },
+      "63": {
+        "ID": 63,
+        "Name": "iold_fin_3",
+        "Path": "m0,0 m-4,0 c0,5 -3.5,8.5 -8,13.5 c-4.5,4.5 -10,11 -10,20.5 c0,5 0.5,10 2.5,14.5 c-1.5,2 -2.5,3.5 -3.5,5.5 l6.5,4.5 c0.5,-1 1.5,-2.5 2.5,-3.5 c3.5,2 8,3 14,3 c9,0 15,-3.5 18.5,-8 c3,-4.5 3.5,-9.5 3.5,-12 c0,-2.5 -0.5,-6.5 -2.5,-9.5 c-2,-3.5 -6,-6.5 -11.5,-6.5 c-4.5,0 -8.5,1.5 -11,3.5 c-2.5,2.5 -4.5,5 -6,8 c-1,2 -3,4 -4.5,6 c-0.5,-1.5 -0.5,-3.5 -0.5,-5.5 c0,-6.5 3.5,-10.5 8,-15 c4.5,-5 10,-10.5 10,-19 zm12,30 c2.5,0 3.5,1 4.5,2.5 c1,1.5 1.5,4 1.5,5.5 v0 c0,1.5 -0.5,4.5 -2.5,7 c-1.5,2.5 -4.5,5 -11.5,5 c-5,0 -8,-1 -9.5,-2 c2.5,-3.5 5,-7 7,-10 c2,-3 3.5,-5 4.5,-6 c1.5,-1.5 2.5,-2 6,-2 zm-8,-30 "
+      },
+      "64": {
+        "ID": 64,
+        "Name": "iold_init_0",
+        "Path": "m0,0 m-6,0 c-8.5,4.5 -18,13.5 -18,27.5 c0,6.5 1,12.5 5,17 c3.5,4 8.5,6 15,6.5 c0,0 0,0 0,0 h2.5 c0.5,0 1,0 1.5,0 c0.5,0 0.5,0 1,0 h3 c0,0 0,0 0,-0.5 c7,0 12,-3 15,-7 c3.5,-4 5,-8.5 5,-12 c0,-2 0,-6.5 -1.5,-10.5 c-1,-2.5 -2,-4.5 -4,-6.5 c-2,-2 -5,-3 -8.5,-3 c-3.5,0 -6.5,1 -8.5,3 c-2,2 -3.5,4.5 -4,7 c-1.5,5 -1.5,10 -1.5,14 c0,2 0,5 0,8 c-4.5,-0.5 -7.5,-2 -9,-4 c-2,-2.5 -3,-6.5 -3,-12 c0,-10 6.5,-17 14,-20.5 zm16,19.5 c1.5,0 2.5,0.5 3,1 c0.5,0.5 1.5,1.5 2,3 c1,2.5 1,6 1,8 c0,0.5 -0.5,4 -3,7 c-2,2 -4.5,4 -9,4.5 c0,-2.5 0,-5.5 0,-7.5 c0,-4 0,-8.5 1,-11.5 c0.5,-2 1,-3 2,-3.5 c0.5,-0.5 1.5,-1 3,-1 zm-10,-19.5 "
+      },
+      "65": {
+        "ID": 65,
+        "Name": "iold_mid_0",
+        "Path": "m0,0 m-4,0 c0,2.5 -1,4.5 -2.5,6.5 c-1.5,2 -4,4.5 -6.5,6.5 c-5,5 -11,11.5 -11,21 c0,6.5 1,12.5 5,17 c3.5,4 8.5,6 15,6.5 v0.5 h4 l4,0 v0 v-0.5 c7,-1 12,-4 15,-7.5 c3.5,-4 5,-8.5 5,-12 c0,-2 0,-6.5 -1.5,-11 c-1,-2 -2,-4.5 -4,-6 c-2,-2 -5,-3 -8.5,-3 c-3.5,0 -6.5,1 -8.5,3 c-2,2 -3.5,4.5 -4,7 c-1.5,4.5 -1.5,10 -1.5,14 v8 c-4.5,-1 -7.5,-2 -9,-4 c-2,-2.5 -3,-6.5 -3,-12 c0,-6.5 4,-10 9,-15 c2.5,-2.5 5,-5 7.5,-8 c2,-3 3.5,-6.5 3.5,-11 zm14,26 c1.5,0 2.5,0.5 3,1 c0.5,0.5 1.5,1.5 2,3 c1,2.5 1,6 1,8 c0,0.5 -0.5,4 -3,7 c-2,2 -4.5,4 -9,4.5 v-7.5 c0,-4 0,-8.5 1,-12 c0.5,-1.5 1,-2.5 2,-3 c0.5,-0.5 1.5,-1 3,-1 zm-10,-26 "
+      },
+      "66": {
+        "ID": 66,
+        "Name": "iold_mid_1",
+        "Path": "m0,0 m-4,0 l0,6 c0,2.5 -1,4.5 -2.5,6.5 c-1.5,2 -4,4.5 -6.5,6.5 c-5,5 -11,11 -11,20.5 c0,7 2.5,12.5 6.5,16.5 c3,2.5 6.5,4.5 10.5,5 c0.5,2.5 1,5 1,9 v4 h8 v-4 c0,-3.5 -0.5,-6 -0.5,-8 c5.5,-0.5 9.5,-2 11.5,-5 c3,-3 3,-7 3,-9 c0,-1.5 0.5,-6 -0.5,-10.5 c-1,-2.5 -2,-5 -4.5,-6.5 c-2,-2 -5.5,-3 -9,-3 c-4.5,0 -8,2.5 -9.5,6 c-2,3 -2.5,6.5 -2.5,10 c0,3.5 0.5,6 1,8.5 c-1,-0.5 -2,-1 -3,-2 c-2.5,-2 -4,-5.5 -4,-10.5 c0,-6.5 4,-10 9,-15 c2.5,-2.5 5,-5 7.5,-8 c2,-2.5 3.5,-6.5 3.5,-11 l0,-6 zm6,36 h0 h0 c2.5,0 3.5,0.5 4,1 c0.5,0.5 1,1.5 1.5,2.5 c0.5,2.5 0.5,6 0.5,8.5 c0,2 0,3 -0.5,4 c-1,0.5 -3,1.5 -8,2 c-1,-3 -1.5,-5 -1.5,-10 c0,-2.5 0.5,-5 1,-6.5 c0.5,-1.5 1,-1.5 2.5,-1.5 zm-2,-36 "
+      },
+      "67": {
+        "ID": 67,
+        "Name": "iold_sol_0",
+        "Path": "m0,0 m3,0 c-13,6.5 -23,17.5 -24.5,31.5 c-0.5,5.5 0,11 2.5,16 c-1,2 -2.5,4.5 -3.5,6 l6.5,4.5 c1,-1.5 1.5,-2.5 2.5,-4 c3.5,2.5 8.5,4 14,4 c9,0 15.5,-4.5 18.5,-9.5 c3,-5 3.5,-10 3.5,-12.5 c0,-2.5 -0.5,-6.5 -2.5,-9.5 c-2,-3.5 -6,-6.5 -11.5,-6.5 c-5,0 -9,2 -12,5 c-3,2.5 -5,6 -7,9 c-1,1.5 -1.5,3 -2.5,4.5 c0,-2 -0.5,-3.5 0,-5.5 c0.5,-11.5 8.5,-20.5 19.5,-26 zm6,27.5 c2.5,0 3.5,1 4.5,2.5 c1,1.5 1.5,4 1.5,5.5 v0 c0,1.5 -0.5,5.5 -2.5,8.5 c-2,3 -5,5.5 -11.5,5.5 c-5,0 -8,-1 -10,-2.5 c2,-3.5 3.5,-6.5 5.5,-9 c2,-3 4,-5.5 6,-7.5 c2,-2 4,-2.5 7,-3 zm-9,-27.5 "
+      },
+      "68": {
+        "ID": 68,
+        "Name": "i_fin_0",
+        "Path": "m0,0 m-4,0 l0,22 l6,3.5 l24,-16 l-4,-7 l-18,12 l0,-14.5 l-8,0 zm25.5,18.5 l-20,14 l5,7 l20,-14 l-5,-7 zm-21.5,-18.5 "
+      },
+      "69": {
+        "ID": 69,
+        "Name": "i_fin_1",
+        "Path": "m0,0 m-4,0 l0,12 l-12.5,8.5 l5,7 l25.5,-18 l0.5,0 l-4.5,-7 l-0.5,0 l-5.5,4 l0,-6.5 l-8,0 zm13.5,18.5 l-20,14 l5,7 l20,-14 l-5,-7 zm-9.5,-18.5 "
+      },
+      "70": {
+        "ID": 70,
+        "Name": "i_fin_2",
+        "Path": "m0,0 m-4,0 l0,22 l6,3.5 l24,-16 l-4,-7 l-18,12 l0,-14.5 l-8,0 zm25.5,18.5 l-20,14 l5,7 l20,-14 l-5,-7 zm-21.5,-18.5 "
+      },
+      "71": {
+        "ID": 71,
+        "Name": "i_fin_3",
+        "Path": "m0,0 m-4,0 l0,12 l-12.5,8.5 l5,7 l25.5,-18 l0.5,0 l-4.5,-7 l-0.5,0 l-5.5,4 l0,-6.5 l-8,0 zm13.5,18.5 l-20,14 l5,7 l20,-14 l-5,-7 zm-9.5,-18.5 "
+      },
+      "72": {
+        "ID": 72,
+        "Name": "i_init_0",
+        "Path": "m0,0 m-24,0 v8 h37 l-15.5,13 l-1.5,3 v16 h8 v-14 l22.5,-19 l-2.5,-7 zm24,0 "
+      },
+      "73": {
+        "ID": 73,
+        "Name": "i_mid_0",
+        "Path": "m0,0 m-4,0 c0,6.5 -3,11.5 -7.5,15 c-4.5,3.5 -10,5 -12.5,5 v8 h37 l-15.5,13 l-1.5,3 v4 h8 v-2 l22.5,-19 l-2.5,-7 h-29.5 c5.5,-4.5 9.5,-11.5 9.5,-20 zm4,0 "
+      },
+      "74": {
+        "ID": 74,
+        "Name": "i_mid_1",
+        "Path": "m0,0 m-4,0 c0,6.5 -3,11.5 -7.5,15 c-4.5,3.5 -10,5 -12.5,5 v8 h27.5 l-7,14 l-0.5,2 v4 h8 v-3 l9.5,-19 l-3.5,-6 h-15.5 c5.5,-4.5 9.5,-11.5 9.5,-20 zm4,0 "
+      },
+      "75": {
+        "ID": 75,
+        "Name": "i_sol_0",
+        "Path": "m0,0 m12,0 l-34,22 l4,6.5 l34,-22 l-4,-6.5 zm6,22 l-34,22 l4,6.5 l34,-22 l-4,-6.5 zm-18,-22 "
+      },
+      "76": {
+        "ID": 76,
+        "Name": "kh_coda_0",
+        "Path": "m0,0 m-22,0 l-6,3.5 v42 h8 v-35 l18,10.5 l4,-7 zm22,0 "
+      },
+      "77": {
+        "ID": 77,
+        "Name": "kh_onset_0",
+        "Path": "m0,0 m20,0 v35 l-18,-10.5 l-4,7 l24,14 l6,-3.5 v-42 zm-20,0 "
+      },
+      "78": {
+        "ID": 78,
+        "Name": "k_coda_0",
+        "Path": "m0,0 m-18,0 l-4,6.5 l12,8 l4,-6.5 l-12,-8 zm0.5,14 l-6.5,3.5 l0,36 l8,0 l0,-28.5 l13.5,9.5 l5,-6.5 l-20,-14 zm17.5,-14 "
+      },
+      "79": {
+        "ID": 79,
+        "Name": "k_onset_0",
+        "Path": "m0,0 m16,0 l0,35 l-14,-8.5 l-4,7 l20,12 l6,-3.5 l0,-42 l-8,0 zm17.5,20 l-7,4 l8,16 l7,-4 l-8,-16 zm-33.5,-20 "
+      },
+      "80": {
+        "ID": 80,
+        "Name": "l_coda_0",
+        "Path": "m0,0 m-3,0 l-20,24 l6,5 l20,-24 zm3,0 "
+      },
+      "81": {
+        "ID": 81,
+        "Name": "l_onset_0",
+        "Path": "m0,0 m17,0 l-20,24 l6,5 l20,-24 zm-17,0 "
+      },
+      "82": {
+        "ID": 82,
+        "Name": "ng_coda_0",
+        "Path": "m0,0 m-32,0 l0,8 c10,0 18,-0.5 29,11 l6,-6 c-13,-12.5 -25,-13 -35,-13 zm12.5,14.5 c-4,9.5 -8,15 -11.5,18.5 l6,6 c4.5,-4.5 8.5,-11 12.5,-21.5 l-7,-3 zm19.5,-14.5 "
+      },
+      "83": {
+        "ID": 83,
+        "Name": "ng_onset_0",
+        "Path": "m0,0 m27,0 c-4.5,4.5 -8.5,11 -12.5,21.5 l7,3 c4,-10 8,-15.5 11.5,-19 l-6,-5.5 zm-27,25 l0,8 c10,0 18,-0.5 29,10.5 l6,-5.5 c-13,-13 -25,-13 -35,-13 zm0,-25 "
+      },
+      "84": {
+        "ID": 84,
+        "Name": "null",
+        "Path": "m0,0 "
+      },
+      "85": {
+        "ID": 85,
+        "Name": "n_coda_0",
+        "Path": "m0,0 m-22,0 l-8,0 c0,9 0.5,16 2,21 c1,5 3,9 6.5,11 c3,2.5 7,2.5 11,2 c3.5,-0.5 7.5,-1.5 12,-2.5 l-2,-8 c-4.5,1 -8,2 -11,2.5 c-3,0.5 -4,0 -5,-0.5 c-1,-0.5 -2.5,-2.5 -3,-6.5 c-2,-4 -2.5,-10 -2.5,-19 zm22,0 "
+      },
+      "86": {
+        "ID": 86,
+        "Name": "n_onset_0",
+        "Path": "m0,0 m22,0 c0,9 -0.5,15 -1.5,19 c-1,4.5 -2.5,6 -3.5,6.5 c-1,1 -2.5,1 -5,1 c-3,-0.5 -6.5,-1.5 -11,-2.5 l-2,8 c4.5,1 8,2 12,2.5 c3.5,0.5 7.5,0 11,-2 c3,-2.5 5,-6 6.5,-11 c1,-5.5 1.5,-12.5 1.5,-21.5 zm-22,0 "
+      },
+      "87": {
+        "ID": 87,
+        "Name": "omit_fin_0",
+        "Path": "m0,0 m-4,0 c0,5 0,13.5 -0.5,21 c-0.5,-0.5 -1,-1 -1.5,-1.5 c-2,-2 -5,-3.5 -8.5,-3.5 c-4.5,0 -8,2.5 -10.5,6 c-2.5,3.5 -3.5,7.5 -3.5,11.5 c0,4 0.5,10 4,16.5 c3.5,6.5 10,13 21,17.5 l3,-7.5 c-9,-3.5 -14,-8.5 -16.5,-13.5 c-2.5,-5 -3,-10 -3,-13 c0,-2.5 1,-5.5 2,-7 c1.5,-2 2.5,-2.5 4,-2.5 c0.5,0 1.5,0.5 3,1.5 c1.5,1.5 3,3.5 5,5.5 c0.5,0.5 1,1 1,1.5 c0,4.5 -0.5,9.5 -0.5,11.5 c0,0 0,0.5 0,0.5 l8,1 c0,0 0,0 0,0 h0 c0,0 0,-3.5 0.5,-5.5 c1.5,1 3.5,1.5 5.5,1.5 c10.5,0 19.5,-8 19.5,-18.5 c0,-4.5 -1.5,-8.5 -4,-11.5 c-3,-3 -7,-4 -11,-4 c-3.5,0 -6.5,1.5 -9,3.5 c0,-4 0,-8 0,-11 zm17,15.5 c2.5,0 4.5,0.5 5,1.5 c1,1 1.5,2.5 1.5,6 c0,5.5 -5.5,10.5 -11.5,10.5 c-0.5,0 -2,-0.5 -3,-1.5 c-0.5,-1 -1,-1.5 -1.5,-2 c0,-2 0,-3.5 0.5,-4.5 c0,-1.5 1.5,-4.5 3,-6.5 c2,-2 4.5,-3.5 6,-3.5 zm-13,-15.5 "
+      },
+      "88": {
+        "ID": 88,
+        "Name": "omit_fin_1",
+        "Path": "m0,0 m-4,0 c0,6 0,18 -0.5,30 c0,0.5 0,1 0,1.5 c-3,-2.5 -6.5,-3.5 -9.5,-3.5 h0 h0 c-4.5,0 -8,2.5 -10.5,6 c-2.5,3.5 -3.5,7.5 -3.5,11.5 c0,4 0.5,10 4,16.5 c3.5,6.5 10,13 21,17.5 l3,-7.5 c-9.5,-3.5 -14.5,-8.5 -17,-13.5 c-2.5,-5 -3,-10 -3,-13 c0,-2.5 1,-5.5 2,-7 c1.5,-2 2.5,-2.5 4,-2.5 c2,0 4,0.5 6,3 c2,2.5 3.5,8 2.5,18 l8,1 c0,0 0,0 0,0 h0 c0,0 0,0 0,0 c0.5,-5.5 1,-16.5 1,-28 c0.5,-11.5 0.5,-24 0.5,-30 zm4,0 "
+      },
+      "89": {
+        "ID": 89,
+        "Name": "omit_fin_2",
+        "Path": "m0,0 m-4,0 c0,5 0,13.5 -0.5,21 c-0.5,-0.5 -1,-1 -1.5,-1.5 c-2,-2 -5,-3.5 -8.5,-3.5 c-4.5,0 -8,2.5 -10.5,6 c-2.5,3.5 -3.5,7.5 -3.5,11.5 c0,4 0.5,10 4,16.5 c3.5,6.5 10,13 21,17.5 l3,-7.5 c-9,-3.5 -14,-8.5 -16.5,-13.5 c-2.5,-5 -3,-10 -3,-13 c0,-2.5 1,-5.5 2,-7 c1.5,-2 2.5,-2.5 4,-2.5 c0.5,0 1.5,0.5 3,1.5 c1.5,1.5 3,3.5 5,5.5 c0.5,0.5 1,1 1,1.5 c0,4.5 -0.5,9.5 -0.5,11.5 c0,0 0,0.5 0,0.5 l8,1 c0,0 0,0 0,0 h0 c0,0 0,-3.5 0.5,-5.5 c1.5,1 3.5,1.5 5.5,1.5 c10.5,0 19.5,-8 19.5,-18.5 c0,-4.5 -1.5,-8.5 -4,-11.5 c-3,-3 -7,-4 -11,-4 c-3.5,0 -6.5,1.5 -9,3.5 c0,-4 0,-8 0,-11 zm17,15.5 c2.5,0 4.5,0.5 5,1.5 c1,1 1.5,2.5 1.5,6 c0,5.5 -5.5,10.5 -11.5,10.5 c-0.5,0 -2,-0.5 -3,-1.5 c-0.5,-1 -1,-1.5 -1.5,-2 c0,-2 0,-3.5 0.5,-4.5 c0,-1.5 1.5,-4.5 3,-6.5 c2,-2 4.5,-3.5 6,-3.5 zm-13,-15.5 "
+      },
+      "90": {
+        "ID": 90,
+        "Name": "omit_fin_3",
+        "Path": "m0,0 m-4,0 c0,6 0,18 -0.5,30 c0,0.5 0,1 0,1.5 c-3,-2.5 -6.5,-3.5 -9.5,-3.5 h0 h0 c-4.5,0 -8,2.5 -10.5,6 c-2.5,3.5 -3.5,7.5 -3.5,11.5 c0,4 0.5,10 4,16.5 c3.5,6.5 10,13 21,17.5 l3,-7.5 c-9.5,-3.5 -14.5,-8.5 -17,-13.5 c-2.5,-5 -3,-10 -3,-13 c0,-2.5 1,-5.5 2,-7 c1.5,-2 2.5,-2.5 4,-2.5 c2,0 4,0.5 6,3 c2,2.5 3.5,8 2.5,18 l8,1 c0,0 0,0 0,0 h0 c0,0 0,0 0,0 c0.5,-5.5 1,-16.5 1,-28 c0.5,-11.5 0.5,-24 0.5,-30 zm4,0 "
+      },
+      "91": {
+        "ID": 91,
+        "Name": "omit_init_0",
+        "Path": "m0,0 m13,0 c-5,0 -9,3 -12,6 c-2,2.5 -4,5.5 -4.5,8.5 c-1,-1 -1.5,-1.5 -2,-2.5 c-2.5,-2 -5,-3.5 -8.5,-3.5 c-4.5,0 -8,2.5 -10.5,6 c-2,3.5 -3.5,7.5 -3.5,11.5 c0,8.5 5,16 14,22 c6,4 10,9.5 10,12.5 v7.5 h8 v-7.5 c0,-8 -6,-14.5 -14,-19 c-7.5,-5 -10,-10 -10,-15.5 c0,-2.5 1,-5.5 2,-7 c1.5,-2 2.5,-2.5 4,-2.5 c0.5,0 1.5,0.5 3,1.5 c1.5,1.5 3,3.5 5,5.5 c0.5,0.5 1,1 1.5,1.5 c-0.5,5.5 -1,12 -1,12 l8,0.5 c0,0 0,-3.5 0.5,-5.5 c1.5,1 3.5,1.5 5.5,1.5 c10,0.5 19.5,-7.5 19.5,-18 c0,-4.5 -1.5,-9 -4,-11.5 c-3,-3 -7,-4 -11,-4 zm0,8 c3,0 4.5,0.5 5.5,1.5 c0.5,1 1.5,2.5 1.5,6 c0,5.5 -5.5,10.5 -11.5,10.5 c-0.5,0 -2,-0.5 -3,-1.5 c-1,-1 -1.5,-1.5 -2,-2 c0,-2 0,-3.5 0.5,-4.5 c0,-1.5 1,-4.5 3,-6.5 c2,-2 4,-3.5 6,-3.5 zm-13,-8 "
+      },
+      "92": {
+        "ID": 92,
+        "Name": "omit_mid_0",
+        "Path": "m0,0 m-4,0 c0,5 0,13.5 -0.5,21 c-0.5,-0.5 -1,-1 -1.5,-1.5 c-2,-2 -5,-3.5 -8.5,-3.5 c-4.5,0 -8,2.5 -10.5,6 c-1.5,3.5 -3,7.5 -3,11.5 c0,8.5 5,16 14,22 c6,4 10,9.5 10,12.5 v8 h8 v-8 c0,-8 -6,-14.5 -14,-19 c-7.5,-5 -10,-10 -10,-15.5 c0,-2.5 1,-5.5 2,-7 c1.5,-2 2.5,-2.5 4,-2.5 c0.5,0 1.5,0.5 3,1.5 c1.5,1.5 3,3.5 5,5.5 c0.5,0.5 1,1 1,1.5 c0,4 -0.5,9.5 -0.5,11.5 c0,0 0,0.5 0,0.5 l8,1 c0,0 0,0 0,0 h0 c0,0 0,-3.5 0.5,-5.5 c1.5,1 3.5,1.5 5.5,1.5 c10,-0.5 19.5,-8 19.5,-18.5 c0,-5 -1.5,-9 -4,-11.5 c-3,-3 -7,-4 -11,-4 c-3.5,0 -6.5,1.5 -9,3.5 c0,-4 0,-8 0,-11 zm17,15.5 c2.5,0 4.5,0.5 5,1.5 c1,1 2,2.5 2,6 c0,5.5 -5.5,10.5 -11.5,10.5 c-0.5,0 -2,-0.5 -3,-1.5 c-1,-1 -1.5,-1.5 -2,-2 c0,-2 0,-3.5 0.5,-4.5 c0,-1.5 1.5,-4.5 3,-6.5 c2,-2 4.5,-3.5 6,-3.5 zm-13,-15.5 "
+      },
+      "93": {
+        "ID": 93,
+        "Name": "omit_mid_1",
+        "Path": "m0,0 m-4,0 c0,5 0,13 -0.5,20.5 c0,0 -0.5,-0.5 -0.5,-0.5 c-2.5,-2 -5.5,-4 -9,-4 h0 h0 c-4.5,0 -8,2.5 -10.5,6 c-2.5,3.5 -3.5,7.5 -3.5,11.5 c0,8.5 5,16 14,22 c6.5,4 10,9.5 10,12.5 v8 h8 v-8 c0,-8 -6,-14.5 -14,-19.5 c-7.5,-4.5 -10,-9.5 -10,-15 c0,-2.5 1,-5.5 2,-7 c1.5,-2 2.5,-2.5 4,-2.5 c1.5,0 2.5,0.5 3.5,1.5 c1,1 2.5,3 3,5 c1.5,4 2,9.5 1.5,13.5 c0,0 0,0.5 0,0.5 l8,1 c0,0 0,0 0,0 l0,0 c0,0 0,0 0,-0.5 c0.5,-1.5 0.5,-3.5 0.5,-5 c1,-11 1.5,-29.5 1.5,-40 zm4,0 "
+      },
+      "94": {
+        "ID": 94,
+        "Name": "omit_sol_0",
+        "Path": "m0,0 m13,0 c-5,0 -9,3 -12,6 c-2,2.5 -4,5.5 -4.5,8.5 c-1,-1 -1.5,-1.5 -2,-2.5 c-2.5,-2 -5,-3.5 -8.5,-3.5 c-4.5,0 -8,2.5 -10.5,6 c-2,3.5 -3.5,7.5 -3.5,11.5 c0,4 0.5,10 4,16.5 c3.5,6.5 10,13 21,17.5 l3,-7.5 c-9.5,-4 -14.5,-9 -17,-13.5 c-2.5,-5 -3,-9.5 -3,-13 c0,-2.5 1,-5.5 2,-7 c1.5,-2 2.5,-2.5 4,-2.5 c0.5,0 1.5,0.5 3,1.5 c1.5,1.5 3,3.5 5,5.5 c0.5,0.5 1,1 1.5,1.5 c-0.5,5.5 -1,12 -1,12 l8,0.5 c0,0 0,-3.5 0.5,-5.5 c1.5,1 3.5,1.5 5.5,1.5 c10,0.5 19.5,-7.5 19.5,-18 c0,-4.5 -1.5,-9 -4,-11.5 c-3,-3 -7,-4 -11,-4 zm0,8 c2.5,0 4.5,0.5 5,1.5 c1,1 2,2.5 2,6 c0,5.5 -5.5,10.5 -11.5,10.5 c-0.5,0 -2,-0.5 -3,-1.5 c-1,-1 -1.5,-1.5 -2,-2 c0,-2 0,-3.5 0.5,-4.5 c0,-1.5 1,-4.5 3,-6.5 c2,-2 4,-3.5 6,-3.5 zm-13,-8 "
+      },
+      "95": {
+        "ID": 95,
+        "Name": "o_fin_0",
+        "Path": "m0,0 m-4,0 c0,8.5 -6.5,15.5 -12.5,21 c-2.5,2 -4.5,4.5 -6.5,6 l5.5,5.5 c1.5,-1.5 4.5,-4.5 7.5,-7 c1,-1 2,-2 3,-2.5 c4.5,-3 8.5,-5 11,-5 c5.5,0 8,1.5 9.5,3 c1.5,1.5 2.5,3.5 2.5,7 c0,3.5 -2.5,7.5 -6,11 c-3.5,3.5 -8,6 -11,7 l2,8 c5,-1.5 10.5,-4.5 15,-9 c4.5,-4.5 8,-10.5 8,-17 c0,-4.5 -1,-9.5 -4.5,-13 c-3.5,-3.5 -9,-5 -15.5,-5 c-0.5,0 -1.5,0 -2,0.5 c1,-3.5 2,-7 2,-10.5 zm4,0 "
+      },
+      "96": {
+        "ID": 96,
+        "Name": "o_fin_1",
+        "Path": "m0,0 m-4,0 c0,4.5 -3,10 -7,14.5 c-4,5 -9,9.5 -12,12.5 l5.5,5.5 c3,-3 7.5,-7 11,-10 c2,-1.5 4,-3 5,-4 c0.5,-0.5 1,-0.5 1.5,-1 c0.5,0 1,0.5 1.5,1.5 c1.5,2 2.5,5.5 2.5,11 c0,11 -3,13 -7,17 l5.5,5.5 c4.5,-3.5 9.5,-9.5 9.5,-22.5 c0,-6.5 -1,-11 -3,-14.5 c-2,-3 -4.5,-5 -7.5,-5.5 c1.5,-3 2.5,-6.5 2.5,-10 zm4,0 "
+      },
+      "97": {
+        "ID": 97,
+        "Name": "o_fin_2",
+        "Path": "m0,0 m-4,0 c0,8.5 -6.5,15.5 -12.5,21 c-2.5,2 -4.5,4.5 -6.5,6 l5.5,5.5 c1.5,-1.5 4.5,-4.5 7.5,-7 c1,-1 2,-2 3,-2.5 c4.5,-3 8.5,-5 11,-5 c5.5,0 8,1.5 9.5,3 c1.5,1.5 2.5,3.5 2.5,7 c0,3.5 -2.5,7.5 -6,11 c-3.5,3.5 -8,6 -11,7 l2,8 c5,-1.5 10.5,-4.5 15,-9 c4.5,-4.5 8,-10.5 8,-17 c0,-4.5 -1,-9.5 -4.5,-13 c-3.5,-3.5 -9,-5 -15.5,-5 c-0.5,0 -1.5,0 -2,0.5 c1,-3.5 2,-7 2,-10.5 zm4,0 "
+      },
+      "98": {
+        "ID": 98,
+        "Name": "o_fin_3",
+        "Path": "m0,0 m-4,0 c0,4.5 -3,10 -7,14.5 c-4,5 -9,9.5 -12,12.5 l5.5,5.5 c3,-3 7.5,-7 11,-10 c2,-1.5 4,-3 5,-4 c0.5,-0.5 1,-0.5 1.5,-1 c0.5,0 1,0.5 1.5,1.5 c1.5,2 2.5,5.5 2.5,11 c0,11 -3,13 -7,17 l5.5,5.5 c4.5,-3.5 9.5,-9.5 9.5,-22.5 c0,-6.5 -1,-11 -3,-14.5 c-2,-3 -4.5,-5 -7.5,-5.5 c1.5,-3 2.5,-6.5 2.5,-10 zm4,0 "
+      },
+      "99": {
+        "ID": 99,
+        "Name": "o_init_0",
+        "Path": "m0,0 m-24,0 v8 h20 v10 v16 h8 v-2 c3,1.5 6,2 8,2 c4,0 7,-2.5 9.5,-5.5 c2.5,-3 4.5,-7.5 4.5,-12.5 c0,-3.5 -1,-6.5 -2.5,-9 c-1.5,-2.5 -4,-4.5 -6.5,-5 c-5,-2 -11,-2 -17,-2 zm28,8 c4,0 8,0.5 10,1 c1.5,0.5 2,1 3,2 c0.5,1 1,2.5 1,5 c0,3 -1,5.5 -2.5,7.5 c-1.5,2 -3.5,2.5 -3.5,2.5 c-1.5,0 -3.5,-0.5 -5,-1.5 c-2,-1 -3,-2.5 -3,-6.5 zm-4,-8 "
+      },
+      "100": {
+        "ID": 100,
+        "Name": "o_mid_0",
+        "Path": "m0,0 m-4,0 c0,8.5 -6.5,15.5 -12.5,21 c-2.5,2 -4.5,4.5 -6.5,6 l5.5,5.5 c1.5,-1.5 4.5,-4.5 7.5,-7 c1,-1 2,-2 3,-2.5 c4.5,-3 8.5,-5 11,-5 c5.5,0 8,1.5 9.5,3 c1.5,1.5 2.5,3.5 2.5,7 c0,1 -0.5,2 -2,3.5 c-1.5,1.5 -3.5,3 -6,4.5 c-2.5,1.5 -5,3 -7.5,5 c-2.5,2.5 -4.5,5.5 -4.5,9 h8 c0,-0.5 0.5,-1 2,-2.5 c1.5,-1.5 4,-3 6.5,-4.5 c2.5,-1.5 5.5,-3.5 7.5,-6 c2,-2 4,-5 4,-9 c0,-4.5 -1,-9.5 -4.5,-13 c-3.5,-3.5 -9,-5 -15.5,-5 c-0.5,0 -1.5,0 -2,0.5 c1,-3.5 2,-7 2,-10.5 zm4,0 "
+      },
+      "101": {
+        "ID": 101,
+        "Name": "o_mid_1",
+        "Path": "m0,0 m-4,0 c0,11.5 -12,20.5 -19,27 l5.5,5.5 c3,-3 7.5,-7 11,-10 c2,-1.5 4,-3 5,-4 c0.5,-0.5 1,-0.5 1.5,-1 c0.5,0 1,0.5 1.5,1.5 c1.5,2 2.5,5.5 2.5,11 c0,7.5 -1.5,8.5 -3,11 c-2,2.5 -5,6 -5,13 h8 c0,-5 1,-5.5 3,-8 c2.5,-2.5 5,-7.5 5,-16 c0,-6.5 -1,-11 -3,-14.5 c-2,-3 -4.5,-4.5 -7,-5 c1,-3.5 2,-7 2,-10.5 zm4,0 "
+      },
+      "102": {
+        "ID": 102,
+        "Name": "o_sol_0",
+        "Path": "m0,0 m16,0 l-34,2 l0.5,8 l27,-1.5 c-0.5,0.5 -1,1 -1.5,2 c-2.5,3 -6.5,7.5 -10.5,11.5 c-8,8 -17,16 -20,19.5 l5.5,5.5 c3,-3 6.5,-6 10.5,-8.5 c4,-3 8,-4.5 10.5,-4.5 c5.5,0 8,1.5 9.5,3 c1.5,1.5 2.5,3.5 2.5,7 c0,3 -3,6.5 -7.5,9.5 c-4.5,3 -10.5,5.5 -13.5,6.5 l2,8 c4.5,-1.5 11,-4 16.5,-7.5 c5.5,-4 10.5,-9.5 10.5,-16.5 c0,-4.5 -1,-9.5 -4.5,-13 c-3.5,-3 -8.5,-5 -15,-5 c3.5,-3.5 7,-7.5 10,-10.5 c1.5,-2 2.5,-4 3.5,-6 c1,-1.5 2,-3.5 2,-5.5 zm-16,0 "
+      },
+      "103": {
+        "ID": 103,
+        "Name": "period__0",
+        "Path": "m0,0 m0,0 c-5,0 -9,4 -9,9 c0,5 4,9 9,9 c5,0 9,-4 9,-9 c0,-5 -4,-9 -9,-9 zm0,4 c3,0 5,2 5,5 c0,3 -2,5 -5,5 c-3,0 -5,-2 -5,-5 c0,-3 2,-5 5,-5 zm0,-4 "
+      },
+      "104": {
+        "ID": 104,
+        "Name": "qh_coda_0",
+        "Path": "m0,0 m-23,0 c-11.5,2.5 -17.5,10 -17.5,18 c0,4 1.5,8 5,11.5 c3.5,3 8.5,5 15,5 c9.5,0 18,-4 23,-9 l-6,-6 c-2.5,2.5 -10,6.5 -16.5,6.5 c-5.5,0 -8,-1.5 -10,-2.5 c-1.5,-1.5 -2,-3 -2,-5 c0,-4 2,-8 10.5,-10 zm23,0 "
+      },
+      "105": {
+        "ID": 105,
+        "Name": "qh_onset_0",
+        "Path": "m0,0 m20,0 c-9.5,0 -18,4 -23,9 l6,6 c3,-3 10.5,-7 17,-7 c5.5,0 8,1.5 10,2.5 c1.5,1.5 2,3 2,5 c0,4 -2,8 -10.5,10 l1.5,8 c11,-1.5 17,-9.5 17,-17.5 c0,-4 -1.5,-8 -5,-11 c-3,-3.5 -8.5,-5 -15,-5 zm-20,0 "
+      },
+      "106": {
+        "ID": 106,
+        "Name": "q_coda_0",
+        "Path": "m0,0 m-27,0 c-3,3 -5,5.5 -6,8 c-1,2.5 -1,5 -1,7 c0,4.5 2.5,8 5.5,11 c3.5,3 8,5 12.5,5 l0,0 c7.5,0 14.5,-4 18.5,-7 l-5,-6.5 c-2.5,2 -9,5.5 -13.5,5.5 c-2.5,0 -5,-1.5 -7,-3 c-2,-1.5 -3,-3.5 -3,-5 c0,-2 0,-3 0.5,-4 c0.5,-1 1.5,-2.5 4.5,-5.5 l-6,-5.5 zm16.5,1.5 c-1,1 -2.5,2 -4,4.5 c-2,2 -3.5,5 -5,9.5 l7,3 c2,-4.5 3,-6.5 4,-8 c1,-1 1.5,-1.5 3,-2.5 l-5,-6.5 zm10.5,-1.5 "
+      },
+      "107": {
+        "ID": 107,
+        "Name": "q_onset_0",
+        "Path": "m0,0 m16,0 c-7.5,0 -14.5,3.5 -18.5,7 l5,6 c2.5,-2 9,-5 13.5,-5 c2.5,0 5,1 7,3 c2,1.5 3,3.5 3,5 c0,2 0,2.5 -0.5,3.5 c-0.5,1 -1.5,3 -4.5,5.5 l6,6 c3,-3.5 5,-5.5 6,-8 c1,-2.5 1,-5 1,-7 c0,-4.5 -2.5,-8.5 -5.5,-11 c-3.5,-3 -8,-5 -12.5,-5 l0,0 zm-1.5,10.5 c-2,4 -3,6.5 -4,7.5 c-1,1.5 -1.5,2 -3,3 l5,6 c1,-0.5 2.5,-2 4,-4 c2,-2 3.5,-5 5,-9.5 l-7,-3 zm-14.5,-10.5 "
+      },
+      "108": {
+        "ID": 108,
+        "Name": "r_coda_0",
+        "Path": "m0,0 m-22,0 l0,26 c-5,4 -9.5,8 -13,11 l6,6 c3.5,-4 9.5,-9 15.5,-13 c5.5,-4 11.5,-7.5 14.5,-8 l-2,-8 c-4,1 -8.5,3.5 -13,6.5 l0,-20.5 l-8,0 zm22,0 "
+      },
+      "109": {
+        "ID": 109,
+        "Name": "r_onset_0",
+        "Path": "m0,0 m29,0 c-3.5,4 -9.5,8.5 -15.5,13 c-5.5,4 -11.5,7.5 -14.5,8 l2,7.5 c4,-1 8.5,-3 13,-6 l0,20.5 l8,0 l0,-26.5 c5,-3.5 9.5,-7.5 13,-11 l-6,-5.5 zm-29,0 "
+      },
+      "110": {
+        "ID": 110,
+        "Name": "space__0",
+        "Path": "m0,0 "
+      },
+      "111": {
+        "ID": 111,
+        "Name": "sw_coda_0",
+        "Path": "m0,0 m-10,0 v5 h20 v-5 zm10,0 "
+      },
+      "112": {
+        "ID": 112,
+        "Name": "sw_onset_0",
+        "Path": "m0,0 m-10,0 v5 h20 v-5 zm10,0 "
+      },
+      "113": {
+        "ID": 113,
+        "Name": "sy_coda_0",
+        "Path": "m0,0 m-2.5,0 v23 h5 v-23 zm2.5,0 "
+      },
+      "114": {
+        "ID": 114,
+        "Name": "sy_onset_0",
+        "Path": "m0,0 m-2.5,0 v23 h5 v-23 zm2.5,0 "
+      },
+      "115": {
+        "ID": 115,
+        "Name": "s_coda_0",
+        "Path": "m0,0 m-24.5,0 l-7,4 l14,24 h7 l14,-24 l-7,-4 l-10.5,18 zm24.5,0 "
+      },
+      "116": {
+        "ID": 116,
+        "Name": "s_onset_0",
+        "Path": "m0,0 m3.5,0 l-7,4 l14,24 h7 l14,-24 l-7,-4 l-10.5,18 zm-3.5,0 "
+      },
+      "117": {
+        "ID": 117,
+        "Name": "th_coda_0",
+        "Path": "m0,0 m-17.5,0 c-2,0 -4,0.5 -6,1 c-4.5,2 -8.5,6 -10,13 l7.5,2 c1.5,-5 3,-6.5 5.5,-7.5 c2,-1 5.5,-0.5 9,0.5 c2.5,0.5 3.5,2 4,5 c0.5,2.5 0.5,6 0,8.5 c-0.5,2.5 -1.5,4.5 -3,6 c-1.5,1.5 -3.5,2.5 -7,3.5 l1.5,8 c5,-1 8.5,-3 11.5,-5.5 c2.5,-2.5 4,-6 5,-9 c0.5,-5 0.5,-9.5 -0.5,-14 c-1.5,-4.5 -4.5,-9 -10,-10.5 c-2,-0.5 -4.5,-1 -6.5,-1 c-0.5,0 -1,0 -1,0 zm-8.5,19.5 l-7.5,2.5 l5,14 l7.5,-2.5 zm26,-19.5 "
+      },
+      "118": {
+        "ID": 118,
+        "Name": "th_onset_0",
+        "Path": "m0,0 m25.5,0 l-6.5,4.5 l8,12 l6.5,-4.5 zm-13.5,0.5 c-4,2.5 -7.5,4.5 -9.5,8 c-2,3 -2.5,6.5 -2.5,9.5 c0,4 1,8.5 3.5,12.5 c2.5,4 7,7.5 12.5,7.5 c4.5,0 9,-0.5 12.5,-3.5 c3.5,-2.5 5.5,-7.5 5.5,-14.5 h-8 c0,5.5 -1,7.5 -2.5,8.5 c-1.5,1 -4,1.5 -7.5,1.5 c-2.5,0 -4,-1.5 -5.5,-4 c-1.5,-2 -2.5,-5.5 -2.5,-8 c0,-2.5 0.5,-4 1.5,-5.5 c1,-1.5 2.5,-3 6.5,-4.5 zm-12,-0.5 "
+      },
+      "119": {
+        "ID": 119,
+        "Name": "tl_coda_0",
+        "Path": "m0,0 m-24,0 l0,42 l6,3.5 l20,-12 l-4,-7 l-14,8.5 l0,-35 l-8,0 zm-10.5,20 l-7,4 l8,16 l7,-4 l-8,-16 zm34.5,-20 "
+      },
+      "120": {
+        "ID": 120,
+        "Name": "tl_onset_0",
+        "Path": "m0,0 m14,0 c-7.5,0 -13,4 -16.5,7 l5,6 c3,-2.5 7,-5 11.5,-5 c1.5,0 3,0.5 4,2 c1,1.5 2,4 2,6 c0,3.5 -0.5,5 -2,7 c-1.5,2 -4,3.5 -8,5.5 l4,7 c4,-2 7.5,-4.5 10,-7.5 c2.5,-3 4,-7.5 4,-12 c0,-4 -1,-7.5 -3.5,-10.5 c-2.5,-3 -6,-5.5 -10.5,-5.5 zm23.5,10 l-7,4 l8,16 l7,-4 l-8,-16 zm-37.5,-10 "
+      },
+      "121": {
+        "ID": 121,
+        "Name": "t_coda_0",
+        "Path": "m0,0 m-3,0 l-25,25 v33.5 h8 v-30 l23,-23 zm3,0 "
+      },
+      "122": {
+        "ID": 122,
+        "Name": "t_coda_1",
+        "Path": "m0,0 m-12,0 l-18,10 l4,7 l18,-10 l-4,-7 zm10,12 l-24,12 l4,7 l24,-12 l-4,-7 zm2,-12 "
+      },
+      "123": {
+        "ID": 123,
+        "Name": "t_onset_0",
+        "Path": "m0,0 m3,0 l-6,5.5 l23,23 v30.5 h8 v-33.5 zm-3,0 "
+      },
+      "124": {
+        "ID": 124,
+        "Name": "u_fin_0",
+        "Path": "m0,0 m-21.5,0 l-5,6.5 l24,18 l6.5,-3.5 v-21 h-8 v13 zm21.5,0 "
+      },
+      "125": {
+        "ID": 125,
+        "Name": "u_fin_1",
+        "Path": "m0,0 m-21.5,0 l-5,6.5 l24,18 l6.5,-3.5 v-21 h-8 v13 zm21.5,0 "
+      },
+      "126": {
+        "ID": 126,
+        "Name": "u_fin_2",
+        "Path": "m0,0 m-10.5,0 l-4.5,7 l0,0 l25,15.5 l4,-6.5 l-10,-6.5 v-9.5 l-8,0 v4 l-6.5,-4 zm10.5,0 "
+      },
+      "127": {
+        "ID": 127,
+        "Name": "u_fin_3",
+        "Path": "m0,0 m-10.5,0 l-4.5,6.5 l0,0 l25,16 l4,-6.5 l-10,-6.5 v-9.5 h-8 v4 l-6.5,-4 zm10.5,0 "
+      },
+      "128": {
+        "ID": 128,
+        "Name": "u_init_0",
+        "Path": "m0,0 m-19.5,0 l-5,6.5 c4.5,3 12,7 20.5,11 l0,9.5 l8,0 l0,-6 c5.5,2.5 11.5,4.5 17,6 l2,-7.5 c-16.5,-5 -36.5,-15 -42.5,-19.5 zm19.5,0 "
+      },
+      "129": {
+        "ID": 129,
+        "Name": "u_mid_0",
+        "Path": "m0,0 m-20.5,0 l-7,4 l12,20 l7,-4 l-12,-20 zm16.5,0 l0,24 l8,0 l0,-24 l-8,0 zm4,0 "
+      },
+      "130": {
+        "ID": 130,
+        "Name": "u_mid_1",
+        "Path": "m0,0 m-20.5,0 l-7,4 l12,20 l7,-4 l-12,-20 zm16.5,0 l0,24 l8,0 l0,-24 l-8,0 zm4,0 "
+      },
+      "131": {
+        "ID": 131,
+        "Name": "u_sol_0",
+        "Path": "m0,0 m-14,0 l-6.5,4.5 c9,13.5 24,26 36.5,35 l4.5,-6.5 c-12,-8.5 -26.5,-21 -34.5,-33 zm14,0 "
+      },
+      "132": {
+        "ID": 132,
+        "Name": "v_fin_0",
+        "Path": "m0,0 m-4,0 c0,16.5 -1.5,38 -2,48.5 c-1.5,5 -5,8 -9,10.5 c-3.5,2 -8.5,3 -9,3 v8 c3.5,0 8,-1 13.5,-4 c2,-1 4,-3 6,-4.5 c0.5,1 1,2 1.5,3 c2.5,3.5 7,5.5 13,5.5 c6.5,0 11,-4 12.5,-8 c1.5,-4 1.5,-8 1.5,-10 c0,-4 -1,-8 -4,-11.5 c-2.5,-3.5 -6.5,-6.5 -12,-6.5 c-2,0 -3.5,0.5 -5,1.5 c0.5,-11 1,-24 1,-35.5 zm12,42 c2.5,0 4.5,1 6,3 c1,2 2,5 2,7 c0,2 0,5 -1,7 c-1,2 -1.5,3 -5,3 c-4,0 -5.5,-1 -6.5,-2.5 c-1,-1 -1.5,-4 -1.5,-7.5 c0,-0.5 0,-1.5 0,-2 c1,-3 2,-5 3,-6.5 c1.5,-1 2,-1.5 3,-1.5 zm-8,-42 "
+      },
+      "133": {
+        "ID": 133,
+        "Name": "v_fin_1",
+        "Path": "m0,0 m-4,0 c0,15.5 0,40 0,49 c-1.5,4.5 -5,7 -9,9 c-4.5,1.5 -10,2 -11,2 v8 c3,0 8,-0.5 14,-3 c4.5,-2 9,-4.5 12,-9.5 c1,1 2.5,2.5 3.5,3.5 c3.5,4.5 7.5,9.5 7.5,9.5 l6.5,-5 c0,0 0,0 0,0 l0,0 c0,0 0,-0.5 -0.5,-0.5 c-0.5,0 -3.5,-4 -7,-8.5 c-0.5,0 -0.5,0 -0.5,-0.5 c-0.5,0 -0.5,0 -0.5,0 c-2,-2.5 -4,-4.5 -6,-6.5 c0,0 -0.5,-0.5 -1,-0.5 c0,-10 0,-32 0,-47 zm4,0 "
+      },
+      "134": {
+        "ID": 134,
+        "Name": "v_fin_2",
+        "Path": "m0,0 m-4,0 c0,16.5 -1.5,38 -2,48.5 c-1.5,5 -5,8 -9,10.5 c-3.5,2 -8.5,3 -9,3 v8 c3.5,0 8,-1 13.5,-4 c2,-1 4,-3 6,-4.5 c0.5,1 1,2 1.5,3 c2.5,3.5 7,5.5 13,5.5 c6.5,0 11,-4 12.5,-8 c1.5,-4 1.5,-8 1.5,-10 c0,-4 -1,-8 -4,-11.5 c-2.5,-3.5 -6.5,-6.5 -12,-6.5 c-2,0 -3.5,0.5 -5,1.5 c0.5,-11 1,-24 1,-35.5 zm12,42 c2.5,0 4.5,1 6,3 c1,2 2,5 2,7 c0,2 0,5 -1,7 c-1,2 -1.5,3 -5,3 c-4,0 -5.5,-1 -6.5,-2.5 c-1,-1 -1.5,-4 -1.5,-7.5 c0,-0.5 0,-1.5 0,-2 c1,-3 2,-5 3,-6.5 c1.5,-1 2,-1.5 3,-1.5 zm-8,-42 "
+      },
+      "135": {
+        "ID": 135,
+        "Name": "v_fin_3",
+        "Path": "m0,0 m-4,0 c0,15.5 0,40 0,49 c-1.5,4.5 -5,7 -9,9 c-4.5,1.5 -10,2 -11,2 v8 c3,0 8,-0.5 14,-3 c4.5,-2 9,-4.5 12,-9.5 c1,1 2.5,2.5 3.5,3.5 c3.5,4.5 7.5,9.5 7.5,9.5 l6.5,-5 c0,0 0,0 0,0 l0,0 c0,0 0,-0.5 -0.5,-0.5 c-0.5,0 -3.5,-4 -7,-8.5 c-0.5,0 -0.5,0 -0.5,-0.5 c-0.5,0 -0.5,0 -0.5,0 c-2,-2.5 -4,-4.5 -6,-6.5 c0,0 -0.5,-0.5 -1,-0.5 c0,-10 0,-32 0,-47 zm4,0 "
+      },
+      "136": {
+        "ID": 136,
+        "Name": "v_init_0",
+        "Path": "m0,0 m12,0 c-2,0 -6,0 -10,2.5 c-3.5,2.5 -6,7.5 -6,15.5 v8.5 l-16.5,1.5 l1,8 l15.5,-1.5 v5.5 h8 v-6.5 c8,-1 13.5,-2.5 17,-5 c2,-1.5 3.5,-3.5 4.5,-6 c0.5,-2 0.5,-4.5 0.5,-6.5 c0,-6.5 -2,-11 -5,-13.5 c-3.5,-2.5 -7,-2.5 -9,-2.5 zm0,8 c2,0 3.5,0 4,0.5 c1,0.5 2,2 2,7.5 c0,2 0,3 -0.5,4 c-0.5,1 -0.5,1.5 -1.5,2 c-1.5,1 -5.5,2.5 -12,3.5 v-7.5 c0,-6 1.5,-8 3,-9 c1,-1 3,-1 5,-1 zm-12,-8 "
+      },
+      "137": {
+        "ID": 137,
+        "Name": "v_mid_0",
+        "Path": "m0,0 m-4,0 c0,7.5 -0.5,14.5 -1,20.5 c-4.5,1 -9,3 -11.5,6.5 c-4,4.5 -5.5,10.5 -5.5,17 c0,9.5 5.5,15.5 10,20 c2.5,2 4.5,4 6,5.5 c1.5,1.5 2,3 2,4.5 c0,2 0,2 0,6 l8,0 c0,-4 0,-4 0,-6 v0 l0,0 c0,-4 -2,-7 -4,-9.5 c-2,-2.5 -4,-4.5 -6.5,-6.5 c-4,-4 -7.5,-7.5 -7.5,-14 c0,-5.5 1.5,-9.5 3.5,-12 c1.5,-1.5 3,-2.5 5,-3.5 c0,3.5 -0.5,7 -0.5,9.5 c0,4.5 0.5,8.5 3,12.5 c2.5,3.5 7,5.5 13,5.5 c6.5,0 11,-4 12.5,-8 c1.5,-4 1.5,-8 1.5,-10 c0,-4 -1.5,-8.5 -5.5,-12 c-3,-3.5 -8.5,-5.5 -15.5,-6 c0.5,-6 1,-12.5 1,-20 zm6.5,28 c5.5,0.5 9,2 10.5,3.5 c2.5,2 3,4.5 3,6.5 c0,2 0,5 -1,7 c-1,2 -1.5,3 -5,3 c-4,0 -5.5,-1 -6.5,-2.5 c-1,-1 -1.5,-4 -1.5,-7.5 c0,-2.5 0.5,-6.5 0.5,-10 zm-2.5,-28 "
+      },
+      "138": {
+        "ID": 138,
+        "Name": "v_mid_1",
+        "Path": "m0,0 m-4,0 c0,12 0,18.5 0,25.5 c-0.5,-0.5 -1,-1 -1.5,-1.5 c-1,-1 -2,-2 -4.5,-2 c-4,0 -7,3 -9,6.5 c-2,4 -3,9 -3,15.5 c0,9.5 5.5,15.5 10,20 c2.5,2 4.5,4 6,5.5 c1.5,1.5 2,3 2,4.5 c0,2 0,2 0,6 l8,0 c0,-4 0,-4 0,-6 l0,0 c0,-4 -2,-7 -4,-9.5 c-2,-2.5 -4,-4.5 -6.5,-6.5 c-4,-4 -7.5,-7.5 -7.5,-14 c0,-5.5 1,-9.5 2,-11.5 c0.5,-1.5 1,-2 1.5,-2 c0.5,0.5 1.5,1.5 2.5,2.5 c2,2 4.5,5 6.5,8 c1,2 2.5,4 3.5,5.5 c2.5,3.5 4.5,6 4.5,6 l6.5,-4.5 c0,0 -2.5,-5 -8,-11.5 c0,0 0,0 0,0 c0,-1.5 -0.5,-2.5 -1,-3.5 c0,-7.5 0,-17.5 0,-33 zm4,0 "
+      },
+      "139": {
+        "ID": 139,
+        "Name": "v_sol_0",
+        "Path": "m0,0 m-2,0 c-7,0 -12.5,2.5 -16.5,7 c-4,4.5 -5.5,10.5 -5.5,17 c0,10 7.5,25.5 29,30 l1.5,-8 c-18,-3.5 -22.5,-16 -22.5,-22 c0,-5.5 1.5,-9.5 3.5,-12 c1.5,-2 4,-3.5 7.5,-4 c-1,4.5 -1,8.5 -1,14 c0,4.5 1,8.5 3.5,11.5 c3,3 6.5,4.5 10.5,4.5 c3.5,0 6.5,-1 8.5,-3 c2,-2 3.5,-4 4,-6.5 c1.5,-4 1.5,-8.5 1.5,-10.5 c0,-4 -1.5,-8.5 -5.5,-12 c-3.5,-4 -10,-6 -18.5,-6 zm5,8.5 c4,0.5 7,2 8.5,3 c2,2 2.5,4.5 2.5,6.5 c0,2 0,5.5 -1,8 c-0.5,1.5 -1,2.5 -2,3 c-0.5,0.5 -1.5,1 -3,1 c-2,0 -3.5,-0.5 -4,-1.5 c-1,-1 -2,-3 -2,-6.5 c0,-6.5 0,-10 1,-13.5 zm-3,-8.5 "
+      },
+      "140": {
+        "ID": 140,
+        "Name": "w_coda_0",
+        "Path": "m0,0 m-26,0 v8 h26 v-8 zm26,0 "
+      },
+      "141": {
+        "ID": 141,
+        "Name": "w_onset_0",
+        "Path": "m0,0 m0,0 v8 h26 v-8 zm0,0 "
+      },
+      "142": {
+        "ID": 142,
+        "Name": "x_coda_0",
+        "Path": "m0,0 m15,0 c-4,0 -7,3 -7,7 c0,4 3,7 7,7 c4,0 7,-3 7,-7 c0,-4 -3,-7 -7,-7 zm0,4 c1.5,0 3,1.5 3,3 c0,1.5 -1.5,3 -3,3 c-1.5,0 -3,-1.5 -3,-3 c0,-1.5 1.5,-3 3,-3 zm-15,-4 "
+      },
+      "143": {
+        "ID": 143,
+        "Name": "x_onset_0",
+        "Path": "m0,0 m15,0 c-4,0 -7,3 -7,7 c0,4 3,7 7,7 c4,0 7,-3 7,-7 c0,-4 -3,-7 -7,-7 zm0,4 c1.5,0 3,1.5 3,3 c0,1.5 -1.5,3 -3,3 c-1.5,0 -3,-1.5 -3,-3 c0,-1.5 1.5,-3 3,-3 zm-15,-4 "
+      },
+      "144": {
+        "ID": 144,
+        "Name": "y_coda_0",
+        "Path": "m0,0 m-22,0 v36 h8 v-36 zm22,0 "
+      },
+      "145": {
+        "ID": 145,
+        "Name": "y_onset_0",
+        "Path": "m0,0 m14,0 v36 h8 v-36 zm-14,0 "
+      },
+      "146": {
+        "ID": 146,
+        "Name": "__",
+        "Path": "m0,0 "
+      },
+      "147": {
+        "ID": 147,
+        "Name": "__bar",
+        "Path": "m0,0 m-4,0 c0,3 0,6 0,9 h9 v-9 zm4,0 "
+      }
+    }
+  },
+  "GPOS_DIAC": {
+    "name": "GPOS_DIAC",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "OffsetX": {
+        "name": "OffsetX",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "OffsetY": {
+        "name": "OffsetY",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Group": {
+        "name": "Group",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Priority": {
+        "name": "Priority",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      }
+    },
+    "data": {
+      "0": {
+        "ID": 0,
+        "Name": "C(onset,s_0-d_0)",
+        "OffsetX": 0,
+        "OffsetY": 10,
+        "Group": "",
+        "Priority": 0
+      },
+      "1": {
+        "ID": 1,
+        "Name": "C(onset,.-d_0)",
+        "OffsetX": 0,
+        "OffsetY": 10,
+        "Group": "",
+        "Priority": 0
+      }
+    }
+  },
+  "GPOS_IN_V": {
+    "name": "GPOS_IN_V",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "OffsetX0": {
+        "name": "OffsetX0",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "OffsetY0": {
+        "name": "OffsetY0",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "OffsetX1": {
+        "name": "OffsetX1",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "OffsetY1": {
+        "name": "OffsetY1",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Group": {
+        "name": "Group",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Priority": {
+        "name": "Priority",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      }
+    },
+    "data": {}
+  },
+  "GPOS_IN_H": {
+    "name": "GPOS_IN_H",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "OffsetX0": {
+        "name": "OffsetX0",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "OffsetY0": {
+        "name": "OffsetY0",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "OffsetX1": {
+        "name": "OffsetX1",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "OffsetY1": {
+        "name": "OffsetY1",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Group": {
+        "name": "Group",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Priority": {
+        "name": "Priority",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      }
+    },
+    "data": {}
+  },
+  "GPOS_EX_V": {
+    "name": "GPOS_EX_V",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "OffsetY": {
+        "name": "OffsetY",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Group": {
+        "name": "Group",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Priority": {
+        "name": "Priority",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      }
+    },
+    "data": {}
+  },
+  "GPOS_EX_H": {
+    "name": "GPOS_EX_H",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "OffsetY": {
+        "name": "OffsetY",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Group": {
+        "name": "Group",
+        "type": "char",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Priority": {
+        "name": "Priority",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none"
+      }
+    },
+    "data": {}
+  },
+  "GSUB_V": {
+    "name": "GSUB_V",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "ID"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 3,
+        "subtype": "none"
+      },
+      "NameAlt": {
+        "name": "NameAlt",
+        "type": "char",
+        "order": 4,
+        "subtype": "none"
+      },
+      "Order": {
+        "name": "Order",
+        "type": "INTEGER",
+        "order": 1,
+        "subtype": "none"
+      },
+      "Priority": {
+        "name": "Priority",
+        "type": "INTEGER",
+        "order": 2,
+        "subtype": "none"
+      }
+    },
+    "data": {
+      "0": {
+        "ID": 0,
+        "Name": "(^|P(*))S(null,,(+),)($|P(*))",
+        "NameAlt": "$1S(sol,,$2,,$3)$4",
+        "Order": 0,
+        "Priority": 6
+      },
+      "1": {
+        "ID": 1,
+        "Name": "(^|P(*))S(null,(+),(+),)($|P(*))",
+        "NameAlt": "$1S(fin,$2,$3,)$4",
+        "Order": 0,
+        "Priority": 5
+      },
+      "2": {
+        "ID": 2,
+        "Name": "(^|P(*))S(null,,(+),(+))($|P(*))",
+        "NameAlt": "$1S(init,,$2,$3)$4",
+        "Order": 0,
+        "Priority": 4
+      },
+      "3": {
+        "ID": 3,
+        "Name": "(^|P(*))S(null,(+),(+),(+))($|P(*))",
+        "NameAlt": "$1S(mid,$2,$3,$4)$5",
+        "Order": 0,
+        "Priority": 3
+      },
+      "4": {
+        "ID": 4,
+        "Name": "(^|P(*))S(null,(*),(+),(*))",
+        "NameAlt": "$1S(init,$2,$3,$4)",
+        "Order": 0,
+        "Priority": 2
+      },
+      "5": {
+        "ID": 5,
+        "Name": "S(null,(*),(+),(*))($|P(*))",
+        "NameAlt": "S(fin,$1,$2,$3,$4)",
+        "Order": 0,
+        "Priority": 1
+      },
+      "6": {
+        "ID": 6,
+        "Name": "S(null,(*),(+),(*))",
+        "NameAlt": "S(mid,$1,$2,$3)",
+        "Order": 0,
+        "Priority": 0
+      },
+      "7": {
+        "ID": 15,
+        "Name": "S((*),(x),a_(_.-*),(*))",
+        "NameAlt": "S($1,($2),abig_$3,$4)",
+        "Order": 20,
+        "Priority": 2080
+      },
+      "8": {
+        "ID": 14,
+        "Name": "S((*),(*),(*),(+))S(fin,,(*),(*))",
+        "NameAlt": "S($1,$2,$3,$4)S(fin,x_0,$5,$6)",
+        "Order": 20,
+        "Priority": 2070
+      },
+      "9": {
+        "ID": 13,
+        "Name": "S(init,(+),(*),(*))S((*),,(*),(*))",
+        "NameAlt": "S(init,$1,$2,$3)S($4,x_0,$5,$6)",
+        "Order": 20,
+        "Priority": 2060
+      },
+      "10": {
+        "ID": 12,
+        "Name": "S((*),(*),a_(_.-*),(+))S(fin,,(*),(*))",
+        "NameAlt": "S($1,$2,abig_$3,$4)S(fin,,$5,$6)",
+        "Order": 20,
+        "Priority": 2050
+      },
+      "11": {
+        "ID": 11,
+        "Name": "S((*),(*),a_(_.-*),(+))S(fin,,a_(_.-*),(*))",
+        "NameAlt": "S($1,$2,abig_$3,$4)S(fin,,abig_$5,$6)",
+        "Order": 20,
+        "Priority": 2040
+      },
+      "12": {
+        "ID": 10,
+        "Name": "S(init,,(*),)S((*),(*),a_(_.-*),(*))",
+        "NameAlt": "S(init,,$1,)S($2,$3,abig_$4,$5)",
+        "Order": 20,
+        "Priority": 2030
+      },
+      "13": {
+        "ID": 9,
+        "Name": "S(init,,a_(_.-*),)S((*),(*),(*),(*))",
+        "NameAlt": "S(init,,abig_$1,)S($2,$3,$4,$5)",
+        "Order": 20,
+        "Priority": 2020
+      },
+      "14": {
+        "ID": 8,
+        "Name": "S(init,,a_(_.-*),)S((*),(*),a_(_.-*),(*))",
+        "NameAlt": "S(init,,abig_$1,)S($2,$3,abig$4,$5)",
+        "Order": 20,
+        "Priority": 2010
+      },
+      "15": {
+        "ID": 7,
+        "Name": "S(*,,hyphen,)",
+        "NameAlt": "",
+        "Order": 20,
+        "Priority": 2000
+      }
+    }
+  },
+  "GSUB_H": {
+    "name": "GSUB_H",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "ID"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 3,
+        "subtype": "none"
+      },
+      "NameAlt": {
+        "name": "NameAlt",
+        "type": "char",
+        "order": 4,
+        "subtype": "none"
+      },
+      "Order": {
+        "name": "Order",
+        "type": "INTEGER",
+        "order": 1,
+        "subtype": "none"
+      },
+      "Priority": {
+        "name": "Priority",
+        "type": "INTEGER",
+        "order": 2,
+        "subtype": "none"
+      }
+    },
+    "data": {
+      "0": {
+        "ID": 0,
+        "Name": "S(null,,a,)",
+        "NameAlt": "S(sol,,abig_0,)",
+        "Order": 0,
+        "Priority": 28
+      },
+      "1": {
+        "ID": 1,
+        "Name": "S(null,,(*),)",
+        "NameAlt": "S(sol,,$1,)",
+        "Order": 0,
+        "Priority": 27
+      },
+      "2": {
+        "ID": 2,
+        "Name": "S(null,(*),(a|abig),)",
+        "NameAlt": "S(mid,$1,abig_0,)",
+        "Order": 0,
+        "Priority": 26
+      },
+      "3": {
+        "ID": 3,
+        "Name": "S(null,,(a|abig),(*))",
+        "NameAlt": "S(init,,abig_0,$1)",
+        "Order": 0,
+        "Priority": 25
+      },
+      "4": {
+        "ID": 4,
+        "Name": "S(null,(*),(a|abig),(*))",
+        "NameAlt": "S(mid,$1,a_0,$2)",
+        "Order": 0,
+        "Priority": 24
+      },
+      "5": {
+        "ID": 5,
+        "Name": "S(null,(*),e,)",
+        "NameAlt": "S(fin,$1,e_0,)",
+        "Order": 0,
+        "Priority": 23
+      },
+      "6": {
+        "ID": 6,
+        "Name": "S(null,,e,(*))",
+        "NameAlt": "S(fin,x_0,e_0,$1)",
+        "Order": 0,
+        "Priority": 22
+      },
+      "7": {
+        "ID": 7,
+        "Name": "S(null,(*),e,(*))",
+        "NameAlt": "S(fin,$1,e_0,$2)",
+        "Order": 0,
+        "Priority": 21
+      },
+      "8": {
+        "ID": 8,
+        "Name": "S(null,(*),i,)",
+        "NameAlt": "S(fin,$1,i_0,)",
+        "Order": 0,
+        "Priority": 20
+      },
+      "9": {
+        "ID": 9,
+        "Name": "S(null,,i,(*))",
+        "NameAlt": "S(init,,i_0,$1)",
+        "Order": 0,
+        "Priority": 19
+      },
+      "10": {
+        "ID": 10,
+        "Name": "S(null,(*),i,(*))",
+        "NameAlt": "S(fin,$1,i_1,$2)",
+        "Order": 0,
+        "Priority": 18
+      },
+      "11": {
+        "ID": 11,
+        "Name": "S(null,(*),o,)",
+        "NameAlt": "S(fin,$1,o_0,)",
+        "Order": 0,
+        "Priority": 17
+      },
+      "12": {
+        "ID": 12,
+        "Name": "S(null,,o,(*))",
+        "NameAlt": "S(,init,,o_0,$1)",
+        "Order": 0,
+        "Priority": 16
+      },
+      "13": {
+        "ID": 13,
+        "Name": "S(null,(*),o,(*))",
+        "NameAlt": "S(init,$1,o_0,$2)",
+        "Order": 0,
+        "Priority": 15
+      },
+      "14": {
+        "ID": 14,
+        "Name": "S(null,(*),u,)",
+        "NameAlt": "S(fin,$1,u_0,)",
+        "Order": 0,
+        "Priority": 14
+      },
+      "15": {
+        "ID": 15,
+        "Name": "S(null,,u,(*))",
+        "NameAlt": "S(init,,u_0,$1)",
+        "Order": 0,
+        "Priority": 13
+      },
+      "16": {
+        "ID": 16,
+        "Name": "S(null,(*),u,(*))",
+        "NameAlt": "S(fin,$1,u_1,$2)",
+        "Order": 0,
+        "Priority": 12
+      },
+      "17": {
+        "ID": 17,
+        "Name": "S(null,(*),v,)",
+        "NameAlt": "S(fin,$1,v_1,)",
+        "Order": 0,
+        "Priority": 11
+      },
+      "18": {
+        "ID": 18,
+        "Name": "S(null,,v,(*))",
+        "NameAlt": "S(init,,v_0,$1)",
+        "Order": 0,
+        "Priority": 10
+      },
+      "19": {
+        "ID": 19,
+        "Name": "S(null,(*),v,(*))",
+        "NameAlt": "S(fin,$1,v_1,$2)",
+        "Order": 0,
+        "Priority": 9
+      },
+      "20": {
+        "ID": 20,
+        "Name": "S(null,(*),eold,)",
+        "NameAlt": "S(fin,$1,eold_0,)",
+        "Order": 0,
+        "Priority": 8
+      },
+      "21": {
+        "ID": 21,
+        "Name": "S(null,,eold,(*))",
+        "NameAlt": "S(init,,eold_0,$1)",
+        "Order": 0,
+        "Priority": 7
+      },
+      "22": {
+        "ID": 22,
+        "Name": "S(null,(*),eold,(*))",
+        "NameAlt": "S(fin,$1,eold_0,$2)",
+        "Order": 0,
+        "Priority": 6
+      },
+      "23": {
+        "ID": 23,
+        "Name": "S(null,(*),iold,)",
+        "NameAlt": "S(fin,$1,iold_0,)",
+        "Order": 0,
+        "Priority": 5
+      },
+      "24": {
+        "ID": 24,
+        "Name": "S(null,,iold,(*))",
+        "NameAlt": "S(init,,iold_0,$1)",
+        "Order": 0,
+        "Priority": 4
+      },
+      "25": {
+        "ID": 25,
+        "Name": "S(null,(*),iold,(*))",
+        "NameAlt": "S(init,$1,iold_0,$2)",
+        "Order": 0,
+        "Priority": 3
+      },
+      "26": {
+        "ID": 26,
+        "Name": "S(null,(*),(br|omit),)",
+        "NameAlt": "S(mid,$1,a,,)S(sol,,$2_0,)S(mid,,a,)",
+        "Order": 0,
+        "Priority": 2
+      },
+      "27": {
+        "ID": 27,
+        "Name": "S(null,,(br|omit),(*))",
+        "NameAlt": "S(mid,,a,,)S(sol,,$1_0,)S(mid,,a,$2)",
+        "Order": 0,
+        "Priority": 1
+      },
+      "28": {
+        "ID": 28,
+        "Name": "S(null,(*),(br|omit),(*))",
+        "NameAlt": "S(mid,$1,a,,)S(sol,,$2_0,)S(mid,,a,$3)",
+        "Order": 0,
+        "Priority": 0
+      }
+    }
+  },
+  "GSUB_P": {
+    "name": "GSUB_P",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "ID"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 3,
+        "subtype": "NAME"
+      },
+      "NameAlt": {
+        "name": "NameAlt",
+        "type": "char",
+        "order": 4,
+        "subtype": "none"
+      },
+      "Order": {
+        "name": "Order",
+        "type": "INTEGER",
+        "order": 1,
+        "subtype": "none"
+      },
+      "Priority": {
+        "name": "Priority",
+        "type": "INTEGER",
+        "order": 2,
+        "subtype": "none"
+      }
+    },
+    "data": {
+      "0": {
+        "ID": 0,
+        "Name": "S(mid,(t-*),(._)0(-*),(*))",
+        "NameAlt": "S(mid,$1,$21$3,$4)",
+        "Order": 10,
+        "Priority": 3
+      },
+      "1": {
+        "ID": 1,
+        "Name": "S(fin,(t-*),(._)0(-*),(*))",
+        "NameAlt": "S(,fin,$1,$21$3,$4)",
+        "Order": 10,
+        "Priority": 2
+      },
+      "2": {
+        "ID": 2,
+        "Name": "S(fin,(*),(._)0(-*),t_0(-*))",
+        "NameAlt": "S(fin,$1,$22$3,t_1$5)",
+        "Order": 10,
+        "Priority": 1
+      },
+      "3": {
+        "ID": 3,
+        "Name": "S(fin,(t-*),(._)1(-*),t_0(-*))",
+        "NameAlt": "S(fin,$1,$23$3,t_1$5)",
+        "Order": 10,
+        "Priority": 0
+      }
+    }
+  },
+  "TEXTDATA": {
+    "name": "TEXTDATA",
+    "column": {
+      "Thickness": {
+        "name": "Thickness",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Width": {
+        "name": "Width",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      },
+      "Height": {
+        "name": "Height",
+        "type": "float",
+        "order": 0,
+        "subtype": "none"
+      }
+    },
+    "data": {
+      "0": {
+        "Thickness": 8,
+        "Width": 100,
+        "Height": 100
+      }
+    }
+  },
+  "SVG": {
+    "name": "SVG",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER"
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char"
+      },
+      "Path": {
+        "name": "Path",
+        "type": "char"
+      }
+    },
+    "data": {
+      "0": {
+        "ID": 0,
+        "Name": "abig_fin_0",
+        "Path": "M0,0M -24,0 V 8 H 24 V 0 ZM0,0"
+      },
+      "1": {
+        "ID": 0,
+        "Name": "abig_fin_1",
+        "Path": "M0,0M -24,0 V 8 H 14 V 0 ZM0,0"
+      },
+      "2": {
+        "ID": 0,
+        "Name": "abig_fin_2",
+        "Path": "M0,0M -14,0 V 8 H 24 V 0 ZM0,0"
+      },
+      "3": {
+        "ID": 0,
+        "Name": "abig_fin_3",
+        "Path": "M0,0M -14,0 V 8 H 24 V 0 ZM0,0"
+      },
+      "4": {
+        "ID": 0,
+        "Name": "abig_init_0",
+        "Path": "M0,0M -24,0 V 8 H 24 V 0 ZM0,0"
+      },
+      "5": {
+        "ID": 0,
+        "Name": "abig_mid_0",
+        "Path": "M0,0M -24,0 V 8 H 24 V 0 ZM0,0"
+      },
+      "6": {
+        "ID": 0,
+        "Name": "abig_mid_1",
+        "Path": "M0,0M -24,0 V 8 H 12 V 0 ZM0,0"
+      },
+      "7": {
+        "ID": 0,
+        "Name": "abig_sol_0",
+        "Path": "M0,0M 7.9589844,1.1328125 5.9394531,15.27539 22.785156,18.644531 21.214844,26.488281 4.8046875,23.207031 3.0488281,35.498047 18.785156,38.644531 17.214844,46.488281 1.9160156,43.427734 -0.04101562,57.132812 -7.9589844,56 -5.9375,41.857422 l -16.847656,-3.369141 1.570312,-7.84375 16.4101565,3.28125 1.7558594,-12.291016 -15.7363279,-3.146484 1.570312,-7.84375 15.2988284,3.060547 L 0.04101562,0 ZM0,0"
+      },
+      "8": {
+        "ID": 0,
+        "Name": "a_fin_0",
+        "Path": "M0,0"
+      },
+      "9": {
+        "ID": 0,
+        "Name": "a_fin_1",
+        "Path": "M0,0"
+      },
+      "10": {
+        "ID": 0,
+        "Name": "a_fin_2",
+        "Path": "M0,0"
+      },
+      "11": {
+        "ID": 0,
+        "Name": "a_fin_3",
+        "Path": "M0,0"
+      },
+      "12": {
+        "ID": 0,
+        "Name": "a_init_0",
+        "Path": "M0,0"
+      },
+      "13": {
+        "ID": 0,
+        "Name": "a_mid_0",
+        "Path": "M0,0"
+      },
+      "14": {
+        "ID": 0,
+        "Name": "a_mid_1",
+        "Path": "M0,0"
+      },
+      "15": {
+        "ID": 0,
+        "Name": "a_sol_0",
+        "Path": "M0,0"
+      },
+      "16": {
+        "ID": 0,
+        "Name": "br_fin_0",
+        "Path": "M0,0m -18,0 v 4 5 h 9 V 0 ZM0,0m 9,0 v 4 5 h 9 V 0 ZM0,0M -4,0 V 4 9 H 5 V 0 ZM0,0"
+      },
+      "17": {
+        "ID": 0,
+        "Name": "br_fin_1",
+        "Path": "M0,0m -18,0 v 4 5 h 9 V 0 ZM0,0m 9,0 v 4 5 h 9 V 0 ZM0,0M -4,0 V 4 9 H 5 V 0 ZM0,0"
+      },
+      "18": {
+        "ID": 0,
+        "Name": "br_fin_2",
+        "Path": "M0,0m -18,0 v 4 5 h 9 V 0 ZM0,0m 9,0 v 4 5 h 9 V 0 ZM0,0M -4,0 V 4 9 H 5 V 0 ZM0,0"
+      },
+      "19": {
+        "ID": 0,
+        "Name": "br_fin_3",
+        "Path": "M0,0m -18,0 v 4 5 h 9 V 0 ZM0,0m 9,0 v 4 5 h 9 V 0 ZM0,0M -4,0 V 4 9 H 5 V 0 ZM0,0"
+      },
+      "20": {
+        "ID": 0,
+        "Name": "br_init_0",
+        "Path": "M0,0m -18,0 v 4 5 h 9 V 0 ZM0,0m 9,0 v 4 5 h 9 V 0 ZM0,0M -4,0 V 4 9 H 5 V 0 ZM0,0"
+      },
+      "21": {
+        "ID": 0,
+        "Name": "br_mid_0",
+        "Path": "M0,0m -18,0 v 4 5 h 9 V 0 ZM0,0m 9,0 v 4 5 h 9 V 0 ZM0,0M -4,0 V 4 9 H 5 V 0 ZM0,0"
+      },
+      "22": {
+        "ID": 0,
+        "Name": "br_mid_1",
+        "Path": "M0,0m -18,0 v 4 5 h 9 V 0 ZM0,0m 9,0 v 4 5 h 9 V 0 ZM0,0M -4,0 V 4 9 H 5 V 0 ZM0,0"
+      },
+      "23": {
+        "ID": 0,
+        "Name": "br_sol_0",
+        "Path": "M0,0m -18,0 v 4 5 h 9 V 0 ZM0,0m 9,0 v 4 5 h 9 V 0 ZM0,0M -4,0 V 4 9 H 5 V 0 ZM0,0"
+      },
+      "24": {
+        "ID": 0,
+        "Name": "comma__0",
+        "Path": "M0,0m 17.693359,0 c -7.200048,2.4869486 -37.873046,11.958984 -37.873046,11.958984 l 2.359375,7.644532 c 0,0 30.254456,-9.321799 38.126953,-12.041016 zM0,0"
+      },
+      "25": {
+        "ID": 0,
+        "Name": "c_coda_0",
+        "Path": "M0,0m -10.634766,0 -16,14 -0.06836,5.958984 24,22 L 2.703125,36.0625 -18.003906,17.080078 -5.3652344,6.0214844 ZM0,0"
+      },
+      "26": {
+        "ID": 0,
+        "Name": "c_onset_0",
+        "Path": "M0,0M 10.634766,0 5.3652344,6.0214844 18.003906,17.080078 -2.703125,36.0625 l 5.40625,5.896484 24,-22 L 26.634766,14 ZM0,0"
+      },
+      "27": {
+        "ID": 0,
+        "Name": "d_coda_0",
+        "Path": "M0,0m 5,0 v 4 5 h 9 V 0 ZM0,0m -14,0 v 4 5 h 9 V 0 ZM0,0"
+      },
+      "28": {
+        "ID": 0,
+        "Name": "d_onset_0",
+        "Path": "M0,0m 5,0 v 4 5 h 9 V 0 ZM0,0m -14,0 v 4 5 h 9 V 0 ZM0,0"
+      },
+      "29": {
+        "ID": 0,
+        "Name": "eold_fin_0",
+        "Path": "M0,0m -4,0 c 0,3.16667 -0.8560139,5.1552927 -2.3535156,7.203125 -1.4975017,2.0478323 -3.7701974,4.033067 -6.3261724,6.339844 -5.111948,4.613554 -11.321703,11.181452 -11.322265,22.558593 0.0012,9.924286 7.977627,17.873989 17.9511718,18 h 0.083984 c 1.397511,-0.01175 2.6903266,-0.361915 3.9960938,-0.666015 -0.8005528,1.10812 -0.9478311,1.309261 -1.9433594,2.693359 -1.197181,1.664459 -2.4222502,3.3738 -3.4101562,4.765625 -0.9879061,1.391826 -1.6199282,2.266582 -2.0722657,2.994141 l 6.7929688,4.222656 c -0.00827,0.01331 0.8323804,-1.21884 1.80273435,-2.585937 0.970354,-1.367097 2.18905975,-3.067633 3.38085935,-4.72461 2.3835993,-3.313954 4.6582031,-6.453125 4.6582031,-6.453125 l 0.033203,-0.04687 13.9999996,-19.898437 -0.002,-0.002 c 9.26e-4,-0.0014 0.05273,-0.07227 0.05273,-0.07227 l -6.595703,-4.529297 -0.05078,0.07422 -0.0293,0.04102 c -0.04323,0.06411 -2.815395,4.172638 -6.9707028,8.316407 -4.1746166,4.163024 -9.6501036,7.806839 -13.6699218,7.863281 -5.9984154,-0.0966 -10.0071144,-4.133924 -10.0078124,-9.992188 4.31e-4,-8.723877 3.79335,-12.207438 8.6816405,-16.61914 2.4441453,-2.205851 5.1713023,-4.476314 7.42382812,-7.556641 C 2.3560414,8.8454541 4,4.8333345 4,0 ZM0,0"
+      },
+      "30": {
+        "ID": 0,
+        "Name": "eold_fin_1",
+        "Path": "M0,0m -4,0 v 12.101563 c 1.792e-4,2.515392 -0.8142492,4.430732 -2.3613281,6.560546 -1.5470789,2.129815 -3.8665479,4.31134 -6.3945309,6.712891 -5.055966,4.803103 -11.245495,11.019822 -11.246094,20.726562 5.51e-4,4.624504 1.110695,9.297936 3.673828,13.142579 2.563133,3.844643 6.953017,6.790152 12.2773437,6.857421 h 0.083984 c 1.19283,-0.01003 2.3140131,-0.222693 3.3769532,-0.5625 L -7.8457031,76.896484 -0.15429687,79.101562 7.84375,51.203125 7.8808594,51.070312 8.5488281,48.400391 C 10.932584,41.341284 11.958984,34.667969 11.958984,34.667969 L 4.1191406,33.130859 0.70507812,46.785156 c -1.16134343,3.229745 -2.67368822,6.367636 -4.29101562,8.429688 -1.6154783,2.059694 -2.9735542,2.849465 -4.4121094,2.875 C -10.639217,58.0413 -12.24507,56.946817 -13.671875,54.806641 -15.108796,52.65129 -15.99961,49.374008 -16,46.099609 c 0.0012,-6.393037 3.812228,-10.227442 8.7558594,-14.923828 2.4720854,-2.348449 5.152744,-4.780078 7.35546872,-7.8125 C 2.3140529,20.33086 4.0003158,16.535636 4,12.101563 V 0 ZM0,0"
+      },
+      "31": {
+        "ID": 0,
+        "Name": "eold_fin_2",
+        "Path": "M0,0m -4,0 c 0,3.16667 -0.8560139,5.1552927 -2.3535156,7.203125 -1.4975017,2.0478323 -3.7701974,4.033067 -6.3261724,6.339844 -5.111948,4.613554 -11.321703,11.181452 -11.322265,22.558593 0.0012,9.924286 7.977627,17.873989 17.9511718,18 h 0.083984 c 1.397511,-0.01175 2.6903266,-0.361915 3.9960938,-0.666015 -0.8005528,1.10812 -0.9478311,1.309261 -1.9433594,2.693359 -1.197181,1.664459 -2.4222502,3.3738 -3.4101562,4.765625 -0.9879061,1.391826 -1.6199282,2.266582 -2.0722657,2.994141 l 6.7929688,4.222656 c -0.00827,0.01331 0.8323804,-1.21884 1.80273435,-2.585937 0.970354,-1.367097 2.18905975,-3.067633 3.38085935,-4.72461 2.3835993,-3.313954 4.6582031,-6.453125 4.6582031,-6.453125 l 0.033203,-0.04687 13.9999996,-19.898437 -0.002,-0.002 c 9.26e-4,-0.0014 0.05273,-0.07227 0.05273,-0.07227 l -6.595703,-4.529297 -0.05078,0.07422 -0.0293,0.04102 c -0.04323,0.06411 -2.815395,4.172638 -6.9707028,8.316407 -4.1746166,4.163024 -9.6501036,7.806839 -13.6699218,7.863281 -5.9984154,-0.0966 -10.0071144,-4.133924 -10.0078124,-9.992188 4.31e-4,-8.723877 3.79335,-12.207438 8.6816405,-16.61914 2.4441453,-2.205851 5.1713023,-4.476314 7.42382812,-7.556641 C 2.3560414,8.8454541 4,4.8333345 4,0 ZM0,0"
+      },
+      "32": {
+        "ID": 0,
+        "Name": "eold_fin_3",
+        "Path": "M0,0m -4,0 v 12.101563 c 1.792e-4,2.515392 -0.8142492,4.430732 -2.3613281,6.560546 -1.5470789,2.129815 -3.8665479,4.31134 -6.3945309,6.712891 -5.055966,4.803103 -11.245495,11.019822 -11.246094,20.726562 5.51e-4,4.624504 1.110695,9.297936 3.673828,13.142579 2.563133,3.844643 6.953017,6.790152 12.2773437,6.857421 h 0.083984 c 1.19283,-0.01003 2.3140131,-0.222693 3.3769532,-0.5625 L -7.8457031,76.896484 -0.15429687,79.101562 7.84375,51.203125 7.8808594,51.070312 8.5488281,48.400391 C 10.932584,41.341284 11.958984,34.667969 11.958984,34.667969 L 4.1191406,33.130859 0.70507812,46.785156 c -1.16134343,3.229745 -2.67368822,6.367636 -4.29101562,8.429688 -1.6154783,2.059694 -2.9735542,2.849465 -4.4121094,2.875 C -10.639217,58.0413 -12.24507,56.946817 -13.671875,54.806641 -15.108796,52.65129 -15.99961,49.374008 -16,46.099609 c 0.0012,-6.393037 3.812228,-10.227442 8.7558594,-14.923828 2.4720854,-2.348449 5.152744,-4.780078 7.35546872,-7.8125 C 2.3140529,20.33086 4.0003158,16.535636 4,12.101563 V 0 ZM0,0"
+      },
+      "33": {
+        "ID": 0,
+        "Name": "eold_init_0",
+        "Path": "M0,0m 3.0292969,0 c -8.4564352,2.1141383 -15.2202609,5.3712097 -19.9453129,10.40625 -4.725052,5.03504 -7.085389,11.767321 -7.085937,19.574219 v 0.002 c 5.5e-4,4.624458 1.085701,9.631891 3.529297,13.908203 2.443595,4.276312 6.764339,8.018363 12.4218747,8.089844 h 0.083984 c 2.0819373,-0.01751 4.0881975,-0.400278 6.0332032,-0.978516 C -4.0974429,56.888006 -4.0000384,62.81119 -4,65.880859 H 4 C 3.9999503,61.907184 4.263688,54.839335 7.2636719,50.326172 L 21,34.625 l 0.0098,-0.0098 -6.013672,-5.277343 c 0,0 -0.0078,0.0097 -0.0078,0.0098 -0.01267,0.01434 -3.293343,3.729212 -7.9824216,7.46875 C 2.3195662,40.553723 -3.7541829,43.922174 -8,43.974609 c -2.314287,-0.04824 -3.98255,-1.351286 -5.527344,-4.054687 -1.556081,-2.723155 -2.473879,-6.663376 -2.474609,-9.9375 v -0.002 c 8.07e-4,-6.292991 1.643205,-10.610005 4.917969,-14.09961 3.2751272,-3.489993 8.5112581,-6.2332567 16.0546871,-8.1191403 zM0,0"
+      },
+      "34": {
+        "ID": 0,
+        "Name": "eold_mid_0",
+        "Path": "M0,0m -4,0 c 0,3.1666731 -0.8560399,5.1552971 -2.3535156,7.203125 -1.4974757,2.0478279 -3.7702394,4.033065 -6.3261724,6.339844 -5.111865,4.613557 -11.321699,11.181459 -11.322265,22.558593 5.5e-4,4.624505 1.110736,9.297942 3.673828,13.142579 2.563092,3.844636 6.953073,6.790127 12.2773437,6.857421 h 0.083984 c 1.7012274,-0.01431 3.3275854,-0.326542 4.9082031,-0.783203 C -3.9593244,59.666427 -4.0000291,63.673367 -4,66 H 4 C 3.9999503,62.026406 4.263676,54.95843 7.2636719,50.445312 l 3.9414061,-4.505859 c 0.361206,-0.350469 0.771196,-0.697846 1.119141,-1.044922 5.280713,-5.267519 8.947265,-10.492187 8.947265,-10.492187 L 14.988281,29.466797 5.6113281,40.183594 c -4.5432795,4.266009 -10.0656642,7.852394 -13.6015625,7.908203 -2.6467086,-0.04611 -4.2531646,-1.142444 -5.6816406,-3.285156 -1.436906,-2.155358 -2.329688,-5.430643 -2.330078,-8.705079 4.34e-4,-8.723921 3.793436,-12.20744 8.6816405,-16.61914 2.4441024,-2.20585 5.1713401,-4.476318 7.42382812,-7.556641 C 2.3560036,8.845459 4,4.8333129 4,0 ZM0,0"
+      },
+      "35": {
+        "ID": 0,
+        "Name": "eold_mid_1",
+        "Path": "M0,0m -4,0 -0.00195,10.101563 c 1.791e-4,2.515426 -0.8123169,4.430728 -2.359375,6.560546 -1.5470582,2.129819 -3.8665849,4.311342 -6.3945309,6.712891 -5.055892,4.803098 -11.245495,11.019858 -11.246094,20.726562 5.51e-4,4.624505 1.110737,9.297943 3.673828,13.142579 2.563091,3.844636 6.953075,6.790127 12.2773437,6.857421 h 0.083984 c 1.6205049,-0.01363 3.0789167,-0.45521 4.4570313,-1.050781 C -3.94647,67.700619 -4.0000287,72.121288 -4,74 H 4 C 3.9999695,72.000118 4.00638,67.656128 4.4785156,63.181641 4.9506512,58.707154 6.1357621,54.078605 7.3105469,52.345703 l 0.59375,-1.376953 2.4433591,-10.990234 c 0.928164,-3.821991 1.506607,-6.678771 1.550782,-6.984375 2.06e-4,-0.0014 0.0057,-0.02407 0.0059,-0.02539 0.0022,-0.01548 0.05469,-0.300781 0.05469,-0.300781 L 4.09375,31.234375 2.5078125,38.371094 c -0.5007453,2.030454 -0.957198,4.05878 -1.77539063,6.345703 -1.16471108,3.255473 -2.68887127,6.420457 -4.31835937,8.498047 -1.615454,2.059696 -2.973614,2.849463 -4.4121094,2.875 -2.6411121,-0.04856 -4.2470381,-1.143019 -5.6738281,-3.283203 -1.436906,-2.155358 -2.329688,-5.430643 -2.330078,-8.705079 3.95e-4,-6.39433 3.811759,-10.228885 8.7558593,-14.925781 2.4720499,-2.348448 5.1547308,-4.780078 7.35742182,-7.8125 C 2.3140192,18.33086 3.9983627,14.535622 3.9980469,10.101563 L 4,0.00195313 ZM0,0"
+      },
+      "36": {
+        "ID": 0,
+        "Name": "eold_sol_0",
+        "Path": "M0,0M 4.2519531,0 C -4.204461,2.1141396 -10.970275,5.3712102 -15.695313,10.40625 c -4.725037,5.03504 -7.083434,11.767339 -7.083984,19.574219 v 0.002 c 5.51e-4,4.624455 1.08376,9.631881 3.527344,13.908203 2.443584,4.276322 6.764343,8.018336 12.4218749,8.089844 h 0.083984 c 3.2379571,-0.02723 6.28088293,-0.957815 9.1679687,-2.212891 -0.083248,0.119759 -0.1512008,0.22219 -0.234375,0.341797 -6.2396437,8.972785 -12.234375,17.464844 -12.234375,17.464844 l 6.5351562,4.613281 c 0,0 6.0076009,-8.509694 12.2675782,-17.511719 C 11.885848,50.174769 15.07738,45.551224 17.625,41.791016 c 2.54762,-3.760209 4.248843,-6.218339 5.154297,-7.984375 l -6.560547,-4.46875 c 0,0 -3.294069,3.731737 -7.9921875,7.478515 -4.6862708,3.73733 -10.7581194,7.105758 -15.0039062,7.158203 -2.3142722,-0.04825 -3.9845033,-1.351266 -5.5292973,-4.054687 -1.55637,-2.72368 -2.472266,-6.664965 -2.472656,-9.939453 4.44e-4,-6.294115 1.642849,-10.609614 4.9179689,-14.09961 3.2751199,-3.489995 8.5093304,-6.2332571 16.0527343,-8.1191403 zM0,0"
+      },
+      "37": {
+        "ID": 0,
+        "Name": "error",
+        "Path": "M0,0"
+      },
+      "38": {
+        "ID": 0,
+        "Name": "e_fin_0",
+        "Path": "M0,0m -4,0 c 1.7e-5,0.15014101 -1.62e-5,0.25269217 0,0.40039063 C -10.846568,1.3027579 -15.931876,4.2759615 -19.035156,7.8964844 -22.729305,12.206359 -23.998047,16.66668 -23.998047,20 c 0,1.999999 -0.09223,6.436637 1.482422,10.845703 0.787327,2.204533 2.043275,4.490784 4.154297,6.273438 C -16.250307,38.901795 -13.299986,40 -10,40 -6.5666693,40 -3.465393,38.62355 -1.3886719,36.546875 0.68804926,34.4702 1.8430259,31.911304 2.5878906,29.378906 4.0776201,24.31411 4.0003401,19.000429 4,16 4.0003271,13.113362 3.9999876,10.709003 4,8.3027344 8.5170349,8.9289462 11.15218,10.592079 12.876953,12.748047 15.06432,15.482258 16,19.533259 16,24 c 0,5.860815 -2.22311,9.209793 -5.558594,12.013672 -3.3354835,2.803879 -7.9003608,4.703691 -11.8925779,6.259765 L 1.453125,49.726562 C 5.5002489,48.149087 10.935237,46.049481 15.589844,42.136719 20.244451,38.223957 24,32.139032 24,24 24,18.466613 22.937599,12.517706 19.125,7.7519531 15.92935,3.7573868 10.758069,1.1330037 4,0.34960938 3.9999858,0.2203696 4.0000149,0.13110754 4,0 H 0 Z m 0,8.3613281 c -1.47e-5,2.3879059 3.246e-4,4.7742009 0,7.6386719 3.399e-4,2.999421 -0.075517,7.685856 -1.0859375,11.121094 -0.5052104,1.717619 -1.2250746,3.033684 -1.9609375,3.769531 C -7.7827379,31.626472 -8.4333702,32 -10,32 c -1.699974,0 -2.497763,-0.401796 -3.199219,-0.994141 -0.701456,-0.592345 -1.32054,-1.556097 -1.783203,-2.851562 -0.925325,-2.590931 -1.015625,-6.154298 -1.015625,-8.154297 0,-0.666679 0.729355,-4.206362 3.035156,-6.896484 C -11.152508,10.991386 -8.4403011,9.0980362 -4,8.3613281 ZM0,0"
+      },
+      "39": {
+        "ID": 0,
+        "Name": "e_fin_1",
+        "Path": "M0,0M -7.9980469,0 C -15.331338,0 -20.241124,4.4096559 -22.175781,8.9238281 -24.110439,13.438 -23.998047,18.000028 -23.998047,20 c 0,1.999997 -0.09224,6.436638 1.482422,10.845703 0.787331,2.204533 2.043268,4.490787 4.154297,6.273438 C -16.250299,38.90179 -13.29804,40 -9.9980469,40 c 2.6566905,0 4.9677013,-0.714965 6.953125,-1.775391 -1.2406548,4.63929 -3.5258657,8.195053 -8.3730471,10.035157 l 2.8378909,7.480468 C 0.5973533,52.256268 4.4301338,43.785824 5.6367188,35.96875 6.8433038,28.151676 5.9852694,20.240149 6.0019531,16.015625 V 16.007812 16 c 0,-3.734599 -0.3833045,-7.096836 -2,-10.0078125 V 0 h -8 V 0.4375 C -5.2715775,0.1734436 -6.596114,0 -7.9980469,0 Z m 0,8 c 2.3660265,0 3.3324918,0.3565072 4,0.8183594 V 20 c 0,4.000001 -0.1788784,7.626165 -0.9433593,9.460938 C -5.7058873,31.295711 -6.0647317,32 -9.9980469,32 c -1.6999911,0 -2.4997091,-0.401793 -3.2011721,-0.994141 -0.701462,-0.592346 -1.320538,-1.556099 -1.783203,-2.851562 -0.925328,-2.590926 -1.015625,-6.1543 -1.015625,-8.154297 0,-2.000022 0.110482,-5.438147 1.175781,-7.923828 C -13.756967,9.59049 -12.664732,8 -7.9980469,8 ZM0,0"
+      },
+      "40": {
+        "ID": 0,
+        "Name": "e_fin_2",
+        "Path": "M0,0m -4,0 c 1.7e-5,0.15014101 -1.62e-5,0.25269217 0,0.40039063 C -10.846568,1.3027579 -15.931876,4.2759615 -19.035156,7.8964844 -22.729305,12.206359 -23.998047,16.66668 -23.998047,20 c 0,1.999999 -0.09223,6.436637 1.482422,10.845703 0.787327,2.204533 2.043275,4.490784 4.154297,6.273438 C -16.250307,38.901795 -13.299986,40 -10,40 -6.5666693,40 -3.465393,38.62355 -1.3886719,36.546875 0.68804926,34.4702 1.8430259,31.911304 2.5878906,29.378906 4.0776201,24.31411 4.0003401,19.000429 4,16 4.0003271,13.113362 3.9999876,10.709003 4,8.3027344 8.5170349,8.9289462 11.15218,10.592079 12.876953,12.748047 15.06432,15.482258 16,19.533259 16,24 c 0,5.860815 -2.22311,9.209793 -5.558594,12.013672 -3.3354835,2.803879 -7.9003608,4.703691 -11.8925779,6.259765 L 1.453125,49.726562 C 5.5002489,48.149087 10.935237,46.049481 15.589844,42.136719 20.244451,38.223957 24,32.139032 24,24 24,18.466613 22.937599,12.517706 19.125,7.7519531 15.92935,3.7573868 10.758069,1.1330037 4,0.34960938 3.9999858,0.2203696 4.0000149,0.13110754 4,0 H 0 Z m 0,8.3613281 c -1.47e-5,2.3879059 3.246e-4,4.7742009 0,7.6386719 3.399e-4,2.999421 -0.075517,7.685856 -1.0859375,11.121094 -0.5052104,1.717619 -1.2250746,3.033684 -1.9609375,3.769531 C -7.7827379,31.626472 -8.4333702,32 -10,32 c -1.699974,0 -2.497763,-0.401796 -3.199219,-0.994141 -0.701456,-0.592345 -1.32054,-1.556097 -1.783203,-2.851562 -0.925325,-2.590931 -1.015625,-6.154298 -1.015625,-8.154297 0,-0.666679 0.729355,-4.206362 3.035156,-6.896484 C -11.152508,10.991386 -8.4403011,9.0980362 -4,8.3613281 ZM0,0"
+      },
+      "41": {
+        "ID": 0,
+        "Name": "e_fin_3",
+        "Path": "M0,0M -7.9980469,0 C -15.331338,0 -20.241124,4.4096559 -22.175781,8.9238281 -24.110439,13.438 -23.998047,18.000028 -23.998047,20 c 0,1.999997 -0.09224,6.436638 1.482422,10.845703 0.787331,2.204533 2.043268,4.490787 4.154297,6.273438 C -16.250299,38.90179 -13.29804,40 -9.9980469,40 c 2.6566905,0 4.9677013,-0.714965 6.953125,-1.775391 -1.2406548,4.63929 -3.5258657,8.195053 -8.3730471,10.035157 l 2.8378909,7.480468 C 0.5973533,52.256268 4.4301338,43.785824 5.6367188,35.96875 6.8433038,28.151676 5.9852694,20.240149 6.0019531,16.015625 V 16.007812 16 c 0,-3.734599 -0.3833045,-7.096836 -2,-10.0078125 V 0 h -8 V 0.4375 C -5.2715775,0.1734436 -6.596114,0 -7.9980469,0 Z m 0,8 c 2.3660265,0 3.3324918,0.3565072 4,0.8183594 V 20 c 0,4.000001 -0.1788784,7.626165 -0.9433593,9.460938 C -5.7058873,31.295711 -6.0647317,32 -9.9980469,32 c -1.6999911,0 -2.4997091,-0.401793 -3.2011721,-0.994141 -0.701462,-0.592346 -1.320538,-1.556099 -1.783203,-2.851562 -0.925328,-2.590926 -1.015625,-6.1543 -1.015625,-8.154297 0,-2.000022 0.110482,-5.438147 1.175781,-7.923828 C -13.756967,9.59049 -12.664732,8 -7.9980469,8 ZM0,0"
+      },
+      "42": {
+        "ID": 0,
+        "Name": "e_init_0",
+        "Path": "M0,0M -2,0 V 0.20117188 C -9.8891753,0.71218239 -15.636455,3.9313044 -19.035156,7.8964844 -22.729306,12.206357 -23.998047,16.66668 -23.998047,20 c 0,1.999998 -0.09223,6.436639 1.482422,10.845703 0.787327,2.204532 2.043275,4.490785 4.154297,6.273438 C -16.250306,38.901794 -13.299986,40 -10,40 -6.7000141,40 -3.6925445,38.885356 -1.5605469,36.990234 0.57145078,35.095112 1.8018357,32.646252 2.5683594,30.193359 4.1014067,25.287574 4,19.999996 4,16 4,14.033627 4.001554,11.010764 3.734375,8.234375 8.5442502,8.7342358 11.300416,10.163953 12.962891,12.103516 15.023695,14.507798 16,18.444448 16,24 16,30.333388 12.214581,34.125922 7.3242187,38.527344 4.8790375,40.728054 2.2350119,42.935576 0.01953125,45.667969 -2.1959494,48.400362 -3.999767,51.888946 -4,56 H 4 C 4.000107,54.111057 4.6978594,52.599635 6.2324219,50.707031 7.7669844,48.814427 10.123028,46.771941 12.677734,44.472656 17.787147,39.874086 24,33.666594 24,24 24,17.555564 22.976271,11.492194 19.037109,6.8964844 15.097948,2.3007744 8.6666287,-5.4166652e-7 0,0 -0.52152418,-3.2595472e-8 -0.94553774,0.12099916 -1.4492187,0.14453125 -1.6422357,0.11673152 -1.8012569,0 -2,0 Z m -2.3164062,8.3886719 c 0.031003,0.2225647 0.063443,0.2652807 0.087891,0.5097656 C -4.0100452,11.083181 -4,14.000002 -4,16 -4,19.999996 -4.0994733,24.712434 -5.0664062,27.806641 -5.5498727,29.353744 -6.1945199,30.40489 -6.875,31.009766 -7.5554801,31.614641 -8.3000254,32 -10,32 c -1.699974,0 -2.497763,-0.401796 -3.199219,-0.994141 -0.701456,-0.592344 -1.32054,-1.556098 -1.783203,-2.851562 -0.925325,-2.590928 -1.015625,-6.154299 -1.015625,-8.154297 0,-0.666676 0.729356,-4.206364 3.035156,-6.896484 1.771208,-2.066425 4.3779082,-3.9435472 8.6464848,-4.7148441 zM0,0"
+      },
+      "43": {
+        "ID": 0,
+        "Name": "e_mid_0",
+        "Path": "M0,0M -4,0 V 0.40039063 C -10.846568,1.3027579 -15.931876,4.2759616 -19.035156,7.8964844 -22.729305,12.206359 -23.998047,16.66668 -23.998047,20 c 0,1.999999 -0.09223,6.436637 1.482422,10.845703 0.787327,2.204533 2.043275,4.490784 4.154297,6.273438 C -16.250307,38.901795 -13.299986,40 -10,40 -6.7000136,40 -3.6925444,38.885357 -1.5605469,36.990234 0.57145062,35.095111 1.8018359,32.646253 2.5683594,30.193359 4.1014064,25.287572 4,19.999998 4,16 V 8.25 c 4.6557054,0.5240431 7.328742,1.946999 8.962891,3.853516 C 15.023695,14.507801 16,18.444444 16,24 16,30.356769 12.213898,34.41328 7.3847656,38.896484 4.9701994,41.138086 2.3677497,43.353562 0.16796875,46 -2.0318122,48.646438 -3.8981036,51.943821 -3.9980469,55.898437 L -4,55.949219 V 60 H 4 V 56.101562 C 4.0406551,54.492896 4.7437518,53.009956 6.3203125,51.113281 7.8968732,49.216606 10.277868,47.127338 12.828125,44.759766 17.928638,40.024621 24,33.643221 24,24 24,17.555561 22.97627,11.492197 19.037109,6.8964844 15.746027,3.0568675 10.620427,0.91565587 4,0.28320313 V 0 H 0 Z m 0,8.3613281 V 16 c 0,3.999998 -0.099473,8.712431 -1.0664062,11.806641 C -5.5498729,29.353745 -6.1945197,30.40489 -6.875,31.009766 -7.5554803,31.614642 -8.3000259,32 -10,32 c -1.699974,0 -2.497763,-0.401796 -3.199219,-0.994141 -0.701456,-0.592345 -1.32054,-1.556097 -1.783203,-2.851562 -0.925325,-2.590931 -1.015625,-6.154298 -1.015625,-8.154297 0,-0.666678 0.729355,-4.206362 3.035156,-6.896484 C -11.152508,10.991386 -8.4403011,9.0980362 -4,8.3613281 ZM0,0"
+      },
+      "44": {
+        "ID": 0,
+        "Name": "e_mid_1",
+        "Path": "M0,0M -7.9980469,0 C -15.331375,0 -20.241136,4.4095962 -22.175781,8.9238281 -24.110427,13.43806 -23.998047,18.000026 -23.998047,20 c 0,2.000001 -0.09224,6.436633 1.482422,10.845703 0.787332,2.204535 2.043266,4.490786 4.154297,6.273438 C -16.250297,38.901792 -13.298043,40 -9.9980469,40 -7.5470418,40 -5.4190864,39.357421 -3.53125,38.441406 -3.7912445,41.230045 -3.997819,44.191561 -3.9980469,48 h 8 c 6.914e-4,-11.555848 2,-15.666797 2,-32 0,-3.734602 -0.383329,-7.0967923 -2,-10.0078125 V 0 h -8 V 0.4375 C -5.2715888,0.17342479 -6.5960989,0 -7.9980469,0 Z m 0,8 c 2.3659964,0 3.3324894,0.3564768 4,0.8183594 V 20 c 0,4.000006 -0.1788776,7.626163 -0.9433593,9.460937 C -5.705888,31.295712 -6.0647279,32 -9.9980469,32 -11.69804,32 -12.497756,31.598207 -13.199219,31.005859 -13.900682,30.413512 -14.519757,29.449761 -14.982422,28.154297 -15.907751,25.563369 -15.998047,22.000001 -15.998047,20 c 0,-2.000024 0.110467,-5.438062 1.175781,-7.923828 C -13.756951,9.5904062 -12.664706,8 -7.9980469,8 ZM0,0"
+      },
+      "45": {
+        "ID": 0,
+        "Name": "e_sol_0",
+        "Path": "M0,0M 0,0 C -8.9999869,0 -15.340987,3.5866133 -19.035156,7.8964844 -22.729326,12.206355 -23.998047,16.666673 -23.998047,20 c 0,1.999998 -0.09224,6.436633 1.482422,10.845703 0.787332,2.204535 2.043266,4.490786 4.154297,6.273438 C -16.250298,38.901792 -13.298043,40 -9.9980469,40 c 3.2999962,0 6.3054932,-1.114645 8.4375,-3.009766 2.13200681,-1.89512 3.3623778,-4.343979 4.1289063,-6.796875 C 4.1014163,25.287569 4.0019531,19.999996 4.0019531,16 c 0,-1.999986 0.040403,-4.754676 -0.5957031,-7.6171875 -0.012511,-0.056302 -0.055135,-0.1171413 -0.068359,-0.1738281 5.0460681,0.4610677 7.9221704,1.9056216 9.6269534,3.8945316 2.06082,2.404286 3.037109,6.340937 3.037109,11.896484 1.3e-5,3.399993 -2.173149,6.991548 -5.736328,10.332031 -3.5631789,3.340483 -8.2912462,6.209102 -12.0527344,8.089844 l 3.5761719,7.15625 C 6.0275793,47.458869 11.299521,44.327479 15.736328,40.167969 20.173135,36.008459 24.001978,30.600001 24.001953,24 c 0,-6.444441 -1.025661,-12.50781 -4.964844,-17.1035156 C 15.097927,2.3007784 8.6666528,0 0,0 Z m -4.9589844,8.515625 c 0.2022115,0.3866197 0.3907317,0.8637521 0.5546875,1.601563 C -4.0404159,11.754672 -4,13.99999 -4,16 -4,19.999996 -4.0994686,24.712435 -5.0664062,27.806641 -5.5498751,29.353744 -6.194513,30.404887 -6.875,31.009766 -7.555487,31.614644 -8.2980541,32 -9.9980469,32 c -1.6999921,0 -2.4997091,-0.401793 -3.2011721,-0.994141 -0.701463,-0.592347 -1.320538,-1.556098 -1.783203,-2.851562 -0.925329,-2.590928 -1.015625,-6.154299 -1.015625,-8.154297 0,-0.666669 0.729341,-4.206363 3.035156,-6.896484 1.680369,-1.960433 4.1174439,-3.7484365 8.0039066,-4.587891 zM0,0"
+      },
+      "46": {
+        "ID": 0,
+        "Name": "hd_coda_0",
+        "Path": "M0,0m 0,0 c -3.8422993,0 -7,3.1577002 -7,7 0,3.8423 3.1577002,7 7,7 C 3.8422998,14 7,10.8423 7,7 7,3.1577002 3.8422993,0 0,0 Z M 0,4 C 1.6805372,4 3,5.3194633 3,7 3,8.6805367 1.6805367,10 0,10 -1.6805367,10 -3,8.6805367 -3,7 -3,5.3194633 -1.6805372,4 0,4 ZM0,0"
+      },
+      "47": {
+        "ID": 0,
+        "Name": "hd_onset_0",
+        "Path": "M0,0m 0,0 c -3.8422993,0 -7,3.1577002 -7,7 0,3.8423 3.1577002,7 7,7 C 3.8422998,14 7,10.8423 7,7 7,3.1577002 3.8422993,0 0,0 Z M 0,4 C 1.6805372,4 3,5.3194633 3,7 3,8.6805367 1.6805367,10 0,10 -1.6805367,10 -3,8.6805367 -3,7 -3,5.3194633 -1.6805372,4 0,4 ZM0,0"
+      },
+      "48": {
+        "ID": 0,
+        "Name": "hyphen_fin_0",
+        "Path": "M0,0"
+      },
+      "49": {
+        "ID": 0,
+        "Name": "hyphen_fin_1",
+        "Path": "M0,0"
+      },
+      "50": {
+        "ID": 0,
+        "Name": "hyphen_fin_2",
+        "Path": "M0,0"
+      },
+      "51": {
+        "ID": 0,
+        "Name": "hyphen_fin_3",
+        "Path": "M0,0"
+      },
+      "52": {
+        "ID": 0,
+        "Name": "hyphen_init_0",
+        "Path": "M0,0"
+      },
+      "53": {
+        "ID": 0,
+        "Name": "hyphen_mid_0",
+        "Path": "M0,0"
+      },
+      "54": {
+        "ID": 0,
+        "Name": "hyphen_mid_1",
+        "Path": "M0,0"
+      },
+      "55": {
+        "ID": 0,
+        "Name": "hyphen_sol_0",
+        "Path": "M0,0"
+      },
+      "56": {
+        "ID": 0,
+        "Name": "hy_coda_0",
+        "Path": "M0,0M -21.300781 0 L -26.707031 5.8984375 L -5.625 25.222656 L -20.976562 42.277344 L -15.029297 47.630859 L 2.9726562 27.628906 L 2.703125 22.001953 L -21.300781 0 z M -20.832031 18.123047 C -25.304141 22.595161 -29.343303 28.686605 -31.582031 33.164062 L -24.425781 36.742188 C -22.663964 33.218552 -18.702819 27.30829 -15.173828 23.779297 L -20.832031 18.123047 z M0,0"
+      },
+      "57": {
+        "ID": 0,
+        "Name": "hy_onset_0",
+        "Path": "M0,0M 21.296875 0 L -2.703125 22 L -2.9726562 27.625 L 15.027344 47.625 L 20.972656 42.273438 L 5.625 25.21875 L 26.703125 5.8964844 L 21.296875 0 z M 20.828125 18.119141 L 15.171875 23.777344 C 18.700462 27.305934 22.660396 33.215323 24.421875 36.738281 L 31.578125 33.160156 C 29.339618 28.683142 25.29952 22.590538 20.828125 18.119141 z M0,0"
+      },
+      "58": {
+        "ID": 0,
+        "Name": "h_coda_0",
+        "Path": "M0,0M -14,0 C -19.051924,0 -23.89033,2.0312737 -27.132812,5.9492187 -30.375295,9.8671638 -32,15.348655 -32,22 c 0,6.651377 1.624704,12.132832 4.867188,16.050781 C -23.890329,41.96873 -19.051922,44 -14,44 -8.9480659,44 -4.1096614,41.968737 -0.8671875,38.050781 2.3752864,34.132826 4,28.651342 4,22 4,15.348657 2.3752906,9.8671648 -0.8671875,5.9492187 -4.1096656,2.0312727 -8.9480762,0 -14,0 Z m 0,8 c 3.085765,0 5.2476155,0.9687427 6.9707031,3.050781 C -5.3062092,13.13282 -4,16.651393 -4,22 -4,27.348608 -5.3062077,30.867171 -7.0292969,32.949219 -8.752386,35.031267 -10.914234,36 -14,36 -17.085778,36 -19.247616,35.031254 -20.970703,32.949219 -22.69379,30.867183 -24,27.348648 -24,22 c 0,-5.348605 1.306206,-8.867179 3.029297,-10.949219 C -19.247612,8.9687417 -17.085765,8 -14,8 ZM0,0"
+      },
+      "59": {
+        "ID": 0,
+        "Name": "h_onset_0",
+        "Path": "M0,0M 14,0 C 8.9480762,0 4.1096698,2.0312736 0.8671875,5.9492187 -2.3752948,9.8671639 -4,15.348655 -4,22 -4,28.651377 -2.3752963,34.132832 0.8671875,38.050781 4.1096713,41.96873 8.9480781,44 14,44 19.051934,44 23.890338,41.968736 27.132812,38.050781 30.375287,34.132826 32,28.651342 32,22 32,15.348656 30.375292,9.8671645 27.132812,5.9492187 23.890333,2.031273 19.051924,0 14,0 Z m 0,8 c 3.085765,0 5.247615,0.9687424 6.970703,3.050781 C 22.693792,13.13282 24,16.651394 24,22 24,27.348608 22.693793,30.86717 20.970703,32.949219 19.247613,35.031267 17.085766,36 14,36 10.914222,36 8.7523837,35.031254 7.0292969,32.949219 5.3062101,30.867183 4,27.348648 4,22 4,16.651395 5.3062058,13.132821 7.0292969,11.050781 8.7523879,8.9687418 10.914235,8 14,8 ZM0,0"
+      },
+      "60": {
+        "ID": 0,
+        "Name": "iold_fin_0",
+        "Path": "M0,0m -4,0 c 3.692e-4,5.222606 -3.351188,8.6179429 -7.904297,13.423828 C -16.457406,18.229713 -21.999411,24.458885 -22,34 c 0,5.194835 0.351895,10.082962 2.410156,14.339844 -1.291183,1.832261 -2.639895,3.692265 -3.738281,5.339843 l 6.65625,4.4375 c 0.698736,-1.048103 1.705424,-2.430504 2.517578,-3.595703 C -10.640529,56.776965 -5.9520406,58 0,58 8.9999867,58 15.062703,54.2919 18.253906,49.824219 21.44511,45.356537 22,40.666681 22,38 22.000648,35.298592 21.460489,31.749909 19.429687,28.365234 17.398886,24.980559 13.286775,21.932528 7.9492187,22 c -4.6289809,0.0586 -8.36987477,1.403856 -11.0507812,3.699219 -2.6809064,2.295363 -4.2721069,5.048792 -6.2265625,7.980468 -1.182958,1.774438 -2.799859,4.024013 -4.261719,6.087891 C -13.805171,38.02793 -14,36.247332 -14,34 -13.999595,27.44008 -10.542781,23.619749 -6.0957031,18.925781 -1.6486257,14.231814 4.0006134,8.6762523 4,0 Z M 8.0488281,30 c 2.6634309,-0.03367 3.5522929,0.867099 4.5214849,2.482422 0.969191,1.615323 1.430022,4.115909 1.429687,5.515625 V 38 c 0,1.33334 -0.44706,4.643464 -2.255859,7.175781 C 9.9353409,47.708099 6.9999847,50 0,50 -4.9797704,50 -7.784706,49.231066 -9.6308594,48.060547 -7.1448742,44.580136 -4.7169841,41.184852 -2.671875,38.117187 -0.62632453,35.04887 0.78321692,32.904144 2.1015625,31.775391 3.41957,30.646927 4.6787704,30.042966 8.0488281,30 ZM0,0"
+      },
+      "61": {
+        "ID": 0,
+        "Name": "iold_fin_1",
+        "Path": "M0,0m -4,0 c 3.692e-4,5.222606 -3.351188,8.6179429 -7.904297,13.423828 C -16.457406,18.229713 -21.999411,24.458885 -22,34 c 0,5.194835 0.351895,10.082962 2.410156,14.339844 -1.291183,1.832261 -2.639895,3.692265 -3.738281,5.339843 l 6.65625,4.4375 c 0.698736,-1.048103 1.705424,-2.430504 2.517578,-3.595703 C -10.640529,56.776965 -5.9520406,58 0,58 8.9999867,58 15.062703,54.2919 18.253906,49.824219 21.44511,45.356537 22,40.666681 22,38 22.000648,35.298592 21.460489,31.749909 19.429687,28.365234 17.398886,24.980559 13.286775,21.932528 7.9492187,22 c -4.6289809,0.0586 -8.36987477,1.403856 -11.0507812,3.699219 -2.6809064,2.295363 -4.2721069,5.048792 -6.2265625,7.980468 -1.182958,1.774438 -2.799859,4.024013 -4.261719,6.087891 C -13.805171,38.02793 -14,36.247332 -14,34 -13.999595,27.44008 -10.542781,23.619749 -6.0957031,18.925781 -1.6486257,14.231814 4.0006134,8.6762523 4,0 Z M 8.0488281,30 c 2.6634309,-0.03367 3.5522929,0.867099 4.5214849,2.482422 0.969191,1.615323 1.430022,4.115909 1.429687,5.515625 V 38 c 0,1.33334 -0.44706,4.643464 -2.255859,7.175781 C 9.9353409,47.708099 6.9999847,50 0,50 -4.9797704,50 -7.784706,49.231066 -9.6308594,48.060547 -7.1448742,44.580136 -4.7169841,41.184852 -2.671875,38.117187 -0.62632453,35.04887 0.78321692,32.904144 2.1015625,31.775391 3.41957,30.646927 4.6787704,30.042966 8.0488281,30 ZM0,0"
+      },
+      "62": {
+        "ID": 0,
+        "Name": "iold_fin_2",
+        "Path": "M0,0m -4,0 c 3.692e-4,5.222606 -3.351188,8.6179429 -7.904297,13.423828 C -16.457406,18.229713 -21.999411,24.458885 -22,34 c 0,5.194835 0.351895,10.082962 2.410156,14.339844 -1.291183,1.832261 -2.639895,3.692265 -3.738281,5.339843 l 6.65625,4.4375 c 0.698736,-1.048103 1.705424,-2.430504 2.517578,-3.595703 C -10.640529,56.776965 -5.9520406,58 0,58 8.9999867,58 15.062703,54.2919 18.253906,49.824219 21.44511,45.356537 22,40.666681 22,38 22.000648,35.298592 21.460489,31.749909 19.429687,28.365234 17.398886,24.980559 13.286775,21.932528 7.9492187,22 c -4.6289809,0.0586 -8.36987477,1.403856 -11.0507812,3.699219 -2.6809064,2.295363 -4.2721069,5.048792 -6.2265625,7.980468 -1.182958,1.774438 -2.799859,4.024013 -4.261719,6.087891 C -13.805171,38.02793 -14,36.247332 -14,34 -13.999595,27.44008 -10.542781,23.619749 -6.0957031,18.925781 -1.6486257,14.231814 4.0006134,8.6762523 4,0 Z M 8.0488281,30 c 2.6634309,-0.03367 3.5522929,0.867099 4.5214849,2.482422 0.969191,1.615323 1.430022,4.115909 1.429687,5.515625 V 38 c 0,1.33334 -0.44706,4.643464 -2.255859,7.175781 C 9.9353409,47.708099 6.9999847,50 0,50 -4.9797704,50 -7.784706,49.231066 -9.6308594,48.060547 -7.1448742,44.580136 -4.7169841,41.184852 -2.671875,38.117187 -0.62632453,35.04887 0.78321692,32.904144 2.1015625,31.775391 3.41957,30.646927 4.6787704,30.042966 8.0488281,30 ZM0,0"
+      },
+      "63": {
+        "ID": 0,
+        "Name": "iold_fin_3",
+        "Path": "M0,0m -4,0 c 3.692e-4,5.222606 -3.351188,8.6179429 -7.904297,13.423828 C -16.457406,18.229713 -21.999411,24.458885 -22,34 c 0,5.194835 0.351895,10.082962 2.410156,14.339844 -1.291183,1.832261 -2.639895,3.692265 -3.738281,5.339843 l 6.65625,4.4375 c 0.698736,-1.048103 1.705424,-2.430504 2.517578,-3.595703 C -10.640529,56.776965 -5.9520406,58 0,58 8.9999867,58 15.062703,54.2919 18.253906,49.824219 21.44511,45.356537 22,40.666681 22,38 22.000648,35.298592 21.460489,31.749909 19.429687,28.365234 17.398886,24.980559 13.286775,21.932528 7.9492187,22 c -4.6289809,0.0586 -8.36987477,1.403856 -11.0507812,3.699219 -2.6809064,2.295363 -4.2721069,5.048792 -6.2265625,7.980468 -1.182958,1.774438 -2.799859,4.024013 -4.261719,6.087891 C -13.805171,38.02793 -14,36.247332 -14,34 -13.999595,27.44008 -10.542781,23.619749 -6.0957031,18.925781 -1.6486257,14.231814 4.0006134,8.6762523 4,0 Z M 8.0488281,30 c 2.6634309,-0.03367 3.5522929,0.867099 4.5214849,2.482422 0.969191,1.615323 1.430022,4.115909 1.429687,5.515625 V 38 c 0,1.33334 -0.44706,4.643464 -2.255859,7.175781 C 9.9353409,47.708099 6.9999847,50 0,50 -4.9797704,50 -7.784706,49.231066 -9.6308594,48.060547 -7.1448742,44.580136 -4.7169841,41.184852 -2.671875,38.117187 -0.62632453,35.04887 0.78321692,32.904144 2.1015625,31.775391 3.41957,30.646927 4.6787704,30.042966 8.0488281,30 ZM0,0"
+      },
+      "64": {
+        "ID": 0,
+        "Name": "iold_init_0",
+        "Path": "M0,0M -5.7519531,0 C -14.743747,4.382918 -23.998861,13.731929 -24,27.595703 c 0,6.444439 1.023714,12.507805 4.962891,17.103516 3.291203,3.839741 8.418294,5.980913 15.0390621,6.613281 3e-7,0.0467 0,0.135948 0,0.181641 h 2.5683594 c 0.49428077,0.01592 0.91988404,0.101562 1.4296875,0.101562 0.36340105,0 0.65502831,-0.09005 1.0097656,-0.101562 h 2.9921875 c 0,-0.07569 7e-7,-0.222356 0,-0.300782 C 10.847542,50.29066 15.934098,47.319389 19.037109,43.699219 22.731291,39.389353 24,34.929045 24,31.595703 24,29.595693 24.092247,25.159065 22.517578,20.75 21.730244,18.545468 20.472361,16.259208 18.361328,14.476563 16.250295,12.693917 13.299995,11.595703 10,11.595703 c -3.2999994,0 -6.3074392,1.114652 -8.4394531,3.009766 -2.13201398,1.895114 -3.3623739,4.343982 -4.1289063,6.796875 C -4.1014242,26.308129 -4,31.595701 -4,35.595703 c 0,1.950189 -2.394e-4,4.850397 0,7.75 -4.6557299,-0.524045 -7.328733,-1.946996 -8.962891,-3.853516 C -15.023707,37.0879 -16,33.151253 -16,27.595703 -15.999151,17.257523 -9.2542506,10.606477 -2.2480469,7.1914062 Z M 10,19.595703 c 1.699999,0 2.499708,0.399842 3.201172,0.992188 0.701463,0.592345 1.318586,1.558057 1.78125,2.853515 C 15.907751,26.032322 16,29.595693 16,31.595703 c 0,0.666642 -0.731282,4.20636 -3.037109,6.896484 C 11.152487,40.604319 8.4403408,42.497664 4,43.234375 3.9997642,40.377286 4,37.517248 4,35.595703 4,31.595701 4.1014204,26.883253 5.0683594,23.789062 5.5518289,22.241967 6.1964629,21.188862 6.8769531,20.583984 7.5574434,19.979107 8.2999919,19.595703 10,19.595703 ZM0,0"
+      },
+      "65": {
+        "ID": 0,
+        "Name": "iold_mid_0",
+        "Path": "M0,0m -4,0 c 1.779e-4,2.5154271 -0.8142701,4.430728 -2.3613281,6.5605469 -1.547058,2.1298188 -3.8646339,4.3132951 -6.3925779,6.7148441 C -17.809795,18.078489 -23.999401,24.293297 -24,34 c 0,6.444456 1.023711,12.507808 4.962891,17.103516 3.29089,3.839371 8.41728,5.980669 15.037109,6.613281 V 58 h 4 l 4,0.002 V 58 57.599609 C 10.846599,56.697245 15.933802,53.724031 19.037109,50.103516 22.731291,45.79365 24,41.333342 24,38 24,35.99999 24.092245,31.563369 22.517578,27.154297 21.730245,24.949761 20.472361,22.66351 18.361328,20.880859 16.250295,19.098209 13.299997,18 10,18 6.6999981,18 3.69256,19.114647 1.5605469,21.009766 -0.57146625,22.904884 -1.8018276,25.353744 -2.5683594,27.806641 -4.1014229,32.712434 -4,37.999998 -4,42 v 7.75 C -8.6557317,49.225957 -11.328735,47.802999 -12.962891,45.896484 -15.023704,43.492203 -16,39.55557 -16,34 c 3.95e-4,-6.394333 3.811763,-10.228886 8.7558594,-14.925781 2.4720484,-2.348448 5.1527785,-4.778126 7.35546872,-7.810547 C 2.3140183,8.2312509 4.0003136,4.4340585 4,0 Z m 14,26 c 1.699997,0 2.499708,0.401793 3.201172,0.994141 0.701464,0.592347 1.318585,1.556098 1.78125,2.851562 C 15.907752,32.43663 16,35.99999 16,38 16,38.666642 15.268718,42.20636 12.962891,44.896484 11.152484,47.008619 8.4403544,48.903917 4,49.640625 V 42 C 4,37.999998 4.1014191,33.287562 5.0683594,30.193359 5.5518295,28.646258 6.196462,27.595114 6.8769531,26.990234 7.5574442,26.385355 8.2999944,26 10,26 ZM0,0"
+      },
+      "66": {
+        "ID": 0,
+        "Name": "iold_mid_1",
+        "Path": "M0,0m -4,0 -0.00195,6.1015625 c 1.779e-4,2.5154259 -0.8123151,4.4307275 -2.359375,6.5605465 -1.5470599,2.129819 -3.8665839,4.311342 -6.3945309,6.712891 -5.055895,4.803098 -11.245502,11.019857 -11.246094,20.726562 0,6.889107 2.436235,12.612198 6.556641,16.367188 2.969369,2.706033 6.679637,4.319498 10.6699214,5.050781 C -6.3324848,63.621838 -6,66.088343 -6,70 v 4 H 2 V 70 C 2,66.629409 1.713219,64.05978 1.3535156,61.789062 6.9641282,61.330521 10.84299,59.857554 13.234375,57.175781 c 2.850466,-3.1966 2.763672,-7.074825 2.763672,-9.074219 0,-1.333016 0.664018,-6.008395 -0.652344,-10.632812 C 14.687522,35.156542 13.40926,32.675059 11.101563,30.855469 8.8053694,29.04495 5.6636597,28.086546 2.015625,28.107422 -2.3014601,28.056433 -5.9785591,30.655492 -7.7421875,33.8125 -9.5130153,36.982395 -10,40.555564 -10,44 c 0,3.509477 0.3683658,6.155035 0.8496094,8.421875 -1.0772944,-0.516701 -2.0796454,-1.111937 -2.9062504,-1.865234 -2.38029,-2.169196 -3.945312,-5.344159 -3.945312,-10.455079 3.9e-4,-6.39433 3.811758,-10.228886 8.7558593,-14.925781 2.4720507,-2.348447 5.154729,-4.780079 7.35742182,-7.8125 C 2.3140209,14.33086 3.9983605,10.535622 3.9980469,6.1015625 L 4,0 Z m 5.9316406,36.101562 h 0.050781 0.050781 c 2.3290119,-0.01961 3.422842,0.489214 4.1152344,1.035157 0.6923924,0.545942 1.1621999,1.32106 1.5039062,2.521484 0.6834127,2.400849 0.3457032,5.776392 0.3457032,8.443359 0,2.000628 -0.085541,3.022378 -0.734375,3.75 C 6.6756059,52.511038 4.6439936,53.654217 -0.5,53.90625 -1.3363939,51.190296 -2,48.86421 -2,44 c 0,-2.555558 0.5132665,-4.980341 1.2421875,-6.285156 0.72892099,-1.304816 1.03035552,-1.64119 2.6894531,-1.613282 zM0,0"
+      },
+      "67": {
+        "ID": 0,
+        "Name": "iold_sol_0",
+        "Path": "M0,0M 2.8984375,0 C -10.01398,6.3480688 -20.170545,17.487374 -21.322266,31.359375 c -0.469841,5.65905 -0.108725,11.20474 2.261719,15.988281 -1.209419,2.078135 -2.437567,4.274518 -3.603515,6.023438 l 6.65625,4.4375 c 0.847006,-1.270507 1.643922,-2.737879 2.472656,-4.109375 3.5867135,2.439821 8.3103486,3.890625 14.1992185,3.890625 9.1666224,0 15.3050405,-4.44076 18.3925785,-9.38086 3.087537,-4.940099 3.607422,-9.952492 3.607421,-12.61914 6.59e-4,-2.70143 -0.537573,-6.250095 -2.568359,-9.634766 -2.030786,-3.38467 -6.144899,-6.432707 -11.4824217,-6.365234 -4.9748035,0.06298 -9.09435139,2.101254 -12.1171876,4.80664 -3.0228361,2.705387 -5.1544786,5.966099 -7.1601567,8.97461 -0.886927,1.330401 -1.722948,2.863261 -2.589843,4.302734 -0.135687,-1.769611 -0.270571,-3.54613 -0.0957,-5.652344 C -12.49361,21.711319 -4.655727,12.629556 6.4296875,7.1796875 Z m 5.8164063,27.589844 c 2.6633922,-0.03367 3.5503472,0.867102 4.5195312,2.482422 0.969184,1.615319 1.430029,4.115893 1.429688,5.515625 v 0.002 c -1e-6,1.333336 -0.480158,5.319009 -2.392579,8.378906 -1.91242,3.059897 -4.7741416,5.621094 -11.6074215,5.621094 -5.2066436,0 -8.2000449,-1.008711 -10.1660156,-2.597657 1.8787144,-3.287745 3.7164937,-6.517102 5.4941406,-9.183593 1.9943263,-2.991484 3.86294895,-5.681885 5.8398437,-7.451172 1.9768948,-1.769287 3.8566633,-2.729268 6.8828126,-2.767578 zM0,0"
+      },
+      "68": {
+        "ID": 0,
+        "Name": "i_fin_0",
+        "Path": "M0,0M -4 0 L -4 22 L 2.21875 25.328125 L 26.21875 9.328125 L 21.78125 2.671875 L 4 14.525391 L 4 0 L -4 0 z M 21.707031 18.722656 L 1.7070312 32.722656 L 6.2929688 39.277344 L 26.292969 25.277344 L 21.707031 18.722656 z M0,0"
+      },
+      "69": {
+        "ID": 0,
+        "Name": "i_fin_1",
+        "Path": "M0,0M -4 0 L -4 12.210938 L -16.277344 20.710938 L -11.722656 27.289062 L 14.21875 9.328125 L 14.277344 9.2890625 L 9.78125 2.671875 L 9.7226562 2.7109375 L 4 6.5253906 L 4 0 L -4 0 z M 9.7050781 18.722656 L -10.294922 32.722656 L -5.7070312 39.277344 L 14.292969 25.277344 L 9.7050781 18.722656 z M0,0"
+      },
+      "70": {
+        "ID": 0,
+        "Name": "i_fin_2",
+        "Path": "M0,0M -4 0 L -4 22 L 2.21875 25.328125 L 26.21875 9.328125 L 21.78125 2.671875 L 4 14.525391 L 4 0 L -4 0 z M 21.707031 18.722656 L 1.7070312 32.722656 L 6.2929688 39.277344 L 26.292969 25.277344 L 21.707031 18.722656 z M0,0"
+      },
+      "71": {
+        "ID": 0,
+        "Name": "i_fin_3",
+        "Path": "M0,0M -4 0 L -4 12.210938 L -16.277344 20.710938 L -11.722656 27.289062 L 14.21875 9.328125 L 14.277344 9.2890625 L 9.78125 2.671875 L 9.7226562 2.7109375 L 4 6.5253906 L 4 0 L -4 0 z M 9.7050781 18.722656 L -10.294922 32.722656 L -5.7070312 39.277344 L 14.292969 25.277344 L 9.7050781 18.722656 z M0,0"
+      },
+      "72": {
+        "ID": 0,
+        "Name": "i_init_0",
+        "Path": "M0,0M -24,0 V 8 H 12.953125 L -2.5605469,20.927734 -4,24 V 40 H 4 V 25.873047 L 26.560547,7.0722656 24,0 ZM0,0"
+      },
+      "73": {
+        "ID": 0,
+        "Name": "i_mid_0",
+        "Path": "M0,0M -4,0 C -4,6.6666583 -7.2090853,11.445775 -11.498047,14.876953 -15.787008,18.308131 -21.333306,19.999976 -24,20 v 8 H 12.953125 L -2.5605469,40.927734 -4,44 v 4 H 4 V 45.873047 L 26.560547,27.072266 24,20 H -5.3398437 C -0.17941613,15.408241 4,8.6640407 4,0 ZM0,0"
+      },
+      "74": {
+        "ID": 0,
+        "Name": "i_mid_1",
+        "Path": "M0,0M -4,0 C -4,6.6666565 -7.2090726,11.445697 -11.498047,14.876953 -15.787021,18.308209 -21.333358,19.999976 -24,20 v 8 H 3.5273438 L -3.578125,42.210937 -4,44 v 4 H 4 V 44.945312 L 13.578125,25.789062 10,20 H -5.3398437 C -0.17956266,15.408172 4,8.6638783 4,0 ZM0,0"
+      },
+      "75": {
+        "ID": 0,
+        "Name": "i_sol_0",
+        "Path": "M0,0M 11.826172 0 L -22.173828 22 L -17.826172 28.716797 L 16.173828 6.7167969 L 11.826172 0 z M 17.826172 22 L -16.173828 44 L -11.826172 50.716797 L 22.173828 28.716797 L 17.826172 22 z M0,0"
+      },
+      "76": {
+        "ID": 0,
+        "Name": "kh_coda_0",
+        "Path": "M0,0M -21.984375,0 -28,3.4550781 V 45.455078 h 8 V 10.419922 L -2.015625,20.910156 2.015625,14 ZM0,0"
+      },
+      "77": {
+        "ID": 0,
+        "Name": "kh_onset_0",
+        "Path": "M0,0M 20,0 V 35.035156 L 2.015625,24.544922 l -4.03125,6.910156 24,14 L 28,42 V 0 ZM0,0"
+      },
+      "78": {
+        "ID": 0,
+        "Name": "k_coda_0",
+        "Path": "M0,0M -17.78125 0 L -22.21875 6.65625 L -10.21875 14.65625 L -5.78125 8 L -17.78125 0 z M -17.707031 14.050781 L -24 17.328125 L -24 53.328125 L -16 53.328125 L -16 25.009766 L -2.2929688 34.605469 L 2.2929688 28.050781 L -17.707031 14.050781 z M0,0"
+      },
+      "79": {
+        "ID": 0,
+        "Name": "k_onset_0",
+        "Path": "M0,0M 16 0 L 16 34.935547 L 2.0585938 26.570312 L -2.0585938 33.429688 L 17.941406 45.429688 L 24 42 L 24 0 L 16 0 z M 33.578125 20.210938 L 26.421875 23.789062 L 34.421875 39.789062 L 41.578125 36.210938 L 33.578125 20.210938 z M0,0"
+      },
+      "80": {
+        "ID": 0,
+        "Name": "l_coda_0",
+        "Path": "M0,0M -3.0722656,0 -23.072266,24 -16.927734,29.121094 3.0722656,5.1210937 ZM0,0"
+      },
+      "81": {
+        "ID": 0,
+        "Name": "l_onset_0",
+        "Path": "M0,0M 16.927734,0 -3.0722656,24 3.0722656,29.121094 23.072266,5.1210937 ZM0,0"
+      },
+      "82": {
+        "ID": 0,
+        "Name": "ng_coda_0",
+        "Path": "M0,0M -32 0 L -32 8 C -22.000019 8.000004 -14.042461 7.6137918 -2.828125 18.828125 L 2.828125 13.171875 C -9.95749 0.38626343 -22.000017 3.9999925e-06 -32 0 z M -19.714844 14.513672 C -23.578227 24.172137 -27.299541 29.643295 -30.828125 33.171875 L -25.171875 38.828125 C -20.700477 34.356731 -16.421747 27.827813 -12.285156 17.486328 L -19.714844 14.513672 z M0,0"
+      },
+      "83": {
+        "ID": 0,
+        "Name": "ng_onset_0",
+        "Path": "M0,0M 27.171875 0 C 22.7004 4.4714704 18.421736 11.002293 14.285156 21.34375 L 21.712891 24.314453 C 25.576285 14.65596 29.299618 9.1847536 32.828125 5.65625 L 27.171875 0 z M 0 24.828125 L 0 32.828125 C 9.9999822 32.828129 17.957572 32.441951 29.171875 43.65625 L 34.828125 38 C 22.042476 25.214355 9.9999822 24.828129 0 24.828125 z M0,0"
+      },
+      "84": {
+        "ID": 0,
+        "Name": "null",
+        "Path": "M0,0"
+      },
+      "85": {
+        "ID": 0,
+        "Name": "n_coda_0",
+        "Path": "M0,0m -22,0 -8,0.109375 c 0.126093,9.1491104 0.706185,15.863868 1.917969,20.990234 1.211784,5.126366 3.159442,8.93768 6.396484,11.222657 3.237043,2.284977 7.09811,2.507971 10.771484,2.080078 3.6733752,-0.427894 7.505369,-1.464789 11.804688,-2.447266 l -1.78125,-7.798828 c -4.4525927,1.017503 -8.1841382,1.97869 -10.949219,2.300781 -2.76508,0.322091 -4.217514,0.04511 -5.230468,-0.669922 -1.012955,-0.715028 -2.25181,-2.40372 -3.226563,-6.527343 C -21.271628,15.136143 -21.878018,8.8508567 -22,0 ZM0,0"
+      },
+      "86": {
+        "ID": 0,
+        "Name": "n_onset_0",
+        "Path": "M0,0M 22,-0.0546875 C 21.878018,8.7961627 21.27165,15.081454 20.296875,19.205078 19.3221,23.328702 18.085266,25.017367 17.072266,25.732422 16.059265,26.447477 14.604949,26.724427 11.839844,26.402344 9.0747381,26.08026 5.3432126,25.119064 0.890625,24.101562 l -1.78125,7.798829 c 4.2993252,0.982478 8.1312843,2.019382 11.804688,2.447265 3.673403,0.427884 7.534417,0.204896 10.771484,-2.080078 3.237067,-2.284973 5.184669,-6.096275 6.396484,-11.222656 C 29.293846,15.918541 29.873907,9.2038019 30,0.0546875 ZM0,0"
+      },
+      "87": {
+        "ID": 0,
+        "Name": "omit_fin_0",
+        "Path": "M0,0m -4,0 c 0,5.214629 -0.1691529,13.293269 -0.3867187,21.019531 -0.4446319,-0.454111 -0.7807365,-0.97474 -1.2558594,-1.40039 -2.1806438,-1.953583 -4.9347059,-3.734375 -8.3867189,-3.734375 -4.479761,0 -8.107234,2.745253 -10.402344,6.082031 -2.295109,3.336778 -3.570312,7.455743 -3.570312,11.6875 0,3.792667 0.480238,10.10439 3.939453,16.664062 3.459215,6.559673 9.967868,13.22713 21.1054687,17.640625 l 2.94726567,-7.4375 C -9.6232625,56.711945 -14.374872,51.538014 -16.986328,46.585937 c -2.611456,-4.952076 -3.015625,-9.821084 -3.015625,-12.93164 0,-2.52845 0.884586,-5.294998 2.162109,-7.152344 1.277524,-1.857346 2.635838,-2.617187 3.810547,-2.617187 0.58603,0 1.596254,0.390082 3.048828,1.691406 1.4525748,1.301324 3.1268725,3.334534 4.8925784,5.509765 0.3792745,0.467241 0.7911508,0.946331 1.1816406,1.421875 -0.2051684,4.292232 -0.3786269,9.478426 -0.6347656,11.664063 -0.00175,0.02356 -0.035156,0.525391 -0.035156,0.525391 l 7.9589844,0.787109 c 0.00473,-0.03864 0.00506,-0.146342 0.00977,-0.185547 h 0.00781 c 0,0 0.2436381,-3.726791 0.390625,-5.697266 1.6287556,0.929543 3.4049889,1.642579 5.4941407,1.642579 10.4221137,0 19.7128907,-7.966493 19.7128907,-18.357422 0,-4.649161 -1.269994,-8.731563 -4.078125,-11.533203 -2.808131,-2.8016409 -6.75279,-3.9296879 -10.867188,-3.9296879 -3.5570473,0 -6.6555306,1.4428692 -9.2324215,3.4667969 C 3.8747367,7.1868016 4,2.761068 4,0 Z m 17.052734,15.423828 c 2.733797,0 4.263924,0.64308 5.216797,1.59375 0.952873,0.950671 1.728516,2.600048 1.728516,5.869141 0,5.445577 -5.393831,10.357422 -11.7128907,10.357422 -0.710072,0 -1.7643182,-0.419109 -3.2421876,-1.716797 C 4.5690348,31.111192 3.9768018,30.315228 3.4648438,29.769531 3.5684893,28.142233 3.7200509,26.43818 3.75,25.607422 c 0.057275,-1.589478 1.250982,-4.548453 3.1660156,-6.72461 1.9150336,-2.176156 4.3026784,-3.458984 6.1367184,-3.458984 zM0,0"
+      },
+      "88": {
+        "ID": 0,
+        "Name": "omit_fin_1",
+        "Path": "M0,0m -4,0 c 0,5.9351284 -0.1452625,18.136874 -0.4160156,29.830078 -0.014924,0.644525 -0.046548,0.828604 -0.0625,1.470703 -3.0128767,-2.449909 -6.5807934,-3.359232 -9.4746094,-3.414062 h -0.03711 -0.03906 c -4.479761,0 -8.107234,2.745253 -10.402344,6.082031 -2.295109,3.336778 -3.570312,7.45379 -3.570312,11.685547 0,3.792667 0.480237,10.104394 3.939453,16.664062 3.459216,6.559669 9.967867,13.22715 21.1054687,17.640625 l 2.94726567,-7.4375 C -9.6232609,68.711963 -14.374873,63.538008 -16.986328,58.585937 c -2.611455,-4.95207 -3.015625,-9.821084 -3.015625,-12.93164 0,-2.52845 0.884586,-5.294998 2.162109,-7.152344 1.269484,-1.845657 2.617502,-2.597921 3.78711,-2.607422 2.141906,0.04765 4.0710898,0.513994 5.8261715,3.013672 1.7696519,2.52043 3.4045777,7.812535 2.6503906,17.789063 l 7.9589844,0.787109 c 0.00478,-0.03908 0.00697,-0.143662 0.011719,-0.183594 h 0.00586 c 0.00392,-0.05187 9.13e-5,-0.09087 0.00391,-0.142578 C 2.9673324,52.322919 3.3138422,41.598094 3.5820313,30.015625 3.8542206,18.260391 4,6.0648976 4,0 ZM0,0"
+      },
+      "89": {
+        "ID": 0,
+        "Name": "omit_fin_2",
+        "Path": "M0,0m -4,0 c 0,5.214629 -0.1691529,13.293269 -0.3867187,21.019531 -0.4446319,-0.454111 -0.7807365,-0.97474 -1.2558594,-1.40039 -2.1806438,-1.953583 -4.9347059,-3.734375 -8.3867189,-3.734375 -4.479761,0 -8.107234,2.745253 -10.402344,6.082031 -2.295109,3.336778 -3.570312,7.455743 -3.570312,11.6875 0,3.792667 0.480238,10.10439 3.939453,16.664062 3.459215,6.559673 9.967868,13.22713 21.1054687,17.640625 l 2.94726567,-7.4375 C -9.6232625,56.711945 -14.374872,51.538014 -16.986328,46.585937 c -2.611456,-4.952076 -3.015625,-9.821084 -3.015625,-12.93164 0,-2.52845 0.884586,-5.294998 2.162109,-7.152344 1.277524,-1.857346 2.635838,-2.617187 3.810547,-2.617187 0.58603,0 1.596254,0.390082 3.048828,1.691406 1.4525748,1.301324 3.1268725,3.334534 4.8925784,5.509765 0.3792745,0.467241 0.7911508,0.946331 1.1816406,1.421875 -0.2051684,4.292232 -0.3786269,9.478426 -0.6347656,11.664063 -0.00175,0.02356 -0.035156,0.525391 -0.035156,0.525391 l 7.9589844,0.787109 c 0.00473,-0.03864 0.00506,-0.146342 0.00977,-0.185547 h 0.00781 c 0,0 0.2436381,-3.726791 0.390625,-5.697266 1.6287556,0.929543 3.4049889,1.642579 5.4941407,1.642579 10.4221137,0 19.7128907,-7.966493 19.7128907,-18.357422 0,-4.649161 -1.269994,-8.731563 -4.078125,-11.533203 -2.808131,-2.8016409 -6.75279,-3.9296879 -10.867188,-3.9296879 -3.5570473,0 -6.6555306,1.4428692 -9.2324215,3.4667969 C 3.8747367,7.1868016 4,2.761068 4,0 Z m 17.052734,15.423828 c 2.733797,0 4.263924,0.64308 5.216797,1.59375 0.952873,0.950671 1.728516,2.600048 1.728516,5.869141 0,5.445577 -5.393831,10.357422 -11.7128907,10.357422 -0.710072,0 -1.7643182,-0.419109 -3.2421876,-1.716797 C 4.5690348,31.111192 3.9768018,30.315228 3.4648438,29.769531 3.5684893,28.142233 3.7200509,26.43818 3.75,25.607422 c 0.057275,-1.589478 1.250982,-4.548453 3.1660156,-6.72461 1.9150336,-2.176156 4.3026784,-3.458984 6.1367184,-3.458984 zM0,0"
+      },
+      "90": {
+        "ID": 0,
+        "Name": "omit_fin_3",
+        "Path": "M0,0m -4,0 c 0,5.9351284 -0.1452625,18.136874 -0.4160156,29.830078 -0.014924,0.644525 -0.046548,0.828604 -0.0625,1.470703 -3.0128767,-2.449909 -6.5807934,-3.359232 -9.4746094,-3.414062 h -0.03711 -0.03906 c -4.479761,0 -8.107234,2.745253 -10.402344,6.082031 -2.295109,3.336778 -3.570312,7.45379 -3.570312,11.685547 0,3.792667 0.480237,10.104394 3.939453,16.664062 3.459216,6.559669 9.967867,13.22715 21.1054687,17.640625 l 2.94726567,-7.4375 C -9.6232609,68.711963 -14.374873,63.538008 -16.986328,58.585937 c -2.611455,-4.95207 -3.015625,-9.821084 -3.015625,-12.93164 0,-2.52845 0.884586,-5.294998 2.162109,-7.152344 1.269484,-1.845657 2.617502,-2.597921 3.78711,-2.607422 2.141906,0.04765 4.0710898,0.513994 5.8261715,3.013672 1.7696519,2.52043 3.4045777,7.812535 2.6503906,17.789063 l 7.9589844,0.787109 c 0.00478,-0.03908 0.00697,-0.143662 0.011719,-0.183594 h 0.00586 c 0.00392,-0.05187 9.13e-5,-0.09087 0.00391,-0.142578 C 2.9673324,52.322919 3.3138422,41.598094 3.5820313,30.015625 3.8542206,18.260391 4,6.0648976 4,0 ZM0,0"
+      },
+      "91": {
+        "ID": 0,
+        "Name": "omit_init_0",
+        "Path": "M0,0M 13.054688,0 C 8.0405506,0 3.8827197,2.8001422 0.91210938,6.1757812 -1.2327787,8.6131148 -2.8592672,11.41447 -3.671875,14.392578 -4.3462879,13.661923 -4.8971597,12.863109 -5.6425781,12.195313 -7.8232495,10.24172 -10.575309,8.4628906 -14.027344,8.4628906 c -4.479761,0 -8.107234,2.7452534 -10.402343,6.0820314 C -26.724797,17.8817 -28,21.998712 -28,26.230469 c 0,8.349556 4.821874,16.175599 13.845703,21.865234 C -7.7895889,52.108695 -4,57.579082 -4,60.626953 v 7.376953 H 4 V 60.626953 C 4,52.713601 -2.2091352,46.168894 -9.8867188,41.328125 -17.332541,36.633442 -20,31.68736 -20,26.230469 c 0,-2.528451 0.884586,-5.294998 2.162109,-7.152344 1.277524,-1.857346 2.635838,-2.615234 3.810547,-2.615234 0.58616,0 1.5943,0.390091 3.046875,1.691406 1.4525755,1.301315 3.1288489,3.332587 4.8945315,5.507812 0.428467,0.527849 0.8926974,1.067854 1.3359375,1.605469 -0.3829041,5.49984 -0.8261719,12.005859 -0.8261719,12.005859 l 7.9785157,0.603516 c 0,0 0.2436601,-3.727092 0.390625,-5.697266 1.6284267,0.929131 3.4055601,1.642579 5.4941406,1.642579 C 18.709224,33.822266 28,25.85382 28,15.462891 28,10.81373 26.728065,6.733259 23.919922,3.9316406 21.111779,1.1300222 17.169068,0 13.054688,0 Z m 0,8 C 15.788502,8 17.31667,8.6431024 18.269531,9.59375 19.222393,10.544398 20,12.193798 20,15.462891 c 0,5.445577 -5.39383,10.359375 -11.7128906,10.359375 -0.710072,0 -1.7643435,-0.421068 -3.2421875,-1.71875 C 4.5704427,23.686879 3.9774311,22.890213 3.4648438,22.34375 3.5684022,20.717661 3.7200677,19.013887 3.75,18.183594 3.8072755,16.594116 5.00294,13.637071 6.9179687,11.460938 8.8329975,9.2848036 11.22063,8 13.054688,8 ZM0,0"
+      },
+      "92": {
+        "ID": 0,
+        "Name": "omit_mid_0",
+        "Path": "M0,0m -3.9980469,0 c 0,5.2224405 -0.1658769,13.298344 -0.3828125,21.025391 -0.4464114,-0.456141 -0.784567,-0.978791 -1.2617187,-1.40625 -2.1806937,-1.953587 -4.9327309,-3.732422 -8.3847659,-3.732422 -4.479698,0 -8.107206,2.745283 -10.402343,6.082031 C -26.724825,25.305498 -28,29.42248 -28,33.654297 c 0,8.349557 4.821873,16.175599 13.845703,21.865234 C -7.7895895,59.532523 -4,65.002908 -4,68.050781 v 7.91211 h 8 v -7.91211 C 4,60.137429 -2.2091362,53.592722 -9.8867188,48.751953 -17.332542,44.05727 -20,39.11119 -20,33.654297 c 0,-2.528391 0.884539,-5.294968 2.162109,-7.152344 1.277571,-1.857376 2.636078,-2.615234 3.810547,-2.615234 0.58616,0 1.594275,0.390086 3.046875,1.691406 1.4526006,1.30132 3.1288344,3.332592 4.8945315,5.507812 0.3795288,0.467555 0.7928345,0.94601 1.1835938,1.421875 -0.2028802,4.237278 -0.3740489,9.320897 -0.6289063,11.529297 -0.00275,0.03695 -0.044922,0.660157 -0.044922,0.660157 l 7.9589844,0.787109 c 0.00476,-0.03885 0.00503,-0.14613 0.00977,-0.185547 h 0.00977 c 0,0 0.2436365,-3.726769 0.390625,-5.697266 1.6284477,0.929195 3.4054915,1.644532 5.4941406,1.644532 C 18.709223,41.246094 28,33.277648 28,22.886719 28,18.237558 26.728053,14.155156 23.919922,11.353516 21.111791,8.5518749 17.169085,7.4238281 13.054688,7.4238281 9.4977624,7.4238281 6.3991108,8.866765 3.8222656,10.890625 3.8762616,7.1870379 4.0019531,2.763128 4.0019531,0 Z M 13.054688,15.423828 c 2.733796,0 4.26197,0.64308 5.214843,1.59375 C 19.222404,17.968249 20,19.617625 20,22.886719 c 0,5.445577 -5.393831,10.359375 -11.7128906,10.359375 -0.7099465,0 -1.7643444,-0.421059 -3.2421875,-1.71875 C 4.570443,31.110705 3.977434,30.314044 3.4648438,29.767578 3.5684175,28.141276 3.7200648,26.437797 3.75,25.607422 c 0.057273,-1.589411 1.2528848,-4.548429 3.1679687,-6.72461 1.915084,-2.17618 4.3029003,-3.458984 6.1367193,-3.458984 zM0,0"
+      },
+      "93": {
+        "ID": 0,
+        "Name": "omit_mid_1",
+        "Path": "M0,0m -4,0 c 0,5.0396732 -0.1667735,12.845898 -0.3710937,20.314453 -0.1908268,-0.197703 -0.3164608,-0.445499 -0.5175782,-0.634766 -2.3356602,-2.198033 -5.5262951,-3.752322 -9.0937501,-3.792968 h -0.02344 -0.02344 c -4.479698,0 -8.107206,2.745283 -10.402344,6.082031 -2.295137,3.336748 -3.570312,7.45373 -3.570312,11.685547 0,8.349557 4.821873,16.175599 13.845703,21.865234 6.3647074,4.012992 10.1542969,9.483378 10.1542969,12.53125 v 7.91211 h 8 v -7.91211 c 0,-7.913352 -6.2091366,-14.458059 -13.8867188,-19.298828 C -17.334496,44.05727 -20.001953,39.11119 -20.001953,33.654297 c 0,-2.528391 0.884538,-5.294968 2.162109,-7.152344 1.271541,-1.848609 2.622316,-2.60224 3.792969,-2.609375 1.431177,0.02296 2.497029,0.505824 3.673828,1.613281 1.1851293,1.115297 2.3369587,2.914087 3.2070314,5.089844 1.6804633,4.202271 2.1685802,9.699898 1.6425781,13.259766 -0.014387,0.127622 -0.020636,0.539545 -0.035156,0.658203 l 7.9101562,1.179687 c 0.011832,-0.06707 0.0082,-0.143503 0.019531,-0.210937 l 0.011719,0.002 c 0.00712,-0.05817 0.00856,-0.219844 0.015625,-0.279297 C 2.661829,43.530906 2.7369601,41.749542 2.6972656,39.917969 3.5248765,29.035933 4,10.564122 4,0 ZM0,0"
+      },
+      "94": {
+        "ID": 0,
+        "Name": "omit_sol_0",
+        "Path": "M0,0M 13.054688,0 C 8.0405925,0 3.8827344,2.8001171 0.91210938,6.1757812 -1.2327894,8.6131329 -2.8592384,11.414442 -3.671875,14.392578 -4.346297,13.661924 -4.8971521,12.863107 -5.6425781,12.195313 -7.8232718,10.241726 -10.575309,8.4628906 -14.027344,8.4628906 c -4.479698,0 -8.107206,2.7452834 -10.402343,6.0820314 C -26.724825,17.88167 -28,21.998652 -28,26.230469 c 0,3.792667 0.484557,9.998621 3.957031,16.429687 3.472474,6.431067 9.975931,12.935395 21.0859377,17.337891 l 2.94726567,-7.4375 C -9.651159,48.740009 -14.405634,43.671409 -17.003906,38.859375 -19.602179,34.047341 -20,29.341025 -20,26.230469 c 0,-2.528391 0.884539,-5.294968 2.162109,-7.152344 1.277571,-1.857376 2.636078,-2.615234 3.810547,-2.615234 0.58616,0 1.594275,0.390086 3.046875,1.691406 1.4526006,1.30132 3.1288344,3.332592 4.8945315,5.507812 0.4284705,0.527847 0.8926956,1.067856 1.3359375,1.605469 -0.382904,5.49984 -0.8261719,12.005859 -0.8261719,12.005859 l 7.9785157,0.603516 c 0,0 0.2436365,-3.726769 0.390625,-5.697266 1.6284001,0.929134 3.4055755,1.642579 5.4941406,1.642579 C 18.709224,33.822266 28,25.85382 28,15.462891 28,10.81373 26.728039,6.7333082 23.919922,3.9316406 21.111805,1.129973 17.169106,0 13.054688,0 Z m 0,8 c 2.733774,0 4.261956,0.6430516 5.214843,1.59375 C 19.222418,10.544448 20,12.193798 20,15.462891 c 0,5.445578 -5.39383,10.359375 -11.7128906,10.359375 -0.7099465,0 -1.7643444,-0.421059 -3.2421875,-1.71875 C 4.570443,23.686876 3.977434,22.890216 3.4648438,22.34375 3.5683447,20.718458 3.7200788,19.015534 3.75,18.185547 3.8072732,16.596136 5.0028789,13.637146 6.9179687,11.460938 8.8330586,9.2847288 11.22089,8 13.054688,8 ZM0,0"
+      },
+      "95": {
+        "ID": 0,
+        "Name": "o_fin_0",
+        "Path": "M0,0m -4,0 c 0,8.2519602 -6.475202,15.342298 -12.550781,21.166016 -2.356642,2.152846 -4.535245,4.26376 -6.277344,6.005859 l 5.65625,5.65625 c 1.738505,-1.738505 4.6105,-4.261104 7.6445312,-7.150391 1.069705,-0.932737 2.1106986,-1.911628 3.2070313,-2.75 C -2.3663241,19.904098 1.6666603,18 4,18 c 5.3333269,0 8.11469,1.27094 9.671875,2.828125 C 15.22906,22.38531 16,24.666683 16,28 c 0,3.400011 -2.299532,7.643278 -5.828125,11.171875 -3.528593,3.528597 -8.2077848,6.213505 -11.14257813,6.947266 l 1.94140626,7.761718 C 6.0358758,52.614458 11.356733,49.299523 15.828125,44.828125 20.299517,40.356727 24,34.600004 24,28 24,23.33335 22.770928,18.614679 19.328125,15.171875 15.885322,11.729071 10.666661,10 4,10 3.2551035,10 2.5533845,10.182369 1.8320312,10.283203 3.1244022,7.1326 4,3.7359637 4,0 ZM0,0"
+      },
+      "96": {
+        "ID": 0,
+        "Name": "o_fin_1",
+        "Path": "M0,0m -4,0 c -5.6e-6,4.4444642 -2.8714579,9.8061769 -6.859375,14.732422 -3.987917,4.926245 -8.811613,9.282316 -11.96875,12.439453 l 5.65625,5.65625 c 2.842861,-2.842861 7.3005194,-6.811681 11.1933594,-9.974609 1.94642,-1.581465 3.7668042,-2.970659 5.1191406,-3.900391 0.58251265,-0.400478 1.0157325,-0.662322 1.34765625,-0.851563 0.4493402,0.07854 0.89143235,0.306036 1.58203125,1.457032 C 3.0053777,21.117032 4,24.444433 4,30 4,41.110931 1.1719028,43.171695 -2.828125,47.171875 l 5.65625,5.65625 C 6.8280632,48.828035 12,42.888743 12,30 12,23.555542 10.994629,18.882966 8.9296875,15.441406 7.177465,12.521043 4.368584,10.725915 1.5214844,10.222656 3.0115328,7.03335 3.9999955,3.6290564 4,0 ZM0,0"
+      },
+      "97": {
+        "ID": 0,
+        "Name": "o_fin_2",
+        "Path": "M0,0m -4,0 c 0,8.2519602 -6.475202,15.342298 -12.550781,21.166016 -2.356642,2.152846 -4.535245,4.26376 -6.277344,6.005859 l 5.65625,5.65625 c 1.738505,-1.738505 4.6105,-4.261104 7.6445312,-7.150391 1.069705,-0.932737 2.1106986,-1.911628 3.2070313,-2.75 C -2.3663241,19.904098 1.6666603,18 4,18 c 5.3333269,0 8.11469,1.27094 9.671875,2.828125 C 15.22906,22.38531 16,24.666683 16,28 c 0,3.400011 -2.299532,7.643278 -5.828125,11.171875 -3.528593,3.528597 -8.2077848,6.213505 -11.14257813,6.947266 l 1.94140626,7.761718 C 6.0358758,52.614458 11.356733,49.299523 15.828125,44.828125 20.299517,40.356727 24,34.600004 24,28 24,23.33335 22.770928,18.614679 19.328125,15.171875 15.885322,11.729071 10.666661,10 4,10 3.2551035,10 2.5533845,10.182369 1.8320312,10.283203 3.1244022,7.1326 4,3.7359637 4,0 ZM0,0"
+      },
+      "98": {
+        "ID": 0,
+        "Name": "o_fin_3",
+        "Path": "M0,0m -4,0 c -5.6e-6,4.4444642 -2.8714579,9.8061769 -6.859375,14.732422 -3.987917,4.926245 -8.811613,9.282316 -11.96875,12.439453 l 5.65625,5.65625 c 2.842861,-2.842861 7.3005194,-6.811681 11.1933594,-9.974609 1.94642,-1.581465 3.7668042,-2.970659 5.1191406,-3.900391 0.58251265,-0.400478 1.0157325,-0.662322 1.34765625,-0.851563 0.4493402,0.07854 0.89143235,0.306036 1.58203125,1.457032 C 3.0053777,21.117032 4,24.444433 4,30 4,41.110931 1.1719028,43.171695 -2.828125,47.171875 l 5.65625,5.65625 C 6.8280632,48.828035 12,42.888743 12,30 12,23.555542 10.994629,18.882966 8.9296875,15.441406 7.177465,12.521043 4.368584,10.725915 1.5214844,10.222656 3.0115328,7.03335 3.9999955,3.6290564 4,0 ZM0,0"
+      },
+      "99": {
+        "ID": 0,
+        "Name": "o_init_0",
+        "Path": "M0,0M -24,0.00390625 V 8.0039063 H -4 V 18.003906 34 h 8 v -1.951172 c 2.8869745,1.499622 5.7921121,1.955078 8,1.955078 4,0 7.094854,-2.341709 9.623047,-5.501953 C 24.15124,25.341709 26,21.003901 26,16.003906 26,12.448354 25.234117,9.3316474 23.578125,6.8476562 21.922133,4.3636651 19.468657,2.7194482 16.904297,1.7578125 11.775577,-0.16545886 5.9999942,0.00390625 0,0.00390625 Z M 4,8.109375 c 4.1839997,0.095197 7.922978,0.3258523 10.095703,1.140625 1.435633,0.5383628 2.232169,1.144151 2.826172,2.035156 C 17.515878,12.176162 18,13.559464 18,16.003906 c 0,2.999994 -1.151247,5.662201 -2.623047,7.501953 -1.4718,1.839752 -3.37697,2.498047 -3.376953,2.498047 -1.333348,0 -3.645398,-0.434198 -5.2070313,-1.527344 C 5.2313355,23.383417 4,21.937239 4,18.003906 ZM0,0"
+      },
+      "100": {
+        "ID": 0,
+        "Name": "o_mid_0",
+        "Path": "M0,0m -4,0 c 0,8.2568792 -6.481939,15.350286 -12.560547,21.175781 -2.352645,2.149728 -4.52793,4.256446 -6.267578,5.996094 l 5.65625,5.65625 c 1.738499,-1.738499 4.610531,-4.261143 7.6445312,-7.150391 1.069705,-0.932737 2.1106986,-1.911628 3.2070313,-2.75 C -2.3663241,19.904098 1.6666603,18 4,18 c 5.3333269,0 8.11469,1.270937 9.671875,2.828125 C 15.22906,22.385313 16,24.666662 16,28 c 0,1.166661 -0.520464,2.246195 -1.976562,3.726562 -1.456099,1.480368 -3.742424,3.070461 -6.2031255,4.669922 -2.4607018,1.599462 -5.0820687,3.201385 -7.34375,5.199219 C -1.7851188,43.593537 -4,46.333334 -4,50 h 8 c 0,-0.333374 0.2851275,-1.093519 1.7734375,-2.408203 1.48831,-1.314684 3.8669635,-2.83774 6.4062505,-4.488281 2.539286,-1.650542 5.252982,-3.435453 7.546874,-5.767579 C 22.020455,35.003812 24,31.833328 24,28 24,23.333334 22.770929,18.614685 19.328125,15.171875 15.885321,11.729065 10.666661,10 4,10 3.2551035,10 2.5533845,10.182369 1.8320312,10.283203 3.1243865,7.1326176 4,3.7359682 4,0 ZM0,0"
+      },
+      "101": {
+        "ID": 0,
+        "Name": "o_mid_1",
+        "Path": "M0,0m -4,0 c -1.21e-5,11.333495 -12.199647,20.543397 -18.828125,27.171875 l 5.65625,5.65625 c 2.842861,-2.842861 7.3024723,-6.809728 11.1953125,-9.972656 1.9464201,-1.581465 3.7648511,-2.972612 5.1171875,-3.902344 0.58344472,-0.401119 1.01770062,-0.662425 1.34960938,-0.851563 0.44903001,0.07878 0.88992332,0.306774 1.58007812,1.457032 C 3.0053808,21.11704 4,24.444453 4,30 4,37.333317 2.7144323,38.705106 0.87695313,41.001953 -0.96052602,43.2988 -4,47.111116 -4,54 H 4 C 4,48.888897 4.960524,48.701198 7.1230469,45.998047 9.2855697,43.294896 12,38.666654 12,30 12,23.555559 10.994625,18.882968 8.9296875,15.441406 7.2425169,12.629457 4.57518,10.852275 1.8378906,10.269531 3.1269574,7.1226484 3.999996,3.7305888 4,0 ZM0,0"
+      },
+      "102": {
+        "ID": 0,
+        "Name": "o_sol_0",
+        "Path": "M0,0m 15.765625,0 -34,2 0.46875,7.9863281 L 9.4101563,8.3886719 C 8.9422597,9.0446527 8.6679198,9.5554401 8.0878906,10.285156 5.3510064,13.728343 1.489731,17.846194 -2.578125,21.914062 c -8.135712,8.135738 -16.935742,15.935743 -20.25,19.25 l 5.65625,5.658204 c 2.842863,-2.842863 6.684268,-6.189774 10.5957031,-8.720704 C -2.6647365,35.570633 1.3333298,33.994141 4,33.994141 c 5.3333286,0 8.114799,1.270983 9.671875,2.828125 C 15.228951,38.379407 16,40.660733 16,43.994141 c 0,2.86671 -2.791583,6.571633 -7.2929687,9.722656 -4.5013858,3.151023 -10.286386,5.548579 -13.6777344,6.396484 l 1.9414062,7.759766 C 1.5793587,66.72079 7.7945764,64.11847 13.292969,60.269531 18.791361,56.420592 24,51.127409 24,43.994141 24,39.327544 22.770829,34.606913 19.328125,31.164062 15.988296,27.824092 10.947676,26.133422 4.5644531,26.033203 8.1867669,22.354496 11.651562,18.657999 14.349609,15.263672 15.887414,13.329009 17.19448,11.498082 18.191406,9.7148438 19.188333,7.9316051 20,6.2421867 20,3.9921875 ZM0,0"
+      },
+      "103": {
+        "ID": 0,
+        "Name": "period__0",
+        "Path": "M0,0m 0,0 c -4.9468665,0 -9,4.0531331 -9,9 0,4.946867 4.0531329,9 9,9 C 4.946867,18 9,13.946867 9,9 9,4.053133 4.9468664,0 0,0 Z m 0,4 c 2.785104,0 5,2.2148961 5,5 0,2.785104 -2.2148965,5 -5,5 -2.7851036,0 -5,-2.214896 -5,-5 0,-2.785104 2.2148958,-5 5,-5 zM0,0"
+      },
+      "104": {
+        "ID": 0,
+        "Name": "qh_coda_0",
+        "Path": "M0,0m -22.804687,0 c -11.34021,2.2680563 -17.294928,10.199269 -17.294922,18.021484 -3e-6,3.911111 1.414521,8.198402 4.857422,11.296875 3.4429,3.098474 8.558909,4.802735 15.242187,4.802735 9.366536,0 17.9319858,-4.234776 22.8984375,-9.201172 l -5.796875,-5.798828 C -5.9319679,22.15459 -13.366542,25.919922 -20,25.919922 c -5.316702,0 -8.200713,-1.295938 -9.757812,-2.697266 -1.5571,-1.401327 -2.14258,-3.112289 -2.142579,-5.201172 -2e-6,-4.177772 2.045304,-8.2485027 10.705079,-9.9804684 zM0,0"
+      },
+      "105": {
+        "ID": 0,
+        "Name": "qh_onset_0",
+        "Path": "M0,0M 20,0 C 10.633331,0 2.0679202,4.2348714 -2.8984375,9.2011719 L 2.8984375,15 C 5.9320617,11.966411 13.366675,8.1992188 20,8.1992188 c 5.316658,0 8.200689,1.2978067 9.757812,2.6992192 1.557124,1.401412 2.14258,3.112285 2.142579,5.201171 2e-6,4.177773 -2.045207,8.248484 -10.705079,9.980469 l 1.609375,8.041016 C 34.144802,31.853057 40.099615,23.921824 40.099609,16.099609 40.099612,12.188502 38.685057,7.9013178 35.242187,4.8027344 31.799318,1.704151 26.683323,0 20,0 ZM0,0"
+      },
+      "106": {
+        "ID": 0,
+        "Name": "q_coda_0",
+        "Path": "M0,0M -26.828125 0 C -29.985252 3.1571304 -31.849781 5.4912856 -32.925781 8.0019531 C -34.001781 10.512621 -33.999999 12.828126 -34 14.828125 C -33.999998 19.328787 -31.6018 23.246417 -28.330078 26.066406 C -25.058356 28.886395 -20.749553 30.755427 -16.0625 30.828125 L -16 30.828125 C -8.4820588 30.828116 -1.5696687 27.116152 2.4550781 23.986328 L -2.4550781 17.669922 C -5.0708375 19.704054 -11.482373 22.806394 -15.962891 22.822266 C -18.515131 22.775456 -21.195332 21.652261 -23.105469 20.005859 C -25.02199 18.353956 -25.999999 16.327447 -26 14.828125 C -25.999999 12.828125 -25.998199 12.143624 -25.574219 11.154297 C -25.150221 10.16497 -24.014733 8.4991116 -21.171875 5.65625 L -26.828125 0 z M -10.408203 1.6347656 C -11.487495 2.4483081 -13.128513 3.6586034 -14.716797 5.7578125 C -16.30508 7.8570216 -17.874532 10.752185 -19.712891 15.341797 L -12.287109 18.316406 C -10.606073 14.11956 -9.3035063 11.864757 -8.3359375 10.585938 C -7.3683687 9.3071168 -6.7696495 8.9112726 -5.5917969 8.0234375 L -10.408203 1.6347656 z M0,0"
+      },
+      "107": {
+        "ID": 0,
+        "Name": "q_onset_0",
+        "Path": "M0,0M 16 0 C 8.4820567 1.0023924e-05 1.5696708 3.7119722 -2.4550781 6.8417969 L 2.4550781 13.158203 C 5.0708376 11.124072 11.482367 8.0217319 15.962891 8.0058594 C 18.515134 8.0526717 21.195331 9.1758644 23.105469 10.822266 C 25.021991 12.474169 25.999999 14.500678 26 16 C 25.999999 17.999999 25.998199 18.684502 25.574219 19.673828 C 25.150221 20.663155 24.014735 22.329014 21.171875 25.171875 L 26.828125 30.828125 C 29.985253 27.670994 31.849781 25.336839 32.925781 22.826172 C 34.001782 20.315504 33.999999 17.999998 34 16 C 33.999998 11.499338 31.601801 7.5817078 28.330078 4.7617188 C 25.058355 1.9417298 20.749555 0.072697777 16.0625 0 L 16 0 z M 14.287109 10.511719 C 12.606071 14.708565 11.303507 16.96532 10.335938 18.244141 C 9.3683677 19.52296 8.7696503 19.918807 7.5917969 20.806641 L 12.408203 27.193359 C 13.487498 26.379817 15.128511 25.169522 16.716797 23.070312 C 18.305081 20.971104 19.87453 18.077893 21.712891 13.488281 L 14.287109 10.511719 z M0,0"
+      },
+      "108": {
+        "ID": 0,
+        "Name": "r_coda_0",
+        "Path": "M0,0M -22 0 L -22 26.195312 C -26.858558 29.869108 -31.441468 33.785206 -34.828125 37.171875 L -29.171875 42.828125 C -25.40758 39.063818 -19.506252 34.13536 -13.6875 30.013672 C -7.8687481 25.891984 -1.8118468 22.576496 0.97070312 21.880859 L -0.97070312 14.119141 C -4.9615703 15.116854 -9.3782174 17.512828 -14 20.541016 L -14 0 L -22 0 z M0,0"
+      },
+      "109": {
+        "ID": 0,
+        "Name": "r_onset_0",
+        "Path": "M0,0M 29.171875 0 C 25.407559 3.7643073 19.506399 8.6926533 13.6875 12.814453 C 7.8686011 16.936253 1.8118014 20.253594 -0.97070312 20.949219 L 0.97070312 28.708984 C 4.9616051 27.711262 9.3782045 25.315312 14 22.287109 L 14 42.828125 L 22 42.828125 L 22 16.632812 C 26.858587 12.95899 31.441448 9.0429186 34.828125 5.65625 L 29.171875 0 z M0,0"
+      },
+      "110": {
+        "ID": 0,
+        "Name": "space__0",
+        "Path": "M0,0"
+      },
+      "111": {
+        "ID": 0,
+        "Name": "sw_coda_0",
+        "Path": "M0,0M -10,0 V 5 H 10 V 0 ZM0,0"
+      },
+      "112": {
+        "ID": 0,
+        "Name": "sw_onset_0",
+        "Path": "M0,0M -10,0 V 5 H 10 V 0 ZM0,0"
+      },
+      "113": {
+        "ID": 0,
+        "Name": "sy_coda_0",
+        "Path": "M0,0m -2.5,0 v 23 h 5 V 0 ZM0,0"
+      },
+      "114": {
+        "ID": 0,
+        "Name": "sy_onset_0",
+        "Path": "M0,0m -2.5,0 v 23 h 5 V 0 ZM0,0"
+      },
+      "115": {
+        "ID": 0,
+        "Name": "s_coda_0",
+        "Path": "M0,0m -24.544922,0 -6.910156,4.03125 14,24 h 6.910156 l 14.0000001,-24 L -3.4550781,0 -14,18.076172 ZM0,0"
+      },
+      "116": {
+        "ID": 0,
+        "Name": "s_onset_0",
+        "Path": "M0,0m 3.4550781,0 -6.9101562,4.03125 14.0000001,24 h 6.910156 l 14,-24 L 24.544922,0 14,18.076172 ZM0,0"
+      },
+      "117": {
+        "ID": 0,
+        "Name": "th_coda_0",
+        "Path": "M0,0m -17.556641,0 c -2.032845,0.0154511 -4.090901,0.33433052 -6.115234,1.1152344 -4.627047,1.784923 -8.415211,6.1914604 -10.191406,12.8203126 l 7.726562,2.070312 c 1.329626,-4.962232 3.179118,-6.5907557 5.34375,-7.4257809 2.164632,-0.8350251 5.308984,-0.6702056 8.757813,0.2539063 2.3222317,0.6222382 3.4271414,2.1701406 4.1621091,4.8124996 0.7349679,2.642361 0.5895008,6.125448 0.00977,8.289063 -0.6929886,2.586268 -1.5111402,4.399504 -2.8242191,5.773437 -1.313079,1.373935 -3.28647,2.560252 -7.115234,3.34375 l 1.605468,7.837891 c 4.933901,-1.009648 8.6849516,-2.925414 11.2929651,-5.654297 2.6080092,-2.728883 3.9076567,-6.021198 4.7675781,-9.230469 C 0.8364556,20.373928 1.0553864,15.893144 -0.1660156,11.501953 -1.3874176,7.1107626 -4.5596692,2.5557295 -9.9648438,1.1074219 -12.104124,0.53420284 -14.373707,0.0893492 -16.6875,0.01171875 -16.976724,0.00201494 -17.266234,-0.0022073 -17.556641,0 Z m -8.675781,19.625 -7.535156,2.691406 5,14 7.535156,-2.691406 zM0,0"
+      },
+      "118": {
+        "ID": 0,
+        "Name": "th_onset_0",
+        "Path": "M0,0m 25.328125,0 -6.65625,4.4375 8,12 L 33.328125,12 Z M 12.210938,0.640625 C 7.8531722,2.8195079 4.7028664,5.203512 2.671875,8.25 0.6408836,11.296488 0,14.774314 0,18.21875 0,22.107632 1.1378873,26.573675 3.59375,30.564453 6.0496127,34.555231 10.333342,38.21875 16,38.21875 c 4.333324,0 8.829925,-0.442454 12.498047,-3.376953 C 32.166169,31.907298 34,26.885403 34,20.21875 h -8 c 0,5.333322 -1.16618,7.311459 -2.498047,8.376953 C 22.170086,29.661197 19.666657,30.21875 16,30.21875 c -2.333327,0 -4.049621,-1.336493 -5.59375,-3.845703 C 8.8621209,23.863836 8,20.329856 8,18.21875 8,15.663202 8.3591226,14.141004 9.328125,12.6875 10.297127,11.233996 12.146838,9.6179871 15.789062,7.796875 ZM0,0"
+      },
+      "119": {
+        "ID": 0,
+        "Name": "tl_coda_0",
+        "Path": "M0,0M -24 0 L -24 42 L -17.941406 45.429688 L 2.0585938 33.429688 L -2.0585938 26.570312 L -16 34.935547 L -16 0 L -24 0 z M -34.421875 20.210938 L -41.578125 23.789062 L -33.578125 39.789062 L -26.421875 36.210938 L -34.421875 20.210938 z M0,0"
+      },
+      "120": {
+        "ID": 0,
+        "Name": "tl_onset_0",
+        "Path": "M0,0M 14 0 C 6.4818713 0 0.9557376 4.1913674 -2.4550781 6.84375 L 2.4550781 13.158203 C 5.6915311 10.641412 9.5181523 8 14 8 C 15.666569 8 16.948215 8.7321777 18.09375 10.205078 C 19.239285 11.677979 20 13.888891 20 16 C 20 19.333335 19.308121 21.212999 17.876953 23.001953 C 16.445786 24.790907 13.972439 26.541142 10.210938 28.421875 L 13.789062 35.578125 C 18.027594 33.458879 21.556169 31.21103 24.125 28 C 26.693831 24.78897 28 20.666661 28 16 C 28 12.111121 26.762655 8.3222178 24.408203 5.2949219 C 22.053751 2.2676258 18.333418 0 14 0 z M 37.578125 10.212891 L 30.423828 13.789062 L 38.423828 29.789062 L 45.578125 26.212891 L 37.578125 10.212891 z M0,0"
+      },
+      "121": {
+        "ID": 0,
+        "Name": "t_coda_0",
+        "Path": "M0,0M -2.828125,0 -28,25.171875 v 33.65625 h 8 V 28.484375 L 2.828125,5.65625 ZM0,0"
+      },
+      "122": {
+        "ID": 0,
+        "Name": "t_coda_1",
+        "Path": "M0,0M -11.943359 0 L -29.943359 10 L -26.056641 16.994141 L -8.0566406 6.9941406 L -11.943359 0 z M -1.7890625 11.917969 L -25.789062 23.917969 L -22.210938 31.074219 L 1.7890625 19.074219 L -1.7890625 11.917969 z M0,0"
+      },
+      "123": {
+        "ID": 0,
+        "Name": "t_onset_0",
+        "Path": "M0,0M 2.828125,0 -2.828125,5.65625 20,28.484375 v 30.34375 h 8 v -33.65625 zM0,0"
+      },
+      "124": {
+        "ID": 0,
+        "Name": "u_fin_0",
+        "Path": "M0,0M -21.599609,0 -26.400391,6.4003906 -2.4003906,24.400391 4,21.199219 V 0 h -8 v 13.199219 zM0,0"
+      },
+      "125": {
+        "ID": 0,
+        "Name": "u_fin_1",
+        "Path": "M0,0M -21.599609,0 -26.400391,6.4003906 -2.4003906,24.400391 4,21.199219 V 0 h -8 v 13.199219 zM0,0"
+      },
+      "126": {
+        "ID": 0,
+        "Name": "u_fin_2",
+        "Path": "M0,0m -10.404297,-0.0139875 -4.308594,6.7542219 0.04297,0.027344 L 9.8242188,22.642578 14.175781,15.929688 4,9.3339844 V 0.0139875 l -8,-0.00195 v 4.025075 l -6.361328,-4.0241 zM0,0"
+      },
+      "127": {
+        "ID": 0,
+        "Name": "u_fin_3",
+        "Path": "M0,0m -10.404297,0 -4.308594,6.7402344 0.04297,0.027344 L 9.8242188,22.642578 14.175781,15.929688 4,9.3339844 V 0 h -8 v 4.0371094 l -6.361328,-4.00976565 zM0,0"
+      },
+      "128": {
+        "ID": 0,
+        "Name": "u_init_0",
+        "Path": "M0,0M -19.675781 0 L -24.324219 6.5097656 C -20.167924 9.4786062 -12.698285 13.603286 -4 17.597656 L -4 27.091797 L 4 27.091797 L 4 21.082031 C 9.545695 23.361565 15.316534 25.45807 20.871094 27.091797 L 23.128906 19.417969 C 6.6992446 14.58562 -13.555547 4.3716828 -19.675781 0 z M0,0"
+      },
+      "129": {
+        "ID": 0,
+        "Name": "u_mid_0",
+        "Path": "M0,0M -20.570312 0 L -27.429688 4.1171875 L -15.429688 24.117188 L -8.5703125 20 L -20.570312 0 z M -4 0 L -4 24.117188 L 4 24.117188 L 4 0 L -4 0 z M0,0"
+      },
+      "130": {
+        "ID": 0,
+        "Name": "u_mid_1",
+        "Path": "M0,0M -20.570312 0 L -27.429688 4.1171875 L -15.429688 24.117188 L -8.5703125 20 L -20.570312 0 z M -4 0 L -4 24.117188 L 4 24.117188 L 4 0 L -4 0 z M0,0"
+      },
+      "131": {
+        "ID": 0,
+        "Name": "u_sol_0",
+        "Path": "M0,0m -14.167969,0 -6.642578,4.4589844 C -11.71473,18.005815 3.6108426,30.651238 16.212891,39.501953 l 4.597656,-6.544922 C 8.6756616,24.434416 -6.1383904,11.958832 -14.167969,0 ZM0,0"
+      },
+      "132": {
+        "ID": 0,
+        "Name": "v_fin_0",
+        "Path": "M0,0m -4,0 c 2.395e-4,16.332735 -1.5813286,38.217385 -1.8457031,48.498047 -1.2569682,4.761258 -4.8145619,8.106775 -8.8085939,10.357422 C -18.652483,61.108456 -23.418387,62 -23.998047,62 v 8 c 3.420361,0 8.059576,-1.238859 13.271484,-4.175781 2.0889692,-1.177139 4.1622001,-2.768189 6.0878911,-4.615235 0.4116029,1.066663 0.9241009,2.104185 1.6113281,3.085938 C -0.4768063,67.938546 4.2000103,70 10,70 16.333322,70 20.766588,66.058632 22.441406,62.039062 24.116225,58.019493 24,54.00001 24,52 24.000662,48.110787 22.812939,43.939337 20.236328,40.396484 17.659717,36.853632 13.333692,33.999925 8,34 6.1341178,33.999983 4.3785811,34.599057 2.7539063,35.498047 3.3392269,24.387021 4.0001672,11.399382 4,0 Z M 8,42 c 2.667333,-3.8e-5 4.342243,1.146358 5.765625,3.103516 C 15.189007,47.060673 16.000359,49.889143 16,52 16,54.00001 15.88377,56.980513 15.058594,58.960937 14.233418,60.941362 13.666655,62 10,62 5.8000127,62 4.4768061,61.063406 3.5273438,59.707031 2.5778814,58.350657 2,55.666667 2,52 2.0000423,51.661638 2.0836413,50.397186 2.0917969,49.980469 2.9505437,46.99178 4.0819522,44.798201 5.1523437,43.587891 6.2953717,42.295449 7.1216271,41.999992 8,42 ZM0,0"
+      },
+      "133": {
+        "ID": 0,
+        "Name": "v_fin_1",
+        "Path": "M0,0m -4,0 c 9.595e-4,15.632801 9.154e-4,40.245689 0,48.853516 -1.2983877,4.285866 -4.8886375,7.011419 -9.210938,8.785156 C -17.666685,59.467171 -22.753674,60 -24,60 v 8 c 2.753695,0 8.071819,-0.597578 13.826172,-2.958984 4.32822,-1.776167 8.9534905,-4.735862 11.845703,-9.375 1.0805128,1.036831 2.2751582,2.257559 3.5644531,3.697265 C 9.0288926,63.718103 12.875,68.498047 12.875,68.498047 l 6.28125,-4.953125 c 0,0 -0.035,-0.04082 -0.03516,-0.04102 l 0.002,-0.002 c 0,0 -0.24794,-0.296748 -0.25586,-0.306641 C 18.605536,62.859409 15.458712,58.807169 11.75,54.603516 11.586451,54.418141 11.425958,54.283935 11.261719,54.099609 11.137113,53.956543 11.138481,53.945235 11.013672,53.802734 8.9742868,51.474276 6.954652,49.259382 5.2285156,47.664062 4.8455714,47.31014 4.3668089,47.054658 4,46.751953 4.000799,37.194579 4.0009182,14.960812 4,0 ZM0,0"
+      },
+      "134": {
+        "ID": 0,
+        "Name": "v_fin_2",
+        "Path": "M0,0m -4,0 c 2.395e-4,16.332735 -1.5813286,38.217385 -1.8457031,48.498047 -1.2569682,4.761258 -4.8145619,8.106775 -8.8085939,10.357422 C -18.652483,61.108456 -23.418387,62 -23.998047,62 v 8 c 3.420361,0 8.059576,-1.238859 13.271484,-4.175781 2.0889692,-1.177139 4.1622001,-2.768189 6.0878911,-4.615235 0.4116029,1.066663 0.9241009,2.104185 1.6113281,3.085938 C -0.4768063,67.938546 4.2000103,70 10,70 16.333322,70 20.766588,66.058632 22.441406,62.039062 24.116225,58.019493 24,54.00001 24,52 24.000662,48.110787 22.812939,43.939337 20.236328,40.396484 17.659717,36.853632 13.333692,33.999925 8,34 6.1341178,33.999983 4.3785811,34.599057 2.7539063,35.498047 3.3392269,24.387021 4.0001672,11.399382 4,0 Z M 8,42 c 2.667333,-3.8e-5 4.342243,1.146358 5.765625,3.103516 C 15.189007,47.060673 16.000359,49.889143 16,52 16,54.00001 15.88377,56.980513 15.058594,58.960937 14.233418,60.941362 13.666655,62 10,62 5.8000127,62 4.4768061,61.063406 3.5273438,59.707031 2.5778814,58.350657 2,55.666667 2,52 2.0000423,51.661638 2.0836413,50.397186 2.0917969,49.980469 2.9505437,46.99178 4.0819522,44.798201 5.1523437,43.587891 6.2953717,42.295449 7.1216271,41.999992 8,42 ZM0,0"
+      },
+      "135": {
+        "ID": 0,
+        "Name": "v_fin_3",
+        "Path": "M0,0m -4,0 c 9.595e-4,15.632801 9.154e-4,40.245689 0,48.853516 -1.2983877,4.285866 -4.8886375,7.011419 -9.210938,8.785156 C -17.666685,59.467171 -22.753674,60 -24,60 v 8 c 2.753695,0 8.071819,-0.597578 13.826172,-2.958984 4.32822,-1.776167 8.9534905,-4.735862 11.845703,-9.375 1.0805128,1.036831 2.2751582,2.257559 3.5644531,3.697265 C 9.0288926,63.718103 12.875,68.498047 12.875,68.498047 l 6.28125,-4.953125 c 0,0 -0.035,-0.04082 -0.03516,-0.04102 l 0.002,-0.002 c 0,0 -0.24794,-0.296748 -0.25586,-0.306641 C 18.605536,62.859409 15.458712,58.807169 11.75,54.603516 11.586451,54.418141 11.425958,54.283935 11.261719,54.099609 11.137113,53.956543 11.138481,53.945235 11.013672,53.802734 8.9742868,51.474276 6.954652,49.259382 5.2285156,47.664062 4.8455714,47.31014 4.3668089,47.054658 4,46.751953 4.000799,37.194579 4.0009182,14.960812 4,0 ZM0,0"
+      },
+      "136": {
+        "ID": 0,
+        "Name": "v_init_0",
+        "Path": "M0,0m 12,0.00195313 c -1.999992,0 -6.0613732,-0.13945917 -9.7929687,2.47265627 C -1.5245643,5.0867248 -4,10.240053 -4,18.001953 v 8.378906 l -16.398437,1.640625 0.796875,7.960938 L -4,34.421875 v 5.580078 h 8 v -6.462891 c 8.006576,-0.988721 13.250137,-2.350204 16.900391,-5.08789 2.097334,-1.572998 3.55927,-3.726687 4.277343,-5.925781 C 25.895808,20.326297 26,18.168619 26,16.001953 26,9.3352922 24.180393,4.7627326 20.900391,2.3027344 17.620388,-0.15726389 14.00001,0.00195313 12,0.00195313 Z m 0,7.99999997 c 2.00001,0 3.37961,0.15922 4.099609,0.6992188 C 16.819609,9.2411707 18,10.668626 18,16.001953 c 0,1.833331 -0.145806,3.17566 -0.427734,4.039063 -0.281929,0.863403 -0.569989,1.334719 -1.472657,2.011718 C 14.647857,23.141547 10.377776,24.336379 4,25.300781 V 18.001953 C 4,11.763866 5.524566,9.9171783 6.7929687,9.0292969 8.0613715,8.1414155 10.000008,8.0019531 12,8.0019531 ZM0,0"
+      },
+      "137": {
+        "ID": 0,
+        "Name": "v_mid_0",
+        "Path": "M0,0m -4,0 c 4.534e-4,7.3867652 -0.4519463,14.268119 -0.921875,20.451172 -4.7436944,0.897786 -8.761596,3.116191 -11.615234,6.445312 C -20.333462,31.325397 -22,37.333231 -22,44 c 0,9.476569 5.56806,15.521834 10.185547,19.771484 2.3087431,2.124825 4.4189947,3.952825 5.7851561,5.626953 C -4.6659375,71.069132 -4.045882,72.371699 -4,74.091797 -3.9990617,76.004 -3.9990327,76.059932 -4,80 l 8,0.002 c 9.82e-4,-3.999983 9.82e-4,-4.003971 0,-6.003906 v -0.04883 l -0.00195,-0.05078 C 3.9010527,70.060507 2.2031661,66.833825 0.16796875,64.339844 -1.8672286,61.845862 -4.2403817,59.86911 -6.3964844,57.884766 -10.70869,53.916077 -14,50.52344 -14,44 c 0,-5.333218 1.333222,-9.325379 3.537109,-11.896484 1.2730441,-1.485163 2.9240222,-2.568856 5.0234379,-3.265625 C -5.6650577,31.979381 -5.9996969,35.575548 -6,38 c 0,4.333337 0.4221188,8.651298 2.9726562,12.294922 C -0.4768063,53.938546 4.2000103,56 10,56 16.333327,56 20.766589,52.058634 22.441406,48.039062 24.11584,44.020411 24.000054,40.002411 24,38.001953 24.000662,34.112514 22.623098,29.393935 18.703125,25.800781 15.293783,22.675686 10.105714,20.697181 3.140625,20.208984 3.5846965,14.136091 4.0004499,7.330603 4,0 Z m 6.6289063,28.167969 c 5.5671489,0.39139 8.8679347,1.88129 10.6679687,3.53125 C 15.377141,33.606047 16.000359,35.889369 16,38 16,39.999992 15.883771,42.980506 15.058594,44.960937 14.233416,46.941369 13.66665,48 10,48 5.8000127,48 4.476806,47.063406 3.5273438,45.707031 2.5778815,44.350657 2,41.666667 2,38 2.0002884,35.692543 2.3574124,31.705435 2.6289063,28.167969 ZM0,0"
+      },
+      "138": {
+        "ID": 0,
+        "Name": "v_mid_1",
+        "Path": "M0,0m -4,0 c 7.606e-4,11.931098 0.00207,18.436861 0.00195,25.353516 C -4.454276,24.921232 -4.9295895,24.381884 -5.3828125,24.013672 -6.5111577,23.096969 -7.3336426,21.9999 -10,22 c -4.000099,-1.51e-4 -7.180488,2.915945 -9.078125,6.710937 C -20.975762,32.50593 -22,37.555436 -22,44 c 0,9.476554 5.568062,15.521831 10.185547,19.771484 2.3087424,2.124827 4.418994,3.952822 5.7851561,5.626953 1.3633601,1.670698 1.9834148,2.973262 2.0292969,4.69336 9.555e-4,1.912165 9.85e-4,1.968098 0,5.908203 l 8,0.002 c 0.001,-4.000021 0.001,-4.004009 0,-6.003906 l -0.00195,-0.09961 C 3.9010527,70.060507 2.2031654,66.833828 0.16796875,64.339844 -1.8672279,61.84586 -4.240381,59.869113 -6.3964844,57.884766 -10.708691,53.916072 -14,50.523417 -14,44 c 0,-5.555462 0.975519,-9.505889 2.078125,-11.710938 0.689343,-1.378583 1.174796,-1.832549 1.511719,-2.050781 0.6218763,0.507091 1.5525742,1.407078 2.5957029,2.53711 1.9498037,2.112241 4.3364569,5.079995 6.6347656,8.044921 1.14813963,2.001634 2.4197662,3.943246 3.640625,5.707032 2.3345571,3.372756 4.4160156,5.970703 4.4160156,5.970703 l 6.6191409,-4.439453 c 0,0 -2.673227,-4.801539 -7.824219,-11.498047 -0.00266,-0.0035 -0.00515,-0.0063 -0.00781,-0.0098 C 4.9327486,35.249324 4.348953,34.075175 4.0019531,33.15625 4.0028238,25.254868 4.0009947,15.602918 4,0 ZM0,0"
+      },
+      "139": {
+        "ID": 0,
+        "Name": "v_sol_0",
+        "Path": "M0,0M -2,0 C -8.8884609,-4.133428e-5 -14.740753,2.4675737 -18.537109,6.8964844 -22.333466,11.325395 -24,17.333216 -24,24 c 0.0013,9.998925 7.60566,25.600013 29.2148437,29.921875 l 1.5703125,-7.84375 C -11.605643,42.399943 -15.999235,30.000707 -16,24 c 0,-5.333227 1.333217,-9.325376 3.537109,-11.896484 1.699604,-1.982795 3.9876417,-3.3268668 7.2773441,-3.8476566 C -5.9396434,12.38974 -5.9993002,16.401222 -6,22 c 0,4.666672 1.1821581,8.711268 3.7402344,11.634766 C 0.29831066,36.558263 4.111158,37.999951 8,38 c 3.299997,-2.5e-5 6.250298,-1.098211 8.361328,-2.880859 2.11103,-1.782649 3.368914,-4.068907 4.15625,-6.273438 C 22.092251,24.436642 22,20.000001 22,18 22.000637,14.11058 20.623098,9.3939333 16.703125,5.8007812 12.783152,2.2076292 6.6666648,0 -2,0 Z M 3.1328125,8.3671875 C 7.2441646,8.9809017 9.7720002,10.301478 11.296875,11.699219 13.377141,13.606046 14.000346,15.88935 14,18 c 0,2.000001 -0.09225,5.563383 -1.017578,8.154297 -0.462666,1.295457 -1.079776,2.259206 -1.78125,2.851562 C 10.499698,29.598216 9.7000107,29.999987 8,30 5.888886,29.999974 4.7016888,29.441711 3.7597656,28.365234 2.8178424,27.288758 2,25.333333 2,22 2.0007912,15.66998 2.2354581,12.211605 3.1328125,8.3671875 ZM0,0"
+      },
+      "140": {
+        "ID": 0,
+        "Name": "w_coda_0",
+        "Path": "M0,0M -26,0 V 7.9003906 H 0 V 0 ZM0,0"
+      },
+      "141": {
+        "ID": 0,
+        "Name": "w_onset_0",
+        "Path": "M0,0M 0,0 V 7.9003906 H 26 V 0 ZM0,0"
+      },
+      "142": {
+        "ID": 0,
+        "Name": "x_coda_0",
+        "Path": "M0,0m 15,0 c -3.8423,0 -7,3.1577004 -7,7 0,3.8423 3.1577,7 7,7 3.8423,0 7,-3.1577 7,-7 0,-3.8422996 -3.1577,-7 -7,-7 z m 0,4 c 1.680537,0 3,1.3194637 3,3 0,1.6805367 -1.319463,3 -3,3 -1.680537,0 -3,-1.3194633 -3,-3 0,-1.6805363 1.319463,-3 3,-3 zM0,0"
+      },
+      "143": {
+        "ID": 0,
+        "Name": "x_onset_0",
+        "Path": "M0,0m 15,0 c -3.8423,0 -7,3.1577004 -7,7 0,3.8423 3.1577,7 7,7 3.8423,0 7,-3.1577 7,-7 0,-3.8422996 -3.1577,-7 -7,-7 z m 0,4 c 1.680537,0 3,1.3194637 3,3 0,1.6805367 -1.319463,3 -3,3 -1.680537,0 -3,-1.3194633 -3,-3 0,-1.6805363 1.319463,-3 3,-3 zM0,0"
+      },
+      "144": {
+        "ID": 0,
+        "Name": "y_coda_0",
+        "Path": "M0,0m -22,0 v 36 h 8 V 0 ZM0,0"
+      },
+      "145": {
+        "ID": 0,
+        "Name": "y_onset_0",
+        "Path": "M0,0m 14,0 v 36 h 8 V 0 ZM0,0"
+      },
+      "146": {
+        "ID": 0,
+        "Name": "__",
+        "Path": "M0,0"
+      },
+      "147": {
+        "ID": 0,
+        "Name": "__bar",
+        "Path": "M0,0m -4,0 c 0,3 0,6 0,9 H 5 V 0 ZM0,0"
+      }
+    }
+  },
+  "Parser": {
+    "name": "Parser",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "ID"
+      },
+      "Pattern": {
+        "name": "Pattern",
+        "type": "char",
+        "order": 1
+      },
+      "Order": {
+        "name": "Order",
+        "type": "INTEGER",
+        "order": 2
+      },
+      "Priority": {
+        "name": "Priority",
+        "type": "INTEGER",
+        "order": 3
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 4
+      },
+      "NameAlt": {
+        "name": "NameAlt",
+        "type": "char",
+        "order": 5
+      }
+    },
+    "data": {
+      "0": {
+        "ID": 75,
+        "Pattern": "u",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(\\n)",
+        "NameAlt": "P(newline_0)"
+      },
+      "1": {
+        "ID": 74,
+        "Pattern": "u",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(-)",
+        "NameAlt": "V(null,hyphen_0)"
+      },
+      "2": {
+        "ID": 73,
+        "Pattern": "u",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(,)",
+        "NameAlt": "P(comma_0)"
+      },
+      "3": {
+        "ID": 72,
+        "Pattern": "u",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(\\.)",
+        "NameAlt": "P(period_0)"
+      },
+      "4": {
+        "ID": 71,
+        "Pattern": "u",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(\\\")",
+        "NameAlt": "V(null,br_0)"
+      },
+      "5": {
+        "ID": 70,
+        "Pattern": "u",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R( )",
+        "NameAlt": "P(space_0)"
+      },
+      "6": {
+        "ID": 55,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(m)",
+        "NameAlt": "C(null,n_0-hd_0)"
+      },
+      "7": {
+        "ID": 50,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(d)",
+        "NameAlt": "C(null,t_0-d_0)"
+      },
+      "8": {
+        "ID": 45,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(b)",
+        "NameAlt": "C(null,t_0-d_0-hd_0)"
+      },
+      "9": {
+        "ID": 42,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(p)",
+        "NameAlt": "C(null,t_0-hd_0)"
+      },
+      "10": {
+        "ID": 43,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(h)R(p)",
+        "NameAlt": "C(null,th_0-hd_0)"
+      },
+      "11": {
+        "ID": 30,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(w)",
+        "NameAlt": "C(null,w_0)"
+      },
+      "12": {
+        "ID": 29,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(y)",
+        "NameAlt": "C(null,y_0)"
+      },
+      "13": {
+        "ID": 27,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(r)",
+        "NameAlt": "C(null,r_0)"
+      },
+      "14": {
+        "ID": 25,
+        "Pattern": "c",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(c)",
+        "NameAlt": "C(null,h_0-d_0)"
+      },
+      "15": {
+        "ID": 21,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(z)",
+        "NameAlt": "C(null,s_0-d_0)"
+      },
+      "16": {
+        "ID": 19,
+        "Pattern": "c",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(h)",
+        "NameAlt": "C(null,h_0)"
+      },
+      "17": {
+        "ID": 15,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(s)",
+        "NameAlt": "C(null,s_0)"
+      },
+      "18": {
+        "ID": 12,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(')",
+        "NameAlt": "C(null,c_0)"
+      },
+      "19": {
+        "ID": 11,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(q)",
+        "NameAlt": "C(null,q_0)"
+      },
+      "20": {
+        "ID": 10,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(k)",
+        "NameAlt": "C(null,k_0)"
+      },
+      "21": {
+        "ID": 9,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(t)",
+        "NameAlt": "C(null,t_0)"
+      },
+      "22": {
+        "ID": 8,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(I|ï)",
+        "NameAlt": "V(null,iold_0)"
+      },
+      "23": {
+        "ID": 7,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(E|ë)",
+        "NameAlt": "V(null,eold_0)"
+      },
+      "24": {
+        "ID": 6,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(v|ö)",
+        "NameAlt": "V(null,v_0)"
+      },
+      "25": {
+        "ID": 5,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(u)",
+        "NameAlt": "V(null,u_0)"
+      },
+      "26": {
+        "ID": 4,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(o)",
+        "NameAlt": "V(null,o_0)"
+      },
+      "27": {
+        "ID": 3,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(i)",
+        "NameAlt": "V(null,i_0)"
+      },
+      "28": {
+        "ID": 2,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(e)",
+        "NameAlt": "V(null,e_0)"
+      },
+      "29": {
+        "ID": 1,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(a)",
+        "NameAlt": "V(null,a_0)"
+      },
+      "30": {
+        "ID": 0,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -1,
+        "Name": "R(A)",
+        "NameAlt": "V(null,abig_0)"
+      },
+      "31": {
+        "ID": 62,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -2,
+        "Name": "R(r)R(y)",
+        "NameAlt": "C(null,r_0-sy_0)"
+      },
+      "32": {
+        "ID": 61,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -2,
+        "Name": "R(h)R(w)",
+        "NameAlt": "C(null,qh_0-sw_0)"
+      },
+      "33": {
+        "ID": 60,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -2,
+        "Name": "R(s)R(y)",
+        "NameAlt": "C(null,s_0-sy_0)"
+      },
+      "34": {
+        "ID": 57,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -2,
+        "Name": "R(n)R(y)",
+        "NameAlt": "C(null,n_0-sy_0)"
+      },
+      "35": {
+        "ID": 56,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -2,
+        "Name": "R(m)R(y)",
+        "NameAlt": "C(null,n_0-hd_0-sy_0)"
+      },
+      "36": {
+        "ID": 54,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -2,
+        "Name": "R(h)R(q)",
+        "NameAlt": "C(null,q_0-hd_0)"
+      },
+      "37": {
+        "ID": 53,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -2,
+        "Name": "R(q)R(w)",
+        "NameAlt": "C(null,q_0-sw_0)"
+      },
+      "38": {
+        "ID": 52,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -2,
+        "Name": "R(k)R(w)",
+        "NameAlt": "C(null,k_0-sw_0)"
+      },
+      "39": {
+        "ID": 51,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -2,
+        "Name": "R(k)R(y)",
+        "NameAlt": "C(null,k_0-sy_0)"
+      },
+      "40": {
+        "ID": 49,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -2,
+        "Name": "R(t)R(y)",
+        "NameAlt": "C(null,t_0-sy_0)"
+      },
+      "41": {
+        "ID": 48,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -2,
+        "Name": "R(c)R(h)",
+        "NameAlt": "C(null,tl_0-sy_0)"
+      },
+      "42": {
+        "ID": 47,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -2,
+        "Name": "R(h)R(t)",
+        "NameAlt": "C(null,tl_0-hd_0)"
+      },
+      "43": {
+        "ID": 46,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -2,
+        "Name": "R(t)R(s)",
+        "NameAlt": "C(null,tl_0)"
+      },
+      "44": {
+        "ID": 28,
+        "Pattern": "c",
+        "Order": 0,
+        "Priority": -2,
+        "Name": "R(t)R(l)",
+        "NameAlt": "C(null,tl_0)"
+      },
+      "45": {
+        "ID": 24,
+        "Pattern": "c",
+        "Order": 0,
+        "Priority": -2,
+        "Name": "R(r)R(h)",
+        "NameAlt": "C(null,qh_0-d_0)"
+      },
+      "46": {
+        "ID": 23,
+        "Pattern": "c",
+        "Order": 0,
+        "Priority": -2,
+        "Name": "R(g)R(h)",
+        "NameAlt": "C(null,kh_0-d_0)"
+      },
+      "47": {
+        "ID": 22,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -2,
+        "Name": "R(z)R(h)",
+        "NameAlt": "C(null,hy_0-d_0)"
+      },
+      "48": {
+        "ID": 20,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -2,
+        "Name": "R(d)R(h)",
+        "NameAlt": "C(null,th_0-d_0)"
+      },
+      "49": {
+        "ID": 18,
+        "Pattern": "c",
+        "Order": 0,
+        "Priority": -2,
+        "Name": "R(q)R(h)",
+        "NameAlt": "C(null,qh_0)"
+      },
+      "50": {
+        "ID": 17,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -2,
+        "Name": "R(k)R(h)",
+        "NameAlt": "C(null,kh_0)"
+      },
+      "51": {
+        "ID": 16,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -2,
+        "Name": "R(h)R(y)",
+        "NameAlt": "C(null,hy_0)"
+      },
+      "52": {
+        "ID": 14,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -2,
+        "Name": "R(t)R(h)",
+        "NameAlt": "C(null,th_0)"
+      },
+      "53": {
+        "ID": 97,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -2,
+        "Name": "R(n)R(g)",
+        "NameAlt": "C(null,ng_0)"
+      },
+      "54": {
+        "ID": 59,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -3,
+        "Name": "R(n)R(g)R(w)",
+        "NameAlt": "C(null,ng_0-sw_0)"
+      },
+      "55": {
+        "ID": 58,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -3,
+        "Name": "R(n)R(g)R(y)",
+        "NameAlt": "C(null,ng_0-sy_0)"
+      },
+      "56": {
+        "ID": 44,
+        "Pattern": "o",
+        "Order": 0,
+        "Priority": -3,
+        "Name": "R(h)R(p)R(y)",
+        "NameAlt": "C(null,th_0-hd_0-sy_0)"
+      },
+      "57": {
+        "ID": 41,
+        "Pattern": "c",
+        "Order": 10,
+        "Priority": 0,
+        "Name": "(V(*)|C(*,[_.Name!='c']_.))C(*,c)(V(*)|C(*,[_.Name!='c']_.))",
+        "NameAlt": "$1$2"
+      },
+      "58": {
+        "ID": 40,
+        "Pattern": "c",
+        "Order": 10,
+        "Priority": 0,
+        "Name": "(V(*,abig)){2}(V(*,[_.Name!='abig']))",
+        "NameAlt": "$1C(null,c_0)$2"
+      },
+      "59": {
+        "ID": 39,
+        "Pattern": "c",
+        "Order": 10,
+        "Priority": 0,
+        "Name": "(V(*,iold)){2}(V(*,[_.Name!='iold']))",
+        "NameAlt": "$1C(null,c_0)$2"
+      },
+      "60": {
+        "ID": 38,
+        "Pattern": "c",
+        "Order": 10,
+        "Priority": 0,
+        "Name": "(V(*,eold)){2}(V(*,[_.Name!='eold']))",
+        "NameAlt": "$1C(null,c_0)$2"
+      },
+      "61": {
+        "ID": 37,
+        "Pattern": "c",
+        "Order": 10,
+        "Priority": 0,
+        "Name": "(V(*,v)){2}(V(*,[_.Name!='v']))",
+        "NameAlt": "$1C(null,c_0)$2"
+      },
+      "62": {
+        "ID": 36,
+        "Pattern": "c",
+        "Order": 10,
+        "Priority": 0,
+        "Name": "(V(*,u)){2}(V(*,[_.Name!='u']))",
+        "NameAlt": "$1C(null,c_0)$2"
+      },
+      "63": {
+        "ID": 35,
+        "Pattern": "c",
+        "Order": 10,
+        "Priority": 0,
+        "Name": "(V(*,o)){2}(V(*,[_.Name!='o']))",
+        "NameAlt": "$1C(null,c_0)$2"
+      },
+      "64": {
+        "ID": 34,
+        "Pattern": "c",
+        "Order": 10,
+        "Priority": 0,
+        "Name": "(V(*,i)){2}(V(*,[_.Name!='i']))",
+        "NameAlt": "$1C(null,c_0)$2"
+      },
+      "65": {
+        "ID": 33,
+        "Pattern": "c",
+        "Order": 10,
+        "Priority": 0,
+        "Name": "(V(*,e)){2}(V(*,[_.Name!='e']))",
+        "NameAlt": "$1C(null,c_0)$2"
+      },
+      "66": {
+        "ID": 32,
+        "Pattern": "c",
+        "Order": 10,
+        "Priority": 0,
+        "Name": "(V(*,a)){2}(V(*,[_.Name!='a']))",
+        "NameAlt": "$1C(null,c_0)$2"
+      },
+      "67": {
+        "ID": 31,
+        "Pattern": "c",
+        "Order": 10,
+        "Priority": 0,
+        "Name": "(V(*,(?:a|e|i|o|u|v|eold|iold|abig))){2}(C(*)|(P(*)|$))",
+        "NameAlt": "$1C(null,c_0)$2"
+      },
+      "68": {
+        "ID": 68,
+        "Pattern": "o",
+        "Order": 60,
+        "Priority": 5,
+        "Name": "R(n)R(n)",
+        "NameAlt": "R(n)C(null,n_0)"
+      },
+      "69": {
+        "ID": 67,
+        "Pattern": "o",
+        "Order": 60,
+        "Priority": 4,
+        "Name": "(^|P(*))R(n)R(n)",
+        "NameAlt": "$1C(null,n_0)R(n)"
+      },
+      "70": {
+        "ID": 66,
+        "Pattern": "o",
+        "Order": 60,
+        "Priority": 3,
+        "Name": "(V(*,(?:a|e|i|o|u|v|eold|iold|abig))|R(l))R(n)(V(*,(?:a|e|i|o|u|v|eold|iold|abig))|R(l))",
+        "NameAlt": "$1C(null,n_0)$2"
+      },
+      "71": {
+        "ID": 65,
+        "Pattern": "o",
+        "Order": 60,
+        "Priority": 2,
+        "Name": "(^|P(*))R(n)(V(*,(?:a|e|i|o|u|v|eold|iold|abig))|C(*,c)|R(l))",
+        "NameAlt": "$1C(null,n_0)$2"
+      },
+      "72": {
+        "ID": 64,
+        "Pattern": "o",
+        "Order": 60,
+        "Priority": 1,
+        "Name": "(^|P(*))R(h)",
+        "NameAlt": "$1C(null,h_0)"
+      },
+      "73": {
+        "ID": 63,
+        "Pattern": "o",
+        "Order": 60,
+        "Priority": 0,
+        "Name": "(C(*)|V(*))R(h)",
+        "NameAlt": "$1C(null,kh_0)"
+      },
+      "74": {
+        "ID": 84,
+        "Pattern": "u",
+        "Order": 70,
+        "Priority": 9,
+        "Name": "(Q())+",
+        "NameAlt": "Q()"
+      },
+      "75": {
+        "ID": 83,
+        "Pattern": "u",
+        "Order": 70,
+        "Priority": 8,
+        "Name": "(Q())+P()(Q())+",
+        "NameAlt": "P()"
+      },
+      "76": {
+        "ID": 82,
+        "Pattern": "u",
+        "Order": 70,
+        "Priority": 7,
+        "Name": "(V(*)|R(n)|R(l))(C(*))(V(*,[!_.hasGreedyBond]_.))",
+        "NameAlt": "$1$2Q()$3"
+      },
+      "77": {
+        "ID": 81,
+        "Pattern": "u",
+        "Order": 70,
+        "Priority": 6,
+        "Name": "(V(*)|R(n)|R(l))(C(*))(V(*,[_.hasGreedyBond]_.)|R(n)|R(l))",
+        "NameAlt": "$1Q()$2$3"
+      },
+      "78": {
+        "ID": 80,
+        "Pattern": "u",
+        "Order": 70,
+        "Priority": 5,
+        "Name": "(C(*))(C(*))",
+        "NameAlt": "$1Q()$2"
+      },
+      "79": {
+        "ID": 79,
+        "Pattern": "u",
+        "Order": 70,
+        "Priority": 4,
+        "Name": "(V(*)|R(n)|R(l))(V(*)|R(n)|R(l))",
+        "NameAlt": "$1Q()$2"
+      },
+      "80": {
+        "ID": 78,
+        "Pattern": "u",
+        "Order": 70,
+        "Priority": 3,
+        "Name": "(V(*,[_.isBondtoPrev&&!_.isBondtoNext]_.))",
+        "NameAlt": "$1Q()"
+      },
+      "81": {
+        "ID": 77,
+        "Pattern": "u",
+        "Order": 70,
+        "Priority": 2,
+        "Name": "(V(*,[!_.isBondtoPrev&&_.isBondtoNext]_.))",
+        "NameAlt": "Q()$1"
+      },
+      "82": {
+        "ID": 76,
+        "Pattern": "u",
+        "Order": 70,
+        "Priority": 1,
+        "Name": "(V(*,[!_.isBondtoPrev&&!_.isBondtoNext]_.))",
+        "NameAlt": "Q()$1Q()"
+      },
+      "83": {
+        "ID": 69,
+        "Pattern": "o",
+        "Order": 70,
+        "Priority": 0,
+        "Name": "(V(*)|C(null,[_.Name!='c']_.))C(null,c)*(V(*)|C(null,[_.Name!='c']_.))",
+        "NameAlt": "$1$2"
+      },
+      "84": {
+        "ID": 91,
+        "Pattern": "u",
+        "Order": 80,
+        "Priority": 8,
+        "Name": "(P()|Q())R(l)(P()|Q())",
+        "NameAlt": "$1C(null,l_0)V(null,v_0)C(null,l_0)$2"
+      },
+      "85": {
+        "ID": 90,
+        "Pattern": "u",
+        "Order": 80,
+        "Priority": 7,
+        "Name": "(C(*,r))R(l)",
+        "NameAlt": "$1V(null,v_0)C(null,r_0)"
+      },
+      "86": {
+        "ID": 13,
+        "Pattern": "u",
+        "Order": 80,
+        "Priority": 6,
+        "Name": "R(n)",
+        "NameAlt": "V(null,v_0)"
+      },
+      "87": {
+        "ID": 89,
+        "Pattern": "u",
+        "Order": 80,
+        "Priority": 5,
+        "Name": "R(n)(Q()(?:C(*)|V(*)|P(*)|$))",
+        "NameAlt": "V(null,v_0)C(null,ng_0)$1"
+      },
+      "88": {
+        "ID": 88,
+        "Pattern": "u",
+        "Order": 80,
+        "Priority": 4,
+        "Name": "R(n)Q()R(l)",
+        "NameAlt": "V(null,v_0)C(null,n_0)Q()C(null,l_0)R(l)"
+      },
+      "89": {
+        "ID": 87,
+        "Pattern": "u",
+        "Order": 80,
+        "Priority": 3,
+        "Name": "R(n)(Q()C(*,(?:(?:t|th|n)-hd)|(?:(?:t)-d-hd)|(?:(?:tl|n)-hd-sy)|(?:th-hd-sw))",
+        "NameAlt": "V(null,v_0)C(null,n_0+hd_0)$1"
+      },
+      "90": {
+        "ID": 86,
+        "Pattern": "u",
+        "Order": 80,
+        "Priority": 2,
+        "Name": "R(n)(Q()C(*,(?:t|d|n|tl)|(?:(?:t|tl|n)-sy)|(?:(?:t|th|s|hy)-d)|(?:tl-w)))",
+        "NameAlt": "V(null,v_0)C(null,n_0)$1"
+      },
+      "91": {
+        "ID": 85,
+        "Pattern": "u",
+        "Order": 80,
+        "Priority": 1,
+        "Name": "(^|P())R(n)(P()|$)",
+        "NameAlt": "$1C(null,ng_0)V(null,v_0)C(null,ng_0)$2"
+      },
+      "92": {
+        "ID": 26,
+        "Pattern": "u",
+        "Order": 80,
+        "Priority": 0,
+        "Name": "R(l)",
+        "NameAlt": "V(null,v_0)C(null,l_0)"
+      },
+      "93": {
+        "ID": 94,
+        "Pattern": "u",
+        "Order": 90,
+        "Priority": 3,
+        "Name": "C(*,(*))V((*),(*))",
+        "NameAlt": "S($2,$1,$3,)"
+      },
+      "94": {
+        "ID": 95,
+        "Pattern": "u",
+        "Order": 90,
+        "Priority": 2,
+        "Name": "V((*),(*))",
+        "NameAlt": "S($1,,$2,)"
+      },
+      "95": {
+        "ID": 93,
+        "Pattern": "u",
+        "Order": 90,
+        "Priority": 1,
+        "Name": "V((*),(*))C(*,(*))",
+        "NameAlt": "S($1,,$2,$3)"
+      },
+      "96": {
+        "ID": 92,
+        "Pattern": "u",
+        "Order": 90,
+        "Priority": 0,
+        "Name": "C(*,(*))V((*),(*))C(*,(*))",
+        "NameAlt": "S($2,$1,$3,$4)"
+      },
+      "97": {
+        "ID": 96,
+        "Pattern": "u",
+        "Order": 100,
+        "Priority": 0,
+        "Name": "Q()",
+        "NameAlt": ""
+      }
+    }
+  },
+  "GSUB": {
+    "name": "GSUB",
+    "column": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "ID"
+      },
+      "Pattern": {
+        "name": "Pattern",
+        "type": "char",
+        "order": 1
+      },
+      "Order": {
+        "name": "Order",
+        "type": "INTEGER",
+        "order": 2
+      },
+      "Priority`": {
+        "name": "Priority",
+        "type": "INTEGER",
+        "order": 3
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 4
+      },
+      "NameAlt": {
+        "name": "NameAlt",
+        "type": "char",
+        "order": 5
+      }
+    },
+    "data": {}
+  }
+}

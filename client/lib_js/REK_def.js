@@ -31,13 +31,16 @@ class REK_def {
     ["[A-Za-z]+"]: (self, ans, pattern, msg) => {
       return REK_def.PREsub_END(self, ans, pattern, msg, msg);
     },
+    [" "]: (self, ans, pattern, msg) => {
+      return REK_def.PREsub_END(self, ans, pattern, "", msg);
+    },
   };
 
   static rule_script = {
     [".+"]: //[]
       (self, ans, pattern, msg) => {
         
-        let hensuu = [];
+        const hensuu = [];
         const table = {
           "V": "VOWEL",
           "C": "CONSONANT",
@@ -49,10 +52,11 @@ class REK_def {
         const str = self.intent.subtype;
         let AL;
         if (typeof str == "string") {
-          AL = LetterManager.getLetter_B(table[str], { Name: /(|.*)/g });
+          AL = LetterManager.getLetter({ Name: /(|.*)/g });
         }
         if (AL == null || AL instanceof Error) throw AL;
         for (const a_ in AL) {
+          if(table[str] != AL[a_].parent.name) continue;
           const k = AL[a_].values;
           
           const val = Function("_", `return ${msg}`);
@@ -136,6 +140,9 @@ class REK_def {
     ["{\\\d+(,|,\\\d+)?}"]: (self, ans, pattern, msg) => {
       return REK_def.PREsub_kazu(self, ans, pattern, msg);
     },
+    [" "]: (self, ans, pattern, msg) => {
+      return REK_def.PREsub_END(self, ans, pattern, "", msg);
+    },
   };
 
    static PREsub_br_D(
@@ -202,9 +209,13 @@ class REK_def {
     ["{\\\d+(,|,\\\d+)?}"]: (self, ans, pattern, msg) => {
       return REK_def.PREsub_kazu(self, ans, pattern, msg);
     },
+    [" "]: (self, ans, pattern, msg) => {
+      return REK_def.PREsub_END(self, ans, pattern, "", msg);
+    },
     [".*"]: (self, ans, pattern, msg) => {
       return REK_def.PREsub_lower(self, ans, pattern, msg, msg, "g");
     },
+    
   };
 
   static rule_scvpd = {
@@ -385,6 +396,9 @@ class REK_def {
     },
     ["{\\\d+(,|,\\\d+)?}"]: (self, ans, pattern, msg) => {
       return REK_def.PREsub_kazu(self, ans, pattern, msg);
+    },
+    [" "]: (self, ans, pattern, msg) => {
+      return REK_def.PREsub_END(self, ans, pattern, "", msg);
     },
   };
 
