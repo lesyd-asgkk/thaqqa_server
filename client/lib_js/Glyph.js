@@ -126,13 +126,13 @@ class Glyph{
             let y1;
             
             if(this.name.startsWith("S")){
-                const k = GPOSManager.gpos(this.name,1,"IN");
+                const k = GPOSManager.gpos(this.name,0,"IN");
                 x0 = k.x0;y0 = k.y0;x1 = k.x1;y1 = k.y1;
                 console.log(k);
             }
             else{
-                const k = GPOSManager.gpos(this.name,1,"DIAC");
-                x0 = k.x;y0 = k.y;
+                const k = GPOSManager.gpos(this.name,0,"DIAC");
+                x0 = k.x0;y0 = k.y0;
                 console.log(k);
             }
 

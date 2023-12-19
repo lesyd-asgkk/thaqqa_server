@@ -4061,7 +4061,7 @@
       "0": {
         "ID": 0,
         "Pattern": "u",
-        "Pattern_sub": "d",
+        "Pattern_sub": "DIAC",
         "Name": "C(onset,t_0-d_0)",
         "OffsetX0": 0,
         "OffsetY0": 10,

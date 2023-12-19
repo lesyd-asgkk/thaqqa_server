@@ -182,10 +182,14 @@ class GPOSManager {
     }*/
     
     static gpos(text,vec,rule){
+        console.log(text);
+        console.log(vec);
+        console.log(rule);
         const ans = {x0:0,y0:0,x1:0,y1:0}
         const table = Thaqqa_DB.getTable("GPOS");
         const GPOSdata = table.getData({Pattern:"u",Pattern_sub:rule}).concat(table.getData({Pattern:vec==0?"v":"h",Pattern_sub:"DIAC"}));
-            for(let i = 0;i<GPOSdata.values.length;i++){
+        console.log(table.getData({Pattern:"u",Pattern_sub:rule}));
+        for(let i = 0;i<GPOSdata.length;i++){
                 let r = new RegExp_Khhyl(GPOSdata[i].values.Name,{});
                 r = r.ParseRegExp()
                 const r_ = r.toNormalRegExp();
@@ -195,6 +199,7 @@ class GPOSManager {
         
                 const r_fin = new RegExp(r_, "g");
                 //console.log(r_fin);
+                console.log(text.match(r_fin));
                 if(text.match(r_fin)){
                     ans.x0 += GPOSdata[i].values.OffsetX0 ;
                     ans.y0 += GPOSdata[i].values.OffsetY0 ;
@@ -202,6 +207,7 @@ class GPOSManager {
                     ans.y1 += GPOSdata[i].values.OffsetY1 ;
                 }
             }
+            console.log(ans);
             return ans;
         
     }
