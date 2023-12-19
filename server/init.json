@@ -4067,6 +4067,16 @@
         "OffsetY0": 10,
         "OffsetX1": 0,
         "OffsetY1": 0
+      },
+      "1": {
+        "ID": 1,
+        "Pattern": "u",
+        "Pattern_sub": "DIAC",
+        "Name": "S(fin,s,u,s)",
+        "OffsetX0": 0,
+        "OffsetY0": 15,
+        "OffsetX1": 0,
+        "OffsetY1": 15
       }
     }
   }

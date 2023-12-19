@@ -79,6 +79,7 @@ class DIVselect_web{
     rewrite_content(parent,self,obj){
         const val = obj.checked;
         const val2 = obj.value;
+        console.log(this.type);
         switch(this.type){
             case "bool":
                 if(Khhyl.Thaqqa_DB.getTable(parent.tablename).rewriteData({ID:this.id},{[self.col]:val}))
@@ -87,9 +88,9 @@ class DIVselect_web{
             break;
 
             case "select":
-                if(Khhyl.Thaqqa_DB.getTable(parent.tablename).rewriteData({ID:this.id},{[self.col]:val}))
-                {obj.checked = val;
-                 self.val = val;}
+                if(Khhyl.Thaqqa_DB.getTable(parent.tablename).rewriteData({ID:this.id},{[self.col]:val2}))
+                {obj.checked = val2;
+                 self.val = val2;}
             break;
         }
         
@@ -116,9 +117,9 @@ class DIVselect_web{
                     option.value = this.select[i][0];
                     option.selected = this.select[i][0] == this.val;
                     option.textContent = this.select[i][1];
-                    option.addEventListener("click",() => {this.rewrite_content(this.parent,this,object);},true);
                     object.appendChild(option);
                 }
+                object.addEventListener("change",() => {this.rewrite_content(this.parent,this,object);},true);
                 break;
                 
         }
