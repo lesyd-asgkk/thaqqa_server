@@ -18,8 +18,12 @@ class Render{
             const r_fin = new RegExp(r_, "g");
             text = text.replaceAll(r_fin,"$1Q()$2");
         }
-        const parsedSVGData = text.split("Q()");
-        return parsedSVGData;
+        const pSVGData = text.split("Q()");
+        const SVGData = [];
+        for(let i = 0;i<pSVGData.length;i++){
+            SVGData.push(new Glyph(pSVGData[i]));
+        }
+        return SVGData;
     }
 }
 

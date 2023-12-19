@@ -1,5 +1,5 @@
 
-import { Thaqqa_DB,DataTable,Data } from "./Thaqqa_DB.js";
+import { Thaqqa_DB,SVG,DataTable,Data,GPOSManager,LetterManager} from "./deps.js";
 class GlyphManager{
     
     static async load(){
@@ -51,6 +51,7 @@ class Glyph{
 
         this.height = {vtop:0,vbottom:0,top:0,bottom:0};
         this.initSvg();
+        this.toPath();
     }
 
     
@@ -103,12 +104,12 @@ class Glyph{
         const partname = this.partitionName();
         //console.log(partname.length);
         if(partname.length == 0){this.isroot = true;
-           
+
+            if( this.name == null||this.name == ""){this.d = "" ,this.aligment = {x:0,y:0};return null;}
             const temp = this.name.split(",");
             const form = this.name.startsWith("P") ?"":temp[0].split("(")[1];
             const temp2 = temp.slice(-1)[0].split("_");
-            //console.log(temp2[0]+"_"+form+"_"+temp2[1].split(")")[0]);
-            this.d = (SVGManager.getSVG(temp2[0]+"_"+form+"_"+temp2[1].split(")")[0])[0]);//this.nameがこれ以上分割できない場合。
+            this.d = (GlyphManager.getSVG(temp2[0]+"_"+form+"_"+temp2[1].split(")")[0])[0]);//this.nameがこれ以上分割できない場合。
             let offx = LetterManager.getLetter(temp2[0])[0].values.x_Align;
             let offy = LetterManager.getLetter(temp2[0])[0].values.y_Align;
             if(offx == null) offx = 0;
@@ -162,7 +163,7 @@ class Glyph{
             const off0 = this.child[0] == null ? {x:0,y:0} :this.child[0].getoffset(v,true);//parentd
             const off1 = this.child[2] == null ? {x:0,y:0} :this.child[2].getoffset(v,true);
             
-            ans = SVG.createMerge3(v,c0,c1,0,off0.y,0,off1.y);
+            ans = SVG.merge3(v,c0,c1,0,off0.y,0,off1.y);
 
             console.log("\nS");
 
@@ -186,7 +187,7 @@ class Glyph{
                 //console.log(p.name);
                 const off = p.parent.child[1].getoffset(ans,false);
                 //console.log(off);
-                ans = SVG.createMerge2(ans,p.parent.child[1].d,off.x,off.y);
+                ans = SVG.merge2(ans,p.parent.child[1].d,off.x,off.y);
                 //console.log(ans);
                 ans = SVG.toRelative(ans);
                 //console.log(ans);

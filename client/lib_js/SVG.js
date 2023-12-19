@@ -5,7 +5,11 @@ export default class SVG {
         return Snap.path.toRelative(param).toString().toLowerCase();
         //return SVG.toStr(SVG.roundAll(SVG.toRel(SVG.ParseD(param))));
     }
-
+    static toRelative(param){
+        //console.log(param);
+        return SVG.convertSVG(param);
+        //return SVG.toStr(SVG.roundAll(SVG.toRel(SVG.ParseD(param))));
+    }
     static getBottom(param) {
         return Snap.path.getBBox(param).y2;
     }
