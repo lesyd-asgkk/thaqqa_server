@@ -1532,13 +1532,13 @@
       "Width": {
         "name": "Width",
         "type": "float",
-        "order": 0,
+        "order": 150,
         "subtype": "none"
       },
       "Height": {
         "name": "Height",
         "type": "float",
-        "order": 0,
+        "order": 250,
         "subtype": "none"
       }
     },

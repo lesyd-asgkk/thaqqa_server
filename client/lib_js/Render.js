@@ -27,24 +27,47 @@ class Render{
 
         let x = 0;
         let y = 0;
-        //const textdata = Thaqqa_DB.getTable("TEXTDATA").data[0].values;
+        const textdata = Thaqqa_DB.getTable("TEXTDATA").data[0].values;
         if(alig==0){
             for(let i = 0;i<pSVGData.length;i++){
-                console.log(SVGData[i]);
+
+                let form = "sol"
+                if(this.name.startsWith("S")) form = this.name.split(",")[0].split("S(")[1];
+                
+
                 let m = 0;
                 if(i+1 != pSVGData.length) m = GPOSManager.gpos(pSVGData[i]+pSVGData[i+1],alig,"EX").y0;
-                ans += SVGData[i].toPathB(0,m);
+                ans += SVGData[i].toPathB(0,(form=="init"||form=="mid")?m:0);
                 y += SVG.getBottom(SVGData[i].d)+m;
                 if(i+1 != pSVGData.length) y -= SVG.getTop(SVGData[i+1].d);
                 ans += "M 0,"+y+ " ";
             }
         }
         else{
-            for(let i = 0;i<pSVGData.length-1;i++){
-                let topgap = {init:0,mid:(100-k0[2])/2,fin:100-k0[2],sol:(100-k0[2])/2};
+            for(let i = 0;i<pSVGData.length;i++){
+                const h = SVGData[i].height;
+
+                //const topgap = {init:0,mid:b/2,fin:textdata.Height+vh,sol:b/2};
+
+                let form = "sol"
+                if(this.name.startsWith("S")) form = this.name.split(",")[0].split("S(")[1];
+                
+                //とりあえずfin用
+                const b = (h.vbottom-h.vtop+h.bottom*2);
+                const g = (h.top-h.bottom);//+this.height.bottom
+                ans += SVGData[i].toPathB(-textdata.Height-g,textdata.Height/2-2*b);
+
+                x += textdata.Width;
+                ans += "M "+x+ ",0 ";
             }
         }
-
+        const aa = Snap.parsePathString(Snap.path.toAbsolute(ans));
+        for(let i = 0;i<aa.length;i++){
+            for(let j = 1;j<aa[i].length;j++){
+                aa[i][j] *= 16/(alig==0?textdata.Width:textdata.Height);
+            }
+        }
+        ans = Snap.path.toRelative(aa).toString().toLowerCase();
         return ans;
     }
 }
