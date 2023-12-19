@@ -39,7 +39,6 @@ class GlyphManager{
 }
 
 class Glyph{
-
     constructor(name,offx,offy,algx,algy){
         this.name = name;
         this.d = "";
@@ -126,13 +125,12 @@ class Glyph{
             let y1;
             
             if(this.name.startsWith("S")){
-                const k = GPOSManager.gpos_in(this.name,1);
+                const k = GPOSManager.gpos(this.name,1,"IN");
                 x0 = k.x0;y0 = k.y0;x1 = k.x1;y1 = k.y1;
                 console.log(k);
             }
             else{
-                console.log(this.name);
-                const k = GPOSManager.gpos_diac(this.name,1);
+                const k = GPOSManager.gpos(this.name,1,"DIAC");
                 x0 = k.x;y0 = k.y;
                 console.log(k);
             }

@@ -73,7 +73,7 @@ class GPOSManager {
             table_.createData(param);
 
             }
-    
+    /*
     static gpos_ex(text,vec){
         let y = 0;
         const array = [];
@@ -179,8 +179,32 @@ class GPOSManager {
             }
             return {x:x,y:y};
         
-    }
+    }*/
     
+    static gpos(text,vec,rule){
+        const ans = {x0:0,y0:0,x1:0,y1:0}
+        const table = Thaqqa_DB.getTable("GPOS");
+        const GPOSdata = table.getData({Pattern:"u",Pattern_sub:rule}).concat(table.getData({Pattern:vec==0?"v":"h",Pattern_sub:"DIAC"}));
+            for(let i = 0;i<GPOSdata.values.length;i++){
+                let r = new RegExp_Khhyl(GPOSdata[i].values.Name,{});
+                r = r.ParseRegExp()
+                const r_ = r.toNormalRegExp();
+                //console.log("-------");
+                //console.log(array[i].Name);
+                //console.log(r_);
+        
+                const r_fin = new RegExp(r_, "g");
+                //console.log(r_fin);
+                if(text.match(r_fin)){
+                    ans.x0 += GPOSdata[i].values.OffsetX0 ;
+                    ans.y0 += GPOSdata[i].values.OffsetY0 ;
+                    ans.x1 += GPOSdata[i].values.OffsetX1 ;
+                    ans.y1 += GPOSdata[i].values.OffsetY1 ;
+                }
+            }
+            return ans;
+        
+    }
 }
 
 export{GPOSManager};

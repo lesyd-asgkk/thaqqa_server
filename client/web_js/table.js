@@ -10,19 +10,37 @@ class Row_web{
     }
     setContent(value,table){
         const DTTB = Khhyl.Thaqqa_DB.getTable(table);
+        const sublistlist = {
+            "AligX":[[-1,"□→‖←□(-1)"],[0,"・｜・(0)"],[1,"⇐■｜■⇒(1)"]],
+            "AligY":[[-1,"↑(-1)"],[0,"・(0)"],[1,"⇓(1)"]],
+            "LANG":[["u","共通(u)"],["c","🐍東(c)"],["o","汽🐟(o)"]],
+            "GPOS":[["DIAC","DIAC"],["IN","IN"],["EX","EX"]],
+            "AligWhole":[["v","↓(v)"],["h","⇔(h)"],["u","共通(u)"]]
+        }
         for(const v in value){
 
             const type = DTTB.getColumn(v).type;
             const subtype = DTTB.getColumn(v).subtype;
             switch(type){
                 case "INTEGER":
+                    if(subtype == "AligX" || subtype == "AligY"){
+                        this.content.push(new DIVselect_web(this.parent,this.id,value[v],v,"select",subtype,sublistlist[subtype]));
+                    }
+                    else
+                    {
                     this.content.push(new DIVparam_web(this.parent,this.id,value[v],v,"int",subtype));
+                    }
                 break;
                 case "float":
                     this.content.push(new DIVparam_web(this.parent,this.id,value[v],v,"float",subtype));
                 break;
                 case "char":
+                    if(subtype == "LANG" || subtype == "GPOS"|| subtype == "AligWhole"){
+                        this.content.push(new DIVselect_web(this.parent,this.id,value[v],v,"select",subtype,sublistlist[subtype]));
+                    }
+                    else{
                     this.content.push(new DIVparam_web(this.parent,this.id,value[v],v,"char",subtype));
+                    }
                 break;
                 case "bool":
                     this.content.push(new DIVselect_web(this.parent,this.id,value[v],v,"bool",subtype));
@@ -98,14 +116,15 @@ class ColumnDesc_web{
     static drawlist = ["order","name","desc","type","subtype"];
     static sublist = {
         //ID:ID(変更不能) Alig:[-1,0,1] FREE_0:0以上 FREE_1:1以上
-        "int":["none","n>=0","n>=1","ID","n={-1,0,1}"],
+        "int":["none","n>=0","n>=1","ID","AligX","AligY"],
         //NAME:名前用（重複不可）
-        "char":["none","NAME_L","NAME"],
+        "char":["none","NAME_L","NAME","LANG","AligWhole","GPOS"],
         
         "bool":["none"],
         
         "float":["none"]
     };
+
     constructor(parent){
         this.name;
         this.type;

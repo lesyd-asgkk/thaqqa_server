@@ -55,7 +55,7 @@ class Parser {
     ];*/
 
 
-    static test(raw,type) {
+    static parse(raw,type) {
 
       const table = Thaqqa_DB.getTable("Parser");
 

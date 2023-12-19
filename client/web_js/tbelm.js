@@ -67,16 +67,18 @@ class DIVparam_web{
 
 }
 class DIVselect_web{
-    constructor(parent,id,val,col,type,subtype){
+    constructor(parent,id,val,col,type,subtype,select){
         this.parent = parent;
         this.id = id;
         this.col = col; //
         this.val = val;
         this.type = type;//bool,selectのいずれか
         this.subtype = subtype;//selectの選択肢用
+        this.select = select;
     }
     rewrite_content(parent,self,obj){
-        let val = obj.checked;
+        const val = obj.checked;
+        const val2 = obj.value;
         switch(this.type){
             case "bool":
                 if(Khhyl.Thaqqa_DB.getTable(parent.tablename).rewriteData({ID:this.id},{[self.col]:val}))
@@ -85,19 +87,41 @@ class DIVselect_web{
             break;
 
             case "select":
+                if(Khhyl.Thaqqa_DB.getTable(parent.tablename).rewriteData({ID:this.id},{[self.col]:val}))
+                {obj.checked = val;
+                 self.val = val;}
             break;
         }
         
         parent.draw();
     }
     draw(){
-        const object = document.createElement("input");
-        object.type = "checkbox";
-        object.contentEditable = false;
-        object.classList.add(this.col);
-        object.name = this.id;
-        object.checked = this.val;
-        object.addEventListener("click",() => {this.rewrite_content(this.parent,this,object);},true);
+        let object;
+        switch(this.type){
+            case "bool":
+            object = document.createElement("input");
+            object.type = "checkbox";
+            object.contentEditable = false;
+            object.classList.add(this.col);
+            object.name = this.id;
+            object.checked = this.val;
+            object.addEventListener("click",() => {this.rewrite_content(this.parent,this,object);},true);
+            break;
+            case "select":
+                object = document.createElement("select");
+                object.contentEditable = false;
+                object.classList.add(this.col);
+                for(let i = 0;i<this.select.length;i++){
+                    const option = document.createElement("option");
+                    option.value = this.select[i][0];
+                    option.selected = this.select[i][0] == this.val;
+                    option.textContent = this.select[i][1];
+                    option.addEventListener("click",() => {this.rewrite_content(this.parent,this,object);},true);
+                    object.appendChild(option);
+                }
+                break;
+                
+        }
         return object;
     }
 }

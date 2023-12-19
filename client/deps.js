@@ -9,18 +9,18 @@ import * as webjs from "./web_js/deps.js";
     await khhyl.GlyphManager.load();
     console.log("----------");
     let k;
-    k = khhyl.Parser.test("suzus'ha\nkoratl", 0);
+    k = khhyl.Parser.parse("suzus'ha\nkoratl", 0);
     k = khhyl.GSUBManager.gsub(k, 0);
     console.log(k);
-    k = khhyl.Parser.test("aterui itet iret itel", 0);
+    k = khhyl.Parser.parse("aterui itet iret itel", 0);
     k = khhyl.GSUBManager.gsub(k, 0);
     console.log(k);
 
-    k = khhyl.Parser.test("rlryoi knngwahye", 1);
+    k = khhyl.Parser.parse("rlryoi knngwahye", 1);
     k = khhyl.GSUBManager.gsub(k, 1);
     console.log(k);
 //S(null,*)S(null,s_0-d_0,u_0,s_0)S(null,h_0,a_0,)P(space_0)S(null,k_0,o_0,)S(null,r_0,a_0,tl_0)
-    k = khhyl.Parser.test("nnrenl rnteknpa", 1);
+    k = khhyl.Parser.parse("nnrenl rnteknpa", 1);
     k = khhyl.GSUBManager.gsub(k, 1);
     console.log(k);
 

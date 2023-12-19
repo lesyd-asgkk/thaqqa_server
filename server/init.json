@@ -595,13 +595,13 @@
         "name": "x_Align",
         "type": "INTEGER",
         "order": 8,
-        "subtype": "n={-1,0,1}"
+        "subtype": "AligX"
       },
       "y_Align": {
         "name": "y_Align",
         "type": "INTEGER",
         "order": 9,
-        "subtype": "n={-1,0,1}"
+        "subtype": "AligY"
       },
       "Order": {
         "name": "Order",
@@ -649,13 +649,13 @@
         "name": "x_Align",
         "type": "INTEGER",
         "order": 6,
-        "subtype": "n={-1,0,1}"
+        "subtype": "AligX"
       },
       "y_Align": {
         "name": "y_Align",
         "type": "INTEGER",
         "order": 7,
-        "subtype": "n={-1,0,1}"
+        "subtype": "AligY"
       },
       "Order": {
         "name": "Order",
@@ -738,13 +738,13 @@
         "name": "x_Align",
         "type": "INTEGER",
         "order": 5,
-        "subtype": "n={-1,0,1}"
+        "subtype": "AligX"
       },
       "y_Align": {
         "name": "y_Align",
         "type": "INTEGER",
         "order": 6,
-        "subtype": "n={-1,0,1}"
+        "subtype": "AligY"
       },
       "Order": {
         "name": "Order",
@@ -2560,7 +2560,8 @@
       "Pattern": {
         "name": "Pattern",
         "type": "char",
-        "order": 1
+        "order": 1,
+        "subtype": "LANG"
       },
       "Order": {
         "name": "Order",
@@ -3598,7 +3599,8 @@
       "Pattern": {
         "name": "Pattern",
         "type": "char",
-        "order": 1
+        "order": 1,
+        "subtype": "AligWhole"
       },
       "Order": {
         "name": "Order",
@@ -4020,12 +4022,14 @@
       "Pattern": {
         "name": "Pattern",
         "type": "char",
-        "order": 1
+        "order": 1,
+        "subtype": "AligWhole"
       },
       "Pattern_sub": {
         "name": "Pattern_sub",
         "type": "char",
-        "order": 2
+        "order": 2,
+        "subtype": "GPOS"
       },
       "Name": {
         "name": "Name",
@@ -4053,6 +4057,17 @@
         "order": 7
       }
     },
-    "data": {}
+    "data": {
+      "0": {
+        "ID": 0,
+        "Pattern": "u",
+        "Pattern_sub": "d",
+        "Name": "C(onset,t_0-d_0)",
+        "OffsetX0": 0,
+        "OffsetY0": 10,
+        "OffsetX1": 0,
+        "OffsetY1": 0
+      }
+    }
   }
 }

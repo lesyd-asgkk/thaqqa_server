@@ -1,9 +1,28 @@
+import * as Khhyl from "../lib_js/deps.js"
 class Sandbox_web{
     constructor(loc){
         this.loc = loc; //設置してある場所
-
+        this.textbox;
+        this.align = [];
+        this.lang = [];
+        this.button;
+        this.youaredrawing;
+        this.SVG;
     }
-    draw(){
+    setSVG(self){
+        let alig = 0;
+        let lang = 0;
+        for(const v of this.align){
+            console.log(v);
+            if(v.option.checked == true) alig = v.option.value;
+        }
+        for(const v of this.lang){
+            console.log(v);
+            if(v.option.checked == true) lang = v.option.value;
+        }
+        console.log(Khhyl.Render.DrawD(self.textbox.value,lang,alig==2?0:1));
+    }
+    draw(){ //次ここやる
         while( this.loc.firstChild ){
             this.loc.removeChild( this.loc.firstChild );
           }
@@ -12,12 +31,15 @@ class Sandbox_web{
         text.style.display ="block";
         text.type = "text";
         text.value = "khehyelughun";
-        this.loc.appendChild(text);
+        this.textbox = text;
+        this.loc.appendChild(this.textbox);
 
+        this.align = [];
+        this.lang = [];
         for(let i = 0;i<3;i++){
             const option = document.createElement("input");
             option.type = "radio";
-            option.name = "vec";
+            option.name = "align";
             option.value = i;
             option.checked = (i == 0);
             const text = ["左横書き","右横書き","縦書き"];
@@ -26,8 +48,9 @@ class Sandbox_web{
             label.for = option.id;
             label.textContent = text[i];
 
-            this.loc.appendChild(option);
-            this.loc.appendChild(label);
+            this.align.push({option:option,label:label});
+            this.loc.appendChild(this.align[i].option);
+            this.loc.appendChild(this.align[i].label);
         }
         const br =  document.createElement("br");
         this.loc.appendChild(br);
@@ -39,12 +62,13 @@ class Sandbox_web{
             option2.checked = (i == 0);
             const text = ["東果語","東果汽陸語"];
 
-            const label = document.createElement("label");
-            label.for = option2.id;
-            label.textContent = text[i];
+            const label2 = document.createElement("label");
+            label2.for = option2.id;
+            label2.textContent = text[i];
 
-            this.loc.appendChild(option2);
-            this.loc.appendChild(label);
+            this.lang.push({option:option2,label:label2});
+            this.loc.appendChild(this.lang[i].option);
+            this.loc.appendChild(this.lang[i].label);
         }
 
         const drawbutton = document.createElement("input");
@@ -52,8 +76,9 @@ class Sandbox_web{
         drawbutton.style.display ="block";
         drawbutton.type = "button";
         drawbutton.value = "表記してみる";
-        drawbutton.addEventListener("click",() => {},true);
-        this.loc.appendChild(drawbutton);
+        drawbutton.addEventListener("click",() => {this.setSVG(this)},true);
+        this.button = drawbutton;
+        this.loc.appendChild(this.button);
 
         let d = "M0,0V100H100V0Z M20,20H80V80H20Z"
         let x0 = 0;
@@ -70,7 +95,7 @@ class Sandbox_web{
         path.setAttribute("stroke-width",0);
         path.setAttribute("fill","black");
         path.setAttribute("d",d);
-        object.appendChild(path);
+        
 
         const shrink_x = 32/150;
         const HEIGHT = y1-y0;
@@ -78,7 +103,9 @@ class Sandbox_web{
         object.setAttribute("width",(WIDTH*shrink_x).toString());
         object.setAttribute("height",(HEIGHT*shrink_x).toString());
         object.setAttribute("viewBox",`${x0} ${y0} ${x1} ${y1}`);
-        this.loc.appendChild(object);
+        this.SVG = {field:object,path:path};
+        this.SVG.field.appendChild(this.SVG.path);
+        this.loc.appendChild(this.SVG.field);
         
     }
 }
