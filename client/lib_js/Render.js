@@ -1,4 +1,4 @@
-import { RegExp_Khhyl, Parser , GSUBManager , Glyph , GPOSManager } from "./deps.js";
+import { SVG,RegExp_Khhyl, Parser , GSUBManager , Glyph , GPOSManager ,Thaqqa_DB } from "./deps.js";
 
 class Render{
     //returns d
@@ -23,7 +23,29 @@ class Render{
         for(let i = 0;i<pSVGData.length;i++){
             SVGData.push(new Glyph(pSVGData[i]));
         }
-        return SVGData;
+        let ans = "";
+
+        let x = 0;
+        let y = 0;
+        //const textdata = Thaqqa_DB.getTable("TEXTDATA").data[0].values;
+        if(alig==0){
+            for(let i = 0;i<pSVGData.length;i++){
+                console.log(SVGData[i]);
+                let m = 0;
+                if(i+1 != pSVGData.length) m = GPOSManager.gpos(pSVGData[i]+pSVGData[i+1],alig,"EX").y0;
+                ans += SVGData[i].toPathB(0,m);
+                y += SVG.getBottom(SVGData[i].d)+m;
+                if(i+1 != pSVGData.length) y -= SVG.getTop(SVGData[i+1].d);
+                ans += "M 0,"+y+ " ";
+            }
+        }
+        else{
+            for(let i = 0;i<pSVGData.length-1;i++){
+                let topgap = {init:0,mid:(100-k0[2])/2,fin:100-k0[2],sol:(100-k0[2])/2};
+            }
+        }
+
+        return ans;
     }
 }
 

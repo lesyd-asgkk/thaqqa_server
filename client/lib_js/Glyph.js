@@ -151,6 +151,33 @@ class Glyph{
         } 
     }
 
+    toPathB(top,bottom){
+        let k = this.d;
+        const width = Thaqqa_DB.getTable("TEXTDATA").data[0].values.Thickness;
+        //ここらへんもSnap.Pathの力を使います
+
+        console.log(this.name.split(",")[0].split("S(")[1]);
+        switch(this.name.split(",")[0].split("S(")[1]){
+            case "sol":
+            k = k + " M 0,"+(bottom+this.bottom);
+            k = "M 0,"+top+" "+k;
+            k = SVG.convertSVG(k);
+        break;
+        case "init":
+            k = "M 0,"+top+" "+k + SVG.setSkewer(-width/2,this.height.vbottom,width/2,bottom+this.height.bottom);
+            k = SVG.convertSVG(k);
+            break;
+        case "mid":
+                k = SVG.setSkewer(-width/2,top+this.height.top,width/2,this.height.vtop)+" M 0,0 "+k + SVG.setSkewer(-width/2,this.height.vbottom,width/2,bottom+this.height.bottom);
+                k = SVG.convertSVG(k);
+        break;
+            case "fin":
+            k = SVG.setSkewer(-width/2,top+this.height.top,width/2,this.height.vtop) +" M 0,"+top+" "+ k+ " M 0,"+(bottom+this.height.bottom);
+            k = SVG.convertSVG(k);
+        break;
+        }
+            return k;
+    }
     toPath(){//Svgをpathにする。再帰的に。
         // \\sなら、最初に[1]を、次に[0]と[2]を処理
         // \\v,p,cなら、最初に[0][0]...[0]を、次に[0][0]...[1]、、、[1]を処理
@@ -171,8 +198,8 @@ class Glyph{
 
             this.height.vtop = SVG.getTop(v);
             this.height.vbottom = SVG.getBottom(v);
-            this.height.top = off0.y;
-            this.height.bottom = off1.y;
+            this.height.bottom = SVG.getBottom(ans);
+            this.height.top = SVG.getTop(ans);
             this.d = ans;
         }
         else{
@@ -202,9 +229,7 @@ class Glyph{
     getoffset(parentd,issyl){
         const dir_ = {onset:1,coda:-1};
         const dir_v_ = {init:{onset:-1,coda:-1},mid:{onset:1,coda:-1},fin:{onset:1,coda:1},sol:{onset:1,coda:-1}};
-        console.log(this.offset.x);
-        console.log(this.offset.y);
-        
+
         if(this.parent != null && issyl){
             if(this.name.startsWith("V")){
                 return {x:0,y:0};
