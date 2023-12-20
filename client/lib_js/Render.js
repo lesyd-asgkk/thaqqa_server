@@ -50,12 +50,15 @@ class Render{
                 //const topgap = {init:0,mid:b/2,fin:textdata.Height+vh,sol:b/2};
 
                 let form = "sol"
-                if(this.name.startsWith("S")) form = this.name.split(",")[0].split("S(")[1];
+                if(SVGData[i].name.startsWith("S")) form = SVGData[i].name.split(",")[0].split("S(")[1];
                 
                 //とりあえずfin用
-                const b = (h.vbottom-h.vtop+h.bottom*2);
-                const g = (h.top-h.bottom);//+this.height.bottom
-                ans += SVGData[i].toPathB(-textdata.Height-g,textdata.Height/2-2*b);
+                
+                console.log(form);
+                const g = {sol:0,mid:0,init:0,fin:0};
+                const b = {sol:0,mid:0,init:0,fin:0};
+                
+                ans += SVGData[i].toPathB(g[form],b[form]);
 
                 x += textdata.Width;
                 ans += "M "+x+ ",0 ";

@@ -20,7 +20,23 @@ class Sandbox_web{
             console.log(v);
             if(v.option.checked == true) lang = v.option.value;
         }
-        console.log(Khhyl.Render.DrawD(self.textbox.value,lang,alig==2?0:1));
+        let d = Khhyl.Render.DrawD(self.textbox.value,lang,alig==2?0:1);
+        console.log(d);
+        self.SVG.path.setAttribute("d",d);
+
+        const x0 = Khhyl.SVG.getLeft(d);
+        const x1 = Khhyl.SVG.getRight(d);
+        const y0 = Khhyl.SVG.getTop(d);
+        const y1 = Khhyl.SVG.getBottom(d);
+
+        const shrink_x = 64/32;
+        const HEIGHT = y1-y0;
+        const WIDTH = x1-x0;
+        console.log(`${x0} ${y0} ${WIDTH} ${HEIGHT}`)
+        self.SVG.field.setAttribute("width",(WIDTH*shrink_x).toString());
+        self.SVG.field.setAttribute("height",(HEIGHT*shrink_x).toString());
+        self.SVG.field.setAttribute("viewBox",`${x0} ${y0} ${WIDTH} ${HEIGHT}`);
+
     }
     draw(){ //次ここやる
         while( this.loc.firstChild ){

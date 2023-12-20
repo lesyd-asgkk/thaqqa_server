@@ -3551,7 +3551,7 @@
         "Order": 5,
         "Priority": 12,
         "Name": "S(null,,o,(*))",
-        "NameAlt": "S(,init,,o_0,$1)"
+        "NameAlt": "S(init,,o_0,$1)"
       },
       "21": {
         "ID": 18,
@@ -3679,7 +3679,7 @@
         "Order": 10,
         "Priority": 1,
         "Name": "S(fin,(t-*),(._)0(-*),(*))",
-        "NameAlt": "S(,fin,$1,$21$3,$4)"
+        "NameAlt": "S(fin,$1,$21$3,$4)"
       },
       "37": {
         "ID": 1,

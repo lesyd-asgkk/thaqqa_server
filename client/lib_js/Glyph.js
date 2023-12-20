@@ -105,15 +105,16 @@ class Glyph{
         //console.log(partname.length);
         if(partname.length == 0){this.isroot = true;
 
+            console.log(this.name);
             if( this.name == null||this.name == ""){this.d = "" ,this.aligment = {x:0,y:0};return null;}
             const temp = this.name.split(",");
             const form = this.name.startsWith("P") ?"":temp[0].split("(")[1];
             const temp2 = temp.slice(-1)[0].split("_");
             this.d = (GlyphManager.getSVG(temp2[0]+"_"+form+"_"+temp2[1].split(")")[0])[0]);//this.nameがこれ以上分割できない場合。
-            let offx = LetterManager.getLetter(temp2[0])[0].values.x_Align;
-            let offy = LetterManager.getLetter(temp2[0])[0].values.y_Align;
-            if(offx == null) offx = 0;
-            if(offy == null) offy = 0;
+            let offx = 0;
+            let offy = 0;
+            
+            if(LetterManager.getLetter(temp2[0])[0]){offx = LetterManager.getLetter(temp2[0])[0].values.x_Align;offy = LetterManager.getLetter(temp2[0])[0].values.y_Align;}
             console.log(offy)
             this.aligment = {x:(offx),y:(offy)};
             //console.log(this.d);
@@ -151,7 +152,46 @@ class Glyph{
         } 
     }
 
+    toPathAbs(height,vowelhratio){
+
+        //実際の所は
+        //sol,mid
+        //(midのみ)0~vowelhratio*height-(vbottom-vheight)/2の棒
+        //M 0,(vowelhratio*height+(vbottom-vheight)/2) 
+        //(midのみ)vowelhratio*height+(vbottom-vheight)/2~heightの棒
+        
+        //initはM 0,0
+        //min(vbottom,vtop)~vowelhratio*heightの棒
+
+        //finはM 0,height-(bottom-top)
+        //0~max(vbottom,vtop)の棒
+        let k = this.d;
+        const width = Thaqqa_DB.getTable("TEXTDATA").data[0].values.Thickness;
+        if(this.name.startsWith("S")){
+            switch(this.name.split(",")[0].split("S(")[1]){
+                case "sol":
+                    k = SVG.convertSVG(k);
+                break;
+                case "init":
+                    k = SVG.convertSVG(k);
+                break;
+                case "mid":
+                    k = SVG.convertSVG(k);
+                break;
+                case "fin":
+                    k = SVG.convertSVG(k);
+                break;
+                }   
+            }
+            else{k = k + " M 0,"+(bottom+this.height.bottom);
+            k = "M 0,"+(top+this.height.top)+" "+k;
+            k = SVG.convertSVG(k);}
+                return k;
+    }
     toPathB(top,bottom){
+        //topだけ縦線（空白）
+        //中身
+        //bottomだけ縦線（空白）
         let k = this.d;
         const width = Thaqqa_DB.getTable("TEXTDATA").data[0].values.Thickness;
         //ここらへんもSnap.Pathの力を使います
