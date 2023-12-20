@@ -36,29 +36,20 @@ class Render{
                 
 
                 let m = 0;
-                if(i+1 != pSVGData.length) m = GPOSManager.gpos(pSVGData[i]+pSVGData[i+1],alig,"EX").y0;
+                if(i+1 != pSVGData.length) m = GPOSManager.gpos(pSVGData[i]+pSVGData[i+1],0,"EX").y0;
                 ans += SVGData[i].toPathB(0,(form=="init"||form=="mid")?m:0);
                 y += SVG.getBottom(SVGData[i].d)+m;
                 if(i+1 != pSVGData.length) y -= SVG.getTop(SVGData[i+1].d);
+                console.log("M = " + m);
+                console.log("Y = " + y);
                 ans += "M 0,"+y+ " ";
             }
         }
         else{
             for(let i = 0;i<pSVGData.length;i++){
-                const h = SVGData[i].height;
-
+                const h = textdata.Height;
                 //const topgap = {init:0,mid:b/2,fin:textdata.Height+vh,sol:b/2};
-
-                let form = "sol"
-                if(SVGData[i].name.startsWith("S")) form = SVGData[i].name.split(",")[0].split("S(")[1];
-                
-                //とりあえずfin用
-                
-                console.log(form);
-                const g = {sol:0,mid:0,init:0,fin:0};
-                const b = {sol:0,mid:0,init:0,fin:0};
-                
-                ans += SVGData[i].toPathB(g[form],b[form]);
+                ans += SVGData[i].toPathAbs(h,0.5);
 
                 x += textdata.Width;
                 ans += "M "+x+ ",0 ";

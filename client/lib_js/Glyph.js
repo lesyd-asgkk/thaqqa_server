@@ -38,6 +38,23 @@ class GlyphManager{
     }
 }
 
+class GlyphList{
+    constructor(){
+        this.name;
+        this.d = "";
+        this.isroot = false;
+        this.parent;
+        this.child = [];//Glyphの配列 入れ子にします
+        this.attribute = {};//(将来用)
+        this.offset = {x:offx??0,y:offy??0};//（parentに対するthisのoffset）
+        this.aligment = {x:algx??0,y:algy??0};
+
+        this.height = {vtop:0,vbottom:0,top:0,bottom:0};
+        this.initSvg();
+        this.toPath();
+    }
+}
+
 class Glyph{
     constructor(name,offx,offy,algx,algy){
         this.name = name;
@@ -160,32 +177,52 @@ class Glyph{
         //M 0,(vowelhratio*height+(vbottom-vheight)/2) 
         //(midのみ)vowelhratio*height+(vbottom-vheight)/2~heightの棒
         
-        //initはM 0,0
-        //min(vbottom,vtop)~vowelhratio*heightの棒
+        
 
-        //finはM 0,height-(bottom-top)
-        //0~max(vbottom,vtop)の棒
-        let k = this.d;
+
+        let k = this.d;k ??= "M 0,0";
         const width = Thaqqa_DB.getTable("TEXTDATA").data[0].values.Thickness;
+        
+        const VH = vowelhratio*height
+        const vt = (this.height.vbottom-this.height.vtop)/2;
+        console.log(k);
         if(this.name.startsWith("S")){
             switch(this.name.split(",")[0].split("S(")[1]){
                 case "sol":
                     k = SVG.convertSVG(k);
+                    k = "M 0,"+(VH-vt)+""+k;
+                    k = SVG.convertSVG(k);
                 break;
                 case "init":
+                    //initはM 0,0
+                    //vbottom~heightの棒
+                    k = SVG.convertSVG(k);
+                    k = "M 0,0 "+k+SVG.setSkewer(-width/2,this.height.vbottom,width/2,height);
                     k = SVG.convertSVG(k);
                 break;
                 case "mid":
                     k = SVG.convertSVG(k);
+                    k = SVG.setSkewer(-width/2,0,width/2,VH-vt)+"M 0,"+(VH-vt)+""+k+SVG.setSkewer(-width/2,VH+vt,width/2,height);
+                    k = SVG.convertSVG(k);
+                    console.log(`VH:${VH}    vt:${vt}`);
+        //(midのみ)0~vowelhratio*height-(vbottom-vheight)/2の棒
+        //M 0,(vowelhratio*height+(vbottom-vheight)/2) 
+        //(midのみ)vowelhratio*height+(vbottom-vheight)/2~heightの棒
                 break;
                 case "fin":
+        //finはM 0,height-(bottom-top)
+        //0~max(vbottom,vtop)の棒
+                    k = SVG.convertSVG(k);
+                    k = "M 0,"+(height-(this.height.bottom-this.height.vtop))+" "+k+SVG.setSkewer(-width/2,0,width/2,height-(this.height.bottom-this.height.vtop));
                     k = SVG.convertSVG(k);
                 break;
                 }   
             }
-            else{k = k + " M 0,"+(bottom+this.height.bottom);
-            k = "M 0,"+(top+this.height.top)+" "+k;
-            k = SVG.convertSVG(k);}
+            else{
+                k = SVG.convertSVG(k);
+                k = "M 0,"+(VH+vt)+""+k;
+                k = SVG.convertSVG(k);
+            }
                 return k;
     }
     toPathB(top,bottom){
@@ -193,6 +230,7 @@ class Glyph{
         //中身
         //bottomだけ縦線（空白）
         let k = this.d;
+        k ??= "M 0,0";
         const width = Thaqqa_DB.getTable("TEXTDATA").data[0].values.Thickness;
         //ここらへんもSnap.Pathの力を使います
 

@@ -119,6 +119,9 @@ class RegExp_Khhyl {
             case "S":
                 ans = this.intent.type+"\\("+ans+"\\)";
                 break;
+            case "L":
+                ans = "(?:"+ans+")";
+                break;
         }
         if(this.intent.subtypeb != null && this.intent.subtypeb.match(/^\(/)!=null){
             ans = this.intent.subtypeb.slice(0,-1) + ans + ")"; 

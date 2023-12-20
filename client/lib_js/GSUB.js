@@ -79,7 +79,7 @@ class GSUBManager {
           return 0};
       }
       array.sort(sortalg);
-    //console.log(array);
+    console.log(array);
     for(let i = 0;i<array.length;i++){
         if(typeof array[i].values.Name == "string"){
         
@@ -91,7 +91,7 @@ class GSUBManager {
         //console.log(r_);
 
         const r_fin = new RegExp(r_, "g");
-        //console.log(r_fin);
+        if(array[i].values.Priority == 0 && array[i].values.Order == 20)console.log(r_fin);
         text = text.replaceAll(r_fin,array[i].values.NameAlt);
         //console.log(text);
     }

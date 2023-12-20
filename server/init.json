@@ -3442,20 +3442,20 @@
         "NameAlt": "S(mid,$1,$2,$3)"
       },
       "7": {
-        "ID": 31,
-        "Pattern": "h",
-        "Order": 5,
-        "Priority": 0,
-        "Name": "S(null,,(*),)",
-        "NameAlt": "S(sol,,$1,)"
-      },
-      "8": {
         "ID": 30,
         "Pattern": "h",
         "Order": 5,
-        "Priority": 1,
+        "Priority": 0,
         "Name": "S(null,,a,)",
         "NameAlt": "S(sol,,abig_0,)"
+      },
+      "8": {
+        "ID": 31,
+        "Pattern": "h",
+        "Order": 5,
+        "Priority": 1,
+        "Name": "S(null,,(*),)",
+        "NameAlt": "S(sol,,$1,)"
       },
       "9": {
         "ID": 29,
@@ -3698,74 +3698,74 @@
         "NameAlt": "S(fin,$1,$23$3,t_1$4)"
       },
       "39": {
-        "ID": 47,
-        "Pattern": "v",
-        "Order": 20,
-        "Priority": 0,
-        "Name": "S((*),(x),a_(_.-*),(*))",
-        "NameAlt": "S($1,($2),abig_$3,$4)"
-      },
-      "40": {
-        "ID": 46,
-        "Pattern": "v",
-        "Order": 20,
-        "Priority": 1,
-        "Name": "S((*),(*),(*),(+))S(fin,,(*),(*))",
-        "NameAlt": "S($1,$2,$3,$4)S(fin,x_0,$5,$6)"
-      },
-      "41": {
-        "ID": 45,
-        "Pattern": "v",
-        "Order": 20,
-        "Priority": 2,
-        "Name": "S(init,(+),(*),(*))S((*),,(*),(*))",
-        "NameAlt": "S(init,$1,$2,$3)S($4,x_0,$5,$6)"
-      },
-      "42": {
-        "ID": 44,
-        "Pattern": "v",
-        "Order": 20,
-        "Priority": 3,
-        "Name": "S((*),(*),a_(_.-*),(+))S(fin,,(*),(*))",
-        "NameAlt": "S($1,$2,abig_$3,$4)S(fin,,$5,$6)"
-      },
-      "43": {
-        "ID": 43,
-        "Pattern": "v",
-        "Order": 20,
-        "Priority": 4,
-        "Name": "S((*),(*),a_(_.-*),(+))S(fin,,a_(_.-*),(*))",
-        "NameAlt": "S($1,$2,abig_$3,$4)S(fin,,abig_$5,$6)"
-      },
-      "44": {
-        "ID": 42,
-        "Pattern": "v",
-        "Order": 20,
-        "Priority": 5,
-        "Name": "S(init,,(*),)S((*),(*),a_(_.-*),(*))",
-        "NameAlt": "S(init,,$1,)S($2,$3,abig_$4,$5)"
-      },
-      "45": {
-        "ID": 41,
-        "Pattern": "v",
-        "Order": 20,
-        "Priority": 6,
-        "Name": "S(init,,a_(_.-*),)S((*),(*),(*),(*))",
-        "NameAlt": "S(init,,abig_$1,)S($2,$3,$4,$5)"
-      },
-      "46": {
         "ID": 40,
         "Pattern": "v",
         "Order": 20,
+        "Priority": 0,
+        "Name": "S(init,,_a(_.-*),)S((*),(*),_a(_.-*),(*))",
+        "NameAlt": "S(init,,abig$1,)S($2,$3,abig$4,$5)"
+      },
+      "40": {
+        "ID": 41,
+        "Pattern": "v",
+        "Order": 20,
+        "Priority": 1,
+        "Name": "S(init,,_a(_.-*),)S((*),(*),(*),(*))",
+        "NameAlt": "S(init,,abig$1,)S($2,$3,$4,$5)"
+      },
+      "41": {
+        "ID": 42,
+        "Pattern": "v",
+        "Order": 20,
+        "Priority": 2,
+        "Name": "S(init,,(*),)S((*),(*),_a(_.-*),(*))",
+        "NameAlt": "S(init,,$1,)S($2,$3,abig$4,$5)"
+      },
+      "42": {
+        "ID": 43,
+        "Pattern": "v",
+        "Order": 20,
+        "Priority": 3,
+        "Name": "S((*),(*),_a(_.-*),(+))S(fin,,_a(_.-*),(*))",
+        "NameAlt": "S($1,$2,abig$3,$4)S(fin,,abig$5,$6)"
+      },
+      "43": {
+        "ID": 44,
+        "Pattern": "v",
+        "Order": 20,
+        "Priority": 4,
+        "Name": "S((*),(*),_a(_.-*),(+))S(fin,,(*),(*))",
+        "NameAlt": "S($1,$2,abig$3,$4)S(fin,,$5,$6)"
+      },
+      "44": {
+        "ID": 45,
+        "Pattern": "v",
+        "Order": 20,
+        "Priority": 5,
+        "Name": "S(init,(+),(*),(*))S((*),,(*),(*))",
+        "NameAlt": "S(init,$1,$2,$3)S($4,x_0,$5,$6)"
+      },
+      "45": {
+        "ID": 46,
+        "Pattern": "v",
+        "Order": 20,
+        "Priority": 6,
+        "Name": "S((*),(*),(*),(+))S(fin,,(*),(*))",
+        "NameAlt": "S($1,$2,$3,$4)S(fin,x_0,$5,$6)"
+      },
+      "46": {
+        "ID": 47,
+        "Pattern": "v",
+        "Order": 20,
         "Priority": 7,
-        "Name": "S(init,,a_(_.-*),)S((*),(*),a_(_.-*),(*))",
-        "NameAlt": "S(init,,abig_$1,)S($2,$3,abig$4,$5)"
+        "Name": "S((*),(x),_a(_.-*),(*))",
+        "NameAlt": "S($1,$2,abig$3,$4)"
       },
       "47": {
         "ID": 39,
         "Pattern": "v",
         "Order": 20,
-        "Priority": 8,
+        "Priority": 90,
         "Name": "S(*,,hyphen,)",
         "NameAlt": ""
       }
@@ -3838,6 +3838,26 @@
         "OffsetY0": 15,
         "OffsetX1": 0,
         "OffsetY1": 15
+      },
+      "2": {
+        "ID": 2,
+        "Pattern": "v",
+        "Pattern_sub": "EX",
+        "Name": "L()P(space)",
+        "OffsetX0": 0,
+        "OffsetY0": 50,
+        "OffsetX1": 0,
+        "OffsetY1": 0
+      },
+      "3": {
+        "ID": 3,
+        "Pattern": "v",
+        "Pattern_sub": "EX",
+        "Name": "P(space)L()",
+        "OffsetX0": 0,
+        "OffsetY0": 50,
+        "OffsetX1": 0,
+        "OffsetY1": 0
       }
     }
   }

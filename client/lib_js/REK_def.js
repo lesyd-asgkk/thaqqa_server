@@ -170,7 +170,18 @@ class REK_def {
   }
 
   static rule_G = {
-
+    ["-\\*"]: (self, ans, pattern, msg) => {
+      self.intent.isFirst = "TRUE";
+      return REK_def.PREsub_lower(self, ans, pattern, "(?:|-.(?:-.)*)", msg, "G");
+    },
+    ["-\\+"]: (self, ans, pattern, msg) => {
+      self.intent.isFirst = "TRUE";
+      return REK_def.PREsub_lower(self, ans, pattern, "(?:|-.(?:-.)*)", msg, "G");
+    },
+    ["-\\?"]: (self, ans, pattern, msg) => {
+      self.intent.isFirst = "TRUE";
+      return REK_def.PREsub_lower(self, ans, pattern, "(?:|-.?)", msg, "G");
+    },
     ["\\*"]: (self, ans, pattern, msg) => {
       if (self.intent.isFirst == "FALSE") {
         return REK_def.PREsub_END(self, ans, pattern, msg, msg);
