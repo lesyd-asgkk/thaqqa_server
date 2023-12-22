@@ -182,13 +182,13 @@ class GPOSManager {
     }*/
     
     static gpos(text,vec,rule){
-        console.log(text);
-        console.log(vec);
-        console.log(rule);
+        //console.log(text);
+        //console.log(vec);
+        //console.log(rule);
         const ans = {x0:0,y0:0,x1:0,y1:0}
         const table = Thaqqa_DB.getTable("GPOS");
         const GPOSdata = table.getData({Pattern:"u",Pattern_sub:rule}).concat(table.getData({Pattern:vec==0?"v":"h",Pattern_sub:rule}));
-        console.log(GPOSdata);
+        //console.log(GPOSdata);
         for(let i = 0;i<GPOSdata.length;i++){
                 let r = new RegExp_Khhyl(GPOSdata[i].values.Name,{});
                 r = r.ParseRegExp()

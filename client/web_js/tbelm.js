@@ -192,12 +192,9 @@ class SVGField_web{
 
         d = "M0,0";
         let listb = ["sol","init","mid","fin"];
-        if(this.parent.tablename == "CONSONANT" || this.parent.tablename == "DIACRITIC_C"){
-            listb = ["onset","coda"];
-        }
-        else if(this.parent.tablename == "PUNCTUATION" || this.parent.tablename == "DIACRITIC_P"){
-            listb = [""];
-        }
+        if(this.parent.tablename.includes(["CONSONANT","DIACRITIC_C"])) listb = ["onset","coda"];
+        else if(this.parent.tablename.includes(["PUNCTUATION","DIACRITIC_P"])) listb = [""];
+        
         let i_ = 0;
         for(let j = 0 ; j<listb.length;j++){
         const list = Khhyl.GlyphManager.getSVG((new RegExp("^"+n+"_"+listb[j])))
@@ -227,7 +224,7 @@ class SVGField_web{
         const WIDTH = x1-x0;
         object.setAttribute("width",(WIDTH*shrink_x).toString());
         object.setAttribute("height",(HEIGHT*shrink_x).toString());
-        object.setAttribute("viewBox",`${x0} ${y0} ${x1} ${y1}`);
+        object.setAttribute("viewBox",`${x0} ${y0} ${WIDTH} ${HEIGHT}`);
         return object;
     }
 }

@@ -13,15 +13,12 @@ class Sandbox_web{
         let alig = 0;
         let lang = 0;
         for(const v of this.align){
-            console.log(v);
             if(v.option.checked == true) alig = v.option.value;
         }
         for(const v of this.lang){
-            console.log(v);
             if(v.option.checked == true) lang = v.option.value;
         }
         let d = Khhyl.Render.DrawD(self.textbox.value,lang,alig==2?0:1);
-        console.log(d);
         self.SVG.path.setAttribute("d",d);
 
         const x0 = Khhyl.SVG.getLeft(d);

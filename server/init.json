@@ -2607,7 +2607,7 @@
         "Pattern": "c",
         "Order": 0,
         "Priority": -1,
-        "Name": "R(E|ë)",
+        "Name": "(R(E)|R(ë))",
         "NameAlt": "V(null,eold_0)"
       },
       "33": {
@@ -2655,7 +2655,7 @@
         "Pattern": "c",
         "Order": 0,
         "Priority": -1,
-        "Name": "R(v|ö)",
+        "Name": "(R(v)|R(ö))",
         "NameAlt": "V(null,v_0)"
       },
       "39": {
@@ -2671,7 +2671,7 @@
         "Pattern": "c",
         "Order": 0,
         "Priority": -1,
-        "Name": "R(I|ï)",
+        "Name": "(R(I)|R(ï))",
         "NameAlt": "V(null,iold_0)"
       },
       "41": {
@@ -2943,7 +2943,7 @@
         "Pattern": "o",
         "Order": 0,
         "Priority": -1,
-        "Name": "R(I|ï)",
+        "Name": "(R(I)|R(ï))",
         "NameAlt": "V(null,iold_0)"
       },
       "75": {
@@ -2951,7 +2951,7 @@
         "Pattern": "o",
         "Order": 0,
         "Priority": -1,
-        "Name": "R(E|ë)",
+        "Name": "(R(E)|R(ë))",
         "NameAlt": "V(null,eold_0)"
       },
       "76": {
@@ -2959,7 +2959,7 @@
         "Pattern": "o",
         "Order": 0,
         "Priority": -1,
-        "Name": "R(v|ö)",
+        "Name": "(R(v)|R(ö))",
         "NameAlt": "V(null,v_0)"
       },
       "77": {
@@ -3823,7 +3823,7 @@
         "ID": 0,
         "Pattern": "u",
         "Pattern_sub": "DIAC",
-        "Name": "C(onset,t_0-d_0)",
+        "Name": "C(onset,.-d_0)",
         "OffsetX0": 0,
         "OffsetY0": 10,
         "OffsetX1": 0,
@@ -3845,7 +3845,7 @@
         "Pattern_sub": "EX",
         "Name": "L()P(space)",
         "OffsetX0": 0,
-        "OffsetY0": 50,
+        "OffsetY0": 15,
         "OffsetX1": 0,
         "OffsetY1": 0
       },
@@ -3855,7 +3855,7 @@
         "Pattern_sub": "EX",
         "Name": "P(space)L()",
         "OffsetX0": 0,
-        "OffsetY0": 50,
+        "OffsetY0": 15,
         "OffsetX1": 0,
         "OffsetY1": 0
       }

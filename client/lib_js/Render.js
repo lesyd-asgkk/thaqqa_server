@@ -8,7 +8,10 @@ class Render{
                 text = GSUBManager.gsub(text,alig);
                 break;
             default:
-                text = GSUBManager.gsub(Parser.parse(text,lang),alig);
+                text = Parser.parse(text,lang);
+                console.log(text);
+                text = GSUBManager.gsub(text,alig);
+                console.log(text);
             break;
         }
         for(let _i = 0;_i<2;_i++){
@@ -30,11 +33,8 @@ class Render{
         const textdata = Thaqqa_DB.getTable("TEXTDATA").data[0].values;
         if(alig==0){
             for(let i = 0;i<pSVGData.length;i++){
-
                 let form = "sol"
                 if(this.name.startsWith("S")) form = this.name.split(",")[0].split("S(")[1];
-                
-
                 let m = 0;
                 if(i+1 != pSVGData.length) m = GPOSManager.gpos(pSVGData[i]+pSVGData[i+1],0,"EX").y0;
                 ans += SVGData[i].toPathB(0,(form=="init"||form=="mid")?m:0);

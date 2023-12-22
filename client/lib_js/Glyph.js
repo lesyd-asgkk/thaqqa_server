@@ -146,12 +146,12 @@ class Glyph{
             if(this.name.startsWith("S")){
                 const k = GPOSManager.gpos(this.name,0,"IN");
                 x0 = k.x0;y0 = k.y0;x1 = k.x1;y1 = k.y1;
-                console.log(k);
+                //console.log(k);
             }
             else{
                 const k = GPOSManager.gpos(this.name,0,"DIAC");
                 x0 = k.x0;y0 = k.y0;
-                console.log(k);
+                //console.log(k);
             }
 
             for(let i = 0 ; i<partname.length;i++){
@@ -159,7 +159,7 @@ class Glyph{
                 // \cや\v,\pならGPOS_DIACの情報からoffx,offyを指定
                 const new_glyph = new Glyph(partname[i]);
                 new_glyph.parent = this;
-                console.log(x0);console.log(y0);console.log(x1);console.log(y1);
+                //console.log(x0);console.log(y0);console.log(x1);console.log(y1);
                 if(x1 != null && y1 != null && i == 2)new_glyph.offset = {x:x1,y:y1};
                 else if(x1 != null && y1 != null && i == 0) new_glyph.offset = {x:x0,y:y0};
                 else if(x1 == null && y1 == null && i == 1) new_glyph.offset = {x:x0,y:y0};
@@ -170,21 +170,12 @@ class Glyph{
     }
 
     toPathAbs(height,vowelhratio){
-
-        //実際の所は
-        //sol,mid
-        //(midのみ)0~vowelhratio*height-(vbottom-vheight)/2の棒
-        //M 0,(vowelhratio*height+(vbottom-vheight)/2) 
-        //(midのみ)vowelhratio*height+(vbottom-vheight)/2~heightの棒
-        
-        
-
-
         let k = this.d;k ??= "M 0,0";
         const width = Thaqqa_DB.getTable("TEXTDATA").data[0].values.Thickness;
         
         const VH = vowelhratio*height
         const vt = (this.height.vbottom-this.height.vtop)/2;
+        const vt_b = (-this.height.bottom-this.height.top)/2;
         console.log(k);
         if(this.name.startsWith("S")){
             switch(this.name.split(",")[0].split("S(")[1]){
@@ -202,7 +193,7 @@ class Glyph{
                 break;
                 case "mid":
                     k = SVG.convertSVG(k);
-                    k = SVG.setSkewer(-width/2,0,width/2,VH-vt)+"M 0,"+(VH-vt)+""+k+SVG.setSkewer(-width/2,VH+vt,width/2,height);
+                    k = SVG.setSkewer(-width/2,0,width/2,VH+vt_b-vt)+"M 0,"+(VH+vt_b-vt)+""+k+SVG.setSkewer(-width/2,VH+vt_b+vt,width/2,height);
                     k = SVG.convertSVG(k);
                     console.log(`VH:${VH}    vt:${vt}`);
         //(midのみ)0~vowelhratio*height-(vbottom-vheight)/2の棒
