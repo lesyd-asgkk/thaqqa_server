@@ -16,11 +16,11 @@ const srcPath_def = path.join(Deno.cwd());
 
   for (const entry of htmlFiles) {
     const root = Deno.cwd();
-    const relativePath = `\\${path.relative(srcPath_def, entry.path)}`;
+    const relativePath = `${path.relative(srcPath_def, entry.path)}`;
     console.log(`root:${root}`);
     console.log(`ファイル名:${relativePath}`);
     console.log("\n");
-    router.get(`${relativePath}`.replaceAll("\\", "/"), async (ctx) => {
+    router.get(`${relativePath}`, async (ctx) => { //.replaceAll("\\", "/")
       await send(ctx, `${relativePath}`, {
         root: root,
       });
