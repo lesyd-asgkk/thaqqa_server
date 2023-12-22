@@ -86,7 +86,6 @@ class GSUBManager {
         r = r.ParseRegExp()
         const r_ = r.toNormalRegExp();
         const r_fin = new RegExp(r_, "g");
-        if(array[i].values.Priority == 0 && array[i].values.Order == 20)console.log(r_fin);
         text = text.replaceAll(r_fin,array[i].values.NameAlt);
     }
     }

@@ -1,5 +1,5 @@
 export  { Thaqqa_DB,DataTable,Data } from "./Thaqqa_DB.js";
-export  { Glyph ,GlyphManager } from "./Glyph.js";
+export  { Glyph ,GlyphManager ,GlyphArray } from "./Glyph.js";
 export { GPOSManager } from "./GPOS.js";
 export { GSUBManager } from "./GSUB.js";
 export { Render } from "./Render.js";

@@ -1,0 +1,107 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deno Client</title>
+  <link rel="stylesheet" href="style_editor.css">
+</head>
+<body>
+  <div id="storage">
+  <svg id="svgField" width="0" height="0" viewBox="-10 0 100 100" style="display: none;">
+    <path fill="none" stroke="red"
+    d="M 10,30
+       A 20,20 0,0,1 50,30
+       A 20,20 0,0,1 90,30
+       Q 90,60 50,90
+       Q 10,60 10,30 z" />
+  </svg>
+  </div>
+  <div class="wrapper">
+    <aside class="tab-container" id = "tab-container">
+        <div id="tab-scroll">
+            <div class="tabs">
+                <div class="tab_select" active id = "sandbox">表記</div>
+                <div class="tab_select" id = "gpos">GPOS</div>
+                <div class="tab_select" id = "gsub">GSUB</div>
+                <div class="tab_select" id = "parser">Parser</div>
+                <div class="tab_select" id = "letter">Letter</div>
+
+                <!-- Add more tabs here -->
+            </div>
+        </div>
+    </aside>
+
+    <main>
+        <!-- Main content goes here -->
+        <div id="tab-contents">
+          <div id="sandbox" class="tab">
+            <p>sandbox</p>
+            <div id ="export" class="area_tb">
+            </div>
+            <br>
+            <br>
+            <div id ="sandbox" class="area_tb">
+            </div>
+              </div>
+          <div id="gpos" class="tab">
+            <p>gpos</p>
+            <div id ="gpos" class="area_tb">
+            </div>
+            </div>
+          <div id="gsub" class="tab">
+            <div id ="gsub" class="area_tb">
+            </div>
+            <div id ="gsubp" class="area_tb">
+            </div>
+            <div id ="gsubh" class="area_tb">
+            </div>
+            <div id ="gsubv" class="area_tb">
+            </div>
+            <p>gpos</p>
+            </div>
+          <div id="parser" class="tab">
+            <p>parser</p>
+            <div id ="parser" class="area_tb">
+            </div>
+
+            </div>
+          <div id="letter" class="tab">
+            <div id ="vowel" class="area_tb">
+            </div>
+            <div id ="voweld" class="area_tb">
+            </div>
+            <div id ="consonant" class="area_tb">
+            </div>
+            <div id ="consonantd" class="area_tb">
+            </div>
+            <div id ="punctuation" class="area_tb">
+            </div>
+            <div id ="punctuationd" class="area_tb">
+            </div>
+          </div>
+          
+    </main>
+</div>
+<script src="deps_ex.js"></script>
+<script> 
+$(document).ready(function() {
+  $('#tab-contents .tab[id != "sandbox"]').hide();
+
+$('.tab_select').on('click', function (event) {
+  
+    $("#tab-contents .tab").hide();
+    $("#tab-scroll .active").removeClass("active");
+    $(this).addClass("active");
+    $(`#tab-contents .tab[id = "${$(this).attr("id")}"]`).show();
+    event.preventDefault();
+});
+});
+
+</script>
+
+<script type = "module" src="deps.js"></script>
+
+</body>
+</html>

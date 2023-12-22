@@ -508,6 +508,12 @@
         "order": 4,
         "subtype": "n>=0"
       },
+      "IsNewline": {
+        "name": "IsNewline",
+        "type": "bool",
+        "order": 5,
+        "subtype": "none"
+      },
       "Order": {
         "name": "Order",
         "type": "INTEGER",
@@ -521,6 +527,7 @@
         "Name": "comma",
         "LoadName": "comma",
         "GlyphNum": 1,
+        "IsNewline": false,
         "Order": 0
       },
       "1": {
@@ -528,6 +535,7 @@
         "Name": "period",
         "LoadName": "period",
         "GlyphNum": 1,
+        "IsNewline": false,
         "Order": 1
       },
       "2": {
@@ -535,13 +543,15 @@
         "Name": "space",
         "LoadName": "space",
         "GlyphNum": 1,
+        "IsNewline": false,
         "Order": 2
       },
       "3": {
         "ID": 3,
-        "Name": "NEWLINE",
+        "Name": "newline",
         "LoadName": "NEWLINE",
         "GlyphNum": 1,
+        "IsNewline": true,
         "Order": 3
       }
     }
@@ -3832,7 +3842,7 @@
       "1": {
         "ID": 1,
         "Pattern": "u",
-        "Pattern_sub": "DIAC",
+        "Pattern_sub": "IN",
         "Name": "S(fin,s,u,s)",
         "OffsetX0": 0,
         "OffsetY0": 15,

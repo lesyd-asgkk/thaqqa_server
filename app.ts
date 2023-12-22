@@ -29,13 +29,11 @@ const srcPath_def = path.join(Deno.cwd());
 }
 
 router.get(`/server/init.json`, async (ctx) => {
-  console.log("works");
   const data = LoadFile.loadJSON("./server/init.json");
   ctx.response.body = data.buffer; // Uint8Arrayをバイナリデータとしてクライアントに送信
   ctx.response.headers.set("Content-Type", "application/octet-stream"); // コンテンツタイプを設定
 });
 router.get(`/server/FontData.svg`, async (ctx) => {
-  console.log("works");
   const data = LoadFile.loadAllGlyph("./server/Font_Data_linear");
   ctx.response.body = data; // Uint8Arrayをバイナリデータとしてクライアントに送信
   ctx.response.headers.set("Content-Type", "application/octet-stream"); // コンテンツタイプを設定

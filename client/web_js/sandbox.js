@@ -2,6 +2,7 @@ import * as Khhyl from "../lib_js/deps.js"
 class Sandbox_web{
     constructor(loc){
         this.loc = loc; //設置してある場所
+        this.sizetext;
         this.textbox;
         this.align = [];
         this.lang = [];
@@ -12,13 +13,14 @@ class Sandbox_web{
     setSVG(self){
         let alig = 0;
         let lang = 0;
-        for(const v of this.align){
+        for(const v of self.align){
             if(v.option.checked == true) alig = v.option.value;
         }
-        for(const v of this.lang){
+        for(const v of self.lang){
             if(v.option.checked == true) lang = v.option.value;
         }
-        let d = Khhyl.Render.DrawD(self.textbox.value,lang,alig==2?0:1);
+        console.log(Number(self.sizetext.value));
+        let d = Khhyl.Render.DrawD(self.textbox.value,lang,(alig==2?0:1),"none",Number(self.sizetext.value));
         self.SVG.path.setAttribute("d",d);
 
         const x0 = Khhyl.SVG.getLeft(d);
@@ -26,7 +28,7 @@ class Sandbox_web{
         const y0 = Khhyl.SVG.getTop(d);
         const y1 = Khhyl.SVG.getBottom(d);
 
-        const shrink_x = 64/32;
+        const shrink_x = 32/32;
         const HEIGHT = y1-y0;
         const WIDTH = x1-x0;
         console.log(`${x0} ${y0} ${WIDTH} ${HEIGHT}`)
@@ -42,9 +44,17 @@ class Sandbox_web{
         const text = document.createElement("input");
         text.contentEditable = false;
         text.style.display ="block";
-        text.type = "text";
-        text.value = "khehyelughun";
-        this.textbox = text;
+        text.type = "number";
+        text.value = "16";
+        this.sizetext = text;
+        this.loc.appendChild(this.sizetext);
+
+        const textarea = document.createElement("textarea");
+        textarea.contentEditable = false;
+        textarea.style.display ="block";
+        //text.type = "text";
+        textarea.value = "khehyelughun";
+        this.textbox = textarea;
         this.loc.appendChild(this.textbox);
 
         this.align = [];
@@ -110,7 +120,7 @@ class Sandbox_web{
         path.setAttribute("d",d);
         
 
-        const shrink_x = 32/150;
+        const shrink_x = 16/150;
         const HEIGHT = y1-y0;
         const WIDTH = x1-x0;
         object.setAttribute("width",(WIDTH*shrink_x).toString());

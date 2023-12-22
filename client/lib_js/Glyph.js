@@ -1,12 +1,11 @@
 
-import { Thaqqa_DB,SVG,DataTable,Data,GPOSManager,LetterManager} from "./deps.js";
+import { Thaqqa_DB,SVG,RegExp_Khhyl,DataTable,Data,GPOSManager,LetterManager} from "./deps.js";
 class GlyphManager{
     
     static async load(){
         await fetch('/server/FontData.svg')
       .then(response => response.json())
       .then(data => {
-        //console.log('Received data:', data);
         try{
         Thaqqa_DB.getTable("SVG");
         }
@@ -19,7 +18,6 @@ class GlyphManager{
             for(const d in data){
                 table.createData({Name:d,Path:data[d]});
             }
-            console.log(table);
         }
       })
       .catch(error => console.error('Error fetching data:', error));
@@ -38,21 +36,88 @@ class GlyphManager{
     }
 }
 
-class GlyphList{
-    constructor(){
-        this.name;
+class GlyphArray{
+    constructor(name,bound,posx,posy,algx,algy,algwhole){
+        this.name=name;
         this.d = "";
-        this.isroot = false;
-        this.parent;
         this.child = [];//Glyphの配列 入れ子にします
         this.attribute = {};//(将来用)
-        this.offset = {x:offx??0,y:offy??0};//（parentに対するthisのoffset）
+        this.position = {x:posx??0,y:posy??0};//（parentに対するthisのoffset）
         this.aligment = {x:algx??0,y:algy??0};
+        this.algwhole = algwhole; //-1(右から左),0(上から下),1(左から右)
+        this.box = {top:0,right:0,bottom:0,left:0};
+        this.bound = bound;
 
-        this.height = {vtop:0,vbottom:0,top:0,bottom:0};
         this.initSvg();
-        this.toPath();
     }
+    initSvg(){
+        let text = this.name;
+        for(let _i = 0;_i<2;_i++){
+            let r = new RegExp_Khhyl("(L())(L())",{});
+            r = r.ParseRegExp()
+            const r_ = r.toNormalRegExp();
+            const r_fin = new RegExp(r_, "g");
+            text = text.replaceAll(r_fin,"$1Q()$2");
+        }
+        const pSVGData = text.split("Q()");
+        console.log(pSVGData);
+        for(let i = 0;i<pSVGData.length;i++){
+            this.child.push(new Glyph(pSVGData[i]));
+        }
+    }
+    toPath(defaultsize){
+
+        const textdata = Thaqqa_DB.getTable("TEXTDATA").data[0].values;
+        const rescale = function(param,size,algwhole){
+            const aa = Snap.parsePathString(Snap.path.toAbsolute(param));
+            for(let i = 0;i<aa.length;i++){
+                for(let j = 1;j<aa[i].length;j++){
+                    aa[i][j] *= size/(algwhole==0?textdata.Width:textdata.Height);
+                }
+            }
+            return Snap.path.toRelative(aa).toString().toLowerCase();
+        }
+
+        this.d = `M ${this.position.x},${this.position.y}`;
+        let x = this.position.x;
+        let y = this.position.y;
+
+        const nlist = Thaqqa_DB.getTable("PUNCTUATION").getData({"IsNewline":true});
+        const nlist_ = [];for(let i = 0;i<nlist.length;i++){nlist_.push(nlist[i].values.Name)};
+        //console.log(nlist_);
+        if(this.algwhole==0){
+            for(let i = 0;i<this.child.length;i++){
+                let m = 0;
+                if(i+1 != this.child.length) m = GPOSManager.gpos(this.child[i].name+this.child[i+1].name,0,"EX").y0;
+                const d = rescale(this.child[i].toPathB(0,m),defaultsize,this.algwhole); //16はsize
+                 //16はsize
+                this.d += d;
+                y += SVG.getBottom(d);
+                if(i+1 != this.child.length){const d2 = rescale(this.child[i+1].d,defaultsize,this.algwhole);y -= SVG.getTop(d2);}
+                
+                this.child[i].offset = {x,y};
+                if(this.child[i].name.startsWith("P")&&nlist_.includes(this.child[i].name.split("(")[1].split("_")[0])){
+                    x -= defaultsize;y = 0;
+                }
+                this.d += `M ${x},${y} `;
+            }
+        }
+        else{
+            for(let i = 0;i<this.child.length;i++){
+                const h = textdata.Height;
+                this.d += rescale(this.child[i].toPathAbs(h,0.5),defaultsize,this.algwhole);
+               
+                x += defaultsize;//size
+                this.child[i].offset = {x,y};
+                if(this.child[i].name.startsWith("P")&&nlist_.includes(this.child[i].name.split("(")[1].split("_")[0])){
+                    x = 0;y += defaultsize;
+                }
+                this.d += `M ${x},${y} `;
+            }
+        }
+        return this.d;
+    }
+
 }
 
 class Glyph{
@@ -63,21 +128,19 @@ class Glyph{
         this.parent;
         this.child = [];//Glyphの配列 入れ子にします
         this.attribute = {};//(将来用)
+        this.size = 16;
         this.offset = {x:offx??0,y:offy??0};//（parentに対するthisのoffset）
+        this.gap ={top:0,middle:0,bottom:0}; //上棒、中央、下棒
         this.aligment = {x:algx??0,y:algy??0};
-
         this.height = {vtop:0,vbottom:0,top:0,bottom:0};
         this.initSvg();
         this.toPath();
     }
 
-    
     partitionName(){
-        //this.name;
         if(this.name.startsWith("S")){
             //音節ならCo,V,Ccに。空の場合は何も残さない
             const temp = this.name.split("(")[1].split(")")[0].split(",");
-            //console.log(temp);
             const onset = temp[1] == "" ? "" : "C("+"onset"+","+temp[1]+")";
             const vowel = temp[2] == "" ? "" :"V("+temp[0]+","+temp[2]+")";
             const coda = temp[3] == "" ? "" :"C("+"coda"+","+temp[3]+")";
@@ -119,10 +182,7 @@ class Glyph{
 
     initSvg(){
         const partname = this.partitionName();
-        //console.log(partname.length);
         if(partname.length == 0){this.isroot = true;
-
-            console.log(this.name);
             if( this.name == null||this.name == ""){this.d = "" ,this.aligment = {x:0,y:0};return null;}
             const temp = this.name.split(",");
             const form = this.name.startsWith("P") ?"":temp[0].split("(")[1];
@@ -132,11 +192,9 @@ class Glyph{
             let offy = 0;
             
             if(LetterManager.getLetter(temp2[0])[0]){offx = LetterManager.getLetter(temp2[0])[0].values.x_Align;offy = LetterManager.getLetter(temp2[0])[0].values.y_Align;}
-            console.log(offy)
             this.aligment = {x:(offx),y:(offy)};
-            //console.log(this.d);
-    }
-            else{//分割できたら
+        }
+        else{//分割できたら
             this.isroot = false;
             let x0 = 0;
             let y0 = 0;
@@ -146,12 +204,10 @@ class Glyph{
             if(this.name.startsWith("S")){
                 const k = GPOSManager.gpos(this.name,0,"IN");
                 x0 = k.x0;y0 = k.y0;x1 = k.x1;y1 = k.y1;
-                //console.log(k);
             }
             else{
                 const k = GPOSManager.gpos(this.name,0,"DIAC");
                 x0 = k.x0;y0 = k.y0;
-                //console.log(k);
             }
 
             for(let i = 0 ; i<partname.length;i++){
@@ -159,7 +215,6 @@ class Glyph{
                 // \cや\v,\pならGPOS_DIACの情報からoffx,offyを指定
                 const new_glyph = new Glyph(partname[i]);
                 new_glyph.parent = this;
-                //console.log(x0);console.log(y0);console.log(x1);console.log(y1);
                 if(x1 != null && y1 != null && i == 2)new_glyph.offset = {x:x1,y:y1};
                 else if(x1 != null && y1 != null && i == 0) new_glyph.offset = {x:x0,y:y0};
                 else if(x1 == null && y1 == null && i == 1) new_glyph.offset = {x:x0,y:y0};
@@ -170,13 +225,11 @@ class Glyph{
     }
 
     toPathAbs(height,vowelhratio){
-        let k = this.d;k ??= "M 0,0";
+        let k = this.toPath();k ??= "M 0,0";
         const width = Thaqqa_DB.getTable("TEXTDATA").data[0].values.Thickness;
-        
         const VH = vowelhratio*height
         const vt = (this.height.vbottom-this.height.vtop)/2;
         const vt_b = (-this.height.bottom-this.height.top)/2;
-        console.log(k);
         if(this.name.startsWith("S")){
             switch(this.name.split(",")[0].split("S(")[1]){
                 case "sol":
@@ -190,12 +243,13 @@ class Glyph{
                     k = SVG.convertSVG(k);
                     k = "M 0,0 "+k+SVG.setSkewer(-width/2,this.height.vbottom,width/2,height);
                     k = SVG.convertSVG(k);
+                    this.gap = {top:0,middle:this.height.vbottom,bottom:height};
                 break;
                 case "mid":
                     k = SVG.convertSVG(k);
-                    k = SVG.setSkewer(-width/2,0,width/2,VH+vt_b-vt)+"M 0,"+(VH+vt_b-vt)+""+k+SVG.setSkewer(-width/2,VH+vt_b+vt,width/2,height);
+                    k = "M 0,"+(VH+vt_b-vt)+""+k+SVG.setSkewer(-width/2,VH+vt_b+vt,width/2,height)+SVG.setSkewer(-width/2,0,width/2,VH+vt_b-vt);
                     k = SVG.convertSVG(k);
-                    console.log(`VH:${VH}    vt:${vt}`);
+                    this.gap = {top:VH+vt_b-vt,middle:VH+vt_b-vt,bottom:height};
         //(midのみ)0~vowelhratio*height-(vbottom-vheight)/2の棒
         //M 0,(vowelhratio*height+(vbottom-vheight)/2) 
         //(midのみ)vowelhratio*height+(vbottom-vheight)/2~heightの棒
@@ -206,6 +260,7 @@ class Glyph{
                     k = SVG.convertSVG(k);
                     k = "M 0,"+(height-(this.height.bottom-this.height.vtop))+" "+k+SVG.setSkewer(-width/2,0,width/2,height-(this.height.bottom-this.height.vtop));
                     k = SVG.convertSVG(k);
+                    this.gap = {top:0,middle:height-(this.height.bottom-this.height.vtop),bottom:0};
                 break;
                 }   
             }
@@ -213,6 +268,7 @@ class Glyph{
                 k = SVG.convertSVG(k);
                 k = "M 0,"+(VH+vt)+""+k;
                 k = SVG.convertSVG(k);
+                this.gap = {top:VH-vt,middle:VH,bottom:VH+vt};
             }
                 return k;
     }
@@ -220,7 +276,7 @@ class Glyph{
         //topだけ縦線（空白）
         //中身
         //bottomだけ縦線（空白）
-        let k = this.d;
+        let k = this.toPath();
         k ??= "M 0,0";
         const width = Thaqqa_DB.getTable("TEXTDATA").data[0].values.Thickness;
         //ここらへんもSnap.Pathの力を使います
@@ -228,20 +284,24 @@ class Glyph{
         if(this.name.startsWith("S")){
         switch(this.name.split(",")[0].split("S(")[1]){
             case "sol":
+                k = SVG.convertSVG(k);
                 k = k + " M 0,"+(bottom+this.height.bottom);
                 k = "M 0,"+(top+this.height.top)+" "+k;
                 k = SVG.convertSVG(k);
             break;
             case "init":
-                k = "M 0,"+(top)+" "+k + SVG.setSkewer(-width/2,this.height.vbottom,width/2,bottom+this.height.bottom);
+                k = SVG.convertSVG(k);
+                k = "M 0,"+(top)+" "+k + SVG.setSkewer(-width/2,top+this.height.vbottom,width/2,bottom+this.height.bottom+top);
                 k = SVG.convertSVG(k);
             break;
             case "mid":
-                k = SVG.setSkewer(-width/2,top+this.height.top,width/2,this.height.vtop)+" M 0,0 "+k + SVG.setSkewer(-width/2,this.height.vbottom,width/2,bottom+this.height.bottom);
+                k = SVG.convertSVG(k);
+                k = " M 0,0 "+k + SVG.setSkewer(-width/2,top+this.height.top,width/2,this.height.vtop)+SVG.setSkewer(-width/2,this.height.vbottom,width/2,bottom+this.height.bottom);
                 k = SVG.convertSVG(k);
             break;
                 case "fin":
-                k = SVG.setSkewer(-width/2,top+this.height.top+(bottom),width/2,this.height.vtop+(bottom)) +" M 0," + ((bottom))+ " "+ k;
+                k = SVG.convertSVG(k);
+                k = " M 0," + (top)+ " "+ k + SVG.setSkewer(-width/2,this.height.top,width/2,this.height.vtop);
                 k = SVG.convertSVG(k);
             break;
             }   
@@ -249,6 +309,7 @@ class Glyph{
         else{k = k + " M 0,"+(bottom+this.height.bottom);
         k = "M 0,"+(top+this.height.top)+" "+k;
         k = SVG.convertSVG(k);}
+        this.gap = {top:top,middle:0,bottom:bottom};
             return k;
     }
     toPath(){//Svgをpathにする。再帰的に。
@@ -256,7 +317,6 @@ class Glyph{
         // \\v,p,cなら、最初に[0][0]...[0]を、次に[0][0]...[1]、、、[1]を処理
         let ans = "";
         if(this.name.startsWith("S")){
-            //console.log(this);
             const c0 = this.child[0].toPath();
             const v = this.child[1].toPath();
             const c1 = this.child[2].toPath();
@@ -264,9 +324,6 @@ class Glyph{
             const off1 = this.child[2] == null ? {x:0,y:0} :this.child[2].getoffset(v,true);
             
             ans = SVG.merge3(v,c0,c1,0,off0.y,0,off1.y);
-
-            console.log("\nS");
-
             ans = SVG.toRelative(ans);
 
             this.height.vtop = SVG.getTop(v);
@@ -279,18 +336,13 @@ class Glyph{
             // deno-lint-ignore no-this-alias
             let p = this; 
             while(p.child.length != 0){
-                
                 p = p.child[0];
             }
                 ans = p.d;
             while(p.parent != null && !p.parent.name.startsWith("S")){
-                //console.log(p.name);
                 const off = p.parent.child[1].getoffset(ans,false);
-                //console.log(off);
                 ans = SVG.merge2(ans,p.parent.child[1].d,off.x,off.y);
-                //console.log(ans);
                 ans = SVG.toRelative(ans);
-                //console.log(ans);
                 p = p.parent;
                 p.d = ans;
             }
@@ -319,14 +371,10 @@ class Glyph{
             }
         }
         else if(!issyl) {
-            //console.log(this.name);
-
             if(this.name.startsWith("C")){
-                
                 const dir = dir_[this.name.split("(")[1].split(",")[0]];
                 const x =  ((SVG.getLeft(parentd)*(1-this.aligment.x*dir)/2+SVG.getRight(parentd) *(1+this.aligment.x*dir)/2)+this.offset.x*dir );
                 const y =  (SVG.getTop(parentd)*(1-this.aligment.y)/2+SVG.getBottom(parentd) *(1+this.aligment.y)/2)+this.offset.y ;
-
                 return{x:x,y:y};
             }
             else{
@@ -340,4 +388,4 @@ class Glyph{
 
 }
 
-export {Glyph,GlyphManager};
+export {Glyph,GlyphArray,GlyphManager};

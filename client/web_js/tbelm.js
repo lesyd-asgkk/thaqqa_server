@@ -192,8 +192,8 @@ class SVGField_web{
 
         d = "M0,0";
         let listb = ["sol","init","mid","fin"];
-        if(this.parent.tablename.includes(["CONSONANT","DIACRITIC_C"])) listb = ["onset","coda"];
-        else if(this.parent.tablename.includes(["PUNCTUATION","DIACRITIC_P"])) listb = [""];
+        if(["CONSONANT","DIACRITIC_C"].includes(this.parent.tablename)) listb = ["onset","coda"];
+        else if(["PUNCTUATION","DIACRITIC_P"].includes(this.parent.tablename)) listb = [""];
         
         let i_ = 0;
         for(let j = 0 ; j<listb.length;j++){

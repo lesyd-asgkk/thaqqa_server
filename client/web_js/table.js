@@ -291,11 +291,11 @@ class Table_web{
               const sortalg_GPOS = function(first, second ){//Priorityの大きい順に並び替える
                 const val = {"h":-1,"u":0,"v":1};
                 const val2 = {"DIAC":-1,"IN":0,"EX":1};
-                if (val[first.values.Pattern] > val[second.values.Pattern] ) return 1;
-                else if (val[first.values.Pattern]  < val[second.values.Pattern] )return -1;
+                if (val2[first.values.Pattern_sub] > val2[second.values.Pattern_sub] ) return 1;
+                else if (val2[first.values.Pattern_sub]  < val2[second.values.Pattern_sub] )return -1;
                 else{
-                    if (val2[first.values.Pattern_sub] > val2[second.values.Pattern_sub] ) return 1;
-                    else if (val2[first.values.Pattern_sub]  < val2[second.values.Pattern_sub] )return -1;
+                    if (val[first.values.Pattern] > val[second.values.Pattern] ) return 1;
+                    else if (val[first.values.Pattern]  < val[second.values.Pattern] )return -1;
                   return 0};
               }
               if(VALUES.length > 0 && DTTB.getColumn("Order") != null)
