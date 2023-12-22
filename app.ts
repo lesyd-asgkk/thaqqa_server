@@ -26,6 +26,18 @@ const srcPath_def = path.join(Deno.cwd());
       });
     });
   }
+  for (const entry of htmlFiles) {
+    const root = Deno.cwd();
+    const relativePath = `${path.relative(srcPath_def, entry.path)}`;
+    console.log(`root:${root}`);
+    console.log(`ファイル名:${relativePath}`);
+    console.log("\n");
+    router.get(`${relativePath}`.replaceAll("\\", "/"), async (ctx) => {
+      await send(ctx, `${relativePath}`, {
+        root: root,
+      });
+    });
+  }
 }
 
 router.get(`/server/init.json`, async (ctx) => {
