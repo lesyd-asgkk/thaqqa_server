@@ -3802,30 +3802,35 @@
         "order": 2,
         "subtype": "GPOS"
       },
+      "Order": {
+        "name": "Order",
+        "type": "INTEGER",
+        "order": 3
+      },
       "Name": {
         "name": "Name",
         "type": "char",
-        "order": 3
+        "order": 4
       },
       "OffsetX0": {
         "name": "OffsetX0",
         "type": "float",
-        "order": 4
+        "order": 5
       },
       "OffsetY0": {
         "name": "OffsetY0",
         "type": "float",
-        "order": 5
+        "order": 6
       },
       "OffsetX1": {
         "name": "OffsetX1",
         "type": "float",
-        "order": 6
+        "order": 7
       },
       "OffsetY1": {
         "name": "OffsetY1",
         "type": "float",
-        "order": 7
+        "order": 8
       }
     },
     "data": {
@@ -3833,6 +3838,7 @@
         "ID": 0,
         "Pattern": "u",
         "Pattern_sub": "DIAC",
+        "Order" : 0,
         "Name": "C(onset,.-d_0)",
         "OffsetX0": 0,
         "OffsetY0": 10,
@@ -3843,6 +3849,7 @@
         "ID": 1,
         "Pattern": "u",
         "Pattern_sub": "IN",
+        "Order" : 1,
         "Name": "S(fin,s,u,s)",
         "OffsetX0": 0,
         "OffsetY0": 15,
@@ -3853,6 +3860,7 @@
         "ID": 2,
         "Pattern": "v",
         "Pattern_sub": "EX",
+        "Order" : 2,
         "Name": "L()P(space)",
         "OffsetX0": 0,
         "OffsetY0": 15,
@@ -3863,6 +3871,7 @@
         "ID": 3,
         "Pattern": "v",
         "Pattern_sub": "EX",
+        "Order" : 3,
         "Name": "P(space)L()",
         "OffsetX0": 0,
         "OffsetY0": 15,

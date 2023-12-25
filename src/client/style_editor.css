@@ -56,13 +56,12 @@ body {
     border-bottom: none;
   }
   
-  .tab_select .active {
-    background: #fff;
-    color: #000;
+  .tab_select.active {
+    background: #777;
   }
 
 .tab_select:hover {
-    background-color: #888;
+    background-color: #aaa;
 }
 
 table {

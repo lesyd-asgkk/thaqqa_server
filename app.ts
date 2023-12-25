@@ -7,7 +7,8 @@ import { LoadFile } from "./LoadFile.ts";
 const app = new Application();
 const router = new Router();
 const srcPath_def = path.join(Deno.cwd());
-{
+
+try {
   let srcPath = path.join(Deno.cwd(), "client");
   let htmlFiles = fs.walkSync(srcPath, {
     includeDirs: true,
@@ -26,8 +27,10 @@ const srcPath_def = path.join(Deno.cwd());
       });
     });
   }
-  srcPath = path.join(Deno.cwd(), "src/client");
-  htmlFiles = fs.walkSync(srcPath, {
+} catch (e) {}
+try {
+  const srcPath = path.join(Deno.cwd(), "src/client");
+  const htmlFiles = fs.walkSync(srcPath, {
     includeDirs: true,
     exts: [".html", ".js", ".css"],
   });
@@ -44,7 +47,7 @@ const srcPath_def = path.join(Deno.cwd());
       });
     });
   }
-}
+} catch (e) {}
 
 router.get(`/server/init.json`, async (ctx) => {
   const data = LoadFile.loadJSON("./server/init.json");
