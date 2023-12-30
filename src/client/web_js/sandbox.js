@@ -19,7 +19,7 @@ class Sandbox_web{
         for(const v of self.lang){
             if(v.option.checked == true) lang = v.option.value;
         }
-        console.log(Number(self.sizetext.value));
+        //console.log(Number(self.sizetext.value));
         let d = Khhyl.Render.DrawD(self.textbox.value,lang,(alig==2?0:1),"none",Number(self.sizetext.value));
         self.SVG.path.setAttribute("d",d);
 
@@ -31,7 +31,7 @@ class Sandbox_web{
         const shrink_x = 32/32;
         const HEIGHT = y1-y0;
         const WIDTH = x1-x0;
-        console.log(`${x0} ${y0} ${WIDTH} ${HEIGHT}`)
+        //console.log(`${x0} ${y0} ${WIDTH} ${HEIGHT}`)
         self.SVG.field.setAttribute("width",(WIDTH*shrink_x).toString());
         self.SVG.field.setAttribute("height",(HEIGHT*shrink_x).toString());
         self.SVG.field.setAttribute("viewBox",`${x0} ${y0} ${WIDTH} ${HEIGHT}`);
@@ -41,12 +41,12 @@ class Sandbox_web{
         while( this.loc.firstChild ){
             this.loc.removeChild( this.loc.firstChild );
           }
-        const text = document.createElement("input");
-        text.contentEditable = false;
-        text.style.display ="block";
-        text.type = "number";
-        text.value = "16";
-        this.sizetext = text;
+        const textinput = document.createElement("input");
+        textinput.contentEditable = false;
+        textinput.style.display ="block";
+        textinput.type = "number";
+        textinput.value = "16";
+        this.sizetext = textinput;
         this.loc.appendChild(this.sizetext);
 
         const textarea = document.createElement("textarea");
@@ -57,41 +57,45 @@ class Sandbox_web{
         this.textbox = textarea;
         this.loc.appendChild(this.textbox);
 
-        this.align = [];
-        this.lang = [];
-        for(let i = 0;i<3;i++){
-            const option = document.createElement("input");
-            option.type = "radio";
-            option.name = "align";
-            option.value = i;
-            option.checked = (i == 0);
+        {
+            this.align = [];
             const text = ["左横書き","右横書き","縦書き"];
+            for(let i = 0;i<text.length;i++){
+                const option = document.createElement("input");
+                option.type = "radio";
+                option.name = "align";
+                option.value = i;
+                option.checked = (i == 0);
 
-            const label = document.createElement("label");
-            label.for = option.id;
-            label.textContent = text[i];
+                const label = document.createElement("label");
+                label.for = option.id;
+                label.textContent = text[i];
 
-            this.align.push({option:option,label:label});
-            this.loc.appendChild(this.align[i].option);
-            this.loc.appendChild(this.align[i].label);
+                this.align.push({option:option,label:label});
+                this.loc.appendChild(this.align[i].option);
+                this.loc.appendChild(this.align[i].label);
+            }
+            const br =  document.createElement("br");
+            this.loc.appendChild(br);
         }
-        const br =  document.createElement("br");
-        this.loc.appendChild(br);
-        for(let i = 0;i<2;i++){
-            const option2 = document.createElement("input");
-            option2.type = "radio";
-            option2.name = "lang";
-            option2.value = i;
-            option2.checked = (i == 0);
+        {
+            this.lang = [];
             const text = ["東果語","東果汽陸語"];
+            for(let i = 0;i<text.length;i++){
+                const option2 = document.createElement("input");
+                option2.type = "radio";
+                option2.name = "lang";
+                option2.value = i;
+                option2.checked = (i == 0);
 
-            const label2 = document.createElement("label");
-            label2.for = option2.id;
-            label2.textContent = text[i];
+                const label2 = document.createElement("label");
+                label2.for = option2.id;
+                label2.textContent = text[i];
 
-            this.lang.push({option:option2,label:label2});
-            this.loc.appendChild(this.lang[i].option);
-            this.loc.appendChild(this.lang[i].label);
+                this.lang.push({option:option2,label:label2});
+                this.loc.appendChild(this.lang[i].option);
+                this.loc.appendChild(this.lang[i].label);
+            }
         }
 
         const drawbutton = document.createElement("input");

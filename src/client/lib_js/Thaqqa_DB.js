@@ -17,13 +17,13 @@ class Thaqqa_DB {
     await fetch('/server/init.json')
   .then(response => response.json())
   .then(data => {
-    console.log('Received data:', data);
+    //console.log('Received data:', data);
     // データを処理する（表示するなど）
     for(const t_n in data){
       const t = new DataTable(data[t_n]);
       Thaqqa_DB.table.push(t);
     }
-    console.log(Thaqqa_DB.table);
+    //console.log(Thaqqa_DB.table);
   })
   .catch(error => console.error('Error fetching data:', error));
   }
@@ -74,7 +74,7 @@ class Thaqqa_DB {
       // data -> value
       json_data[table.name] = table_data;
     }
-    console.log(json_data);
+    //console.log(json_data);
     return json_data;
   }
    //*/
@@ -241,8 +241,6 @@ class DataTable {
       genre ??= "name";
       let errmessage = "";
       const rewrite = this.getColumn(name_old);
-      console.log(rewrite);
-      console.log(rewrite == null);
       if (rewrite == null) { //そんなものがない時の処理
         errmessage += name_old + "というColumnは存在しません　　";
       }
@@ -304,9 +302,7 @@ class DataTable {
     }
     IDs.sort((a,b) => (a-b));
     let last = -1;
-    console.log(IDs);
     for(let i=0;i<IDs.length;i++){
-      console.log(IDs[i]-last);
       if(IDs[i]-last > 1) return last+1;
       else last++;
     }

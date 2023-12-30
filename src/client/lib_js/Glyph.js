@@ -60,7 +60,7 @@ class GlyphArray{
             text = text.replaceAll(r_fin,"$1Q()$2");
         }
         const pSVGData = text.split("Q()");
-        console.log(pSVGData);
+        //console.log(pSVGData);
         for(let i = 0;i<pSVGData.length;i++){
             this.child.push(new Glyph(pSVGData[i]));
         }

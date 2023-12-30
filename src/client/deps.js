@@ -7,23 +7,6 @@ import * as webjs from "./web_js/deps.js";
     await khhyl.Thaqqa_DB.load();
 
     await khhyl.GlyphManager.load();
-    console.log("----------");
-    let k;
-    k = khhyl.Parser.parse("suzus'ha\nkoratl", 0);
-    k = khhyl.GSUBManager.gsub(k, 0);
-    console.log(k);
-    k = khhyl.Parser.parse("aterui itet iret itel", 0);
-    k = khhyl.GSUBManager.gsub(k, 0);
-    console.log(k);
-
-    k = khhyl.Parser.parse("rlryoi knngwahye", 1);
-    k = khhyl.GSUBManager.gsub(k, 1);
-    console.log(k);
-//S(null,*)S(null,s_0-d_0,u_0,s_0)S(null,h_0,a_0,)P(space_0)S(null,k_0,o_0,)S(null,r_0,a_0,tl_0)
-    k = khhyl.Parser.parse("nnrenl rnteknpa", 1);
-    k = khhyl.GSUBManager.gsub(k, 1);
-    console.log(k);
-
 
     let ta = new webjs.Table_web("VOWEL",$("div.area_tb#vowel")[0]);
     ta.draw();
@@ -48,6 +31,10 @@ import * as webjs from "./web_js/deps.js";
 
     tb = new webjs.Sandbox_web($("div.area_tb#sandbox")[0]);
     tb.draw();
+
+    tb = new webjs.LayoutDebug_web($("div.area_tb#layouttest")[0]);
+    tb.draw();
+
     const object = document.createElement("input");
     object.contentEditable = false;
     object.type = "button";
