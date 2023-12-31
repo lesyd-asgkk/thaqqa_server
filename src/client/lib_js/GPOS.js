@@ -4,12 +4,12 @@ class GPOSManager {
     
     static setGPOSColumn(id){
         const table = Thaqqa_DB.getTable("GPOS");
-        const GPOSdata = table.getData({ID:id,Pattern_sub:"IN"})
+        const GPOSdata = table.getData({Name:/.+/g});
         for(let i = 0;i<GPOSdata.length;i++){
             let r = new RegExp_Khhyl(GPOSdata[i].values.Name,{});
             r = r.ParseRegExp()
             const r_ = r.toNormalRegExp();
-            table.rewriteData({ID:GPOSdata[i].values.ID},{Parsed:r_,Ablidged:r_.split(",")[2]});
+            table.rewriteData({ID:GPOSdata[i].values.ID},{Parsed:r_});
         }
 /*
         const v_ = khhyl.Thaqqa_DB.getTable("VOWEL").getData({Name:/.+/g});
@@ -213,14 +213,15 @@ class GPOSManager {
         //console.log(vec);
         //console.log(rule);
         const ans = {x0:0,y0:0,x1:0,y1:0}
-        const table = Thaqqa_DB.getTable("GPOS");
         
-        const GPOSdata =  rule=="IN" ? table.getData({Pattern: vec==0?/u|v/g:/u|h/g,Pattern_sub:rule, Ablidged:new RegExp(text.split(",")[2])}):
-        table.getData({Pattern: vec==0?/u|v/g:/u|h/g,Pattern_sub:rule});
-        //console.log(GPOSdata);
+        
+        const GPOSdata =  this.getGPOS({Pattern: vec==0?/u|v/g:/u|h/g,Pattern_sub:rule});
         for(let i = 0;i<GPOSdata.length;i++){
+            
                 const r_fin = new RegExp(GPOSdata[i].values.Parsed, "g");
+                
                 if(text.match(r_fin)){
+                    console.log(GPOSdata[i].values);
                     ans.x0 += GPOSdata[i].values.OffsetX0 ;
                     ans.y0 += GPOSdata[i].values.OffsetY0 ;
                     ans.x1 += GPOSdata[i].values.OffsetX1 ;

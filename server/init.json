@@ -3115,7 +3115,7 @@
         "OffsetY0": 8,
         "OffsetX1": 0,
         "OffsetY1": 0,
-        "Parsed": "",
+        "Parsed": "C\\((?:onset|coda|null),[a-z]+_\\d+-d_\\d+\\)",
         "Ablidged": ""
       },
       "1": {
@@ -3128,7 +3128,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 0,
-        "Parsed": "",
+        "Parsed": "C\\((?:onset|coda|null),[a-z]+_\\d+-sy_\\d+\\)",
         "Ablidged": ""
       },
       "2": {
@@ -3141,7 +3141,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 0,
-        "Parsed": "",
+        "Parsed": "C\\((?:onset|coda|null),t_\\d+-d_\\d+\\)",
         "Ablidged": ""
       },
       "3": {
@@ -3622,7 +3622,7 @@
         "OffsetY0": 15,
         "OffsetX1": 0,
         "OffsetY1": 0,
-        "Parsed": "",
+        "Parsed": "(?:C\\((?:onset|coda|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|V\\((?:init|mid|fin|sol|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|Cd\\((?:onset|coda|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|Vd\\((?:onset|coda|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|P\\((?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|Pd\\((?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|S\\((?:init|mid|fin|sol|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\))P\\(space_\\d+\\)",
         "Ablidged": ""
       },
       "40": {
@@ -3635,7 +3635,7 @@
         "OffsetY0": 15,
         "OffsetX1": 0,
         "OffsetY1": 0,
-        "Parsed": "",
+        "Parsed": "P\\(space_\\d+\\)(?:C\\((?:onset|coda|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|V\\((?:init|mid|fin|sol|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|Cd\\((?:onset|coda|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|Vd\\((?:onset|coda|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|P\\((?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|Pd\\((?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|S\\((?:init|mid|fin|sol|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\))",
         "Ablidged": ""
       }
     }
