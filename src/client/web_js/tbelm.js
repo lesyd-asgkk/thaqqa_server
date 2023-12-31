@@ -151,8 +151,8 @@ class Button_web{
                 break;
                 case "GPOS":
                     {
-                        const p = self.id != null? Khhyl.Thaqqa_DB.getTable(parent.tablename).getData({ID:self.id})[0].values:{Pattern:"u",Pattern_sub:"d"};
-                    Khhyl.Thaqqa_DB.getTable("GPOS").createData({Pattern:p.Pattern,Pattern_sub:p.Pattern_sub,Name:"",OffsetX0:0,OffsetY0:0,OffsetX1:0,OffsetY1:0});
+                        const p = self.id != null? Khhyl.Thaqqa_DB.getTable(parent.tablename).getData({ID:self.id})[0].values:{Pattern:"u",Pattern_sub:"d",Order:0};
+                    Khhyl.Thaqqa_DB.getTable("GPOS").createData({Pattern:p.Pattern,Pattern_sub:p.Pattern_sub,Name:"",OffsetX0:0,OffsetY0:0,OffsetX1:0,OffsetY1:0,Order:p.Order});
                     }
                 break;
             }

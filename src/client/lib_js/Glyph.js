@@ -344,7 +344,7 @@ class Glyph{
             while(p.parent != null && !p.parent.name.startsWith("S")){
                 const dir  = this.name.startsWith("C") ? dir_[this.name.split("(")[1].split(",")[0]] : 1;
                 const off = p.parent.child[1].getoffset(ans,false);
-                ans = SVG.merge2(ans,p.parent.child[1].d,off.x-dir*(SVG.getRight(p.parent.child[1].d)-SVG.getLeft(p.parent.child[1].d)),off.y-(SVG.getBottom(p.parent.child[1].d)-SVG.getTop(p.parent.child[1].d)));
+                ans = SVG.merge2(ans,p.parent.child[1].d,off.x+dir*(SVG.getRight(p.parent.child[1].d)+SVG.getLeft(p.parent.child[1].d))/2,off.y+(SVG.getTop(p.parent.child[1].d)-SVG.getBottom(p.parent.child[1].d)/2));
                 ans = SVG.toRelative(ans);
                 p = p.parent;
                 p.d = ans;
@@ -363,7 +363,9 @@ class Glyph{
                 return {x:0,y:0};
             }
             if(this.name.startsWith("C")){
-                const dir = dir_v_[this.parent.name.split("(")[1].split(",")[0]][this.name.split("(")[1].split(",")[0]];
+                const v = this.parent.name.split("(")[1].split(",")[2].split("_")[0];
+                const v_null = Thaqqa_DB.getTable("VOWEL").getData({Name:v})[0].values.isNullVowel;
+                const dir = v_null ? -1:dir_v_[this.parent.name.split("(")[1].split(",")[0]][this.name.split("(")[1].split(",")[0]];
 
                 if(dir>0){ //上側
                     return{x:this.offset.x,y:-SVG.getTop(parentd)-SVG.getBottom(this.d)-this.offset.y};
