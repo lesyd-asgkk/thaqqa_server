@@ -339,9 +339,12 @@ class Glyph{
                 p = p.child[0];
             }
                 ans = p.d;
+                const dir_ = {onset:1,coda:-1};
+                
             while(p.parent != null && !p.parent.name.startsWith("S")){
+                const dir  = this.name.startsWith("C") ? dir_[this.name.split("(")[1].split(",")[0]] : 1;
                 const off = p.parent.child[1].getoffset(ans,false);
-                ans = SVG.merge2(ans,p.parent.child[1].d,off.x,off.y);
+                ans = SVG.merge2(ans,p.parent.child[1].d,off.x-dir*(SVG.getRight(p.parent.child[1].d)-SVG.getLeft(p.parent.child[1].d)),off.y-(SVG.getBottom(p.parent.child[1].d)-SVG.getTop(p.parent.child[1].d)));
                 ans = SVG.toRelative(ans);
                 p = p.parent;
                 p.d = ans;
