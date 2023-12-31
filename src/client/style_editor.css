@@ -112,3 +112,9 @@ main div.tab{
     font-size :14px;
     padding: 1px 1px;
 }
+td div.Parsed{
+    font-size :8px;
+    height :16px;
+    width :100px;
+    overflow: hidden;
+}
