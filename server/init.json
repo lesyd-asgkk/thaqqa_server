@@ -3096,12 +3096,6 @@
         "type": "char",
         "order": 9,
         "subtype": "PARSED"
-      },
-      "Ablidged": {
-        "name": "Ablidged",
-        "type": "char",
-        "order": 10,
-        "subtype": "PARSED"
       }
     },
     "data": {
@@ -3115,8 +3109,7 @@
         "OffsetY0": 8,
         "OffsetX1": 0,
         "OffsetY1": 0,
-        "Parsed": "C\\((?:onset|coda|null),[a-z]+_\\d+-d_\\d+\\)",
-        "Ablidged": ""
+        "Parsed": "C\\((?:onset|coda|null),[a-z]+_\\d+-d_\\d+\\)"
       },
       "1": {
         "ID": 22,
@@ -3128,8 +3121,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 0,
-        "Parsed": "C\\((?:onset|coda|null),[a-z]+_\\d+-sy_\\d+\\)",
-        "Ablidged": ""
+        "Parsed": "C\\((?:onset|coda|null),[a-z]+_\\d+-sy_\\d+\\)"
       },
       "2": {
         "ID": 21,
@@ -3141,8 +3133,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 0,
-        "Parsed": "C\\((?:onset|coda|null),t_\\d+-d_\\d+\\)",
-        "Ablidged": ""
+        "Parsed": "C\\((?:onset|coda|null),t_\\d+-d_\\d+\\)"
       },
       "3": {
         "ID": 1,
@@ -3154,8 +3145,7 @@
         "OffsetY0": 15,
         "OffsetX1": 0,
         "OffsetY1": 15,
-        "Parsed": "S\\(fin,s_\\d+,u_\\d+,s_\\d+\\)",
-        "Ablidged": "u_\\d+"
+        "Parsed": "S\\(fin,s_\\d+,u_\\d+,s_\\d+\\)"
       },
       "4": {
         "ID": 6,
@@ -3167,8 +3157,7 @@
         "OffsetY0": 5,
         "OffsetX1": 0,
         "OffsetY1": 5,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "5": {
         "ID": 4,
@@ -3180,8 +3169,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 15,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "6": {
         "ID": 25,
@@ -3193,8 +3181,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 5,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "7": {
         "ID": 5,
@@ -3206,8 +3193,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 20,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,q_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,q_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "8": {
         "ID": 7,
@@ -3219,8 +3205,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 10,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,c_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,c_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "9": {
         "ID": 8,
@@ -3232,8 +3217,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 15,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,n_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,n_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "10": {
         "ID": 9,
@@ -3245,8 +3229,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 10,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,ng_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,ng_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "11": {
         "ID": 10,
@@ -3258,8 +3241,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 10,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,th_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,th_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "12": {
         "ID": 11,
@@ -3271,8 +3253,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 20,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,s_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,s_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "13": {
         "ID": 12,
@@ -3284,8 +3265,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 5,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,hy_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,hy_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "14": {
         "ID": 13,
@@ -3297,8 +3277,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 10,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,kh_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,kh_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "15": {
         "ID": 14,
@@ -3310,8 +3289,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 15,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,qh_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,qh_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "16": {
         "ID": 15,
@@ -3323,8 +3301,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 10,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,h_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,h_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "17": {
         "ID": 16,
@@ -3336,8 +3313,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 20,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,l_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,l_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "18": {
         "ID": 17,
@@ -3349,8 +3325,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 10,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,tl_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,tl_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "19": {
         "ID": 18,
@@ -3362,8 +3337,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 15,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,r_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,r_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "20": {
         "ID": 19,
@@ -3375,8 +3349,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 25,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,w_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,w_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "21": {
         "ID": 20,
@@ -3388,8 +3361,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 15,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,y_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,y_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "22": {
         "ID": 23,
@@ -3401,8 +3373,7 @@
         "OffsetY0": 10,
         "OffsetX1": 0,
         "OffsetY1": 0,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,t_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "23": {
         "ID": 24,
@@ -3414,8 +3385,7 @@
         "OffsetY0": 10,
         "OffsetX1": 0,
         "OffsetY1": 0,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "24": {
         "ID": 26,
@@ -3427,8 +3397,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 10,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,q_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,q_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "25": {
         "ID": 27,
@@ -3440,8 +3409,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 10,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,c_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,c_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "26": {
         "ID": 28,
@@ -3453,8 +3421,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 10,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,n_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,n_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "27": {
         "ID": 29,
@@ -3466,8 +3433,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 5,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,ng_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,ng_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "28": {
         "ID": 30,
@@ -3479,8 +3445,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 5,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,th_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,th_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "29": {
         "ID": 31,
@@ -3492,8 +3457,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 10,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,s_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,s_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "30": {
         "ID": 32,
@@ -3505,8 +3469,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 5,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,hy_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,hy_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "31": {
         "ID": 33,
@@ -3518,8 +3481,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 5,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,kh_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,kh_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "32": {
         "ID": 34,
@@ -3531,8 +3493,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 10,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,qh_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,qh_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "33": {
         "ID": 35,
@@ -3544,8 +3505,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 0,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,h_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,h_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "34": {
         "ID": 36,
@@ -3557,8 +3517,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 10,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,l_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,l_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "35": {
         "ID": 37,
@@ -3570,8 +3529,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 10,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,tl_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,tl_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "36": {
         "ID": 38,
@@ -3583,8 +3541,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 5,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,r_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,r_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "37": {
         "ID": 39,
@@ -3596,8 +3553,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 15,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,w_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,w_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "38": {
         "ID": 40,
@@ -3609,8 +3565,7 @@
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 5,
-        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,y_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)",
-        "Ablidged": "a_\\d+"
+        "Parsed": "S\\((?:init|mid|fin|sol|null),k_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,y_\\d+(?:|-[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)"
       },
       "39": {
         "ID": 2,
@@ -3622,8 +3577,7 @@
         "OffsetY0": 15,
         "OffsetX1": 0,
         "OffsetY1": 0,
-        "Parsed": "(?:C\\((?:onset|coda|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|V\\((?:init|mid|fin|sol|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|Cd\\((?:onset|coda|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|Vd\\((?:onset|coda|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|P\\((?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|Pd\\((?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|S\\((?:init|mid|fin|sol|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\))P\\(space_\\d+\\)",
-        "Ablidged": ""
+        "Parsed": "(?:C\\((?:onset|coda|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|V\\((?:init|mid|fin|sol|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|Cd\\((?:onset|coda|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|Vd\\((?:onset|coda|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|P\\((?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|Pd\\((?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|S\\((?:init|mid|fin|sol|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\))P\\(space_\\d+\\)"
       },
       "40": {
         "ID": 3,
@@ -3635,8 +3589,7 @@
         "OffsetY0": 15,
         "OffsetX1": 0,
         "OffsetY1": 0,
-        "Parsed": "P\\(space_\\d+\\)(?:C\\((?:onset|coda|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|V\\((?:init|mid|fin|sol|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|Cd\\((?:onset|coda|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|Vd\\((?:onset|coda|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|P\\((?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|Pd\\((?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|S\\((?:init|mid|fin|sol|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\))",
-        "Ablidged": ""
+        "Parsed": "P\\(space_\\d+\\)(?:C\\((?:onset|coda|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|V\\((?:init|mid|fin|sol|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|Cd\\((?:onset|coda|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|Vd\\((?:onset|coda|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|P\\((?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|Pd\\((?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\)|S\\((?:init|mid|fin|sol|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\))"
       }
     }
   },

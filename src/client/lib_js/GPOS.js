@@ -10,6 +10,7 @@ class GPOSManager {
             r = r.ParseRegExp()
             const r_ = r.toNormalRegExp();
             table.rewriteData({ID:GPOSdata[i].values.ID},{Parsed:r_});
+            //,Ablidged : r_.split(",")[2]
         }
 /*
         const v_ = khhyl.Thaqqa_DB.getTable("VOWEL").getData({Name:/.+/g});
@@ -38,11 +39,13 @@ class GPOSManager {
             }*/
     }
     static getGPOS(param) {
+        
             if(typeof param == "string") param = {Name:param};
             if(param instanceof RegExp) param = {Name:param};
             const tables = Thaqqa_DB.getTable("GPOS");
             let ans = [];
                 const data = tables.getData(param);
+                //console.log(data);
                 ans = ans.concat(data);
             return ans;
         }
@@ -67,7 +70,7 @@ class GPOSManager {
 
         }
     
-        static delete(param,safety){
+        static deleteGPOS(param,safety){
             safety ??= true;
             if(typeof param == "string") param = {Name:param};
             if(param instanceof RegExp) param = {Name:param};
@@ -209,19 +212,17 @@ class GPOSManager {
         //そこで予め、[Nameの母音部分]にマッチする母音全てを紐づける→[Nameのform部分](ry
         //これで高々総当り回数は324回程度となる。
 
-        //console.log(text);
         //console.log(vec);
         //console.log(rule);
         const ans = {x0:0,y0:0,x1:0,y1:0}
         
-        
-        const GPOSdata =  this.getGPOS({Pattern: vec==0?/u|v/g:/u|h/g,Pattern_sub:rule});
+        const GPOSdata =  GPOSManager.getGPOS({Pattern:(vec==0?/(u|v)/:/(u|h)/),Pattern_sub:rule});
+        //console.log(GPOSdata);
         for(let i = 0;i<GPOSdata.length;i++){
-            
+            //if(rule == "IN" && text.match(new RegExp(GPOSdata[i].values.Ablidged, "g")) == null) continue;
                 const r_fin = new RegExp(GPOSdata[i].values.Parsed, "g");
-                
-                if(text.match(r_fin)){
-                    console.log(GPOSdata[i].values);
+
+                if(text.match(r_fin) != null){
                     ans.x0 += GPOSdata[i].values.OffsetX0 ;
                     ans.y0 += GPOSdata[i].values.OffsetY0 ;
                     ans.x1 += GPOSdata[i].values.OffsetX1 ;

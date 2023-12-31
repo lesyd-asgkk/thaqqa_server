@@ -277,16 +277,13 @@ class DataTable {
       skip: for (let i = 0; i < this.data.length; i++) {
         for (const col in param_reg) {
           if (param_reg[col] instanceof RegExp) {
-            if (
-              !(param_reg[col]).exec(
-                this.data[i].values[col].toString(),
-              )
-            ) continue skip;
+            if (!(param_reg[col]).exec(this.data[i].values[col].toString())) continue skip;
           }
           else{
             if (param_reg[col] != this.data[i].values[col]) continue skip;
           } 
         }
+        
         ans.push(this.data[i]);
       }
       return ans;

@@ -357,7 +357,7 @@ class Glyph{
     getoffset(parentd,issyl){
         const dir_ = {onset:1,coda:-1};
         const dir_v_ = {init:{onset:-1,coda:-1},mid:{onset:1,coda:-1},fin:{onset:1,coda:1},sol:{onset:1,coda:-1}};
-
+        const dir_vb_ = {init:{onset:-1,coda:-1},mid:{onset:-1,coda:-1},fin:{onset:1,coda:1},sol:{onset:1,coda:1}};
         if(this.parent != null && issyl){
             if(this.name.startsWith("V")){
                 return {x:0,y:0};
@@ -365,7 +365,7 @@ class Glyph{
             if(this.name.startsWith("C")){
                 const v = this.parent.name.split("(")[1].split(",")[2].split("_")[0];
                 const v_null = Thaqqa_DB.getTable("VOWEL").getData({Name:v})[0].values.isNullVowel;
-                const dir = v_null ? -1:dir_v_[this.parent.name.split("(")[1].split(",")[0]][this.name.split("(")[1].split(",")[0]];
+                const dir = v_null ? dir_vb_[this.parent.name.split("(")[1].split(",")[0]][this.name.split("(")[1].split(",")[0]]:dir_v_[this.parent.name.split("(")[1].split(",")[0]][this.name.split("(")[1].split(",")[0]];
 
                 if(dir>0){ //上側
                     return{x:this.offset.x,y:-SVG.getTop(parentd)-SVG.getBottom(this.d)-this.offset.y};
