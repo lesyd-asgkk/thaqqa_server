@@ -48,7 +48,11 @@ class DIVparam_web{
         }
         console.log(this.id);
         if(Khhyl.Thaqqa_DB.getTable(parent.tablename).rewriteData({ID:this.id},{[self.col]:val}))
-        {obj.textContent = val;
+        {
+        if(parent.tablename == "GPOS" && self.col == "Name"){
+            Khhyl.GPOSManager.setGPOSColumn(this.id);
+        }
+        obj.textContent = val;
         self.val = val;}
         parent.draw();
     }
@@ -58,7 +62,7 @@ class DIVparam_web{
         object.classList.add(this.col);
         object.textContent = this.val;
         object.name = this.id;
-        if(this.subtype != "ID"){ //編集拒否用
+        if(this.subtype != "ID" && this.subtype != "PARSED"){ //編集拒否用
             object.contentEditable = true;
             object.addEventListener("blur",() => {this.rewrite_content(this.parent,this,object);},true);
         }

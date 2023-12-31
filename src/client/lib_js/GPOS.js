@@ -2,11 +2,45 @@ import { Thaqqa_DB,DataTable,Data } from "./Thaqqa_DB.js";
 import { RegExp_Khhyl } from "./RegExp_Khhyl.js";
 class GPOSManager {
     
-    static getGPOS(table,param) {
-            if(table.match(/^(GPOS|GPOS_DIAC|GPOS_IN_V|GPOS_IN_H|GPOS_EX_V|GPOS_EX_H)$/) == null) throw new Error("テーブル指定エラー");
+    static setGPOSColumn(id){
+        const table = Thaqqa_DB.getTable("GPOS");
+        const GPOSdata = table.getData({ID:id,Pattern_sub:"IN"})
+        for(let i = 0;i<GPOSdata.length;i++){
+            let r = new RegExp_Khhyl(GPOSdata[i].values.Name,{});
+            r = r.ParseRegExp()
+            const r_ = r.toNormalRegExp();
+            table.rewriteData({ID:GPOSdata[i].values.ID},{Parsed:r_,Ablidged:r_.split(",")[2]});
+        }
+/*
+        const v_ = khhyl.Thaqqa_DB.getTable("VOWEL").getData({Name:/.+/g});
+
+        for(let i = 0;i<GPOSdata.length;i++){
+                let r = new RegExp_Khhyl(GPOSdata[i].values.Name,{});
+                r = r.ParseRegExp()
+                const r_ = r.toNormalRegExp().split("(")[1].join().split(")").slice(0,-1).join().split(",");
+                
+                const r_form = new RegExp(r_[0], "g");
+                const r_gomi = new RegExp(r_[2], "g");
+                for(let x =0;x<text_a.length;x++){
+                    if(text[x].match(r_form)
+                }
+                for(let x =0;x<text_b.length;x++){
+                    
+                }
+                
+
+                if(text.match(r_form)){
+                    ans.x0 += GPOSdata[i].values.OffsetX0 ;
+                    ans.y0 += GPOSdata[i].values.OffsetY0 ;
+                    ans.x1 += GPOSdata[i].values.OffsetX1 ;
+                    ans.y1 += GPOSdata[i].values.OffsetY1 ;
+                }
+            }*/
+    }
+    static getGPOS(param) {
             if(typeof param == "string") param = {Name:param};
             if(param instanceof RegExp) param = {Name:param};
-            const tables = Thaqqa_DB.getTable(table);
+            const tables = Thaqqa_DB.getTable("GPOS");
             let ans = [];
                 const data = tables.getData(param);
                 ans = ans.concat(data);
@@ -14,15 +48,15 @@ class GPOSManager {
         }
     
         
-        static rewriteGPOS(table ,param){
-            if(table.match(/^(GPOS|GPOS_DIAC|GPOS_IN_V|GPOS_IN_H|GPOS_EX_V|GPOS_EX_H)$/) == null) return new Error("テーブル指定エラー");
+        static rewriteGPOS(param){
+            
             if(typeof param == "string") param = {Name:param};
             else if(param instanceof RegExp) param = {Name:param};
             if(typeof param2 == "string") param2 = {Name:param2};
-            const tables = Thaqqa_DB.getTable(table);
+            const tables = Thaqqa_DB.getTable("GPOS");
             const ans  = [];
-            const GPOS_a = GPOSManager.getGPOS(table,param.Name);
-            const GPOS_b = GPOSManager.getGPOS(table,param.Name);
+            const GPOS_a = GPOSManager.getGPOS(param.Name);
+            const GPOS_b = GPOSManager.getGPOS(param.Name);
                 if(param.Name != null && GPOS_a.length >= 2 && param2.Name!=null)throw new Error("変更後に重複が発生します");
                 if(param2.Name != null && GPOS_b.length != 0)throw new Error("変更後に重複が発生します");
 
@@ -33,14 +67,13 @@ class GPOSManager {
 
         }
     
-        static deleteGPOS(table, param,safety){
-            if(table.match(/^(GPOS|GPOS_DIAC|GPOS_IN_V|GPOS_IN_H|GPOS_EX_V|GPOS_EX_H)$/) == null) return new Error("テーブル指定エラー");
+        static delete(param,safety){
             safety ??= true;
             if(typeof param == "string") param = {Name:param};
             if(param instanceof RegExp) param = {Name:param};
             
-            if(safety && GPOSManager.getGPOS(table,param).length > 1) return new Error("削除対象が2つ以上あります。まとめて削除したい場合はsafetyをfalseに指定してください");
-            const tables = Thaqqa_DB.getTable(table);
+            if(safety && GPOSManager.getGPOS(param).length > 1) return new Error("削除対象が2つ以上あります。まとめて削除したい場合はsafetyをfalseに指定してください");
+            const tables = Thaqqa_DB.getTable("GPOS");
             let ans = [];
                 const data = tables.deleteData(param,1);
                 ans = ans.concat(data);
@@ -48,31 +81,19 @@ class GPOSManager {
                 
 
         }
-        static createGPOS(table,param){//
-            if(table.match(/^(GPOS|GPOS_DIAC|GPOS_IN_V|GPOS_IN_H|GPOS_EX_V|GPOS_EX_H)$/) == null) return new Error("テーブル指定エラー");
+        static createGPOS(param){//
             if(typeof param == "string") param = {Name:param};
     
-            if(GPOSManager.getGPOS(table,param).length != 0) return new Error(param+"はすでに存在しています");
+            if(GPOSManager.getGPOS(param).length != 0) return new Error(param+"はすでに存在しています");
     
             if(typeof param == "string"){
-                const TEMPLATE = {["GPOS_DIAC"]:{
-                    Name: param, OffsetX: 0,OffsetY: 0,Group:"", Priority:0},
-                    ["GPOS_IN_V"]:{
-                        Name: param, OffsetX0: 0, OffsetY0: 0,OffsetX1: 0,OffsetY1: 0,Group:"", Priority:0},
-                    ["GPOS_IN_H"]:{
-                        Name: param, OffsetX0: 0, OffsetY0: 0,OffsetX1: 0,OffsetY1: 0,Group:"", Priority:0},
-                    ["GPOS_EX_V"]:{
-                        Name: param, OffsetY: 0,Group:"",Priority:0},
-                    ["GPOS_EX_H"]:{
-                        Name: param, OffsetY: 0,Group:"",Priority:0}
-                    };
-    
-                param = TEMPLATE[table];
+                param ={Name: param, Pattern:"u",Pattern_sub:"DIAC",OffsetX0: 0, OffsetY0: 0,OffsetX1: 0,OffsetY1: 0, Priority:0};
             }
             const table_ = Thaqqa_DB.getTable(table);
             table_.createData(param);
 
             }
+
     /*
     static gpos_ex(text,vec){
         let y = 0;
@@ -180,24 +201,25 @@ class GPOSManager {
             return {x:x,y:y};
         
     }*/
-    
+
     static gpos(text,vec,rule){
+
+        //gposINの内部処理について
+        //真面目に処理すると膨大すぎてパンクする。
+        //そこで予め、[Nameの母音部分]にマッチする母音全てを紐づける→[Nameのform部分](ry
+        //これで高々総当り回数は324回程度となる。
+
         //console.log(text);
         //console.log(vec);
         //console.log(rule);
         const ans = {x0:0,y0:0,x1:0,y1:0}
         const table = Thaqqa_DB.getTable("GPOS");
-        const GPOSdata = table.getData({Pattern:"u",Pattern_sub:rule}).concat(table.getData({Pattern:vec==0?"v":"h",Pattern_sub:rule}));
+        
+        const GPOSdata =  rule=="IN" ? table.getData({Pattern: vec==0?/u|v/g:/u|h/g,Pattern_sub:rule, Ablidged:new RegExp(text.split(",")[2])}):
+        table.getData({Pattern: vec==0?/u|v/g:/u|h/g,Pattern_sub:rule});
         //console.log(GPOSdata);
         for(let i = 0;i<GPOSdata.length;i++){
-                let r = new RegExp_Khhyl(GPOSdata[i].values.Name,{});
-                r = r.ParseRegExp()
-                const r_ = r.toNormalRegExp();
-                //console.log("-------");
-                //console.log(array[i].Name);
-                //console.log(r_);
-                const r_fin = new RegExp(r_, "g");
-                //console.log(r_fin);
+                const r_fin = new RegExp(GPOSdata[i].values.Parsed, "g");
                 if(text.match(r_fin)){
                     ans.x0 += GPOSdata[i].values.OffsetX0 ;
                     ans.y0 += GPOSdata[i].values.OffsetY0 ;

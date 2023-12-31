@@ -118,7 +118,7 @@ class ColumnDesc_web{
         //ID:ID(変更不能) Alig:[-1,0,1] FREE_0:0以上 FREE_1:1以上
         "int":["none","n>=0","n>=1","ID","AligX","AligY"],
         //NAME:名前用（重複不可）
-        "char":["none","NAME_L","NAME","LANG","AligWhole","GPOS"],
+        "char":["none","NAME_L","NAME","LANG","AligWhole","GPOS","PARSED"],
         
         "bool":["none"],
         
