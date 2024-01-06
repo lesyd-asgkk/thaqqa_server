@@ -89,6 +89,7 @@ class GlyphArray{
             for(let i = 0;i<this.child.length;i++){
                 let m = 0;
                 if(i+1 != this.child.length) m = GPOSManager.gpos(this.child[i].name+this.child[i+1].name,0,"EX").y0;
+                if(i == 0 || i == this.child.length-1) m = GPOSManager.gpos(this.child[i].name,0,"EX").y0;
                 const d = rescale(this.child[i].toPathB(0,m),defaultsize,this.algwhole); //16はsize
                  //16はsize
                 this.d += d;
@@ -282,6 +283,7 @@ class Glyph{
         //ここらへんもSnap.Pathの力を使います
 
         if(this.name.startsWith("S")){
+            const v = this.name.split("(")[1].split(",")[2].split("_")[0];
         switch(this.name.split(",")[0].split("S(")[1]){
             case "sol":
                 k = SVG.convertSVG(k);
@@ -304,11 +306,9 @@ class Glyph{
                 k = " M 0," + (top)+ " "+ k + SVG.setSkewer(-width/2,this.height.top,width/2,this.height.vtop);
                 k = SVG.convertSVG(k);
             break;
-            }   
-        }
-        else{k = k + " M 0,"+(bottom+this.height.bottom);
-        k = "M 0,"+(top+this.height.top)+" "+k;
-        k = SVG.convertSVG(k);}
+    }}        else{k = k + " M 0,"+(bottom+this.height.bottom);
+    k = "M 0,"+(top+this.height.top)+" "+k;
+    k = SVG.convertSVG(k);}
         this.gap = {top:top,middle:0,bottom:bottom};
             return k;
     }
@@ -323,7 +323,12 @@ class Glyph{
             const off0 = this.child[0] == null ? {x:0,y:0} :this.child[0].getoffset(v,true);//parentd
             const off1 = this.child[2] == null ? {x:0,y:0} :this.child[2].getoffset(v,true);
             
-            ans = SVG.merge3(v,c0,c1,0,off0.y,0,off1.y);
+            if(this.name.split(",")[0].split("S(")[1] == "fin"){
+                
+                const gap = (SVG.getBottom(c0) + SVG.getTop(c0))-(SVG.getBottom(c1) + SVG.getTop(c1));
+                ans = SVG.merge3(v,c0,c1,0,-Math.max(0,gap)+off1.y,0,-Math.max(-gap,0)+off0.y);
+            }
+            else ans = SVG.merge3(v,c0,c1,0,off0.y,0,off1.y);
             ans = SVG.toRelative(ans);
 
             this.height.vtop = SVG.getTop(v);

@@ -11,7 +11,7 @@ class Render{
                 break;
             default:
                 text = Parser.parse(text,lang);
-                //console.log(text);
+                console.log(text);
                 text = GSUBManager.gsub(text,alig);
                 //console.log(text);
             break;
