@@ -3140,12 +3140,12 @@
         "Pattern": "u",
         "Pattern_sub": "IN",
         "Order": 500,
-        "Name": "(S(*,*,a,*))",
+        "Name": "(S((init),*,a,*))",
         "OffsetX0": 0,
-        "OffsetY0": 10,
+        "OffsetY0": 5,
         "OffsetX1": 0,
-        "OffsetY1": 10,
-        "Parsed": "(S\\((?:init|mid|fin|sol|null),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\))"
+        "OffsetY1": 5,
+        "Parsed": "(S\\((init),(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*),a_\\d+,(?:|[a-z]+_\\d+(?:-[a-z]+_\\d+)*)\\))"
       },
       "4": {
         "ID": 347,

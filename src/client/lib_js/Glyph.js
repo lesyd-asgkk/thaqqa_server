@@ -284,6 +284,7 @@ class Glyph{
 
         if(this.name.startsWith("S")){
             const v = this.name.split("(")[1].split(",")[2].split("_")[0];
+            const v_null = Thaqqa_DB.getTable("VOWEL").getData({Name:v})[0].values.isNullVowel;
         switch(this.name.split(",")[0].split("S(")[1]){
             case "sol":
                 k = SVG.convertSVG(k);
@@ -303,7 +304,7 @@ class Glyph{
             break;
                 case "fin":
                 k = SVG.convertSVG(k);
-                k = " M 0," + (top)+ " "+ k + SVG.setSkewer(-width/2,this.height.top,width/2,this.height.vtop);
+                k = " M 0," + (top)+ " "+ k + SVG.setSkewer(-width/2,this.height.top,width/2,this.height.vtop + v_null? bottom: 0);
                 k = SVG.convertSVG(k);
             break;
     }}        else{k = k + " M 0,"+(bottom+this.height.bottom);
