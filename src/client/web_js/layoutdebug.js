@@ -60,8 +60,8 @@ class LayoutDebug_web{
             case "音節毎(頭)":
             case "音節毎(中)":
             case "音節毎(尾)":
-                for(let z = 0;z<C1.length;z++){
-                    for(let x = 0;x<C0.length;x++){
+                for(let x = 0;x<C0.length;x++){
+                    for(let z = 0;z<C1.length;z++){
                         //text.push(`S(${form},${C0[x]},${V},${C1[z]})`);
                         text += `S(${form},${C0[x]},${V},${C1[z]})`;
                         text += `P(space_0)`;
