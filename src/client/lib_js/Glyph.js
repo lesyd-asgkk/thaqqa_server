@@ -325,22 +325,12 @@ class Glyph{
             const off1 = this.child[2] == null ? {x:0,y:0} :this.child[2].getoffset(v,true);
             
             if(this.name.split(",")[0].split("S(")[1] == "fin"){
-               
-                //const gap = Math.max((SVG.getBottom(c0) + SVG.getTop(c0)+off0.y),(SVG.getBottom(c1) + SVG.getTop(c1)+off1.y));
-                //
-                
-                //a_0 
-                // Math.min(off0.y,off1.y)の量だけ上にずらす
-                // off0.y > off1.y なら off0.y-off1.y
-                // off0.y < off1.y なら off0.y-off1.y
-                //
+
                 const c0_ = (SVG.getBottom(c0) + SVG.getTop(c0))
                 const c1_ = (SVG.getBottom(c1) + SVG.getTop(c1))
                 const gap = Math.min(off0.y,off1.y)
                 const gap2 = Math.max((c0_+off0.y),(c1_+off1.y))
-                // (c0_+off0.y) , (c1_+off1.y);
-                // 両方とも正なら  Math.min((c0_+off0.y),(c1_+off1.y))
-                // 両方とも負なら  Math.min((c0_+off0.y),(c1_+off1.y))
+
                 ans = SVG.merge3(v,c0,c1,0,gap2+gap-(c0_+off0.y),0,gap2+gap-(c1_+off1.y));
             }
             else ans = SVG.merge3(v,c0,c1,0,off0.y,0,off1.y);
