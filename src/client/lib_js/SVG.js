@@ -23,6 +23,7 @@ export default class SVG {
         return Snap.path.getBBox(param).x;
     }
     static setSkewer(x0,y0,x1,y1){
+        if(x1<x0 || y1<y0) return " ";
         return " M "+(x0)+","+(y0)+ " V "+(y1)+ " H " + x1 + " V "+(y0) + " H " + (x0) + " M "+(0)+","+(y0);
     }
     static merge2 = function(d0,d1,x,y){ //d0とd1を合成。d1の始点はx,y

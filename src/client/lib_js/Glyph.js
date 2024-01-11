@@ -66,13 +66,14 @@ class GlyphArray{
         }
     }
     toPath(defaultsize){
-
+        const algwhole = this.algwhole;
+        const mutli_ = function (n){return n/(algwhole==0?textdata.Width:textdata.Height)}
         const textdata = Thaqqa_DB.getTable("TEXTDATA").data[0].values;
-        const rescale = function(param,size,algwhole){
+        const rescale = function(param,size){
             const aa = Snap.parsePathString(Snap.path.toAbsolute(param));
             for(let i = 0;i<aa.length;i++){
                 for(let j = 1;j<aa[i].length;j++){
-                    aa[i][j] *= size/(algwhole==0?textdata.Width:textdata.Height);
+                    aa[i][j] *= mutli_(size);
                 }
             }
             return Snap.path.toRelative(aa).toString().toLowerCase();
@@ -84,29 +85,42 @@ class GlyphArray{
 
         const nlist = Thaqqa_DB.getTable("PUNCTUATION").getData({"IsNewline":true});
         const nlist_ = [];for(let i = 0;i<nlist.length;i++){nlist_.push(nlist[i].values.Name)};
-        //console.log(nlist_);
+       
+        
         if(this.algwhole==0){
             for(let i = 0;i<this.child.length;i++){
-                let m = 0;
-                if(i+1 != this.child.length) m = GPOSManager.gpos(this.child[i].name+this.child[i+1].name,0,"EX").y0;
-                if(i == 0 || i == this.child.length-1) m = GPOSManager.gpos(this.child[i].name,0,"EX").y0;
-                const d = rescale(this.child[i].toPathB(0,m),defaultsize,this.algwhole); //16はsize
-                 //16はsize
+                let m0 = 0;
+                let m1 = 0;
+                if(i+1 != this.child.length)
+                {m1 += GPOSManager.gpos(this.child[i].name+this.child[i+1].name,0,"EX").y1;
+                m0 += GPOSManager.gpos(this.child[i].name+this.child[i+1].name,0,"EX").y0;
+                }
+                if(i != 0){ //
+                    m0 += GPOSManager.gpos(this.child[i-1].name+this.child[i].name,0,"EX").y0;
+                }   
+                if(i == this.child.length-1) m1 += GPOSManager.gpos(this.child[i].name,0,"EX").y1;
+                
+                y += m0*mutli_(defaultsize);
+                if(i == 0 ) m0 += GPOSManager.gpos(this.child[i].name,0,"EX").y1;
+
+                this.d += `M ${x},${y} `;
+
+                const d = rescale(this.child[i].toPathB(-m0,m1),defaultsize); //16はsize
                 this.d += d;
-                y += SVG.getBottom(d);
-                if(i+1 != this.child.length){const d2 = rescale(this.child[i+1].d,defaultsize,this.algwhole);y -= SVG.getTop(d2);}
+                y += (SVG.getBottom(this.child[i].toPathB(0,0))+m1)*mutli_(defaultsize);
+                if(i+1 != this.child.length){const d2 = rescale(this.child[i+1].d,defaultsize);y -= SVG.getTop(d2);}
                 
                 this.child[i].offset = {x,y};
                 if(this.child[i].name.startsWith("P")&&nlist_.includes(this.child[i].name.split("(")[1].split("_")[0])){
                     x -= defaultsize;y = 0;
                 }
-                this.d += `M ${x},${y} `;
             }
+            this.d += `M ${x},${y} `;
         }
         else{
             for(let i = 0;i<this.child.length;i++){
                 const h = textdata.Height;
-                this.d += rescale(this.child[i].toPathAbs(h,0.5),defaultsize,this.algwhole);
+                this.d += rescale(this.child[i].toPathAbs(h,0.5),defaultsize);
                
                 x += defaultsize;//size
                 this.child[i].offset = {x,y};
@@ -294,7 +308,7 @@ class Glyph{
             break;
             case "init":
                 k = SVG.convertSVG(k);
-                k = "M 0,"+(top)+" "+k + SVG.setSkewer(-width/2,top+this.height.vbottom,width/2,bottom+this.height.bottom+top);
+                k = "M 0,"+(top)+" "+k + SVG.setSkewer(-width/2,top+this.height.vbottom,width/2,bottom+this.height.bottom);
                 k = SVG.convertSVG(k);
             break;
             case "mid":
@@ -304,7 +318,7 @@ class Glyph{
             break;
                 case "fin":
                 k = SVG.convertSVG(k);
-                k = " M 0," + (top)+ " "+ k + SVG.setSkewer(-width/2,this.height.top,width/2,this.height.vtop + v_null? bottom: 0);
+                k = " M 0," + (top)+ " "+ k + SVG.setSkewer(-width/2,top+this.height.top,width/2,this.height.vtop + v_null? bottom: 0);
                 k = SVG.convertSVG(k);
             break;
     }}        else{k = k + " M 0,"+(bottom+this.height.bottom);
