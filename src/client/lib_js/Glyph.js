@@ -1,5 +1,5 @@
 
-import { Thaqqa_DB,SVG,RegExp_Khhyl,DataTable,Data,GPOSManager,LetterManager} from "./deps.js";
+import { Thaqqa_DB,SVG,RegExp_Khhyl,GPOSManager,LetterManager} from "./deps.js";
 class GlyphManager{
     
     static async load(){
@@ -7,20 +7,25 @@ class GlyphManager{
       .then(response => response.json())
       .then(data => {
         try{
-        Thaqqa_DB.getTable("SVG");
+        Thaqqa_DB.getTable("GLYPH");
+        //Thaqqa_DB.deleteTable("GLYPH");
         }
         catch(_e){
-            Thaqqa_DB.createTable({name:"SVG"});
-            const table = Thaqqa_DB.getTable("SVG");
+            console.log(_e);
+            Thaqqa_DB.createTable({name:"GLYPH"});
+            const table = Thaqqa_DB.getTable("GLYPH");
             table.createColumn("ID","INTEGER","",0);
             table.createColumn("Name","char","",1);
             table.createColumn("Path","char","",2);
             for(const d in data){
-                table.createData({Name:d,Path:data[d]});
+                table.createData({Name:d,Path:SVG.toRelative(data[d])});
             }
         }
       })
       .catch(error => console.error('Error fetching data:', error));
+      return new Promise(resolve => {
+            resolve("done");
+        });
       }
 
     static getSVG(name){
@@ -318,7 +323,7 @@ class Glyph{
             break;
                 case "fin":
                 k = SVG.convertSVG(k);
-                k = " M 0," + (top)+ " "+ k + SVG.setSkewer(-width/2,top+this.height.top,width/2,this.height.vtop + v_null? bottom: 0);
+                k = " M 0," + (0)+ " "+ k + SVG.setSkewer(-width/2,top+this.height.top,width/2,this.height.vtop + (v_null? bottom: 0));
                 k = SVG.convertSVG(k);
             break;
     }}        else{k = k + " M 0,"+(bottom+this.height.bottom);
@@ -343,8 +348,10 @@ class Glyph{
                 const c0_ = (SVG.getBottom(c0) + SVG.getTop(c0))
                 const c1_ = (SVG.getBottom(c1) + SVG.getTop(c1))
                 const gap = Math.min(off0.y,off1.y)
-                const gap2 = Math.max((c0_+off0.y),(c1_+off1.y))
-
+                let gap2 = Math.sign((c0_+off0.y)*(c1_+off1.y)) < 0 ? 0 : (c1_+off1.y)>0  ? Math.max((c0_+off0.y),(c1_+off1.y)) : Math.max((c0_+off0.y),(c1_+off1.y));
+//要調整
+                if(c0_ == 0 ) gap2 = c1_+off1.y;
+                else if(c1_ ==  0) gap2 = c0_+off0.y;
                 ans = SVG.merge3(v,c0,c1,0,gap2+gap-(c0_+off0.y),0,gap2+gap-(c1_+off1.y));
             }
             else ans = SVG.merge3(v,c0,c1,0,off0.y,0,off1.y);

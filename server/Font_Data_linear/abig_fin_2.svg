@@ -7,7 +7,7 @@
    viewBox="0 0 100 100"
    version="1.1"
    id="svg1035"
-   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
    sodipodi:docname="abig_fin_2.svg"
    inkscape:export-filename="v_a_1_0.svg"
    inkscape:export-xdpi="96"
@@ -27,13 +27,13 @@
      inkscape:deskcolor="#505050"
      inkscape:document-units="px"
      showgrid="false"
-     inkscape:zoom="4"
-     inkscape:cx="7"
-     inkscape:cy="15"
-     inkscape:window-width="1366"
-     inkscape:window-height="705"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:zoom="0.70710678"
+     inkscape:cx="-37.476659"
+     inkscape:cy="74.246212"
+     inkscape:window-width="1920"
+     inkscape:window-height="1111"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
      showguides="false" />
@@ -45,7 +45,7 @@
      id="layer1">
     <path
        style="color:#000000;fill:#000000;-inkscape-stroke:none"
-       d="M -14,0 V 8 H 24 V 0 Z"
+       d="m -14,-2.34375 v 4.6875 h 38 v -4.6875 z"
        id="path875" />
   </g>
 </svg>

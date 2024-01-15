@@ -7,7 +7,7 @@
    viewBox="0 0 100 100"
    version="1.1"
    id="svg1035"
-   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
    sodipodi:docname="abig_sol_0.svg"
    inkscape:export-filename="v_a_1_0.svg"
    inkscape:export-xdpi="96"
@@ -28,12 +28,12 @@
      inkscape:document-units="px"
      showgrid="false"
      inkscape:zoom="5.6568542"
-     inkscape:cx="-8.3085048"
-     inkscape:cy="30.052038"
-     inkscape:window-width="1366"
-     inkscape:window-height="705"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:cx="-45.873553"
+     inkscape:cy="22.008699"
+     inkscape:window-width="1920"
+     inkscape:window-height="1111"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
      showguides="false" />
@@ -44,9 +44,8 @@
      inkscape:groupmode="layer"
      id="layer1">
     <path
-       id="path338"
-       style="color:#000000;fill:#000000"
-       d="M 7.9589844,1.1328125 5.9394531,15.27539 22.785156,18.644531 21.214844,26.488281 4.8046875,23.207031 3.0488281,35.498047 18.785156,38.644531 17.214844,46.488281 1.9160156,43.427734 -0.04101562,57.132812 -7.9589844,56 -5.9375,41.857422 l -16.847656,-3.369141 1.570312,-7.84375 16.4101565,3.28125 1.7558594,-12.291016 -15.7363279,-3.146484 1.570312,-7.84375 15.2988284,3.060547 L 0.04101562,0 Z"
-       sodipodi:nodetypes="ccccccccccccccccccccc" />
+       id="path2471"
+       style="color:#000000;fill:#000000;-inkscape-stroke:none"
+       d="M 1.6796875 -0.33203125 L -0.52539062 15.103516 L -17.541016 11.701172 L -18.458984 16.298828 L -1.1894531 19.751953 L -3.4140625 35.326172 L -21.541016 31.701172 L -22.458984 36.298828 L -4.078125 39.974609 L -6.3203125 55.667969 L -1.6796875 56.332031 L 0.52539062 40.896484 L 17.541016 44.298828 L 18.458984 39.701172 L 1.1894531 36.248047 L 3.4140625 20.673828 L 21.541016 24.298828 L 22.458984 19.701172 L 4.078125 16.025391 L 6.3203125 0.33203125 L 1.6796875 -0.33203125 z " />
   </g>
 </svg>

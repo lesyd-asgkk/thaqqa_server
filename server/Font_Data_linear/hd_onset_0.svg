@@ -7,7 +7,7 @@
    viewBox="0 0 100 100"
    version="1.1"
    id="svg1035"
-   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
    sodipodi:docname="hd_onset_0.svg"
    inkscape:export-filename="v_a_1_0.svg"
    inkscape:export-xdpi="96"
@@ -27,13 +27,13 @@
      inkscape:deskcolor="#505050"
      inkscape:document-units="px"
      showgrid="false"
-     inkscape:zoom="8"
-     inkscape:cx="-5.125"
-     inkscape:cy="24.25"
-     inkscape:window-width="1366"
-     inkscape:window-height="705"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:zoom="11.313708"
+     inkscape:cx="-9.3249707"
+     inkscape:cy="14.18633"
+     inkscape:window-width="1920"
+     inkscape:window-height="1111"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
      showguides="false" />
@@ -45,7 +45,7 @@
      id="layer1">
     <path
        style="color:#000000;fill:#000000;-inkscape-stroke:none"
-       d="m 0,0 c -3.8422993,0 -7,3.1577002 -7,7 0,3.8423 3.1577002,7 7,7 C 3.8422998,14 7,10.8423 7,7 7,3.1577002 3.8422993,0 0,0 Z M 0,4 C 1.6805372,4 3,5.3194633 3,7 3,8.6805367 1.6805367,10 0,10 -1.6805367,10 -3,8.6805367 -3,7 -3,5.3194633 -1.6805372,4 0,4 Z"
+       d="m 0,-8.34375 c -4.5803591,0 -8.34375,3.7633901 -8.34375,8.34375 0,4.5803602 3.7633904,8.34375 8.34375,8.34375 C 4.5803596,8.34375 8.34375,4.5803602 8.34375,0 8.34375,-4.5803599 4.5803591,-8.34375 0,-8.34375 Z m 0,4.6875 c 2.0470438,0 3.65625,1.6092061 3.65625,3.65625 0,2.0470445 -1.6092066,3.65625 -3.65625,3.65625 -2.0470434,0 -3.65625,-1.6092055 -3.65625,-3.65625 0,-2.0470439 1.6092062,-3.65625 3.65625,-3.65625 z"
        id="path20624" />
   </g>
 </svg>

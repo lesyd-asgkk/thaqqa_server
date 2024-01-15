@@ -17,13 +17,11 @@ class Thaqqa_DB {
     await fetch('/server/init.json')
   .then(response => response.json())
   .then(data => {
-    //console.log('Received data:', data);
-    // データを処理する（表示するなど）
+
     for(const t_n in data){
       const t = new DataTable(data[t_n]);
       Thaqqa_DB.table.push(t);
     }
-    //console.log(Thaqqa_DB.table);
   })
   .catch(error => console.error('Error fetching data:', error));
   }
@@ -32,12 +30,12 @@ class Thaqqa_DB {
   static export(){
     const binaryArray = Thaqqa_DB.export_as_Json();
     const blob = new Blob([JSON.stringify(binaryArray, null, '  ')], {type: 'application\/json'});
-    const url = URL.createObjectURL(blob); // BlobオブジェクトのURLを作成
+    const url = URL.createObjectURL(blob); 
     
-    const link = document.createElement("a"); // リンクを作成
-    link.href = url; // リンクのhref属性にBlobオブジェクトのURLを設定
-    link.download = "example.json"; // ファイル名を指定
-    link.click(); // リンクをクリックしてダウンロードを開始
+    const link = document.createElement("a");
+    link.href = url; 
+    link.download = "example.json"; 
+    link.click();
   }
 
     static export_as_Json() {
@@ -68,13 +66,10 @@ class Thaqqa_DB {
       }
 
       table_data.data = data_data;
-      // table -> name,column\,data
 
-      // column -> name,type
-      // data -> value
       json_data[table.name] = table_data;
     }
-    //console.log(json_data);
+
     return json_data;
   }
    //*/

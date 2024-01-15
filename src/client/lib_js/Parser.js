@@ -80,19 +80,13 @@ class Parser {
       }
       array.sort(sortalg);
 
-      //console.log(array);
       for(let i = 0;i<array.length;i++){
-        //console.log(array[i].values.Name);
-        //if(array[i].values.Order >= 90 && array[i].values.Priority != 1) continue;
+
         let r = new RegExp_Khhyl(array[i].values.Name,{});
         r = r.ParseRegExp()
         const r_ = r.toNormalRegExp();
         const r_fin = new RegExp(r_, "g");
 
-
-        //console.log("-------");
-
-        /**/
         raw_new = raw_new.replaceAll(r_fin,array[i].values.NameAlt);
     }
     return raw_new;

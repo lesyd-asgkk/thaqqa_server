@@ -28,7 +28,7 @@
      inkscape:document-units="px"
      showgrid="false"
      inkscape:zoom="8"
-     inkscape:cx="2"
+     inkscape:cx="1.9375"
      inkscape:cy="25.9375"
      inkscape:window-width="1920"
      inkscape:window-height="1111"
@@ -45,7 +45,7 @@
      id="layer1">
     <path
        style="color:#000000;fill:#000000;-inkscape-stroke:none"
-       d="m -2.5,-11.5 v 23 h 5 v -23 z"
+       d="m -2.34375,0 v 23 h 4.6875 V 0 Z"
        id="path27098" />
   </g>
 </svg>

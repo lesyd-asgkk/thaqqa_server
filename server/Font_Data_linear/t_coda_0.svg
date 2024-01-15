@@ -7,7 +7,7 @@
    viewBox="0 0 100 100"
    version="1.1"
    id="svg1035"
-   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
    sodipodi:docname="t_coda_0.svg"
    inkscape:export-filename="v_a_1_0.svg"
    inkscape:export-xdpi="96"
@@ -28,12 +28,12 @@
      inkscape:document-units="px"
      showgrid="false"
      inkscape:zoom="3.7415825"
-     inkscape:cx="9.3543307"
-     inkscape:cy="11.492463"
-     inkscape:window-width="1366"
-     inkscape:window-height="705"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:cx="9.487964"
+     inkscape:cy="11.35883"
+     inkscape:window-width="1920"
+     inkscape:window-height="1111"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
      showguides="false" />
@@ -45,7 +45,7 @@
      id="layer1">
     <path
        style="color:#000000;fill:#000000;-inkscape-stroke:none"
-       d="M -2.828125,0 -28,25.171875 v 33.65625 h 8 V 28.484375 L 2.828125,5.65625 Z"
+       d="M -1.6582031,-1.6582031 -26.34375,23.029297 V 56 h 4.6875 V 24.970703 L 1.6582031,1.6582031 Z"
        id="path883-89" />
   </g>
 </svg>

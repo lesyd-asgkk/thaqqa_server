@@ -7,7 +7,7 @@
    viewBox="0 0 100 100"
    version="1.1"
    id="svg1035"
-   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
    sodipodi:docname="i_sol_0.svg"
    inkscape:export-filename="v_a_1_0.svg"
    inkscape:export-xdpi="96"
@@ -28,12 +28,12 @@
      inkscape:document-units="px"
      showgrid="false"
      inkscape:zoom="5.2913967"
-     inkscape:cx="-19.087588"
-     inkscape:cy="19.087588"
-     inkscape:window-width="1366"
-     inkscape:window-height="705"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:cx="-19.182081"
+     inkscape:cy="18.993095"
+     inkscape:window-width="1920"
+     inkscape:window-height="1111"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" />
   <defs
@@ -43,8 +43,12 @@
      inkscape:groupmode="layer"
      id="layer1">
     <path
-       id="path855-4"
-       style="color:#000000;fill:#000000"
-       d="M 11.826172 0 L -22.173828 22 L -17.826172 28.716797 L 16.173828 6.7167969 L 11.826172 0 z M 17.826172 22 L -16.173828 44 L -11.826172 50.716797 L 22.173828 28.716797 L 17.826172 22 z " />
+       style="color:#000000;fill:#000000;-inkscape-stroke:none"
+       d="m 18.726562,20.033203 -34,22 2.546875,3.935547 34,-22 z"
+       id="path855-4" />
+    <path
+       style="color:#000000;fill:#000000;-inkscape-stroke:none"
+       d="m 12.726563,-1.9667969 -34,21.9999999 2.546875,3.935547 34,-22 z"
+       id="path1272" />
   </g>
 </svg>

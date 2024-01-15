@@ -7,7 +7,7 @@
    viewBox="0 0 100 100"
    version="1.1"
    id="svg1035"
-   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
    sodipodi:docname="ng_onset_0.svg"
    inkscape:export-filename="v_a_1_0.svg"
    inkscape:export-xdpi="96"
@@ -28,12 +28,12 @@
      inkscape:document-units="px"
      showgrid="false"
      inkscape:zoom="2.6456984"
-     inkscape:cx="-9.0713288"
-     inkscape:cy="29.481818"
-     inkscape:window-width="1366"
-     inkscape:window-height="705"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:cx="-9.2603148"
+     inkscape:cy="29.292832"
+     inkscape:window-width="1920"
+     inkscape:window-height="1111"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
      showguides="false" />
@@ -44,8 +44,12 @@
      inkscape:groupmode="layer"
      id="layer1">
     <path
-       id="path4911"
-       style="color:#000000;fill:#000000"
-       d="M 27.171875 0 C 22.7004 4.4714704 18.421736 11.002293 14.285156 21.34375 L 21.712891 24.314453 C 25.576285 14.65596 29.299618 9.1847536 32.828125 5.65625 L 27.171875 0 z M 0 24.828125 L 0 32.828125 C 9.9999822 32.828129 17.957572 32.441951 29.171875 43.65625 L 34.828125 38 C 22.042476 25.214355 9.9999822 24.828129 0 24.828125 z " />
+       style="color:#000000;fill:#000000;-inkscape-stroke:none"
+       d="M 28.341797,-1.65625 C 24.065542,2.6200008 19.904244,8.9307876 15.824219,19.130859 l 4.351562,1.740235 C 24.095738,11.071196 27.932515,5.3819343 31.65625,1.6582031 Z"
+       id="path4911" />
+    <path
+       style="color:#000000;fill:#000000;-inkscape-stroke:none"
+       d="m 0,23.65625 v 4.6875 c 9.9999922,4e-6 18.802164,-0.225176 30.341797,11.314453 L 33.65625,36.34375 C 21.195907,23.883411 9.9999922,23.656254 0,23.65625 Z"
+       id="path4913" />
   </g>
 </svg>
