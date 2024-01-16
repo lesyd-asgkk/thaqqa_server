@@ -16,7 +16,16 @@
         span.khhyl.larger {
             font-size: 2em;
         }
+        table {
+            border: solid 2px;
+            border-collapse: collapse;
+        }
+        table tr,
+        table td {
+        border: dashed 1px;
+        }
     </style>
+
     <!-- <link rel="stylesheet" href="style.css" />-->
     <!-- 適当にcssの勉強してポチポチやれ-->
 </head>
@@ -142,12 +151,14 @@
         for (const i of $('div.table#vowel_0')) {
             const vowel = [["abig","a"],["e","e"],["i","i"],["o","o"],["u","u"],["v","v"],["eold","ë(旧)"],["iold","ï(旧)"]]
             const columns = [["sol","単独系"],["init","頭系"],["mid","中系"],["fin","尾系"]];
-            for(let y = -1;y<vowel.length;y++){
+            const table = document.createElement('table'); 
+                const tbody = document.createElement('tbody'); 
+                for(let y = -1;y<vowel.length;y++){
                 const tr = document.createElement('tr'); 
             for(let x = -1;x<columns.length;x++){
                 const td = document.createElement('td');
                 td.style.textAlign = "center";
-                td.style.verticalAlign = "top";
+                td.style.verticalAlign = "center";
                 const span = document.createElement("span");
                 if(x == -1){
                     if(y == -1) span.textContent = "/";
@@ -162,8 +173,13 @@
                     }
                     td.appendChild(span);tr.appendChild(td);
                 }
-                i.appendChild(tr);
+
+                tbody.appendChild(tr);
+                
+                
             }
+            table.appendChild(tbody);
+            i.appendChild(table);
         }
 
         for (const i of $('div.table#consonant_0')) {
@@ -201,12 +217,14 @@
             const columns = [["coda","尾系"],["onset","頭系"],["",""]];
             const row = [consonant,cd,chd,csy,csw,cmisc];
             const shurui = ["/","/+濁符(下)","/+半濁符(横)","/+拗符(横)","/+合拗符(下)","/+複合"]
+            const table = document.createElement('table'); 
+                const tbody = document.createElement('tbody'); 
             for(let y = -1;y<consonant.length;y++){
                 const tr = document.createElement('tr'); 
             for(let x = -1;x<row.length*3-1;x++){
                 const td = document.createElement('td');
                 td.style.textAlign = "center";
-                td.style.verticalAlign = "top";
+                td.style.verticalAlign = "center";
                 const span = document.createElement("span");
                 
 
@@ -226,8 +244,12 @@
                     }
                     td.appendChild(span);tr.appendChild(td);
                 }
-                i.appendChild(tr);
-            }
+
+                tbody.appendChild(tr);
+                
+                
+            }table.appendChild(tbody);
+            i.appendChild(table);
         }
 
         for (const i of $('span.khhyl')) {
