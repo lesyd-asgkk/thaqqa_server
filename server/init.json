@@ -256,7 +256,7 @@
         "MidGlyphNum": 1,
         "FinGlyphNum": 1,
         "isVowel": false,
-        "isNullVowel": false,
+        "isNullVowel": true,
         "hasGreedyBond": false,
         "isBondtoPrev": false,
         "isBondtoNext": false,
