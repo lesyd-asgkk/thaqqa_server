@@ -43,7 +43,7 @@
     <h1>文字の構成について</h1>
     <h2>母音字母の形態について</h2>
     <p>母音字母の形態として、「単独系」「頭系」「中系」「尾系」が存在する。</p>
-    <p>中系・尾系については、一定の条件で形状が更に変化する。『abig』は特定の場合を除き横線部分は省略可能である。</p>
+    <p>中系・尾系については、一定の条件で形状が更に変化する。なお、<span class="khhyl " letter="V(sol,abig_0)"> </span> は特定の場合を除き横線部分は省略可能である。</p>
 
     <p>使用される母音は以下の通り。旧字は古語や、方言の表記で用いられる。</p>
     <p><div class="table" id="vowel_0"></div></p>
@@ -54,7 +54,7 @@
     <p>時と場合によって「符号」と呼ばれるダイアクリティカルマークを伴う。</p>
     <p>「横符号」と「下符号」の二系統があり、横符号は子音のすぐ外側に、下符号は子音のすぐ下側に付く。</p>
     <p>東果語に於いて主に使用される子音と、汽陸語と呼ばれる少数言語の表記に用いられる子音を載せる。</p>
-    <p>（画像まだねえよ）</p>
+    <p><div class="table" id="consonant_0"></div></p>
 
     <h2>約物について</h2>
     <p>母音のように振る舞う「母約物」、子音のように振る舞う「子約物」、単独でしか用いられない「純約物」が存在する。</p>
@@ -138,15 +138,11 @@
     //span khhylに関する変換処理
     $(document).ready(async function () {
         await khhyl.Thaqqa_DB.load();
-
         for (const i of $('div.table#vowel_0')) {
-            //<span class="khhyl larger" letter="V(sol,abig_0)"> </span>
-            const vowel = [["abig","a"],["e","e"],["i","i"],["o","o"],["u","u"],["v","v"]]
+            const vowel = [["abig","a"],["e","e"],["i","i"],["o","o"],["u","u"],["v","v"],["eold","ë(旧)"],["iold","ï(旧)"]]
             const columns = [["sol","単独系"],["init","頭系"],["mid","中系"],["fin","尾系"]];
-
             for(let y = -1;y<vowel.length;y++){
                 const tr = document.createElement('tr'); 
-            tr.name = this.id;
             for(let x = -1;x<columns.length;x++){
                 const td = document.createElement('td');
                 td.style.textAlign = "center";
@@ -154,26 +150,84 @@
                 const span = document.createElement("span");
                 if(x == -1){
                     if(y == -1) span.textContent = "/";
-                    else{
-                        span.textContent = vowel[y][1];
+                    else span.textContent = vowel[y][1];
                     }
-                }
                 else{
                     if(y == -1) span.textContent = columns[x][1];
                     else{
                         span.classList.add("khhyl","larger");
                         span.setAttribute("letter",`S(${columns[x][0]},,${vowel[y][0]}_0,)`)
+                        }
                     }
-                    
+                    td.appendChild(span);tr.appendChild(td);
                 }
-                td.appendChild(span);
-            tr.appendChild(td);
+                i.appendChild(tr);
             }
-            i.appendChild(tr);
         }
-    }
 
-        console.log($('span.khhyl'));
+        for (const i of $('div.table#consonant_0')) {
+            const consonant = [["t","t"],["k","k"],["q","q"],["c","'"],
+            ["n","n"],["ng","ng"],
+            ["th","th"],["s","s"],["hy","hy"],["kh","kh"],["qh","qh"],["h","h"]
+            ,["l","l"],["tl","tl(東)/ts(汽)"],["r","r"],["y","y"],["w","w"]]
+
+            const csy = [["t_0-sy","ty(汽)"],["k_0-sy","ky(汽)"],,,
+            ["n_0-sy","ny(汽)"],["ng_0-sy","ngy(汽)"],
+            ,["s_0-sy","sy(汽)"],,,,
+            ,,,["r_0-sy","ry(汽)"],,]
+
+            const csw = [,["k_0-sw","kw(汽)"],["q_0-sw","qw(汽)"],,
+            ,["ng_0-sw","ngw(汽)"],
+            ,,,,["qh_0-sw","hw(汽)"],
+            ,,,,,]
+
+            const cd = [["t_0-d","d(汽)"],["k_0-d","g(汽)"],,,
+            ,,
+            ["th_0-d","dh"],["s_0-d","z"],["hy_0-d","zh(東)"],["kh_0-d","gh(東)"],["qh_0-d","rh(東)"],["h_0-d","Hh(東)"]
+            ,,,,,]
+
+            const cmisc = [["t_0-d_0-hd","b(汽)"],,,,
+            ["n_0-hd_0-sy","my(汽)"],,
+            ["th_0-hd_0-sy","hpy(汽)"],["th_0-hd_0-sw","hp(汽)"],,["s_0-d_0-sy","zy(汽)"],,
+            ,,["tl_0-hd_0-sy","ch(汽)"],,,]
+
+
+            const chd = [["t_0-hd","p(汽)"],,["q_0-hd","hq(汽)"],,
+            ["n_0-hd","m(汽)"],,
+            ["th_0-hd","f(汽)"],,,,,
+            ,,["tl_0-hd","ht(汽)"],,,]
+
+            const columns = [["coda","尾系"],["onset","頭系"],["",""]];
+            const row = [consonant,cd,chd,csy,csw,cmisc];
+            for(let y = -1;y<consonant.length;y++){
+                const tr = document.createElement('tr'); 
+            for(let x = -1;x<row.length*3-1;x++){
+                const td = document.createElement('td');
+                td.style.textAlign = "center";
+                td.style.verticalAlign = "top";
+                const span = document.createElement("span");
+                
+
+                const x0 = Math.floor((x+1)/3);
+                if(x == -1 || x % 3 == 2){
+                    if(y == -1) span.textContent = "/";
+                    else if(row[x0][y]!=null) span.textContent = row[x0][y][1];
+                    }
+                else{
+                    if(y == -1) span.textContent = columns[x%3][1];
+                    else{
+                        if(row[x0][y] != null){
+                            span.classList.add("khhyl","larger");
+                            span.setAttribute("letter",`C(${columns[x%3][0]},${row[x0][y][0]}_0)`)
+                            }
+                        }
+                    }
+                    td.appendChild(span);tr.appendChild(td);
+                }
+                i.appendChild(tr);
+            }
+        }
+
         for (const i of $('span.khhyl')) {
             const object = $("div#storage svg#svgField").clone(false, false)[0];
             while (object.firstChild) object.removeChild(object.firstChild);
@@ -182,13 +236,11 @@
             const letter = i.getAttribute("letter");
             const type = i.getAttribute("option") ?? "parsedplus"
             {
-                const title = $("div#storage svg#svgField title").clone()[0];
-                title.textContent = letter;
-                const desc = $("div#storage svg#svgField desc").clone()[0];
-                desc.textContent = "解説";
+                const title = $("div#storage svg#svgField title").clone()[0];title.textContent = letter;
+                const desc = $("div#storage svg#svgField desc").clone()[0];desc.textContent = "解説";
                 object.append(title, desc)
             }
-            console.log(parseFloat(getComputedStyle(i).fontSize));
+            //console.log(parseFloat(getComputedStyle(i).fontSize));
             const d = khhyl.Render.DrawD(letter, 0, 0, type, parseFloat(getComputedStyle(i).fontSize), { x: 0, y: 0 });
             const path = $("div#storage svg#svgField path").clone()[0];
             path.style.display = "block";
@@ -205,7 +257,6 @@
             object.setAttribute("height", (HEIGHT * shrink_x).toString());
             object.setAttribute("viewBox", `${x0-(WIDTH*(shrink_x-1)/2)} ${y0-(HEIGHT*(shrink_x-1))/2} ${WIDTH* shrink_x} ${HEIGHT* shrink_x}`);
             i.appendChild(object);
-
         }
     });
 </script>

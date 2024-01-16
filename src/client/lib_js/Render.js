@@ -12,7 +12,7 @@ class Render{
             default:
                 text = Parser.parse(text,lang);
                 text = GSUBManager.gsub(text,alig);
-                console.log(text);
+                //console.log(text);
             break;
         }
         if(pos == null) pos = {x:0,y:0};

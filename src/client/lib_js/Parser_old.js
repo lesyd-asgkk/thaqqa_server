@@ -85,7 +85,7 @@ class Alphabet{
             ["h-d"]:"hh",
 
             ["r-sy"]:"ry",
-            ["tl-sw"]:"ht",["tl-sy"]:"ch"
+            ["tl-hd"]:"ht"
         }
         /*
     (b -> "t+d+hd")
@@ -94,7 +94,7 @@ class Alphabet{
     (hpy = "th+hd+sy")
 */
         const conv3 = {
-            ["t-d-hd"]:"b",["n-hd-sy"]:"my",["th-hd-sw"]:"hp",["th-hd-sy"]:"hpy",
+            ["t-d-hd"]:"b",["n-hd-sy"]:"my",["th-hd-sw"]:"hp",["th-hd-sy"]:"hpy",["tl-hd-sy"]:"ch"
         }
         if(this.featual.length == 1){
             return this.featual[0].name;
