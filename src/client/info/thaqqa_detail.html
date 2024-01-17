@@ -69,7 +69,7 @@
     <p>母音のように振る舞う「母約物」、子音のように振る舞う「子約物」、単独でしか用いられない「純約物」が存在する。</p>
     <p>母約物・子約物の一部は全ての形態を取らず、母約物については一部が頭系か尾系か片方の子音字母をとらない。</p>
     <p>主に使用される約物は以下の通り。装飾的に、「と『のように些細な違いを持つ約物も存在する。</p>
-    <p>（画像まだねえよ）</p>
+    <p><div class="table" id="punctuation_0"></div></p>
 
     <h2>東果文字の正書法</h2>
     <p>縦書きは上から下に綴られ、ほぼ常に右から左に改行される。</p>
@@ -83,11 +83,11 @@
     <p>中字は主に単語の途中の音節を表すのに用いられ、中系の母音字母の上に頭系の子音字母が、下に尾系の子音字母が付く。</p>
     <p>尾字は主に単語の最後の音節を表すのに用いられ、尾系の母音字母の上に双方の子音字母が付く。</p>
     <p>以下に例を載せておく。</p>
-    <p>（画像まだねえよ）</p>
+    <p><div class="table" id="syllable_vert"></div></p>
 
     <h3>横書きの場合</h3>
     <p>以下の通り。</p>
-    <p>（画像まだねえよ）</p>
+    <p><div class="table" id="syllable_hori"></div></p>
 
     <h3>縦書きの場合</h3>
 
@@ -155,7 +155,7 @@
                 const tbody = document.createElement('tbody'); 
                 for(let y = -1;y<vowel.length;y++){
                 const tr = document.createElement('tr'); 
-            for(let x = -1;x<columns.length;x++){
+                for(let x = -1;x<columns.length;x++){
                 const td = document.createElement('td');
                 td.style.textAlign = "center";
                 td.style.verticalAlign = "center";
@@ -173,10 +173,7 @@
                     }
                     td.appendChild(span);tr.appendChild(td);
                 }
-
                 tbody.appendChild(tr);
-                
-                
             }
             table.appendChild(tbody);
             i.appendChild(table);
@@ -207,7 +204,6 @@
             ["n_0-hd_0-sy","my(汽)"],,
             ["th_0-hd_0-sy","hpy(汽)"],["th_0-hd_0-sw","hp(汽)"],,["s_0-d_0-sy","zy(汽)"],,
             ,,["tl_0-hd_0-sy","ch(汽)"],,,]
-
 
             const chd = [["t_0-hd","p(汽)"],,["q_0-hd","hq(汽)"],,
             ["n_0-hd","m(汽)"],,
@@ -252,6 +248,39 @@
             i.appendChild(table);
         }
 
+        for (const i of $('div.table#syllable_hori')) {
+            const vowel = [["abig","a"],["e","e"],["i","i"],["o","o"],["u","u"],["v","v"],["eold","ë(旧)"],["iold","ï(旧)"]]
+            const columns = ["V","CV","VC","CVC"];
+            const table = document.createElement('table'); 
+                const tbody = document.createElement('tbody'); 
+                for(let y = -1;y<vowel.length;y++){
+                const tr = document.createElement('tr'); 
+            for(let x = -1;x<columns.length;x++){
+                const td = document.createElement('td');
+                td.style.textAlign = "center";
+                td.style.verticalAlign = "center";
+                const span = document.createElement("span");
+                if(x == -1){
+                    if(y == -1) span.textContent = "/";
+                    else span.textContent = vowel[y][1];
+                    }
+                else{
+                    if(y == -1) span.textContent = columns[x];
+                    else{
+                        span.classList.add("khhyl","larger");
+                        span.setAttribute("option","parsed");
+                        span.setAttribute("alig","vert")
+                        span.setAttribute("letter",`S(null,${x%2==1?"h_0":""},${vowel[y][0]}_0,${x%4>=2?"h_0":""})`)
+                    }
+                    }
+                    td.appendChild(span);tr.appendChild(td);
+                }
+                tbody.appendChild(tr);
+            }
+            table.appendChild(tbody);
+            i.appendChild(table);
+        }
+
         for (const i of $('span.khhyl')) {
             const object = $("div#storage svg#svgField").clone(false, false)[0];
             while (object.firstChild) object.removeChild(object.firstChild);
@@ -265,7 +294,7 @@
                 object.append(title, desc)
             }
             //console.log(parseFloat(getComputedStyle(i).fontSize));
-            const d = khhyl.Render.DrawD(letter, 0, 0, type, parseFloat(getComputedStyle(i).fontSize), { x: 0, y: 0 });
+            const d = khhyl.Render.DrawD(letter, 0, i.getAttribute("alig") == null ? 0 : 1 , type, parseFloat(getComputedStyle(i).fontSize), { x: 0, y: 0 });
             const path = $("div#storage svg#svgField path").clone()[0];
             path.style.display = "block";
             path.setAttribute("fill", "none");

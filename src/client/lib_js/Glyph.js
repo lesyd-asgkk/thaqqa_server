@@ -127,7 +127,7 @@ class GlyphArray{
                 const h = textdata.Height;
                 this.d += rescale(this.child[i].toPathAbs(h,0.5),defaultsize);
                
-                x += defaultsize;//size
+                if(i!=this.child.length-1)x += defaultsize;//size
                 this.child[i].offset = {x,y};
                 if(this.child[i].name.startsWith("P")&&nlist_.includes(this.child[i].name.split("(")[1].split("_")[0])){
                     x = 0;y += defaultsize;
