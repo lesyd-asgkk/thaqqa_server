@@ -103,10 +103,10 @@ class GlyphArray{
                 if(i != 0){ //
                     m0 += GPOSManager.gpos(this.child[i-1].name+this.child[i].name,0,"EX").y0;
                 }   
-                if(i == this.child.length-1) m1 += GPOSManager.gpos(this.child[i].name,0,"EX").y1;
+                if(i == this.child.length-1) m1 += GPOSManager.gpos(this.child[i].name+"Q()",0,"EX").y1;
                 
                 y += m0*mutli_(defaultsize);
-                if(i == 0 ) m0 += GPOSManager.gpos(this.child[i].name,0,"EX").y1;
+                if(i == 0 ) m0 += GPOSManager.gpos("Q()"+this.child[i].name,0,"EX").y1;
 
                 this.d += `M ${x},${y} `;
 
@@ -293,9 +293,7 @@ class Glyph{
                 return k;
     }
     toPathB(top,bottom){
-        //topだけ縦線（空白）
-        //中身
-        //bottomだけ縦線（空白）
+        console.log(top,bottom);
         let k = this.toPath();
         k ??= "M 0,0";
         const width = Thaqqa_DB.getTable("TEXTDATA").data[0].values.Thickness;
@@ -304,7 +302,32 @@ class Glyph{
         if(this.name.startsWith("S")){
             const v = this.name.split("(")[1].split(",")[2].split("_")[0];
             const v_null = Thaqqa_DB.getTable("VOWEL").getData({Name:v})[0].values.isNullVowel;
-        switch(this.name.split(",")[0].split("S(")[1]){
+        if(v_null){
+            switch(this.name.split(",")[0].split("S(")[1]){
+                case "sol":
+                    k = SVG.convertSVG(k);
+                    k = k + " M 0,"+(bottom+this.height.bottom);
+                    k = "M 0,"+(top+this.height.top)+" "+k;
+                    k = SVG.convertSVG(k);
+                break;
+                case "init":
+                    k = SVG.convertSVG(k);
+                    k = "M 0,"+(bottom)+" "+k + SVG.setSkewer(-width/2,top+this.height.top,width/2,this.height.vtop)+SVG.setSkewer(-width/2,this.height.vbottom,width/2,bottom+this.height.bottom);
+                    k = SVG.convertSVG(k);
+                    break;
+                case "mid":
+                    k = SVG.convertSVG(k);
+                    k = "M 0,"+(0)+" "+k + SVG.setSkewer(-width/2,top+this.height.top,width/2,this.height.vtop)+SVG.setSkewer(-width/2,this.height.vbottom,width/2,bottom+this.height.bottom);
+                    k = SVG.convertSVG(k);
+                    break;
+                case "fin":
+                    k = SVG.convertSVG(k);
+                    k = "M 0,"+(top)+" "+k + SVG.setSkewer(-width/2,top+this.height.top,width/2,this.height.vtop)+SVG.setSkewer(-width/2,this.height.vbottom,width/2,bottom+this.height.bottom);
+                    k = SVG.convertSVG(k);
+                break;
+        }
+        }{
+            switch(this.name.split(",")[0].split("S(")[1]){
             case "sol":
                 k = SVG.convertSVG(k);
                 k = k + " M 0,"+(bottom+this.height.bottom);
@@ -326,7 +349,10 @@ class Glyph{
                 k = " M 0," + (0)+ " "+ k + SVG.setSkewer(-width/2,top+this.height.top,width/2,this.height.vtop + (v_null? bottom: 0));
                 k = SVG.convertSVG(k);
             break;
-    }}        else{k = k + " M 0,"+(bottom+this.height.bottom);
+    }}
+
+    }        
+    else{k = k + " M 0,"+(bottom+this.height.bottom);
     k = "M 0,"+(top+this.height.top)+" "+k;
     k = SVG.convertSVG(k);}
         this.gap = {top:top,middle:0,bottom:bottom};

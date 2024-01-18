@@ -222,8 +222,10 @@ class GPOSManager {
         for(let i = 0;i<GPOSdata.length;i++){
             //if(rule == "IN" && text.match(new RegExp(GPOSdata[i].values.Ablidged, "g")) == null) continue;
                 const r_fin = new RegExp((rule == "EX" ? "^": "")+GPOSdata[i].values.Parsed+(rule == "EX" ? "$": ""), "g");
-
+                
                 if(text.match(r_fin) != null){
+                    console.log(text);
+                    console.log(GPOSdata[i].values.Name);
                     ans.x0 += GPOSdata[i].values.OffsetX0 ;
                     ans.y0 += GPOSdata[i].values.OffsetY0 ;
                     ans.x1 += GPOSdata[i].values.OffsetX1 ;
