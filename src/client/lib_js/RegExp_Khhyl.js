@@ -180,10 +180,8 @@ class RegExp_Khhyl {
         return this;
 
     }
-
-    ParseRegExp_sub(rules) { //うまいこと思いついた♪
+    ParseRegExp_sub(rules) {
         let ans  = [];
-
         let count = 10000;
         doublebreak:while (this.pattern != "") {
             for(const infi in rules){
