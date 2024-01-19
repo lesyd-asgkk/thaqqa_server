@@ -148,13 +148,10 @@ class DataTable {
     for(const dn in DATA){
       const d = new Data(this);
       for(const k in DATA[dn]){
-        //console.log(k);
         const type = dt.column[k].type;
-        //console.log(type);
         if(type == "char"){DATA[dn][k] = DATA[dn][k].toString()}
         else if(type == "bool"){DATA[dn][k] = typeof DATA[dn][k] == "boolean" ? DATA[dn][k] : DATA[dn][k]=="true"}
         else{DATA[dn][k] = Number(DATA[dn][k]);}
-        //console.log(DATA[dn][k]);
       }
       d.values = DATA[dn];
       this.data.push(d);

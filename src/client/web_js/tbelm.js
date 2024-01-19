@@ -46,7 +46,6 @@ class DIVparam_web{
         val = f_numcheck(val);
             if(val == null) val = self.val;
         }
-        console.log(this.id);
         if(Khhyl.Thaqqa_DB.getTable(parent.tablename).rewriteData({ID:this.id},{[self.col]:val}))
         {
         if(parent.tablename == "GPOS" && self.col == "Name"){
@@ -83,7 +82,6 @@ class DIVselect_web{
     rewrite_content(parent,self,obj){
         const val = obj.checked;
         const val2 = obj.value;
-        console.log(this.type);
         switch(this.type){
             case "bool":
                 if(Khhyl.Thaqqa_DB.getTable(parent.tablename).rewriteData({ID:this.id},{[self.col]:val}))

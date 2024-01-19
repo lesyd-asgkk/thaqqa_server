@@ -19,7 +19,6 @@ class Sandbox_web{
         for(const v of self.lang){
             if(v.option.checked == true) lang = v.option.value;
         }
-        //console.log(Number(self.sizetext.value));
         let d = Khhyl.Render.DrawD(self.textbox.value,lang,(alig==2?0:1),"none",Number(self.sizetext.value));
         self.SVG.path.setAttribute("d",d);
 
@@ -31,7 +30,6 @@ class Sandbox_web{
         const shrink_x = 32/32;
         const HEIGHT = y1-y0;
         const WIDTH = x1-x0;
-        //console.log(`${x0} ${y0} ${WIDTH} ${HEIGHT}`)
         self.SVG.field.setAttribute("width",(WIDTH*shrink_x).toString());
         self.SVG.field.setAttribute("height",(HEIGHT*shrink_x).toString());
         self.SVG.field.setAttribute("viewBox",`${x0} ${y0} ${WIDTH} ${HEIGHT}`);

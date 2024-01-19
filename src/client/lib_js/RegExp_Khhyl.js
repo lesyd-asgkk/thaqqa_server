@@ -172,7 +172,6 @@ class RegExp_Khhyl {
         }
         if(k instanceof Error)throw k;
         else if(k != null) this.child = k; 
-        //console.log(this.child);
         for(const i in this.child){
             const k = this.child[i].ParseRegExp();
             if(k instanceof Error)throw k;
@@ -187,7 +186,6 @@ class RegExp_Khhyl {
 
         let count = 10000;
         doublebreak:while (this.pattern != "") {
-            //console.log(this.pattern)//
             for(const infi in rules){
                 if(count == 0)break;
                 count -= 1;

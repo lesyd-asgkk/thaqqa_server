@@ -11,7 +11,6 @@ class GlyphManager{
         //Thaqqa_DB.deleteTable("GLYPH");
         }
         catch(_e){
-            console.log(_e);
             Thaqqa_DB.createTable({name:"GLYPH"});
             const table = Thaqqa_DB.getTable("GLYPH");
             table.createColumn("ID","INTEGER","",0);
@@ -65,7 +64,6 @@ class GlyphArray{
             text = text.replaceAll(r_fin,"$1Q()$2");
         }
         const pSVGData = text.split("Q()");
-        //console.log(pSVGData);
         for(let i = 0;i<pSVGData.length;i++){
             this.child.push(new Glyph(pSVGData[i]));
         }
@@ -293,7 +291,6 @@ class Glyph{
                 return k;
     }
     toPathB(top,bottom){
-        console.log(top,bottom);
         let k = this.toPath();
         k ??= "M 0,0";
         const width = Thaqqa_DB.getTable("TEXTDATA").data[0].values.Thickness;

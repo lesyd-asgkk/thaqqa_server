@@ -1,12 +1,10 @@
 export default class SVG {
 
     static convertSVG(param){
-        //console.log(param);
         return Snap.path.toRelative(param).toString().toLowerCase();
         //return SVG.toStr(SVG.roundAll(SVG.toRel(SVG.ParseD(param))));
     }
     static toRelative(param){
-        //console.log(param);
         return SVG.convertSVG(param);
         //return SVG.toStr(SVG.roundAll(SVG.toRel(SVG.ParseD(param))));
     }

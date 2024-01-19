@@ -75,9 +75,6 @@ class LayoutDebug_web{
 
             break;
         }
-        //console.log(Number(self.sizetext.value));
-        console.log(alig);console.log(lang);
-        console.log(text);
         let gap_x = 0;
         let gap_y = 0;
         //const GAP = Number(self.sizetext.value)*2;
@@ -101,7 +98,6 @@ class LayoutDebug_web{
             }*/
         //}
         
-        //console.log(`${x0} ${y0} ${WIDTH} ${HEIGHT}`)
         /*
         self.SVG.field.setAttribute("width",(GAP*C0.length).toString());
         self.SVG.field.setAttribute("height",(GAP*C1.length).toString());

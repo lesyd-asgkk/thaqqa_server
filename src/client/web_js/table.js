@@ -163,8 +163,7 @@ class ColumnDesc_web{
         parent.draw();
         }
         catch(e){
-            obj.textContent = older;
-            console.log(e);}
+            obj.textContent = older;}
             
     }
     setElm(cl){
