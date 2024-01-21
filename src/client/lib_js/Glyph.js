@@ -63,6 +63,7 @@ class GlyphArray{
             const r_fin = new RegExp(r_, "g");
             text = text.replaceAll(r_fin,"$1Q()$2");
         }
+        console.log(text);
         const pSVGData = text.split("Q()");
         for(let i = 0;i<pSVGData.length;i++){
             this.child.push(new Glyph(pSVGData[i]));
@@ -205,7 +206,9 @@ class Glyph{
             const temp = this.name.split(",");
             const form = this.name.startsWith("P") ?"":temp[0].split("(")[1];
             const temp2 = temp.slice(-1)[0].split("_");
-            this.d = (GlyphManager.getSVG(temp2[0]+"_"+form+"_"+temp2[1].split(")")[0])[0]);//this.nameがこれ以上分割できない場合。
+            const name = (this.name.startsWith("P")?temp2[0].split("(")[1]:temp2[0])+"_"+form+"_"+temp2[1].split(")")[0]
+           
+            this.d = (GlyphManager.getSVG(name));//this.nameがこれ以上分割できない場合。
             let offx = 0;
             let offy = 0;
             

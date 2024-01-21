@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="../lib_ex/jquery-3.6.4.min.js"></script>
+    <script src="../lib_ex/binarytransport.js"></script>
+    <script src="../lib_ex/snap.svg-min.js"></script>
+    <meta charset="utf-8">
+
+    <title>東果文字_概要</title>
+    <style>
+        span.khhyl {
+            display: inline-block;
+        }
+
+        span.khhyl.larger {
+            font-size: 2em;
+        }
+        table {
+            border: solid 2px;
+            border-collapse: collapse;
+        }
+        table tr,
+        table td {
+        border: dashed 1px;
+        }
+    </style>
+
+    <!-- <link rel="stylesheet" href="style.css" />-->
+    <!-- 適当にcssの勉強してポチポチやれ-->
+</head>
+
+<body>
+    <div id="storage">
+        <svg id="svgField" width="0" height="0" viewBox="-10 0 100 100" style="display: none;">
+            <title>V(sol,abig_0)</title>
+            <desc>解説</desc>
+            <path fill="none" stroke="red" d="M 10,30
+                 A 20,20 0,0,1 50,30
+                 A 20,20 0,0,1 90,30
+                 Q 90,60 50,90
+                 Q 10,60 10,30 z" />
+        </svg>
+    </div>
+    <h1>東果文字の内部処理 v0.0.0</h1>
+    <p>とりあえず表記できればいいやくらいに思ってるので、全く持って非効率だったりガバガバだったりします</p>
+
+    <h1>アルファベットから音節に変換する方法</h1>
+
+    <p>与えられた文S_rawをParserにて、(Orderが小さい順に整列した上で、同じOrder間でPriroityが小さい順)の東果語用正規表現を使ってS_khhyl0にする</p>
+    <p>与えられた文S_khhyl0をGSUBManagerにて、(Orderが小さい順に整列した上で、同じOrder間でPriroityが小さい順)に東果語用正規表現を使って変換し、S_khhyl1にする（完）</p>
+
+    <h1>S_khhyl1から(SVGとして)表記する方法</h1>
+    <p>まず一音節毎に分けます。Glyphにて、[一定の規則A]（一旦省略）を用いてまず一音節を表記します</p>
+    <p>次に[一定の規則B]を用いて続け文字を描画します</p>
+    <p>色々調整して、ししまいっ！</p>
+
+    <h1>東果語用正規表現ってなんやねん</h1>
+    <p>東果語用の正規表現……の糖衣表現。内部では一旦ただの正規表現に変換してる。</p>
+    <p>R(任意の一文字)：現実世界の文字の表現用</p>
+    <p>g:1つの字母</p>
+    <p>G:g(-g)：１つのグリフ</p>
+    <p>C(onset|coda|null,G?),V(sol|init|mid|fin|null,G?),P(G?)：それぞれ、子音、母音、約物の単独表記</p>
+    <p>S(sol|init|mid|fin|null,G?,G?,G?)：一音節文字を表す</p>
+    <p>L()：東果文字の取りうる文字全部。R(),Q()は除外</p>
+    <p>Q()：一部の内部処理で用いる。</p>
+</body>
+
+<script type="module">
+
+    import * as khhyl from "../lib_js/deps.js"
+    //Khhyl.Render.DrawD(self.textbox.value,lang,(alig==2?0:1),"none",Number(self.sizetext.value));
+    //span khhylに関する変換処理
+    $(document).ready(async function () {
+        await khhyl.Thaqqa_DB.load();
+
+        for (const i of $('span.khhyl')) {
+            const object = $("div#storage svg#svgField").clone(false, false)[0];
+            while (object.firstChild) object.removeChild(object.firstChild);
+            object.style.display = "block";
+
+            const letter = i.getAttribute("letter");
+            const type = i.getAttribute("option") ?? "parsedplus"
+            {
+                const title = $("div#storage svg#svgField title").clone()[0];title.textContent = letter;
+                const desc = $("div#storage svg#svgField desc").clone()[0];desc.textContent = "解説";
+                object.append(title, desc)
+            }
+            //console.log(parseFloat(getComputedStyle(i).fontSize));
+            const d = khhyl.Render.DrawD(letter, 0, i.getAttribute("alig") == null ? 0 : 1 , type, parseFloat(getComputedStyle(i).fontSize), { x: 0, y: 0 });
+            const path = $("div#storage svg#svgField path").clone()[0];
+            path.style.display = "block";
+            path.setAttribute("fill", "none");
+            path.setAttribute("stroke", "black");
+            path.setAttribute("stroke-width", 0);
+            path.setAttribute("fill", "black");
+            path.setAttribute("d", d);
+            object.appendChild(path);
+
+            const x0 = khhyl.SVG.getLeft(d); const x1 = khhyl.SVG.getRight(d); const y0 = khhyl.SVG.getTop(d); const y1 = khhyl.SVG.getBottom(d);
+            const shrink_x = 1.03; const HEIGHT = y1 - y0; const WIDTH = x1 - x0;
+            object.setAttribute("width", (WIDTH * shrink_x).toString());
+            object.setAttribute("height", (HEIGHT * shrink_x).toString());
+            object.setAttribute("viewBox", `${x0-(WIDTH*(shrink_x-1)/2)} ${y0-(HEIGHT*(shrink_x-1))/2} ${WIDTH* shrink_x} ${HEIGHT* shrink_x}`);
+            i.appendChild(object);
+        }
+    });
+</script>
+
+</html>

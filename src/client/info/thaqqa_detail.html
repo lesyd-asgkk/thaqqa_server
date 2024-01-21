@@ -83,7 +83,7 @@
     <p>中字は主に単語の途中の音節を表すのに用いられ、中系の母音字母の上に頭系の子音字母が、下に尾系の子音字母が付く。</p>
     <p>尾字は主に単語の最後の音節を表すのに用いられ、尾系の母音字母の上に双方の子音字母が付く。</p>
     <p>以下に例を載せておく。</p>
-    <p><div class="table" id="syllable_vert"></div></p>
+    <p><div class="table" id="syllable_vert"></div>（未）</p>
 
     <h3>横書きの場合</h3>
     <p>以下の通り。</p>
@@ -148,6 +148,7 @@
     //span khhylに関する変換処理
     $(document).ready(async function () {
         await khhyl.Thaqqa_DB.load();
+        //この辺コードが見苦しいので共通処理にするの考える
         for (const i of $('div.table#vowel_0')) {
             const vowel = [["abig","a"],["e","e"],["i","i"],["o","o"],["u","u"],["v","v"],["eold","ë(旧)"],["iold","ï(旧)"]]
             const columns = [["sol","単独系"],["init","頭系"],["mid","中系"],["fin","尾系"]];
@@ -245,6 +246,35 @@
                 
                 
             }table.appendChild(tbody);
+            i.appendChild(table);
+        }
+        for (const i of $('div.table#punctuation_0')) {
+            const columns = [["句点","P(comma_0)"],["読点","P(period_0)"],["スペース","P(space_0)"],["省略記号","S(sol,,omit_0,)"],["省略記号（中）","S(mid,,omit_0,)"]]
+            const table = document.createElement('table'); 
+                const tbody = document.createElement('tbody'); 
+                for(let y = 0;y<2;y++){
+                const tr = document.createElement('tr'); 
+                for(let x = -1;x<columns.length;x++){
+                const td = document.createElement('td');
+                td.style.textAlign = "center";
+                td.style.verticalAlign = "center";
+                const span = document.createElement("span");
+                if(x == -1){
+                    if(y == 0) span.textContent = "名前";
+                    else span.textContent = "表記";
+                    }
+                else{
+                    if(y == 0) span.textContent = columns[x][0];
+                    else{
+                        span.classList.add("khhyl","larger");
+                        span.setAttribute("letter",`${columns[x][1]}`)
+                        }
+                    }
+                    td.appendChild(span);tr.appendChild(td);
+                }
+                tbody.appendChild(tr);
+            }
+            table.appendChild(tbody);
             i.appendChild(table);
         }
         for (const i of $('div.table#syllable_tval')) {

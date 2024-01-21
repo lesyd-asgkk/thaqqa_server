@@ -8,7 +8,7 @@
    version="1.1"
    id="svg1035"
    inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
-   sodipodi:docname="br_sol_0.svg"
+   sodipodi:docname="br_fin_1.svg"
    inkscape:export-filename="v_a_1_0.svg"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
@@ -28,8 +28,8 @@
      inkscape:document-units="px"
      showgrid="false"
      inkscape:zoom="29.932662"
-     inkscape:cx="1.8207536"
-     inkscape:cy="5.4622607"
+     inkscape:cx="1.8541619"
+     inkscape:cy="5.4956689"
      inkscape:window-width="1920"
      inkscape:window-height="1111"
      inkscape:window-x="-9"
@@ -55,7 +55,7 @@
        sodipodi:nodetypes="cccccc" />
     <path
        style="color:#000000;fill:#000000;-inkscape-stroke:none"
-       d="M -2.34375,-2.34375 V 0 3.34375 h 5.6875 v -5.6875 z"
+       d="M -2.34375,-2.34375 V 0 0 h 5.6875 v -2.34375 z"
        id="path46052-3"
        sodipodi:nodetypes="cccccc" />
   </g>
