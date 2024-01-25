@@ -44,9 +44,8 @@
      inkscape:groupmode="layer"
      id="layer1">
     <path
-       style="fill:none;stroke:#000000;stroke-width:4.6875;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       d="M -26,-0.04999495 H -2.5e-5"
-       id="path5116"
-       sodipodi:nodetypes="cc" />
+       style="color:#000000;fill:#000000;-inkscape-stroke:none"
+       d="M -26,-2.3945313 V 2.2929688 H 0 v -4.6875001 z"
+       id="path5116" />
   </g>
 </svg>

@@ -140,17 +140,34 @@ class GlyphArray{
 }
 
 class Glyph{
-    constructor(name,offx,offy,algx,algy){
-        this.name = name;
+    constructor(name,flag_rec){ //flag_recは再帰処理判定用
+
+        // name：（使い勝手ゴミなので）仕様変更
+        /* {type: (S,P,Pd,C,Cd,V,Vd) ,form :(init,mid,fin,sol,onset,coda) , 
+            name:h , val:0
+            fullname:h_0
+            
+            例1：type:S form:init
+            name: null val:null
+            fullname:h_0,a_0,h_0
+
+            例2：type:C form:onset
+            name:h val:0
+            fullname: h_0-d_0
+            }
+        */
+        this.name = name; 
+
         this.d = "";
         this.isroot = false;
         this.parent;
         this.child = [];//Glyphの配列 入れ子にします
         this.attribute = {};//(将来用)
         this.size = 16;
-        this.offset = {x:offx??0,y:offy??0};//（parentに対するthisのoffset）
+        this.type = "";//S,P,C,Vのいずれか
+        this.offset = {x:0,y:0,xb:0,yb:0};//（parentに対するthisのoffset）
         this.gap ={top:0,middle:0,bottom:0}; //上棒、中央、下棒
-        this.aligment = {x:algx??0,y:algy??0};
+        this.aligment = {x:0,y:0};
         this.height = {vtop:0,vbottom:0,top:0,bottom:0};
         this.initSvg();
         this.toPath();
