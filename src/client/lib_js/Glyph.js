@@ -241,7 +241,6 @@ class Glyph{
                 else if(x1 != null && y1 != null && i == 0) new_glyph.offset = {x:x0,y:y0};
                 else if(x1 == null && y1 == null && i == 1) new_glyph.offset = {x:x0,y:y0};
                 this.child.push(new_glyph);
-
             }
         } 
     }
