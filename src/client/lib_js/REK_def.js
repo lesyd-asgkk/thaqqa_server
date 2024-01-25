@@ -385,8 +385,11 @@ class REK_def {
     ["(\\\||(\\\*|\\\+|\\\?)\\\??)"]: (self, ans, pattern, msg) => {
       return REK_def.PREsub_END(self, ans, pattern, msg, msg);
     },
-    ["Q\\(\\)"]: (self, ans, pattern, msg) => {
-        return REK_def.PREsub_END(self, ans, pattern, "Q\\(\\)", msg);
+      ["NULL\\(\\)"]: (self, ans, pattern, msg) => {
+        return REK_def.PREsub_END(self, ans, pattern, "NULL\\(\\)", msg);
+      },
+      ["SEP\\(\\)"]: (self, ans, pattern, msg) => {
+        return REK_def.PREsub_END(self, ans, pattern, "SEP\\(\\)", msg);
       },
     ["L\\(\\)"]: //PREsub_br_Cを用いる。
       (self, ans, pattern, msg) => {

@@ -1680,7 +1680,7 @@
         "Order": 70,
         "Priority": 1,
         "Name": "(V(*,[!_.isBondtoPrev&&!_.isBondtoNext]_.))",
-        "NameAlt": "Q()$1Q()"
+        "NameAlt": "SEP()$1SEP()"
       },
       "104": {
         "ID": 77,
@@ -1688,7 +1688,7 @@
         "Order": 70,
         "Priority": 2,
         "Name": "(V(*,[!_.isBondtoPrev&&_.isBondtoNext]_.))",
-        "NameAlt": "Q()$1"
+        "NameAlt": "SEP()$1"
       },
       "105": {
         "ID": 78,
@@ -1696,7 +1696,7 @@
         "Order": 70,
         "Priority": 3,
         "Name": "(V(*,[_.isBondtoPrev&&!_.isBondtoNext]_.))",
-        "NameAlt": "$1Q()"
+        "NameAlt": "$1SEP()"
       },
       "106": {
         "ID": 79,
@@ -1704,7 +1704,7 @@
         "Order": 70,
         "Priority": 4,
         "Name": "(V(*)|R(n)|R(l))(V(*)|R(n)|R(l))",
-        "NameAlt": "$1Q()$2"
+        "NameAlt": "$1SEP()$2"
       },
       "107": {
         "ID": 80,
@@ -1712,7 +1712,7 @@
         "Order": 70,
         "Priority": 5,
         "Name": "(C(*))(C(*))",
-        "NameAlt": "$1Q()$2"
+        "NameAlt": "$1SEP()$2"
       },
       "108": {
         "ID": 81,
@@ -1720,7 +1720,7 @@
         "Order": 70,
         "Priority": 6,
         "Name": "(V(*)|R(n)|R(l))(C(*))(V(*,[_.hasGreedyBond]_.)|R(n)|R(l))",
-        "NameAlt": "$1Q()$2$3"
+        "NameAlt": "$1SEP()$2$3"
       },
       "109": {
         "ID": 124,
@@ -1728,7 +1728,7 @@
         "Order": 70,
         "Priority": 6,
         "Name": "(V(*)|R(n)|R(l))(C(*))(V(*,[_.hasGreedyBond]_.)|R(n)|R(l))",
-        "NameAlt": "$1Q()$2$3"
+        "NameAlt": "$1SEP()$2$3"
       },
       "110": {
         "ID": 82,
@@ -1736,7 +1736,7 @@
         "Order": 70,
         "Priority": 7,
         "Name": "(V(*)|R(n)|R(l))(C(*))(V(*,[!_.hasGreedyBond]_.))",
-        "NameAlt": "$1$2Q()$3"
+        "NameAlt": "$1$2SEP()$3"
       },
       "111": {
         "ID": 125,
@@ -1744,14 +1744,14 @@
         "Order": 70,
         "Priority": 7,
         "Name": "(V(*)|R(n)|R(l))(C(*))(V(*,[!_.hasGreedyBond]_.))",
-        "NameAlt": "$1$2Q()$3"
+        "NameAlt": "$1$2SEP()$3"
       },
       "112": {
         "ID": 83,
         "Pattern": "u",
         "Order": 70,
         "Priority": 8,
-        "Name": "(Q())+P()(Q())+",
+        "Name": "(SEP())+P()(SEP())+",
         "NameAlt": "P()"
       },
       "113": {
@@ -1759,8 +1759,8 @@
         "Pattern": "u",
         "Order": 70,
         "Priority": 9,
-        "Name": "(Q())+",
-        "NameAlt": "Q()"
+        "Name": "(SEP())+",
+        "NameAlt": "SEP()"
       },
       "114": {
         "ID": 26,
@@ -1783,7 +1783,7 @@
         "Pattern": "u",
         "Order": 80,
         "Priority": 2,
-        "Name": "R(n)(Q()C(*,(?:t|d|n|tl)|(?:(?:t|tl|n)-sy)|(?:(?:t|th|s|hy)-d)|(?:tl-w)))",
+        "Name": "R(n)(SEP()C(*,(?:t|d|n|tl)|(?:(?:t|tl|n)-sy)|(?:(?:t|th|s|hy)-d)|(?:tl-w)))",
         "NameAlt": "V(null,v_0)C(null,n_0)$1"
       },
       "117": {
@@ -1791,7 +1791,7 @@
         "Pattern": "u",
         "Order": 80,
         "Priority": 3,
-        "Name": "R(n)(Q()C(*,(?:(?:t|th|n)-hd)|(?:(?:t)-d-hd)|(?:(?:tl|n)-hd-sy)|(?:th-hd-sw))",
+        "Name": "R(n)(SEP()C(*,(?:(?:t|th|n)-hd)|(?:(?:t)-d-hd)|(?:(?:tl|n)-hd-sy)|(?:th-hd-sw))",
         "NameAlt": "V(null,v_0)C(null,n_0-hd_0)$1"
       },
       "118": {
@@ -1799,15 +1799,15 @@
         "Pattern": "u",
         "Order": 80,
         "Priority": 4,
-        "Name": "R(n)Q()R(l)",
-        "NameAlt": "V(null,v_0)C(null,n_0)Q()C(null,l_0)R(l)"
+        "Name": "R(n)SEP()R(l)",
+        "NameAlt": "V(null,v_0)C(null,n_0)SEP()C(null,l_0)R(l)"
       },
       "119": {
         "ID": 89,
         "Pattern": "u",
         "Order": 80,
         "Priority": 5,
-        "Name": "R(n)((?:Q()(?:C(*)|V(*)|P(*)))|$)",
+        "Name": "R(n)((?:SEP()(?:C(*)|V(*)|P(*)))|$)",
         "NameAlt": "V(null,v_0)C(null,ng_0)$1"
       },
       "120": {
@@ -1831,7 +1831,7 @@
         "Pattern": "u",
         "Order": 80,
         "Priority": 8,
-        "Name": "(P()|Q())R(l)(P()|Q())",
+        "Name": "(P()|SEP())R(l)(P()|SEP())",
         "NameAlt": "$1C(null,l_0)V(null,v_0)C(null,l_0)$2"
       },
       "123": {
@@ -1871,7 +1871,7 @@
         "Pattern": "u",
         "Order": 100,
         "Priority": 0,
-        "Name": "Q()",
+        "Name": "SEP()",
         "NameAlt": ""
       }
     }
