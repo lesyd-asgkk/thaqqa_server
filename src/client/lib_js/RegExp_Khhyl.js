@@ -103,8 +103,6 @@ class RegExp_Khhyl {
         let ans = "";
         for (let i = 0; i < this.child.length; i++) {
                 ans += this.child[i].toNormalRegExp() + ((this.intent.type.match(/[SRX]|[CVP]d?/g)!=null)&&i!=this.child.length-1?",":"");
-
-            
         }
         ans += this.pattern;
         switch(this.intent.type){
@@ -117,7 +115,7 @@ class RegExp_Khhyl {
             case "P":
             case "Pd":
             case "S":
-                ans = this.intent.type+"\\("+ans+"\\)";
+                ans = this.intent.type+"\\("+ans+"\\)";// 例えば、S(ans)の形にする。(?:\k<S0>)のようにするのは境界を脱したときにする？
                 break;
             case "L":
                 ans = "(?:"+ans+")";

@@ -225,6 +225,7 @@ class Glyph{
             if(this.name.startsWith("S")){
                 const k = GPOSManager.gpos(this.name,0,"IN");
                 x0 = k.x0;y0 = k.y0;x1 = k.x1;y1 = k.y1;
+                //要修正その2 要修正GPOS_IN_(H/V)_N、 GPOS_IN_(H/V)_OFFだけズラす仕様にする
             }
             else{
                 const k = GPOSManager.gpos(this.name,0,"DIAC");
@@ -369,6 +370,7 @@ class Glyph{
             const off0 = this.child[0] == null ? {x:0,y:0} :this.child[0].getoffset(v,true);//parentd
             const off1 = this.child[2] == null ? {x:0,y:0} :this.child[2].getoffset(v,true);
             
+            //要調整、箇所 372~386
             if(this.name.split(",")[0].split("S(")[1] == "fin"){
 
                 const c0_ = (SVG.getBottom(c0) + SVG.getTop(c0))
@@ -412,6 +414,7 @@ class Glyph{
 
     
     getoffset(parentd,issyl){
+        //要修正GPOS_IN_(H/V)_N、 GPOS_IN_(H/V)_OFFだけズラす仕様にする
         const dir_ = {onset:1,coda:-1};
         const dir_v_ = {init:{onset:-1,coda:-1},mid:{onset:1,coda:-1},fin:{onset:1,coda:1},sol:{onset:1,coda:-1}};
         const dir_vb_ = {init:{onset:-1,coda:-1},mid:{onset:-1,coda:-1},fin:{onset:1,coda:1},sol:{onset:1,coda:1}};

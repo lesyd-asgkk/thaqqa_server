@@ -14,9 +14,9 @@ class Row_web{
             "AligX":[[-1,"□→‖←□(-1)"],[0,"・｜・(0)"],[1,"⇐■｜■⇒(1)"]],
             "AligY":[[-1,"↑(-1)"],[0,"・(0)"],[1,"⇓(1)"]],
             "LANG":[["u","共通(u)"],["c","🐍東(c)"],["o","汽🐟(o)"]],
-            "GPOS":[["DIAC","DIAC"],["IN","IN"],["EX","EX"]],
+            "GPOS":[["DIAC","字母構成"],["INNULL","音節-A"],["INB","音節-B"],["INEX","音節上下長"],["EX","音節間カーニング"]],
             "AligWhole":[["v","↓(v)"],["h","⇔(h)"],["u","共通(u)"]]
-        }
+        }//"DIAC":-10,"INNULL":0,"INB":10,"INEX":20,"EX":30
         for(const v in value){
 
             const type = DTTB.getColumn(v).type;
@@ -117,7 +117,7 @@ class ColumnDesc_web{
     static sublist = {
         //ID:ID(変更不能) Alig:[-1,0,1] FREE_0:0以上 FREE_1:1以上
         "int":["none","n>=0","n>=1","ID","AligX","AligY"],
-        //NAME:名前用（重複不可）
+        //NAME:名前用（重複不可） 
         "char":["none","NAME_L","NAME","LANG","AligWhole","GPOS","PARSED"],
         
         "bool":["none"],
@@ -289,7 +289,7 @@ class Table_web{
               }
               const sortalg_GPOS = function(first, second ){//Priorityの大きい順に並び替える
                 const val = {"h":-1,"u":0,"v":1};
-                const val2 = {"DIAC":-1,"IN":0,"EX":1};
+                const val2 = {"DIAC":-10,"INNULL":0,"INB":10,"INEX":20,"EX":30};
                 if (val2[first.values.Pattern_sub] > val2[second.values.Pattern_sub] ) return 1;
                 else if (val2[first.values.Pattern_sub]  < val2[second.values.Pattern_sub] )return -1;
                 else{

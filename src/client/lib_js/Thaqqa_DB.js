@@ -137,7 +137,6 @@ class DataTable {
   }
 
     load(dt){
-
     const COLUMN = dt.column;
     const DATA = dt.data;
     for(const cn in COLUMN){
