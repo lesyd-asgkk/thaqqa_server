@@ -14,7 +14,7 @@ class Row_web{
             "AligX":[[-1,"□→‖←□(-1)"],[0,"・｜・(0)"],[1,"⇐■｜■⇒(1)"]],
             "AligY":[[-1,"↑(-1)"],[0,"・(0)"],[1,"⇓(1)"]],
             "LANG":[["u","共通(u)"],["c","🐍東(c)"],["o","汽🐟(o)"]],
-            "GPOS":[["DIAC","字母構成"],["INNULL","音節-A"],["INB","音節-B"],["INEX","音節上下長"],["EX","音節間カーニング"]],
+            "GPOS":[["DIAC","字母構成"],["IN","音節内カーニング"],["INEX","音節上下長"],["EX","音節間カーニング"]],
             "AligWhole":[["v","↓(v)"],["h","⇔(h)"],["u","共通(u)"]]
         }//"DIAC":-10,"INNULL":0,"INB":10,"INEX":20,"EX":30
         for(const v in value){
@@ -289,7 +289,7 @@ class Table_web{
               }
               const sortalg_GPOS = function(first, second ){//Priorityの大きい順に並び替える
                 const val = {"h":-1,"u":0,"v":1};
-                const val2 = {"DIAC":-10,"INNULL":0,"INB":10,"INEX":20,"EX":30};
+                const val2 = {"DIAC":-10,"INNULL":0,"IN":10,"EX":30};
                 if (val2[first.values.Pattern_sub] > val2[second.values.Pattern_sub] ) return 1;
                 else if (val2[first.values.Pattern_sub]  < val2[second.values.Pattern_sub] )return -1;
                 else{

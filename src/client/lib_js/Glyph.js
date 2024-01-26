@@ -94,17 +94,21 @@ class GlyphArray{
             for(let i = 0;i<this.child.length;i++){
                 let m0 = 0;
                 let m1 = 0;
+                m1 += GPOSManager.gpos(this.child[i].fullname,0,"INEX").y1;
+                m0 += GPOSManager.gpos(this.child[i].fullname,0,"INEX").y0;
+
                 if(i+1 != this.child.length)
-                {m1 += GPOSManager.gpos(this.child[i].name+this.child[i+1].name,0,"EX").y1;
-                m0 += GPOSManager.gpos(this.child[i].name+this.child[i+1].name,0,"EX").y0;
+                {m1 += GPOSManager.gpos(this.child[i].fullname+this.child[i+1].fullname,0,"EX").y1;
+                m0 += GPOSManager.gpos(this.child[i].fullname+this.child[i+1].fullname,0,"EX").y0;
                 }
+
                 if(i != 0){ //
-                    m0 += GPOSManager.gpos(this.child[i-1].name+this.child[i].name,0,"EX").y0;
+                    m0 += GPOSManager.gpos(this.child[i-1].fullname+this.child[i].fullname,0,"EX").y0;
                 }   
-                if(i == this.child.length-1) m1 += GPOSManager.gpos(this.child[i].name+"Q()",0,"EX").y1;
+                if(i == this.child.length-1) m1 += GPOSManager.gpos(this.child[i].fullname+"Null()",0,"EX").y1;
                 
                 y += m0*mutli_(defaultsize);
-                if(i == 0 ) m0 += GPOSManager.gpos("Q()"+this.child[i].name,0,"EX").y1;
+                if(i == 0 ) m0 += GPOSManager.gpos("Null()"+this.child[i].fullname,0,"EX").y1;
 
                 this.d += `M ${x},${y} `;
 
