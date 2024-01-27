@@ -61,9 +61,12 @@ class GlyphArray{
             r = r.ParseRegExp()
             const r_ = r.toNormalRegExp();
             const r_fin = new RegExp(r_, "g");
-            text = text.replaceAll(r_fin,"$1Q()$2");
+            text = text.replaceAll(r_fin,"$1Sep()$2");
+            console.log(text);
         }
-        const pSVGData = text.split("Q()");
+        const pSVGData = text.split("Sep()");
+        
+        console.log(pSVGData)
         for(let i = 0;i<pSVGData.length;i++){
             this.child.push(new Glyph(pSVGData[i]));
         }
@@ -118,7 +121,7 @@ class GlyphArray{
                 if(i+1 != this.child.length){const d2 = rescale(this.child[i+1].d,defaultsize);y -= SVG.getTop(d2);}
                 
                 this.child[i].offset = {x,y};
-                if(this.child[i].type.startsWith("P")&&nlist_.includes(this.child[i].glyphname.split("_")[0])){
+                if(this.child[i].type.startsWith("P")&&nlist_.includes(this.child[i].glyphname.split(/\d+/g)[0])){
                     x -= defaultsize;y = 0;
                 }
             }
@@ -131,7 +134,7 @@ class GlyphArray{
                
                 if(i!=this.child.length-1)x += defaultsize;//size
                 this.child[i].offset = {x,y};
-                if(this.child[i].type.startsWith("P")&&nlist_.includes(this.child[i].glyphname.split("_")[0])){
+                if(this.child[i].type.startsWith("P")&&nlist_.includes(this.child[i].glyphname.split(/\d+/g)[0])){
                     x = 0;y += defaultsize;
                 }
                 this.d += `M ${x},${y} `;
@@ -183,7 +186,9 @@ class Glyph{
             const form = this.form ?? "";
             const temp2 = this.glyphname;
             const name_ = `${this.name}_${form}_${this.val}`
-            this.d = (GlyphManager.getSVG(name_));//this.nameがこれ以上分割できない場合。
+            
+            this.d = (GlyphManager.getSVG(name_))[0];//this.nameがこれ以上分割できない場合。
+
             let offx = 0;
             let offy = 0;
             
@@ -237,7 +242,7 @@ class Glyph{
             const temp = name.split("(")[1].split(")")[0].split(",")[0];
             this.glyphname = name.split("(")[1].split(")")[0];
             const temp2 = temp.split("-");
-            if(temp2.length <= 1){this.name = temp2[0].split("_")[0];this.val = temp2[0].split("_")[1]; return []}//これ以上は分割できない
+            if(temp2.length <= 1){this.name = temp2[0].split(/\d+/g)[0];this.val = temp2[0].split(/[A-Za-z]+/g)[1]; return []}//これ以上は分割できない
             else{
                 let d_ = "";
                 for(let i = 0;i<temp2.length;i++){
@@ -252,7 +257,7 @@ class Glyph{
             this.glyphname = temp.slice(1).join(",");
             this.form = temp[0];
             const temp2 = temp[1].split("-");
-            if(temp2.length <= 1){this.name = temp2[0].split("_")[0];this.val = temp2[0].split("_")[1]; return []}//これ以上は分割できない
+            if(temp2.length <= 1){this.name = temp2[0].split(/\d+/g)[0];this.val = temp2[0].split(/[A-Za-z]+/g)[1]; return []}//これ以上は分割できない
             else{
                 const l = name.split("(")[0];
                 let d_ = "";
@@ -273,7 +278,8 @@ class Glyph{
 
 
     toPathAbs(height,vowelhratio){
-        let k = this.toPath();k ??= "M 0,0";
+        let k = this.toPath();
+        k ??= "M 0,0"; k = k != "" ? k:"M 0,0"
         const width = Thaqqa_DB.getTable("TEXTDATA").data[0].values.Thickness;
         const VH = vowelhratio*height
         const vt = (this.height.vbottom-this.height.vtop)/2;
@@ -322,12 +328,12 @@ class Glyph{
     }
     toPathB(top,bottom){
         let k = this.toPath();
-        k ??= "M 0,0";
+       k ??= "M 0,0"; k = k != "" ? k:"M 0,0"
         const width = Thaqqa_DB.getTable("TEXTDATA").data[0].values.Thickness;
         //ここらへんもSnap.Pathの力を使います
 
         if(this.type == "S"){
-            const v = this.child[1].glyphname.split("_")[0];
+            const v = this.child[1].glyphname.split(/\d+/g)[0];
             const v_null = Thaqqa_DB.getTable("VOWEL").getData({Name:v})[0].values.isNullVowel;
         if(v_null){
             switch(this.form){
@@ -432,7 +438,7 @@ class Glyph{
     getoffset(){
         //V-Vd部分のみ動作未検証
             if(this.type == "S"){
-                const v = this.child[1].glyphname.split("_")[0];
+                const v = this.child[1].glyphname.split(/\d+/g)[0];
                 const v_null = Thaqqa_DB.getTable("VOWEL").getData({Name:v})[0].values.isNullVowel;
 
                 const c0offset = this.child.length>0?this.child[0].offset:{x:0,y:0};
@@ -452,7 +458,7 @@ class Glyph{
                             return [{x:c0offset.x,y:SVG.getBottom(c1d)+topgap+c0offset.y},{x:c2offset.x,y:SVG.getBottom(c1d)+topgap+c2offset.y}];
                         case "mid":
                         case "sol":
-                            return [{x:c0offset.x,y:SVG.getTop(c1d)+SVG.getBottom(c0d ?? "M 0,0")+c0offset.y},{x:c2offset.x,y:SVG.getBottom(c1d)+SVG.getTop(c2d ?? "M 0,0")+c2offset.y}];
+                            return [{x:c0offset.x,y:SVG.getTop(c1d)-SVG.getBottom(c0d ?? "M 0,0")+c0offset.y},{x:c2offset.x,y:SVG.getBottom(c1d)+SVG.getTop(c2d ?? "M 0,0")+c2offset.y}];
                         case "fin":
                             return [{x:c0offset.x,y:SVG.getTop(c1d)-bottomgap+c0offset.y},{x:c2offset.x,y:SVG.getTop(c1d)-bottomgap+c2offset.y}];
                     }

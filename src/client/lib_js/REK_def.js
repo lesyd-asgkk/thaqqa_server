@@ -70,7 +70,7 @@ class REK_def {
         }
         let letter = "";
         for (let i = 0; i < hensuu.length; i++) {
-          letter += "_" + hensuu[i];
+          letter += hensuu[i];
           if (i != hensuu.length - 1) letter += "|";
         }
         if(letter == "") letter = "_！空につき受理拒否！"
@@ -86,55 +86,25 @@ class REK_def {
     ["\\["]: (self, ans, pattern, msg) => {
       return REK_def.PREsub_br_D(self, ans, pattern, msg, "script");
     },
-    ["_?\\._?"]: (self, ans, pattern, msg) => {
-      const han_i0 = msg.match(/^\._/g);
-      const han_i1 = msg.match(/^_\./g);
-      const han_i2 = msg.match(/^_?\./g);
-      if (han_i2 != null) {
-        if (han_i0 != null) {
-          return REK_def.PREsub_END(self, ans, pattern, "[a-z]+", han_i2[0]);
-        }
-        if (han_i1 != null) {
-          pattern = pattern.slice(1);
-          return REK_def.PREsub_END(self, ans, pattern, "_\\d+", han_i2[0]);
-        }
-      }
-      return REK_def.PREsub_lower(self, ans, pattern, "._.", msg, "g");
+    ["\\."]: (self, ans, pattern, msg) => {
+          return REK_def.PREsub_END(self, ans, pattern, "[A-Za-z]+", msg);
     },
-    ["^！空につき受理拒否！"]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_END(self, ans, pattern, msg, msg);
-    },
-    ["^_[A-Za-z]+"]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_END(self, ans, pattern, msg.slice(1), msg);
-    },
-    ["[A-Za-z]+_?"]: (self, ans, pattern, msg) => {
-      const han_i = msg.match(/^[A-Za-z]+/g);
-      const type = msg.match(/^[A-Za-z]+_/g);
-      if (han_i != null) {
-        if (type == null) {
-          return REK_def.PREsub_lower(
-            self,
-            ans,
-            pattern,
-            han_i[0] + "_.",
-            han_i[0],
-            "g",
-          );
-        }
-        return REK_def.PREsub_END(self, ans, pattern, han_i[0], han_i[0]);
-      }
+    ["！空につき受理拒否！"]: (self, ans, pattern, msg) => {
       return REK_def.PREsub_END(self, ans, pattern, msg, msg);
     },
     ["_"]: (self, ans, pattern, msg) => {
+      return REK_def.PREsub_END(self, ans, pattern, "\\d+", msg);
+    },
+    ["[A-Za-z]+"]: (self, ans, pattern, msg) => {
       return REK_def.PREsub_END(self, ans, pattern, msg, msg);
     },
     ["\\d+"]: (self, ans, pattern, msg) => {
       return REK_def.PREsub_END(self, ans, pattern, msg, msg);
     },
-    ["\\\(\\\?<?[=!]"]: (self, ans, pattern, msg) => {
+    ["\\(\\\?<?[=!]"]: (self, ans, pattern, msg) => {
       return REK_def.PREsub_br_B(self, ans, pattern, msg);
     },
-    ["\\\((\\\?(<.*?>)?:)?"]: (self, ans, pattern, msg) => {
+    ["\\((\\\?(<.*?>)?:)?"]: (self, ans, pattern, msg) => {
       return REK_def.PREsub_br_A(self, ans, pattern, msg);
     },
     ["{\\\d+(,|,\\\d+)?}"]: (self, ans, pattern, msg) => {
@@ -172,38 +142,42 @@ class REK_def {
   static rule_G = {
     ["-\\*"]: (self, ans, pattern, msg) => {
       self.intent.isFirst = "TRUE";
-      return REK_def.PREsub_lower(self, ans, pattern, "(?:|-.(?:-.)*)", msg, "G");
+      return REK_def.PREsub_lower(self, ans, pattern, "(?:|-._(?:-._)*)", msg, "G");
     },
     ["-\\+"]: (self, ans, pattern, msg) => {
       self.intent.isFirst = "TRUE";
-      return REK_def.PREsub_lower(self, ans, pattern, "(?:|-.(?:-.)*)", msg, "G");
+      return REK_def.PREsub_lower(self, ans, pattern, "(?:|-._(?:-._)*)", msg, "G");
     },
     ["-\\?"]: (self, ans, pattern, msg) => {
       self.intent.isFirst = "TRUE";
-      return REK_def.PREsub_lower(self, ans, pattern, "(?:|-.?)", msg, "G");
+      return REK_def.PREsub_lower(self, ans, pattern, "(?:|-._?)", msg, "G");
     },
+    /*
+      S\(\*,(.)-\*,\(\[_\.isNullVowel\]_\.\)-\*,(.)-\*\)\|S\(\(init\|fin\),(.)-\*,\*,(.)-\*\)
+      S(*,$1_-*,[_.isNullVowel].-*,$2_-*)|S((init|fin),$3_-*,*,$4_-*)
+    */
     ["\\*"]: (self, ans, pattern, msg) => {
       if (self.intent.isFirst == "FALSE") {
         return REK_def.PREsub_END(self, ans, pattern, msg, msg);
       }
-      return REK_def.PREsub_lower(self, ans, pattern, "(?:|.(?:-.)*)", msg, "G");
+      return REK_def.PREsub_lower(self, ans, pattern, "(?:|._(?:-._)*)", msg, "G");
     },
     ["\\+"]: (self, ans, pattern, msg) => {
       if (self.intent.isFirst == "FALSE") {
         return REK_def.PREsub_END(self, ans, pattern, msg, msg);
       }
-      return REK_def.PREsub_lower(self, ans, pattern, ".(?:-.)*", msg, "G");
+      return REK_def.PREsub_lower(self, ans, pattern, "._(?:-._)*", msg, "G");
     },
     ["\\?"]: (self, ans, pattern, msg) => {
       if (self.intent.isFirst == "FALSE") {
         return REK_def.PREsub_END(self, ans, pattern, msg, msg);
       }
-      return REK_def.PREsub_lower(self, ans, pattern, ".?", msg, "G");
+      return REK_def.PREsub_lower(self, ans, pattern, "(?:._)?", msg, "G");
     },
     ["(\\\||(\\\*|\\\+|\\\?)\\\??)"]: (self, ans, pattern, msg) => {
       return REK_def.PREsub_END(self, ans, pattern, msg, msg);
     },
-    ["(\\w|\\.)+"]: (self, ans, pattern, msg) => {
+    ["(\\[.+?\\]|\\w|_|\\.)+"]: (self, ans, pattern, msg) => {
       self.intent.isFirst = "FALSE";
       return REK_def.PREsub_lower(self, ans, pattern, msg, msg, "g");
     },
@@ -222,9 +196,6 @@ class REK_def {
     },
     [" "]: (self, ans, pattern, msg) => {
       return REK_def.PREsub_END(self, ans, pattern, "", msg);
-    },
-    [".*"]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_lower(self, ans, pattern, msg, msg, "g");
     },
     
   };
@@ -385,11 +356,11 @@ class REK_def {
     ["(\\\||(\\\*|\\\+|\\\?)\\\??)"]: (self, ans, pattern, msg) => {
       return REK_def.PREsub_END(self, ans, pattern, msg, msg);
     },
-      ["NULL\\(\\)"]: (self, ans, pattern, msg) => {
-        return REK_def.PREsub_END(self, ans, pattern, "NULL\\(\\)", msg);
+      ["Null\\(\\)"]: (self, ans, pattern, msg) => {
+        return REK_def.PREsub_END(self, ans, pattern, "Null\(\\)", msg);
       },
-      ["SEP\\(\\)"]: (self, ans, pattern, msg) => {
-        return REK_def.PREsub_END(self, ans, pattern, "SEP\\(\\)", msg);
+      ["Sep\\(\\)"]: (self, ans, pattern, msg) => {
+        return REK_def.PREsub_END(self, ans, pattern, "Sep\\(\\)", msg);
       },
     ["L\\(\\)"]: //PREsub_br_Cを用いる。
       (self, ans, pattern, msg) => {
@@ -416,12 +387,8 @@ class REK_def {
     },
   };
 
-   static PREsub_END(
-    self,
-    ans,
-    pattern,
-    letter,
-    msg,
+   static PREsub_END(//self,ans,pattern,何という文字列に変換するか,msg
+    self,ans,pattern,letter,msg,
   ) {
     const intent_after = { ...self.intent };
     intent_after.type = "FINITE";
@@ -434,7 +401,7 @@ class REK_def {
     return [ans, pattern];
   }
 
-   static PREsub_lower(
+   static PREsub_lower(//self,ans,pattern,何という文字列に変換するか,msg,type(次の階層)
     self,
     ans,
     pattern,
@@ -450,7 +417,7 @@ class REK_def {
     pattern = pattern.slice(msg.length);
     return [ans, pattern];
   }
-   static PREsub_br_C(
+   static PREsub_br_C(//()類
     self,
     ans,
     pattern,

@@ -44,12 +44,12 @@ class LayoutDebug_web{
         
         for(let i = 0;i<c0_.length;i++){
             for(let j = 0;j<c0_[i].values.OnsetGlyphNum;j++){
-                C0.push(`${c0_[i].values.Name}_${j}${self.textbox_diac0.value}`)
+                C0.push(`${c0_[i].values.Name}${j}${self.textbox_diac0.value}`)
             }
         }
         for(let i = 0;i<c1_.length;i++){
             for(let j = 0;j<c1_[i].values.CodaGlyphNum;j++){
-                C1.push(`${c1_[i].values.Name}_${j}${self.textbox_diac1.value}`)
+                C1.push(`${c1_[i].values.Name}${j}${self.textbox_diac1.value}`)
             }
         }
         let text = [];
@@ -64,9 +64,9 @@ class LayoutDebug_web{
                     for(let z = 0;z<C1.length;z++){
                         //text.push(`S(${form},${C0[x]},${V},${C1[z]})`);
                         text += `S(${form},${C0[x]},${V},${C1[z]})`;
-                        text += `P(space_0)`;
+                        text += `P(space0)`;
                     }
-                    text += `P(newline_0)`;
+                    text += `P(newline0)`;
                     //text.push(`(改行)`);
                 }
                 

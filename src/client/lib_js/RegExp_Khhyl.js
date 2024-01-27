@@ -118,6 +118,7 @@ class RegExp_Khhyl {
                 ans = this.intent.type+"\\("+ans+"\\)";// 例えば、S(ans)の形にする。(?:\k<S0>)のようにするのは境界を脱したときにする？
                 break;
             case "L":
+            case "script":
                 ans = "(?:"+ans+")";
                 break;
         }
@@ -182,6 +183,7 @@ class RegExp_Khhyl {
         let ans  = [];
         let count = 10000;
         doublebreak:while (this.pattern != "") {
+            //console.log(`${this.intent.type} : ${this.pattern}`);
             for(const infi in rules){
                 if(count == 0)break;
                 count -= 1;
