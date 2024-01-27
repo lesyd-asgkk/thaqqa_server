@@ -177,7 +177,7 @@ class REK_def {
     ["(\\\||(\\\*|\\\+|\\\?)\\\??)"]: (self, ans, pattern, msg) => {
       return REK_def.PREsub_END(self, ans, pattern, msg, msg);
     },
-    ["(\\[.+?\\]|\\w|_|\\.)+"]: (self, ans, pattern, msg) => {
+    ["(\\[.+?\\]|[A-Za-z]|\\d+|_|\\.)+"]: (self, ans, pattern, msg) => {
       self.intent.isFirst = "FALSE";
       return REK_def.PREsub_lower(self, ans, pattern, msg, msg, "g");
     },

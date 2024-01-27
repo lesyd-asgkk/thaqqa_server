@@ -4,8 +4,9 @@ class GPOSManager {
     
     static setGPOSColumn(id){
         const table = Thaqqa_DB.getTable("GPOS");
-        const GPOSdata = table.getData({Name:/.*/g} );//{Name:/.*/g} {ID:id}
+        const GPOSdata = table.data //table.getData( {ID:id});//
         for(let i = 0;i<GPOSdata.length;i++){
+            console.log(GPOSdata[i].values.ID)
             let r = new RegExp_Khhyl(GPOSdata[i].values.Name,{});
             r = r.ParseRegExp()
             const r_ = r.toNormalRegExp();
@@ -24,7 +25,7 @@ class GPOSManager {
         }
     
         
-        static rewriteGPOS(param){
+        static rewriteGPOS(param,param2){
             
             if(typeof param == "string") param = {Name:param};
             else if(param instanceof RegExp) param = {Name:param};

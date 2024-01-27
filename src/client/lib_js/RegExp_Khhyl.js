@@ -118,7 +118,6 @@ class RegExp_Khhyl {
                 ans = this.intent.type+"\\("+ans+"\\)";// 例えば、S(ans)の形にする。(?:\k<S0>)のようにするのは境界を脱したときにする？
                 break;
             case "L":
-            case "script":
                 ans = "(?:"+ans+")";
                 break;
         }
