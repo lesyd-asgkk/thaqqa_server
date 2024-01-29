@@ -62,11 +62,11 @@ class GlyphArray{
             const r_ = r.toNormalRegExp();
             const r_fin = new RegExp(r_, "g");
             text = text.replaceAll(r_fin,"$1Sep()$2");
-            console.log(text);
+            //console.log(text);
         }
         const pSVGData = text.split("Sep()");
         
-        console.log(pSVGData)
+        //console.log(pSVGData)
         for(let i = 0;i<pSVGData.length;i++){
             this.child.push(new Glyph(pSVGData[i]));
         }

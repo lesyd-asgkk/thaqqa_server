@@ -4,9 +4,9 @@ class GPOSManager {
     
     static setGPOSColumn(id){
         const table = Thaqqa_DB.getTable("GPOS");
-        const GPOSdata = table.data //table.getData( {ID:id});//
+        const GPOSdata = table.getData( {ID:id}); //table.getData( {ID:id});//table.data
         for(let i = 0;i<GPOSdata.length;i++){
-            console.log(GPOSdata[i].values.ID)
+            //console.log(GPOSdata[i].values.ID)
             let r = new RegExp_Khhyl(GPOSdata[i].values.Name,{});
             r = r.ParseRegExp()
             const r_ = r.toNormalRegExp();
