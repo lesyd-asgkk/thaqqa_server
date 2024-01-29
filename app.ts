@@ -1,4 +1,6 @@
 // app.ts
+Deno.env.set("DENO_VERBOSE_WARNINGS", "1");
+
 import { Application, Router, send } from "./deps.ts";
 import { path } from "./deps.ts";
 import { fs } from "./deps.ts";
