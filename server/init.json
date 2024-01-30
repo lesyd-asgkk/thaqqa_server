@@ -8315,6 +8315,30 @@
         "Parsed": "S\\(mid,t\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),abig\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)"
       },
       "491": {
+        "ID": 498,
+        "Pattern": "u",
+        "Pattern_sub": "IN",
+        "Order": 10050,
+        "Name": "S(mid,*,e_-*,*)",
+        "OffsetX0": 0,
+        "OffsetY0": -7,
+        "OffsetX1": 0,
+        "OffsetY1": 0,
+        "Parsed": "S\\(mid,(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),e\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)"
+      },
+      "492": {
+        "ID": 499,
+        "Pattern": "u",
+        "Pattern_sub": "IN",
+        "Order": 10050,
+        "Name": "S(mid,t_-*,e_-*,*)",
+        "OffsetX0": 0,
+        "OffsetY0": 40,
+        "OffsetX1": 0,
+        "OffsetY1": 0,
+        "Parsed": "S\\(mid,t\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),e\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)"
+      },
+      "493": {
         "ID": 2,
         "Pattern": "v",
         "Pattern_sub": "INEX",
@@ -8326,7 +8350,7 @@
         "OffsetY1": 2,
         "Parsed": "S\\((?:init|mid|fin|sol|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)"
       },
-      "492": {
+      "494": {
         "ID": 477,
         "Pattern": "v",
         "Pattern_sub": "INEX",
@@ -8338,7 +8362,7 @@
         "OffsetY1": 0,
         "Parsed": "S\\(init,(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),a\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)"
       },
-      "493": {
+      "495": {
         "ID": 480,
         "Pattern": "v",
         "Pattern_sub": "INEX",
@@ -8350,7 +8374,7 @@
         "OffsetY1": 0,
         "Parsed": "S\\(init,(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)"
       },
-      "494": {
+      "496": {
         "ID": 478,
         "Pattern": "v",
         "Pattern_sub": "INEX",
@@ -8362,7 +8386,7 @@
         "OffsetY1": 2,
         "Parsed": "S\\(fin,(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)"
       },
-      "495": {
+      "497": {
         "ID": 479,
         "Pattern": "v",
         "Pattern_sub": "INEX",
@@ -8374,7 +8398,7 @@
         "OffsetY1": 9,
         "Parsed": "S\\(fin,(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),a\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)"
       },
-      "496": {
+      "498": {
         "ID": 3,
         "Pattern": "v",
         "Pattern_sub": "INEX",
@@ -8386,7 +8410,7 @@
         "OffsetY1": 15,
         "Parsed": "P\\(space\\d+\\)"
       },
-      "497": {
+      "499": {
         "ID": 1,
         "Pattern": "v",
         "Pattern_sub": "INEX",
