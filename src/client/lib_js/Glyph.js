@@ -41,14 +41,14 @@ class GlyphManager{
 }
 
 class GlyphArray{
-    constructor(name,bound,posx,posy,algx,algy,algwhole){
+    constructor(name,bound,posx,posy,algx,algy,vec){
         this.name=name;
         this.d = "";
         this.child = [];//Glyphの配列 入れ子にします
         this.attribute = {};//(将来用)
         this.position = {x:posx??0,y:posy??0};//（parentに対するthisのoffset）
         this.aligment = {x:algx??0,y:algy??0};
-        this.algwhole = algwhole; //-1(右から左),0(上から下),1(左から右)
+        this.vec = vec; //-1(右から左),0(上から下),1(左から右)
         this.box = {top:0,right:0,bottom:0,left:0};
         this.bound = bound;
 
@@ -68,12 +68,12 @@ class GlyphArray{
         
         //console.log(pSVGData)
         for(let i = 0;i<pSVGData.length;i++){
-            this.child.push(new Glyph(pSVGData[i]));
+            this.child.push(new Glyph(pSVGData[i] , this.vec));
         }
     }
     toPath(defaultsize){
-        const algwhole = this.algwhole;
-        const mutli_ = function (n){return n/(algwhole==0?textdata.Width:textdata.Height)}
+        const vec = this.vec;
+        const mutli_ = function (n){return n/(vec==0?textdata.Width:textdata.Height)}
         const textdata = Thaqqa_DB.getTable("TEXTDATA").data[0].values;
         const rescale = function(param,size){
             const aa = Snap.parsePathString(Snap.path.toAbsolute(param));
@@ -93,28 +93,28 @@ class GlyphArray{
         const nlist_ = [];for(let i = 0;i<nlist.length;i++){nlist_.push(nlist[i].values.Name)};
        
         
-        if(this.algwhole==0){
+        if(this.vec==0){
             for(let i = 0;i<this.child.length;i++){
                 let m0 = 0;
                 let m1 = 0;
-                m1 += GPOSManager.gpos(this.child[i].fullname,0,"INEX").y1; // 下方向
-                m0 += GPOSManager.gpos(this.child[i].fullname,0,"INEX").y0; // 上方向
+                m1 += GPOSManager.gpos(this.child[i].fullname,this.vec,"INEX").y1; // 下方向
+                m0 += GPOSManager.gpos(this.child[i].fullname,this.vec,"INEX").y0; // 上方向
 
                 if(i+1 != this.child.length)
-                {m1 += GPOSManager.gpos(this.child[i].fullname+this.child[i+1].fullname,0,"EX").y0;
+                {m1 += GPOSManager.gpos(this.child[i].fullname+this.child[i+1].fullname,this.vec,"EX").y0;
                 // AB A(下方向)
                 }
             
 
                 if(i != 0){ //
-                    m0 += GPOSManager.gpos(this.child[i-1].fullname+this.child[i].fullname,0,"EX").y1;
+                    m0 += GPOSManager.gpos(this.child[i-1].fullname+this.child[i].fullname,this.vec,"EX").y1;
                     // AB B(上方向)
                 }   
-                if(i == this.child.length-1) m1 += GPOSManager.gpos(this.child[i].fullname+"Null()",0,"EX").y0;
+                if(i == this.child.length-1) m1 += GPOSManager.gpos(this.child[i].fullname+"Null()",this.vec,"EX").y0;
                 // A(last 下方向)
 
                 y += m0*mutli_(defaultsize);
-                if(i == 0 ) m0 += GPOSManager.gpos("Null()"+this.child[i].fullname,0,"EX").y1;
+                if(i == 0 ) m0 += GPOSManager.gpos("Null()"+this.child[i].fullname,this.vec,"EX").y1;
                 // B(頭 上方向)
 
                 this.d += `M ${x},${y} `;
@@ -134,7 +134,7 @@ class GlyphArray{
         else{
             for(let i = 0;i<this.child.length;i++){
                 const h = textdata.Height;
-                this.d += rescale(this.child[i].toPathAbs(h,0.5),defaultsize);
+                this.d += rescale(this.child[i].toPathAbs(h,0.58),defaultsize);
                
                 if(i!=this.child.length-1)x += defaultsize;//size
                 this.child[i].offset = {x,y};
@@ -150,7 +150,7 @@ class GlyphArray{
 }
 
 class Glyph{
-    constructor(name){ //flag_recは再帰処理判定用
+    constructor(name,vec){ //flag_recは再帰処理判定用
 
         // name：（使い勝手ゴミなので）仕様変更
         /* {type: (S,P,Pd,C,Cd,V,Vd) ,form :(init,mid,fin,sol,onset,coda) , 
@@ -166,6 +166,7 @@ class Glyph{
             fullname: h_0-d_0
             }
         */
+        this.vec = vec;
         this.fullname = name; 
         this.name = ""; 
         this.d = "";
@@ -206,16 +207,16 @@ class Glyph{
             let y1;
             
             if(this.type == "S"){
-                const k = GPOSManager.gpos(name,0,"IN");
+                const k = GPOSManager.gpos(name,this.vec,"IN");
                 x0 = k.x0;y0 = k.y0;x1 = k.x1;y1 = k.y1;
             }
             else{
-                const k = GPOSManager.gpos(name,0,"DIAC");
+                const k = GPOSManager.gpos(name,this.vec,"DIAC");
                 x0 = k.x0;y0 = k.y0;
             }
 
             for(let i = 0 ; i<partname.length;i++){
-                const new_glyph = new Glyph(partname[i]);
+                const new_glyph = new Glyph(partname[i],this.vec);
                 new_glyph.parent = this;
                 if(x1 != null && y1 != null && i == 2)new_glyph.offset = {x:x1,y:y1};
                 else if(x1 != null && y1 != null && i == 0) new_glyph.offset = {x:x0,y:y0};
@@ -480,9 +481,9 @@ class Glyph{
                     const x =  (SVG.getLeft(parentd)*(1-alig1.x*dir)/2+SVG.getRight(parentd) *(1+alig1.x*dir)/2)+off1.x*dir;
                     const y =  (SVG.getTop(parentd)*(1-alig1.y)/2+SVG.getBottom(parentd) *(1+alig1.y)/2)+off1.y ;
 
-                    console.log(alig1);
-                    console.log(x);
-                    console.log(y);
+                    //console.log(alig1);
+                    //console.log(x);
+                    //console.log(y);
                     return{x:x,y:y};
                 }
                 else{
