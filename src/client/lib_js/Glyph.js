@@ -188,7 +188,6 @@ class Glyph{
         if(partname.length == 0){this.isroot = true;
             if(name == null|| name == ""){this.d = "" ,this.aligment = {x:0,y:0};return null;}
             const form = this.form ?? "";
-            const temp2 = this.glyphname;
             const name_ = `${this.name}_${form}_${this.val}`
             
             this.d = (GlyphManager.getSVG(name_))[0];//this.nameがこれ以上分割できない場合。
@@ -196,7 +195,7 @@ class Glyph{
             let offx = 0;
             let offy = 0;
             
-            if(LetterManager.getLetter(temp2[0])[0]){offx = LetterManager.getLetter(temp2[0])[0].values.x_Align;offy = LetterManager.getLetter(temp2[0])[0].values.y_Align;}
+            if(LetterManager.getLetter(this.name)){offx = LetterManager.getLetter(this.name)[0].values.x_Align;offy = LetterManager.getLetter(this.name)[0].values.y_Align;}
             this.aligment = {x:(offx),y:(offy)};
         }
         else{//分割できたら
@@ -480,6 +479,10 @@ class Glyph{
 
                     const x =  (SVG.getLeft(parentd)*(1-alig1.x*dir)/2+SVG.getRight(parentd) *(1+alig1.x*dir)/2)+off1.x*dir;
                     const y =  (SVG.getTop(parentd)*(1-alig1.y)/2+SVG.getBottom(parentd) *(1+alig1.y)/2)+off1.y ;
+
+                    console.log(alig1);
+                    console.log(x);
+                    console.log(y);
                     return{x:x,y:y};
                 }
                 else{
