@@ -97,21 +97,25 @@ class GlyphArray{
             for(let i = 0;i<this.child.length;i++){
                 let m0 = 0;
                 let m1 = 0;
-                m1 += GPOSManager.gpos(this.child[i].fullname,0,"INEX").y1;
-                m0 += GPOSManager.gpos(this.child[i].fullname,0,"INEX").y0;
+                m1 += GPOSManager.gpos(this.child[i].fullname,0,"INEX").y1; // 下方向
+                m0 += GPOSManager.gpos(this.child[i].fullname,0,"INEX").y0; // 上方向
 
                 if(i+1 != this.child.length)
-                {m1 += GPOSManager.gpos(this.child[i].fullname+this.child[i+1].fullname,0,"EX").y1;
-                m0 += GPOSManager.gpos(this.child[i].fullname+this.child[i+1].fullname,0,"EX").y0;
+                {m1 += GPOSManager.gpos(this.child[i].fullname+this.child[i+1].fullname,0,"EX").y0;
+                // AB A(下方向)
                 }
+            
 
                 if(i != 0){ //
-                    m0 += GPOSManager.gpos(this.child[i-1].fullname+this.child[i].fullname,0,"EX").y0;
+                    m0 += GPOSManager.gpos(this.child[i-1].fullname+this.child[i].fullname,0,"EX").y1;
+                    // AB B(上方向)
                 }   
-                if(i == this.child.length-1) m1 += GPOSManager.gpos(this.child[i].fullname+"Null()",0,"EX").y1;
-                
+                if(i == this.child.length-1) m1 += GPOSManager.gpos(this.child[i].fullname+"Null()",0,"EX").y0;
+                // A(last 下方向)
+
                 y += m0*mutli_(defaultsize);
                 if(i == 0 ) m0 += GPOSManager.gpos("Null()"+this.child[i].fullname,0,"EX").y1;
+                // B(頭 上方向)
 
                 this.d += `M ${x},${y} `;
 
@@ -345,7 +349,7 @@ class Glyph{
                 break;
                 case "init":
                     k = SVG.convertSVG(k);
-                    k = "M 0,"+(bottom)+" "+k + SVG.setSkewer(-width/2,top+this.height.top,width/2,this.height.vtop)+SVG.setSkewer(-width/2,this.height.vbottom,width/2,bottom+this.height.bottom);
+                    k = "M 0,"+(0)+" "+k + SVG.setSkewer(-width/2,top+this.height.top,width/2,this.height.vtop)+SVG.setSkewer(-width/2,this.height.vbottom,width/2,bottom+this.height.bottom);
                     k = SVG.convertSVG(k);
                     break;
                 case "mid":
@@ -355,7 +359,7 @@ class Glyph{
                     break;
                 case "fin":
                     k = SVG.convertSVG(k);
-                    k = "M 0,"+(top)+" "+k + SVG.setSkewer(-width/2,top+this.height.top,width/2,this.height.vtop)+SVG.setSkewer(-width/2,this.height.vbottom,width/2,bottom+this.height.bottom);
+                    k = "M 0,"+(0)+" "+k + SVG.setSkewer(-width/2,top+this.height.top,width/2,this.height.vtop)+SVG.setSkewer(-width/2,this.height.vbottom,width/2,bottom+this.height.bottom);
                     k = SVG.convertSVG(k);
                 break;
         }
