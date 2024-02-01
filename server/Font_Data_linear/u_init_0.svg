@@ -28,8 +28,8 @@
      inkscape:document-units="px"
      showgrid="true"
      inkscape:zoom="5.2913967"
-     inkscape:cx="-41.482431"
-     inkscape:cy="25.607606"
+     inkscape:cx="-41.293445"
+     inkscape:cy="25.796592"
      inkscape:window-width="1920"
      inkscape:window-height="1111"
      inkscape:window-x="-9"
@@ -48,11 +48,13 @@
      id="layer1">
     <path
        style="color:#000000;fill:#000000;-inkscape-stroke:none"
-       d="M -20.638672,-1.9082031 -23.361328,1.90625 c 7.515472,5.3683014 27.3650731,15.243418 44.699219,20.341797 l 1.324218,-4.496094 C 5.9962889,12.850144 -14.154158,2.7236844 -20.638672,-1.9082031 Z"
-       id="path1101" />
+       d="M -20.638672,-1.9082031 -23.361328,1.90625 C -15.845856,7.2745514 4.0037451,17.149621 21.337891,22.248 l 1.324218,-4.496047 C 5.9962889,12.850144 -14.154158,2.7236844 -20.638672,-1.9082031 Z"
+       id="path1101"
+       sodipodi:nodetypes="ccccc" />
     <path
        style="color:#000000;fill:#000000;-inkscape-stroke:none"
-       d="M -2.34375,11.734375 V 20 h 4.6875 v -8.265625 z"
-       id="path506" />
+       d="M -2.34375,11.734375 V 22.248 h 4.6875 V 11.734375 Z"
+       id="path506"
+       sodipodi:nodetypes="ccccc" />
   </g>
 </svg>
