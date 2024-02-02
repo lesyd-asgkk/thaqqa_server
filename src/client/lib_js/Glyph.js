@@ -94,6 +94,7 @@ class GlyphArray{
        
         
         if(this.vec==0){
+            //const Vdefaultsize = defaultsize * textdata.Height / textdata.WidthV;
             for(let i = 0;i<this.child.length;i++){
                 let m0 = 0;
                 let m1 = 0;
@@ -112,13 +113,17 @@ class GlyphArray{
                 if(i == this.child.length-1) m1 += GPOSManager.gpos(this.child[i].fullname+"Null()",this.vec,"EX").y0;
                 // A(last 下方向)
 
-                y += m0*mutli_(defaultsize);
+                //y += m0*mutli_(defaultsize);
                 if(i == 0 ) m0 += GPOSManager.gpos("Null()"+this.child[i].fullname,this.vec,"EX").y1;
                 // B(頭 上方向)
 
                 this.d += `M ${x},${y} `;
+                //上方向のズレが反映されないバグを治す
 
-                const d = rescale(this.child[i].toPathB(-m0,m1),defaultsize); //16はsize
+                const j_ = (this.child[i].type == "P")||(this.child[i].form == "sol")
+                const d = rescale(this.child[i].toPathB(!j_?-m0:(0),m1),defaultsize); //16はsize
+                
+                this.d += `M ${x},${y} `;
                 this.d += d;
                 y += (SVG.getBottom(this.child[i].toPathB(0,0))+m1)*mutli_(defaultsize);
                 if(i+1 != this.child.length){const d2 = rescale(this.child[i+1].d,defaultsize);y -= SVG.getTop(d2);}
@@ -133,7 +138,7 @@ class GlyphArray{
         else{
             for(let i = 0;i<this.child.length;i++){
                 const h = textdata.Height;
-                const d_new = rescale(this.child[i].toPathAbs(h,0.58),defaultsize);
+                const d_new = rescale(this.child[i].toPathAbs(h,0.5+GPOSManager.gpos(this.child[i].fullname,this.vec,"INEX").y1/textdata.Height),defaultsize);
 
                 const x_abs = defaultsize*textdata.WidthV/textdata.Height
                 const x_rel = -SVG.getLeft(d_new)+SVG.getRight(d_new)+defaultsize*textdata.WidthV/textdata.Height;
@@ -312,7 +317,7 @@ class Glyph{
                 break;
                 case "mid":
                     k = SVG.convertSVG(k);
-                    k = "M 0,"+(VH+vt_b-vt)+""+k+SVG.setSkewer(-width/2,VH+vt_b+vt,width/2,height)+SVG.setSkewer(-width/2,0,width/2,VH+vt_b-vt);
+                    k = "M 0,"+(VH+vt_b-vt)+""+k+SVG.setSkewer(-width/2,VH+vt_b+this.height.vtop,width/2,height)+SVG.setSkewer(-width/2,this.height.vbottom,width/2,VH+vt_b-vt);
                     k = SVG.convertSVG(k);
                     this.gap = {top:VH+vt_b-vt,middle:VH+vt_b-vt,bottom:height};
         //(midのみ)0~vowelhratio*height-(vbottom-vheight)/2の棒
@@ -351,6 +356,7 @@ class Glyph{
                 case "sol":
                     k = SVG.convertSVG(k);
                     k = k + " M 0,"+(bottom+this.height.bottom);
+                    k = SVG.convertSVG(k);
                     k = "M 0,"+(top+this.height.top)+" "+k;
                     k = SVG.convertSVG(k);
                 break;
@@ -375,6 +381,7 @@ class Glyph{
             case "sol":
                 k = SVG.convertSVG(k);
                 k = k + " M 0,"+(bottom+this.height.bottom);
+                k = SVG.convertSVG(k);
                 k = "M 0,"+(top+this.height.top)+" "+k;
                 k = SVG.convertSVG(k);
             break;
@@ -398,6 +405,7 @@ class Glyph{
     }        
     else{k = k + " M 0,"+(bottom+this.height.bottom);
     k = "M 0,"+(top+this.height.top)+" "+k;
+    k = SVG.convertSVG(k);
     k = SVG.convertSVG(k);}
         this.gap = {top:top,middle:0,bottom:bottom};
             return k;

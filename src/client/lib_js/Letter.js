@@ -56,26 +56,27 @@ class LetterManager{
         
         let param2 ;
         if(typeof param == "string"){
-            const TEMPLATE = {["\\c"]:{
+            const TEMPLATE = {["CONSONANT"]:{
                 Name: param, LoadName: param,
                 OnsetGlyphNum: 1, CodaGlyphNum:1,
                 isBondAsFirst: true, isBondAsLast:true
-                ,Priority:0},["\\v"]:{Name:param,LoadName:param,
+                ,Order:0},["VOWEL"]:{Name:param,LoadName:param,
                 SolGlyphNum: 1, InitGlyphNum: 1, MidGlyphNum: 2, FinGlyphNum: 4,
-                isVowel: true, hasGreedyBond: true, isBondtoPrev: true, isBondtoNext: true
-                ,Priority:0},["\\p"]:{
+                isVowel: true, isNullVowel:false, hasGreedyBond: true, isBondtoPrev: true, isBondtoNext: true
+                ,Order:0},["PUNCTUATION"]:{
                     Name: param, LoadName: param,
-                     GlyphNum: 1
-                     ,Priority:0},
-            ["\\cd"]:{Name: param, LoadName: param, //'はc,分離符はx
-            OnsetGlyphNum: 1, CodaGlyphNum: 1
-            ,Priority:0},
-            ["\\vd"]:{Name:param,LoadName:param,
-                SolGlyphNum: 1, InitGlyphNum: 1, MidGlyphNum: 2, FinGlyphNum: 4,Priority:0},
-            ["\\pd"]:{
+                     GlyphNum: 1,IsNewline:false,Order:0
+                     },
+            ["DIACRITIC_C"]:{Name: param, LoadName: param, //'はc,分離符はx
+            OnsetGlyphNum: 1, CodaGlyphNum: 1,x_Align:0,y_Align:0
+            ,Order:0},
+            ["DIACRITIC_V"]:{Name:param,LoadName:param,
+                SolGlyphNum: 1, InitGlyphNum: 1, MidGlyphNum: 2, FinGlyphNum: 4,Order:0,x_Align:0,y_Align:0},
+            ["DIACRITIC_P"]:{
                 Name: param, LoadName: param,
                  GlyphNum: 1
-                 ,Priority:0}};
+                 ,Order:0,x_Align:0,y_Align:0}};
+                 type = TYPE[type]  ?? type;
             param2 = TEMPLATE[type];
         }
         else param2 = param;
@@ -84,6 +85,7 @@ class LetterManager{
         
             if(param2 instanceof Error) throw param2;
             if(table instanceof Error) throw table;
+            console.log(param2);
             table.createData(param2);
         return null;
     }

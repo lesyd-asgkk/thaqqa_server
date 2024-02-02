@@ -10,6 +10,7 @@ class Sandbox_web{
         this.youaredrawing;
         this.SVG;
     }
+    
     setSVG(self){
         let alig = 0;
         let lang = 0;
@@ -39,6 +40,30 @@ class Sandbox_web{
         while( this.loc.firstChild ){
             this.loc.removeChild( this.loc.firstChild );
           }
+          const  downloadSvg = function(svgNode, filename) {
+            const svgText = new XMLSerializer().serializeToString(svgNode);
+            const svgBlob = new Blob([svgText], { type: 'image/svg+xml' });
+            const svgUrl = URL.createObjectURL(svgBlob);
+          
+            const a = document.createElement('a');
+            a.href = svgUrl;
+            a.download = filename;
+          
+            document.body.appendChild(a);
+            a.click();
+          
+            document.body.removeChild(a);
+            URL.revokeObjectURL(svgUrl);
+          }
+          const renderb = document.createElement("input");
+          renderb.contentEditable = false;
+          renderb.style.display ="block";
+          renderb.type = "button";
+          renderb.value = "ダウンロードする";
+          renderb.addEventListener("click",() => {downloadSvg(this.SVG.field,"param")},true);
+          this.button = renderb;
+          this.loc.appendChild(this.button);
+
         const textinput = document.createElement("input");
         textinput.contentEditable = false;
         textinput.style.display ="block";

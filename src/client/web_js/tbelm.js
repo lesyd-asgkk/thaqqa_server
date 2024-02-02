@@ -162,6 +162,16 @@ class Button_web{
                         const p = self.id != null? Khhyl.Thaqqa_DB.getTable(parent.tablename).getData({ID:self.id})[0].values:{Pattern:"u",Pattern_sub:"d",Order:0};
                     Khhyl.Thaqqa_DB.getTable("GPOS").createData({Pattern:p.Pattern,Pattern_sub:p.Pattern_sub,Parsed:"",Name:"",OffsetX0:0,OffsetY0:0,OffsetX1:0,OffsetY1:0,Order:p.Order});
                     }
+                    break;
+                case "PUNCTUATION":
+                case "VOWEL":
+                case "CONSONANT":
+                case "DIACRITIC_P":
+                case "DIACRITIC_V":
+                case "DIACRITIC_C":
+                    {
+                    Khhyl.LetterManager.createLetter("新規データ",parent.tablename);
+                    }
                 break;
             }
         }
