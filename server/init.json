@@ -792,24 +792,45 @@
         "order": 0,
         "subtype": "none"
       },
-      "Width": {
-        "name": "Width",
+      "WidthH": {
+        "name": "WidthH",
         "type": "float",
-        "order": 150,
+        "order": 100,
+        "subtype": "none"
+      },
+      "WidthV": {
+        "name": "WidthV",
+        "type": "float",
+        "order": 101,
+        "subtype": "none"
+      },
+      "isWidthHRel": {
+        "name": "isWidthHRel",
+        "type": "bool",
+        "order": 110,
         "subtype": "none"
       },
       "Height": {
         "name": "Height",
         "type": "float",
-        "order": 250,
+        "order": 200,
+        "subtype": "none"
+      },
+      "TopGapV": {
+        "name": "TopGapV",
+        "type": "float",
+        "order": 300,
         "subtype": "none"
       }
     },
     "data": {
       "0": {
         "Thickness": 4.6875,
-        "Width": 100,
-        "Height": 100
+        "WidthH": 90,
+        "WidthV": 85,
+        "isWidthHRel": false,
+        "Height": 100,
+        "TopGapV": 10
       }
     }
   },

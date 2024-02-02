@@ -73,7 +73,7 @@ class GlyphArray{
     }
     toPath(defaultsize){
         const vec = this.vec;
-        const mutli_ = function (n){return n/(vec==0?textdata.Width:textdata.Height)}
+        const mutli_ = function (n){return n/(vec==0?textdata.WidthV:textdata.Height)}
         const textdata = Thaqqa_DB.getTable("TEXTDATA").data[0].values;
         const rescale = function(param,size){
             const aa = Snap.parsePathString(Snap.path.toAbsolute(param));
@@ -133,15 +133,23 @@ class GlyphArray{
         else{
             for(let i = 0;i<this.child.length;i++){
                 const h = textdata.Height;
-                this.d += rescale(this.child[i].toPathAbs(h,0.58),defaultsize);
+                const d_new = rescale(this.child[i].toPathAbs(h,0.58),defaultsize);
+
+                const x_abs = defaultsize*textdata.WidthV/textdata.Height
+                const x_rel = -SVG.getLeft(d_new)+SVG.getRight(d_new)+defaultsize*textdata.WidthV/textdata.Height;
+
+                x += (!textdata.isWidthHRel ? x_abs/2 : x_rel/2);
+                this.d += `M ${x},${y} `;
+                this.d += d_new;
                
-                if(i!=this.child.length-1)x += defaultsize;//size
+
+                if(i!=this.child.length-1)x += (!textdata.isWidthHRel ? x_abs/2 : x_rel/2);//size
                 this.child[i].offset = {x,y};
                 if(this.child[i].type.startsWith("P")&&nlist_.includes(this.child[i].glyphname.split(/\d+/g)[0])){
-                    x = 0;y += defaultsize;
+                    x = 0;y += defaultsize*((textdata.Height+textdata.TopGapV)/textdata.Height);
                 }
-                this.d += `M ${x},${y} `;
             }
+            this.d += `M ${x},${y} `;
         }
         return this.d;
     }

@@ -4,11 +4,13 @@
 
 
 ふたつめ　TEXTDATA増設
+
 　　　　　isWidthHRel(bool)を作った上で、Width(float)はWidthV(f),WidthH(f)に分割。
 　　　　　WidthVは縦書きの場合の横幅、WidthHは横書きの場合の横幅。
 　　　　　isWidthHRelがtrueの時、横書きの時はWidthHだけ間隔を置く。
 　　　　　isWidthHRelがfalseの時、横書きの時は一文字のスペースがWidthHの通りになるようにする。
-
+　　　　　
+　　　　　
 
 
 よっつめ　RegExpの簡略化（みずらい）（後でいい）
