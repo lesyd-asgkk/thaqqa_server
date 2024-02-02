@@ -9,6 +9,7 @@ body {
 }
 span.khhyl {
     display: inline-block;
+    font-size: 1.5em;
 }
 
 span.khhyl.larger {

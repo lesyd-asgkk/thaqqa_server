@@ -1,7 +1,7 @@
 import { Thaqqa_DB,DataTable,Data } from "./Thaqqa_DB.js";
 import { RegExp_Khhyl } from "./RegExp_Khhyl.js";
 class GSUBManager {
-
+/*
     static getGSUB(table, param){
         if(table.match(/^(GSUB)$/) == null) throw new Error("テーブル指定エラー");
         if(typeof param == "string") param = {Name:param};
@@ -59,17 +59,34 @@ class GSUBManager {
 
         const table_ = Thaqqa_DB.getTable(table);
         table_.createData(param);
-        }
+        }　*/
 
-        
+        static setGSUBColumnAll(){
+            const table = Thaqqa_DB.getTable("GSUB");
+            const GSUBdata = table.data
+            for(let i = 0;i<GSUBdata.length;i++){
+                //console.log(GSUBdata[i].values.ID)
+                let r = new RegExp_Khhyl(GSUBdata[i].values.Name,{});
+                r = r.ParseRegExp()
+                const r_ = r.toNormalRegExp();
+                table.rewriteData({ID:GSUBdata[i].values.ID},{Parsed:r_});
+            }
+        }
+        static setGSUBColumn(id){
+            const table = Thaqqa_DB.getTable("GSUB");
+            const GSUBdata = table.getData( {ID:id}); //table.getData( {ID:id});//table.data
+            for(let i = 0;i<GSUBdata.length;i++){
+                //console.log(GSUBdata[i].values.ID)
+                let r = new RegExp_Khhyl(GSUBdata[i].values.Name,{});
+                r = r.ParseRegExp()
+                const r_ = r.toNormalRegExp();
+                table.rewriteData({ID:GSUBdata[i].values.ID},{Parsed:r_});
+            }
+        }
     static gsub(text,vec){
 
         const table = Thaqqa_DB.getTable("GSUB");
-        
-      const _Vertical = table.getData({Pattern:"v"});
-      const _Univ = table.getData({Pattern:"u"});
-      const _Horizon =table.getData({Pattern:"h"});
-      const array = (vec==0?_Vertical:_Horizon).concat(_Univ);
+      const array = table.getData({Pattern:(vec==0?/(u|v)/:/(u|h)/)});
       const sortalg = function(first, second ){//Priorityの大きい順に並び替える
         if (first.values.Order > second.values.Order ) return 1;
         else if (first.values.Order  < second.values.Order )return -1;
@@ -81,11 +98,7 @@ class GSUBManager {
       array.sort(sortalg);
     for(let i = 0;i<array.length;i++){
         if(typeof array[i].values.Name == "string"){
-        
-        let r = new RegExp_Khhyl(array[i].values.Name,{});
-        r = r.ParseRegExp()
-        const r_ = r.toNormalRegExp();
-        const r_fin = new RegExp(r_, "g");
+        const r_fin = new RegExp(array[i].values.Parsed, "g");
         text = text.replaceAll(r_fin,array[i].values.NameAlt);
     }
     }

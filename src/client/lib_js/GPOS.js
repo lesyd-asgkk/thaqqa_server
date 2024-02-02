@@ -2,6 +2,17 @@ import { Thaqqa_DB,DataTable,Data } from "./Thaqqa_DB.js";
 import { RegExp_Khhyl } from "./RegExp_Khhyl.js";
 class GPOSManager {
     
+    static setGPOSColumnAll(){
+        const table = Thaqqa_DB.getTable("GPOS");
+        const GPOSdata = table.data
+        for(let i = 0;i<GPOSdata.length;i++){
+            //console.log(GPOSdata[i].values.ID)
+            let r = new RegExp_Khhyl(GPOSdata[i].values.Name,{});
+            r = r.ParseRegExp()
+            const r_ = r.toNormalRegExp();
+            table.rewriteData({ID:GPOSdata[i].values.ID},{Parsed:r_});
+        }
+    }
     static setGPOSColumn(id){
         const table = Thaqqa_DB.getTable("GPOS");
         const GPOSdata = table.getData( {ID:id}); //table.getData( {ID:id});//table.data
@@ -85,17 +96,14 @@ class GPOSManager {
         
         const GPOSdata =  GPOSManager.getGPOS({Pattern:(vec==0?/(u|v)/:/(u|h)/),Pattern_sub:rule});
         for(let i = 0;i<GPOSdata.length;i++){
-            //if(rule == "IN" && text.match(new RegExp(GPOSdata[i].values.Ablidged, "g")) == null) continue;
-            
-                const r_fin = new RegExp((rule == "EX" ? "^": "")+GPOSdata[i].values.Parsed+(rule == "EX" ? "$": ""), "g");
-                
+                const r_fin = new RegExp((rule == "EX" ? "^": "")+GPOSdata[i].values.Parsed+(rule == "EX" ? "$": ""), "g");                
                 if(text.match(r_fin) != null){
-                    console.log(GPOSdata[i].values.Name);
+                    //console.log(GPOSdata[i].values.Name);
                     ans.x0 += GPOSdata[i].values.OffsetX0 ;
                     ans.y0 += GPOSdata[i].values.OffsetY0 ;
                     ans.x1 += GPOSdata[i].values.OffsetX1 ;
                     ans.y1 += GPOSdata[i].values.OffsetY1 ;
-                    console.log(ans);
+                    //console.log(ans);
                 }
                 
             }

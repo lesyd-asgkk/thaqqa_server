@@ -1,6 +1,92 @@
 
 ひとつめ　コードがゴミ　まとめろ
+　　　　　特に変数や仕様が纏まってないのはゴミ以外の何物でも無いので直せ
 
-ふたつめ　GPOSINの設定しなおし（めんどう）
-みっつめ  GPOSINEX,GPOSEXの設定
+
 よっつめ　RegExpの簡略化（みずらい）（後でいい）
+
+
+
+
+Render.js
+●Render
+
+Glyph.js内
+●GlyphManager
+●GlyphArray
+●Glyph
+
+GPOS.js
+●GPOSManager
+・フォントにおけるGPOS（グリフ(Glyph)置換(SUBstition)）に該当する部分に携わる。
+
+◯gpos(text,vec,rule)
+・ruleはDIAC,IN,INEX,EXの四種類。
+・textについて、GPOSテーブルの値を元に、ruleの場合にどれくらいグリフの構成をずらせばいいかの値を返す。
+
+◯clearcalcgpos()　（未）
+・DIAC,INに関して予め計算していおいた値テーブルを消す。
+◯calcgposdiac(raw)　（未）
+・rawの条件を満たす全ての字母について、予めGPOSの値を計算する
+C(onset,(t|k)_-d_)
+C(*,(th|s|hy|kh|qh|h)_-d_)
+C(onset,(t|q|n|th|tl)_-hd_)
+C(onset,(t|k|n|ng|s|r)_-sy_)
+C(onset,(w|q|ng|qh)_-sw_)
+
+C(onset,t_-d_-hd_)
+C(onset,n_-hd_-sy_)
+C(onset,th_-hd_-sy_)
+C(onset,th_-hd_-sw_)
+C(onset,s_-d_-sy_)
+C(onset,tl_-hd_-sy_)
+◯calcgposin(raw)　（未）
+・rawの条件を満たす全ての音節について、予めGPOSの値を計算する
+//
+
+GSUB.js
+●GSUBManager
+・フォントにおけるGSUB（グリフ(Glyph)置換(SUBstition)）に該当する役目をする。
+
+◯gsub(text,vec)
+・textをGSUBテーブルの値を元に(Order昇順優先、Orderの値が同じ場合はPriority昇順優先で)変換する。
+
+Letter.js
+●LetterManager 
+・文字テーブル群（以降、Letterとする）、つまり、VOWEL,CONSONANT,PUNCTUATION,DIACRITIC_V,DIACRITIC_C,DIACRITIC_Pのテーブル全ての操作をする。
+
+◯getLetter(param)
+※paramがstringかRegExpの時、paramは{Name:param}とする。
+・paramと一致する全てのLetterを返す。
+・param内のパロメータがTableの書式と一致してない場合は無視する。
+
+◯rewriteLetter(param,param2) 
+※paramがstringかRegExpの時、paramは{Name:param}とする。
+・paramと一致するLetterをparam2にする。
+・変換後にNameが重複する場合はエラーを吐いて拒否する。
+
+◯deleteLetter(param,safety){
+※paramがstringかRegExpの時、paramは{Name:param}とする。
+・paramと一致するLetterを削除する。
+・safetyがtrueでない場合は、2つ以上paramと一致する時にエラーを吐いて削除拒否する。
+
+◯createLetter(param,type)
+・paramの値を持ったLetterを作る。typeはCONSONANTとか。
+・paramの方がtypeの雛形と一致してない場合はエラーを吐く。
+
+
+Parser.js
+●Parser
+（主にアルファベットを）東果文字の内部書式へと変換する。
+◯parse(raw,type) 
+・rawを簡便な記述に依る処理に適した文字列[]へ変換する。
+・typeは東果語(0)か汽陸語(1)か。
+
+RegExp_Khhyl.js
+●RegExp_Khhyl
+
+REK.js
+●REK_def
+
+SVG.js
+●SVG　一部の処理を簡単にする用

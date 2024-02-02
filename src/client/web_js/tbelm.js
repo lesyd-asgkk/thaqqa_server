@@ -51,6 +51,12 @@ class DIVparam_web{
         if(parent.tablename == "GPOS" && self.col == "Name"){
             Khhyl.GPOSManager.setGPOSColumn(this.id);
         }
+        else if(parent.tablename == "GSUB" && self.col == "Name"){
+            Khhyl.GSUBManager.setGSUBColumn(this.id);
+        }
+        else if(parent.tablename == "Parser" && self.col == "Name"){
+            Khhyl.Parser.setParserColumn(this.id);
+        }
         obj.textContent = val;
         self.val = val;}
         parent.draw();
@@ -142,13 +148,13 @@ class Button_web{
                 case "GSUB":
                     {
                     const p = self.id != null? Khhyl.Thaqqa_DB.getTable(parent.tablename).getData({ID:self.id})[0].values:{Pattern:"u",Priority:0,Order:0};
-                    Khhyl.Thaqqa_DB.getTable("GSUB").createData({Priority:p.Priority,Pattern:p.Pattern,Name:"",NameAlt:"",Order:p.Order});
+                    Khhyl.Thaqqa_DB.getTable("GSUB").createData({Priority:p.Priority,Pattern:p.Pattern,Name:"",NameAlt:"",Order:p.Order,Parsed:""});
                     }
                 break;
                 case "Parser":
                     {
                         const p = self.id != null? Khhyl.Thaqqa_DB.getTable(parent.tablename).getData({ID:self.id})[0].values:{Pattern:"u",Priority:0,Order:0};
-                    Khhyl.Thaqqa_DB.getTable("Parser").createData({Priority:p.Priority,Pattern:p.Pattern,Name:"",NameAlt:"",Order:p.Order});
+                    Khhyl.Thaqqa_DB.getTable("Parser").createData({Priority:p.Priority,Pattern:p.Pattern,Name:"",NameAlt:"",Order:p.Order,Parsed:""});
                     }
                 break;
                 case "GPOS":

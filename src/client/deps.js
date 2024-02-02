@@ -8,7 +8,6 @@ import * as webjs from "./web_js/deps.js";
 
     await khhyl.GlyphManager.load();
 
-    //khhyl.GPOSManager.setGPOSColumn()
 
     let ta = new webjs.Table_web("VOWEL",$("div.area_tb#vowel")[0]);
     ta.draw();

@@ -105,7 +105,6 @@ class GlyphArray{
                 // AB A(下方向)
                 }
             
-
                 if(i != 0){ //
                     m0 += GPOSManager.gpos(this.child[i-1].fullname+this.child[i].fullname,this.vec,"EX").y1;
                     // AB B(上方向)
