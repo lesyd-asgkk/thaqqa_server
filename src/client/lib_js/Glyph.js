@@ -113,13 +113,13 @@ class GlyphArray{
                 if(i == this.child.length-1) m1 += GPOSManager.gpos(this.child[i].fullname+"Null()",this.vec,"EX").y0;
                 // A(last 下方向)
 
-                //y += m0*mutli_(defaultsize);
+                
                 if(i == 0 ) m0 += GPOSManager.gpos("Null()"+this.child[i].fullname,this.vec,"EX").y1;
                 // B(頭 上方向)
-
-                this.d += `M ${x},${y} `;
+                //y -= -m0;
+                //this.d += `M ${x},${y} `;
                 //上方向のズレが反映されないバグを治す
-
+                y += m0*mutli_(defaultsize);
                 const j_ = (this.child[i].type == "P")||(this.child[i].form == "sol")
                 const d = rescale(this.child[i].toPathB(!j_?-m0:(0),m1),defaultsize); //16はsize
                 
