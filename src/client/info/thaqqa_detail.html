@@ -41,7 +41,7 @@
     <p><div class="table" id="vowel_0"></div></p>
 
     <h2>子音字母の形態について</h2>
-    <p>子音字母の形態として、「頭系」「尾系」が存在する。頭系は音節頭の子音を、尾系は音節末の子音を表すのに用いられる。</p>
+    <p>子音字母は「頭系」「尾系」の二種類が存在する。。頭系は音節頭の子音を、尾系は音節末の子音を表すのに用いられる。</p>
     <p>尾系については一定の条件で形状が変化する（後記）</p>
     <p>時と場合によって「符号」と呼ばれるダイアクリティカルマークを伴う。</p>
     <p>「横符号」と「下符号」の二系統があり、横符号は子音のすぐ外側に、下符号は子音のすぐ下側に付く。</p>
@@ -51,7 +51,7 @@
     <h2>約物について</h2>
     <p>母音のように振る舞う「母約物」、子音のように振る舞う「子約物」、単独でしか用いられない「純約物」が存在する。</p>
     <p>母約物・子約物の一部は全ての形態を取らず、母約物については一部が頭系か尾系か片方の子音字母をとらない。</p>
-    <p>主に使用される約物は以下の通り。装飾的に、「と『のように些細な違いを持つ約物も存在する。</p>
+    <p>主に使用される約物は以下の通り。装飾的に、「と『のような些細な違いを持つ約物も存在する。</p>
     <p><div class="table" id="punctuation_0"></div></p>
 
     <h2>東果文字の正書法</h2>
@@ -61,15 +61,10 @@
 
     <h2>一文字の形態について</h2>
     <p>字形として「単独字」「頭字」「中字」「尾字」が存在する。</p>
-    <p>単独字は単独の母音字母を表すのに用いられ、単独系の母音字母のみで構成される。</p>
-    <p>頭字は主に単語の初めの音節を表すのに用いられ、頭系の母音字母の下に双方の子音字母が付く。</p>
-    <p>中字は主に単語の途中の音節を表すのに用いられ、中系の母音字母の上に頭系の子音字母が、下に尾系の子音字母が付く。</p>
-    <p>尾字は主に単語の最後の音節を表すのに用いられ、尾系の母音字母の上に双方の子音字母が付く。</p>
-    <p>以下に例を載せておく。</p>
-    <p><div class="table" id="syllable_vert"></div>（未）</p>
 
     <h3>横書きの場合</h3>
-    <p>以下の通り。</p>
+    <p>音節構造毎に形状が異なる。
+    <p>以下の変化をする。</p>
     <p><div class="table" id="syllable_hori"></div></p>
 
     <h3>縦書きの場合</h3>
@@ -80,14 +75,14 @@
     <p>頭系の子音字母のみを持つ場合：尾字</p>
     <p>尾系の子音字母のみを持つ場合：頭字</p>
     <p>子音字を持たない場合：単独字</p>
-    <p>図で説明すると以下の通り。</p>
-    <p>（画像まだねえよ）</p>
+    <p>それぞれ、khehyelu(東果)、ghen（雪）、lo（根）、vv（フィラー）、e（土)の場合。</p>
+    <p><span class="khhyl " option="default" letter=" e \n \n vv \n \n lo \n \n ghen \n \n khehyelu \n "></p>
 
     <h3>形状の変化について</h3>
     <p>尾系の子音字母 <span class="khhyl " letter="C(onset,t0)"> </span> について、尾字に存在し、かつ特定の母音字母・母約物を含むと形状が変化する。</p>
     <p>中系・尾系の母音字母・母約物について、一部は頭系の子音字母 <span class="khhyl " letter="C(onset,t0)"> </span> を含む場合に特殊な字形となる。</p>
     <p>尾系については、尾系の子音字母 <span class="khhyl " letter="C(coda,t0)"> </span> を含む場合にも特殊な字形になるものが存在する。</p>
-    <p>変化の対応を纏めると以下の通りとなる。</p>
+    <p>変化の対応を纏めると以下の通りとなる。(※ë,ïは基本的にカーニングに対応していないし、指定が面倒)</p>
     <p><div class="table" id="syllable_tval"></div></p>
 
     <h3> <span class="khhyl " letter="V(sol,abig0)"> </span> について</h3>
@@ -332,7 +327,7 @@
             while (object.firstChild) object.removeChild(object.firstChild);
             object.style.display = "block";
 
-            const letter = i.getAttribute("letter");
+            const letter = i.getAttribute("letter").replaceAll("\\n","\n");
             const type = i.getAttribute("option") ?? "parsedplus"
             {
                 const title = $("div#storage svg#svgField title").clone()[0];title.textContent = letter;

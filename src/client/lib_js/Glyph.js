@@ -8,7 +8,6 @@ class GlyphManager{
       .then(data => {
         try{
         Thaqqa_DB.getTable("GLYPH");
-        //Thaqqa_DB.deleteTable("GLYPH");
         }
         catch(_e){
             Thaqqa_DB.createTable({name:"GLYPH"});
@@ -94,6 +93,7 @@ class GlyphArray{
        
         
         if(this.vec==0){
+            let isnewline = true;
             //const Vdefaultsize = defaultsize * textdata.Height / textdata.WidthV;
             for(let i = 0;i<this.child.length;i++){
                 let m0 = 0;
@@ -120,9 +120,13 @@ class GlyphArray{
                 //this.d += `M ${x},${y} `;
                 //上方向のズレが反映されないバグを治す
                 y += m0*mutli_(defaultsize);
+
                 const j_ = (this.child[i].type == "P")||(this.child[i].form == "sol")
                 const d = rescale(this.child[i].toPathB(!j_?-m0:(0),m1),defaultsize); //16はsize
-                
+                if(isnewline){
+                    y -= (SVG.getTop(this.child[i].toPathB(0,0))-m0)*mutli_(defaultsize);
+                    isnewline = false;
+                }
                 this.d += `M ${x},${y} `;
                 this.d += d;
                 y += (SVG.getBottom(this.child[i].toPathB(0,0))+m1)*mutli_(defaultsize);
@@ -131,6 +135,7 @@ class GlyphArray{
                 this.child[i].offset = {x,y};
                 if(this.child[i].type.startsWith("P")&&nlist_.includes(this.child[i].glyphname.split(/\d+/g)[0])){
                     x -= defaultsize;y = 0;
+                    isnewline = true;
                 }
             }
             this.d += `M ${x},${y} `;

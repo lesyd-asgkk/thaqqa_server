@@ -88,7 +88,7 @@ class LayoutDebug_web{
             path.setAttribute("stroke-width",0);
             path.setAttribute("fill","black");
             path.setAttribute("d",d);
-            d += khhyl.Render.DrawD(text,lang,(1-alig),"parsedplus",Number(self.sizetext.value),{x:gap_x,y:gap_y});
+            d += khhyl.Render.DrawD(text,lang,(1-alig),"parsedplus",Number(self.sizetext.value),{x:0,y:0});
             /*if(text[i] == `(改行)` ) {gap_x = 0;gap_y += GAP}
             else{
                 d += khhyl.Render.DrawD(text[i],lang,(1-alig),"parsedplus",Number(self.sizetext.value),{x:gap_x,y:gap_y});
