@@ -1,4 +1,4 @@
-import { Thaqqa_DB,DataTable,Data } from "./deps.js";
+import { Thaqqa_DB } from "./deps.js"; //,DataTable,Data
 class LetterManager{
     static getLetter(param){
         if(typeof param == "string") param = {Name:param};

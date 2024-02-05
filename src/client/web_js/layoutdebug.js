@@ -75,8 +75,8 @@ class LayoutDebug_web{
 
             break;
         }
-        let gap_x = 0;
-        let gap_y = 0;
+        //const gap_x = 0;
+        //const gap_y = 0;
         //const GAP = Number(self.sizetext.value)*2;
         let d = "";
         while(this.SVG.field.firstChild)this.SVG.field.removeChild(this.SVG.field.firstChild);

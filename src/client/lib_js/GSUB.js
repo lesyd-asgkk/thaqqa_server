@@ -1,4 +1,4 @@
-import { Thaqqa_DB,DataTable,Data } from "./Thaqqa_DB.js";
+import { Thaqqa_DB } from "./Thaqqa_DB.js";
 import { RegExp_Khhyl } from "./RegExp_Khhyl.js";
 class GSUBManager {
 /*
@@ -59,7 +59,7 @@ class GSUBManager {
 
         const table_ = Thaqqa_DB.getTable(table);
         table_.createData(param);
-        }　*/
+        }*/
 
         static setGSUBColumnAll(){
             const table = Thaqqa_DB.getTable("GSUB");

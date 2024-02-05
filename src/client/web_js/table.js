@@ -162,7 +162,7 @@ class ColumnDesc_web{
         Khhyl.Thaqqa_DB.getTable(parent.tablename).rewriteColumn(self.name,val,obj.name);
         parent.draw();
         }
-        catch(e){
+        catch(_e){
             obj.textContent = older;}
             
     }

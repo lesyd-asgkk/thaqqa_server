@@ -3,25 +3,17 @@ class Thaqqa_DB {
     static table = [];
     static data;
 
-    static import() {
-      const tablelist = Thaqqa_DB.table;
-      for (let j = 0; j < tablelist.length; j++) {
-        const t = tablelist[j];
-        // table -> name,column,data
-  
-        // column -> name,type
-        // data -> value
+    static import(data) {
+      for(const t_n in data){
+        const t = new DataTable(data[t_n]);
+        Thaqqa_DB.table.push(t);
       }
     }
    static async load(){
     await fetch('/server/init.json')
   .then(response => response.json())
   .then(data => {
-
-    for(const t_n in data){
-      const t = new DataTable(data[t_n]);
-      Thaqqa_DB.table.push(t);
-    }
+    Thaqqa_DB.import(data);
   })
   .catch(error => console.error('Error fetching data:', error));
   }
@@ -175,7 +167,7 @@ class DataTable {
 
       for (let i = 0; i < this.columns.length; i++) {
         if (this.columns[i]["name"] == name) {
-          errmessage += name + "というColumnは既に存在します　　";
+          errmessage += name + "というColumnは既に存在します    ";
         }
       }
 
@@ -243,7 +235,7 @@ class DataTable {
       if (rewrite != null) rewrite[genre] = name_new;
       if(genre == "name"){
       for (let i = 0; i < this.data.length; i++) {
-        let newdata = this.data[i].values[name_old];
+        const newdata = this.data[i].values[name_old];
         this.data[i].values[name_new] = newdata;
         delete this.data[i].values[name_old];
         }

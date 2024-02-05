@@ -1,4 +1,4 @@
-import { Thaqqa_DB,DataTable,Data } from "./Thaqqa_DB.js";
+import { Thaqqa_DB } from "./Thaqqa_DB.js";
 import { RegExp_Khhyl } from "./RegExp_Khhyl.js";
 class GPOSManager {
     

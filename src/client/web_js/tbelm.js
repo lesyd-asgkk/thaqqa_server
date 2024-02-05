@@ -1,5 +1,5 @@
 import * as Khhyl from "../lib_js/deps.js"
-import * as webjs from "./deps.js"
+// import * as webjs from "./deps.js"
 
 
 class DIVparam_web{
@@ -176,7 +176,7 @@ class Button_web{
             }
         }
         else if(self.type == "Delete"){
-            if(!window.confirm("ID = "+ self.id +"\nを消去します")) return false;//削除しなかった
+            if(!globalThis.confirm("ID = "+ self.id +"\nを消去します")) return false;//削除しなかった
             Khhyl.Thaqqa_DB.getTable(parent.tablename).deleteData({ID:self.id})
         }
         parent.draw();

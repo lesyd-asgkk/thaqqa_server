@@ -6,7 +6,7 @@ class Sandbox_web{
         this.textbox;
         this.align = [];
         this.lang = [];
-        this.button;
+        this.svgdownloadbutton;
         this.youaredrawing;
         this.SVG;
     }
@@ -20,7 +20,7 @@ class Sandbox_web{
         for(const v of self.lang){
             if(v.option.checked == true) lang = v.option.value;
         }
-        let d = Khhyl.Render.DrawD(self.textbox.value,lang,(alig==2?0:1),"none",Number(self.sizetext.value));
+        const d = Khhyl.Render.DrawD(self.textbox.value,lang,(alig==2?0:1),"none",Number(self.sizetext.value));
         self.SVG.path.setAttribute("d",d);
 
         const x0 = Khhyl.SVG.getLeft(d);
@@ -55,14 +55,15 @@ class Sandbox_web{
             document.body.removeChild(a);
             URL.revokeObjectURL(svgUrl);
           }
+
           const renderb = document.createElement("input");
           renderb.contentEditable = false;
           renderb.style.display ="block";
           renderb.type = "button";
           renderb.value = "ダウンロードする";
           renderb.addEventListener("click",() => {downloadSvg(this.SVG.field,"param")},true);
-          this.button = renderb;
-          this.loc.appendChild(this.button);
+          this.svgdownloadbutton = renderb;
+          this.loc.appendChild(this.svgdownloadbutton);
 
         const textinput = document.createElement("input");
         textinput.contentEditable = false;
@@ -130,29 +131,13 @@ class Sandbox_web{
         this.button = drawbutton;
         this.loc.appendChild(this.button);
 
-        let d = "M0,0V100H100V0Z M20,20H80V80H20Z"
-        let x0 = 0;
-        let x1 = 100;
-        let y0 = 0;
-        let y1 = 100;
-
         const object = $("div#storage svg#svgField").clone(false,false)[0];
         while(object.firstChild)object.removeChild(object.firstChild);
         object.style.display ="block";
         const path = $("div#storage svg#svgField path").clone()[0];
-        path.setAttribute("fill","none");
         path.setAttribute("stroke","black");
         path.setAttribute("stroke-width",0);
         path.setAttribute("fill","black");
-        path.setAttribute("d",d);
-        
-
-        const shrink_x = 16/150;
-        const HEIGHT = y1-y0;
-        const WIDTH = x1-x0;
-        object.setAttribute("width",(WIDTH*shrink_x).toString());
-        object.setAttribute("height",(HEIGHT*shrink_x).toString());
-        object.setAttribute("viewBox",`${x0} ${y0} ${x1} ${y1}`);
         this.SVG = {field:object,path:path};
         this.SVG.field.appendChild(this.SVG.path);
         this.loc.appendChild(this.SVG.field);
