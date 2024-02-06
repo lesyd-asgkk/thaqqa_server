@@ -25,6 +25,143 @@ class GlyphManager{
             resolve("done");
         });
       }
+      /*
+    static resetPreSVG(){
+        Thaqqa_DB.deleteTable("PRERENDER_GLYPH");
+        Thaqqa_DB.createTable({name:"PRERENDER_GLYPH"});
+        const table = Thaqqa_DB.getTable("PRERENDER_GLYPH");
+        table.createColumn("ID","INTEGER","",0);
+        table.createColumn("fullname","char","",1);table.createColumn("name","char","",2);table.createColumn("val","char","",3);
+        table.createColumn("form","char","",4);
+        table.createColumn("vec","INTEGER","",5);
+        table.createColumn("d","char","",10);
+        table.createColumn("vtop","float","",20);table.createColumn("vbottom","float","",21);
+        table.createColumn("top","float","",22);table.createColumn("bottom","float","",23);
+        table.createColumn("child0","char","",30);table.createColumn("child1","char","",31);table.createColumn("child2","char","",32);
+        table.createColumn("offx0","float","",40);table.createColumn("offy0","float","",41);
+        table.createColumn("aligx","float","",50);table.createColumn("aligy","float","",51);
+         table.createColumn("type","char","",60);
+    }
+    static setPreSVGall(){
+        const c0_khhyl = ["","t0","k0","q0","c0","n0","ng0","th0","s0","hy0","kh0","qh0","h0","l0","r0","tl0","y0","w0","th0-d0","s0-d0","hy0-d0","kh0-d0","qh0-d0","h0-d0","x0"]
+        const c1_khhyl = ["","t0","k0","q0","c0","n0","ng0","th0","s0","hy0","kh0","qh0","h0","l0","r0","tl0","y0","w0","th0-d0","s0-d0","hy0-d0","kh0-d0","qh0-d0","h0-d0"]
+        const v_khhyl = ["a","abig","e","eold","i","iold","o","u","v"]
+        const v_khhylH = {abig:["mid","init","mid"],e:["fin","fin","fin"],
+        i:["fin","init","fin"],o:["fin","init","init"],
+        u:["fin","init","fin"],v:["fin","init","fin"],
+        eold:["fin","fin","fin"],iold:["fin","init","init"],
+        }
+        console.log((c0_khhyl.length*c1_khhyl.length*v_khhyl.length*3+8 )+(c0_khhyl.length*(c1_khhyl.length-1)*v_khhyl.length*3+8 ))
+        for(const y in v_khhyl){
+            const v = v_khhyl[y];
+            const name = `S(sol,,${v}0,)`;
+            new Glyph(name,0);
+            const name2 = `S(sol,,${v}1,)`;
+            if(v!="a")new Glyph(name2,1);
+        }
+        console.log("Done:sol");
+
+        const c0_san = ["t0-d0","k0-d0",
+        "t0-hd0","q0-hd0","n0-hd0","th0-hd0","tl0-hd0",
+        "t0-sy0","k0-sy0","n0-sy0","ng0-sy0","s0-sy0","r0-sy0",
+        "k0-sw0","q0-sw0","ng0-sw0",
+        "t0-d0-hd0","n0-hd0-sy0","th0-hd0-sy0",
+        "th0-hd0-sw0","tl0-hd0-sy0"];
+        console.log((c0_san.length*(c1_khhyl.length+2)*3)+((c0_san.length*(c1_khhyl.length+1)*3)));
+        for(const x in c0_khhyl){const c0 = c0_khhyl[x];
+            for(const z in c1_khhyl){const c1 = c1_khhyl[z];
+                for(const y in v_khhyl){const v = v_khhyl[y];const form = ["init","mid","fin"];
+                    for(const w in form){
+                        const vform = (form[w] != "init" && c0 == "t0")?1:0+(form[w] == "fin" && c1 == "t0")?2:0;
+                        const tform = (c1 == "t0" && form[w] == "fin" && ["e","o","v","eold","iold"].includes(v));
+                        const name = `S(${form[w]},${c0},${v}${vform},${tform?"t1":c1})`;
+                        new Glyph(name,0);
+                        if(v!="a"){
+                        const formb = v_khhylH[v][w];
+                        const vb = (form[w] == "fin" && v == "abig") ? "a" : v;
+                        const vform_b = (formb != "init" && c0 == "t0")?1:0+(formb == "fin" && ( ["i","v"].includes(v) || c1 == "t0"))?2:0;
+                        const nameb = `S(${formb},${c0},${vb}${vform_b},${tform?"t1":c1})`;
+                        new Glyph(nameb,1);
+                        }
+                    }
+                }
+            }
+            console.log(`done:${c0}`)
+        }
+
+        console.log(`done:khhyl`)
+        for(const x in c0_san){const c0 = c0_khhyl[x];
+             for(const y in v_khhyl){const v = v_khhyl[y];const form = ["init","mid","fin"];
+                for(const w in form){
+                    const vform = (form[w] != "init" && c0 == "t0")?1:0;
+                    if(v == "v"){
+                        new Glyph( `S(${form[w]},${c0},${v}${vform},n0);`,0);
+                        new Glyph( `S(${form[w]},${c0},${v}${vform},ng0);`,0);
+                        new Glyph( `S(${form[w]},${c0},${v}${vform},n0-hd0);`,0);
+                    }
+                    else new Glyph( `S(${form[w]},${c0},${v}${vform},)`,0);
+                    
+                    if(v!="a"){
+                    const formb = v_khhylH[v][w];
+                    const vb = (formb == "fin" && v == "abig") ? "a" : v;
+                    const vform_b = (formb != "init" && c0 == "t0")?1:0+(formb == "fin" && ( ["i","v"].includes(v) ))?2:0;
+                    if(v == "v"){
+                        new Glyph( `S(${formb},${c0},${vb}${vform_b},n0)`,1);
+                        new Glyph( `S(${formb},${c0},${vb}${vform_b},ng0)`,1);
+                        new Glyph( `S(${formb},${c0},${vb}${vform_b},n0-hd0)`,1);
+                    }
+                    else new Glyph( `S(${formb},${c0},${vb}${vform_b},)`,1);
+                    
+                    }
+                }
+            }
+            console.log(`done:${c0}`)
+        }
+        console.log(`done:!}`)
+    }
+    static setPreSVG(glypharray,overwrite){
+        const table = Thaqqa_DB.getTable("PRERENDER_GLYPH");
+            for(const d in glypharray){
+                const g_ = glypharray[d];
+                const datab = GlyphManager.getPreSVG(g_.fullname,g_.vec);
+                if(datab.length != 0){
+                    console.log("skipped");
+                    if(overwrite==null||!overwrite) continue;
+                    const l_ = g_.child==null?0:g_.child.length;
+                    table.rewriteData({ID:datab[0].ID},{
+                        name:g_.name,d:g_.d,
+                        fullname:g_.fullname,val:g_.val,form:g_.form,
+                        vec:g_.vec,vtop:g_.vtop,
+                        vbottom:g_.vbottom,top:g_.top,bottom:g_.bottom,
+                        child0:l_>0?g_.child[0].fullname:"",child1:l_>1?g_.child[1].fullname:"",child2:l_>2?g_.child[2].fullname:"",
+                        offx0:g_.offset.x,offy0:g_.offset.y,
+                        aligx:g_.aligment.x,aligy:g_.aligment.y,type:g_.type
+                    });
+                    continue;
+                }
+                const l_ = g_.child==null?-1:g_.child.length;
+                table.createData({
+                    name:g_.name,d:g_.d,
+                    fullname:g_.fullname,val:g_.val,form:g_.form,
+                    vec:g_.vec,vtop:g_.vtop,
+                    vbottom:g_.vbottom,top:g_.top,bottom:g_.bottom,
+                    child0:l_>0?g_.child[0].fullname:"",child1:l_>1?g_.child[1].fullname:"",child2:l_>2?g_.child[2].fullname:"",
+                    offx0:g_.offset.x,offy0:g_.offset.y,
+                    aligx:g_.aligment.x,aligy:g_.aligment.y,type:g_.type
+                });
+            }
+        }
+    static getPreSVG(fullname,vec){
+        const ans = [];
+        const table = Thaqqa_DB.getTable("PRERENDER_GLYPH");
+        if(table != null){
+            const data = table.getData({fullname:fullname,vec:vec});
+            for(let i = 0;i<data.length;i++){
+                ans.push(data[i].values);
+            }
+        }
+        return ans;
+    }//*/
 
     static getSVG(name){
         const ans = [];
@@ -37,6 +174,7 @@ class GlyphManager{
         }
         return ans;
     }
+    
 }
 
 class GlyphArray{
@@ -49,8 +187,7 @@ class GlyphArray{
         this.aligment = {x:algx??0,y:algy??0};
         this.vec = vec; //-1(右から左),0(上から下),1(左から右)
         this.box = {top:0,right:0,bottom:0,left:0};
-        this.bound = bound;
-
+        this.bound = bound;// 端で折り返すか？
         this.initSvg();
     }
     initSvg(){
@@ -91,34 +228,22 @@ class GlyphArray{
         const nlist = Thaqqa_DB.getTable("PUNCTUATION").getData({"IsNewline":true});
         const nlist_ = [];for(let i = 0;i<nlist.length;i++){nlist_.push(nlist[i].values.Name)};
        
-        
         if(this.vec==0){
             let isnewline = true;
-            //const Vdefaultsize = defaultsize * textdata.Height / textdata.WidthV;
             for(let i = 0;i<this.child.length;i++){
-                let m0 = 0;
-                let m1 = 0;
+                let m0 = 0;let m1 = 0;
                 m1 += GPOSManager.gpos(this.child[i].fullname,this.vec,"INEX").y1; // 下方向
                 m0 += GPOSManager.gpos(this.child[i].fullname,this.vec,"INEX").y0; // 上方向
 
-                if(i+1 != this.child.length)
-                {m1 += GPOSManager.gpos(this.child[i].fullname+this.child[i+1].fullname,this.vec,"EX").y0;
                 // AB A(下方向)
-                }
-            
-                if(i != 0){ //
-                    m0 += GPOSManager.gpos(this.child[i-1].fullname+this.child[i].fullname,this.vec,"EX").y1;
-                    // AB B(上方向)
-                }   
-                if(i == this.child.length-1) m1 += GPOSManager.gpos(this.child[i].fullname+"Null()",this.vec,"EX").y0;
+                if(i+1 != this.child.length) m1 += GPOSManager.gpos(this.child[i].fullname+this.child[i+1].fullname,this.vec,"EX").y0;
+                // AB B(上方向)
+                if(i != 0) m0 += GPOSManager.gpos(this.child[i-1].fullname+this.child[i].fullname,this.vec,"EX").y1;
                 // A(last 下方向)
-
-                
-                if(i == 0 ) m0 += GPOSManager.gpos("Null()"+this.child[i].fullname,this.vec,"EX").y1;
+                if(i == this.child.length-1) m1 += GPOSManager.gpos(this.child[i].fullname+"Null()",this.vec,"EX").y0;
                 // B(頭 上方向)
-                //y -= -m0;
-                //this.d += `M ${x},${y} `;
-                //上方向のズレが反映されないバグを治す
+                if(i == 0 ) m0 += GPOSManager.gpos("Null()"+this.child[i].fullname,this.vec,"EX").y1;
+                
                 y += m0*mutli_(defaultsize);
 
                 const j_ = (this.child[i].type == "P")||(this.child[i].form == "sol")
@@ -127,15 +252,13 @@ class GlyphArray{
                     y -= (SVG.getTop(this.child[i].toPathB(0,0))-m0)*mutli_(defaultsize);
                     isnewline = false;
                 }
-                this.d += `M ${x},${y} `;
-                this.d += d;
+                this.d += `M ${x},${y} `;this.d += d;
                 y += (SVG.getBottom(this.child[i].toPathB(0,0))+m1)*mutli_(defaultsize);
                 if(i+1 != this.child.length){const d2 = rescale(this.child[i+1].d,defaultsize);y -= SVG.getTop(d2);}
                 
                 this.child[i].offset = {x,y};
                 if(this.child[i].type.startsWith("P")&&nlist_.includes(this.child[i].glyphname.split(/\d+/g)[0])){
-                    x -= defaultsize;y = 0;
-                    isnewline = true;
+                    x -= defaultsize;y = 0;isnewline = true;
                 }
             }
             this.d += `M ${x},${y} `;
@@ -149,8 +272,7 @@ class GlyphArray{
                 const x_rel = -SVG.getLeft(d_new)+SVG.getRight(d_new)+defaultsize*textdata.WidthV/textdata.Height;
 
                 x += (!textdata.isWidthHRel ? x_abs/2 : x_rel/2);
-                this.d += `M ${x},${y} `;
-                this.d += d_new;
+                this.d += `M ${x},${y} `;this.d += d_new;
                
 
                 if(i!=this.child.length-1)x += (!textdata.isWidthHRel ? x_abs/2 : x_rel/2);//size
@@ -168,41 +290,48 @@ class GlyphArray{
 
 class Glyph{
     constructor(name,vec){ //flag_recは再帰処理判定用
-
-        // name：（使い勝手ゴミなので）仕様変更
-        /* {type: (S,P,Pd,C,Cd,V,Vd) ,form :(init,mid,fin,sol,onset,coda) , 
-            name:h , val:0
-            fullname:h_0
-            
-            例1：type:S form:init
-            name: null val:null
-            fullname:h_0,a_0,h_0
-
-            例2：type:C form:onset
-            name:h val:0
-            fullname: h_0-d_0
-            }
-        */
         this.vec = vec;
         this.fullname = name; 
         this.name = ""; 
         this.d = "";
+        this.val = -1;
+        this.form = "";
         this.isroot = false;
         this.parent;
         this.child = [];//Glyphの配列 入れ子にします
         this.attribute = {};//(将来用)
         this.size = 16;
         this.type = "";//S,P,C,Vのいずれか
-        this.offset = {x:0,y:0,xb:0,yb:0};//（parentに対するthisのoffset）
+        this.offset = {x:0,y:0};//（parentに対するthisのoffset）
         this.gap ={top:0,middle:0,bottom:0}; //上棒、中央、下棒
         this.aligment = {x:0,y:0};
         this.height = {vtop:0,vbottom:0,top:0,bottom:0};
         this.initSvg(name);
         this.toPath();
-
     }
     initSvg(name){
+        /*const preGLYPH_ = GlyphManager.getPreSVG(name,this.vec);
+
+        if(preGLYPH_.length!=0){
+        
+            const pr_ = preGLYPH_[0];
+            this.d=pr_.d;this.name=pr_.name;
+            this.fullname=pr_.fullname;this.val=pr_.val;
+            this.vec=pr_.vec;
+            this.vtop=pr_.vtop;this.vbottom=pr_.vbottom;
+            this.top=pr_.top;this.bottom=pr_.bottom;
+            this.offset={x:pr_.offx0,y:pr_.offy0};
+            this.aligment={x:pr_.aligx,y:pr_.aligy};
+            this.type = pr_.type;
+            if(pr_.child0 != "") this.child.push(new Glyph(pr_.child0,this.vec))
+            if(pr_.child1 != "") this.child.push(new Glyph(pr_.child1,this.vec))
+            if(pr_.child2 != "") this.child.push(new Glyph(pr_.child2,this.vec))
+            
+        return null;
+        }//*/
+        //console.log(name);
         const partname = this.partitionName(name);
+        //console.log(partname);
         if(partname.length == 0){this.isroot = true;
             if(name == null|| name == ""){this.d = "" ,this.aligment = {x:0,y:0};return null;}
             const form = this.form ?? "";
@@ -380,8 +509,9 @@ class Glyph{
                     k = "M 0,"+(0)+" "+k + SVG.setSkewer(-width/2,top+this.height.top,width/2,this.height.vtop)+SVG.setSkewer(-width/2,this.height.vbottom,width/2,bottom+this.height.bottom);
                     k = SVG.convertSVG(k);
                 break;
+            }
         }
-        }{
+        else {
             switch(this.form){
             case "sol":
                 k = SVG.convertSVG(k);
@@ -405,20 +535,21 @@ class Glyph{
                 k = " M 0," + (0)+ " "+ k + SVG.setSkewer(-width/2,top+this.height.top,width/2,this.height.vtop + (v_null? bottom: 0));
                 k = SVG.convertSVG(k);
             break;
-    }}
-
+            }
+        }
     }        
     else{k = k + " M 0,"+(bottom+this.height.bottom);
-    k = "M 0,"+(top+this.height.top)+" "+k;
-    k = SVG.convertSVG(k);
-    k = SVG.convertSVG(k);}
+        k = "M 0,"+(top+this.height.top)+" "+k;
+        k = SVG.convertSVG(k);
+        }
         this.gap = {top:top,middle:0,bottom:bottom};
             return k;
     }
     toPath(){//Svgをpathにする。再帰的に。
-        // \\sなら、最初に[1]を、次に[0]と[2]を処理
-        // \\v,p,cなら、最初に[0][0]...[0]を、次に[0][0]...[1]、、、[1]を処理
+        //if(this.d != "") return this.d;
+
         let ans = "";
+        
         if(this.type == "S"){
             const c0 = this.child[0].toPath();
             const v = this.child[1].toPath();
@@ -455,6 +586,7 @@ class Glyph{
                 p.d = ans;
             }
         }
+        //if(this.fullname != "") GlyphManager.setPreSVG([this]);
         return ans ?? "M 0,0";
     }
 

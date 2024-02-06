@@ -69,7 +69,6 @@
             path.setAttribute("fill", "black");
             path.setAttribute("d", d);
             object.appendChild(path);
-
             const x0 = khhyl.SVG.getLeft(d); const x1 = khhyl.SVG.getRight(d); const y0 = khhyl.SVG.getTop(d); const y1 = khhyl.SVG.getBottom(d);
             const shrink_x = 1.03; const HEIGHT = y1 - y0; const WIDTH = x1 - x0;
             object.setAttribute("width", (WIDTH * shrink_x).toString());
