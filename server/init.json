@@ -2054,6 +2054,15 @@
         "Parsed": "(P\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|Sep\\(\\))R\\(l\\)(P\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|Sep\\(\\))"
       },
       "129": {
+        "ID": 134,
+        "Pattern": "u",
+        "Order": 90,
+        "Priority": -1,
+        "Name": "(V(*,[!_.hasGreedyBond]_))C(*,(*))(P(*)|C(*)|Sep()|$)",
+        "NameAlt": "$1S(null,,a0,$2)$3",
+        "Parsed": "(V\\((?:init|mid|fin|sol|null),(?:br|hyphen)\\d+\\))C\\((?:onset|coda|null),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)(P\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|C\\((?:onset|coda|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|Sep\\(\\)|$)"
+      },
+      "130": {
         "ID": 92,
         "Pattern": "u",
         "Order": 90,
@@ -2062,7 +2071,7 @@
         "NameAlt": "S($2,$1,$3,$4)",
         "Parsed": "C\\((?:onset|coda|null),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)V\\(((?:init|mid|fin|sol|null)),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)C\\((?:onset|coda|null),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
       },
-      "130": {
+      "131": {
         "ID": 93,
         "Pattern": "u",
         "Order": 90,
@@ -2071,7 +2080,7 @@
         "NameAlt": "S($1,,$2,$3)",
         "Parsed": "V\\(((?:init|mid|fin|sol|null)),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)C\\((?:onset|coda|null),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
       },
-      "131": {
+      "132": {
         "ID": 94,
         "Pattern": "u",
         "Order": 90,
@@ -2080,7 +2089,7 @@
         "NameAlt": "S($2,$1,$3,)",
         "Parsed": "C\\((?:onset|coda|null),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)V\\(((?:init|mid|fin|sol|null)),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
       },
-      "132": {
+      "133": {
         "ID": 95,
         "Pattern": "u",
         "Order": 90,
@@ -2089,7 +2098,7 @@
         "NameAlt": "S($1,,$2,)",
         "Parsed": "V\\(((?:init|mid|fin|sol|null)),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
       },
-      "133": {
+      "134": {
         "ID": 96,
         "Pattern": "u",
         "Order": 100,
@@ -10548,12 +10557,12 @@
         "Pattern": "v",
         "Pattern_sub": "EX",
         "Order": 1000,
-        "Name": "",
+        "Name": "S(mid,*,v_-*,*)S(*,*,*,*)",
         "OffsetX0": 0,
-        "OffsetY0": 0,
+        "OffsetY0": -8,
         "OffsetX1": 0,
-        "OffsetY1": 0,
-        "Parsed": ""
+        "OffsetY1": -8,
+        "Parsed": "S\\(mid,(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),v\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)S\\((?:init|mid|fin|sol|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)"
       },
       "651": {
         "ID": 635,

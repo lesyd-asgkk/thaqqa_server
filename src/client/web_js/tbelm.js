@@ -54,7 +54,7 @@ class DIVparam_web{
         else if(parent.tablename == "GSUB" && self.col == "Name"){
             Khhyl.GSUBManager.setGSUBColumn(this.id);
         }
-        else if(parent.tablename == "Parser" && self.col == "Name"){
+        else if(parent.tablename == "PARSER" && self.col == "Name"){
             Khhyl.Parser.setParserColumn(this.id);
         }
         obj.textContent = val;
@@ -151,10 +151,10 @@ class Button_web{
                     Khhyl.Thaqqa_DB.getTable("GSUB").createData({Priority:p.Priority,Pattern:p.Pattern,Name:"",NameAlt:"",Order:p.Order,Parsed:""});
                     }
                 break;
-                case "Parser":
+                case "PARSER":
                     {
                         const p = self.id != null? Khhyl.Thaqqa_DB.getTable(parent.tablename).getData({ID:self.id})[0].values:{Pattern:"u",Priority:0,Order:0};
-                    Khhyl.Thaqqa_DB.getTable("Parser").createData({Priority:p.Priority,Pattern:p.Pattern,Name:"",NameAlt:"",Order:p.Order,Parsed:""});
+                    Khhyl.Thaqqa_DB.getTable("PARSER").createData({Priority:p.Priority,Pattern:p.Pattern,Name:"",NameAlt:"",Order:p.Order,Parsed:""});
                     }
                 break;
                 case "GPOS":
