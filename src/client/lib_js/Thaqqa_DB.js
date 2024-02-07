@@ -4,6 +4,7 @@ class Thaqqa_DB {
     static data;
 
     static import(data) {
+      
       for(const t_n in data){
         const t = new DataTable(data[t_n]);
         Thaqqa_DB.table.push(t);

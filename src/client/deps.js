@@ -26,7 +26,7 @@ import * as webjs from "./web_js/deps.js";
     let tb;
     tb = new webjs.Table_web("GSUB",$("div.area_tb#gsub")[0]);
     tb.draw();
-    tb = new webjs.Table_web("Parser",$("div.area_tb#parser")[0]);
+    tb = new webjs.Table_web("PARSER",$("div.area_tb#parser")[0]);
     tb.draw();
 
     tb = new webjs.Table_web("GPOS",$("div.area_tb#gpos")[0]);

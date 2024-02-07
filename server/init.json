@@ -832,8 +832,8 @@
         "order": 200,
         "subtype": "none"
       },
-      "TopGapV": {
-        "name": "TopGapV",
+      "TopGapH": {
+        "name": "TopGapH",
         "type": "float",
         "order": 300,
         "subtype": "none"
@@ -846,12 +846,12 @@
         "WidthV": 85,
         "isWidthHRel": false,
         "Height": 100,
-        "TopGapV": 10
+        "TopGapH": 10
       }
     }
   },
-  "Parser": {
-    "name": "Parser",
+  "PARSER": {
+    "name": "PARSER",
     "column": {
       "ID": {
         "name": "ID",

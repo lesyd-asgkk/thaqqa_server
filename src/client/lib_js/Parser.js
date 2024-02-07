@@ -2,7 +2,7 @@ import { Thaqqa_DB } from "./Thaqqa_DB.js"; // ,DataTable,Data
 import { RegExp_Khhyl } from "./RegExp_Khhyl.js";
 class Parser {
   static setParserColumnAll(){
-    const table = Thaqqa_DB.getTable("Parser");
+    const table = Thaqqa_DB.getTable("PARSER");
     const ParserData = table.data
     for(let i = 0;i<ParserData.length;i++){
         //console.log(GSUBdata[i].values.ID)
@@ -13,7 +13,7 @@ class Parser {
     }
 }
     static setParserColumn(id){
-        const table = Thaqqa_DB.getTable("Parser");
+        const table = Thaqqa_DB.getTable("PARSER");
         const ParserData = table.getData( {ID:id}); //table.getData( {ID:id});//table.data
         for(let i = 0;i<ParserData.length;i++){
             //console.log(GSUBdata[i].values.ID)
@@ -25,7 +25,7 @@ class Parser {
     }
     static parse(raw,type) {
 
-      const table = Thaqqa_DB.getTable("Parser");
+      const table = Thaqqa_DB.getTable("PARSER");
 
       const r_ = raw.split("");
       let raw_new = "";

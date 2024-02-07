@@ -289,7 +289,7 @@ class GlyphArray{
                 if(i!=this.child.length-1)x += (!textdata.isWidthHRel ? x_abs/2 : x_rel/2);//size
                 this.child[i].offset = {x,y};
                 if(this.child[i].type.startsWith("P")&&nlist_.includes(this.child[i].glyphname.split(/\d+/g)[0])){
-                    x = 0;y += defaultsize*((textdata.Height+textdata.TopGapV)/textdata.Height);
+                    x = 0;y += defaultsize*((textdata.Height+textdata.TopGapH)/textdata.Height);
                 }
             }
             this.d += `M ${x},${y} `;

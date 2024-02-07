@@ -1,7 +1,12 @@
 import { Parser , GSUBManager ,GlyphArray } from "./deps.js";
 
 class Render{
-    //returns d
+    //text:string型
+    //lang:0,1の2択
+    //alig:-1,0,1の3択
+    //option:設定とか
+    //size:初期サイズ。普通は16
+    //pos:表示位置。
     static DrawD(text,lang,alig,option,size,pos){
         switch(option){
             case "parsedplus":
