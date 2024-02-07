@@ -6,7 +6,7 @@ import * as webjs from "./web_js/deps.js";
   async function main(){
     await khhyl.Thaqqa_DB.load();
 
-    await khhyl.GlyphManager.load();
+    await khhyl.GlyphManager.loadAll();
 
     //khhyl.GlyphManager.resetPreSVG();
     //khhyl.GlyphManager.setPreSVGall();

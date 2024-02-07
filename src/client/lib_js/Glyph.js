@@ -1,8 +1,19 @@
 
 import { Thaqqa_DB,SVG,RegExp_Khhyl,GPOSManager,LetterManager} from "./deps.js";
 class GlyphManager{
-    
-    static async load(){
+    static load(doc){
+        const svg = doc.getElementsByTagName("PATH");
+        let d = "M0,0";
+        for (const a of svg) {
+        const b_ = a.getAttribute("d");
+
+        if (b_ != null) {
+          d += b_ + "M0,0";
+        }
+      }
+    table.createData({Name:data,Path:SVG.toRelative(data[d])});
+    }
+    static async loadAll(){
         await fetch('/server/FontData.svg')
       .then(response => response.json())
       .then(data => {
