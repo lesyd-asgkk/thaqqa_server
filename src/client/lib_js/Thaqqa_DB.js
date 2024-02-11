@@ -128,15 +128,13 @@ class DataTable {
     this.desc = ""; //データの説明
     this.load(dt)
   }
-
-    load(dt){
+  load(dt){
     const COLUMN = dt.column;
     const DATA = dt.data;
     for(const cn in COLUMN){
       const k = {name:COLUMN[cn].name,type:COLUMN[cn].type,desc:COLUMN[cn].desc,order:COLUMN[cn].order,subtype:COLUMN[cn].subtype};
       this.columns.push(k);
     }
-    
     for(const dn in DATA){
       const d = new Data(this);
       for(const k in DATA[dn]){
@@ -149,7 +147,6 @@ class DataTable {
       this.data.push(d);
     }
   }
-
   getColumn(name) {
     try {
       for (let i = 0; i < this.columns.length; i++) {
@@ -160,40 +157,27 @@ class DataTable {
       throw e;
     }
   }
-
   createColumn(name,type,desc,priorty,val_init) {
     //val_initは未使用 一応後付で作るかも
     try {
       let errmessage = "";
-
       for (let i = 0; i < this.columns.length; i++) {
         if (this.columns[i]["name"] == name) {
           errmessage += name + "というColumnは既に存在します    ";
         }
       }
-
       if (Thaqqa_DB.isavailableType(type) == false) { //そんな型指定できない時の処理
         errmessage += type + "という型は指定できません";
       }
-      switch (type) {
-        case "INTEGER":
-          val_init = 0;
-          break;
-        case "float":
-          val_init = 0.0;
-          break;
-        case "bool":
-          val_init = false;
-          break;
-        case "char":
-          val_init = "";
-          break;
-      }
-      /*
-            if(不正な値だったら){
-                errmessage += type+"型で+"val_init"は初期値に指定できません";
-            }
-            */
+      else if(val_init == null){ //空だったら
+          const val_ = {INTEGER:1,float:0.0,bool:false,char:""};
+          val_init = val_[type];
+        }
+        else{ //なんか入ってた場合。
+          const val_ = {INTEGER:"number",float:"number",bool:"boolean",char:"string"};
+          const val2_ = typeof val_init;
+          if(val2_ != val_[type]){errmessage += `${type}"型で${val_init}は初期値に指定できません`;}
+          }
       if (errmessage != "") throw new Error(errmessage);
       this.columns.push({ name: name, type: type ,desc : desc,priorty : priorty});
       for (let i = 0; i < this.data.length; i++) {

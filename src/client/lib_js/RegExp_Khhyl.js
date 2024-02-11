@@ -90,14 +90,11 @@ import { REK_def } from "./REK_def.js";
 */
 
 class RegExp_Khhyl {
-
     constructor(pattern,intent) {
         this.pattern = pattern;
         this.intent = intent; //基本的には指定する
         this.child = [];
     }
-
-
     //Tokenize -> Parse -> Tokenize（変更点が無くなるまで繰り返す）
     toNormalRegExp() {
         let ans = "";
@@ -127,13 +124,10 @@ class RegExp_Khhyl {
         else if(this.intent.subtypeb != null && this.intent.subtypeb.match(/^\[/)!=null){
             ans = "(?:" + ans + ")"; 
         }
-
         return ans;
     }
-
     ParseRegExp(){
         this.intent.type ??= "";
-
             let k;
         switch(this.intent.type){
             case "":
@@ -165,8 +159,6 @@ class RegExp_Khhyl {
             case "script":     
                 k = this.ParseRegExp_sub(REK_def.rule_script);     
                 break;
-
-            
         }
         if(k instanceof Error)throw k;
         else if(k != null) this.child = k; 
@@ -174,9 +166,7 @@ class RegExp_Khhyl {
             const k = this.child[i].ParseRegExp();
             if(k instanceof Error)throw k;
         }
-        
         return this;
-
     }
     ParseRegExp_sub(rules) {
         let ans  = [];
@@ -198,9 +188,7 @@ class RegExp_Khhyl {
             }
             break doublebreak; //通らなかった場合。
         }
-
         if(this.pattern != null &&  this.pattern != ""){throw Error("変換エラー:"+this.pattern+ans)}
-        
         return ans;
     }
 }

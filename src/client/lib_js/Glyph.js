@@ -389,7 +389,7 @@ class Glyph{
         if(name == "") return [];
         else{ 
             this.type = name.split("(")[0];
-        if(name.startsWith("S")){
+            if(name.startsWith("S")){
             //音節ならCo,V,Ccに。空の場合は何も残さない
             const temp = name.split("(")[1].split(")")[0].split(",");
             this.glyphname = temp.slice(1).join(",");
@@ -398,19 +398,19 @@ class Glyph{
             const vowel = temp[2] == "" ? "" :"V("+temp[0]+","+temp[2]+")";
             const coda = temp[3] == "" ? "" :"C("+"coda"+","+temp[3]+")";
             return [onset,vowel,coda];
-        }
-        else if(name.startsWith("P")){
-            const temp = name.split("(")[1].split(")")[0].split(",")[0];
-            this.glyphname = name.split("(")[1].split(")")[0];
-            const temp2 = temp.split("-");
+            }
+            else if(name.startsWith("P")){
+                const temp = name.split("(")[1].split(")")[0].split(",")[0];
+                this.glyphname = name.split("(")[1].split(")")[0];
+                const temp2 = temp.split("-");
             if(temp2.length <= 1){this.name = temp2[0].split(/\d+/g)[0];this.val = temp2[0].split(/[A-Za-z]+/g)[1]; return []}//これ以上は分割できない
             else{
                 let d_ = "";
                 for(let i = 0;i<temp2.length;i++){
-                    d_ += temp2[i]+(i==temp2.length-1?"":"-");
+                 d_ += temp2[i]+(i==temp2.length-1?"":"-");
                 }
-                const d = [ name.split("(")[0]+"("+d_+")","Pd("+temp2.slice(-1)+")"];
-                return d;
+            const d = [ name.split("(")[0]+"("+d_+")","Pd("+temp2.slice(-1)+")"];
+            return d;
             }
         }
         else{
@@ -418,26 +418,20 @@ class Glyph{
             this.glyphname = temp.slice(1).join(",");
             this.form = temp[0];
             const temp2 = temp[1].split("-");
-            if(temp2.length <= 1){this.name = temp2[0].split(/\d+/g)[0];this.val = temp2[0].split(/[A-Za-z]+/g)[1]; return []}//これ以上は分割できない
-            else{
-                const l = name.split("(")[0];
-                let d_ = "";
-                for(let i = 0;i<temp2.length-1;i++){
-                    d_ += temp2[i]+(i==temp2.length-2?"":"-");
+                if(temp2.length <= 1){this.name = temp2[0].split(/\d+/g)[0];this.val = temp2[0].split(/[A-Za-z]+/g)[1]; return []}//これ以上は分割できない
+                else{
+                    const l = name.split("(")[0];
+                    let d_ = "";
+                    for(let i = 0;i<temp2.length-1;i++)d_ += temp2[i]+(i==temp2.length-2?"":"-");
+                    const d = [ l+"("+temp[0]+","+d_+")",l.length == 2 ? l : (l+"d")+"("+temp[0]+","+temp2.slice(-1)+")"];
+                    return d;
                 }
-                
-                const d = [ l+"("+temp[0]+","+d_+")",l.length == 2 ? l : (l+"d")+"("+temp[0]+","+temp2.slice(-1)+")"];
-                return d;
-            }
             //Co-d0-d1なら例えば(Co-d0)とd1に分割。
-        }
+            }
         }
         //音節ならCo,V,Ccに、Co-d0-d1なら例えば(Co-d0)とd1に分割。
         //これ以上分割不能ならfalseを返す
     }
-
-
-
     toPathAbs(height,vowelhratio){
         let k = this.toPath();
         k ??= "M 0,0"; k = k != "" ? k:"M 0,0"
@@ -453,8 +447,8 @@ class Glyph{
                     k = SVG.convertSVG(k);
                 break;
                 case "init":
-                    //initはM 0,0
-                    //vbottom~heightの棒
+                //initはM 0,0
+                //vbottom~heightの棒
                     k = SVG.convertSVG(k);
                     k = "M 0,0 "+k+SVG.setSkewer(-width/2,this.height.vbottom,width/2,height);
                     k = SVG.convertSVG(k);
@@ -478,14 +472,13 @@ class Glyph{
                     this.gap = {top:0,middle:height-(this.height.bottom-this.height.vtop),bottom:0};
                 break;
                 }   
-            }
-            else{
-                k = SVG.convertSVG(k);
-                k = "M 0,"+(VH+vt)+""+k;
-                k = SVG.convertSVG(k);
-                this.gap = {top:VH-vt,middle:VH,bottom:VH+vt};
-            }
-                return k;
+        } else{
+        k = SVG.convertSVG(k);
+        k = "M 0,"+(VH+vt)+""+k;
+        k = SVG.convertSVG(k);
+        this.gap = {top:VH-vt,middle:VH,bottom:VH+vt};
+        }
+    return k;
     }
     toPathB(top,bottom){
         let k = this.toPath();
@@ -522,43 +515,40 @@ class Glyph{
         }
         else {
             switch(this.form){
-            case "sol":
-                k = SVG.convertSVG(k);
-                k = k + " M 0,"+(bottom+this.height.bottom);
-                k = SVG.convertSVG(k);
-                k = "M 0,"+(top+this.height.top)+" "+k;
-                k = SVG.convertSVG(k);
-            break;
-            case "init":
-                k = SVG.convertSVG(k);
-                k = "M 0,"+(top)+" "+k + SVG.setSkewer(-width/2,top+this.height.vbottom,width/2,bottom+this.height.bottom);
-                k = SVG.convertSVG(k);
-            break;
-            case "mid":
-                k = SVG.convertSVG(k);
-                k = " M 0,0 "+k + SVG.setSkewer(-width/2,top+this.height.top,width/2,this.height.vtop)+SVG.setSkewer(-width/2,this.height.vbottom,width/2,bottom+this.height.bottom);
-                k = SVG.convertSVG(k);
-            break;
+                case "sol":
+                    k = SVG.convertSVG(k);
+                    k = k + " M 0,"+(bottom+this.height.bottom);
+                    k = SVG.convertSVG(k);
+                    k = "M 0,"+(top+this.height.top)+" "+k;
+                    k = SVG.convertSVG(k);
+                break;
+                case "init":
+                    k = SVG.convertSVG(k);
+                    k = "M 0,"+(top)+" "+k + SVG.setSkewer(-width/2,top+this.height.vbottom,width/2,bottom+this.height.bottom);
+                    k = SVG.convertSVG(k);
+                break;
+                case "mid":
+                    k = SVG.convertSVG(k);
+                    k = " M 0,0 "+k + SVG.setSkewer(-width/2,top+this.height.top,width/2,this.height.vtop)+SVG.setSkewer(-width/2,this.height.vbottom,width/2,bottom+this.height.bottom);
+                    k = SVG.convertSVG(k);
+                break;
                 case "fin":
-                k = SVG.convertSVG(k);
-                k = " M 0," + (0)+ " "+ k + SVG.setSkewer(-width/2,top+this.height.top,width/2,this.height.vtop + (v_null? bottom: 0));
-                k = SVG.convertSVG(k);
-            break;
+                    k = SVG.convertSVG(k);
+                    k = " M 0," + (0)+ " "+ k + SVG.setSkewer(-width/2,top+this.height.top,width/2,this.height.vtop + (v_null? bottom: 0));
+                    k = SVG.convertSVG(k);
+                break;
+                }
             }
-        }
-    }        
-    else{k = k + " M 0,"+(bottom+this.height.bottom);
+        }        
+        else{k = k + " M 0,"+(bottom+this.height.bottom);
         k = "M 0,"+(top+this.height.top)+" "+k;
         k = SVG.convertSVG(k);
         }
         this.gap = {top:top,middle:0,bottom:bottom};
-            return k;
+        return k;
     }
     toPath(){//Svgをpathにする。再帰的に。
-        //if(this.d != "") return this.d;
-
         let ans = "";
-        
         if(this.type == "S"){
             const c0 = this.child[0].toPath();
             const v = this.child[1].toPath();
@@ -566,10 +556,8 @@ class Glyph{
             const offs = this.getoffset(this.child[1],true,true)
             const off0 = offs[0];//this.child[0].name_b.glyphname == null ? {x:0,y:0} :this.child[0].getoffset(v,true);//parentd
             const off1 = offs[1];//this.child[2].name_b.glyphname == null ? {x:0,y:0} :this.child[2].getoffset(v,true);
-            
             ans = SVG.merge3(v,c0,c1,0,off0.y,0,off1.y);
             ans = SVG.toRelative(ans);
-
             this.height.vtop = SVG.getTop(v);
             this.height.vbottom = SVG.getBottom(v);
             this.height.bottom = SVG.getBottom(ans);
@@ -579,14 +567,10 @@ class Glyph{
         else{
             // deno-lint-ignore no-this-alias
             let p = this; 
-            while(p.child.length != 0){
-                p = p.child[0];
-            }
+            while(p.child.length != 0) p = p.child[0];
                 ans = p.d;
                 const dir_ = {onset:1,coda:-1};
-               
             while(p.parent != null && p.parent.type != "S"){
-                
                 const dir  = p.type.startsWith("C") ? dir_[p.form] : 1;
                 const off = p.parent.getoffset("",false,true);
                 ans = SVG.merge2(ans,p.parent.child[1].d,off.x+dir*(SVG.getRight(p.parent.child[1].d)+SVG.getLeft(p.parent.child[1].d))/2,off.y+(SVG.getTop(p.parent.child[1].d)-SVG.getBottom(p.parent.child[1].d)/2));
@@ -595,68 +579,54 @@ class Glyph{
                 p.d = ans;
             }
         }
-        //if(this.fullname != "") GlyphManager.setPreSVG([this]);
         return ans ?? "M 0,0";
     }
-
-    
     getoffset(){
         //V-Vd部分のみ動作未検証
-            if(this.type == "S"){
-                const v = this.child[1].glyphname.split(/\d+/g)[0];
-                const v_null = Thaqqa_DB.getTable("VOWEL").getData({Name:v})[0].values.isNullVowel;
-
-                const c0offset = this.child.length>0?this.child[0].offset:{x:0,y:0};
-                    const c2offset = this.child.length>2?this.child[2].offset:{x:0,y:0};
-                    const c0d = this.child.length>0?this.child[0].d:null;
-                    const c1d = this.child[1].d;
-                    const c2d = this.child.length>2?this.child[2].d:null;
-                    const topgap = c0d !=null?(c2d!=null ? Math.min(SVG.getTop(c0d),SVG.getTop(c2d)):SVG.getTop(c2d)):(c2d!=null ? SVG.getTop(c2d):0);
-                    const bottomgap = c0d !=null?(c2d!=null ? Math.max(SVG.getBottom(c0d),SVG.getBottom(c2d)):SVG.getBottom(c2d)):(c2d!=null ? SVG.getBottom(c2d):0);
-
-                if(v_null){
-                    return [{x:c0offset.x,y:SVG.getBottom(c1d)+topgap+c0offset.y},{x:c2offset.x,y:SVG.getBottom(c1d)+topgap+c2offset.y}];
-                }
-                else{
-                    switch(this.form){
-                        case "init":
-                            return [{x:c0offset.x,y:SVG.getBottom(c1d)+topgap+c0offset.y},{x:c2offset.x,y:SVG.getBottom(c1d)+topgap+c2offset.y}];
-                        case "mid":
-                        case "sol":
-                            return [{x:c0offset.x,y:SVG.getTop(c1d)-SVG.getBottom(c0d ?? "M 0,0")+c0offset.y},{x:c2offset.x,y:SVG.getBottom(c1d)+SVG.getTop(c2d ?? "M 0,0")+c2offset.y}];
-                        case "fin":
-                            return [{x:c0offset.x,y:SVG.getTop(c1d)-bottomgap+c0offset.y},{x:c2offset.x,y:SVG.getTop(c1d)-bottomgap+c2offset.y}];
-                    }
-                }
+        if(this.type == "S"){
+            const v = this.child[1].glyphname.split(/\d+/g)[0];
+            const v_null = Thaqqa_DB.getTable("VOWEL").getData({Name:v})[0].values.isNullVowel;
+            const c0offset = this.child.length>0?this.child[0].offset:{x:0,y:0};
+            const c2offset = this.child.length>2?this.child[2].offset:{x:0,y:0};
+            const c0d = this.child.length>0?this.child[0].d:null;
+            const c1d = this.child[1].d;
+            const c2d = this.child.length>2?this.child[2].d:null;
+            const topgap = c0d !=null?(c2d!=null ? Math.min(SVG.getTop(c0d),SVG.getTop(c2d)):SVG.getTop(c2d)):(c2d!=null ? SVG.getTop(c2d):0);
+            const bottomgap = c0d !=null?(c2d!=null ? Math.max(SVG.getBottom(c0d),SVG.getBottom(c2d)):SVG.getBottom(c2d)):(c2d!=null ? SVG.getBottom(c2d):0);
+            if(v_null){
+                return [{x:c0offset.x,y:SVG.getBottom(c1d)+topgap+c0offset.y},{x:c2offset.x,y:SVG.getBottom(c1d)+topgap+c2offset.y}];
             }
             else{
-                if(this.child.length < 1) return {x:0,y:0};
-                const parentd = this.child[0].d
-                const off1 = this.child[1].offset;
-                const alig1 = this.child[1].aligment;
-
-                if(this.type.startsWith("C")){
-                    const dir_ = {onset:1,coda:-1};
-                    const dir = dir_[this.form];
-
-                    const x =  (SVG.getLeft(parentd)*(1-alig1.x*dir)/2+SVG.getRight(parentd) *(1+alig1.x*dir)/2)+off1.x*dir;
-                    const y =  (SVG.getTop(parentd)*(1-alig1.y)/2+SVG.getBottom(parentd) *(1+alig1.y)/2)+off1.y ;
-
-                    //console.log(alig1);
-                    //console.log(x);
-                    //console.log(y);
-                    return{x:x,y:y};
-                }
-                else{
-                    const x =  (SVG.getLeft(parentd)*(1-alig1.x)/2+SVG.getRight(parentd)*(1+alig1.x)/2)+off1.x;
-                    const y =  (SVG.getTop(parentd)*(1-alig1.y)/2+SVG.getBottom(parentd) *(1+alig1.y)/2)+off1.y ;
-                    return{x:x,y:y};
+                switch(this.form){
+                    case "init":
+                        return [{x:c0offset.x,y:SVG.getBottom(c1d)+topgap+c0offset.y},{x:c2offset.x,y:SVG.getBottom(c1d)+topgap+c2offset.y}];
+                    case "mid":
+                    case "sol":
+                        return [{x:c0offset.x,y:SVG.getTop(c1d)-SVG.getBottom(c0d ?? "M 0,0")+c0offset.y},{x:c2offset.x,y:SVG.getBottom(c1d)+SVG.getTop(c2d ?? "M 0,0")+c2offset.y}];
+                    case "fin":
+                        return [{x:c0offset.x,y:SVG.getTop(c1d)-bottomgap+c0offset.y},{x:c2offset.x,y:SVG.getTop(c1d)-bottomgap+c2offset.y}];
                 }
             }
-        
+        }
+        else{
+            if(this.child.length < 1) return {x:0,y:0};
+            const parentd = this.child[0].d
+            const off1 = this.child[1].offset;
+            const alig1 = this.child[1].aligment;
+             if(this.type.startsWith("C")){
+                const dir_ = {onset:1,coda:-1};
+                const dir = dir_[this.form];
+                const x =  (SVG.getLeft(parentd)*(1-alig1.x*dir)/2+SVG.getRight(parentd) *(1+alig1.x*dir)/2)+off1.x*dir;
+                const y =  (SVG.getTop(parentd)*(1-alig1.y)/2+SVG.getBottom(parentd) *(1+alig1.y)/2)+off1.y ;
+                return{x:x,y:y};
+            } else{
+                const x =  (SVG.getLeft(parentd)*(1-alig1.x)/2+SVG.getRight(parentd)*(1+alig1.x)/2)+off1.x;
+                const y =  (SVG.getTop(parentd)*(1-alig1.y)/2+SVG.getBottom(parentd) *(1+alig1.y)/2)+off1.y ;
+                return{x:x,y:y};
+            }
+        }
         return {x:0,y:0};
     }
-
 }
 
 export {Glyph,GlyphArray,GlyphManager};

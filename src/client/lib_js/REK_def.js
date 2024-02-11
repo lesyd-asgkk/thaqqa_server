@@ -58,13 +58,9 @@ class REK_def {
         for (const a_ in AL) {
           if(table[str] != AL[a_].parent.name) continue;
           const k = AL[a_].values;
-          
           const val = Function("_", `return ${msg}`);
-          
           const val2 = val(k);
-
           if (typeof val2 == "boolean" && val2 == true) {
-
             hensuu.push(AL[a_].values.Name.toString());
           }
         }
@@ -77,7 +73,6 @@ class REK_def {
         return REK_def.PREsub_lower(self, ans, pattern, letter, msg, "g");
       },
   };
-
   static rule_g= {
     ["(\\\||(\\\*|\\\+|\\\?)\\\??)"]: (self, ans, pattern, msg) => {
       return REK_def.PREsub_END(self, ans, pattern, msg, msg);
@@ -114,7 +109,6 @@ class REK_def {
       return REK_def.PREsub_END(self, ans, pattern, "", msg);
     },
   };
-
    static PREsub_br_D(
     self,
     ans,
@@ -138,7 +132,6 @@ class REK_def {
     pattern = pattern.slice(i + 1);
     return [ans, pattern];
   }
-
   static rule_G = {
     ["-\\*"]: (self, ans, pattern, msg) => {
       self.intent.isFirst = "TRUE";
@@ -152,10 +145,6 @@ class REK_def {
       self.intent.isFirst = "TRUE";
       return REK_def.PREsub_lower(self, ans, pattern, "(?:|-._?)", msg, "G");
     },
-    /*
-      S\(\*,(.)-\*,\(\[_\.isNullVowel\]_\.\)-\*,(.)-\*\)\|S\(\(init\|fin\),(.)-\*,\*,(.)-\*\)
-      S(*,$1_-*,[_.isNullVowel].-*,$2_-*)|S((init|fin),$3_-*,*,$4_-*)
-    */
     ["\\*"]: (self, ans, pattern, msg) => {
       if (self.intent.isFirst == "FALSE") {
         return REK_def.PREsub_END(self, ans, pattern, msg, msg);
@@ -386,29 +375,19 @@ class REK_def {
       return REK_def.PREsub_END(self, ans, pattern, "", msg);
     },
   };
-
-   static PREsub_END(//self,ans,pattern,何という文字列に変換するか,msg
-    self,ans,pattern,letter,msg,
-  ) {
+//self,ans,pattern,何という文字列に変換するか,msg
+  static PREsub_END(self,ans,pattern,letter,msg){
     const intent_after = { ...self.intent };
     intent_after.type = "FINITE";
     intent_after.isend = "TRUE";
     intent_after.subtypeb = "none";
     const t = new RegExp_Khhyl(letter, intent_after);
     ans.push(t);
-
     pattern = pattern.slice(msg.length);
     return [ans, pattern];
   }
-
-   static PREsub_lower(//self,ans,pattern,何という文字列に変換するか,msg,type(次の階層)
-    self,
-    ans,
-    pattern,
-    letter,
-    msg,
-    type,
-  ) {
+  //self,ans,pattern,何という文字列に変換するか,msg,type(次の階層)
+  static PREsub_lower(self,ans,pattern,letter,msg,type){
     const intent_after = { ...self.intent };
     intent_after.type = type;
     intent_after.subtypeb = "none";
@@ -417,14 +396,8 @@ class REK_def {
     pattern = pattern.slice(msg.length);
     return [ans, pattern];
   }
-   static PREsub_br_C(//()類
-    self,
-    ans,
-    pattern,
-    letter,
-    type,
-  ) {
-    //S() クソ厄介
+  //()類 lowerと同じ引数 「S()」とか「L()」みたいなやつ
+  static PREsub_br_C(self,ans,pattern,letter,type){
     const intent_after = { ...self.intent };
     let i = 1;
     let j = 1;
@@ -440,14 +413,8 @@ class REK_def {
     pattern = pattern.slice(i + 1);
     return [ans, pattern];
   }
-
-   static PREsub_br_B(
-    self,
-    ans,
-    pattern,
-    letter,
-  ) {
-    //前方の(?<=y) (?<!y)と後方の(?=y) (?!y)  クソ厄介
+  //前方の(?<=y) (?<!y)と後方の(?=y) (?!y)  クソ厄介
+  static PREsub_br_B(self,ans,pattern,letter){
     const intent_after = { ...self.intent };
     let i;
     let j = 1;
@@ -462,13 +429,8 @@ class REK_def {
     pattern = pattern.slice(i + 1);
     return [ans, pattern];
   }
-   static PREsub_br_A(
-    self,
-    ans,
-    pattern,
-    letter,
-  ) {
-    //() クソ厄介 (?: (?<Name>: の例外処理も要る
+  //() クソ厄介 (?: (?<Name>: の例外処理も要る
+   static PREsub_br_A(self,ans,pattern,letter){
     const intent_after = { ...self.intent };
     let i = 1;
     let j = 1;
@@ -484,12 +446,8 @@ class REK_def {
     pattern = pattern.slice(i + 1);
     return [ans, pattern];
   }
-   static PREsub_kazu(
-    self,
-    ans,
-    pattern,
-    letter,
-  ) {
+  //{}とか
+  static PREsub_kazu(self,ans,pattern,letter){
     const intent_after = { ...self.intent };
     intent_after.type = "{n}";
     intent_after.subtype2 = "none";
