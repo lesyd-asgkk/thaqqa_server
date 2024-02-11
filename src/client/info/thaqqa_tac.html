@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="../lib_ex/jquery-3.6.4.min.js"></script>
+    <script src="../lib_ex/binarytransport.js"></script>
+    <script src="../lib_ex/snap.svg-min.js"></script>
+    <meta charset="utf-8">
+
+    <title>東果文字_概要</title>
+    <link rel="stylesheet" href="style_info.css">
+
+    <!-- <link rel="stylesheet" href="style.css" />-->
+    <!-- 適当にcssの勉強してポチポチやれ-->
+</head>
+
+<body>
+    <div id="storage">
+        <svg id="svgField" width="0" height="0" viewBox="-10 0 100 100" style="display: none;">
+            <title>V(sol,abig_0)</title>
+            <desc>解説</desc>
+            <path fill="none" stroke="red" d="M 10,30
+                 A 20,20 0,0,1 50,30
+                 A 20,20 0,0,1 90,30
+                 Q 90,60 50,90
+                 Q 10,60 10,30 z" />
+        </svg>
+    </div>
+    <h1>利用規約</h1>
+    <p>私は本サービスによって生じた損失や損害について責任を負いません。</p>
+
+</body>
+
+<script type="module">
+
+    import * as khhyl from "../lib_js/deps.js"
+    //Khhyl.Render.DrawD(self.textbox.value,lang,(alig==2?0:1),"none",Number(self.sizetext.value));
+    //span khhylに関する変換処理
+    $(document).ready(async function () {
+        await khhyl.Thaqqa_DB.load();
+
+        for (const i of $('span.khhyl')) {
+            const object = $("div#storage svg#svgField").clone(false, false)[0];
+            while (object.firstChild) object.removeChild(object.firstChild);
+            object.style.display = "block";
+
+            const letter = i.getAttribute("letter");
+            const type = i.getAttribute("option") ?? "parsedplus"
+            {
+                const title = $("div#storage svg#svgField title").clone()[0];title.textContent = letter;
+                const desc = $("div#storage svg#svgField desc").clone()[0];desc.textContent = "解説";
+                object.append(title, desc)
+            }
+            //console.log(parseFloat(getComputedStyle(i).fontSize));
+            const d = khhyl.Render.DrawD(letter, 0, i.getAttribute("alig") == null ? 0 : 1 , type, parseFloat(getComputedStyle(i).fontSize), { x: 0, y: 0 });
+            const path = $("div#storage svg#svgField path").clone()[0];
+            path.style.display = "block";
+            path.setAttribute("fill", "none");
+            path.setAttribute("stroke", "black");
+            path.setAttribute("stroke-width", 0);
+            path.setAttribute("fill", "black");
+            path.setAttribute("d", d);
+            object.appendChild(path);
+            const x0 = khhyl.SVG.getLeft(d); const x1 = khhyl.SVG.getRight(d); const y0 = khhyl.SVG.getTop(d); const y1 = khhyl.SVG.getBottom(d);
+            const shrink_x = 1.03; const HEIGHT = y1 - y0; const WIDTH = x1 - x0;
+            object.setAttribute("width", (WIDTH * shrink_x).toString());
+            object.setAttribute("height", (HEIGHT * shrink_x).toString());
+            object.setAttribute("viewBox", `${x0-(WIDTH*(shrink_x-1)/2)} ${y0-(HEIGHT*(shrink_x-1))/2} ${WIDTH* shrink_x} ${HEIGHT* shrink_x}`);
+            i.appendChild(object);
+        }
+    });
+</script>
+
+</html>
