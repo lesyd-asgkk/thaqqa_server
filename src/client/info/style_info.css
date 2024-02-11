@@ -5,8 +5,15 @@ body {
     backGround-color: #ffffff;
     height:100%;
     width:100%;
-
 }
+h1 {
+    padding: 30px;
+}
+h2 {
+    overflow-wrap : break-word;
+    padding: 20px;
+}
+p {padding: 10px;}
 span.khhyl {
     display: inline-block;
     font-size: 1.5em;
