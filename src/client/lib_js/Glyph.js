@@ -491,8 +491,6 @@ class Glyph{
         let k = this.toPath();
        k ??= "M 0,0"; k = k != "" ? k:"M 0,0"
         const width = Thaqqa_DB.getTable("TEXTDATA").data[0].values.Thickness;
-        //ここらへんもSnap.Pathの力を使います
-
         if(this.type == "S"){
             const v = this.child[1].glyphname.split(/\d+/g)[0];
             const v_null = Thaqqa_DB.getTable("VOWEL").getData({Name:v})[0].values.isNullVowel;

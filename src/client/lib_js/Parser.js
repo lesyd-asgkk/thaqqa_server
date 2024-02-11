@@ -24,17 +24,11 @@ class Parser {
         }
     }
     static parse(raw,type) {
-
       const table = Thaqqa_DB.getTable("PARSER");
-
       const r_ = raw.split("");
       let raw_new = "";
-      for(const r of r_){
-        raw_new += `R(${r})`
-      }
-
+      for(const r of r_) raw_new += `R(${r})`
       const array = table.getData({Pattern:(type==0?/(u|c)/:/(u|o)/)});
-
       const sortalg = function(first, second ){//Priorityの大きい順に並び替える
         if (first.values.Order > second.values.Order ) return 1;
         else if (first.values.Order  < second.values.Order )return -1;

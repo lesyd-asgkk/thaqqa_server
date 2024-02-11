@@ -8,9 +8,6 @@ import * as webjs from "./web_js/deps.js";
 
     await khhyl.GlyphManager.loadAll();
 
-    //khhyl.GlyphManager.resetPreSVG();
-    //khhyl.GlyphManager.setPreSVGall();
-
     let ta = new webjs.Table_web("VOWEL",$("div.area_tb#vowel")[0]);
     ta.draw();
     ta = new webjs.Table_web("DIACRITIC_V",$("div.area_tb#voweld")[0]);
@@ -46,9 +43,7 @@ import * as webjs from "./web_js/deps.js";
     object.name = "export";
     object.addEventListener("click",() => {khhyl.Thaqqa_DB.export();},true);
     $("div.area_tb#export")[0].appendChild(object);
-  
 
-    //$(this.where)[0]
   }
 
 
