@@ -43,13 +43,8 @@ import * as webjs from "./web_js/deps.js";
     object.name = "export";
     object.addEventListener("click",() => {khhyl.Thaqqa_DB.export();},true);
     $("div.area_tb#export")[0].appendChild(object);
-
   }
-
-
   self.addEventListener("load", async () => {
     console.log("ページが完全に読み込まれました");
-   
     await main();
-
   });

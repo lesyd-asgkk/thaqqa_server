@@ -189,16 +189,16 @@ class GlyphManager{
 }
 
 class GlyphArray{
-    constructor(name,bound,posx,posy,algx,algy,vec){
+    constructor(name,vec,iswrap,box,pos,alg){
         this.name=name;
         this.d = "";
         this.child = [];//Glyphの配列 入れ子にします
         this.attribute = {};//(将来用)
-        this.position = {x:posx??0,y:posy??0};//（parentに対するthisのoffset）
-        this.aligment = {x:algx??0,y:algy??0};
+        this.position = {x:pos.x??0,y:pos.y??0};//（parentに対するthisのoffset）
+        this.aligment = {x:alg.x??0,y:alg.y??0};
         this.vec = vec; //-1(右から左),0(上から下),1(左から右)
-        this.box = {top:0,right:0,bottom:0,left:0};
-        this.bound = bound;// 端で折り返すか？
+        this.box = box;//{top:0,right:0,bottom:0,left:0};
+        this.iswrap = iswrap;// 端で折り返すか？
         this.initSvg();
     }
     initSvg(){
@@ -347,22 +347,16 @@ class Glyph{
             if(name == null|| name == ""){this.d = "" ,this.aligment = {x:0,y:0};return null;}
             const form = this.form ?? "";
             const name_ = `${this.name}_${form}_${this.val}`
-            
             this.d = (GlyphManager.getSVG(name_))[0];//this.nameがこれ以上分割できない場合。
-
-            let offx = 0;
-            let offy = 0;
             
+            let offx = 0;let offy = 0;
             if(LetterManager.getLetter(this.name)){offx = LetterManager.getLetter(this.name)[0].values.x_Align;offy = LetterManager.getLetter(this.name)[0].values.y_Align;}
             this.aligment = {x:(offx),y:(offy)};
         }
         else{//分割できたら
             this.isroot = false;
-            let x0 = 0;
-            let y0 = 0;
-            let x1;
-            let y1;
-            
+            let x0 = 0;let y0 = 0;
+            let x1;let y1;
             if(this.type == "S"){
                 const k = GPOSManager.gpos(name,this.vec,"IN");
                 x0 = k.x0;y0 = k.y0;x1 = k.x1;y1 = k.y1;
@@ -371,7 +365,6 @@ class Glyph{
                 const k = GPOSManager.gpos(name,this.vec,"DIAC");
                 x0 = k.x0;y0 = k.y0;
             }
-
             for(let i = 0 ; i<partname.length;i++){
                 const new_glyph = new Glyph(partname[i],this.vec);
                 new_glyph.parent = this;
@@ -382,7 +375,6 @@ class Glyph{
             }
         } 
     }
-
 
     partitionName(name){
         this.fullname = name;

@@ -3193,7 +3193,7 @@
         "OffsetX0": 0,
         "OffsetY0": 0,
         "OffsetX1": 0,
-        "OffsetY1": 10,
+        "OffsetY1": 8,
         "Parsed": "S\\(init,,o\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)"
       },
       "37": {
@@ -3215,7 +3215,7 @@
         "Order": 4,
         "Name": "S(fin,*,u_-*,)",
         "OffsetX0": 0,
-        "OffsetY0": -5,
+        "OffsetY0": -7,
         "OffsetX1": 0,
         "OffsetY1": 0,
         "Parsed": "S\\(fin,(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),u\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),\\)"
@@ -3227,9 +3227,9 @@
         "Order": 4,
         "Name": "S(fin,*,u_-*,*)",
         "OffsetX0": 0,
-        "OffsetY0": -13,
+        "OffsetY0": -15,
         "OffsetX1": 0,
-        "OffsetY1": -5,
+        "OffsetY1": -7,
         "Parsed": "S\\(fin,(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),u\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)"
       },
       "40": {
@@ -3253,7 +3253,7 @@
         "OffsetX0": 0,
         "OffsetY0": 0,
         "OffsetX1": 0,
-        "OffsetY1": 16,
+        "OffsetY1": 8,
         "Parsed": "S\\(init,,u\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)"
       },
       "42": {

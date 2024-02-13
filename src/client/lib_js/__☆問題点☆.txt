@@ -31,8 +31,9 @@ Render.js
 Glyph.js内
 ●GlyphManager
 ●GlyphArray
-◯constructor(name,bound,posx,posy,algx,algy,vec)
-・↑name,vec,bound,pos,algでおｋ
+◯constructor(name,vec,iswrap,pos={x:0,y:0},alg={x:[-1,0,1] y:[-1,0,1]})
+
+・↑でおｋ
 ◯toPath(defaultsize)
 ・(特に指定がなければ)defaultsizeの大きさで文字を描画する
 

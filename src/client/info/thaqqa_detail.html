@@ -118,9 +118,7 @@
 </body>
 
 <script type="module">
-
     import * as khhyl from "../lib_js/deps.js"
-    //Khhyl.Render.DrawD(self.textbox.value,lang,(alig==2?0:1),"none",Number(self.sizetext.value));
     //span khhylに関する変換処理
     $(document).ready(async function () {
         await khhyl.Thaqqa_DB.load();
@@ -328,7 +326,7 @@
                 object.append(title, desc)
             }
             //console.log(parseFloat(getComputedStyle(i).fontSize));
-            const d = khhyl.Render.DrawD(letter, 0, i.getAttribute("alig") == null ? 0 : 1 , type, parseFloat(getComputedStyle(i).fontSize), { x: 0, y: 0 });
+            const d = khhyl.Render.DrawD(letter,parseFloat(getComputedStyle(i).fontSize),0, i.getAttribute("alig") == null ? 0 : 1 , type,null);
             const path = $("div#storage svg#svgField path").clone()[0];
             path.style.display = "block";
             path.setAttribute("fill", "none");
