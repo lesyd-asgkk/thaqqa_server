@@ -10,46 +10,46 @@ const app = new Application();
 const router = new Router();
 const srcPath_def = path.join(Deno.cwd());
 
-try {
-  let srcPath = path.join(Deno.cwd(), "client");
-  let htmlFiles = fs.walkSync(srcPath, {
-    includeDirs: true,
-    exts: [".html", ".js", ".css"],
-  });
-
-  for (const entry of htmlFiles) {
-    const root = Deno.cwd();
-    const relativePath = `/${path.relative(srcPath_def, entry.path)}`;
-    console.log(`root:${root}`);
-    console.log(`ファイル名:${relativePath}`);
-    console.log("\n");
-    router.get(`${relativePath}`, async (ctx) => { //.replaceAll("\\", "/")
-      await send(ctx, `${relativePath}`, {
-        root: root,
-      });
+function f(router: Router, srcPath_def: string, path_sub: string) {
+  try {
+    const srcPath = path.join(Deno.cwd(), path_sub);
+    const htmlFiles = fs.walkSync(srcPath, {
+      includeDirs: true,
+      exts: [".html", ".js", ".css"],
     });
-  }
-} catch (e) {}
-try {
-  const srcPath = path.join(Deno.cwd(), "src/client");
-  const htmlFiles = fs.walkSync(srcPath, {
-    includeDirs: true,
-    exts: [".html", ".js", ".css"],
-  });
-
-  for (const entry of htmlFiles) {
-    const root = Deno.cwd();
-    const relativePath = `/${path.relative(srcPath_def, entry.path)}`;
-    console.log(`root:${root}`);
-    console.log(`ファイル名:${relativePath}`);
-    console.log("\n");
-    router.get(`${relativePath}`.replaceAll("\\", "/"), async (ctx) => { //
-      await send(ctx, `${relativePath}`, {
-        root: root,
+    for (const entry of htmlFiles) {
+      const root = Deno.cwd();
+      const relativePath = `/${
+        path.relative(srcPath_def, entry.path).replaceAll("\\", "/")
+      }`;
+      console.log(`root:${root}\nファイル名:${relativePath}\n`);
+      router.get(`${relativePath}`, async (ctx) => { //.replaceAll("\\", "/")
+        await send(ctx, `${relativePath}`, {
+          root: root,
+        });
       });
+    }
+  } catch (_e) {
+    const srcPath = path.join(Deno.cwd(), "src/" + path_sub);
+    const htmlFiles = fs.walkSync(srcPath, {
+      includeDirs: true,
+      exts: [".html", ".js", ".css"],
     });
+    for (const entry of htmlFiles) {
+      const root = Deno.cwd();
+      const relativePath = `/${path.relative(srcPath_def, entry.path)}`;
+      console.log(`root:${root}\nファイル名:${relativePath}\n`);
+      router.get(`/${relativePath}`, async (ctx) => { //
+        await send(ctx, `${relativePath}`, {
+          root: root,
+        });
+      });
+    }
   }
-} catch (e) {}
+}
+
+f(router, srcPath_def, "client");
+f(router, srcPath_def, "");
 
 router.get(`/server/init.json`, async (ctx) => {
   const data = LoadFile.loadJSON("./server/init.json");

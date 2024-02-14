@@ -1,0 +1,77 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deno Client</title>
+  <link rel="stylesheet" href="style_editor.css">
+</head>
+<body>
+  <div id="storage">
+  <svg id="svgField" width="0" height="0" viewBox="-10 0 100 100" style="display: none;">
+    <path fill="none" stroke="red"
+    d="M 10,30
+       A 20,20 0,0,1 50,30
+       A 20,20 0,0,1 90,30
+       Q 90,60 50,90
+       Q 10,60 10,30 z" />
+  </svg>
+  </div>
+  <div class="wrapper">
+    <aside class="tab-container" id = "tab-container">
+        <div id="tab-scroll">
+            <div class="tabs">
+              <div class="tab_select" active id = "sandbox">表記</div>
+              <div class="tab_select" id = "riyou">利用規約とか</div>
+              <div class="tab_select" id = "descript">説明とか</div>
+
+            </div>
+        </div>
+    </aside>
+
+    <main>
+        <!-- Main content goes here -->
+        <div id="tab-contents">
+          <div id="riyou" class="tab">
+            <p>LayoutTest</p>
+            <div id ="riyou" class="area_tb">
+            </div>
+            </div>
+          <div id="sandbox" class="tab">
+            <p>sandbox</p>
+
+            <div id ="sandbox" class="area_tb">
+            </div>
+              </div>
+          <div id="descript" class="tab">
+            <p>gpos</p>
+            <div id ="descript" class="area_tb">
+            </div>
+          </div>
+          
+    </main>
+</div>
+<script src="client/lib_ex/jquery-3.6.4.min.js"></script>
+<script src="client/lib_ex/binarytransport.js"></script>
+<script src="client/lib_ex/snap.svg-min.js"></script>
+<script> 
+$(document).ready(function() {
+  $('#tab-contents .tab[id != "sandbox"]').hide();
+
+$('.tab_select').on('click', function (event) {
+  
+    $("#tab-contents .tab").hide();
+    $("#tab-scroll .active").removeClass("active");
+    $(this).addClass("active");
+    $(`#tab-contents .tab[id = "${$(this).attr("id")}"]`).show();
+    event.preventDefault();
+});
+});
+
+</script>
+
+<script type = "module" src="index.js"></script>
+
+</body>
+</html>
