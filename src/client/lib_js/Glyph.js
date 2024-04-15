@@ -1,5 +1,5 @@
 
-import { Thaqqa_DB,SVG,RegExp_Khhyl,GPOSManager,LetterManager} from "./deps.js";
+import { Database,SVG,RegExp_Khhyl,GPOSManager,LetterManager} from "./deps.js";
 class GlyphManager{
     static load(doc){
         const svg = doc.getElementsByTagName("PATH");
@@ -18,11 +18,11 @@ class GlyphManager{
       .then(response => response.json())
       .then(data => {
         try{
-        Thaqqa_DB.getTable("GLYPH");
+        Database.getTable("GLYPH");
         }
         catch(_e){
-            Thaqqa_DB.createTable({name:"GLYPH"});
-            const table = Thaqqa_DB.getTable("GLYPH");
+            Database.createTable({name:"GLYPH"});
+            const table = Database.getTable("GLYPH");
             table.createColumn("ID","INTEGER","",0);
             table.createColumn("Name","char","",1);
             table.createColumn("Path","char","",2);
@@ -38,9 +38,9 @@ class GlyphManager{
       }
       /*
     static resetPreSVG(){
-        Thaqqa_DB.deleteTable("PRERENDER_GLYPH");
-        Thaqqa_DB.createTable({name:"PRERENDER_GLYPH"});
-        const table = Thaqqa_DB.getTable("PRERENDER_GLYPH");
+        Database.deleteTable("PRERENDER_GLYPH");
+        Database.createTable({name:"PRERENDER_GLYPH"});
+        const table = Database.getTable("PRERENDER_GLYPH");
         table.createColumn("ID","INTEGER","",0);
         table.createColumn("fullname","char","",1);table.createColumn("name","char","",2);table.createColumn("val","char","",3);
         table.createColumn("form","char","",4);
@@ -131,7 +131,7 @@ class GlyphManager{
         console.log(`done:!}`)
     }
     static setPreSVG(glypharray,overwrite){
-        const table = Thaqqa_DB.getTable("PRERENDER_GLYPH");
+        const table = Database.getTable("PRERENDER_GLYPH");
             for(const d in glypharray){
                 const g_ = glypharray[d];
                 const datab = GlyphManager.getPreSVG(g_.fullname,g_.vec);
@@ -164,7 +164,7 @@ class GlyphManager{
         }
     static getPreSVG(fullname,vec){
         const ans = [];
-        const table = Thaqqa_DB.getTable("PRERENDER_GLYPH");
+        const table = Database.getTable("PRERENDER_GLYPH");
         if(table != null){
             const data = table.getData({fullname:fullname,vec:vec});
             for(let i = 0;i<data.length;i++){
@@ -176,7 +176,7 @@ class GlyphManager{
 
     static getSVG(name){
         const ans = [];
-        const table = Thaqqa_DB.getTable("GLYPH");
+        const table = Database.getTable("GLYPH");
         if(table != null){
             const data = table.getData({Name:name});
             for(let i = 0;i<data.length;i++){
@@ -221,7 +221,7 @@ class GlyphArray{
     toPath(defaultsize){
         const vec = this.vec;
         const mutli_ = function (n){return n/(vec==0?textdata.WidthV:textdata.Height)}
-        const textdata = Thaqqa_DB.getTable("TEXTDATA").data[0].values;
+        const textdata = Database.getTable("TEXTDATA").dataList[0].values;
         const rescale = function(param,size){
             const aa = Snap.parsePathString(Snap.path.toAbsolute(param));
             for(let i = 0;i<aa.length;i++){
@@ -236,7 +236,7 @@ class GlyphArray{
         let x = this.position.x;
         let y = this.position.y;
 
-        const nlist = Thaqqa_DB.getTable("PUNCTUATION").getData({"IsNewline":true});
+        const nlist = Database.getTable("PUNCTUATION").getData({"IsNewline":true});
         const nlist_ = [];for(let i = 0;i<nlist.length;i++){nlist_.push(nlist[i].values.Name)};
        
         if(this.vec==0){
@@ -427,7 +427,7 @@ class Glyph{
     toPathAbs(height,vowelhratio){
         let k = this.toPath();
         k ??= "M 0,0"; k = k != "" ? k:"M 0,0"
-        const width = Thaqqa_DB.getTable("TEXTDATA").data[0].values.Thickness;
+        const width = Database.getTable("TEXTDATA").dataList[0].values.Thickness;
         const VH = vowelhratio*height
         const vt = (this.height.vbottom-this.height.vtop)/2;
         const vt_b = (-this.height.bottom-this.height.top)/2;
@@ -475,10 +475,10 @@ class Glyph{
     toPathB(top,bottom){
         let k = this.toPath();
        k ??= "M 0,0"; k = k != "" ? k:"M 0,0"
-        const width = Thaqqa_DB.getTable("TEXTDATA").data[0].values.Thickness;
+        const width = Database.getTable("TEXTDATA").dataList[0].values.Thickness;
         if(this.type == "S"){
             const v = this.child[1].glyphname.split(/\d+/g)[0];
-            const v_null = Thaqqa_DB.getTable("VOWEL").getData({Name:v})[0].values.isNullVowel;
+            const v_null = Database.getTable("VOWEL").getData({Name:v})[0].values.isNullVowel;
         if(v_null){
             switch(this.form){
                 case "sol":
@@ -577,7 +577,7 @@ class Glyph{
         //V-Vd部分のみ動作未検証
         if(this.type == "S"){
             const v = this.child[1].glyphname.split(/\d+/g)[0];
-            const v_null = Thaqqa_DB.getTable("VOWEL").getData({Name:v})[0].values.isNullVowel;
+            const v_null = Database.getTable("VOWEL").getData({Name:v})[0].values.isNullVowel;
             const c0offset = this.child.length>0?this.child[0].offset:{x:0,y:0};
             const c2offset = this.child.length>2?this.child[2].offset:{x:0,y:0};
             const c0d = this.child.length>0?this.child[0].d:null;

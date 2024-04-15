@@ -1,10 +1,10 @@
-import { Thaqqa_DB } from "./Thaqqa_DB.js"; // ,DataTable,Data 
+import { Database } from "./Database.js"; // ,DataTable,Data 
 import { RegExp_Khhyl } from "./RegExp_Khhyl.js";
 class Parser {
   static getParser(param) {
     if(typeof param == "string") param = {Name:param};
     if(param instanceof RegExp) param = {Name:param};
-    const tables = Thaqqa_DB.getTable("Parser");
+    const tables = Database.getTable("Parser");
     let ans = [];
     const data = tables.getData(param);
     ans = ans.concat(data);
@@ -14,7 +14,7 @@ class Parser {
     if(typeof param == "string") param = {Name:param};
     else if(param instanceof RegExp) param = {Name:param};
     if(typeof param2 == "string") param2 = {Name:param2};
-    const tables = Thaqqa_DB.getTable("Parser");
+    const tables = Database.getTable("Parser");
     const ans  = [];
     const Parser_a = Parser.getParser(param.Name);
     const Parser_b = Parser.getParser(param.Name);
@@ -29,7 +29,7 @@ class Parser {
     if(typeof param == "string") param = {Name:param};
     if(param instanceof RegExp) param = {Name:param};
     if(safety && Parser.getParser(param).length > 1) return new Error("削除対象が2つ以上あります。まとめて削除したい場合はsafetyをfalseに指定してください");
-    const tables = Thaqqa_DB.getTable("Parser");
+    const tables = Database.getTable("Parser");
     let ans = [];
     const data = tables.deleteData(param,1);
     ans = ans.concat(data);
@@ -41,11 +41,11 @@ class Parser {
     if(typeof param == "string"){
       param ={Name: param, Pattern:"u",Pattern_sub:"DIAC",OffsetX0: 0, OffsetY0: 0,OffsetX1: 0,OffsetY1: 0, Priority:0};
     }
-    const table_ = Thaqqa_DB.getTable(table);
+    const table_ = Database.getTable(table);
     table_.createData(param);
   }
   static setParserColumnAll(){
-    const table = Thaqqa_DB.getTable("PARSER");
+    const table = Database.getTable("PARSER");
     const ParserData = table.data
     for(let i = 0;i<ParserData.length;i++){
       let r = new RegExp_Khhyl(ParserData[i].values.Name,{});
@@ -55,7 +55,7 @@ class Parser {
     }
   }
   static setParserColumn(id){
-    const table = Thaqqa_DB.getTable("PARSER");
+    const table = Database.getTable("PARSER");
     const ParserData = table.getData( {ID:id});
     for(let i = 0;i<ParserData.length;i++){
       let r = new RegExp_Khhyl(ParserData[i].values.Name,{});
@@ -65,7 +65,7 @@ class Parser {
     }
   }
   static parse(raw,type) {
-    const table = Thaqqa_DB.getTable("PARSER");
+    const table = Database.getTable("PARSER");
     const r_ = raw.split("");
     let raw_new = "";
     for(const r of r_) raw_new += `R(${r})`

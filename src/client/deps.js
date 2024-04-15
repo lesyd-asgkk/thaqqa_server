@@ -4,7 +4,7 @@ import * as webjs from "./web_js/deps.js";
 
   
   async function main(){
-    await khhyl.Thaqqa_DB.load();
+    await khhyl.Database.load();
 
     await khhyl.GlyphManager.loadAll();
 
@@ -41,7 +41,7 @@ import * as webjs from "./web_js/deps.js";
     object.style.display ="block";
     object.value = "jsonとして出力";
     object.name = "export";
-    object.addEventListener("click",() => {khhyl.Thaqqa_DB.export();},true);
+    object.addEventListener("click",() => {khhyl.Database.export();},true);
     $("div.area_tb#export")[0].appendChild(object);
   }
   self.addEventListener("load", async () => {

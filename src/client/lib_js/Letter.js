@@ -1,11 +1,11 @@
-import { Thaqqa_DB } from "./deps.js"; //,DataTable,Data
+import { Database } from "./deps.js"; //,DataTable,Data
 class LetterManager{
     static getLetter(param){
         if(typeof param == "string") param = {Name:param};
         if(param instanceof RegExp) param = {Name:param};
         const tablename = ["VOWEL","CONSONANT","DIACRITIC_C","DIACRITIC_V","PUNCTUATION","DIACRITIC_P"]
         const tables = (function(tn){const j = [];for(let i = 0 ; i<tn.length;i++){
-            j.push(Thaqqa_DB.getTable(tn[i]))
+            j.push(Database.getTable(tn[i]))
         }return j;})(tablename);
         let ans = [];
         for(let i = 0;i<tables.length;i++){
@@ -20,7 +20,7 @@ class LetterManager{
         if(param instanceof RegExp) param = {Name:param};
         if(typeof param2 == "string") param2 = {Name:param2};
         const tablename = ["VOWEL","CONSONANT","DIACRITIC_C","DIACRITIC_V","PUNCTUATION","DIACRITIC_P"]
-        const tables = (function(tn){const j = [];for(let i = 0 ; i<tn.length;i++){j.push(Thaqqa_DB.getTable(tn[i]))}return j;})(tablename);
+        const tables = (function(tn){const j = [];for(let i = 0 ; i<tn.length;i++){j.push(Database.getTable(tn[i]))}return j;})(tablename);
         let ans = [];
         if(param.Name != null && LetterManager.getLetter(param.Name).length >= 2 && param2.Name!=null)throw new Error("変更後に重複が発生します");
         if(param2.Name != null && LetterManager.getLetter(param2.Name).length != 0)throw new Error("変更後に重複が発生します");
@@ -36,7 +36,7 @@ class LetterManager{
         if(param instanceof RegExp) param = {Name:param};
         if(safety && LetterManager.getLetter(param).length > 1) throw new Error("削除対象が2つ以上あります。まとめて削除したい場合はsafetyをfalseに指定してください");
         const tablename = ["VOWEL","CONSONANT","DIACRITIC_C","DIACRITIC_V","PUNCTUATION","DIACRITIC_P"]
-        const tables = (function(tn){const j = [];for(let i = 0 ; i<tn.length;i++){j.push(Thaqqa_DB.getTable(tn[i]))}return j;})(tablename);
+        const tables = (function(tn){const j = [];for(let i = 0 ; i<tn.length;i++){j.push(Database.getTable(tn[i]))}return j;})(tablename);
         let ans = [];
         for(let i = 0;i<tables.length;i++){
             const data = tables[i].deleteData(param,1);
@@ -75,7 +75,7 @@ class LetterManager{
         }
         else param2 = param;
         type = TYPE[type]  ?? type;
-        const table = Thaqqa_DB.getTable(type);
+        const table = Database.getTable(type);
         
             if(param2 instanceof Error) throw param2;
             if(table instanceof Error) throw table;

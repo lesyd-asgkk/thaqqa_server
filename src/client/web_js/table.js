@@ -9,7 +9,7 @@ class Row_web{
         this.parent=parent;
     }
     setContent(value,table){
-        const DTTB = Khhyl.Thaqqa_DB.getTable(table);
+        const DTTB = Khhyl.Database.getTable(table);
         const sublistlist = {
             "AligX":[[-1,"□→‖←□(-1)"],[0,"・｜・(0)"],[1,"⇐■｜■⇒(1)"]],
             "AligY":[[-1,"↑(-1)"],[0,"・(0)"],[1,"⇓(1)"]],
@@ -51,7 +51,7 @@ class Row_web{
         }
     }
     SortbyOrder(table){
-        const DTTB = Khhyl.Thaqqa_DB.getTable(table);
+        const DTTB = Khhyl.Database.getTable(table);
         const sortalg = function(first, second){//Priorityの小さい順に並び替える
             const f = DTTB.getColumn(first.col).order;
             const s = DTTB.getColumn(second.col).order;
@@ -159,7 +159,7 @@ class ColumnDesc_web{
         if(val == null) val = older;
         }
 
-        Khhyl.Thaqqa_DB.getTable(parent.tablename).rewriteColumn(self.name,val,obj.name);
+        Khhyl.Database.getTable(parent.tablename).rewriteColumn(self.name,val,obj.name);
         parent.draw();
         }
         catch(_e){
@@ -241,7 +241,7 @@ class RowDesc_web{
 
     }
     SetColumns(tablename){
-        const DTTB = Khhyl.Thaqqa_DB.getTable(tablename);
+        const DTTB = Khhyl.Database.getTable(tablename);
         if(DTTB != null){
             this.content = [];
             const CL = DTTB.columns;
@@ -270,10 +270,10 @@ class Table_web{
         this.row = [];
     }
     createRow(){
-        const DTTB = Khhyl.Thaqqa_DB.getTable(this.tablename);
+        const DTTB = Khhyl.Database.getTable(this.tablename);
         if(DTTB != null){
             this.content = [];
-            const VALUES = DTTB.data;
+            const VALUES = DTTB.dataList;
             const sortalg = function(first, second){//Priorityの小さい順に並び替える
                 if (first.values.Order < second.values.Order ) return -1;
                 else if (first.values.Order  > second.values.Order )return 1;

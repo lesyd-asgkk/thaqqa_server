@@ -1,4 +1,4 @@
-export  { Thaqqa_DB,DataTable,Data } from "./Thaqqa_DB.js";
+export  { Database,DataTable,Data } from "./Database.js";
 export  { Glyph ,GlyphManager ,GlyphArray } from "./Glyph.js";
 export { GPOSManager } from "./GPOS.js";
 export { GSUBManager } from "./GSUB.js";

@@ -1,30 +1,35 @@
+export { SVG } from "./SVG.js";
 
-class Thaqqa_DB {
-    static table = [];
-    static data;
 
+class Database {
+    static tableList = [];
     static import(data) {
-      
       for(const t_n in data){
         const t = new DataTable(data[t_n]);
-        Thaqqa_DB.table.push(t);
+        Database.tableList.push(t);
       }
     }
+
+    static toFontFile(){
+
+
+    }
+
+
    static async load(){
     await fetch('/server/init.json')
   .then(response => response.json())
   .then(data => {
-    Thaqqa_DB.import(data);
+    Database.import(data);
   })
   .catch(error => console.error('Error fetching data:', error));
   }
 
   //*
   static export(){
-    const binaryArray = Thaqqa_DB.export_as_Json();
+    const binaryArray = Database.export_as_Json();
     const blob = new Blob([JSON.stringify(binaryArray, null, '  ')], {type: 'application\/json'});
-    const url = URL.createObjectURL(blob); 
-    
+    const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
     link.href = url; 
     link.download = "example.json"; 
@@ -32,8 +37,7 @@ class Thaqqa_DB {
   }
 
     static export_as_Json() {
-    const sqlt = Thaqqa_DB.table;
-
+    const sqlt = Database.tableList;
     const json_data= {};
 
     for (let j = 0; j < sqlt.length; j++) {
@@ -42,7 +46,8 @@ class Thaqqa_DB {
 
       const column_data = {};
       for (let i = 0; i < table.columns.length; i++) {
-        column_data[table.columns[i]["name"]] = {name:table.columns[i]["name"],id:table.columns[i]["id"],type:table.columns[i]["type"],order:table.columns[i]["order"],subtype:table.columns[i]["subtype"]};
+        const tmp = table.columns[i];
+        column_data[tmp.name] = {name:tmp.name,id:tmp.id,type:tmp.type,order:tmp.order,subtype:tmp.subtype};
       }
       table_data.name = table.name;
       table_data.column = column_data;
@@ -73,32 +78,32 @@ class Thaqqa_DB {
     return false;
   }
   static getTable(name) { //nameのテーブルを返す。無かったらnullで
-    for (let i = 0; i < Thaqqa_DB.table.length; i++) {
-      if (Thaqqa_DB.table[i].name == name) return Thaqqa_DB.table[i];
+    for (const i in Database.tableList) {
+      if (Database.tableList[i].name == name) return Database.tableList[i];
     }
     throw new Error(name + "というテーブルは存在しません");
   }
 
   static createTable(name) {
     try {
-      for (let i = 0; i < Thaqqa_DB.table.length; i++) {
-        if (Thaqqa_DB.table[i].name == name) {
+      for (const i in Database.tableList) {
+        if (Database.tableList[i].name == name) {
           const errmessage = name + "というTableは既に存在します";
           throw new Error(errmessage);
         }
       }
       const newtable = new DataTable(name);
-      Thaqqa_DB.table.push(newtable);
+      Database.tableList.push(newtable);
     } catch (e) {
       throw e;
     }
   }
   static deleteTable(name) {
     try {
-      const table_del = Thaqqa_DB.getTable(name);
+      const table_del = Database.getTable(name);
       if (table_del instanceof Error) throw table_del;
-      const index = Thaqqa_DB.table.indexOf(table_del);
-      Thaqqa_DB.table.splice(index, 1);
+      const index = Database.tableList.indexOf(table_del);
+      Database.tableList.splice(index, 1);
     } catch (e) {
       throw e;
     }
@@ -106,9 +111,9 @@ class Thaqqa_DB {
   static rewriteTable(name_old, name_new) {
     try {
       let errmessage = "";
-      const table_rewrite = Thaqqa_DB.getTable(name_old);
+      const table_rewrite = Database.getTable(name_old);
       if (table_rewrite instanceof Error) throw table_rewrite;
-      if (Thaqqa_DB.getTable(name_new) != null) { //既にそのテーブルがある場合の処理
+      if (Database.getTable(name_new) != null) { //既にそのテーブルがある場合の処理
         errmessage += name_new + "というTableは既に存在します";
       }
       if (errmessage != "") throw new Error(errmessage);
@@ -120,11 +125,10 @@ class Thaqqa_DB {
 }
 
 class DataTable {
-  static type = "DataTable";
   constructor(dt) {
     this.name = dt.name;
     this.columns = []; //{name:"",type:"",desc:"",order:0,subtype : ""}
-    this.data = [];
+    this.dataList = [];
     this.desc = ""; //データの説明
     this.load(dt)
   }
@@ -132,19 +136,21 @@ class DataTable {
     const COLUMN = dt.column;
     const DATA = dt.data;
     for(const cn in COLUMN){
-      const k = {name:COLUMN[cn].name,type:COLUMN[cn].type,desc:COLUMN[cn].desc,order:COLUMN[cn].order,subtype:COLUMN[cn].subtype};
+      const c = COLUMN[cn];
+      const k = {name:c.name,type:c.type,desc:c.desc,order:c.order,subtype:c.subtype};
       this.columns.push(k);
     }
     for(const dn in DATA){
       const d = new Data(this);
       for(const k in DATA[dn]){
-        const type = dt.column[k].type;
-        if(type == "char"){DATA[dn][k] = DATA[dn][k].toString()}
-        else if(type == "bool"){DATA[dn][k] = typeof DATA[dn][k] == "boolean" ? DATA[dn][k] : DATA[dn][k]=="true"}
-        else{DATA[dn][k] = Number(DATA[dn][k]);}
+        const type = dt.column[k].type;let tmp = DATA[dn][k];
+        if(type == "char"){tmp = tmp.toString()}
+        else if(type == "bool"){tmp = typeof tmp == "boolean" ? tmp : tmp=="true"}
+        else{tmp = Number(tmp);}
+        DATA[dn][k] = tmp;
       }
       d.values = DATA[dn];
-      this.data.push(d);
+      this.dataList.push(d);
     }
   }
   getColumn(name) {
@@ -166,7 +172,7 @@ class DataTable {
           errmessage += name + "というColumnは既に存在します    ";
         }
       }
-      if (Thaqqa_DB.isavailableType(type) == false) { //そんな型指定できない時の処理
+      if (Database.isavailableType(type) == false) { //そんな型指定できない時の処理
         errmessage += type + "という型は指定できません";
       }
       else if(val_init == null){ //空だったら
@@ -180,8 +186,8 @@ class DataTable {
           }
       if (errmessage != "") throw new Error(errmessage);
       this.columns.push({ name: name, type: type ,desc : desc,priorty : priorty});
-      for (let i = 0; i < this.data.length; i++) {
-        this.data[i].values[name] = val_init;
+      for (let i = 0; i < this.DataList.length; i++) {
+        this.DataList[i].values[name] = val_init;
       }
     } catch (e) {
       throw e;
@@ -197,8 +203,8 @@ class DataTable {
       }
       const index = this.columns.indexOf(column_del);
       this.columns.splice(index, 1);
-      for (let i = 0; i < this.data.length; i++) {
-        delete this.data[i].values[name];
+      for (let i = 0; i < this.DataList.length; i++) {
+        delete this.DataList[i].values[name];
       }
     } catch (e) {
       throw e;
@@ -219,10 +225,10 @@ class DataTable {
       if (errmessage != "") throw new Error(errmessage);
       if (rewrite != null) rewrite[genre] = name_new;
       if(genre == "name"){
-      for (let i = 0; i < this.data.length; i++) {
-        const newdata = this.data[i].values[name_old];
-        this.data[i].values[name_new] = newdata;
-        delete this.data[i].values[name_old];
+      for (let i = 0; i < this.DataList.length; i++) {
+        const newdata = this.DataList[i].values[name_old];
+        this.DataList[i].values[name_new] = newdata;
+        delete this.DataList[i].values[name_old];
         }
       }
     } catch (e) {
@@ -242,17 +248,17 @@ class DataTable {
         throw new Error(errmessage);
       }
       const ans = [];
-      skip: for (let i = 0; i < this.data.length; i++) {
+      skip: for (let i = 0; i < this.dataList.length; i++) {
         for (const col in param_reg) {
           if (param_reg[col] instanceof RegExp) {
-            if (!(param_reg[col]).exec(this.data[i].values[col].toString())) continue skip;
+            if (!(param_reg[col]).exec(this.dataList[i].values[col].toString())) continue skip;
           }
           else{
-            if (param_reg[col] != this.data[i].values[col]) continue skip;
+            if (param_reg[col] != this.dataList[i].values[col]) continue skip;
           } 
         }
         
-        ans.push(this.data[i]);
+        ans.push(this.dataList[i]);
       }
       return ans;
     } catch (e) {
@@ -262,8 +268,8 @@ class DataTable {
 
   getLeastID(){
     const IDs = [];
-    for(let i=0;i<this.data.length;i++){
-      IDs.push(this.data[i].values.ID);
+    for(let i=0;i<this.dataList.length;i++){
+      IDs.push(this.dataList[i].values.ID);
     }
     IDs.sort((a,b) => (a-b));
     let last = -1;
@@ -294,7 +300,7 @@ class DataTable {
       if (errmessage != "") throw new Error(errmessage);
       const data_new = new Data(this);
       data_new.values = param;
-      this.data.push(data_new);
+      this.dataList.push(data_new);
     } catch (e) {
       throw e;
     }
@@ -313,8 +319,8 @@ class DataTable {
       if (errmessage != "") throw new Error(errmessage);
 
       for (let i = 0; i < data_del.length; i++) {
-        const index = this.data.indexOf(data_del[i]);
-        this.data.splice(index, 1);
+        const index = this.dataList.indexOf(data_del[i]);
+        this.dataList.splice(index, 1);
       }
     } catch (e) {
       throw e;
@@ -352,4 +358,4 @@ export default class Data {
   }
 }
 
-export {Thaqqa_DB,DataTable,Data}
+export {Database,DataTable,Data}

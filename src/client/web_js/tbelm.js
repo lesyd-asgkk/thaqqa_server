@@ -46,7 +46,7 @@ class DIVparam_web{
         val = f_numcheck(val);
             if(val == null) val = self.val;
         }
-        if(Khhyl.Thaqqa_DB.getTable(parent.tablename).rewriteData({ID:this.id},{[self.col]:val}))
+        if(Khhyl.Database.getTable(parent.tablename).rewriteData({ID:this.id},{[self.col]:val}))
         {
         if(parent.tablename == "GPOS" && self.col == "Name"){
             Khhyl.GPOSManager.setGPOSColumn(this.id);
@@ -90,13 +90,13 @@ class DIVselect_web{
         const val2 = obj.value;
         switch(this.type){
             case "bool":
-                if(Khhyl.Thaqqa_DB.getTable(parent.tablename).rewriteData({ID:this.id},{[self.col]:val}))
+                if(Khhyl.Database.getTable(parent.tablename).rewriteData({ID:this.id},{[self.col]:val}))
         {obj.checked = val;
          self.val = val;}
             break;
 
             case "select":
-                if(Khhyl.Thaqqa_DB.getTable(parent.tablename).rewriteData({ID:this.id},{[self.col]:val2}))
+                if(Khhyl.Database.getTable(parent.tablename).rewriteData({ID:this.id},{[self.col]:val2}))
                 {obj.checked = val2;
                  self.val = val2;}
             break;
@@ -147,20 +147,20 @@ class Button_web{
             switch(self.parent.tablename){
                 case "GSUB":
                     {
-                    const p = self.id != null? Khhyl.Thaqqa_DB.getTable(parent.tablename).getData({ID:self.id})[0].values:{Pattern:"u",Priority:0,Order:0};
-                    Khhyl.Thaqqa_DB.getTable("GSUB").createData({Priority:p.Priority,Pattern:p.Pattern,Name:"",NameAlt:"",Order:p.Order,Parsed:""});
+                    const p = self.id != null? Khhyl.Database.getTable(parent.tablename).getData({ID:self.id})[0].values:{Pattern:"u",Priority:0,Order:0};
+                    Khhyl.Database.getTable("GSUB").createData({Priority:p.Priority,Pattern:p.Pattern,Name:"",NameAlt:"",Order:p.Order,Parsed:""});
                     }
                 break;
                 case "PARSER":
                     {
-                        const p = self.id != null? Khhyl.Thaqqa_DB.getTable(parent.tablename).getData({ID:self.id})[0].values:{Pattern:"u",Priority:0,Order:0};
-                    Khhyl.Thaqqa_DB.getTable("PARSER").createData({Priority:p.Priority,Pattern:p.Pattern,Name:"",NameAlt:"",Order:p.Order,Parsed:""});
+                        const p = self.id != null? Khhyl.Database.getTable(parent.tablename).getData({ID:self.id})[0].values:{Pattern:"u",Priority:0,Order:0};
+                    Khhyl.Database.getTable("PARSER").createData({Priority:p.Priority,Pattern:p.Pattern,Name:"",NameAlt:"",Order:p.Order,Parsed:""});
                     }
                 break;
                 case "GPOS":
                     {
-                        const p = self.id != null? Khhyl.Thaqqa_DB.getTable(parent.tablename).getData({ID:self.id})[0].values:{Pattern:"u",Pattern_sub:"d",Order:0};
-                    Khhyl.Thaqqa_DB.getTable("GPOS").createData({Pattern:p.Pattern,Pattern_sub:p.Pattern_sub,Parsed:"",Name:"",OffsetX0:0,OffsetY0:0,OffsetX1:0,OffsetY1:0,Order:p.Order});
+                        const p = self.id != null? Khhyl.Database.getTable(parent.tablename).getData({ID:self.id})[0].values:{Pattern:"u",Pattern_sub:"d",Order:0};
+                    Khhyl.Database.getTable("GPOS").createData({Pattern:p.Pattern,Pattern_sub:p.Pattern_sub,Parsed:"",Name:"",OffsetX0:0,OffsetY0:0,OffsetX1:0,OffsetY1:0,Order:p.Order});
                     }
                     break;
                 case "PUNCTUATION":
@@ -177,7 +177,7 @@ class Button_web{
         }
         else if(self.type == "Delete"){
             if(!globalThis.confirm("ID = "+ self.id +"\nを消去します")) return false;//削除しなかった
-            Khhyl.Thaqqa_DB.getTable(parent.tablename).deleteData({ID:self.id})
+            Khhyl.Database.getTable(parent.tablename).deleteData({ID:self.id})
         }
         parent.draw();
     }
@@ -206,7 +206,7 @@ class SVGField_web{
         
         const Letter_T = ["VOWEL","DIACRITIC_V","CONSONANT","DIACRITIC_C","PUNCTUATION","DIACRITIC_P",]
         if(Letter_T.includes(this.parent.tablename)){
-        const n = Khhyl.Thaqqa_DB.getTable(this.parent.tablename).getData({ID:id})[0].values.Name;
+        const n = Khhyl.Database.getTable(this.parent.tablename).getData({ID:id})[0].values.Name;
 
         d = "M0,0";
         let listb = ["sol","init","mid","fin"];

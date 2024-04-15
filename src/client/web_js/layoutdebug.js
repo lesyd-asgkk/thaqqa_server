@@ -23,8 +23,8 @@ class LayoutDebug_web{
             if(v.option.checked == true) lang = v.option.value;
         }
 
-        const c0_ = khhyl.Thaqqa_DB.getTable("CONSONANT").getData({isBondAsFirst:true});
-        const c1_ = khhyl.Thaqqa_DB.getTable("CONSONANT").getData({isBondAsLast:true});
+        const c0_ = khhyl.Database.getTable("CONSONANT").getData({isBondAsFirst:true});
+        const c1_ = khhyl.Database.getTable("CONSONANT").getData({isBondAsLast:true});
         const C0 = [""];
         const C1 = [""];
         const V = self.textbox.value;
