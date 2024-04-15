@@ -244,7 +244,7 @@ class RowDesc_web{
         const DTTB = Khhyl.Database.getTable(tablename);
         if(DTTB != null){
             this.content = [];
-            const CL = DTTB.columns;
+            const CL = DTTB.columnList;
             for(const cl of CL){
                 const ct = new ColumnDesc_web(this.parent);
                 ct.setElm(cl);

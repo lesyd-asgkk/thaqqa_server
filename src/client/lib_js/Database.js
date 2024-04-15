@@ -45,19 +45,19 @@ class Database {
       const table_data= {};
 
       const column_data = {};
-      for (let i = 0; i < table.columns.length; i++) {
-        const tmp = table.columns[i];
+      for (let i = 0; i < table.columnList.length; i++) {
+        const tmp = table.columnList[i];
         column_data[tmp.name] = {name:tmp.name,id:tmp.id,type:tmp.type,order:tmp.order,subtype:tmp.subtype};
       }
       table_data.name = table.name;
-      table_data.column = column_data;
+      table_data.columnList = column_data;
       
 
       const data_data = {};
       for (let h = 0; h < table.data.length; h++) {
         const value_data = {};
-        for (let i = 0; i < table.columns.length; i++) {
-          const c = table.columns[i]["name"];
+        for (let i = 0; i < table.columnList.length; i++) {
+          const c = table.columnList[i]["name"];
           value_data[c] = table.data[h].values[c];
         }
         data_data[h] = value_data;
@@ -127,7 +127,7 @@ class Database {
 class DataTable {
   constructor(dt) {
     this.name = dt.name;
-    this.columns = []; //{name:"",type:"",desc:"",order:0,subtype : ""}
+    this.columnList = []; //{name:"",type:"",desc:"",order:0,subtype : ""}
     this.dataList = [];
     this.desc = ""; //データの説明
     this.load(dt)
@@ -138,7 +138,7 @@ class DataTable {
     for(const cn in COLUMN){
       const c = COLUMN[cn];
       const k = {name:c.name,type:c.type,desc:c.desc,order:c.order,subtype:c.subtype};
-      this.columns.push(k);
+      this.columnList.push(k);
     }
     for(const dn in DATA){
       const d = new Data(this);
@@ -155,8 +155,8 @@ class DataTable {
   }
   getColumn(name) {
     try {
-      for (let i = 0; i < this.columns.length; i++) {
-        if (this.columns[i]["name"] == name) return this.columns[i];
+      for (let i = 0; i < this.columnList.length; i++) {
+        if (this.columnList[i]["name"] == name) return this.columnList[i];
       }
       return null;
     } catch (e) {
@@ -167,8 +167,8 @@ class DataTable {
     //val_initは未使用 一応後付で作るかも
     try {
       let errmessage = "";
-      for (let i = 0; i < this.columns.length; i++) {
-        if (this.columns[i]["name"] == name) {
+      for (let i = 0; i < this.columnList.length; i++) {
+        if (this.columnList[i]["name"] == name) {
           errmessage += name + "というColumnは既に存在します    ";
         }
       }
@@ -185,7 +185,7 @@ class DataTable {
           if(val2_ != val_[type]){errmessage += `${type}"型で${val_init}は初期値に指定できません`;}
           }
       if (errmessage != "") throw new Error(errmessage);
-      this.columns.push({ name: name, type: type ,desc : desc,priorty : priorty});
+      this.columnList.push({ name: name, type: type ,desc : desc,priorty : priorty});
       for (let i = 0; i < this.DataList.length; i++) {
         this.DataList[i].values[name] = val_init;
       }
@@ -201,8 +201,8 @@ class DataTable {
         const errmessage = name + "というColumnは存在しません　　";
         throw new Error(errmessage);
       }
-      const index = this.columns.indexOf(column_del);
-      this.columns.splice(index, 1);
+      const index = this.columnList.indexOf(column_del);
+      this.columnList.splice(index, 1);
       for (let i = 0; i < this.DataList.length; i++) {
         delete this.DataList[i].values[name];
       }
@@ -286,7 +286,7 @@ class DataTable {
     const ID_ = this.getLeastID();
     param.ID =ID_;
     try {
-      skip: for (const col of this.columns) {
+      skip: for (const col of this.columnList) {
         for (const p in param) {
           if (col.name == p) continue skip;
         }
