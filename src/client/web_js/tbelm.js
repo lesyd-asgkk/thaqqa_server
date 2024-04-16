@@ -147,19 +147,19 @@ class Button_web{
             switch(self.parent.tablename){
                 case "GSUB":
                     {
-                    const p = self.id != null? Khhyl.Database.getTable(parent.tablename).getData({ID:self.id})[0].values:{Pattern:"u",Priority:0,Order:0};
+                    const p = self.id != null? Khhyl.Database.getTable(parent.tablename).getData({ID:self.id})[0].valueList:{Pattern:"u",Priority:0,Order:0};
                     Khhyl.Database.getTable("GSUB").createData({Priority:p.Priority,Pattern:p.Pattern,Name:"",NameAlt:"",Order:p.Order,Parsed:""});
                     }
                 break;
                 case "PARSER":
                     {
-                        const p = self.id != null? Khhyl.Database.getTable(parent.tablename).getData({ID:self.id})[0].values:{Pattern:"u",Priority:0,Order:0};
+                        const p = self.id != null? Khhyl.Database.getTable(parent.tablename).getData({ID:self.id})[0].valueList:{Pattern:"u",Priority:0,Order:0};
                     Khhyl.Database.getTable("PARSER").createData({Priority:p.Priority,Pattern:p.Pattern,Name:"",NameAlt:"",Order:p.Order,Parsed:""});
                     }
                 break;
                 case "GPOS":
                     {
-                        const p = self.id != null? Khhyl.Database.getTable(parent.tablename).getData({ID:self.id})[0].values:{Pattern:"u",Pattern_sub:"d",Order:0};
+                        const p = self.id != null? Khhyl.Database.getTable(parent.tablename).getData({ID:self.id})[0].valueList:{Pattern:"u",Pattern_sub:"d",Order:0};
                     Khhyl.Database.getTable("GPOS").createData({Pattern:p.Pattern,Pattern_sub:p.Pattern_sub,Parsed:"",Name:"",OffsetX0:0,OffsetY0:0,OffsetX1:0,OffsetY1:0,Order:p.Order});
                     }
                     break;
@@ -206,7 +206,7 @@ class SVGField_web{
         
         const Letter_T = ["VOWEL","DIACRITIC_V","CONSONANT","DIACRITIC_C","PUNCTUATION","DIACRITIC_P",]
         if(Letter_T.includes(this.parent.tablename)){
-        const n = Khhyl.Database.getTable(this.parent.tablename).getData({ID:id})[0].values.Name;
+        const n = Khhyl.Database.getTable(this.parent.tablename).getData({ID:id})[0].getVal("Name");
 
         d = "M0,0";
         let listb = ["sol","init","mid","fin"];

@@ -2,47 +2,33 @@ import { Database } from "./Database.js";
 import { RegExp_Khhyl } from "./RegExp_Khhyl.js";
 class GPOSManager {
     static setGPOSColumnAll(){
-        const table = Database.getTable("GPOS");
-        const GPOSdata = table.dataList
-        for(let i = 0;i<GPOSdata.length;i++){
-            let r = new RegExp_Khhyl(GPOSdata[i].values.Name,{});
-            r = r.ParseRegExp()
-            const r_ = r.toNormalRegExp();
-            table.rewriteData({ID:GPOSdata[i].values.ID},{Parsed:r_});
-        }
+        GPOSManager.setGPOSColumn();
     }
     static setGPOSColumn(id){
         const table = Database.getTable("GPOS");
-        const GPOSdata = table.getData( {ID:id});
-        for(let i = 0;i<GPOSdata.length;i++){
-            let r = new RegExp_Khhyl(GPOSdata[i].values.Name,{});
-            r = r.ParseRegExp()
-            const r_ = r.toNormalRegExp();
-            table.rewriteData({ID:GPOSdata[i].values.ID},{Parsed:r_});
-        }
+        const GPOSdata = id==null?table.dataList:table.getData({ID:id});
+        GPOSdata.forEach((i)=>{const r_ = new RegExp_Khhyl(i.getVal("Name"),{}).ParseRegExp().toNormalRegExp();
+        table.rewriteData({ID:i.getVal("ID")},{Parsed:r_});})
     }
     static getGPOS(param) {
             if(typeof param == "string") param = {Name:param};
             if(param instanceof RegExp) param = {Name:param};
             const tables = Database.getTable("GPOS");
-            let ans = [];
-                const data = tables.getData(param);
-                ans = ans.concat(data);
-            return ans;
+            const data = tables.getData(param);
+            return data;
         }
     static rewriteGPOS(param,param2){
         if(typeof param == "string") param = {Name:param};
         else if(param instanceof RegExp) param = {Name:param};
         if(typeof param2 == "string") param2 = {Name:param2};
         const tables = Database.getTable("GPOS");
-        const ans  = [];
         const GPOS_a = GPOSManager.getGPOS(param.Name);
         const GPOS_b = GPOSManager.getGPOS(param.Name);
-            if(param.Name != null && GPOS_a.length >= 2 && param2.Name!=null)throw new Error("変更後に重複が発生します");
-            if(param2.Name != null && GPOS_b.length != 0)throw new Error("変更後に重複が発生します");
+        if(param.Name != null && GPOS_a.length >= 2 && param2.Name!=null)throw new Error("変更後に重複が発生します");
+        if(param2.Name != null && GPOS_b.length != 0)throw new Error("変更後に重複が発生します");
+        
         const b = tables.rewriteData(param,param2,-1);
-        ans.concat(b);
-        return ans;
+        return b;
     }
     
     static deleteGPOS(param,safety){
@@ -51,10 +37,9 @@ class GPOSManager {
         if(param instanceof RegExp) param = {Name:param};
         if(safety && GPOSManager.getGPOS(param).length > 1) return new Error("削除対象が2つ以上あります。まとめて削除したい場合はsafetyをfalseに指定してください");
         const tables = Database.getTable("GPOS");
-        let ans = [];
+
         const data = tables.deleteData(param,1);
-        ans = ans.concat(data);
-        return ans;
+        return data;
     }
     static createGPOS(param){//
         if(typeof param == "string") param = {Name:param};
@@ -78,15 +63,13 @@ class GPOSManager {
 
         const ans = {x0:0,y0:0,x1:0,y1:0}
         const GPOSdata =  GPOSManager.getGPOS({Pattern:(vec==0?/(u|v)/:/(u|h)/),Pattern_sub:rule});
-        for(let i = 0;i<GPOSdata.length;i++){
-            const r_fin = new RegExp((rule == "EX" ? "^": "")+GPOSdata[i].values.Parsed+(rule == "EX" ? "$": ""), "g");                
-            if(text.match(r_fin) != null){
-                ans.x0 += GPOSdata[i].values.OffsetX0 ;
-                ans.y0 += GPOSdata[i].values.OffsetY0 ;
-                ans.x1 += GPOSdata[i].values.OffsetX1 ;
-                ans.y1 += GPOSdata[i].values.OffsetY1 ;
-            }
-        }
+        GPOSdata.forEach((i)=>{const r_fin = new RegExp((rule == "EX" ? "^": "")+i.getVal("Parsed")+(rule == "EX" ? "$": ""), "g");                
+        if(text.match(r_fin) != null){
+            ans.x0 += i.getVal("OffsetX0");
+            ans.y0 += i.getVal("OffsetY0");
+            ans.x1 += i.getVal("OffsetX1");
+            ans.y1 += i.getVal("OffsetY1");
+        }});
     return ans;
     }
 }

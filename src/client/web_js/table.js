@@ -275,26 +275,26 @@ class Table_web{
             this.content = [];
             const VALUES = DTTB.dataList;
             const sortalg = function(first, second){//Priorityの小さい順に並び替える
-                if (first.values.Order < second.values.Order ) return -1;
-                else if (first.values.Order  > second.values.Order )return 1;
+                if (first.getVal("Order") < second.getVal("Order") ) return -1;
+                else if (first.getVal("Order")  > second.getVal("Order") )return 1;
                 else return 0;
               }
               const sortalg_OP = function(first, second ){//Priorityの大きい順に並び替える
-                if (first.values.Order > second.values.Order ) return 1;
-                else if (first.values.Order  < second.values.Order )return -1;
+                if (first.getVal("Order") > second.getVal("Order") ) return 1;
+                else if (first.getVal("Order")  < second.getVal("Order") )return -1;
                 else{
-                if (first.values.Priority > second.values.Priority ) return 1;
-                else if (first.values.Priority  < second.values.Priority )return -1;
+                if (first.getVal("Priority") > second.getVal("Priority") ) return 1;
+                else if (first.getVal("Priority")  < second.getVal("Priority") )return -1;
                   return 0};
               }
               const sortalg_GPOS = function(first, second ){//Priorityの大きい順に並び替える
                 const val = {"h":-1,"u":0,"v":1};
                 const val2 = {"DIAC":-10,"INNULL":0,"IN":10,"EX":30};
-                if (val2[first.values.Pattern_sub] > val2[second.values.Pattern_sub] ) return 1;
-                else if (val2[first.values.Pattern_sub]  < val2[second.values.Pattern_sub] )return -1;
+                if (val2[first.getVal("Pattern_sub")] > val2[second.getVal("Pattern_sub")] ) return 1;
+                else if (val2[first.getVal("Pattern_sub")]  < val2[second.getVal("Pattern_sub")] )return -1;
                 else{
-                    if (val[first.values.Pattern] > val[second.values.Pattern] ) return 1;
-                    else if (val[first.values.Pattern]  < val[second.values.Pattern] )return -1;
+                    if (val[first.getVal("Pattern")] > val[second.getVal("Pattern")] ) return 1;
+                    else if (val[first.getVal("Pattern")]  < val[second.getVal("Pattern")] )return -1;
                   return 0};
               }
               if(VALUES.length > 0 && DTTB.getColumn("Order") != null)
@@ -302,9 +302,9 @@ class Table_web{
               else VALUES.sort(sortalg);}
               if(VALUES.length > 0 && DTTB.name == "GPOS") VALUES.sort(sortalg_GPOS);
               for(let v =0;v<VALUES.length;v++){
-                const d = new Row_web(VALUES[v].values.ID,this);
+                const d = new Row_web(VALUES[v].getVal("ID"),this);
 
-                d.setContent(VALUES[v].values,this.tablename);
+                d.setContent(VALUES[v].valueList,this.tablename);
                 this.row.push(d);
             }
 

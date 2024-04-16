@@ -20,6 +20,7 @@ class Render{
             break;
         }
         if(position == null) position = {posx:0,posy:0,aligx:-1,aligy:-1};
+        
         const glar = new GlyphArray(text,alig,false,{top:800,right:800,bottom:800,left:800},{x:position.posx,y:position.posy},{x:position.aligx,y:position.aligy});
         const ans = glar.toPath(size);
         return ans;

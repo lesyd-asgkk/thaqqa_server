@@ -37,7 +37,7 @@
     //Khhyl.Render.DrawD(self.textbox.value,lang,(alig==2?0:1),"none",Number(self.sizetext.value));
     //span khhylに関する変換処理
     $(document).ready(async function () {
-        await khhyl.Thaqqa_DB.load();
+        await khhyl.Database.load();
 
         for (const i of $('span.khhyl')) {
             const object = $("div#storage svg#svgField").clone(false, false)[0];

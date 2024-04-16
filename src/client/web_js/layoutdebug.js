@@ -43,13 +43,13 @@ class LayoutDebug_web{
         })(lang);
         
         for(let i = 0;i<c0_.length;i++){
-            for(let j = 0;j<c0_[i].values.OnsetGlyphNum;j++){
-                C0.push(`${c0_[i].values.Name}${j}${self.textbox_diac0.value}`)
+            for(let j = 0;j<c0_[i].getVal("OnsetGlyphNum");j++){
+                C0.push(`${c0_[i].getVal("Name")}${j}${self.textbox_diac0.value}`)
             }
         }
         for(let i = 0;i<c1_.length;i++){
-            for(let j = 0;j<c1_[i].values.CodaGlyphNum;j++){
-                C1.push(`${c1_[i].values.Name}${j}${self.textbox_diac1.value}`)
+            for(let j = 0;j<c1_[i].getVal("CodaGlyphNum");j++){
+                C1.push(`${c1_[i].getVal("Name")}${j}${self.textbox_diac1.value}`)
             }
         }
         let text = [];

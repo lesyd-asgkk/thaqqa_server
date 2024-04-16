@@ -61,7 +61,7 @@ class REK_def {
           const val = Function("_", `return ${msg}`);
           const val2 = val(k);
           if (typeof val2 == "boolean" && val2 == true) {
-            hensuu.push(AL[a_].values.Name.toString());
+            hensuu.push(AL[a_].getVal("Name").toString());
           }
         }
         let letter = "";

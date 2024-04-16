@@ -112,32 +112,33 @@ class RegExp_Khhyl {
             case "P":
             case "Pd":
             case "S":
-                ans = this.intent.type+"\\("+ans+"\\)";// 例えば、S(ans)の形にする。(?:\k<S0>)のようにするのは境界を脱したときにする？
+                ans = `${this.intent.type}\\(${ans}\\)`;// 例えば、S(ans)の形にする。(?:\k<S0>)のようにするのは境界を脱したときにする？
                 break;
             case "L":
-                ans = "(?:"+ans+")";
+                ans = `(?:${ans})`;
                 break;
         }
         if(this.intent.subtypeb != null && this.intent.subtypeb.match(/^\(/)!=null){
-            ans = this.intent.subtypeb.slice(0,-1) + ans + ")"; 
+            ans = `${this.intent.subtypeb.slice(0,-1)}${ans})`; 
         }
         else if(this.intent.subtypeb != null && this.intent.subtypeb.match(/^\[/)!=null){
-            ans = "(?:" + ans + ")"; 
+            ans = `(?:${ans})`; 
         }
         return ans;
     }
     ParseRegExp(){
         this.intent.type ??= "";
-            let k;
+            
+        const rule = [];
         switch(this.intent.type){
             case "":
-                k = this.ParseRegExp_sub(REK_def.rule_SEN);
+                rule.push("rule_SEN");
             break;
             case "L":
-                k = this.ParseRegExp_sub(REK_def.rule_l);
+                rule.push("rule_l");
             break;
             case "form":
-                k = this.ParseRegExp_sub(REK_def.rule_form);
+                rule.push("rule_form");
             break;
             case "S":
             case "R":
@@ -148,23 +149,26 @@ class RegExp_Khhyl {
             case "Vd":
             case "P":
             case "Pd":
-                k = this.ParseRegExp_sub(REK_def.rule_scvpd);
+                rule.push("rule_scvpd");
             break;
             case "G":
-                k = this.ParseRegExp_sub(REK_def.rule_G);
+                rule.push("rule_G");
             break;
             case "g":
-                k = this.ParseRegExp_sub(REK_def.rule_g);
+                rule.push("rule_g");
             break;
             case "script":     
-                k = this.ParseRegExp_sub(REK_def.rule_script);     
-                break;
+                rule.push("rule_script");     
+            break;
         }
-        if(k instanceof Error)throw k;
-        else if(k != null) this.child = k; 
-        for(const i in this.child){
-            const k = this.child[i].ParseRegExp();
+        if(rule.length != 0){
+            const k = this.ParseRegExp_sub(REK_def[rule[0]]);
             if(k instanceof Error)throw k;
+            this.child = k; 
+            for(const i in this.child){
+                const k = this.child[i].ParseRegExp();
+                if(k instanceof Error)throw k;
+            }  
         }
         return this;
     }
@@ -175,9 +179,9 @@ class RegExp_Khhyl {
             //console.log(`${this.intent.type} : ${this.pattern}`);
             for(const infi in rules){
                 if(count == 0)break;
-                count -= 1;
-                if(this.pattern != null && this.pattern.match(new RegExp("^"+infi,"g")) != null){
-                    const moji = this.pattern.match(new RegExp("^"+infi,"g"));
+                count--;
+                if(this.pattern != null && this.pattern.match(new RegExp(`^${infi}`,"g")) != null){
+                    const moji = this.pattern.match(new RegExp(`^${infi}`,"g"));
                     if(moji != null){
                         const k = rules[infi](this,ans,this.pattern,moji[0]);
                         const k0 = k[0];const k1 = k[1];
@@ -188,7 +192,7 @@ class RegExp_Khhyl {
             }
             break doublebreak; //通らなかった場合。
         }
-        if(this.pattern != null &&  this.pattern != ""){throw Error("変換エラー:"+this.pattern+ans)}
+        if(this.pattern != null &&  this.pattern != ""){throw Error(`変換エラー:${this.pattern}${ans}`)}
         return ans;
     }
 }
