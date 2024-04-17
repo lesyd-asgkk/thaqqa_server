@@ -18,7 +18,7 @@ class GlyphManager{
       .then(response => response.json())
       .then(data => {
         try{
-        Database.getTable("GLYPH");
+        Database.getTable("GLYPH",true);
         }
         catch(_e){
             Database.createTable({name:"GLYPH"});
@@ -26,7 +26,8 @@ class GlyphManager{
             table.createColumn("ID","INTEGER","",0);
             table.createColumn("Name","char","",1);
             table.createColumn("Path","char","",2);
-            for(const d in data) GlyphManager.load(d);
+            console.log(data);
+            for(const d in data) table.createData({Name:d,Path:SVG.convertSVG(data[d])});
         }
       })
       .catch(error => console.error('Error fetching data:', error));
@@ -212,8 +213,7 @@ class GlyphArray{
         const rescale = function(param,size){
             const s_ = mutli_(size);
             const aa = SVG.toAbsolute(param);
-            //
-            
+
                 for(const i of aa){
                     if(i.x!=undefined) i.x*=s_;
                     if(i.y!=undefined) i.y*=s_;

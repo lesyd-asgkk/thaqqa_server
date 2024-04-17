@@ -110,7 +110,7 @@ class DataTable {
     this.load(dt)
   }
   load(dt){
-    const COLUMN = dt.column;
+    const COLUMN = dt.columnList;
     const DATA = dt.data;
     for(const cn in COLUMN){
       const c = COLUMN[cn];
@@ -120,7 +120,7 @@ class DataTable {
     for(const dn in DATA){
       const d = new Data(this);
       for(const k in DATA[dn]){
-        const type = dt.column[k].type;let tmp = DATA[dn][k];
+        const type = dt.columnList[k].type;let tmp = DATA[dn][k];
         if(type == "char"){tmp = tmp.toString()}
         else if(type == "bool"){tmp = typeof tmp == "boolean" ? tmp : tmp=="true"}
         else{tmp = Number(tmp);}
