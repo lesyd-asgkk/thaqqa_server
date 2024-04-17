@@ -4,23 +4,9 @@ class REK_def {
   static rule_form = {
     ["\\*"]: (self, ans, pattern, msg) => {
       if (self.intent.subtype == "V") {
-        return REK_def.PREsub_lower(
-          self,
-          ans,
-          pattern,
-          "(?:init|mid|fin|sol|null)",
-          msg,
-          "form",
-        );
+        return REK_def.PREsub_lower(self,ans,pattern,"(?:init|mid|fin|sol|null)",msg,"form");
       }
-      return REK_def.PREsub_lower(
-        self,
-        ans,
-        pattern,
-        "(?:onset|coda|null)",
-        msg,
-        "form",
-      );
+      return REK_def.PREsub_lower(self,ans,pattern,"(?:onset|coda|null)",msg,"form");
     },
     ["(\\\||(\\\*|\\\+|\\\?)\\\??)"]: (self, ans, pattern, msg) => {
       return REK_def.PREsub_END(self, ans, pattern, msg, msg);
@@ -42,34 +28,25 @@ class REK_def {
         
         const hensuu = [];
         const table = {
-          "V": "VOWEL",
-          "C": "CONSONANT",
-          "Cd": "DIACRITIC_C",
-          "Vd": "DIACRITIC_V",
-          "P": "PUNCTUATION",
-          "Pd": "DIACRITIC_P",
-        };
+          "V": "VOWEL","C": "CONSONANT","P": "PUNCTUATION",
+          "Vd": "DIACRITIC_V", "Cd": "DIACRITIC_C","Pd": "DIACRITIC_P"};
         const str = self.intent.subtype;
         let AL;
         if (typeof str == "string") {
           AL = LetterManager.getLetter({ Name: /(|.*)/g });
         }
         if (AL == null || AL instanceof Error) throw AL;
-        for (const a_ in AL) {
-          if(table[str] != AL[a_].parent.name) continue;
-          const k = AL[a_].values;
+        for (const a_ of AL) {
+          if(table[str] != a_.parent.name) continue;
+          const k = a_.valueList;
           const val = Function("_", `return ${msg}`);
           const val2 = val(k);
           if (typeof val2 == "boolean" && val2 == true) {
-            hensuu.push(AL[a_].getVal("Name").toString());
+            hensuu.push(a_.getVal("Name").toString());
           }
         }
-        let letter = "";
-        for (let i = 0; i < hensuu.length; i++) {
-          letter += hensuu[i];
-          if (i != hensuu.length - 1) letter += "|";
-        }
-        if(letter == "") letter = "_！空につき受理拒否！"
+        const letter = hensuu.join("|");
+        if(letter == "") letter = "_！空につき受理拒否！";
         return REK_def.PREsub_lower(self, ans, pattern, letter, msg, "g");
       },
   };
@@ -109,14 +86,9 @@ class REK_def {
       return REK_def.PREsub_END(self, ans, pattern, "", msg);
     },
   };
-   static PREsub_br_D(
-    self,
-    ans,
-    pattern,
-    letter,
-    type,
-  ) {
-    //S() クソ厄介
+
+   static PREsub_br_D(self,ans,pattern,letter,type) {
+    //[] とか。
     const intent_after = { ...self.intent };
     let i = 1;
     let j = 1;
@@ -132,6 +104,7 @@ class REK_def {
     pattern = pattern.slice(i + 1);
     return [ans, pattern];
   }
+
   static rule_G = {
     ["-\\*"]: (self, ans, pattern, msg) => {
       self.intent.isFirst = "TRUE";
@@ -318,20 +291,20 @@ class REK_def {
         ["*,*,*,*", "S"],
       ];
       for (let i = 0; i < hensuu.length; i++) {
-        let intent_after = { ...self.intent };
+        const intent_after = { ...self.intent };
         intent_after.type = hensuu[i][1];
         intent_after.subtypeb = "none";
         const t = new RegExp_Khhyl(hensuu[i][0], intent_after);
         ans.push(t);
 
-        intent_after = { ...self.intent };
-        intent_after.subtypeb = "none";
-        intent_after.type = "FINITE";
-        intent_after.isend = "TRUE";
-        const u = new RegExp_Khhyl("|", intent_after);
+        const intent_after2 = { ...self.intent };
+        intent_after2.subtypeb = "none";
+        intent_after2.type = "FINITE";
+        intent_after2.isend = "TRUE";
+        const u = new RegExp_Khhyl("|", intent_after2);
         if (i != hensuu.length - 1) ans.push(u);
-        pattern = "";
       }
+      pattern = "";
       return [ans, pattern];
     },
   };
@@ -399,8 +372,8 @@ class REK_def {
   //()類 lowerと同じ引数 「S()」とか「L()」みたいなやつ
   static PREsub_br_C(self,ans,pattern,letter,type){
     const intent_after = { ...self.intent };
-    let i = 1;
-    let j = 1;
+    let i = 1; //カッコの閉じる場所
+    let j = 1; 
     for (i = letter.length; i < pattern.length; i++) {
       if (pattern.slice(i, i + 1) == "(") j++;
       else if (pattern.slice(i, i + 1) == ")") j--;
@@ -416,7 +389,7 @@ class REK_def {
   //前方の(?<=y) (?<!y)と後方の(?=y) (?!y)  クソ厄介
   static PREsub_br_B(self,ans,pattern,letter){
     const intent_after = { ...self.intent };
-    let i;
+    let i = 1;
     let j = 1;
     for (i = 1; i < pattern.length; i++) {
       if (pattern.slice(i, i + 1) == "(") j++;
@@ -432,21 +405,21 @@ class REK_def {
   //() クソ厄介 (?: (?<Name>: の例外処理も要る
    static PREsub_br_A(self,ans,pattern,letter){
     const intent_after = { ...self.intent };
-    let i = 1;
-    let j = 1;
-    const l = letter.length;
+    let i = 1; // br_end
+    let j = 1; // 
+    const br_start = letter.length; // ?:や<Name>:とか
     for (i = 1; i < pattern.length; i++) {
       if (pattern.slice(i, i + 1) == "(") j++;
       else if (pattern.slice(i, i + 1) == ")") j--;
       if (j == 0) break;
     }
-    intent_after.subtypeb = pattern.slice(0, l) + ")";
-    const t = new RegExp_Khhyl(pattern.slice(letter.length, i), intent_after);
+    intent_after.subtypeb = pattern.slice(0, br_start) + ")";
+    const t = new RegExp_Khhyl(pattern.slice(br_start, i), intent_after);
     ans.push(t);
     pattern = pattern.slice(i + 1);
     return [ans, pattern];
   }
-  //{}とか
+  //{}とか 
   static PREsub_kazu(self,ans,pattern,letter){
     const intent_after = { ...self.intent };
     intent_after.type = "{n}";

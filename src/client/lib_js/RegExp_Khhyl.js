@@ -140,15 +140,11 @@ class RegExp_Khhyl {
             case "form":
                 rule.push("rule_form");
             break;
+            case "R":case "X":
             case "S":
-            case "R":
-            case "X":
-            case "C":
-            case "Cd":
-            case "V":
-            case "Vd":
-            case "P":
-            case "Pd":
+            case "C":case "Cd":
+            case "V":case "Vd":
+            case "P":case "Pd":
                 rule.push("rule_scvpd");
             break;
             case "G":
@@ -165,8 +161,8 @@ class RegExp_Khhyl {
             const k = this.ParseRegExp_sub(REK_def[rule[0]]);
             if(k instanceof Error)throw k;
             this.child = k; 
-            for(const i in this.child){
-                const k = this.child[i].ParseRegExp();
+            for(const i of this.child){
+                const k = i.ParseRegExp();
                 if(k instanceof Error)throw k;
             }  
         }
@@ -192,7 +188,7 @@ class RegExp_Khhyl {
             }
             break doublebreak; //通らなかった場合。
         }
-        if(this.pattern != null &&  this.pattern != ""){throw Error(`変換エラー:${this.pattern}${ans}`)}
+        if([null,""].includes(this.pattern).length==0){throw Error(`変換エラー:${this.pattern}${ans}`)}
         return ans;
     }
 }
