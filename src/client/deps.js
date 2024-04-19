@@ -4,10 +4,9 @@ import * as webjs from "./web_js/deps.js";
 
   
   async function main(){
-    await khhyl.Database.load();
+    await khhyl.Database.load('/server/init.json');
     await khhyl.GlyphManager.loadAll();
 
-    console.log(khhyl.Database.getTable("CONSONANT").getData({Name:/..+/g}));
     let ta = new webjs.Table_web("VOWEL",$("div.area_tb#vowel")[0]);
     ta.draw();
     ta = new webjs.Table_web("DIACRITIC_V",$("div.area_tb#voweld")[0]);
@@ -43,8 +42,12 @@ import * as webjs from "./web_js/deps.js";
     object.name = "export";
     object.addEventListener("click",() => {khhyl.Database.export();},true);
     $("div.area_tb#export")[0].appendChild(object);
+
+    
   }
   self.addEventListener("load", async () => {
     console.log("ページが完全に読み込まれました");
     await main();
   });
+
+  

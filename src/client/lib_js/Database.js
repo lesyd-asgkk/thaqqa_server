@@ -4,7 +4,7 @@ export { SVG } from "./SVG.js";
 class Database {
     static tableList = [];
     static import(data) {
-      console.log(data);
+      //console.log(data);
       for(const i in data) Database.tableList.push(new DataTable(data[i])) ;
     }
 
@@ -13,8 +13,8 @@ class Database {
 
     }
 
-   static async load(){
-    await fetch('/server/init.json')
+   static async load(path){
+    await fetch(path)//
   .then(response => response.json())
   .then(data => {
     Database.import(data);

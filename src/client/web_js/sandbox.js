@@ -23,10 +23,11 @@ class Sandbox_web{
         const d = Khhyl.Render.DrawD(self.textbox.value,Number(self.sizetext.value),lang,(alig==2?0:1),"none",null);
         self.SVG.path.setAttribute("d",d);
 
+        const gap_ = 5;
         const x0 = Khhyl.SVG.getLeft(d);
-        const x1 = Khhyl.SVG.getRight(d);
+        const x1 = Khhyl.SVG.getRight(d)+gap_;
         const y0 = Khhyl.SVG.getTop(d);
-        const y1 = Khhyl.SVG.getBottom(d);
+        const y1 = Khhyl.SVG.getBottom(d)+gap_;
 
         const shrink_x = 32/32;
         const HEIGHT = y1-y0;

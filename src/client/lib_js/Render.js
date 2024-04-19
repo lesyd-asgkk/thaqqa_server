@@ -1,4 +1,4 @@
-import { Parser , GSUBManager ,GlyphArray } from "./deps.js";
+import { Parser , GSUBManager ,GlyphArray,SVG} from "./deps.js";
 
 class Render{
     //text:string型
@@ -7,6 +7,8 @@ class Render{
     //option:設定とか
     //size:初期サイズ。普通は16
     //pos:表示位置。
+
+    //text , lang,alig,{option:,size:,pos:,...}とかの形にしたほうが良さそう
     static DrawD(text,size,lang,alig,option,position){
         switch(option){
             case "parsedplus":
@@ -22,7 +24,7 @@ class Render{
         if(position == null) position = {posx:0,posy:0,aligx:-1,aligy:-1};
         
         const glar = new GlyphArray(text,alig,false,{top:800,right:800,bottom:800,left:800},{x:position.posx,y:position.posy},{x:position.aligx,y:position.aligy});
-        const ans = glar.toPath(size);
+        const ans = SVG.convertSVG(glar.toPath(size));
         return ans;
     }
 }

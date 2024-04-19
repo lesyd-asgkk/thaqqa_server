@@ -26,7 +26,6 @@ class GlyphManager{
             table.createColumn("ID","INTEGER","",0);
             table.createColumn("Name","char","",1);
             table.createColumn("Path","char","",2);
-            console.log(data);
             for(const d in data) table.createData({Name:d,Path:SVG.convertSVG(data[d])});
         }
       })
@@ -35,144 +34,7 @@ class GlyphManager{
             resolve("done");
         });
       }
-      /*
-    static resetPreSVG(){
-        Database.deleteTable("PRERENDER_GLYPH");
-        Database.createTable({name:"PRERENDER_GLYPH"});
-        const table = Database.getTable("PRERENDER_GLYPH");
-        table.createColumn("ID","INTEGER","",0);
-        table.createColumn("fullname","char","",1);table.createColumn("name","char","",2);table.createColumn("val","char","",3);
-        table.createColumn("form","char","",4);
-        table.createColumn("vec","INTEGER","",5);
-        table.createColumn("d","char","",10);
-        table.createColumn("vtop","float","",20);table.createColumn("vbottom","float","",21);
-        table.createColumn("top","float","",22);table.createColumn("bottom","float","",23);
-        table.createColumn("child0","char","",30);table.createColumn("child1","char","",31);table.createColumn("child2","char","",32);
-        table.createColumn("offx0","float","",40);table.createColumn("offy0","float","",41);
-        table.createColumn("aligx","float","",50);table.createColumn("aligy","float","",51);
-         table.createColumn("type","char","",60);
-    }
-    static setPreSVGall(){
-        const c0_khhyl = ["","t0","k0","q0","c0","n0","ng0","th0","s0","hy0","kh0","qh0","h0","l0","r0","tl0","y0","w0","th0-d0","s0-d0","hy0-d0","kh0-d0","qh0-d0","h0-d0","x0"]
-        const c1_khhyl = ["","t0","k0","q0","c0","n0","ng0","th0","s0","hy0","kh0","qh0","h0","l0","r0","tl0","y0","w0","th0-d0","s0-d0","hy0-d0","kh0-d0","qh0-d0","h0-d0"]
-        const v_khhyl = ["a","abig","e","eold","i","iold","o","u","v"]
-        const v_khhylH = {abig:["mid","init","mid"],e:["fin","fin","fin"],
-        i:["fin","init","fin"],o:["fin","init","init"],
-        u:["fin","init","fin"],v:["fin","init","fin"],
-        eold:["fin","fin","fin"],iold:["fin","init","init"],
-        }
-        console.log((c0_khhyl.length*c1_khhyl.length*v_khhyl.length*3+8 )+(c0_khhyl.length*(c1_khhyl.length-1)*v_khhyl.length*3+8 ))
-        for(const y in v_khhyl){
-            const v = v_khhyl[y];
-            const name = `S(sol,,${v}0,)`;
-            new Glyph(name,0);
-            const name2 = `S(sol,,${v}1,)`;
-            if(v!="a")new Glyph(name2,1);
-        }
-        console.log("Done:sol");
-
-        const c0_san = ["t0-d0","k0-d0",
-        "t0-hd0","q0-hd0","n0-hd0","th0-hd0","tl0-hd0",
-        "t0-sy0","k0-sy0","n0-sy0","ng0-sy0","s0-sy0","r0-sy0",
-        "k0-sw0","q0-sw0","ng0-sw0",
-        "t0-d0-hd0","n0-hd0-sy0","th0-hd0-sy0",
-        "th0-hd0-sw0","tl0-hd0-sy0"];
-        console.log((c0_san.length*(c1_khhyl.length+2)*3)+((c0_san.length*(c1_khhyl.length+1)*3)));
-        for(const x in c0_khhyl){const c0 = c0_khhyl[x];
-            for(const z in c1_khhyl){const c1 = c1_khhyl[z];
-                for(const y in v_khhyl){const v = v_khhyl[y];const form = ["init","mid","fin"];
-                    for(const w in form){
-                        const vform = (form[w] != "init" && c0 == "t0")?1:0+(form[w] == "fin" && c1 == "t0")?2:0;
-                        const tform = (c1 == "t0" && form[w] == "fin" && ["e","o","v","eold","iold"].includes(v));
-                        const name = `S(${form[w]},${c0},${v}${vform},${tform?"t1":c1})`;
-                        new Glyph(name,0);
-                        if(v!="a"){
-                        const formb = v_khhylH[v][w];
-                        const vb = (form[w] == "fin" && v == "abig") ? "a" : v;
-                        const vform_b = (formb != "init" && c0 == "t0")?1:0+(formb == "fin" && ( ["i","v"].includes(v) || c1 == "t0"))?2:0;
-                        const nameb = `S(${formb},${c0},${vb}${vform_b},${tform?"t1":c1})`;
-                        new Glyph(nameb,1);
-                        }
-                    }
-                }
-            }
-            console.log(`done:${c0}`)
-        }
-
-        console.log(`done:khhyl`)
-        for(const x in c0_san){const c0 = c0_khhyl[x];
-             for(const y in v_khhyl){const v = v_khhyl[y];const form = ["init","mid","fin"];
-                for(const w in form){
-                    const vform = (form[w] != "init" && c0 == "t0")?1:0;
-                    if(v == "v"){
-                        new Glyph( `S(${form[w]},${c0},${v}${vform},n0);`,0);
-                        new Glyph( `S(${form[w]},${c0},${v}${vform},ng0);`,0);
-                        new Glyph( `S(${form[w]},${c0},${v}${vform},n0-hd0);`,0);
-                    }
-                    else new Glyph( `S(${form[w]},${c0},${v}${vform},)`,0);
-                    
-                    if(v!="a"){
-                    const formb = v_khhylH[v][w];
-                    const vb = (formb == "fin" && v == "abig") ? "a" : v;
-                    const vform_b = (formb != "init" && c0 == "t0")?1:0+(formb == "fin" && ( ["i","v"].includes(v) ))?2:0;
-                    if(v == "v"){
-                        new Glyph( `S(${formb},${c0},${vb}${vform_b},n0)`,1);
-                        new Glyph( `S(${formb},${c0},${vb}${vform_b},ng0)`,1);
-                        new Glyph( `S(${formb},${c0},${vb}${vform_b},n0-hd0)`,1);
-                    }
-                    else new Glyph( `S(${formb},${c0},${vb}${vform_b},)`,1);
-                    
-                    }
-                }
-            }
-            console.log(`done:${c0}`)
-        }
-        console.log(`done:!}`)
-    }
-    static setPreSVG(glypharray,overwrite){
-        const table = Database.getTable("PRERENDER_GLYPH");
-            for(const d in glypharray){
-                const g_ = glypharray[d];
-                const datab = GlyphManager.getPreSVG(g_.fullname,g_.vec);
-                if(datab.length != 0){
-                    console.log("skipped");
-                    if(overwrite==null||!overwrite) continue;
-                    const l_ = g_.child==null?0:g_.child.length;
-                    table.rewriteData({ID:datab[0].ID},{
-                        name:g_.name,d:g_.d,
-                        fullname:g_.fullname,val:g_.val,form:g_.form,
-                        vec:g_.vec,vtop:g_.vtop,
-                        vbottom:g_.vbottom,top:g_.top,bottom:g_.bottom,
-                        child0:l_>0?g_.child[0].fullname:"",child1:l_>1?g_.child[1].fullname:"",child2:l_>2?g_.child[2].fullname:"",
-                        offx0:g_.offset.x,offy0:g_.offset.y,
-                        aligx:g_.aligment.x,aligy:g_.aligment.y,type:g_.type
-                    });
-                    continue;
-                }
-                const l_ = g_.child==null?-1:g_.child.length;
-                table.createData({
-                    name:g_.name,d:g_.d,
-                    fullname:g_.fullname,val:g_.val,form:g_.form,
-                    vec:g_.vec,vtop:g_.vtop,
-                    vbottom:g_.vbottom,top:g_.top,bottom:g_.bottom,
-                    child0:l_>0?g_.child[0].fullname:"",child1:l_>1?g_.child[1].fullname:"",child2:l_>2?g_.child[2].fullname:"",
-                    offx0:g_.offset.x,offy0:g_.offset.y,
-                    aligx:g_.aligment.x,aligy:g_.aligment.y,type:g_.type
-                });
-            }
-        }
-    static getPreSVG(fullname,vec){
-        const ans = [];
-        const table = Database.getTable("PRERENDER_GLYPH");
-        if(table != null){
-            const data = table.getData({fullname:fullname,vec:vec});
-            for(let i = 0;i<data.length;i++){
-                ans.push(data[i].values);
-            }
-        }
-        return ans;
-    }//*/
-
+     
     static getSVG(name){
         const ans = [];
         const table = Database.getTable("GLYPH");
@@ -187,7 +49,7 @@ class GlyphManager{
 class GlyphArray{
     constructor(name,vec,iswrap,box,pos,alg){
         this.name=name;
-        this.d = "";
+        this.d = [];
         this.childList = [];//Glyphの配列 入れ子にします
         this.attribute = {};//(将来用)
         this.position = {x:pos.x??0,y:pos.y??0};//（parentに対するthisのoffset）
@@ -200,18 +62,16 @@ class GlyphArray{
     initSvg(){
         const r_ = new RegExp_Khhyl("(L())(L())",{}).ParseRegExp().toNormalRegExp();
         const text = this.name.replaceAll(new RegExp(r_, "g"),"$1Sep()$2").replaceAll(new RegExp(r_, "g"),"$1Sep()$2");
-
         const pSVGData = text.split("Sep()");
-        
         pSVGData.forEach((i)=> this.childList.push(new Glyph(i , this.vec)))
     }
     toPath(defaultsize){
-        const vec = this.vec;
-        const mutli_ = function (n){return n/(vec==0?textdata.WidthV:textdata.Height)}
+        const vec_ = this.vec;
+        const em_ = function (n){return n/(vec_==0?textdata.WidthV:textdata.Height)}
         // 単に『em_』へと変える
         const textdata = Database.getTable("TEXTDATA").dataList[0].valueList;
         const rescale = function(param,size){
-            const s_ = mutli_(size);
+            const s_ = em_(size);
             const aa = SVG.toAbsolute(param);
 
                 for(const i of aa){
@@ -223,11 +83,10 @@ class GlyphArray{
                     if(i.y2!=undefined) i.y2*=s_;
                     if(i.val!=undefined) i.val*=s_;
             }
-            console.log(aa);
-            return SVG.convertSVG(aa);
+            return SVG.toRelative(aa);
         }
 
-        this.d = `M ${this.position.x},${this.position.y}`;
+        this.d = SVG.createM(this.position.x,this.position.y);//`M ${this.position.x},${this.position.y}`;
         let x = this.position.x;
         let y = this.position.y;
         const nlist = Database.getTable("PUNCTUATION").getData({"IsNewline":true});
@@ -251,16 +110,16 @@ class GlyphArray{
                 if(i != this.childList.length-1) gap_below += GPOSManager.gpos(this.childList[i].fullname+this.childList[i+1].fullname,this.vec,"EX").y0;
                 else gap_below += GPOSManager.gpos(this.childList[i].fullname+"Null()",this.vec,"EX").y0;
 
-                y += gap_above*mutli_(defaultsize);
+                y += gap_above*em_(defaultsize);
 
                 const j_ = (this.childList[i].type == "P")||(this.childList[i].form == "sol")
                 const d = rescale(this.childList[i].toPathB(!j_?-gap_above:(0),gap_below),defaultsize); //16はsize
                 if(isnewline){
-                    y -= (SVG.getTop(this.childList[i].toPathB(0,0))-gap_above)*mutli_(defaultsize);
+                    y -= (SVG.getTop(this.childList[i].toPathB(0,0))-gap_above)*em_(defaultsize);
                     isnewline = false;
                 }
-                this.d += `M ${x},${y} `;this.d += SVG.convertSVG(d);
-                y += (SVG.getBottom(this.childList[i].toPathB(0,0))+gap_below)*mutli_(defaultsize);
+                this.d = this.d.concat(SVG.createM(x,y)).concat(SVG.toRelative(d));
+                y += (SVG.getBottom(this.childList[i].toPathB(0,0))+gap_below)*em_(defaultsize);
                 if(i+1 != this.childList.length){const d2 = rescale(this.childList[i+1].d,defaultsize);y -= SVG.getTop(d2);}
                 
                 this.childList[i].offset = {x,y};
@@ -268,7 +127,7 @@ class GlyphArray{
                     x -= defaultsize;y = 0;isnewline = true;
                 }
             }
-            this.d += `M ${x},${y} `;
+            this.d = this.d.concat(SVG.createM(x,y));
         }
         else{
             for(let i = 0;i<this.childList.length;i++){
@@ -279,7 +138,7 @@ class GlyphArray{
                 const x_rel = -SVG.getLeft(d_new)+SVG.getRight(d_new)+defaultsize*textdata.WidthV/textdata.Height;
 
                 x += (!textdata.isWidthHRel ? x_abs/2 : x_rel/2);
-                this.d += `M ${x},${y} `;this.d += SVG.convertSVG(d_new);
+                this.d = this.d.concat(SVG.createM(x,y)).concat(SVG.toRelative(d_new));
                
 
                 if(i!=this.childList.length-1)x += (!textdata.isWidthHRel ? x_abs/2 : x_rel/2);//size
@@ -288,7 +147,7 @@ class GlyphArray{
                     x = 0;y += defaultsize*((textdata.Height+textdata.TopGapH)/textdata.Height);
                 }
             }
-            this.d += `M ${x},${y} `;
+            this.d = this.d.concat(SVG.createM(x,y));
         }
         return this.d;
     }
@@ -296,11 +155,11 @@ class GlyphArray{
 }
 
 class Glyph{
-    constructor(name,vec){ //flag_recは再帰処理判定用
+    constructor(name,vec){
         this.vec = vec;
         this.fullname = name; 
         this.name = ""; 
-        this.d = "";
+        this.d = [];
         this.val = -1;
         this.form = "";
         this.isroot = false;
@@ -308,7 +167,7 @@ class Glyph{
         this.childList = [];//Glyphの配列 入れ子にします
         this.attribute = {};//(将来用)
         this.size = 16;
-        this.type = "";//S,P,C,Vのいずれか
+        this.type = "";//S,P,C,V,Pd,Cd,Vdのいずれか
         this.offset = {x:0,y:0};//（parentに対するthisのoffset）
         this.gap ={top:0,middle:0,bottom:0}; //上棒、中央、下棒
         this.aligment = {x:0,y:0};
@@ -317,26 +176,7 @@ class Glyph{
         this.toPath();
     }
     initSvg(name){
-        /*const preGLYPH_ = GlyphManager.getPreSVG(name,this.vec);
 
-        if(preGLYPH_.length!=0){
-        
-            const pr_ = preGLYPH_[0];
-            this.d=pr_.d;this.name=pr_.name;
-            this.fullname=pr_.fullname;this.val=pr_.val;
-            this.vec=pr_.vec;
-            this.vtop=pr_.vtop;this.vbottom=pr_.vbottom;
-            this.top=pr_.top;this.bottom=pr_.bottom;
-            this.offset={x:pr_.offx0,y:pr_.offy0};
-            this.aligment={x:pr_.aligx,y:pr_.aligy};
-            this.type = pr_.type;
-            if(pr_.child0 != "") this.child.push(new Glyph(pr_.child0,this.vec))
-            if(pr_.child1 != "") this.child.push(new Glyph(pr_.child1,this.vec))
-            if(pr_.child2 != "") this.child.push(new Glyph(pr_.child2,this.vec))
-            
-        return null;
-        }//*/
-        //console.log(name);
         const partname = this.partitionName(name);
         //console.log(partname);
         if(partname.length == 0){this.isroot = true;
