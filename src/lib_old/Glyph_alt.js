@@ -1,5 +1,5 @@
 
-import { Database,SVG,RegExp_Khhyl,GPOSManager,LetterManager} from "./deps.js";
+//import { Database,SVG,RegExp_Khhyl,GPOSManager,LetterManager} from "./deps.js";
 class GlyphManager{
     static load(doc){
         const svg = doc.getElementsByTagName("PATH");

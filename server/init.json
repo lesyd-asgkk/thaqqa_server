@@ -1185,81 +1185,81 @@
         "Pattern": "c",
         "Order": 10,
         "Priority": 0,
-        "Name": "(V(*,a_)){2}(V(*,[_.Name!='a']_)|C(*)|(P(*)|$)",
+        "Name": "(V(*,a_)){2}(V(*,[_.Name!='a']_)|C(*)|P(*)|$)",
         "NameAlt": "$1C(null,c0)$2",
-        "Parsed": "(V\\((?:init|mid|fin|sol|null),a\\d+\\)){2}(V\\((?:init|mid|fin|sol|null),(?:abig|e|i|o|u|v|omit|eold|iold|br|hyphen)\\d+\\)|C\\((?:onset|coda|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|(P\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|$))"
+        "Parsed": "(V\\((?:init|mid|fin|sol|null),a\\d+\\)){2}(V\\((?:init|mid|fin|sol|null),(?:abig|e|i|o|u|v|omit|eold|iold|br|hyphen)\\d+\\)|C\\((?:onset|coda|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|P\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|$)"
       },
       "33": {
         "ID": 33,
         "Pattern": "c",
         "Order": 10,
         "Priority": 0,
-        "Name": "(V(*,e_)){2}(V(*,[_.Name!='e']_)|C(*)|(P(*)|$)",
+        "Name": "(V(*,e_)){2}(V(*,[_.Name!='e']_)|C(*)|P(*)|$)",
         "NameAlt": "$1C(null,c0)$2",
-        "Parsed": "(V\\((?:init|mid|fin|sol|null),e\\d+\\)){2}(V\\((?:init|mid|fin|sol|null),(?:a|abig|i|o|u|v|omit|eold|iold|br|hyphen)\\d+\\)|C\\((?:onset|coda|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|(P\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|$))"
+        "Parsed": "(V\\((?:init|mid|fin|sol|null),e\\d+\\)){2}(V\\((?:init|mid|fin|sol|null),(?:a|abig|i|o|u|v|omit|eold|iold|br|hyphen)\\d+\\)|C\\((?:onset|coda|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|P\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|$)"
       },
       "34": {
         "ID": 34,
         "Pattern": "c",
         "Order": 10,
         "Priority": 0,
-        "Name": "(V(*,i_)){2}(V(*,[_.Name!='i']_)|C(*)|(P(*)|$)",
+        "Name": "(V(*,i_)){2}(V(*,[_.Name!='i']_)|C(*)|P(*)|$)",
         "NameAlt": "$1C(null,c0)$2",
-        "Parsed": "(V\\((?:init|mid|fin|sol|null),i\\d+\\)){2}(V\\((?:init|mid|fin|sol|null),(?:a|abig|e|o|u|v|omit|eold|iold|br|hyphen)\\d+\\)|C\\((?:onset|coda|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|(P\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|$))"
+        "Parsed": "(V\\((?:init|mid|fin|sol|null),i\\d+\\)){2}(V\\((?:init|mid|fin|sol|null),(?:a|abig|e|o|u|v|omit|eold|iold|br|hyphen)\\d+\\)|C\\((?:onset|coda|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|P\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|$)"
       },
       "35": {
         "ID": 35,
         "Pattern": "c",
         "Order": 10,
         "Priority": 0,
-        "Name": "(V(*,o_)){2}(V(*,[_.Name!='o']_)|C(*)|(P(*)|$)",
+        "Name": "(V(*,o_)){2}(V(*,[_.Name!='o']_)|C(*)|P(*)|$)",
         "NameAlt": "$1C(null,c0)$2",
-        "Parsed": "(V\\((?:init|mid|fin|sol|null),o\\d+\\)){2}(V\\((?:init|mid|fin|sol|null),(?:a|abig|e|i|u|v|omit|eold|iold|br|hyphen)\\d+\\)|C\\((?:onset|coda|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|(P\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|$))"
+        "Parsed": "(V\\((?:init|mid|fin|sol|null),o\\d+\\)){2}(V\\((?:init|mid|fin|sol|null),(?:a|abig|e|i|u|v|omit|eold|iold|br|hyphen)\\d+\\)|C\\((?:onset|coda|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|P\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|$)"
       },
       "36": {
         "ID": 36,
         "Pattern": "c",
         "Order": 10,
         "Priority": 0,
-        "Name": "(V(*,u_)){2}(V(*,[_.Name!='u']_)|C(*)|(P(*)|$)",
+        "Name": "(V(*,u_)){2}(V(*,[_.Name!='u']_)|C(*)|P(*)|$)",
         "NameAlt": "$1C(null,c0)$2",
-        "Parsed": "(V\\((?:init|mid|fin|sol|null),u\\d+\\)){2}(V\\((?:init|mid|fin|sol|null),(?:a|abig|e|i|o|v|omit|eold|iold|br|hyphen)\\d+\\)|C\\((?:onset|coda|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|(P\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|$))"
+        "Parsed": "(V\\((?:init|mid|fin|sol|null),u\\d+\\)){2}(V\\((?:init|mid|fin|sol|null),(?:a|abig|e|i|o|v|omit|eold|iold|br|hyphen)\\d+\\)|C\\((?:onset|coda|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|P\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|$)"
       },
       "37": {
         "ID": 37,
         "Pattern": "c",
         "Order": 10,
         "Priority": 0,
-        "Name": "(V(*,v_)){2}(V(*,[_.Name!='v']_)|C(*)|(P(*)|$)",
+        "Name": "(V(*,v_)){2}(V(*,[_.Name!='v']_)|C(*)|P(*)|$)",
         "NameAlt": "$1C(null,c0)$2",
-        "Parsed": "(V\\((?:init|mid|fin|sol|null),v\\d+\\)){2}(V\\((?:init|mid|fin|sol|null),(?:a|abig|e|i|o|u|omit|eold|iold|br|hyphen)\\d+\\)|C\\((?:onset|coda|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|(P\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|$))"
+        "Parsed": "(V\\((?:init|mid|fin|sol|null),v\\d+\\)){2}(V\\((?:init|mid|fin|sol|null),(?:a|abig|e|i|o|u|omit|eold|iold|br|hyphen)\\d+\\)|C\\((?:onset|coda|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|P\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|$)"
       },
       "38": {
         "ID": 38,
         "Pattern": "c",
         "Order": 10,
         "Priority": 0,
-        "Name": "(V(*,eold_)){2}(V(*,[_.Name!='eold']_)|C(*)|(P(*)|$)",
+        "Name": "(V(*,eold_)){2}(V(*,[_.Name!='eold']_)|C(*)|P(*)|$)",
         "NameAlt": "$1C(null,c0)$2",
-        "Parsed": "(V\\((?:init|mid|fin|sol|null),eold\\d+\\)){2}(V\\((?:init|mid|fin|sol|null),(?:a|abig|e|i|o|u|v|omit|iold|br|hyphen)\\d+\\)|C\\((?:onset|coda|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|(P\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|$))"
+        "Parsed": "(V\\((?:init|mid|fin|sol|null),eold\\d+\\)){2}(V\\((?:init|mid|fin|sol|null),(?:a|abig|e|i|o|u|v|omit|iold|br|hyphen)\\d+\\)|C\\((?:onset|coda|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|P\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|$)"
       },
       "39": {
         "ID": 39,
         "Pattern": "c",
         "Order": 10,
         "Priority": 0,
-        "Name": "(V(*,iold_)){2}(V(*,[_.Name!='iold']_)|C(*)|(P(*)|$)",
+        "Name": "(V(*,iold_)){2}(V(*,[_.Name!='iold']_)|C(*)|P(*)|$)",
         "NameAlt": "$1C(null,c0)$2",
-        "Parsed": "(V\\((?:init|mid|fin|sol|null),iold\\d+\\)){2}(V\\((?:init|mid|fin|sol|null),(?:a|abig|e|i|o|u|v|omit|eold|br|hyphen)\\d+\\)|C\\((?:onset|coda|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|(P\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|$))"
+        "Parsed": "(V\\((?:init|mid|fin|sol|null),iold\\d+\\)){2}(V\\((?:init|mid|fin|sol|null),(?:a|abig|e|i|o|u|v|omit|eold|br|hyphen)\\d+\\)|C\\((?:onset|coda|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|P\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|$)"
       },
       "40": {
         "ID": 40,
         "Pattern": "c",
         "Order": 10,
         "Priority": 0,
-        "Name": "(V(*,abig_)){2}(V(*,[_.Name!='abig']_)|C(*)|(P(*)|$)",
+        "Name": "(V(*,abig_)){2}(V(*,[_.Name!='abig']_)|C(*)|P(*)|$)",
         "NameAlt": "$1C(null,c0)$2",
-        "Parsed": "(V\\((?:init|mid|fin|sol|null),abig\\d+\\)){2}(V\\((?:init|mid|fin|sol|null),(?:a|e|i|o|u|v|omit|eold|iold|br|hyphen)\\d+\\)|C\\((?:onset|coda|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|(P\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|$))"
+        "Parsed": "(V\\((?:init|mid|fin|sol|null),abig\\d+\\)){2}(V\\((?:init|mid|fin|sol|null),(?:a|e|i|o|u|v|omit|eold|iold|br|hyphen)\\d+\\)|C\\((?:onset|coda|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|P\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|$)"
       },
       "41": {
         "ID": 41,
