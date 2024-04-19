@@ -1,5 +1,14 @@
 import { Database } from "./Database.js";
 import { RegExp_Khhyl } from "./RegExp_Khhyl.js";
+
+//DatabaseManagerを新設、Databaseのリスト操作にします
+
+//GPOS|GSUB|ParserManager
+//GlyphManager LetterManager
+//↑こいつらをDataのような構図（parent持ち）にする
+
+
+//Parserは別で良いかも
 class GPOSManager {
     static setGPOSColumnAll(){
         GPOSManager.setGPOSColumn();

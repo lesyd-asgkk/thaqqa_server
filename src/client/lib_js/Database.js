@@ -244,7 +244,6 @@ class DataTable {
 
   getLeastAvailableID(){
     const IDs = this.dataList.map((i) => (i.valueList.ID));
-    
     IDs.sort((a,b) => (a-b));
     let last = -1;
     for(let i=0;i<IDs.length;i++){
