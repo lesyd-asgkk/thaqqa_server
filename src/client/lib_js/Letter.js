@@ -1,8 +1,8 @@
-import { Database } from "./deps.js"; //,DataTable,Data
+import { FontManager } from "./deps.js"; //,DataTable,Data
 class LetterManager{
     static #tablelist_name_ = ["VOWEL","CONSONANT","DIACRITIC_C","DIACRITIC_V","PUNCTUATION","DIACRITIC_P"];
     static getLetter(param){
-        const t = LetterManager.#tablelist_name_.map((i)=>Database.getTable(i));
+        const t = LetterManager.#tablelist_name_.map((i)=>FontManager.getStaticTable(i));
         if(typeof param == "string") param = {Name:param};
         if(param instanceof RegExp) param = {Name:param};
         const ans = [];
@@ -15,7 +15,7 @@ class LetterManager{
         return ans;
     }
     static rewriteLetter(param,param2){
-        const t = LetterManager.#tablelist_name_.map((i)=>Database.getTable(i));
+        const t = LetterManager.#tablelist_name_.map((i)=>FontManager.getStaticTable(i));
         if(typeof param == "string") param = {Name:param};
         if(param instanceof RegExp) param = {Name:param};
         if(typeof param2 == "string") param2 = {Name:param2};
@@ -30,7 +30,7 @@ class LetterManager{
         return ans;
     }
     static deleteLetter(param,safety){
-        const t = LetterManager.#tablelist_name_.map((i)=>Database.getTable(i));
+        const t = LetterManager.#tablelist_name_.map((i)=>FontManager.getStaticTable(i));
         safety ??= true;
         if(typeof param == "string") param = {Name:param};
         if(param instanceof RegExp) param = {Name:param};
@@ -75,8 +75,7 @@ class LetterManager{
         }
         else param2 = param;
         type = TYPE[type]  ?? type;
-        const table = Database.getTable(type);
-
+        const table = FontManager.getStaticTable(type);
             table.createData(param2);
     }catch(e){throw(e);}
     }

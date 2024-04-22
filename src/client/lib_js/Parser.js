@@ -1,10 +1,10 @@
-import { Database } from "./Database.js"; // ,DataTable,Data 
+import { FontManager } from "./Font.js"; // ,DataTable,Data 
 import { RegExp_Khhyl } from "./RegExp_Khhyl.js";
 class Parser {
   static getParser(param) {
     if(typeof param == "string") param = {Name:param};
     if(param instanceof RegExp) param = {Name:param};
-    const tables = Database.getTable("Parser");
+    const tables = FontManager.getStaticTable("Parser");
 
     return tables.getData(param);
   }
@@ -12,7 +12,7 @@ class Parser {
     if(typeof param == "string") param = {Name:param};
     else if(param instanceof RegExp) param = {Name:param};
     if(typeof param2 == "string") param2 = {Name:param2};
-    const tables = Database.getTable("Parser");
+    const tables = FontManager.getStaticTable("Parser");
 
     const Parser_a = Parser.getParser(param.Name);
     const Parser_b = Parser.getParser(param.Name);
@@ -26,7 +26,7 @@ class Parser {
     if(typeof param == "string") param = {Name:param};
     if(param instanceof RegExp) param = {Name:param};
     if(safety && Parser.getParser(param).length > 1) return new Error("削除対象が2つ以上あります。まとめて削除したい場合はsafetyをfalseに指定してください");
-    const tables = Database.getTable("Parser");
+    const tables = FontManager.getStaticTable("Parser");
     return tables.deleteData(param,1);
   }
   static createParser(param){
@@ -35,21 +35,21 @@ class Parser {
     if(typeof param == "string"){
       param ={Name: param, Pattern:"u",Pattern_sub:"DIAC",OffsetX0: 0, OffsetY0: 0,OffsetX1: 0,OffsetY1: 0, Priority:0};
     }
-    const table_ = Database.getTable(table);
+    const table_ = FontManager.getStaticTable(table);
     table_.createData(param);
   }
   static setParserColumnAll(){
     Parser.setParserColumn();
   }
   static setParserColumn(id){
-    const table = Database.getTable("PARSER");
+    const table = FontManager.getStaticTable("PARSER");
     const ParserData = id==null?table.dataList:table.getData( {ID:id});
       ParserData.forEach((i) => {const r_ = new RegExp_Khhyl(i.getVal("Name"),{}).ParseRegExp().toNormalRegExp();
       table.rewriteData({ID:i.getVal("ID")},{Parsed:r_});})
     
   }
   static parse(raw,type) {
-    const table = Database.getTable("PARSER");
+    const table = FontManager.getStaticTable("PARSER");
     const r_ = raw.split("");
     let raw_new = "";
     r_.forEach((r) => raw_new += `R(${r})`); 

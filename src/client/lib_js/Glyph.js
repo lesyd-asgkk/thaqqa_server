@@ -1,5 +1,5 @@
 
-import { Database,SVG,RegExp_Khhyl,GPOSManager,LetterManager} from "./deps.js";
+import { FontManager,SVG,RegExp_Khhyl,GPOSManager,LetterManager} from "./deps.js";
 class GlyphManager{
     static load(doc){
         const svg = doc.getElementsByTagName("PATH");
@@ -11,18 +11,18 @@ class GlyphManager{
           d += b_ + "M0,0";
         }
       }
-    table.createData({Name:data,Path:SVG.convertSVG(data[d])});
+    //table.createData({Name:data,Path:SVG.convertSVG(data[d])});
     }
     static async loadAll(){
         await fetch('/server/FontData.svg')
       .then(response => response.json())
       .then(data => {
         try{
-        Database.getTable("GLYPH",true);
+        FontManager.getFont("SanSerif_0_0_0_0").getTable("GLYPH",true);
         }
         catch(_e){
-            Database.createTable({name:"GLYPH"});
-            const table = Database.getTable("GLYPH");
+            FontManager.getFont("SanSerif_0_0_0_0").createTable({name:"GLYPH"});
+            const table = FontManager.getFont("SanSerif_0_0_0_0").getTable("GLYPH");
             table.createColumn("ID","INTEGER","",0);
             table.createColumn("Name","char","",1);
             table.createColumn("Path","char","",2);
@@ -37,7 +37,7 @@ class GlyphManager{
      
     static getSVG(name){
         const ans = [];
-        const table = Database.getTable("GLYPH");
+        const table = FontManager.getFont("SanSerif_0_0_0_0").getTable("GLYPH");
         if(table != null){
             const data = table.getData({Name:name});
             data.forEach((i) => ans.push(i.getVal("Path")));
@@ -69,7 +69,7 @@ class GlyphArray{
         const vec_ = this.vec;
         const em_ = function (n){return n/(vec_==0?textdata.WidthV:textdata.Height)}
         // 単に『em_』へと変える
-        const textdata = Database.getTable("TEXTDATA").dataList[0].valueList;
+        const textdata = FontManager.getFont("SanSerif_0_0_0_0").getTable("TEXTDATA").dataList[0].valueList;
         const rescale = function(param,size){
             const s_ = em_(size);
             const aa = SVG.toAbsolute(param);
@@ -89,7 +89,7 @@ class GlyphArray{
         this.d = SVG.createM(this.position.x,this.position.y);//`M ${this.position.x},${this.position.y}`;
         let x = this.position.x;
         let y = this.position.y;
-        const nlist = Database.getTable("PUNCTUATION").getData({"IsNewline":true});
+        const nlist = FontManager.getStaticTable("PUNCTUATION").getData({"IsNewline":true});
         const nlist_ = nlist.map((i) =>i.getVal("Name"));
 
         if(this.vec==0){
@@ -264,7 +264,7 @@ class Glyph{
     toPathAbs(height,vowelhratio){
         let path = this.toPath() ?? SVG.createM(0,0); 
         if(path.length == 0) path = SVG.createM(0,0); 
-        const width = Database.getTable("TEXTDATA").dataList[0].getVal("Thickness");
+        const width = FontManager.getFont("SanSerif_0_0_0_0").getTable("TEXTDATA").dataList[0].getVal("Thickness");
         const VH = vowelhratio*height
         const vt = (this.height.vbottom-this.height.vtop)/2;
         const vt_b = (-this.height.bottom-this.height.top)/2;
@@ -315,10 +315,10 @@ class Glyph{
     toPathB(top,bottom){
         let path = this.toPath() ?? SVG.createM(0,0); 
         if(path.length == 0)path = SVG.createM(0,0); 
-        const width = Database.getTable("TEXTDATA").dataList[0].getVal("Thickness");
+        const width = FontManager.getFont("SanSerif_0_0_0_0").getTable("TEXTDATA").dataList[0].getVal("Thickness");
         if(this.type == "S"){
             const v = this.childList[1].glyphname.split(/\d+/g)[0];
-            const v_null = Database.getTable("VOWEL").getData({Name:v})[0].getVal("isNullVowel");
+            const v_null = FontManager.getFont("SanSerif_0_0_0_0").getTable("VOWEL").getData({Name:v})[0].getVal("isNullVowel");
         if(v_null){
             const stick = SVG.createSkewer(-width/2,top+this.height.top,width/2,this.height.vtop).concat(SVG.createSkewer(-width/2,this.height.vbottom,width/2,bottom+this.height.bottom));
             switch(this.form){
@@ -416,7 +416,7 @@ class Glyph{
         //V-Vd部分のみ動作未検証
         if(this.type == "S"){
             const v = this.childList[1].glyphname.split(/\d+/g)[0];
-            const v_null = Database.getTable("VOWEL").getData({Name:v})[0].getVal("isNullVowel");
+            const v_null = FontManager.getStaticTable("VOWEL").getData({Name:v})[0].getVal("isNullVowel");
             const c0offset = this.childList.length>0?this.childList[0].offset:{x:0,y:0};
             const c2offset = this.childList.length>2?this.childList[2].offset:{x:0,y:0};
             const c0d = this.childList.length>0?this.childList[0].d:null;

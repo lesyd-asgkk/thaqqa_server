@@ -1,7 +1,5 @@
-export { SVG } from "./SVG.js";
-
-
-class Database {
+import { FontManager,Font} from "./deps.js";
+/*class Database {
     static tableList = [];
     static import(data) {
       //console.log(data);
@@ -53,7 +51,7 @@ class Database {
     }
     return json_data;
   }
-   //*/
+   //
   static isavailableType(str) {
     return ["char","float","INTEGER","bool"].includes(str);
   }
@@ -99,11 +97,13 @@ class Database {
       throw e;
     }
   }
-}
+}*/
 
 class DataTable {
-  constructor(dt) {
+  constructor(dt,parent) {
+    this.parent = parent;
     this.name = dt.name;
+    this.fontname = "";
     this.columnList = []; //{name:"",type:"",desc:"",order:0,subtype : ""}
     this.dataList = [];
     this.desc = ""; //データの説明
@@ -150,7 +150,7 @@ class DataTable {
           errmessage.push(`${name}は既に存在します`);
         }
       }
-      if (Database.isavailableType(type) == false) { //そんな型指定できない時の処理
+      if (FontManager.isavailableType(type) == false) { //そんな型指定できない時の処理
         errmessage.push(`${type}という型は指定できません`);
       }
       else if(val_init == null){ //空だったら
@@ -316,4 +316,4 @@ export default class Data {
   getVal(param){return this.valueList[param];}
 }
 
-export {Database,DataTable,Data}
+export {DataTable,Data}

@@ -1,4 +1,5 @@
-export  { Database,DataTable,Data } from "./Database.js";
+export  { DataTable,Data } from "./Database.js";
+export  { FontManager,Font } from "./Font.js";
 export  { Glyph ,GlyphManager ,GlyphArray } from "./Glyph.js";
 export { GPOSManager } from "./GPOS.js";
 export { GSUBManager } from "./GSUB.js";

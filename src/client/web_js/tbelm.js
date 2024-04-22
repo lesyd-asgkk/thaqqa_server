@@ -46,10 +46,11 @@ class DIVparam_web{
         val = f_numcheck(val);
             if(val == null) val = self.val;
         }
-        if(Khhyl.Database.getTable(parent.tablename).rewriteData({ID:this.id},{[self.col]:val}))
+        const DTTB = Khhyl.FontManager.getStaticTable(this.parent.tablename) ?? Khhyl.FontManager.getFont("SanSerif_0_0_0_0").getTable(this.parent.tablename);
+        if(DTTB.rewriteData({ID:this.id},{[self.col]:val}))
         {
         if(parent.tablename == "GPOS" && self.col == "Name"){
-            Khhyl.GPOSManager.setGPOSColumn(this.id);
+            Khhyl.GPOSManager.setGPOSColumn(this.id,"SanSerif_0_0_0_0");
         }
         else if(parent.tablename == "GSUB" && self.col == "Name"){
             Khhyl.GSUBManager.setGSUBColumn(this.id);
@@ -206,8 +207,9 @@ class SVGField_web{
         
         const Letter_T = ["VOWEL","DIACRITIC_V","CONSONANT","DIACRITIC_C","PUNCTUATION","DIACRITIC_P",]
         if(Letter_T.includes(this.parent.tablename)){
-        const n = Khhyl.Database.getTable(this.parent.tablename).getData({ID:id})[0].getVal("Name");
-
+        const DTTB = Khhyl.FontManager.getStaticTable(this.parent.tablename) ?? Khhyl.FontManager.getFont("SanSerif_0_0_0_0").getTable(this.parent.tablename);
+        const n = DTTB.getData({ID:id})[0].getVal("Name");
+        
         d = "M0,0";
         let listb = ["sol","init","mid","fin"];
         if(["CONSONANT","DIACRITIC_C"].includes(this.parent.tablename)) listb = ["onset","coda"];

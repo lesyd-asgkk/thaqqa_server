@@ -8,12 +8,13 @@ class REK_def {
       }
       return REK_def.PREsub_lower(self,ans,pattern,"(?:onset|coda|null)",msg,"form");
     },
+    // |記号、または(*+?)? があったら
     ["(\\\||(\\\*|\\\+|\\\?)\\\??)"]: (self, ans, pattern, msg) => {
       return REK_def.PREsub_END(self, ans, pattern, msg, msg);
-    },
+    },//()の類
     ["\\\((\\\?(<.*?>)?:)?"]: (self, ans, pattern, msg) => {
       return REK_def.PREsub_br_A(self, ans, pattern, msg);
-    },
+    },//文字
     ["[A-Za-z]+"]: (self, ans, pattern, msg) => {
       return REK_def.PREsub_END(self, ans, pattern, msg, msg);
     },
@@ -290,7 +291,7 @@ class REK_def {
         const type = msg.match(/^L|R|X|S|[CVP]d?/g);
         if (type != null) {
           return REK_def.PREsub_br_C(self, ans, pattern, msg, type[0]);
-        } else return ["", ""];
+        } else throw Error(`不正な値です：${msg}`);
       },
     ["\\\(\\\?<?[=!]"]: (self, ans, pattern, msg) => {
       return REK_def.PREsub_br_B(self, ans, pattern, msg);

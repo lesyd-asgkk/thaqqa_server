@@ -4,7 +4,8 @@ import * as webjs from "./web_js/deps.js";
 
   
   async function main(){
-    await khhyl.Database.load('/server/init.json');
+    await khhyl.FontManager.load('/server/init.json');
+    console.log(khhyl.FontManager);
     await khhyl.GlyphManager.loadAll();
 
     let ta = new webjs.Table_web("VOWEL",$("div.area_tb#vowel")[0]);
@@ -40,7 +41,7 @@ import * as webjs from "./web_js/deps.js";
     object.style.display ="block";
     object.value = "jsonとして出力";
     object.name = "export";
-    object.addEventListener("click",() => {khhyl.Database.export();},true);
+    object.addEventListener("click",() => {khhyl.FontManager.export();},true);
     $("div.area_tb#export")[0].appendChild(object);
 
     
