@@ -1,6 +1,6 @@
 {
-  "TEXTDATA": {
-    "name": "TEXTDATA",
+  "FONTDATA": {
+    "name": "FONTDATA",
     "columnList": {
       "Thickness": {
         "name": "Thickness",
@@ -65,9 +65,9 @@
         "isWidthHRel": false,
         "Height": 100,
         "TopGapH": 10,
-        "VersionMajor":0,
-        "VersionMinor":0,
-        "VersionPatch":0
+        "VersionMajor": 0,
+        "VersionMinor": 0,
+        "VersionPatch": 0
       }
     }
   },

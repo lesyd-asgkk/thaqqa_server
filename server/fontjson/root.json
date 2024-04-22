@@ -1,4 +1,33 @@
 {
+  "SYSTEMDATA":{
+    "columnList": {
+      "VersionMajor": {
+        "name": "VersionMajor",
+        "type": "INTEGER",
+        "order": 400,
+        "subtype": "none"
+      },
+      "VersionMinor": {
+        "name": "VersionMinor",
+        "type": "INTEGER",
+        "order": 401,
+        "subtype": "none"
+      },
+      "VersionPatch": {
+        "name": "VersionPatch",
+        "type": "INTEGER",
+        "order": 402,
+        "subtype": "none"
+      }
+    },
+    "data": {
+      "undefined": {
+        "VersionMajor": 0,
+        "VersionMinor": 0,
+        "VersionPatch": 0
+      }
+    }
+  },
   "VOWEL": {
     "name": "VOWEL",
     "columnList": {

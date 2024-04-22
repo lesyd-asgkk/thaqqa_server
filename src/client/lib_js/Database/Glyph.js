@@ -71,7 +71,7 @@ class GlyphArray{
         const vec_ = this.vec;
         const em_ = function (n){return n/(vec_==0?textdata.WidthV:textdata.Height)}
         // 単に『em_』へと変える
-        const textdata = FontManager.getFont(this.font).getTable("TEXTDATA").dataList[0].valueList;
+        const textdata = FontManager.getFont(this.font).getTable("FONTDATA").dataList[0].valueList;
         const rescale = function(param,size){
             const s_ = em_(size);
             const aa = SVG.toAbsolute(param);
@@ -260,7 +260,7 @@ class Glyph{
     toPathAbs(height,vowelhratio){
         let path = this.toPath() ?? SVG.createM(0,0); 
         if(path.length == 0) path = SVG.createM(0,0); 
-        const width = FontManager.getFont(this.font).getTable("TEXTDATA").dataList[0].getVal("Thickness");
+        const width = FontManager.getFont(this.font).getTable("FONTDATA").dataList[0].getVal("Thickness");
         const VH = vowelhratio*height
         const vt = (this.height.vbottom-this.height.vtop)/2;
         const vt_b = (-this.height.bottom-this.height.top)/2;
@@ -311,7 +311,7 @@ class Glyph{
     toPathB(top,bottom){
         let path = this.toPath() ?? SVG.createM(0,0); 
         if(path.length == 0)path = SVG.createM(0,0); 
-        const width = FontManager.getFont(this.font).getTable("TEXTDATA").dataList[0].getVal("Thickness");
+        const width = FontManager.getFont(this.font).getTable("FONTDATA").dataList[0].getVal("Thickness");
         if(this.type == "S"){
             const v = this.childList[1].glyphname.match(/[A-Za-z]+/g)[0];
             const v_null = FontManager.getStaticTable("VOWEL").getData({Name:v})[0].getVal("isNullVowel");
