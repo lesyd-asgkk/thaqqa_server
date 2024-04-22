@@ -4,7 +4,11 @@ import * as webjs from "./web_js/deps.js";
 
   
   async function main(){
-    await khhyl.FontManager.load('/server/init.json');
+  const same_ = false;
+  if(same_){await khhyl.FontManager.load('/server/init.json',true)}
+  else{await khhyl.FontManager.load('/server/fontjson/root.json',true);
+    await khhyl.FontManager.load('/server/fontjson/font/SanSerif_0_0_0_0.json',false);
+  }
     console.log(khhyl.FontManager);
     await khhyl.GlyphManager.loadAll();
 

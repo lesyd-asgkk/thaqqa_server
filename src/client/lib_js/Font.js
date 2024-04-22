@@ -26,7 +26,31 @@ import { DataTable } from "./deps.js";
 class FontManager {
     static fontList = [];
     static staticTableList = [];
-    static import(data) {
+
+    
+    static import(data,isroot,filename) {
+        //console.log(data);
+        
+        if(!isroot){
+            const font = FontManager.createFont(filename);
+            for(const i in data)
+            {
+                console.log(data[i]);
+            font.tableList.push(new DataTable(data[i],font));
+        }
+        }
+        else{
+        for(const i in data)
+        {//VOWEL CONSONANT PUNCTUATION DIACV DIACP DIACC PARSER GSUB 
+            //TEXTDATA GPOS GLYPH
+            if(!FontManager.getStaticTable(data[i].name))
+            {FontManager.staticTableList.push(new DataTable(data[i],FontManager));}} 
+      }}
+
+  
+
+
+    /*static import(data,isroot) {
         //console.log(data);
         const font = new Font("SanSerif_0_0_0_0");
         this.fontList.push(font);
@@ -37,14 +61,13 @@ class FontManager {
                 font.tableList.push(new DataTable(data[i],font));
             }
             else{FontManager.staticTableList.push(new DataTable(data[i],FontManager));}} 
-      }
+      }*/
   
-
-     static async load(path){
+     static async load(path,isroot){
       await fetch(path)//
     .then(response => response.json())
     .then(data => {
-      FontManager.import(data);
+      FontManager.import(data,isroot,isroot?null:path.split("/").slice(-1)[0].split(".")[0]);
     })
     .catch(error => console.error('Error fetching data:', error));
     }
@@ -58,7 +81,7 @@ class FontManager {
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = url; 
-      link.download = "base.json"; 
+      link.download = "root.json"; 
       link.click();
       }
       {
@@ -93,9 +116,10 @@ class FontManager {
         const font = FontManager.fontList[n];
         const font_data= {};
         for (const j in font.tableList) {
+            
             const table = font.tableList[j];
             const table_data= {};const column_data = {};
-  
+            
             table.columnList.forEach((h) => {column_data[h.name] = {name:h.name,id:h.id,type:h.type,order:h.order,subtype:h.subtype};});
             table_data.name = table.name;
             table_data.columnList = column_data;
@@ -105,7 +129,7 @@ class FontManager {
             table.dataList.forEach((h) => {const v_ = {}; f(h,v_); data_data[h.valueList.ID] = v_;});
   
             table_data.data = data_data;
-            font_data[font.name] = table_data;
+            font_data[table.name] = table_data;
             }
         json_data[font.name] = font_data;
         }
@@ -132,6 +156,7 @@ class FontManager {
           }
         const creation = new Font(name);
         FontManager.fontList.push(creation);
+        return creation;
       } catch (e) {
         throw e;
       }
@@ -177,6 +202,7 @@ class FontManager {
             }
           const creation = new DataTable(name);
           FontManager.staticTableList.push(creation);
+          return creation;
         } catch (e) {
           throw e;
         }
@@ -228,6 +254,7 @@ class Font {
             }
           const creation = new DataTable(name);
           this.tableList.push(creation);
+          return creation;
         } catch (e) {
           throw e;
         }

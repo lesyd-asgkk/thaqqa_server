@@ -50,12 +50,24 @@ function f(router: Router, srcPath_def: string, path_sub: string) {
 
 f(router, srcPath_def, "client");
 f(router, srcPath_def, "");
-
 router.get(`/server/init.json`, async (ctx) => {
   const data = LoadFile.loadJSON("./server/init.json");
   ctx.response.body = data.buffer; // Uint8Arrayをバイナリデータとしてクライアントに送信
   ctx.response.headers.set("Content-Type", "application/octet-stream"); // コンテンツタイプを設定
 });
+router.get(`/server/fontjson/root.json`, async (ctx) => {
+  const data = LoadFile.loadJSON("./server/fontjson/root.json");
+  ctx.response.body = data.buffer; // Uint8Arrayをバイナリデータとしてクライアントに送信
+  ctx.response.headers.set("Content-Type", "application/octet-stream"); // コンテンツタイプを設定
+});
+const entry_ = ["SanSerif_0_0_0_0"];
+for (const entry of entry_) {
+  router.get(`/server/fontjson/font/${entry}.json`, async (ctx) => {
+    const data = LoadFile.loadJSON(`./server/fontjson/font/${entry}.json`);
+    ctx.response.body = data.buffer; // Uint8Arrayをバイナリデータとしてクライアントに送信
+    ctx.response.headers.set("Content-Type", "application/octet-stream"); // コンテンツタイプを設定
+  });
+}
 router.get(`/server/FontData.svg`, async (ctx) => {
   const data = LoadFile.loadAllGlyph("./server/Font_Data_linear");
   ctx.response.body = data; // Uint8Arrayをバイナリデータとしてクライアントに送信

@@ -318,7 +318,7 @@ class Glyph{
         const width = FontManager.getFont("SanSerif_0_0_0_0").getTable("TEXTDATA").dataList[0].getVal("Thickness");
         if(this.type == "S"){
             const v = this.childList[1].glyphname.split(/\d+/g)[0];
-            const v_null = FontManager.getFont("SanSerif_0_0_0_0").getTable("VOWEL").getData({Name:v})[0].getVal("isNullVowel");
+            const v_null = FontManager.getStaticTable("VOWEL").getData({Name:v})[0].getVal("isNullVowel");
         if(v_null){
             const stick = SVG.createSkewer(-width/2,top+this.height.top,width/2,this.height.vtop).concat(SVG.createSkewer(-width/2,this.height.vbottom,width/2,bottom+this.height.bottom));
             switch(this.form){
