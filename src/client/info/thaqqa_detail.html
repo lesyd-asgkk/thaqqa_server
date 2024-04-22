@@ -26,31 +26,94 @@
         </svg>
     </div>
     <h1>０　読み書き</h1>
-    
-    <!--
-・東果文字は子音字母、母音字母を組み合わせ、さも一文字のように表す特徴を持つ。
-・縦書きではさらに続け字となる。
-○(字母の解説)
-[ここに図]
-・中・尾形の母音はtのスペースを譲る字形になる。尾系の音節末tのみ一部別の字形になる。
-○(横書きの場合の解説)
-・以下の規則で表記。
-[ここに図]
-○(縦書きの場合の解説)
-・原則として、単語頭、単語中、単語尾で字形が決まる。一音節の場合は例外。
-・単語中に改行を挟む場合、分断された双方の文字の字形は変化させない。
-[ここに図]
-○約物
-・概ね使われる約物は以下の通り。
-[ここに図　文字とその意味]
+    <p><ruby>東果<rp>(</rp>
+            <rt>つはた</rt>
+            <rp>)</rp>
+        </ruby>国という、現実世界とは異なる世界にある国家で使用されている表音文字。</p>
+    <p>子音字母と母音字母を組み合わせて一つの字を構成する特徴を持つ。</p>
+    <p>縦書きの場合単語毎に続け書きし、状況に応じて字形が変化する。横書きに於いては一音節毎に区切り、かつ文字ごとに字形が定められている。</p>
+    <h1>文字の構成について</h1>
+    <h2>母音字母の形態について</h2>
+    <p>母音字母の形態として、「単独系」「頭系」「中系」「尾系」が存在する。</p>
+    <p>中系・尾系については、一定の条件で形状が更に変化する。なお、<span class="khhyl " letter="V(sol,abig0)"> </span> は特定の場合を除き横線部分は省略可能である。</p>
 
-○フォントでの表記とかその辺
-・東果文字は2024年現在、Unicode領域は登録されていない。
-・東果文字は複雑なテキスト処理を要求する為に現状、単なる文字データとして東果文字を扱う目処は立っていない。
-・svg処理によって東果文字を表記させる技術は確立済。
-・なお、フォントや書体により、著しく一見の字形が変わることも考えられる(未観測)
+    <p>使用される母音は以下の通り。旧字は古語や、方言の表記で用いられる。</p>
+    <p><div class="table" id="vowel_0"></div></p>
 
-     -->
+    <h2>子音字母の形態について</h2>
+    <p>子音字母は「頭系」「尾系」の二種類が存在する。。頭系は音節頭の子音を、尾系は音節末の子音を表すのに用いられる。</p>
+    <p>尾系については一定の条件で形状が変化する（後記）</p>
+    <p>時と場合によって「符号」と呼ばれるダイアクリティカルマークを伴う。</p>
+    <p>「横符号」と「下符号」の二系統があり、横符号は子音のすぐ外側に、下符号は子音のすぐ下側に付く。</p>
+
+    <p>東果語に於いて主に使用される子音と、汽陸語と呼ばれる少数言語の表記に用いられる子音を載せる。</p>
+    <p><div class="table" id="consonant_0"></div></p>
+
+    <h2>約物について</h2>
+    <p>母音のように振る舞う「母約物」、子音のように振る舞う「子約物」、単独でしか用いられない「純約物」が存在する。</p>
+    <p>母約物・子約物の一部は全ての形態を取らず、母約物については一部が頭系か尾系か片方の子音字母をとらない。</p>
+    <p>主に使用される約物は以下の通り。装飾的に、「と『のような些細な違いを持つ約物も存在する。</p>
+    <p>(『！』や『？』は東果人の感覚としては絵文字程度の認識しかない。)</p>
+    <p><div class="table" id="punctuation_0"></div></p>
+
+    <h2>東果文字の正書法</h2>
+    <p>縦書きは上から下に綴られ、ほぼ常に右から左に改行される。</p>
+    <p>横書きの綴られる方向は正書法に定められていない。基本的には左から右に綴られるが、漫画のセリフや広告文の見出し等、正確に読み取られる必要性の低い文は右から左に綴られる。改行は上から下。</p>
+
+    <h2>一文字の形態について</h2>
+    <p>字形として「単独字」「頭字」「中字」「尾字」が存在する。</p>
+
+    <h3>横書きの場合</h3>
+    <p>音節構造毎に形状が異なる。
+    <p>以下の変化をする。CVCの場合は横線を義務的に省略し、その他の場合は省略不能。</p>
+    <p><div class="table" id="syllable_hori"></div></p>
+
+    <h3>縦書きの場合</h3>
+
+    <p>基本的に、単語の初めの音節なら頭字、最後なら尾字、それ以外なら中字。</p>
+    <p>一音節の場合は例外で、以下の通りとなる。</p>
+    <p>・頭系・尾系の双方の子音字母を持つ場合：中字</p>
+    <p>・頭系の子音字母のみを持つ場合：尾字</p>
+    <p>・尾系の子音字母のみを持つ場合：頭字</p>
+    <p>・子音字を持たない場合：単独字</p>
+    <p>例：それぞれ、khehyelu(東果)、ghen（雪）、lo（根）、vv（フィラー）、e（土)の場合。</p>
+    <p><span class="khhyl " option="default" letter=" e \n \n vv \n \n lo \n \n ghen \n \n khehyelu \n "></p>
+
+    <h3>形状の変化について</h3>
+    <p>尾系の子音字母 <span class="khhyl " letter="C(onset,t0)"> </span> について、尾字に存在し、かつ特定の母音字母・母約物を含むと形状が変化する。</p>
+    <p>中系・尾系の母音字母・母約物について、一部は頭系の子音字母 <span class="khhyl " letter="C(onset,t0)"> </span> を含む場合に特殊な字形となる。</p>
+    <p>尾系については、尾系の子音字母 <span class="khhyl " letter="C(coda,t0)"> </span> を含む場合にも特殊な字形になるものが存在する。</p>
+    <p>変化の対応を纏めると以下の通りとなる。</p>
+    <p><div class="table" id="syllable_tval"></div></p>
+
+    <h3> <span class="khhyl " letter="V(sol,abig0)"> </span> の省略について</h3>
+    <p>可読性の為、<span class="khhyl " letter="V(sol,abig0)"> </span>の一部は横線が省かれる場合がある。</p>
+    <p>横書きの場合：</p>
+    <p>先程の章で述べた通り。</p>
+    <p>縦書きの場合：</p>
+    <p>基本的に横棒は省略可能だが、以下の場合は読解を支障を来す為に省略不能。</p>
+    <p>・単独字の <span class="khhyl " letter="V(sol,abig0)"> </span> 。</p>
+    <p>・頭字における単独の <span class="khhyl " letter="V(sol,abig0)"> </span> 。</p>
+    <p>・ <span class="khhyl " letter="V(sol,abig0)"> </span> を含む文字が、単独の母音のみを持つ頭字のすぐ次である場合。</p>
+    <p>・ <span class="khhyl " letter="V(sol,abig0)"> </span> を含む文字が、単独の母音のみを持つ頭字のすぐ次である場合。</p>
+    <p>・尾系の子音字母を持たない文字と、頭系の子音字母を持たない文字とが隣接し、片方または双方に<span class="khhyl " letter="V(sol,abig0)"> </span> が含まれる場合。</p>
+    <p>・分離符 <span class="khhyl larger" letter="C(onset,x0)"> </span> が <span class="khhyl " letter="V(sol,abig0)">
+        </span> のある文字に含まれる場合。</p>
+    <p>なお、民間的な筆記では守られていないことが多々ある。</p>
+    <p> <span class="khhyl " letter="V(sol,abig0)">
+        </span> を必ず省略しなくてはならない場合については定められていない。強調表現として省略しない場合など。特に理由のない場合は半ば義務的に省略される事が多い（可読性の問題）。</p>
+
+    <h3>その他</h3>
+    <p>子約物の分離符 <span class="khhyl larger" letter="C(onset,x0)"> </span> について、文字通りの区切りの判別が困難な場合に用いられる。</p>
+    <p><span class="khhyl " option="default" letter="ehi-"></span>と<span class="khhyl " option="default"
+            letter="hei-"></span>等。（具体例は後で書く）</p>
+
+    <h3>その他</h3>
+    <p>解説の為、或いは単語中に改行せざるを得ない場合は頭字・中字のまま行を終える。
+        字系変更について、フォント処理においては"-"を用いて頭字、中字、尾字を表現する。普通は改行の際に自動変換しない。</p>
+    <p>単独の子音を表記する場合、字形を強制変換する場合には特殊記号を用いる。（未実装）</p>
+
+
 
 </body>
 
@@ -58,7 +121,8 @@
     import * as khhyl from "../lib_js/deps.js"
     //span khhylに関する変換処理
     $(document).ready(async function () {
-        await khhyl.Database.load('/server/init.json');
+        await khhyl.FontManager.load('/server/fontjson/root.json',true);
+  await khhyl.FontManager.load('/server/fontjson/font/SanSerif_0_0_0_0.json',false);
         //この辺コードが見苦しいので共通処理にするの考える
         for (const i of $('div.table#vowel_0')) {
             const vowel = [["abig","a"],["e","e"],["i","i"],["o","o"],["u","u"],["v","v"],["eold","ë(旧)"],["iold","ï(旧)"]]
@@ -263,7 +327,7 @@
                 object.append(title, desc)
             }
             //console.log(parseFloat(getComputedStyle(i).fontSize));
-            const d = khhyl.Render.DrawD(letter,parseFloat(getComputedStyle(i).fontSize),0, i.getAttribute("alig") == null ? 0 : 1 , type,null);
+            const d = khhyl.Render.DrawD(letter,0, i.getAttribute("alig") == null ? 0 : 1 ,{size:parseFloat(getComputedStyle(i).fontSize),parse:type,font:"SanSerif_0_0_0_0"});
             const path = $("div#storage svg#svgField path").clone()[0];
             path.style.display = "block";
             path.setAttribute("fill", "none");

@@ -1,4 +1,4 @@
-import { FontManager } from "./deps.js"; //,DataTable,Data
+import { FontManager } from "../deps.js"; //,DataTable,Data
 class LetterManager{
     static #tablelist_name_ = ["VOWEL","CONSONANT","DIACRITIC_C","DIACRITIC_V","PUNCTUATION","DIACRITIC_P"];
     static getLetter(param){

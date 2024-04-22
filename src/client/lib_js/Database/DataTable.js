@@ -1,4 +1,4 @@
-import { FontManager} from "./deps.js";
+//import { FontManager } from "./deps.js";
 
 
 class DataTable {
@@ -32,6 +32,9 @@ class DataTable {
       this.dataList.push(d);
     }
   }
+  static isavailableType(str) {
+    return ["char","float","INTEGER","bool"].includes(str);
+  }
   getColumn(name,debug) {
     debug ??= false;
     try {
@@ -52,7 +55,7 @@ class DataTable {
           errmessage.push(`${name}は既に存在します`);
         }
       }
-      if (FontManager.isavailableType(type) == false) { //そんな型指定できない時の処理
+      if (this.isavailableType(type) == false) { //そんな型指定できない時の処理
         errmessage.push(`${type}という型は指定できません`);
       }
       else if(val_init == null){ //空だったら

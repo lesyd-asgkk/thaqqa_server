@@ -20,7 +20,9 @@ class Sandbox_web{
         for(const v of self.lang){
             if(v.option.checked == true) lang = v.option.value;
         }
-        const d = Khhyl.Render.DrawD(self.textbox.value,Number(self.sizetext.value),lang,(alig==2?0:1),"none",null);
+        const d = Khhyl.Render.DrawD(self.textbox.value,lang,(alig==2?0:1),{size:Number(self.sizetext.value),parse:"none",font:"SanSerif_0_0_0_0"});
+        // Khhyl.Render.DrawD(self.textbox.value,Number(self.sizetext.value),lang,(alig==2?0:1),"none",null)
+        // 
         self.SVG.path.setAttribute("d",d);
 
         const gap_ = 5;

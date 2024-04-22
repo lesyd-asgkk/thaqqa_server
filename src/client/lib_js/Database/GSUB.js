@@ -1,5 +1,5 @@
-import { FontManager } from "./Font.js";
-import { RegExp_Khhyl } from "./RegExp_Khhyl.js";
+import { FontManager,RegExp_Khhyl } from "../deps.js";
+
 class GSUBManager {
     static getGSUB(param) {
             if(typeof param == "string") param = {Name:param};

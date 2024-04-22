@@ -21,7 +21,7 @@
 
 */
 
-import { DataTable } from "./deps.js";
+import { DataTable } from "../deps.js";
 
 class FontManager {
     static fontList = [];
@@ -35,7 +35,6 @@ class FontManager {
             const font = FontManager.createFont(filename);
             for(const i in data)
             {
-                console.log(data[i]);
             font.tableList.push(new DataTable(data[i],font));
         }
         }
@@ -136,9 +135,7 @@ class FontManager {
       return [json_data_common,json_data];
     }
      //*/
-    static isavailableType(str) {
-      return ["char","float","INTEGER","bool"].includes(str);
-    }
+
     static getFont(name,debug) { //nameのテーブルを返す。無かったらnullで
       debug??=false;
       for (const i in FontManager.fontList) {

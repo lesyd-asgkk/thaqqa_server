@@ -1,5 +1,5 @@
 
-import { FontManager,SVG,RegExp_Khhyl,GPOSManager,LetterManager} from "./deps.js";
+import { FontManager,SVG,RegExp_Khhyl,GPOSManager,LetterManager} from "../deps.js";
 class GlyphManager{
     static load(doc){
         const svg = doc.getElementsByTagName("PATH");
@@ -13,16 +13,16 @@ class GlyphManager{
       }
     //table.createData({Name:data,Path:SVG.convertSVG(data[d])});
     }
-    static async loadAll(){
+    static async loadAll(font){
         await fetch('/server/FontData.svg')
       .then(response => response.json())
       .then(data => {
         try{
-        FontManager.getFont("SanSerif_0_0_0_0").getTable("GLYPH",true);
+        FontManager.getFont(font).getTable("GLYPH",true);
         }
         catch(_e){
-            FontManager.getFont("SanSerif_0_0_0_0").createTable({name:"GLYPH"});
-            const table = FontManager.getFont("SanSerif_0_0_0_0").getTable("GLYPH");
+            FontManager.getFont(font).createTable({name:"GLYPH"});
+            const table = FontManager.getFont(font).getTable("GLYPH");
             table.createColumn("ID","INTEGER","",0);
             table.createColumn("Name","char","",1);
             table.createColumn("Path","char","",2);
@@ -35,9 +35,9 @@ class GlyphManager{
         });
       }
      
-    static getSVG(name){
+    static getSVG(name,font){
         const ans = [];
-        const table = FontManager.getFont("SanSerif_0_0_0_0").getTable("GLYPH");
+        const table = FontManager.getFont(font).getTable("GLYPH");
         if(table != null){
             const data = table.getData({Name:name});
             data.forEach((i) => ans.push(i.getVal("Path")));
@@ -47,8 +47,9 @@ class GlyphManager{
 }
 
 class GlyphArray{
-    constructor(name,vec,iswrap,box,pos,alg){
+    constructor(name,vec,font,iswrap,box,pos,alg){
         this.name=name;
+        this.font=font;
         this.d = [];
         this.childList = [];//Glyphの配列 入れ子にします
         this.attribute = {};//(将来用)
@@ -63,13 +64,13 @@ class GlyphArray{
         const r_ = new RegExp_Khhyl("(L())(L())",{}).ParseRegExp().toNormalRegExp();
         const text = this.name.replaceAll(new RegExp(r_, "g"),"$1Sep()$2").replaceAll(new RegExp(r_, "g"),"$1Sep()$2");
         const pSVGData = text.split("Sep()");
-        pSVGData.forEach((i)=> this.childList.push(new Glyph(i , this.vec)))
+        pSVGData.forEach((i)=> this.childList.push(new Glyph(i , this.vec,this.font)))
     }
     toPath(defaultsize){
         const vec_ = this.vec;
         const em_ = function (n){return n/(vec_==0?textdata.WidthV:textdata.Height)}
         // 単に『em_』へと変える
-        const textdata = FontManager.getFont("SanSerif_0_0_0_0").getTable("TEXTDATA").dataList[0].valueList;
+        const textdata = FontManager.getFont(this.font).getTable("TEXTDATA").dataList[0].valueList;
         const rescale = function(param,size){
             const s_ = em_(size);
             const aa = SVG.toAbsolute(param);
@@ -155,7 +156,9 @@ class GlyphArray{
 }
 
 class Glyph{
-    constructor(name,vec){
+    constructor(name,vec,font){
+        console.log(font);
+        this.font = font;
         this.vec = vec;
         this.fullname = name; 
         this.name = ""; 
@@ -183,7 +186,7 @@ class Glyph{
             if(name == null|| name == ""){this.d = [] ,this.aligment = {x:0,y:0};return [];}
             const form = this.form ?? "";
             const name_ = `${this.name}_${form}_${this.val}`
-            const dt = (GlyphManager.getSVG(name_)[0]) ?? "M 0,0";
+            const dt = (GlyphManager.getSVG(name_,this.font)[0]) ?? "M 0,0";
             this.d = SVG.toRelative(dt);//this.nameがこれ以上分割できない場合。
             
             let offx = 0;let offy = 0;
@@ -203,7 +206,7 @@ class Glyph{
                 x0 = k.x0;y0 = k.y0;
             }
             for(let i = 0 ; i<partname.length;i++){
-                const new_glyph = new Glyph(partname[i],this.vec);
+                const new_glyph = new Glyph(partname[i],this.vec,this.font);
                 new_glyph.parent = this;
                 if(x1 != null && y1 != null && i == 2)new_glyph.offset = {x:x1,y:y1};
                 else if(x1 != null && y1 != null && i == 0) new_glyph.offset = {x:x0,y:y0};
@@ -220,7 +223,7 @@ class Glyph{
             this.type = name.split("(")[0];
             if(name.startsWith("S")){
             //音節ならCo,V,Ccに。空の場合は何も残さない
-            const temp = name.split("(")[1].split(")")[0].split(",");
+            const temp = name.match(/\((.+?)\)/)[1].split(",");
             this.glyphname = temp.slice(1).join(",");
             this.form = temp[0];
             const onset = temp[1] == "" ? "" : `C(onset,${temp[1]})`;
@@ -229,30 +232,26 @@ class Glyph{
             return [onset,vowel,coda];
             }
             else if(name.startsWith("P")){
-                const temp = name.split("(")[1].split(")")[0].split(",")[0];
-                this.glyphname = name.split("(")[1].split(")")[0];
+                const temp = name.match(/\((.+?)\)/)[1];
+                this.glyphname = temp;
                 const temp2 = temp.split("-");
-            if(temp2.length <= 1){this.name = temp2[0].split(/\d+/g)[0];this.val = temp2[0].split(/[A-Za-z]+/g)[1]; return []}//これ以上は分割できない
+            if(temp2.length <= 1){this.name = temp2[0].match(/[A-Za-z]+/g)[0]; this.val = temp2[0].match(/\d+/g)[0];return []}//これ以上は分割できない
             else{
-                let d_ = "";
-                for(let i = 0;i<temp2.length;i++){
-                 d_ += temp2[i]+(i==temp2.length-1?"":"-");
-                }
+                const d_ = temp2.join("-");
             const d = [ `${name.split("(")[0]}(${d_}),Pd(${temp2.slice(-1)})`];
             return d;
             }
         }
         else{
-            const temp = name.split("(")[1].split(")")[0].split(",");
+            const temp = name.match(/\((.+?)\)/)[1].split(",");
             this.glyphname = temp.slice(1).join(",");
             this.form = temp[0];
             const temp2 = temp[1].split("-");
-                if(temp2.length <= 1){this.name = temp2[0].split(/\d+/g)[0];this.val = temp2[0].split(/[A-Za-z]+/g)[1]; return []}//これ以上は分割できない
+                if(temp2.length <= 1){this.name = temp2[0].match(/[A-Za-z]+/g)[0];this.val = temp2[0].match(/\d+/g)[0]; return []}//これ以上は分割できない
                 else{
                     const l = name.split("(")[0];
-                    let d_ = "";
-                    for(let i = 0;i<temp2.length-1;i++)d_ += temp2[i]+(i==temp2.length-2?"":"-");
-                    const d = [ l+"("+temp[0]+","+d_+")",l.length == 2 ? l : (l+"d")+"("+temp[0]+","+temp2.slice(-1)+")"];
+                    const d_ = temp2.slice(0,-1).join("-");
+                    const d = [`${l}(${temp[0]},${d_})`,`${l.length == 2 ? l : (l+"d")}(${temp[0]},${temp2.slice(-1)})`];
                     return d;
                 }
             //Co-d0-d1なら例えば(Co-d0)とd1に分割。
@@ -264,7 +263,7 @@ class Glyph{
     toPathAbs(height,vowelhratio){
         let path = this.toPath() ?? SVG.createM(0,0); 
         if(path.length == 0) path = SVG.createM(0,0); 
-        const width = FontManager.getFont("SanSerif_0_0_0_0").getTable("TEXTDATA").dataList[0].getVal("Thickness");
+        const width = FontManager.getFont(this.font).getTable("TEXTDATA").dataList[0].getVal("Thickness");
         const VH = vowelhratio*height
         const vt = (this.height.vbottom-this.height.vtop)/2;
         const vt_b = (-this.height.bottom-this.height.top)/2;
@@ -315,9 +314,9 @@ class Glyph{
     toPathB(top,bottom){
         let path = this.toPath() ?? SVG.createM(0,0); 
         if(path.length == 0)path = SVG.createM(0,0); 
-        const width = FontManager.getFont("SanSerif_0_0_0_0").getTable("TEXTDATA").dataList[0].getVal("Thickness");
+        const width = FontManager.getFont(this.font).getTable("TEXTDATA").dataList[0].getVal("Thickness");
         if(this.type == "S"){
-            const v = this.childList[1].glyphname.split(/\d+/g)[0];
+            const v = this.childList[1].glyphname.match(/[A-Za-z]+/g)[0];
             const v_null = FontManager.getStaticTable("VOWEL").getData({Name:v})[0].getVal("isNullVowel");
         if(v_null){
             const stick = SVG.createSkewer(-width/2,top+this.height.top,width/2,this.height.vtop).concat(SVG.createSkewer(-width/2,this.height.vbottom,width/2,bottom+this.height.bottom));
@@ -414,14 +413,15 @@ class Glyph{
     }
     getoffset(){
         //V-Vd部分のみ動作未検証
+        const thisCL_ = this.childList;
         if(this.type == "S"){
-            const v = this.childList[1].glyphname.split(/\d+/g)[0];
+            const v = thisCL_[1].glyphname.match(/[A-Za-z]+/g)[0];
             const v_null = FontManager.getStaticTable("VOWEL").getData({Name:v})[0].getVal("isNullVowel");
-            const c0offset = this.childList.length>0?this.childList[0].offset:{x:0,y:0};
-            const c2offset = this.childList.length>2?this.childList[2].offset:{x:0,y:0};
-            const c0d = this.childList.length>0?this.childList[0].d:null;
-            const c1d = this.childList[1].d;
-            const c2d = this.childList.length>2?this.childList[2].d:null;
+            const c0offset = thisCL_.length>0?thisCL_[0].offset:{x:0,y:0};
+            const c2offset = thisCL_.length>2?thisCL_[2].offset:{x:0,y:0};
+            const c0d = thisCL_.length>0?thisCL_[0].d:null;
+            const c1d = thisCL_[1].d;
+            const c2d = thisCL_.length>2?thisCL_[2].d:null;
             const topgap = c0d !=null?(c2d!=null ? Math.min(SVG.getTop(c0d),SVG.getTop(c2d)):SVG.getTop(c2d)):(c2d!=null ? SVG.getTop(c2d):0);
             const bottomgap = c0d !=null?(c2d!=null ? Math.max(SVG.getBottom(c0d),SVG.getBottom(c2d)):SVG.getBottom(c2d)):(c2d!=null ? SVG.getBottom(c2d):0);
             if(v_null){
@@ -440,10 +440,10 @@ class Glyph{
             }
         }
         else{
-            if(this.childList.length < 1) return {x:0,y:0};
-            const parentd = this.childList[0].d
-            const off1 = this.childList[1].offset;
-            const alig1 = this.childList[1].aligment;
+            if(thisCL_.length < 1) return {x:0,y:0};
+            const parentd = thisCL_[0].d
+            const off1 = thisCL_[1].offset;
+            const alig1 = thisCL_[1].aligment;
              if(this.type.startsWith("C")){
                 const dir_ = {onset:1,coda:-1};
                 const dir = dir_[this.form];

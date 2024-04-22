@@ -89,15 +89,16 @@ class DIVselect_web{
     rewrite_content(parent,self,obj){
         const val = obj.checked;
         const val2 = obj.value;
+        const DTTB = Khhyl.FontManager.getStaticTable(self.parent.tablename) ?? Khhyl.FontManager.getFont("SanSerif_0_0_0_0").getTable(this.parent.tablename);
         switch(this.type){
             case "bool":
-                if(Khhyl.Database.getTable(parent.tablename).rewriteData({ID:this.id},{[self.col]:val}))
+                if(DTTB.rewriteData({ID:this.id},{[self.col]:val}))
         {obj.checked = val;
          self.val = val;}
             break;
 
             case "select":
-                if(Khhyl.Database.getTable(parent.tablename).rewriteData({ID:this.id},{[self.col]:val2}))
+                if(DTTB.rewriteData({ID:this.id},{[self.col]:val2}))
                 {obj.checked = val2;
                  self.val = val2;}
             break;
@@ -144,24 +145,26 @@ class Button_web{
         this.type = type;//削除か追加か
     }
     rewrite_content(parent,self){
+        const DTTB = Khhyl.FontManager.getStaticTable(self.parent.tablename) ?? Khhyl.FontManager.getFont("SanSerif_0_0_0_0").getTable(this.parent.tablename);
         if(self.type == "Add"){
+
             switch(self.parent.tablename){
                 case "GSUB":
                     {
-                    const p = self.id != null? Khhyl.Database.getTable(parent.tablename).getData({ID:self.id})[0].valueList:{Pattern:"u",Priority:0,Order:0};
-                    Khhyl.Database.getTable("GSUB").createData({Priority:p.Priority,Pattern:p.Pattern,Name:"",NameAlt:"",Order:p.Order,Parsed:""});
+                    const p = self.id != null? DTTB.getData({ID:self.id})[0].valueList:{Pattern:"u",Priority:0,Order:0};
+                    DTTB.createData({Priority:p.Priority,Pattern:p.Pattern,Name:"",NameAlt:"",Order:p.Order,Parsed:""});
                     }
                 break;
                 case "PARSER":
                     {
-                        const p = self.id != null? Khhyl.Database.getTable(parent.tablename).getData({ID:self.id})[0].valueList:{Pattern:"u",Priority:0,Order:0};
-                    Khhyl.Database.getTable("PARSER").createData({Priority:p.Priority,Pattern:p.Pattern,Name:"",NameAlt:"",Order:p.Order,Parsed:""});
+                        const p = self.id != null? DTTB.getData({ID:self.id})[0].valueList:{Pattern:"u",Priority:0,Order:0};
+                        DTTB.createData({Priority:p.Priority,Pattern:p.Pattern,Name:"",NameAlt:"",Order:p.Order,Parsed:""});
                     }
                 break;
                 case "GPOS":
                     {
-                        const p = self.id != null? Khhyl.Database.getTable(parent.tablename).getData({ID:self.id})[0].valueList:{Pattern:"u",Pattern_sub:"d",Order:0};
-                    Khhyl.Database.getTable("GPOS").createData({Pattern:p.Pattern,Pattern_sub:p.Pattern_sub,Parsed:"",Name:"",OffsetX0:0,OffsetY0:0,OffsetX1:0,OffsetY1:0,Order:p.Order});
+                        const p = self.id != null? DTTB.getData({ID:self.id})[0].valueList:{Pattern:"u",Pattern_sub:"d",Order:0};
+                        DTTB.createData({Pattern:p.Pattern,Pattern_sub:p.Pattern_sub,Parsed:"",Name:"",OffsetX0:0,OffsetY0:0,OffsetX1:0,OffsetY1:0,Order:p.Order});
                     }
                     break;
                 case "PUNCTUATION":
@@ -178,7 +181,7 @@ class Button_web{
         }
         else if(self.type == "Delete"){
             if(!globalThis.confirm("ID = "+ self.id +"\nを消去します")) return false;//削除しなかった
-            Khhyl.Database.getTable(parent.tablename).deleteData({ID:self.id})
+            DTTB.deleteData({ID:self.id})
         }
         parent.draw();
     }
@@ -217,7 +220,7 @@ class SVGField_web{
         
         let i_ = 0;
         for(let j = 0 ; j<listb.length;j++){
-        const list = Khhyl.GlyphManager.getSVG((new RegExp("^"+n+"_"+listb[j])))
+        const list = Khhyl.GlyphManager.getSVG(new RegExp("^"+n+"_"+listb[j]),"SanSerif_0_0_0_0");
                 for(let i = 0;i<list.length;i++){
                 d = Khhyl.SVG.merge2(d,list[i],(1+i_+j/2)*100,0);
                 i_++;

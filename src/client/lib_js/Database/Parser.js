@@ -1,5 +1,5 @@
-import { FontManager } from "./Font.js"; // ,DataTable,Data 
-import { RegExp_Khhyl } from "./RegExp_Khhyl.js";
+import { FontManager,RegExp_Khhyl } from "../deps.js"; // ,DataTable,Data 
+
 class Parser {
   static getParser(param) {
     if(typeof param == "string") param = {Name:param};

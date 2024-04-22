@@ -1,6 +1,4 @@
-import { FontManager } from "./Font.js";
-import { RegExp_Khhyl } from "./RegExp_Khhyl.js";
-
+import { FontManager,RegExp_Khhyl } from "../deps.js";
 
 
 //GPOS|GSUB|ParserManager

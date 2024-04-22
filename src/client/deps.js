@@ -4,13 +4,12 @@ import * as webjs from "./web_js/deps.js";
 
   
   async function main(){
-  const same_ = false;
-  if(same_){await khhyl.FontManager.load('/server/init.json',true)}
-  else{await khhyl.FontManager.load('/server/fontjson/root.json',true);
-    await khhyl.FontManager.load('/server/fontjson/font/SanSerif_0_0_0_0.json',false);
-  }
+
+  await khhyl.FontManager.load('/server/fontjson/root.json',true);
+  await khhyl.FontManager.load('/server/fontjson/font/SanSerif_0_0_0_0.json',false);
+  
     console.log(khhyl.FontManager);
-    await khhyl.GlyphManager.loadAll();
+    await khhyl.GlyphManager.loadAll("SanSerif_0_0_0_0");
 
     let ta = new webjs.Table_web("VOWEL",$("div.area_tb#vowel")[0]);
     ta.draw();

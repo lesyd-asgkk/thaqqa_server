@@ -1,5 +1,5 @@
-import { RegExp_Khhyl } from "./RegExp_Khhyl.js";
-import { LetterManager } from "./Letter.js";
+import { RegExp_Khhyl,LetterManager } from "../deps.js";
+
 class REK_def {
   static rule_form = {
     ["\\*"]: (self, ans, pattern, msg) => {
