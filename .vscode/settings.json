@@ -1,0 +1,8 @@
+{
+    "workbench.editor.decorations.colors": true,
+    "terminal.integrated.minimumContrastRatio": 4.5,
+    "accessibility.hideAccessibleView": false,
+    "editor.fontSize": 12,
+    "editor.fontVariations": false,
+    "emmet.syntaxProfiles": {}
+}

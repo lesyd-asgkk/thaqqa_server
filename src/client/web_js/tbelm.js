@@ -1,5 +1,5 @@
 import * as Khhyl from "../lib_js/deps.js"
-import * as webjs from "./deps.js"
+// import * as webjs from "./deps.js"
 
 
 class DIVparam_web{
@@ -46,10 +46,17 @@ class DIVparam_web{
         val = f_numcheck(val);
             if(val == null) val = self.val;
         }
-        if(Khhyl.Thaqqa_DB.getTable(parent.tablename).rewriteData({ID:this.id},{[self.col]:val}))
+        const DTTB = Khhyl.FontManager.getStaticTable(this.parent.tablename) ?? Khhyl.FontManager.getFont("SanSerif_0_0_0_0").getTable(this.parent.tablename);
+        if(DTTB.rewriteData({ID:this.id},{[self.col]:val}))
         {
         if(parent.tablename == "GPOS" && self.col == "Name"){
-            Khhyl.GPOSManager.setGPOSColumn(this.id);
+            Khhyl.GPOSManager.setGPOSColumn(this.id,"SanSerif_0_0_0_0");
+        }
+        else if(parent.tablename == "GSUB" && self.col == "Name"){
+            Khhyl.GSUBManager.setGSUBColumn(this.id);
+        }
+        else if(parent.tablename == "PARSER" && self.col == "Name"){
+            Khhyl.Parser.setParserColumn(this.id);
         }
         obj.textContent = val;
         self.val = val;}
@@ -82,15 +89,16 @@ class DIVselect_web{
     rewrite_content(parent,self,obj){
         const val = obj.checked;
         const val2 = obj.value;
+        const DTTB = Khhyl.FontManager.getStaticTable(self.parent.tablename) ?? Khhyl.FontManager.getFont("SanSerif_0_0_0_0").getTable(this.parent.tablename);
         switch(this.type){
             case "bool":
-                if(Khhyl.Thaqqa_DB.getTable(parent.tablename).rewriteData({ID:this.id},{[self.col]:val}))
+                if(DTTB.rewriteData({ID:this.id},{[self.col]:val}))
         {obj.checked = val;
          self.val = val;}
             break;
 
             case "select":
-                if(Khhyl.Thaqqa_DB.getTable(parent.tablename).rewriteData({ID:this.id},{[self.col]:val2}))
+                if(DTTB.rewriteData({ID:this.id},{[self.col]:val2}))
                 {obj.checked = val2;
                  self.val = val2;}
             break;
@@ -137,31 +145,43 @@ class Button_web{
         this.type = type;//削除か追加か
     }
     rewrite_content(parent,self){
+        const DTTB = Khhyl.FontManager.getStaticTable(self.parent.tablename) ?? Khhyl.FontManager.getFont("SanSerif_0_0_0_0").getTable(this.parent.tablename);
         if(self.type == "Add"){
+
             switch(self.parent.tablename){
                 case "GSUB":
                     {
-                    const p = self.id != null? Khhyl.Thaqqa_DB.getTable(parent.tablename).getData({ID:self.id})[0].values:{Pattern:"u",Priority:0,Order:0};
-                    Khhyl.Thaqqa_DB.getTable("GSUB").createData({Priority:p.Priority,Pattern:p.Pattern,Name:"",NameAlt:"",Order:p.Order});
+                    const p = self.id != null? DTTB.getData({ID:self.id})[0].valueList:{Pattern:"u",Priority:0,Order:0};
+                    DTTB.createData({Priority:p.Priority,Pattern:p.Pattern,Name:"",NameAlt:"",Order:p.Order,Parsed:""});
                     }
                 break;
-                case "Parser":
+                case "PARSER":
                     {
-                        const p = self.id != null? Khhyl.Thaqqa_DB.getTable(parent.tablename).getData({ID:self.id})[0].values:{Pattern:"u",Priority:0,Order:0};
-                    Khhyl.Thaqqa_DB.getTable("Parser").createData({Priority:p.Priority,Pattern:p.Pattern,Name:"",NameAlt:"",Order:p.Order});
+                        const p = self.id != null? DTTB.getData({ID:self.id})[0].valueList:{Pattern:"u",Priority:0,Order:0};
+                        DTTB.createData({Priority:p.Priority,Pattern:p.Pattern,Name:"",NameAlt:"",Order:p.Order,Parsed:""});
                     }
                 break;
                 case "GPOS":
                     {
-                        const p = self.id != null? Khhyl.Thaqqa_DB.getTable(parent.tablename).getData({ID:self.id})[0].values:{Pattern:"u",Pattern_sub:"d",Order:0};
-                    Khhyl.Thaqqa_DB.getTable("GPOS").createData({Pattern:p.Pattern,Pattern_sub:p.Pattern_sub,Parsed:"",Name:"",OffsetX0:0,OffsetY0:0,OffsetX1:0,OffsetY1:0,Order:p.Order});
+                        const p = self.id != null? DTTB.getData({ID:self.id})[0].valueList:{Pattern:"u",Pattern_sub:"d",Order:0};
+                        DTTB.createData({Pattern:p.Pattern,Pattern_sub:p.Pattern_sub,Parsed:"",Name:"",OffsetX0:0,OffsetY0:0,OffsetX1:0,OffsetY1:0,Order:p.Order});
+                    }
+                    break;
+                case "PUNCTUATION":
+                case "VOWEL":
+                case "CONSONANT":
+                case "DIACRITIC_P":
+                case "DIACRITIC_V":
+                case "DIACRITIC_C":
+                    {
+                    Khhyl.LetterManager.createLetter("新規データ",parent.tablename);
                     }
                 break;
             }
         }
         else if(self.type == "Delete"){
-            if(!window.confirm("ID = "+ self.id +"\nを消去します")) return false;//削除しなかった
-            Khhyl.Thaqqa_DB.getTable(parent.tablename).deleteData({ID:self.id})
+            if(!globalThis.confirm("ID = "+ self.id +"\nを消去します")) return false;//削除しなかった
+            DTTB.deleteData({ID:self.id})
         }
         parent.draw();
     }
@@ -190,8 +210,9 @@ class SVGField_web{
         
         const Letter_T = ["VOWEL","DIACRITIC_V","CONSONANT","DIACRITIC_C","PUNCTUATION","DIACRITIC_P",]
         if(Letter_T.includes(this.parent.tablename)){
-        const n = Khhyl.Thaqqa_DB.getTable(this.parent.tablename).getData({ID:id})[0].values.Name;
-
+        const DTTB = Khhyl.FontManager.getStaticTable(this.parent.tablename) ?? Khhyl.FontManager.getFont("SanSerif_0_0_0_0").getTable(this.parent.tablename);
+        const n = DTTB.getData({ID:id})[0].getVal("Name");
+        
         d = "M0,0";
         let listb = ["sol","init","mid","fin"];
         if(["CONSONANT","DIACRITIC_C"].includes(this.parent.tablename)) listb = ["onset","coda"];
@@ -199,7 +220,7 @@ class SVGField_web{
         
         let i_ = 0;
         for(let j = 0 ; j<listb.length;j++){
-        const list = Khhyl.GlyphManager.getSVG((new RegExp("^"+n+"_"+listb[j])))
+        const list = Khhyl.GlyphManager.getSVG(new RegExp("^"+n+"_"+listb[j]),"SanSerif_0_0_0_0");
                 for(let i = 0;i<list.length;i++){
                 d = Khhyl.SVG.merge2(d,list[i],(1+i_+j/2)*100,0);
                 i_++;

@@ -9,14 +9,14 @@ class Row_web{
         this.parent=parent;
     }
     setContent(value,table){
-        const DTTB = Khhyl.Thaqqa_DB.getTable(table);
+        const DTTB = Khhyl.FontManager.getStaticTable(table) ?? Khhyl.FontManager.getFont("SanSerif_0_0_0_0").getTable(table);
         const sublistlist = {
             "AligX":[[-1,"□→‖←□(-1)"],[0,"・｜・(0)"],[1,"⇐■｜■⇒(1)"]],
             "AligY":[[-1,"↑(-1)"],[0,"・(0)"],[1,"⇓(1)"]],
             "LANG":[["u","共通(u)"],["c","🐍東(c)"],["o","汽🐟(o)"]],
-            "GPOS":[["DIAC","DIAC"],["IN","IN"],["EX","EX"]],
+            "GPOS":[["DIAC","字母構成"],["IN","音節内カーニング"],["INEX","音節上下長"],["EX","音節間カーニング"]],
             "AligWhole":[["v","↓(v)"],["h","⇔(h)"],["u","共通(u)"]]
-        }
+        }//"DIAC":-10,"INNULL":0,"INB":10,"INEX":20,"EX":30
         for(const v in value){
 
             const type = DTTB.getColumn(v).type;
@@ -51,7 +51,7 @@ class Row_web{
         }
     }
     SortbyOrder(table){
-        const DTTB = Khhyl.Thaqqa_DB.getTable(table);
+        const DTTB = Khhyl.FontManager.getStaticTable(table) ?? Khhyl.FontManager.getFont("SanSerif_0_0_0_0").getTable(table);
         const sortalg = function(first, second){//Priorityの小さい順に並び替える
             const f = DTTB.getColumn(first.col).order;
             const s = DTTB.getColumn(second.col).order;
@@ -117,7 +117,7 @@ class ColumnDesc_web{
     static sublist = {
         //ID:ID(変更不能) Alig:[-1,0,1] FREE_0:0以上 FREE_1:1以上
         "int":["none","n>=0","n>=1","ID","AligX","AligY"],
-        //NAME:名前用（重複不可）
+        //NAME:名前用（重複不可） 
         "char":["none","NAME_L","NAME","LANG","AligWhole","GPOS","PARSED"],
         
         "bool":["none"],
@@ -159,10 +159,10 @@ class ColumnDesc_web{
         if(val == null) val = older;
         }
 
-        Khhyl.Thaqqa_DB.getTable(parent.tablename).rewriteColumn(self.name,val,obj.name);
+        Khhyl.Database.getTable(parent.tablename).rewriteColumn(self.name,val,obj.name);
         parent.draw();
         }
-        catch(e){
+        catch(_e){
             obj.textContent = older;}
             
     }
@@ -241,10 +241,10 @@ class RowDesc_web{
 
     }
     SetColumns(tablename){
-        const DTTB = Khhyl.Thaqqa_DB.getTable(tablename);
+        const DTTB = Khhyl.FontManager.getStaticTable(tablename) ?? Khhyl.FontManager.getFont("SanSerif_0_0_0_0").getTable(tablename);
         if(DTTB != null){
             this.content = [];
-            const CL = DTTB.columns;
+            const CL = DTTB.columnList;
             for(const cl of CL){
                 const ct = new ColumnDesc_web(this.parent);
                 ct.setElm(cl);
@@ -270,31 +270,32 @@ class Table_web{
         this.row = [];
     }
     createRow(){
-        const DTTB = Khhyl.Thaqqa_DB.getTable(this.tablename);
+        const DTTB = Khhyl.FontManager.getStaticTable(this.tablename) ?? Khhyl.FontManager.getFont("SanSerif_0_0_0_0").getTable(this.tablename);
+
         if(DTTB != null){
             this.content = [];
-            const VALUES = DTTB.data;
+            const VALUES = DTTB.dataList;
             const sortalg = function(first, second){//Priorityの小さい順に並び替える
-                if (first.values.Order < second.values.Order ) return -1;
-                else if (first.values.Order  > second.values.Order )return 1;
+                if (first.getVal("Order") < second.getVal("Order") ) return -1;
+                else if (first.getVal("Order")  > second.getVal("Order") )return 1;
                 else return 0;
               }
               const sortalg_OP = function(first, second ){//Priorityの大きい順に並び替える
-                if (first.values.Order > second.values.Order ) return 1;
-                else if (first.values.Order  < second.values.Order )return -1;
+                if (first.getVal("Order") > second.getVal("Order") ) return 1;
+                else if (first.getVal("Order")  < second.getVal("Order") )return -1;
                 else{
-                if (first.values.Priority > second.values.Priority ) return 1;
-                else if (first.values.Priority  < second.values.Priority )return -1;
+                if (first.getVal("Priority") > second.getVal("Priority") ) return 1;
+                else if (first.getVal("Priority")  < second.getVal("Priority") )return -1;
                   return 0};
               }
               const sortalg_GPOS = function(first, second ){//Priorityの大きい順に並び替える
                 const val = {"h":-1,"u":0,"v":1};
-                const val2 = {"DIAC":-1,"IN":0,"EX":1};
-                if (val2[first.values.Pattern_sub] > val2[second.values.Pattern_sub] ) return 1;
-                else if (val2[first.values.Pattern_sub]  < val2[second.values.Pattern_sub] )return -1;
+                const val2 = {"DIAC":-10,"INNULL":0,"IN":10,"EX":30};
+                if (val2[first.getVal("Pattern_sub")] > val2[second.getVal("Pattern_sub")] ) return 1;
+                else if (val2[first.getVal("Pattern_sub")]  < val2[second.getVal("Pattern_sub")] )return -1;
                 else{
-                    if (val[first.values.Pattern] > val[second.values.Pattern] ) return 1;
-                    else if (val[first.values.Pattern]  < val[second.values.Pattern] )return -1;
+                    if (val[first.getVal("Pattern")] > val[second.getVal("Pattern")] ) return 1;
+                    else if (val[first.getVal("Pattern")]  < val[second.getVal("Pattern")] )return -1;
                   return 0};
               }
               if(VALUES.length > 0 && DTTB.getColumn("Order") != null)
@@ -302,9 +303,9 @@ class Table_web{
               else VALUES.sort(sortalg);}
               if(VALUES.length > 0 && DTTB.name == "GPOS") VALUES.sort(sortalg_GPOS);
               for(let v =0;v<VALUES.length;v++){
-                const d = new Row_web(VALUES[v].values.ID,this);
+                const d = new Row_web(VALUES[v].getVal("ID"),this);
 
-                d.setContent(VALUES[v].values,this.tablename);
+                d.setContent(VALUES[v].valueList,this.tablename);
                 this.row.push(d);
             }
 

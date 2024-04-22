@@ -8,23 +8,7 @@
     <meta charset="utf-8">
 
     <title>東果文字_概要</title>
-    <style>
-        span.khhyl {
-            display: inline-block;
-        }
-
-        span.khhyl.larger {
-            font-size: 2em;
-        }
-        table {
-            border: solid 2px;
-            border-collapse: collapse;
-        }
-        table tr,
-        table td {
-        border: dashed 1px;
-        }
-    </style>
+    <link rel="stylesheet" href="style_info.css">
 
     <!-- <link rel="stylesheet" href="style.css" />-->
     <!-- 適当にcssの勉強してポチポチやれ-->
@@ -45,25 +29,87 @@
     <h1>東果文字の内部処理 v0.0.0</h1>
     <p>とりあえず表記できればいいやくらいに思ってるので、全く持って非効率だったりガバガバだったりします</p>
 
-    <h1>アルファベットから音節に変換する方法</h1>
+    <h1>ラテン文字入力から実際に描画するまでの過程</h1>
+    <ol>
+        <li>Renderクラスに描画させたいラテン文字文字データを打ち込む</li>
+        <li>Parserクラスでラテン文字を取り敢えず東果文字の内部表記に変換してもらう</li>
+        <li>GSUBManagerクラスで東果文字の内部表記を変更してもらう</li>
+        <li>GlyphArrayにデータを渡した上で、GlyphでGPOSManagerを用いて一音節分のSVGデータを作成する</li>
+        <li>GlyphArrayにて文字と文字の間隔の調整をした上で棒線で連結した値を返す</li>
+        <li>Renderが返した値をpathのd属性に打ち込めば出来上がり🐧</li>
+    </ol>
 
-    <p>与えられた文S_rawをParserにて、(Orderが小さい順に整列した上で、同じOrder間でPriroityが小さい順)の東果語用正規表現を使ってS_khhyl0にする</p>
-    <p>与えられた文S_khhyl0をGSUBManagerにて、(Orderが小さい順に整列した上で、同じOrder間でPriroityが小さい順)に東果語用正規表現を使って変換し、S_khhyl1にする（完）</p>
+    <h1>内部データの構造</h1>
+    <h2>TEXTDATA(Thickness,WidthH,WidthV,isWidthHRel,Height,TopGapV)</h2>
+    <ul>
+        <li>Thicknessの太さの棒線を文字の間で補完するようにする。</li>
+        <li>文字の横幅について、横書きの場合はWidthH、縦書きの場合はWidthVにする</li>
+        <li>isWidthHRelがtrueならば横書きの文字幅は(その文字の横幅)+WidthHとして処理される。</li>
+        <li>Heightは横書きの場合の一文字の高さ。</li>
+        <li>TopGapHは横書きの場合の上下ギャップの指定。</li>
+    </ul>
+    <p>※これらの処理は、フォントサイズに合わせた拡大縮小前に行われる。</p>
+    <p>例えばHeight=100に指定した文字は、最終的には(指定したサイズ)/100倍。</p>
+    <h2>VOWEL(ID,Name,LoadName,SolGlyphNum,InitGlyphNum,MidGlyphNum,FinGlyphNum,isVowel,isNullVowel,hasGreedyBond,isBondtoPrev,isBondtoNext,Order)</h2>
+    <ul>
+        <li>母音(+母音の形式で表される約物)を表す。</li>
+        <li>IDは変更不能で一意に振られる。RegExp_Khhylの[]構文についてはID指定を想定しない。</li>
+        <li>LoadNameは、SVGデータをフォルダごと読み込んだ場合に使う予定（今の所深い意味無し）</li>
+        <li>GlyphNumは異体字の数。isVowelとかその辺は内部処理用</li>
+        <li>Orderは文字編集webアプリの並び順を指定するため（気にしなくて良い）</li>
+    </ul>
+    <h2>CONSONANT(ID,Name,LoadName,OnsetGlyphNum,CodaGlyphNum,isBondAsFirst,isBondAsLast,Order)</h2>
+    <ul>
+        <li>子音(+子音の形式で表される約物)を表す。</li>
+        <li>isBondAsFirstとかその辺は内部処理用。</li>
+    </ul>
+    <h2>PUNCTUATION(ID,Name,LoadName,GlyphNum,IsNewline,Order)</h2>
+    <ul>
+        <li>約物を表す。</li>
+        <li>isNewlineがtrueの文字は改行文字であると（内部で）判定する。</li>
+    </ul>
 
-    <h1>S_khhyl1から(SVGとして)表記する方法</h1>
-    <p>まず一音節毎に分けます。Glyphにて、[一定の規則A]（一旦省略）を用いてまず一音節を表記します</p>
-    <p>次に[一定の規則B]を用いて続け文字を描画します</p>
-    <p>色々調整して、ししまいっ！</p>
+    <h2>DIACRITIC_V(ID,Name,LoadName,SolGlyphNum,InitGlyphNum,MidGlyphNum,FinGlyphNum,x_Align,y_Align,Order)</h2>
+    <h2>DIACRITIC_C(ID,Name,LoadName,OnsetGlyphNum,CodaGlyphNum,x_Align,y_Align,Order)</h2>
+    <h2>DIACRITIC_P(ID,Name,LoadName,GlyphNum,x_Align,y_Align,Order)</h2>
+    <ul>
+        <li>母音/子音/約物に付く符号を表す。</li>
+        <li>x_Align,y_Alignは-1,0,1かの値を取り、それぞれ内側/中央/外側、上側/中央/下側を基準に、記号の座標が指定されるようになる。</li>
+    </ul>
 
-    <h1>東果語用正規表現ってなんやねん</h1>
-    <p>東果語用の正規表現……の糖衣表現。内部では一旦ただの正規表現に変換してる。</p>
-    <p>R(任意の一文字)：現実世界の文字の表現用</p>
-    <p>g:1つの字母</p>
-    <p>G:g(-g)：１つのグリフ</p>
-    <p>C(onset|coda|null,G?),V(sol|init|mid|fin|null,G?),P(G?)：それぞれ、子音、母音、約物の単独表記</p>
-    <p>S(sol|init|mid|fin|null,G?,G?,G?)：一音節文字を表す</p>
-    <p>L()：東果文字の取りうる文字全部。R(),Q()は除外</p>
-    <p>Q()：一部の内部処理で用いる。</p>
+    <h2>PARSER(ID,Pattern,Order,Priority,Name,NameAlt,Parsed)</h2>
+    <ul>
+        <li>（主に現実世界のアルファベットや、C()等で定義された文字群を）東果語の表現手段へと変換する。</li>
+        <li>Patternがcの場合は東果語に、vの場合は汽陸語に、oの場合は両方に適応する。</li>
+        <li>Orderの値が小さい順（等しいもの同士はPriorityの値が小さい順）で実行される。</li>
+        <li>Name（RegExp_Khhylに基づく）がNameAltの形に変換される、という形で変換を定義する。</li>
+        <li>Parsedは予めNameを通常のRegExpに変換しておいたもの。</li>
+        <li>（今後は別のファイルとして分離する予定。Patternもどうせ廃止）</li>
+    </ul>
+
+    <h2>GSUB(ID,Pattern,Order,Priority,Name,NameAlt,Parsed)</h2>
+    <ul>
+        <li>東果語の字形を指定・変更する。</li>
+        <li>Patternがvの場合は縦書き、hの場合は横書き、oの場合は両方に適応。</li>
+        <li>Orderの値が小さい順（等しいもの同士はPriorityの値が小さい順）で実行される。</li>
+    </ul>
+
+    <h2>GPOS(ID,Pattern,Pattern_sub,Order,Name,OffsetX0,OffsetY0,OffsetX1,OffsetY1,Parsed)</h2>
+    <ul>
+        <li>東果文字同士や、東果文字のパーツ同士の位置調整をする。</li>
+        <li>Patternがvの場合は縦書き、hの場合は横書き、oの場合は両方に適応。</li>
+        <li>Pattern_subはについて、DIACなら符号の位置設定。INは音節における子音パーツの位置設定。INEXは上下幅指定（横の場合は母音の位置の調整）。EXは二文字間での位置調整。</li>
+        <li>OffsetX0~OffsetY1は具体的なオフセットの値。</li>
+        <li>Orderは文字編集webアプリの並び順を指定するため（気にしなくて良い）</li>
+    </ul>
+
+    <h2>GLYPH(ID,Name,Path)</h2>
+    <ul>
+        <li>Nameという名前の、Pathをsvgのd属性で表示させるGlyphを定義する。</li>
+    </ul>
+
+
+
 </body>
 
 <script type="module">
@@ -72,7 +118,7 @@
     //Khhyl.Render.DrawD(self.textbox.value,lang,(alig==2?0:1),"none",Number(self.sizetext.value));
     //span khhylに関する変換処理
     $(document).ready(async function () {
-        await khhyl.Thaqqa_DB.load();
+        await khhyl.Database.load('/server/init.json');
 
         for (const i of $('span.khhyl')) {
             const object = $("div#storage svg#svgField").clone(false, false)[0];
@@ -87,7 +133,7 @@
                 object.append(title, desc)
             }
             //console.log(parseFloat(getComputedStyle(i).fontSize));
-            const d = khhyl.Render.DrawD(letter, 0, i.getAttribute("alig") == null ? 0 : 1 , type, parseFloat(getComputedStyle(i).fontSize), { x: 0, y: 0 });
+            const d = khhyl.Render.DrawD(letter, parseFloat(getComputedStyle(i).fontSize), 0, i.getAttribute("alig") == null ? 0 : 1 , type,null);
             const path = $("div#storage svg#svgField path").clone()[0];
             path.style.display = "block";
             path.setAttribute("fill", "none");
@@ -96,7 +142,6 @@
             path.setAttribute("fill", "black");
             path.setAttribute("d", d);
             object.appendChild(path);
-
             const x0 = khhyl.SVG.getLeft(d); const x1 = khhyl.SVG.getRight(d); const y0 = khhyl.SVG.getTop(d); const y1 = khhyl.SVG.getBottom(d);
             const shrink_x = 1.03; const HEIGHT = y1 - y0; const WIDTH = x1 - x0;
             object.setAttribute("width", (WIDTH * shrink_x).toString());

@@ -23,8 +23,8 @@ class LayoutDebug_web{
             if(v.option.checked == true) lang = v.option.value;
         }
 
-        const c0_ = khhyl.Thaqqa_DB.getTable("CONSONANT").getData({isBondAsFirst:true});
-        const c1_ = khhyl.Thaqqa_DB.getTable("CONSONANT").getData({isBondAsLast:true});
+        const c0_ = khhyl.Database.getTable("CONSONANT").getData({isBondAsFirst:true});
+        const c1_ = khhyl.Database.getTable("CONSONANT").getData({isBondAsLast:true});
         const C0 = [""];
         const C1 = [""];
         const V = self.textbox.value;
@@ -43,13 +43,13 @@ class LayoutDebug_web{
         })(lang);
         
         for(let i = 0;i<c0_.length;i++){
-            for(let j = 0;j<c0_[i].values.OnsetGlyphNum;j++){
-                C0.push(`${c0_[i].values.Name}_${j}${self.textbox_diac0.value}`)
+            for(let j = 0;j<c0_[i].getVal("OnsetGlyphNum");j++){
+                C0.push(`${c0_[i].getVal("Name")}${j}${self.textbox_diac0.value}`)
             }
         }
         for(let i = 0;i<c1_.length;i++){
-            for(let j = 0;j<c1_[i].values.CodaGlyphNum;j++){
-                C1.push(`${c1_[i].values.Name}_${j}${self.textbox_diac1.value}`)
+            for(let j = 0;j<c1_[i].getVal("CodaGlyphNum");j++){
+                C1.push(`${c1_[i].getVal("Name")}${j}${self.textbox_diac1.value}`)
             }
         }
         let text = [];
@@ -64,9 +64,9 @@ class LayoutDebug_web{
                     for(let z = 0;z<C1.length;z++){
                         //text.push(`S(${form},${C0[x]},${V},${C1[z]})`);
                         text += `S(${form},${C0[x]},${V},${C1[z]})`;
-                        text += `P(space_0)`;
+                        text += `P(space0)`;
                     }
-                    text += `P(newline_0)`;
+                    text += `P(newline0)`;
                     //text.push(`(改行)`);
                 }
                 
@@ -75,34 +75,20 @@ class LayoutDebug_web{
 
             break;
         }
-        let gap_x = 0;
-        let gap_y = 0;
+        //const gap_x = 0;
+        //const gap_y = 0;
         //const GAP = Number(self.sizetext.value)*2;
         let d = "";
         while(this.SVG.field.firstChild)this.SVG.field.removeChild(this.SVG.field.firstChild);
-          
-        ///for(let i = 0;i<1;i++){
-            const path = $("div#storage svg#svgField path").clone()[0];
-            path.setAttribute("fill","none");
-            path.setAttribute("stroke","black");
-            path.setAttribute("stroke-width",0);
-            path.setAttribute("fill","black");
-            path.setAttribute("d",d);
-            d += khhyl.Render.DrawD(text,lang,(1-alig),"parsedplus",Number(self.sizetext.value),{x:gap_x,y:gap_y});
-            /*if(text[i] == `(改行)` ) {gap_x = 0;gap_y += GAP}
-            else{
-                d += khhyl.Render.DrawD(text[i],lang,(1-alig),"parsedplus",Number(self.sizetext.value),{x:gap_x,y:gap_y});
-                gap_x += GAP;
-                path.setAttribute("d",d);
-                this.SVG.field.appendChild(path);
-            }*/
-        //}
-        
-        /*
-        self.SVG.field.setAttribute("width",(GAP*C0.length).toString());
-        self.SVG.field.setAttribute("height",(GAP*C1.length).toString());
-        self.SVG.field.setAttribute("viewBox",`${-GAP/2} ${-GAP/2} ${GAP*C0.length} ${GAP*C1.length}`);
-        */
+
+        const path = $("div#storage svg#svgField path").clone()[0];
+        path.setAttribute("fill","none");
+        path.setAttribute("stroke","black");
+        path.setAttribute("stroke-width",0);
+        path.setAttribute("fill","black");
+        path.setAttribute("d",d);
+        d += khhyl.Render.DrawD(text,Number(self.sizetext.value),lang,(1-alig),"parsedplus",null);
+
         const x0 = khhyl.SVG.getLeft(d);
         const x1 = khhyl.SVG.getRight(d);
         const y0 = khhyl.SVG.getTop(d);
