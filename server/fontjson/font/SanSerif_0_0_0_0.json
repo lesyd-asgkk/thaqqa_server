@@ -37,6 +37,24 @@
         "type": "float",
         "order": 300,
         "subtype": "none"
+      },
+      "VersionMajor": {
+        "name": "VersionMajor",
+        "type": "INTEGER",
+        "order": 400,
+        "subtype": "none"
+      },
+      "VersionMinor": {
+        "name": "VersionMinor",
+        "type": "INTEGER",
+        "order": 401,
+        "subtype": "none"
+      },
+      "VersionPatch": {
+        "name": "VersionPatch",
+        "type": "INTEGER",
+        "order": 402,
+        "subtype": "none"
       }
     },
     "data": {
@@ -46,7 +64,10 @@
         "WidthV": 85,
         "isWidthHRel": false,
         "Height": 100,
-        "TopGapH": 10
+        "TopGapH": 10,
+        "VersionMajor":0,
+        "VersionMinor":0,
+        "VersionPatch":0
       }
     }
   },
