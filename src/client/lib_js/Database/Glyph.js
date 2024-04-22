@@ -65,8 +65,9 @@ class GlyphArray{
         const text = this.name.replaceAll(new RegExp(r_, "g"),"$1Sep()$2").replaceAll(new RegExp(r_, "g"),"$1Sep()$2");
         const pSVGData = text.split("Sep()");
         pSVGData.forEach((i)=> this.childList.push(new Glyph(i , this.vec,this.font)))
+        if(this.vec==-1) this.childList.reverse();
     }
-    toPath(defaultsize){
+    toPath(defaultsize,_prev){//_prevは今後用
         const vec_ = this.vec;
         const em_ = function (n){return n/(vec_==0?textdata.WidthV:textdata.Height)}
         // 単に『em_』へと変える
@@ -74,14 +75,10 @@ class GlyphArray{
         const rescale = function(param,size){
             const s_ = em_(size);
             const aa = SVG.toAbsolute(param);
-
                 for(const i of aa){
-                    if(i.x!=undefined) i.x*=s_;
-                    if(i.y!=undefined) i.y*=s_;
-                    if(i.x1!=undefined) i.x1*=s_;
-                    if(i.y1!=undefined) i.y1*=s_;
-                    if(i.x2!=undefined) i.x2*=s_;
-                    if(i.y2!=undefined) i.y2*=s_;
+                    if(i.x!=undefined) i.x*=s_;if(i.y!=undefined) i.y*=s_;
+                    if(i.x1!=undefined) i.x1*=s_;if(i.y1!=undefined) i.y1*=s_;
+                    if(i.x2!=undefined) i.x2*=s_;if(i.y2!=undefined) i.y2*=s_;
                     if(i.val!=undefined) i.val*=s_;
             }
             return SVG.toRelative(aa);

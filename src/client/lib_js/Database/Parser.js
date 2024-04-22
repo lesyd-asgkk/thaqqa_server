@@ -15,7 +15,7 @@ class Parser {
     const tables = FontManager.getStaticTable("Parser");
 
     const Parser_a = Parser.getParser(param.Name);
-    const Parser_b = Parser.getParser(param.Name);
+    const Parser_b = Parser.getParser(param2.Name);
     if(param.Name != null && Parser_a.length >= 2 && param2.Name!=null)throw new Error("変更後に重複が発生します");
     if(param2.Name != null && Parser_b.length != 0)throw new Error("変更後に重複が発生します");
 
