@@ -46,11 +46,11 @@ class DIVparam_web{
         val = f_numcheck(val);
             if(val == null) val = self.val;
         }
-        const DTTB = Khhyl.FontManager.getStaticTable(this.parent.tablename) ?? Khhyl.FontManager.getFont("SanSerif_0_0_0_0").getTable(this.parent.tablename);
+        const DTTB = Khhyl.FontManager.getStaticTable(this.parent.tablename) ?? Khhyl.FontManager.getFont(this.parent.font).getTable(this.parent.tablename);
         if(DTTB.rewriteData({ID:this.id},{[self.col]:val}))
         {
         if(parent.tablename == "GPOS" && self.col == "Name"){
-            Khhyl.GPOSManager.setGPOSColumn(this.id,"SanSerif_0_0_0_0");
+            Khhyl.GPOSManager.setGPOSColumn(this.id,this.parent.font);
         }
         else if(parent.tablename == "GSUB" && self.col == "Name"){
             Khhyl.GSUBManager.setGSUBColumn(this.id);
@@ -89,7 +89,7 @@ class DIVselect_web{
     rewrite_content(parent,self,obj){
         const val = obj.checked;
         const val2 = obj.value;
-        const DTTB = Khhyl.FontManager.getStaticTable(self.parent.tablename) ?? Khhyl.FontManager.getFont("SanSerif_0_0_0_0").getTable(this.parent.tablename);
+        const DTTB = Khhyl.FontManager.getStaticTable(self.parent.tablename) ?? Khhyl.FontManager.getFont(this.parent.font).getTable(this.parent.tablename);
         switch(this.type){
             case "bool":
                 if(DTTB.rewriteData({ID:this.id},{[self.col]:val}))
@@ -145,7 +145,7 @@ class Button_web{
         this.type = type;//削除か追加か
     }
     rewrite_content(parent,self){
-        const DTTB = Khhyl.FontManager.getStaticTable(self.parent.tablename) ?? Khhyl.FontManager.getFont("SanSerif_0_0_0_0").getTable(this.parent.tablename);
+        const DTTB = Khhyl.FontManager.getStaticTable(self.parent.tablename) ?? Khhyl.FontManager.getFont(this.parent.font).getTable(this.parent.tablename);
         if(self.type == "Add"){
 
             switch(self.parent.tablename){
@@ -210,7 +210,7 @@ class SVGField_web{
         
         const Letter_T = ["VOWEL","DIACRITIC_V","CONSONANT","DIACRITIC_C","PUNCTUATION","DIACRITIC_P",]
         if(Letter_T.includes(this.parent.tablename)){
-        const DTTB = Khhyl.FontManager.getStaticTable(this.parent.tablename) ?? Khhyl.FontManager.getFont("SanSerif_0_0_0_0").getTable(this.parent.tablename);
+        const DTTB = Khhyl.FontManager.getStaticTable(this.parent.tablename) ?? Khhyl.FontManager.getFont(this.parent.font).getTable(this.parent.tablename);
         const n = DTTB.getData({ID:id})[0].getVal("Name");
         
         d = "M0,0";
@@ -220,7 +220,7 @@ class SVGField_web{
         
         let i_ = 0;
         for(let j = 0 ; j<listb.length;j++){
-        const list = Khhyl.GlyphManager.getSVG(new RegExp("^"+n+"_"+listb[j]),"SanSerif_0_0_0_0");
+        const list = Khhyl.GlyphManager.getSVG(new RegExp("^"+n+"_"+listb[j]),this.parent.font);
                 for(let i = 0;i<list.length;i++){
                 d = Khhyl.SVG.merge2(d,list[i],(1+i_+j/2)*100,0);
                 i_++;

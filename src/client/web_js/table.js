@@ -9,7 +9,7 @@ class Row_web{
         this.parent=parent;
     }
     setContent(value,table){
-        const DTTB = Khhyl.FontManager.getStaticTable(table) ?? Khhyl.FontManager.getFont("SanSerif_0_0_0_0").getTable(table);
+        const DTTB = Khhyl.FontManager.getStaticTable(table) ?? Khhyl.FontManager.getFont(this.parent.font).getTable(table);
         const sublistlist = {
             "AligX":[[-1,"□→‖←□(-1)"],[0,"・｜・(0)"],[1,"⇐■｜■⇒(1)"]],
             "AligY":[[-1,"↑(-1)"],[0,"・(0)"],[1,"⇓(1)"]],
@@ -51,7 +51,7 @@ class Row_web{
         }
     }
     SortbyOrder(table){
-        const DTTB = Khhyl.FontManager.getStaticTable(table) ?? Khhyl.FontManager.getFont("SanSerif_0_0_0_0").getTable(table);
+        const DTTB = Khhyl.FontManager.getStaticTable(table) ?? Khhyl.FontManager.getFont(this.parent.font).getTable(table);
         const sortalg = function(first, second){//Priorityの小さい順に並び替える
             const f = DTTB.getColumn(first.col).order;
             const s = DTTB.getColumn(second.col).order;
@@ -241,7 +241,7 @@ class RowDesc_web{
 
     }
     SetColumns(tablename){
-        const DTTB = Khhyl.FontManager.getStaticTable(tablename) ?? Khhyl.FontManager.getFont("SanSerif_0_0_0_0").getTable(tablename);
+        const DTTB = Khhyl.FontManager.getStaticTable(tablename) ?? Khhyl.FontManager.getFont(this.parent.font).getTable(tablename);
         if(DTTB != null){
             this.content = [];
             const CL = DTTB.columnList;
@@ -262,15 +262,17 @@ class RowDesc_web{
           this.content.sort(sortalg);
     }
 }
+//tableのweb。こいつをいじる
 class Table_web{
     constructor(tablename,loc){
         this.tablename = tablename; //
         this.loc = loc; //設置してある場所
+        this.font = "default";
         this.row_desc = new RowDesc_web(this); //
         this.row = [];
     }
     createRow(){
-        const DTTB = Khhyl.FontManager.getStaticTable(this.tablename) ?? Khhyl.FontManager.getFont("SanSerif_0_0_0_0").getTable(this.tablename);
+        const DTTB = Khhyl.FontManager.getStaticTable(this.tablename) ?? Khhyl.FontManager.getFont(this.font).getTable(this.tablename);
 
         if(DTTB != null){
             this.content = [];

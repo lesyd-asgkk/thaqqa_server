@@ -6,10 +6,10 @@ import * as webjs from "./web_js/deps.js";
   async function main(){
 
   await khhyl.FontManager.load('/server/fontjson/root.json',true);
-  await khhyl.FontManager.load('/server/fontjson/font/SanSerif_0_0_0_0.json',false);
+  await khhyl.FontManager.load('/server/fontjson/font/default.json',false);
   
     console.log(khhyl.FontManager);
-    await khhyl.GlyphManager.loadAll("SanSerif_0_0_0_0");
+    await khhyl.GlyphManager.loadAll("default");
 
     let ta = new webjs.Table_web("VOWEL",$("div.area_tb#vowel")[0]);
     ta.draw();
@@ -25,6 +25,8 @@ import * as webjs from "./web_js/deps.js";
     ta.draw();
     let tb;
     tb = new webjs.Table_web("GSUB",$("div.area_tb#gsub")[0]);
+    tb.draw();
+    tb = new webjs.Table_web("F_GSUB",$("div.area_tb#f_gsub")[0]);
     tb.draw();
     tb = new webjs.Table_web("PARSER",$("div.area_tb#parser")[0]);
     tb.draw();

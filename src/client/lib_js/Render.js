@@ -1,4 +1,4 @@
-import { Parser , GSUBManager ,GlyphArray,SVG} from "./deps.js";
+import { Parser , F_GSUBManager,GSUBManager ,GlyphArray,SVG} from "./deps.js";
 
 class Render{
     //text:string型
@@ -11,15 +11,21 @@ class Render{
     //text , lang,alig,{option:,size:,pos:,...}とかの形にしたほうが良さそう
     static DrawD(text,lang,alig,option){
         //option:{font,parse,size,position}
+        option.font ??= "default";
         switch(option.parse){
+            case "parsedperfect":
+                break;
             case "parsedplus":
+                text = F_GSUBManager.fgsub(text,alig,option.font);
                 break;
             case "parsed":
                 text = GSUBManager.gsub(text,alig);
+                text = F_GSUBManager.fgsub(text,alig,option.font);
                 break;
             default:
                 text = Parser.parse(text,lang);
                 text = GSUBManager.gsub(text,alig);
+                text = F_GSUBManager.fgsub(text,alig,option.font);
             break;
         }
         option.position ??={x:0,y:0};

@@ -1,13 +1,6 @@
 import { FontManager,RegExp_Khhyl } from "../deps.js";
 
 
-//GPOS|GSUB|ParserManager
-//GlyphManager LetterManager
-//↑こいつらをDataのような構図（parent持ち）にする
-
-//web_jsも当然更新。とりあえず初期値として"SanSerif"を実装
-
-//Parserは別で良いかも
 class GPOSManager {
     static setGPOSColumnAll(font){
         GPOSManager.setGPOSColumn(null,font);
@@ -60,7 +53,7 @@ class GPOSManager {
         table_.createData(param);
     }
 
-    static gpos(text,vec,rule){
+    static gpos(text,vec,rule,font){
 
         //gposINの内部処理について
         //真面目に処理すると膨大すぎてパンクする。
@@ -71,7 +64,7 @@ class GPOSManager {
         //これで多分解決
 
         const ans = {x0:0,y0:0,x1:0,y1:0}
-        const GPOSdata =  GPOSManager.getGPOS({Pattern:(vec==0?/(u|v)/:/(u|h)/),Pattern_sub:rule},"SanSerif_0_0_0_0");
+        const GPOSdata =  GPOSManager.getGPOS({Pattern:(vec==0?/(u|v)/:/(u|h)/),Pattern_sub:rule},font);
         GPOSdata.forEach((i)=>{const r_fin = new RegExp((rule == "EX" ? "^": "")+i.getVal("Parsed")+(rule == "EX" ? "$": ""), "g");                
         if(text.match(r_fin) != null){
             ans.x0 += i.getVal("OffsetX0");

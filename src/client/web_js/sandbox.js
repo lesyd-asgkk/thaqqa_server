@@ -6,6 +6,8 @@ class Sandbox_web{
         this.textbox;
         this.align = [];
         this.lang = [];
+        this.fontbox;
+
         this.svgdownloadbutton;
         this.youaredrawing;
         this.SVG;
@@ -20,8 +22,8 @@ class Sandbox_web{
         for(const v of self.lang){
             if(v.option.checked == true) lang = v.option.value;
         }
-        console.log([1,-1,0][alig]);
-        const d = Khhyl.Render.DrawD(self.textbox.value,lang,[1,-1,0][alig],{size:Number(self.sizetext.value),parse:"none",font:"SanSerif_0_0_0_0"});
+        console.log(self.fontbox.value);
+        const d = Khhyl.Render.DrawD(self.textbox.value,lang,[1,-1,0][alig],{size:Number(self.sizetext.value),parse:"none",font:self.fontbox.value});
         // Khhyl.Render.DrawD(self.textbox.value,Number(self.sizetext.value),lang,(alig==2?0:1),"none",null)
         // 
         self.SVG.path.setAttribute("d",d);
@@ -125,7 +127,15 @@ class Sandbox_web{
                 this.loc.appendChild(this.lang[i].label);
             }
         }
+        const fontarea = document.createElement("input");
+        fontarea.type = "text";
+        fontarea.contentEditable = false;
+        fontarea.style.display ="block";
+        //text.type = "text";
+        fontarea.value = "default";
+        this.fontbox = fontarea;
 
+        this.loc.appendChild(this.fontbox);
         const drawbutton = document.createElement("input");
         drawbutton.contentEditable = false;
         drawbutton.style.display ="block";

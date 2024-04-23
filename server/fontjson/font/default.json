@@ -9197,5 +9197,58 @@
         "Path": "m0,0 m-4,0 c0,3 0,6 0,9 h9 v-9 zm4,0 "
       }
     }
+  },
+  "F_GSUB": {
+    "name": "F_GSUB",
+    "columnList": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "ID"
+      },
+      "Pattern": {
+        "name": "Pattern",
+        "type": "char",
+        "order": 1,
+        "subtype": "AligWhole"
+      },
+      "Order": {
+        "name": "Order",
+        "type": "INTEGER",
+        "order": 2
+      },
+      "Priority": {
+        "name": "Priority",
+        "type": "INTEGER",
+        "order": 3
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 4
+      },
+      "NameAlt": {
+        "name": "NameAlt",
+        "type": "char",
+        "order": 5
+      },
+      "Parsed": {
+        "name": "Parsed",
+        "type": "char",
+        "order": 6
+      }
+    },
+    "data": {
+      "0": {
+        "ID": 0,
+        "Pattern": "u",
+        "Order": 10,
+        "Priority": 3,
+        "Name": "",
+        "NameAlt": "",
+        "Parsed": ""
+      }
+    }
   }
 }

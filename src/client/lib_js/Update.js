@@ -1,4 +1,5 @@
-//がアップデートされた場合用？
+//アップデートされた場合用？
+
 class Update{
     static #LATEST = [0,0,0];
     static Update(version){
@@ -16,4 +17,11 @@ class Update{
     static UpdateToVer1(version){
 
     }
+
+    static UpdateTEMP(version){
+        //とりあえず用のアプデ
+
+    }
 }
+
+export {Update};
