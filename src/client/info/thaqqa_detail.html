@@ -133,7 +133,7 @@
                 object.append(title, desc)
             }
             //console.log(parseFloat(getComputedStyle(i).fontSize));
-            const d = khhyl.Render.DrawD(letter,0, i.getAttribute("alig") == null ? 0 : 1 ,{size:parseFloat(getComputedStyle(i).fontSize),parse:type,font:"SanSerif_0_0_0_0"});
+            const d = khhyl.Render.DrawD(letter,0, i.getAttribute("alig") == null ? 0 : 1 ,{size:parseFloat(getComputedStyle(i).fontSize),parse:type,font:"default"});
             const path = $("div#storage svg#svgField path").clone()[0];
             path.style.display = "block";
             path.setAttribute("fill", "none");
@@ -152,7 +152,7 @@
     }
     $(document).ready(async function () {
         await khhyl.FontManager.load('/server/fontjson/root.json',true);
-  await khhyl.FontManager.load('/server/fontjson/font/SanSerif_0_0_0_0.json',false);
+  await khhyl.FontManager.load('/server/fontjson/font/default.json',false);
         //この辺コードが見苦しいので共通処理にするの考える
         for (const i of $('div.table#vowel_0')) {
             const vowel = [["abig","a"],["e","e"],["i","i"],["o","o"],["u","u"],["v","v"],["eold","ë(旧)"],["iold","ï(旧)"]]

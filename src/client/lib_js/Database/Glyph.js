@@ -67,7 +67,7 @@ class GlyphArray{
         pSVGData.forEach((i)=> this.childList.push(new Glyph(i , this.vec,this.font)))
         if(this.vec==-1) this.childList.reverse();
     }
-    toPath(defaultsize,_prev){//_prevは今後用
+    toPath(defaultsize,_prev,_next){//_prevは今後用
         const vec_ = this.vec;
         const em_ = function (n){return n/(vec_==0?textdata.WidthV:textdata.Height)}
         // 単に『em_』へと変える
@@ -87,8 +87,7 @@ class GlyphArray{
         this.d = SVG.createM(this.position.x,this.position.y);//`M ${this.position.x},${this.position.y}`;
         let x = this.position.x;
         let y = this.position.y;
-        const nlist = FontManager.getStaticTable("PUNCTUATION").getData({"IsNewline":true});
-        const nlist_ = nlist.map((i) =>i.getVal("Name"));
+        const nlist_ = FontManager.getStaticTable("PUNCTUATION").getData({"IsNewline":true}).map((i) =>i.getVal("Name"));
 
         if(this.vec==0){
             let isnewline = true;
@@ -96,17 +95,14 @@ class GlyphArray{
                 //m0 -> gap_above , m1 -> gap_below
                 let gap_above = 0;let gap_below = 0;
 
-                gap_below += GPOSManager.gpos(this.childList[i].fullname,this.vec,"INEX",this.font).y1; // 下方向
-                gap_above += GPOSManager.gpos(this.childList[i].fullname,this.vec,"INEX",this.font).y0; // 上方向
+                gap_below += GPOSManager.gpos(this.childList[i].fullname,this.vec,"INEX",this.font).y1;
+                gap_above += GPOSManager.gpos(this.childList[i].fullname,this.vec,"INEX",this.font).y0;
 
-                
-                //上方向
-                if(i == 0 ) gap_above += GPOSManager.gpos("Null()"+this.childList[i].fullname,this.vec,"EX",this.font).y1;
+                if(i == 0 ) gap_above += GPOSManager.gpos((_prev??"Null()")+this.childList[i].fullname,this.vec,"EX",this.font).y1;
                 else gap_above += GPOSManager.gpos(this.childList[i-1].fullname+this.childList[i].fullname,this.vec,"EX",this.font).y1;
 
-                // AB A(下方向)
                 if(i != this.childList.length-1) gap_below += GPOSManager.gpos(this.childList[i].fullname+this.childList[i+1].fullname,this.vec,"EX",this.font).y0;
-                else gap_below += GPOSManager.gpos(this.childList[i].fullname+"Null()",this.vec,"EX",this.font).y0;
+                else gap_below += GPOSManager.gpos(this.childList[i].fullname+(_next??"Null()"),this.vec,"EX",this.font).y0;
 
                 y += gap_above*em_(defaultsize);
 
@@ -121,13 +117,14 @@ class GlyphArray{
                 if(i+1 != this.childList.length){const d2 = rescale(this.childList[i+1].d,defaultsize);y -= SVG.getTop(d2);}
                 
                 this.childList[i].offset = {x,y};
-                if(nlist_.includes(this.childList[i].name)){
+                if(nlist_.indexOf(this.childList[i].name)!=-1){
                     x -= defaultsize;y = 0;isnewline = true;
                 }
             }
             this.d = this.d.concat(SVG.createM(x,y));
         }
         else{
+            const dir_ = this.vec; 
             for(let i = 0;i<this.childList.length;i++){
                 const h = textdata.Height;
                 const d_new = rescale(this.childList[i].toPathAbs(h,0.5+GPOSManager.gpos(this.childList[i].fullname,this.vec,"INEX",this.font).y1/textdata.Height),defaultsize);
@@ -135,13 +132,23 @@ class GlyphArray{
                 const x_abs = defaultsize*textdata.WidthV/textdata.Height;
                 const x_rel = -SVG.getLeft(d_new)+SVG.getRight(d_new)+defaultsize*textdata.WidthV/textdata.Height;
 
-                x += (!textdata.isWidthHRel ? x_abs/2 : x_rel/2);
-                this.d = this.d.concat(SVG.createM(x,y)).concat(SVG.toRelative(d_new));
-               
+                let gap_left = 0;let gap_right = 0;
 
-                if(i!=this.childList.length-1)x += (!textdata.isWidthHRel ? x_abs/2 : x_rel/2);//size
+                gap_right += GPOSManager.gpos(this.childList[i].fullname,this.vec,"INEX",this.font).x1;
+                gap_left += GPOSManager.gpos(this.childList[i].fullname,this.vec,"INEX",this.font).x0;
+
+                if(i == 0) gap_left += GPOSManager.gpos((_prev??"Null()")+this.childList[i].fullname,this.vec,"EX",this.font).x1;
+                else gap_left += GPOSManager.gpos(this.childList[i-1].fullname+this.childList[i].fullname,this.vec,"EX",this.font).x1;
+
+                if(i != this.childList.length-1) gap_right += GPOSManager.gpos(this.childList[i].fullname+this.childList[i+1].fullname,this.vec,"EX",this.font).x0;
+                else gap_right += GPOSManager.gpos(this.childList[i].fullname+(_next??"Null()"),this.vec,"EX",this.font).x0;
+
+                x += (!textdata.isWidthHRel ? x_abs/2 : x_rel/2) +(dir_==1?gap_left:gap_right)*em_(defaultsize); //ここの値は後に修正（gapとか諸々）
+                this.d = this.d.concat(SVG.createM(x,y)).concat(SVG.toRelative(d_new));
+
+                if(i!=this.childList.length-1) x += (!textdata.isWidthHRel ? x_abs/2 : x_rel/2) +(dir_==1?gap_right:gap_left)*em_(defaultsize);//size
                 this.childList[i].offset = {x,y};
-                if(nlist_.includes(this.childList[i].name)){
+                if(nlist_.indexOf(this.childList[i].name)!=-1){
                     x = 0;y += defaultsize*((textdata.Height+textdata.TopGapH)/textdata.Height);
                 }
             }
@@ -177,9 +184,8 @@ class Glyph{
     initSvg(name){
 
         const partname = this.partitionName(name);
-        //console.log(partname);
         if(partname.length == 0){this.isroot = true;
-            if(name == null|| name == ""){this.d = [] ,this.aligment = {x:0,y:0};return [];}
+            if( (name ?? "") == ""){this.d = [] ,this.aligment = {x:0,y:0};return [];}
             const form = this.form ?? "";
             const name_ = `${this.name}_${form}_${this.val}`
             const dt = (GlyphManager.getSVG(name_,this.font)[0]) ?? "M 0,0";

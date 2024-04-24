@@ -7228,9 +7228,9 @@
         "Pattern_sub": "INEX",
         "Order": 0,
         "Name": "P(period0)",
-        "OffsetX0": 0,
+        "OffsetX0": -30,
         "OffsetY0": 0,
-        "OffsetX1": 0,
+        "OffsetX1": 30,
         "OffsetY1": 35,
         "Parsed": "P\\(period0\\)"
       },
@@ -7240,9 +7240,9 @@
         "Pattern_sub": "INEX",
         "Order": 0,
         "Name": "P(comma1)",
-        "OffsetX0": 0,
+        "OffsetX0": -30,
         "OffsetY0": 0,
-        "OffsetX1": 0,
+        "OffsetX1": 30,
         "OffsetY1": 35,
         "Parsed": "P\\(comma1\\)"
       },
@@ -8361,6 +8361,30 @@
         "OffsetX1": 0,
         "OffsetY1": -6,
         "Parsed": "S\\(fin,(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)-d\\d+,(u)\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),t\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)"
+      },
+      "686": {
+        "ID": 686,
+        "Pattern": "h",
+        "Pattern_sub": "INEX",
+        "Order": -5,
+        "Name": "S(*)",
+        "OffsetX0": -2,
+        "OffsetY0": 0,
+        "OffsetX1": -2,
+        "OffsetY1": 0,
+        "Parsed": "S\\((?:init|mid|fin|sol|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)"
+      },
+      "687": {
+        "ID": 687,
+        "Pattern": "h",
+        "Pattern_sub": "INEX",
+        "Order": -5,
+        "Name": "",
+        "OffsetX0": 0,
+        "OffsetY0": 0,
+        "OffsetX1": 0,
+        "OffsetY1": 0,
+        "Parsed": ""
       }
     }
   },
@@ -9243,8 +9267,8 @@
       "0": {
         "ID": 0,
         "Pattern": "u",
-        "Order": 10,
-        "Priority": 3,
+        "Order": 0,
+        "Priority": 0,
         "Name": "",
         "NameAlt": "",
         "Parsed": ""

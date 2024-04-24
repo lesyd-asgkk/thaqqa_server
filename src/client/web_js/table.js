@@ -14,7 +14,7 @@ class Row_web{
             "AligX":[[-1,"□→‖←□(-1)"],[0,"・｜・(0)"],[1,"⇐■｜■⇒(1)"]],
             "AligY":[[-1,"↑(-1)"],[0,"・(0)"],[1,"⇓(1)"]],
             "LANG":[["u","共通(u)"],["c","🐍東(c)"],["o","汽🐟(o)"]],
-            "GPOS":[["DIAC","字母構成"],["IN","音節内カーニング"],["INEX","音節上下長"],["EX","音節間カーニング"]],
+            "GPOS":[["DIAC","字母構成"],["IN","音節内カーニング"],["INEX","音節上下長・左右幅"],["EX","音節間カーニング"]],
             "AligWhole":[["v","↓(v)"],["h","⇔(h)"],["u","共通(u)"]]
         }//"DIAC":-10,"INNULL":0,"INB":10,"INEX":20,"EX":30
         for(const v in value){
@@ -86,7 +86,8 @@ class Row_web{
             tr.appendChild(td);
             }
 
-            {
+            const Letter_T = ["VOWEL","DIACRITIC_V","CONSONANT","DIACRITIC_C","PUNCTUATION","DIACRITIC_P",]
+            if(Letter_T.includes(this.parent.tablename)){
                 const td = document.createElement('td');
                 const obj = new SVGField_web(this.id,this.parent);
                 td.appendChild(obj.draw(this.id));

@@ -55,7 +55,7 @@ class GPOSManager {
 
     static gpos(text,vec,rule,font){
 
-        //gposINの内部処理について
+        //gposIN,gposINEXの内部処理について
         //真面目に処理すると膨大すぎてパンクする。
         
         //そこで
@@ -65,7 +65,7 @@ class GPOSManager {
 
         const ans = {x0:0,y0:0,x1:0,y1:0}
         const GPOSdata =  GPOSManager.getGPOS({Pattern:(vec==0?/(u|v)/:/(u|h)/),Pattern_sub:rule},font);
-        GPOSdata.forEach((i)=>{const r_fin = new RegExp((rule == "EX" ? "^": "")+i.getVal("Parsed")+(rule == "EX" ? "$": ""), "g");                
+        GPOSdata.forEach((i)=>{const r_fin = new RegExp((rule=="EX"?"^":"")+i.getVal("Parsed")+(rule=="EX"?"$":""), "g");                
         if(text.match(r_fin) != null){
             ans.x0 += i.getVal("OffsetX0");
             ans.y0 += i.getVal("OffsetY0");

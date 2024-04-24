@@ -99,7 +99,8 @@ class RegExp_Khhyl {
     toNormalRegExp() {
         let ans = "";
         for (let i = 0; i < this.child.length; i++) {
-                ans += this.child[i].toNormalRegExp() + ((this.intent.type.match(/[SRX]|[CVP]d?/g)!=null)&&i!=this.child.length-1?",":"");
+                ans += this.child[i].toNormalRegExp();
+                ans += (this.intent.type.match(/[SRX]|[CVP]d?/g)!=null)&&(i!=this.child.length-1)?",":"";
         }
         ans += this.pattern;
         switch(this.intent.type){
@@ -118,17 +119,16 @@ class RegExp_Khhyl {
                 ans = `(?:${ans})`;
                 break;
         }
-        if(this.intent.subtypeb != null && this.intent.subtypeb.match(/^\(/)!=null){
+        if((this.intent.subtypeb??"").match(/^\(/)!=null){
             ans = `${this.intent.subtypeb.slice(0,-1)}${ans})`; 
         }
-        else if(this.intent.subtypeb != null && this.intent.subtypeb.match(/^\[/)!=null){
+        else if((this.intent.subtypeb??"").match(/^\[/)!=null){
             ans = `(?:${ans})`; 
         }
         return ans;
     }
     ParseRegExp(){
         this.intent.type ??= "";
-            
         const rule = [];
         switch(this.intent.type){
             case "":
@@ -171,24 +171,24 @@ class RegExp_Khhyl {
     ParseRegExp_sub(rules) {
         let ans  = [];
         let count = 10000;
-        doublebreak:while (this.pattern != "") {
+        patternloop:while (this.pattern != "") {
             //console.log(`${this.intent.type} : ${this.pattern}`);
             for(const infi in rules){
-                if(count == 0)break;
+                if(count == 0) throw Error(`変換エラー（無限ループ）: ${this.pattern}${ans}`);
                 count--;
                 if(this.pattern != null && this.pattern.match(new RegExp(`^${infi}`,"g")) != null){
-                    const moji = this.pattern.match(new RegExp(`^${infi}`,"g"));
-                    if(moji != null){
-                        const k = rules[infi](this,ans,this.pattern,moji[0]);
+                    const searched = this.pattern.match(new RegExp(`^${infi}`,"g"));
+                    if(searched != null){
+                        const k = rules[infi](this,ans,this.pattern,searched[0]);
                         const k0 = k[0];const k1 = k[1];
                         if(Array.isArray(k0)) ans = k0;
                         if(typeof k1 == "string") this.pattern = k1;
-                        continue doublebreak;}
+                        continue patternloop;}
                 }
             }
-            break doublebreak; //通らなかった場合。
+            break patternloop; //通らなかった場合。
         }
-        if([null,""].includes(this.pattern).length==0){throw Error(`変換エラー:${this.pattern}${ans}`)}
+        if(![null,""].includes(this.pattern)){throw Error(`変換エラー:${this.pattern}${ans}`)}
         return ans;
     }
 }

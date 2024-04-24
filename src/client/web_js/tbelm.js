@@ -196,6 +196,7 @@ class Button_web{
         return object;
     }
 }
+
 class SVGField_web{
     constructor(col,parent){
         this.col = col; //
@@ -222,7 +223,7 @@ class SVGField_web{
         for(let j = 0 ; j<listb.length;j++){
         const list = Khhyl.GlyphManager.getSVG(new RegExp("^"+n+"_"+listb[j]),this.parent.font);
                 for(let i = 0;i<list.length;i++){
-                d = Khhyl.SVG.merge2(d,list[i],(1+i_+j/2)*100,0);
+                d +=` M${(1+i_+j/2)*100},${0} ${list[i]}`;
                 i_++;
                 }
             }

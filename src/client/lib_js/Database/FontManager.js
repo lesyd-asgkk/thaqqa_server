@@ -40,29 +40,13 @@ class FontManager {
         }
         else{
         for(const i in data)
-        {//VOWEL CONSONANT PUNCTUATION DIACV DIACP DIACC PARSER GSUB 
-            //TEXTDATA GPOS GLYPH
+        {
             if(!FontManager.getStaticTable(data[i].name))
             {FontManager.staticTableList.push(new DataTable(data[i],FontManager));}} 
-      }}
-
+      }
+    }
   
-
-
-    /*static import(data,isroot) {
-        //console.log(data);
-        const font = new Font("SanSerif_0_0_0_0");
-        this.fontList.push(font);
-        for(const i in data)
-        {//VOWEL CONSONANT PUNCTUATION DIACV DIACP DIACC PARSER GSUB 
-            //TEXTDATA GPOS GLYPH
-            if(["TEXTDATA","GPOS","GLYPH"].includes(i)){
-                font.tableList.push(new DataTable(data[i],font));
-            }
-            else{FontManager.staticTableList.push(new DataTable(data[i],FontManager));}} 
-      }*/
-  
-     static async load(path,isroot){
+    static async load(path,isroot){
       await fetch(path)//
     .then(response => response.json())
     .then(data => {
@@ -75,7 +59,7 @@ class FontManager {
     static export(){
       const binaryArrayList = FontManager.export_as_Json();
       {
-    const binaryArray = binaryArrayList[0];
+      const binaryArray = binaryArrayList[0];
       const blob = new Blob([JSON.stringify(binaryArray, null, '  ')], {type: 'application\/json'});
       const url = URL.createObjectURL(blob);
       const link = document.createElement("a");

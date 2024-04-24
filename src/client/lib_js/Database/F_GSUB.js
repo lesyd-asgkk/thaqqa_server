@@ -52,12 +52,8 @@ class F_GSUBManager {
         const table = FontManager.getFont(font).getTable("F_GSUB");
         const array = table.getData({Pattern:(vec==0?/(u|v)/:/(u|h)/)});
         const sortalg = function(first, second ){//Priorityの大きい順に並び替える
-            if (first.getVal("Order") > second.getVal("Order") ) return 1;
-            else if (first.getVal("Order")  < second.getVal("Order") )return -1;
-            else{
-            if (first.getVal("Priority") > second.getVal("Priority") ) return 1;
-            else if (first.getVal("Priority")  < second.getVal("Priority") )return -1;
-            return 0};
+            const l_ = Math.sign(first.getVal("Order")-second.getVal("Order"));
+            return l_!=0?l_:Math.sign(first.getVal("Priority")-second.getVal("Priority"));
             }
         array.sort(sortalg);
         array.forEach((i)=>{if(typeof i.getVal("Name") == "string"){ text = text.replaceAll(new RegExp(i.getVal("Parsed"), "g"),i.getVal("NameAlt"));}})
