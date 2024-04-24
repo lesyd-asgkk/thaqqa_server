@@ -8373,18 +8373,6 @@
         "OffsetX1": -2,
         "OffsetY1": 0,
         "Parsed": "S\\((?:init|mid|fin|sol|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)"
-      },
-      "687": {
-        "ID": 687,
-        "Pattern": "h",
-        "Pattern_sub": "INEX",
-        "Order": -5,
-        "Name": "",
-        "OffsetX0": 0,
-        "OffsetY0": 0,
-        "OffsetX1": 0,
-        "OffsetY1": 0,
-        "Parsed": ""
       }
     }
   },

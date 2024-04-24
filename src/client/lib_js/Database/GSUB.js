@@ -2,15 +2,17 @@ import { FontManager,RegExp_Khhyl } from "../deps.js";
 
 class GSUBManager {
     static getGSUB(param) {
-            if(typeof param == "string") param = {Name:param};
-            if(param instanceof RegExp) param = {Name:param};
+        if(param instanceof RegExp) param = {Name:param.Name};
+        if(typeof param == "string") param = {Name:param};
+        
             const table_ = FontManager.getStaticTable("GSUB");
             return table_.getData(param);
             
         }
     static rewriteGSUB(param,param2){
+        if(param instanceof RegExp) param = {Name:param.Name};
         if(typeof param == "string") param = {Name:param};
-        else if(param instanceof RegExp) param = {Name:param};
+
         if(typeof param2 == "string") param2 = {Name:param2};
         const table_ = FontManager.getStaticTable("GSUB");
 
@@ -23,8 +25,9 @@ class GSUBManager {
     }
     static deleteGSUB(param,safety){
         safety ??= true;
+        if(param instanceof RegExp) param = {Name:param.Name};
         if(typeof param == "string") param = {Name:param};
-        if(param instanceof RegExp) param = {Name:param};
+
         if(safety && GSUBManager.getGSUB(param).length > 1) return new Error("削除対象が2つ以上あります。まとめて削除したい場合はsafetyをfalseに指定してください");
         const table_ = FontManager.getStaticTable("GSUB");
         const data = table_.deleteData(param,1);

@@ -2,15 +2,17 @@ import { FontManager,RegExp_Khhyl } from "../deps.js";
 
 class F_GSUBManager {
     static getFGSUB(param,font) {
-            if(typeof param == "string") param = {Name:param};
-            if(param instanceof RegExp) param = {Name:param};
+        if(param instanceof RegExp) param = {Name:param.Name};
+        if(typeof param == "string") param = {Name:param};
+
             const table_ = FontManager.getFont(font).getTable("F_GSUB");
             return table_.getData(param);
             
         }
     static rewriteFGSUB(param,param2,font){
+        if(param instanceof RegExp) param = {Name:param.Name};
         if(typeof param == "string") param = {Name:param};
-        else if(param instanceof RegExp) param = {Name:param};
+
         if(typeof param2 == "string") param2 = {Name:param2};
         const table_ = FontManager.getFont(font).getTable("F_GSUB");
 
@@ -23,8 +25,9 @@ class F_GSUBManager {
     }
     static deleteFGSUB(param,font,safety){
         safety ??= true;
+        if(param instanceof RegExp) param = {Name:param.Name};
         if(typeof param == "string") param = {Name:param};
-        if(param instanceof RegExp) param = {Name:param};
+
         if(safety && F_GSUBManager.getFGSUB(param,font).length > 1) return new Error("削除対象が2つ以上あります。まとめて削除したい場合はsafetyをfalseに指定してください");
         const table_ = FontManager.getFont(font).getTable("F_GSUB");
         const data = table_.deleteData(param,1);
@@ -32,6 +35,7 @@ class F_GSUBManager {
     }
     static createFGSUB(param,font){
         if(typeof param == "string") param = {Name:param};
+        
         if(F_GSUBManager.getFGSUB(param,font).length != 0) return new Error(param+"はすでに存在しています");
         if(typeof param == "string"){
             param ={Name: param, Pattern:"u",Pattern_sub:"DIAC",OffsetX0: 0, OffsetY0: 0,OffsetX1: 0,OffsetY1: 0, Priority:0};

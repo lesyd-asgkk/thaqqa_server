@@ -13,15 +13,17 @@ class GPOSManager {
         table.rewriteData({ID:i.getVal("ID")},{Parsed:r_});})
     }
     static getGPOS(param,font) {
-            if(typeof param == "string") param = {Name:param};
-            if(param instanceof RegExp) param = {Name:param};
+        if(param instanceof RegExp) param = {Name:param.Name};
+        if(typeof param == "string") param = {Name:param};
+
             const tables = FontManager.getFont(font).getTable("GPOS");
             const data = tables.getData(param);
             return data;
         }
     static rewriteGPOS(param,param2,font){
+        if(param instanceof RegExp) param = {Name:param.Name};
         if(typeof param == "string") param = {Name:param};
-        else if(param instanceof RegExp) param = {Name:param};
+
         if(typeof param2 == "string") param2 = {Name:param2};
         const tables = FontManager.getFont(font).getTable("GPOS");
         const GPOS_a = GPOSManager.getGPOS(param.Name);
@@ -37,6 +39,7 @@ class GPOSManager {
         safety ??= true;
         if(typeof param == "string") param = {Name:param};
         if(param instanceof RegExp) param = {Name:param};
+        
         if(safety && GPOSManager.getGPOS(param).length > 1) return new Error("削除対象が2つ以上あります。まとめて削除したい場合はsafetyをfalseに指定してください");
         const tables = FontManager.getFont(font).getTable("GPOS");
 

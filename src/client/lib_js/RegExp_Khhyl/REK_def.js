@@ -369,6 +369,7 @@ class REK_def {
       if (j == 0) break;
     }
     if(j!=0) throw Error("(?<=y)、(?=y)のような括弧類が閉じていません");
+    intent_after.isinBrancket = true;
     intent_after.subtypeb = letter + "y)";
     const t = new RegExp_Khhyl(pattern.slice(letter.length, i), intent_after);
     ans.push(t);
@@ -387,6 +388,7 @@ class REK_def {
       if (j == 0) break;
     }
     if(j!=0) throw Error(`${pattern}(<任意の文字列>)のような括弧類が閉じていません`);
+    intent_after.isoutofBrancket = false;
     intent_after.subtypeb = pattern.slice(0, br_start) + ")";
     const t = new RegExp_Khhyl(pattern.slice(br_start, i), intent_after);
     ans.push(t);

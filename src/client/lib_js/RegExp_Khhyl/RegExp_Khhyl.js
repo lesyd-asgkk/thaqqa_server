@@ -96,10 +96,31 @@ class RegExp_Khhyl {
         this.child = [];
     }
     //Tokenize -> Parse -> Tokenize（変更点が無くなるまで繰り返す）
-    toNormalRegExp() {
+    toNormalRegExp(parentlist) {
+        
+        parentlist ??= []; 
         let ans = "";
+        const j = {"g":0,"G":0,"C":0,"Cd":0,"V":0,"Vd":0,"P":0,"Pd":0,"S":0,"R":0,"X":0,"L":0};
+        let k = [];
         for (let i = 0; i < this.child.length; i++) {
-                ans += this.child[i].toNormalRegExp();
+            
+            if(this.intent.isoutofBrancket){
+                const cldtype = this.child[i].intent.type;
+                switch(this.intent.type){
+                case "":case "G":case "C":case "Cd":case "V":case "Vd":case "P":case "Pd":case "S":
+                    if(this.intent.type == cldtype || cldtype == "FINITE") break;
+                    if(!["form"].includes(cldtype)){
+                     k = parentlist.concat(`${cldtype}${j[cldtype]}`);
+                     j[cldtype]++;
+                    }
+                    else k = parentlist.concat(`${cldtype}`);
+                break;
+                }
+            }
+            console.log(this);
+            console.log(k)
+            console.log("\n");
+                ans += this.child[i].toNormalRegExp(k);
                 ans += (this.intent.type.match(/[SRX]|[CVP]d?/g)!=null)&&(i!=this.child.length-1)?",":"";
         }
         ans += this.pattern;
@@ -113,12 +134,18 @@ class RegExp_Khhyl {
             case "P":
             case "Pd":
             case "S":
-                ans = `${this.intent.type}\\(${ans}\\)`;// 例えば、S(ans)の形にする。(?:\k<S0>)のようにするのは境界を脱したときにする？
+                ans = `${this.intent.type}\\(${ans}\\)`;
+                //ans = `${this.intent.type}\\(\\?<${this.intent.type}>${ans}\\)`;
+                // 例えば、S(ans)に対して、S\\((?\k<S0>ans)\\)のようにするのは
+                // 要素が『（）』の中にない場合に判定したい
+                // S(*,s0-d0,a0,)のd0は $k<S0G0g1>のように取得
+                //                 dなら$K<S0G0g1_n>
                 break;
             case "L":
                 ans = `(?:${ans})`;
                 break;
         }
+        
         if((this.intent.subtypeb??"").match(/^\(/)!=null){
             ans = `${this.intent.subtypeb.slice(0,-1)}${ans})`; 
         }
@@ -127,8 +154,10 @@ class RegExp_Khhyl {
         }
         return ans;
     }
+
     ParseRegExp(){
         this.intent.type ??= "";
+        this.intent.isoutofBrancket ??= true;
         const rule = [];
         switch(this.intent.type){
             case "":

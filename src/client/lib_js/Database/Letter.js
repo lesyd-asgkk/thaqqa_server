@@ -3,8 +3,9 @@ class LetterManager{
     static #tablelist_name_ = ["VOWEL","CONSONANT","DIACRITIC_C","DIACRITIC_V","PUNCTUATION","DIACRITIC_P"];
     static getLetter(param){
         const t = LetterManager.#tablelist_name_.map((i)=>FontManager.getStaticTable(i));
+        if(param instanceof RegExp) param = {Name:param.Name};
         if(typeof param == "string") param = {Name:param};
-        if(param instanceof RegExp) param = {Name:param};
+
         const ans = [];
         
         for(const i of t){
@@ -16,12 +17,13 @@ class LetterManager{
     }
     static rewriteLetter(param,param2){
         const t = LetterManager.#tablelist_name_.map((i)=>FontManager.getStaticTable(i));
+        if(param instanceof RegExp) param = {Name:param.Name};
         if(typeof param == "string") param = {Name:param};
-        if(param instanceof RegExp) param = {Name:param};
+
         if(typeof param2 == "string") param2 = {Name:param2};
 
-        if(param.Name != null && LetterManager.getLetter(param.Name).length >= 2 && param2.Name!=null)throw new Error("変更後に重複が発生します");
-        if(param2.Name != null && LetterManager.getLetter(param2.Name).length != 0)throw new Error("変更後に重複が発生します");
+        if(param.Name != null && LetterManager.getLetter(param).length >= 2 && param2.Name!=null)throw new Error("変更後に重複が発生します");
+        if(param2.Name != null && LetterManager.getLetter(param2).length != 0)throw new Error("変更後に重複が発生します");
         const ans = [];
         for(const i of t){
             const b = i.rewriteData(param,param2,-1);
@@ -32,8 +34,9 @@ class LetterManager{
     static deleteLetter(param,safety){
         const t = LetterManager.#tablelist_name_.map((i)=>FontManager.getStaticTable(i));
         safety ??= true;
+        if(param instanceof RegExp) param = {Name:param.Name};
         if(typeof param == "string") param = {Name:param};
-        if(param instanceof RegExp) param = {Name:param};
+        
         if(safety && LetterManager.getLetter(param).length > 1) throw new Error("削除対象が2つ以上あります。まとめて削除したい場合はsafetyをfalseに指定してください");
         
         const ans = [];
@@ -45,7 +48,7 @@ class LetterManager{
     }
     static createLetter(param,type){//
         try{
-        if(LetterManager.getLetter(typeof param == "string"?param:param.Name).length != 0) throw new Error(param+"はすでに存在しています");
+        if(LetterManager.getLetter(param).length != 0) throw new Error(param+"はすでに存在しています");
         const TYPE = {["\\c"]:"CONSONANT",["\\v"]:"VOWEL",["\\p"]:"PUNCTUATION",
         ["\\cd"]:"DIACRITIC_C",["\\vd"]:"DIACRITIC_V",["\\pd"]:"DIACRITIC_P"};
         let param2;
