@@ -251,47 +251,42 @@ class SVG {
             if (typeof p.y == "number") abspos.y += p.y;
             absposb.x = abspos.x;absposb.y = abspos.y;
             break;
-          case "l":
-          case "v":
-          case "h":
-          case "c":
-          case "s":
-          case "q":
+          case "l":case "v":case "h":
+          case "c":case "s":
+          case "q":case "t":
           case "a":
-          case "t":
             q = p;
             if (typeof p.x == "number") abspos.x += p.x;
             if (typeof p.y == "number") abspos.y += p.y;
-            
             break;
           case "M":
-              q = new Point("m", p.x - abspos.x, p.y - abspos.y);
+            q = new Point("m", p.x - abspos.x, p.y - abspos.y);
             abspos.x = p.x;abspos.y = p.y;
             absposb.x = abspos.x;absposb.y = abspos.y;
             break;
           case "V":
-              q = new Point("v", undefined, p.y - abspos.y);
+            q = new Point("v", undefined, p.y - abspos.y);
             abspos.y = p.y;
             break;
           case "H":
-              q = new Point("h", p.x - abspos.x, undefined);
+            q = new Point("h", p.x - abspos.x, undefined);
             abspos.x = p.x;
             break;
           case "A":
-              q = new Point("a",
-              p.x - abspos.x,p.y - abspos.y,p.x1,p.y1,p.x2,p.y2,p.val);
+            q = new Point("a",
+            p.x - abspos.x,p.y - abspos.y,p.x1,p.y1,p.x2,p.y2,p.val);
             abspos.x = p.x;abspos.y = p.y;
             break;
           case "L":
-                q = new Point("l", p.x - abspos.x, p.y - abspos.y);
+            q = new Point("l", p.x - abspos.x, p.y - abspos.y);
             abspos.x = p.x;abspos.y = p.y;
             break;
           case "C":
-              q = new Point("c",
-                p.x - abspos.x,p.y - abspos.y,
-                p.x1 - abspos.x,p.y1 - abspos.y,
-                p.x2 - abspos.x,p.y2 - abspos.y,
-              );
+            q = new Point("c",
+            p.x - abspos.x,p.y - abspos.y,
+            p.x1 - abspos.x,p.y1 - abspos.y,
+            p.x2 - abspos.x,p.y2 - abspos.y
+            );
             abspos.x = p.x;abspos.y = p.y;
             break;
           case "S":
@@ -299,7 +294,7 @@ class SVG {
                 "s",
                 p.x - abspos.x,p.y - abspos.y,
                 undefined,undefined,
-                p.x2 - abspos.x,p.y2 - abspos.y,
+                p.x2 - abspos.x,p.y2 - abspos.y
               );
             abspos.x = p.x;
             abspos.y = p.y;
@@ -308,7 +303,7 @@ class SVG {
               q = new Point(
                 "q",
                 p.x - abspos.x,p.y - abspos.y,
-                p.x1 - abspos.x,p.y1 - abspos.y,
+                p.x1 - abspos.x,p.y1 - abspos.y
               );
             abspos.x = p.x;
             abspos.y = p.y;
