@@ -227,10 +227,8 @@ class SVGField_web{
                 i_++;
                 }
             }
-            x0 = Khhyl.SVG.getLeft(d);
-            x1 = Khhyl.SVG.getRight(d);
-            y0 = Khhyl.SVG.getTop(d);
-            y1 = Khhyl.SVG.getBottom(d);
+            x0 = Khhyl.SVG.getLeft(d);x1 = Khhyl.SVG.getRight(d);
+            y0 = Khhyl.SVG.getTop(d);y1 = Khhyl.SVG.getBottom(d);
         }
         const object = $("div#storage svg#svgField").clone(false,false)[0];
         while(object.firstChild)object.removeChild(object.firstChild);
@@ -253,4 +251,20 @@ class SVGField_web{
     }
 }
 
-export {DIVparam_web,DIVselect_web,Button_web,SVGField_web}
+class Parsed_web{
+    constructor(col,parent){
+        this.col = col; //
+        this.parent = parent;//親の名前
+    }
+    draw(id){
+        const DTTB = Khhyl.FontManager.getStaticTable(this.parent.tablename) ?? Khhyl.FontManager.getFont(this.parent.font).getTable(this.parent.tablename);
+        const n = DTTB.getData({ID:id})[0].getVal("Parsed");
+        const object = document.createElement('div');
+        object.classList.add(this.col);
+        object.textContent = n;
+        object.name = this.id;
+        return object;
+    }
+}
+
+export {DIVparam_web,DIVselect_web,Button_web,SVGField_web,Parsed_web}

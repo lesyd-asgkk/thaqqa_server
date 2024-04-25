@@ -8,7 +8,7 @@ import * as webjs from "./web_js/deps.js";
   await khhyl.FontManager.load('/server/fontjson/root.json',true);
   await khhyl.FontManager.load('/server/fontjson/font/default.json',false);
   
-    console.log(khhyl.FontManager);
+    
     await khhyl.GlyphManager.loadAll("default");
 
     let ta = new webjs.Table_web("VOWEL",$("div.area_tb#vowel")[0]);
@@ -40,6 +40,9 @@ import * as webjs from "./web_js/deps.js";
     tb = new webjs.LayoutDebug_web($("div.area_tb#layouttest")[0]);
     tb.draw();
 
+    /*khhyl.Parser.setParserColumnAll();
+    khhyl.GPOSManager.setGPOSColumnAll("default");
+    khhyl.GSUBManager.setGSUBColumnAll();*/
     const object = document.createElement("input");
     object.contentEditable = false;
     object.type = "button";

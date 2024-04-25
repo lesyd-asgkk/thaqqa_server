@@ -101,25 +101,30 @@ class RegExp_Khhyl {
         parentlist ??= []; 
         let ans = "";
         const j = {"g":0,"G":0,"C":0,"Cd":0,"V":0,"Vd":0,"P":0,"Pd":0,"S":0,"R":0,"X":0,"L":0};
-        let k = [];
+        let prev = "";
         for (let i = 0; i < this.child.length; i++) {
-            
+            let k = [];
             if(this.intent.isoutofBrancket){
                 const cldtype = this.child[i].intent.type;
+                const cldtype_ = (this.intent.type == cldtype&&cldtype == "G") ? "g":cldtype;
                 switch(this.intent.type){
                 case "":case "G":case "C":case "Cd":case "V":case "Vd":case "P":case "Pd":case "S":
-                    if(this.intent.type == cldtype || cldtype == "FINITE") break;
+                    if(["{n}","FINITE"].includes(cldtype)) break;
                     if(!["form"].includes(cldtype)){
-                     k = parentlist.concat(`${cldtype}${j[cldtype]}`);
-                     j[cldtype]++;
+                     k = parentlist.concat(`${cldtype_}${j[cldtype_]}`);
+                     prev = cldtype_;
+                     j[cldtype_]++;
                     }
-                    else k = parentlist.concat(`${cldtype}`);
+                    else{k = parentlist.concat(`${cldtype_}`);prev = cldtype_;}
+                break;
+                case "g":
+                    if(this.child[i].pattern.match(/\d/g) == null && this.child[i].pattern != "\\d+")k = parentlist.concat("n");
+                    else if(this.child[i].pattern.match(/\d/g) != null || this.child[i].pattern  == "\\d+")k = parentlist.concat("v");
+                    
                 break;
                 }
             }
-            console.log(this);
-            console.log(k)
-            console.log("\n");
+
                 ans += this.child[i].toNormalRegExp(k);
                 ans += (this.intent.type.match(/[SRX]|[CVP]d?/g)!=null)&&(i!=this.child.length-1)?",":"";
         }
@@ -141,17 +146,13 @@ class RegExp_Khhyl {
                 // S(*,s0-d0,a0,)のd0は $k<S0G0g1>のように取得
                 //                 dなら$K<S0G0g1_n>
                 break;
-            case "L":
-                ans = `(?:${ans})`;
-                break;
         }
+        //if(parentlist.length != 0) ans = `(?<${parentlist.join("")}>${ans})`;
         
-        if((this.intent.subtypeb??"").match(/^\(/)!=null){
-            ans = `${this.intent.subtypeb.slice(0,-1)}${ans})`; 
-        }
-        else if((this.intent.subtypeb??"").match(/^\[/)!=null){
-            ans = `(?:${ans})`; 
-        }
+
+        if((this.intent.subtypeb??"").match(/^\(/)!=null) ans = `${this.intent.subtypeb.slice(0,-1)}${ans})`; 
+        else if((this.intent.subtypeb??"").match(/^\[/)!=null)ans = `(?:${ans})`; 
+        
         return ans;
     }
 
@@ -169,7 +170,10 @@ class RegExp_Khhyl {
             case "form":
                 rule.push("rule_form");
             break;
-            case "R":case "X":
+            case "R":
+                rule.push("rule_r");
+            break;
+            case "X":
             case "S":
             case "C":case "Cd":
             case "V":case "Vd":

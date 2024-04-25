@@ -4,7 +4,7 @@ class Parser {
   static getParser(param) {
     if(param instanceof RegExp) param = {Name:param.Name};
     if(typeof param == "string") param = {Name:param};
-    
+
     const table_ = FontManager.getStaticTable("Parser");
     return table_.getData(param);
   }
@@ -43,18 +43,19 @@ class Parser {
     Parser.setParserColumn();
   }
   static setParserColumn(id){
-    const table = FontManager.getStaticTable("PARSER");
-    const ParserData = id==null?table.dataList:table.getData( {ID:id});
+    const table_ = FontManager.getStaticTable("PARSER");
+    const ParserData = id==null?table_.dataList:table_.getData( {ID:id});
+
       ParserData.forEach((i) => {const r_ = new RegExp_Khhyl(i.getVal("Name"),{}).ParseRegExp().toNormalRegExp();
-      table.rewriteData({ID:i.getVal("ID")},{Parsed:r_});})
+      table_.rewriteData({ID:i.getVal("ID")},{Parsed:r_});})
     
   }
   static parse(raw,type) {
-    const table = FontManager.getStaticTable("PARSER");
+    const table_ = FontManager.getStaticTable("PARSER");
     const r_ = raw.split("");
     let raw_new = "";
     r_.forEach((r) => raw_new += `R(${r})`); 
-    const array = table.getData({Pattern:(type==0?/(u|c)/:/(u|o)/)});
+    const array = table_.getData({Pattern:(type==0?/(u|c)/:/(u|o)/)});
     const sortalg = function(first, second ){//Priorityの大きい順に並び替える
       const l_ = Math.sign(first.getVal("Order")-second.getVal("Order"));
       return l_!=0?l_:Math.sign(first.getVal("Priority")-second.getVal("Priority"));

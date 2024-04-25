@@ -47,7 +47,7 @@ class GSUBManager {
     }
     static setGSUBColumn(id){
         const table_ = FontManager.getStaticTable("GSUB");
-        const GSUBdata = id==null?table.dataList:table.getData( {ID:id});
+        const GSUBdata = id==null?table_.dataList:table_.getData( {ID:id});
         GSUBdata.forEach((i)=>{const r_ = new RegExp_Khhyl(i.getVal("Name"),{}).ParseRegExp().toNormalRegExp();
         table_.rewriteData({ID:i.getVal("ID")},{Parsed:r_});});
      }
@@ -59,7 +59,7 @@ class GSUBManager {
             return l_!=0?l_:Math.sign(first.getVal("Priority")-second.getVal("Priority"));
             }
         array.sort(sortalg);
-        array.forEach((i)=>{if(typeof i.getVal("Name") == "string"){ text = text.replaceAll(new RegExp(i.getVal("Parsed"), "g"),i.getVal("NameAlt"));}})
+        array.forEach((i)=>{ text = text.replaceAll(new RegExp(i.getVal("Parsed"), "g"),i.getVal("NameAlt"))})
     return text;
     }
 }

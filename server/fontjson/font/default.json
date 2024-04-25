@@ -8223,12 +8223,12 @@
         "Pattern": "u",
         "Pattern_sub": "IN",
         "Order": 5800,
-        "Name": "(fin,t_-*,v_-*,)|S(fin,,v_-*,t_-*)",
+        "Name": "S(fin,t_-*,v_-*,)|S(fin,,v_-*,t_-*)",
         "OffsetX0": 0,
         "OffsetY0": 0,
         "OffsetX1": 0,
         "OffsetY1": 5,
-        "Parsed": "(fin,t_-*,v_-*,)|S\\(fin,,v\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),t\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)"
+        "Parsed": "S\\(fin,t\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),v\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),\\)|S\\(fin,,v\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),t\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)"
       },
       "675": {
         "ID": 675,

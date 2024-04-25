@@ -46,8 +46,8 @@ class REK_def {
             hensuu.push(a_.getVal("Name").toString());
           }
         }
-        const letter = hensuu.length!=0?hensuu.join("|"):"_（無し）";
-        //if(letter == "") letter = "_（無し）";
+        const letter =(hensuu.length!=0)?hensuu.join("|"):"（無し）";
+        //if(letter == "") letter = "（無し）";
         return REK_def.PREsub_lower(self, ans, pattern, letter, msg, "g");
       },
   };
@@ -62,7 +62,7 @@ class REK_def {
     ["\\."]: (self, ans, pattern, msg) => {
           return REK_def.PREsub_END(self, ans, pattern, "[A-Za-z]+", msg);
     },
-    ["！空につき受理拒否！"]: (self, ans, pattern, msg) => {
+    ["（無し）"]: (self, ans, pattern, msg) => {
       return REK_def.PREsub_END(self, ans, pattern, msg, msg);
     },
     ["_"]: (self, ans, pattern, msg) => {
@@ -146,6 +146,12 @@ class REK_def {
     },
     
   };
+
+  static rule_r = {
+    [".+"]: (self, ans, pattern, msg) => {
+    return REK_def.PREsub_END(self, ans, pattern, msg, msg);
+    }
+  }
 
   static rule_scvpd = {
     [".*?,.*?,.*?,.*"]: (self, ans, pattern, msg) => {
@@ -234,10 +240,6 @@ class REK_def {
         pattern = pattern.slice(msg.length + 1);
         return [ans, pattern];
       }
-      else if (["R"].includes(typeB)) {
-        const condition = seperated != null && seperated.length == 1;
-        return condition?REK_def.PREsub_END(self, ans, pattern, seperated[0], msg):[];
-      }
       else if (["P","Pd"].includes(typeB)) {
         const intent_after = { ...self.intent };
         intent_after.type = "G";
@@ -320,6 +322,7 @@ class REK_def {
   static PREsub_lower(self,ans,pattern,letter,msg,type){
     const intent_after = { ...self.intent };
     intent_after.type = type;intent_after.subtypeb = "none";
+    if(self.intent.type == type && type == "G") intent_after.isoutofBrancket = false;
     const t = new RegExp_Khhyl(letter, intent_after);
     ans.push(t);
     pattern = pattern.slice(msg.length);
@@ -335,7 +338,7 @@ class REK_def {
       if (j == 0) break;
     }
     if(j!=0) throw Error(`${pattern}([任意の文字列])のような括弧類が閉じていません`);
-    intent_after.type = type;intent_after.subtypeb = "[]";
+    intent_after.type = type;intent_after.subtypeb = "[]";intent_after.isoutofBrancket = false;
     const t = new RegExp_Khhyl(pattern.slice(letter.length, i), intent_after);
     ans.push(t);
     pattern = pattern.slice(i + 1);
@@ -369,7 +372,7 @@ class REK_def {
       if (j == 0) break;
     }
     if(j!=0) throw Error("(?<=y)、(?=y)のような括弧類が閉じていません");
-    intent_after.isinBrancket = true;
+    intent_after.isoutofBrancket = false;
     intent_after.subtypeb = letter + "y)";
     const t = new RegExp_Khhyl(pattern.slice(letter.length, i), intent_after);
     ans.push(t);

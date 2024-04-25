@@ -26,6 +26,32 @@ class SVG {
     static toStr(param) {
       let type;
       let answer = "";
+
+      let j = 0;
+      for (let i = 0; i<param.length-1;i++) {
+        if(param[i+j].type == "m" && param[i+1].type == "m"){
+          param[i+j].x += param[i+1].x;param[i+j].y += param[i+1].y;
+          param[i+1] = new Point("n", 0, 0); //空にする
+          j--;
+        }
+        else if(param[i+j].type == "M" && param[i+1].type == "M"){
+          param[i+j].x += param[i+1].x;param[i+j].y += param[i+1].y;
+          param[i+1] = new Point("n", 0, 0); //空にする
+          j--;
+        }
+        else j = 0;
+      }
+
+      param = param.filter((i) => (i.type!="n"));
+      /*
+      const eps = 1e-8;
+      const f_abs = function(i_){let ans = 0;i_.forEach(j => ans+=j*j);return ans;}
+      param = param.filter((i) => (i.type!="m" || !(f_abs([i.x,i.y]) < eps) ));
+      param = param.filter((i) => (i.type!="l" || !(f_abs([i.x,i.y]) < eps) ));
+      param = param.filter((i) => (i.type!="h" || !(Math.abs(i.x) < eps )));
+      param = param.filter((i) => (i.type!="v" || !(Math.abs(i.y) < eps )));
+      param = param.filter((i) => (i.type!="c" || !(f_abs([i.x,i.y]) < eps && f_abs([i.x1,i.y1]) < eps && f_abs([i.x2,i.y2]) < eps )));
+      */
       for (const p of param) {
         type = p.type;
         switch (type) {
@@ -44,21 +70,21 @@ class SVG {
       return answer;
     }
     static roundAll(param) {
-      for (const p of param) {
+      /*for (const p of param) {
         p.roundAll();
-      }
+      }*/
       return param;
     }
     static convertSVG(param) {
         return SVG.toStr( SVG.toRelative(param));
       }
     static toRelative(param) {
-        if(typeof param == "string") return SVG.toRel(SVG.roundAll(SVG.ParseD(param))).d;
-        else return SVG.toRel(SVG.roundAll(param)).d;
+        if(typeof param == "string") return SVG.AbbervM(SVG.toRel(SVG.roundAll(SVG.ParseD(param))).d);
+        else return SVG.AbbervM(SVG.toRel(SVG.roundAll(param)).d);
     }
     static toAbsolute(param) {
-        if(typeof param == "string") return SVG.toAbs(SVG.roundAll(SVG.ParseD(param))).d;
-        else return SVG.toAbs(SVG.roundAll(param)).d;
+        if(typeof param == "string") return SVG.AbbervM(SVG.toAbs(SVG.roundAll(SVG.ParseD(param))).d);
+        else return SVG.AbbervM(SVG.toAbs(SVG.roundAll(param)).d);
     }
     static getLeft(param) {
       //console.log(SVG.toRel(SVG.roundAll(SVG.ParseD(param))).left)
@@ -86,10 +112,7 @@ class SVG {
       if(x1<x0 || y1<y0) return [];
         return SVG.roundAll(SVG.ParseD(` M ${x0},${y0} V ${y1} H ${x1} V ${y0} H ${x0} M 0,${y0}`));
     }
-    /*static setSkewer(x0, y0, x1, y1) {
-        if(x1<x0 || y1<y0) return " ";
-        return ;
-    }*/
+
     static createM(x0,y0){
         const M = SVG.roundAll(SVG.ParseD(`M ${x0},${y0}`));
         return M;}
@@ -108,6 +131,7 @@ class SVG {
         return d0.concat(M).concat(d1).concat(M1).concat(d2);
     }
 
+    static AbbervM(param){return param}
     static toAbs(param) {
         const answer = [];
         let q;

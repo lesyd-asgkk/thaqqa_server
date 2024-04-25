@@ -1570,7 +1570,7 @@
         "Priority": 2,
         "Name": "(V(*,[!_.isBondtoPrev&&_.isBondtoNext]_))",
         "NameAlt": "Sep()$1",
-        "Parsed": "(V\\((?:init|mid|fin|sol|null),(?:\\d+！空につき受理拒否！)\\d+\\))"
+        "Parsed": "(V\\((?:init|mid|fin|sol|null),(?:（無し）)\\d+\\))"
       },
       "78": {
         "ID": 78,
@@ -1579,7 +1579,7 @@
         "Priority": 3,
         "Name": "(V(*,[_.isBondtoPrev&&!_.isBondtoNext]_))",
         "NameAlt": "$1Sep()",
-        "Parsed": "(V\\((?:init|mid|fin|sol|null),(?:\\d+！空につき受理拒否！)\\d+\\))"
+        "Parsed": "(V\\((?:init|mid|fin|sol|null),(?:（無し）)\\d+\\))"
       },
       "79": {
         "ID": 79,
@@ -1658,7 +1658,7 @@
         "Pattern": "u",
         "Order": 80,
         "Priority": 3,
-        "Name": "R(n)(Sep()C(*,(?:(?:t|th|n)_-hd_)|(?:(?:t)_-d_-hd)_|(?:(?:tl|n)_-hd_-sy_)|(?:th_-hd_-sw_))",
+        "Name": "R(n)(Sep()C(*,(?:(?:t|th|n)_-hd_)|(?:(?:t)_-d_-hd)_|(?:(?:tl|n)_-hd_-sy_)|(?:th_-hd_-sw_)))",
         "NameAlt": "V(null,v0)C(null,n0-hd0)$1",
         "Parsed": "R\\(n\\)(Sep\\(\\)C\\((?:onset|coda|null),(?:(?:t|th|n)\\d+-hd\\d+)|(?:(?:t)\\d+-d\\d+-hd)\\d+|(?:(?:tl|n)\\d+-hd\\d+-sy\\d+)|(?:th\\d+-hd\\d+-sw\\d+)\\))"
       },

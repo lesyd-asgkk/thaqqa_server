@@ -140,10 +140,10 @@
             path.setAttribute("stroke", "black");
             path.setAttribute("stroke-width", 0);
             path.setAttribute("fill", "black");
-            path.setAttribute("d", d);
+            path.setAttribute("d", d.d_str);
             object.appendChild(path);
 
-            const x0 = khhyl.SVG.getLeft(d); const x1 = khhyl.SVG.getRight(d); const y0 = khhyl.SVG.getTop(d); const y1 = khhyl.SVG.getBottom(d);
+            const x0 = d.left; const x1 = d.right; const y0 = d.top; const y1 = d.bottom;
             const shrink_x = 1.03; const HEIGHT = y1 - y0; const WIDTH = x1 - x0;
             object.setAttribute("width", (WIDTH * shrink_x).toString());
             object.setAttribute("height", (HEIGHT * shrink_x).toString());
@@ -152,7 +152,7 @@
     }
     $(document).ready(async function () {
         await khhyl.FontManager.load('/server/fontjson/root.json',true);
-  await khhyl.FontManager.load('/server/fontjson/font/default.json',false);
+        await khhyl.FontManager.load('/server/fontjson/font/default.json',false);
         //この辺コードが見苦しいので共通処理にするの考える
         for (const i of $('div.table#vowel_0')) {
             const vowel = [["abig","a"],["e","e"],["i","i"],["o","o"],["u","u"],["v","v"],["eold","ë(旧)"],["iold","ï(旧)"]]

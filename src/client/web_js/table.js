@@ -1,5 +1,5 @@
 import * as Khhyl from "../lib_js/deps.js"
-import {DIVparam_web,DIVselect_web,Button_web,SVGField_web} from "./deps.js"
+import {DIVparam_web,DIVselect_web,Button_web,SVGField_web,Parsed_web} from "./deps.js"
 
 class Row_web{
     constructor(id,parent){
@@ -23,23 +23,26 @@ class Row_web{
             const subtype = DTTB.getColumn(v).subtype;
             switch(type){
                 case "INTEGER":
-                    if(subtype == "AligX" || subtype == "AligY"){
-                        this.content.push(new DIVselect_web(this.parent,this.id,value[v],v,"select",subtype,sublistlist[subtype]));
-                    }
-                    else
-                    {
-                    this.content.push(new DIVparam_web(this.parent,this.id,value[v],v,"int",subtype));
+                    switch(subtype){
+                        case "AligX":case "AligY":
+                            this.content.push(new DIVselect_web(this.parent,this.id,value[v],v,"select",subtype,sublistlist[subtype]));
+                        break;
+                        default:
+                            this.content.push(new DIVparam_web(this.parent,this.id,value[v],v,"int",subtype));
+                        break;
                     }
                 break;
                 case "float":
                     this.content.push(new DIVparam_web(this.parent,this.id,value[v],v,"float",subtype));
                 break;
                 case "char":
-                    if(subtype == "LANG" || subtype == "GPOS"|| subtype == "AligWhole"){
-                        this.content.push(new DIVselect_web(this.parent,this.id,value[v],v,"select",subtype,sublistlist[subtype]));
-                    }
-                    else{
-                    this.content.push(new DIVparam_web(this.parent,this.id,value[v],v,"char",subtype));
+                    switch(subtype){
+                        case "LANG":case "GPOS":case "AligWhole":
+                            this.content.push(new DIVselect_web(this.parent,this.id,value[v],v,"select",subtype,sublistlist[subtype]));
+                        break;
+                        default:
+                            this.content.push(new DIVparam_web(this.parent,this.id,value[v],v,"char",subtype));
+                        break;
                     }
                 break;
                 case "bool":
@@ -53,11 +56,7 @@ class Row_web{
     SortbyOrder(table){
         const DTTB = Khhyl.FontManager.getStaticTable(table) ?? Khhyl.FontManager.getFont(this.parent.font).getTable(table);
         const sortalg = function(first, second){//Priorityの小さい順に並び替える
-            const f = DTTB.getColumn(first.col).order;
-            const s = DTTB.getColumn(second.col).order;
-            if ( f < s ) return -1;
-            else if ( f > s )return 1;
-            else return 0;
+            return Math.sign(DTTB.getColumn(first.col).order-DTTB.getColumn(second.col).order);
           }
           this.content.sort(sortalg);
     }
@@ -67,7 +66,6 @@ class Row_web{
         tr.name = this.id;
         for(let x = 0;x<len;x++){
             const td = document.createElement('td');
-
             td.appendChild(this.content[x].draw());
             tr.appendChild(td);
         }
@@ -90,6 +88,14 @@ class Row_web{
             if(Letter_T.includes(this.parent.tablename)){
                 const td = document.createElement('td');
                 const obj = new SVGField_web(this.id,this.parent);
+                td.appendChild(obj.draw(this.id));
+                td.setAttribute("rowspan",2);
+                td.setAttribute("colspan",(len-1).toString());
+                tr.appendChild(td);
+            }
+            else{
+                const td = document.createElement('td');
+                const obj = new Parsed_web(this.id,this.parent);
                 td.appendChild(obj.draw(this.id));
                 td.setAttribute("rowspan",2);
                 td.setAttribute("colspan",(len-1).toString());
@@ -159,8 +165,8 @@ class ColumnDesc_web{
         val = f_numcheck(val);//計算する
         if(val == null) val = older;
         }
-
-        Khhyl.Database.getTable(parent.tablename).rewriteColumn(self.name,val,obj.name);
+        const DTTB = Khhyl.FontManager.getStaticTable(table) ?? Khhyl.FontManager.getFont(this.parent.font).getTable(table);
+        DTTB.rewriteColumn(self.name,val,obj.name);
         parent.draw();
         }
         catch(_e){

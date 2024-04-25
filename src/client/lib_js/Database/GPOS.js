@@ -6,18 +6,18 @@ class GPOSManager {
         GPOSManager.setGPOSColumn(null,font);
     }
     static setGPOSColumn(id,font){
-        const table = FontManager.getFont(font).getTable("GPOS");
-        const GPOSdata = id==null?table.dataList:table.getData({ID:id});
+        const table_ = FontManager.getFont(font).getTable("GPOS");
+        const GPOSdata = id==null?table_.dataList:table_.getData({ID:id});
         GPOSdata.forEach((i)=>{
         const r_ = new RegExp_Khhyl(i.getVal("Name"),{}).ParseRegExp().toNormalRegExp();
-        table.rewriteData({ID:i.getVal("ID")},{Parsed:r_});})
+        table_.rewriteData({ID:i.getVal("ID")},{Parsed:r_});})
     }
     static getGPOS(param,font) {
         if(param instanceof RegExp) param = {Name:param.Name};
         if(typeof param == "string") param = {Name:param};
 
-            const tables = FontManager.getFont(font).getTable("GPOS");
-            const data = tables.getData(param);
+            const table_ = FontManager.getFont(font).getTable("GPOS");
+            const data = table_.getData(param);
             return data;
         }
     static rewriteGPOS(param,param2,font){
@@ -25,13 +25,13 @@ class GPOSManager {
         if(typeof param == "string") param = {Name:param};
 
         if(typeof param2 == "string") param2 = {Name:param2};
-        const tables = FontManager.getFont(font).getTable("GPOS");
+        const table_ = FontManager.getFont(font).getTable("GPOS");
         const GPOS_a = GPOSManager.getGPOS(param.Name);
         const GPOS_b = GPOSManager.getGPOS(param.Name);
         if(param.Name != null && GPOS_a.length >= 2 && param2.Name!=null)throw new Error("変更後に重複が発生します");
         if(param2.Name != null && GPOS_b.length != 0)throw new Error("変更後に重複が発生します");
         
-        const b = tables.rewriteData(param,param2,-1);
+        const b = table_.rewriteData(param,param2,-1);
         return b;
     }
     
@@ -41,9 +41,9 @@ class GPOSManager {
         if(param instanceof RegExp) param = {Name:param};
         
         if(safety && GPOSManager.getGPOS(param).length > 1) return new Error("削除対象が2つ以上あります。まとめて削除したい場合はsafetyをfalseに指定してください");
-        const tables = FontManager.getFont(font).getTable("GPOS");
+        const table_ = FontManager.getFont(font).getTable("GPOS");
 
-        const data = tables.deleteData(param,1);
+        const data = table_.deleteData(param,1);
         return data;
     }
     static createGPOS(param,font){//

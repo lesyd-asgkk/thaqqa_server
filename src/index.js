@@ -4,8 +4,8 @@ import * as webjs from "./client/web_js/deps.js";
 
   
   async function main(){
-    await khhyl.Thaqqa_DB.load();
-    await khhyl.GlyphManager.loadAll();
+    await khhyl.FontManager.load('/server/fontjson/root.json',true);
+    await khhyl.FontManager.load('/server/fontjson/font/default.json',false);
 
     const tb = new webjs.Sandbox_web($("div.area_tb#sandbox")[0]);
     tb.draw();

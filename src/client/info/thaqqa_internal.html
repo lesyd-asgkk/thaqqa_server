@@ -117,15 +117,12 @@
     import * as khhyl from "../lib_js/deps.js"
     //Khhyl.Render.DrawD(self.textbox.value,lang,(alig==2?0:1),"none",Number(self.sizetext.value));
     //span khhylに関する変換処理
-    $(document).ready(async function () {
-        await khhyl.Database.load('/server/init.json');
-
-        for (const i of $('span.khhyl')) {
-            const object = $("div#storage svg#svgField").clone(false, false)[0];
+    function f(i){
+        const object = $("div#storage svg#svgField").clone(false, false)[0];
             while (object.firstChild) object.removeChild(object.firstChild);
             object.style.display = "block";
 
-            const letter = i.getAttribute("letter");
+            const letter = i.getAttribute("letter").replaceAll("\\n","\n");
             const type = i.getAttribute("option") ?? "parsedplus"
             {
                 const title = $("div#storage svg#svgField title").clone()[0];title.textContent = letter;
@@ -133,22 +130,31 @@
                 object.append(title, desc)
             }
             //console.log(parseFloat(getComputedStyle(i).fontSize));
-            const d = khhyl.Render.DrawD(letter, parseFloat(getComputedStyle(i).fontSize), 0, i.getAttribute("alig") == null ? 0 : 1 , type,null);
+            const d = khhyl.Render.DrawD(letter,0, i.getAttribute("alig") == null ? 0 : 1 ,{size:parseFloat(getComputedStyle(i).fontSize),parse:type,font:"default"});
             const path = $("div#storage svg#svgField path").clone()[0];
             path.style.display = "block";
             path.setAttribute("fill", "none");
             path.setAttribute("stroke", "black");
             path.setAttribute("stroke-width", 0);
             path.setAttribute("fill", "black");
-            path.setAttribute("d", d);
+            path.setAttribute("d", d.d_str);
             object.appendChild(path);
-            const x0 = khhyl.SVG.getLeft(d); const x1 = khhyl.SVG.getRight(d); const y0 = khhyl.SVG.getTop(d); const y1 = khhyl.SVG.getBottom(d);
+
+            const x0 = d.left; const x1 = d.right; const y0 = d.top; const y1 = d.bottom;
             const shrink_x = 1.03; const HEIGHT = y1 - y0; const WIDTH = x1 - x0;
             object.setAttribute("width", (WIDTH * shrink_x).toString());
             object.setAttribute("height", (HEIGHT * shrink_x).toString());
             object.setAttribute("viewBox", `${x0-(WIDTH*(shrink_x-1)/2)} ${y0-(HEIGHT*(shrink_x-1))/2} ${WIDTH* shrink_x} ${HEIGHT* shrink_x}`);
             i.appendChild(object);
-        }
+    }
+    $(document).ready(async function () {
+        await khhyl.FontManager.load('/server/fontjson/root.json',true);
+        await khhyl.FontManager.load('/server/fontjson/font/default.json',false);
+        for (const i of $('span.khhyl')) f(i);
+        document.addEventListener("change",function(event){
+	    const target = event.target || event.srcElement;
+	    if(target==$('span.khhyl')) f(target);
+        });
     });
 </script>
 

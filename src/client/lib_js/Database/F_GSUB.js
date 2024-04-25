@@ -47,14 +47,14 @@ class F_GSUBManager {
         F_GSUBManager.setFGSUBColumn(font);
     }
     static setFGSUBColumn(id,font){
-        const table = FontManager.getFont(font).getTable("F_GSUB");
-        const GSUBdata = id==null?table.dataList:table.getData( {ID:id});
+        const table_ = FontManager.getFont(font).getTable("F_GSUB");
+        const GSUBdata = id==null?table_.dataList:table_.getData( {ID:id});
         GSUBdata.forEach((i)=>{const r_ = new RegExp_Khhyl(i.getVal("Name"),{}).ParseRegExp().toNormalRegExp();
-        table.rewriteData({ID:i.getVal("ID")},{Parsed:r_});});
+        table_.rewriteData({ID:i.getVal("ID")},{Parsed:r_});});
      }
     static fgsub(text,vec,font){
-        const table = FontManager.getFont(font).getTable("F_GSUB");
-        const array = table.getData({Pattern:(vec==0?/(u|v)/:/(u|h)/)});
+        const table_ = FontManager.getFont(font).getTable("F_GSUB");
+        const array = table_.getData({Pattern:(vec==0?/(u|v)/:/(u|h)/)});
         const sortalg = function(first, second ){//Priorityの大きい順に並び替える
             const l_ = Math.sign(first.getVal("Order")-second.getVal("Order"));
             return l_!=0?l_:Math.sign(first.getVal("Priority")-second.getVal("Priority"));
