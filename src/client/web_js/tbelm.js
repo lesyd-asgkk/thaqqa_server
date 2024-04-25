@@ -260,7 +260,7 @@ class Parsed_web{
         const DTTB = Khhyl.FontManager.getStaticTable(this.parent.tablename) ?? Khhyl.FontManager.getFont(this.parent.font).getTable(this.parent.tablename);
         const n = DTTB.getData({ID:id})[0].getVal("Parsed");
         const object = document.createElement('div');
-        object.classList.add(this.col);
+        object.classList.add(this.col,"parsed_row");
         object.textContent = n;
         object.name = this.id;
         return object;

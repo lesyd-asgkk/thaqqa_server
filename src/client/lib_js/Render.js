@@ -29,8 +29,7 @@ class Render{
             break;
         }
         option.position ??={x:0,y:0};
-        option.align ??= {x:-1,y:-1};
-        option.size ??= 16;
+        option.align ??= {x:-1,y:-1};option.size ??= 16;
         const glar = new GlyphArray(text,alig,option.font,false,{top:800,right:800,bottom:800,left:800},{x:option.position.x,y:option.position.y},{x:option.align.x,y:option.align.y});
         const ans = SVG.toRel(glar.toPath(option.size));
         ans.d_str = SVG.toStr(ans.d);

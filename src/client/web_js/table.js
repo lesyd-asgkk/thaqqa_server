@@ -290,22 +290,16 @@ class Table_web{
                 else return 0;
               }
               const sortalg_OP = function(first, second ){//Priorityの大きい順に並び替える
-                if (first.getVal("Order") > second.getVal("Order") ) return 1;
-                else if (first.getVal("Order")  < second.getVal("Order") )return -1;
-                else{
-                if (first.getVal("Priority") > second.getVal("Priority") ) return 1;
-                else if (first.getVal("Priority")  < second.getVal("Priority") )return -1;
-                  return 0};
+                const l_ = Math.sign(first.getVal("Order")-second.getVal("Order"));
+                return l_!=0?l_:Math.sign(first.getVal("Priority")-second.getVal("Priority"));
               }
               const sortalg_GPOS = function(first, second ){//Priorityの大きい順に並び替える
                 const val = {"h":-1,"u":0,"v":1};
-                const val2 = {"DIAC":-10,"INNULL":0,"IN":10,"EX":30};
-                if (val2[first.getVal("Pattern_sub")] > val2[second.getVal("Pattern_sub")] ) return 1;
-                else if (val2[first.getVal("Pattern_sub")]  < val2[second.getVal("Pattern_sub")] )return -1;
-                else{
-                    if (val[first.getVal("Pattern")] > val[second.getVal("Pattern")] ) return 1;
-                    else if (val[first.getVal("Pattern")]  < val[second.getVal("Pattern")] )return -1;
-                  return 0};
+                const val2 = {"DIAC":-10,"INEX":0,"IN":10,"EX":30};
+                const l_ = Math.sign(val2[first.getVal("Pattern_sub")]-val2[second.getVal("Pattern_sub")]);
+                return l_!=0?l_:Math.sign(val[first.getVal("Pattern")]-val[second.getVal("Pattern")]);
+               
+
               }
               if(VALUES.length > 0 && DTTB.getColumn("Order") != null)
               {if(DTTB.getColumn("Priority") != null) VALUES.sort(sortalg_OP);

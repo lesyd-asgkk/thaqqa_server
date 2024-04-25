@@ -74,7 +74,7 @@ class LayoutDebug_web{
 
         const d_ = khhyl.Render.DrawD(text,lang,[1,-1,0][alig],{size:Number(self.sizetext.value),parse:"parsedplus",font:self.fontbox.value});
         d += d_.d_str;
-d.d
+
         const x0 = d_.left;const x1 = d_.right;
         const y0 = d_.top;const y1 = d_.bottom;
         const HEIGHT = y1-y0;const WIDTH = x1-x0;
