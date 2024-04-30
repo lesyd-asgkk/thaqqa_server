@@ -2,7 +2,30 @@
 import * as khhyl from "./lib_js/deps.js";
 import * as webjs from "./web_js/deps.js";
 
-  
+function export_(){
+  const binaryArrayList = khhyl.FontManager.export_as_Json();
+  {
+  const binaryArray = binaryArrayList[0];
+  const blob = new Blob([JSON.stringify(binaryArray, null, '  ')], {type: 'application\/json'});
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url; 
+  link.download = "root.json"; 
+  link.click();
+  }
+  {
+    const binaryArray_ = binaryArrayList[1];
+    for(const i in binaryArray_){
+        const binaryArray = binaryArray_[i];
+      const blob = new Blob([JSON.stringify(binaryArray, null, '  ')], {type: 'application\/json'});
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url; 
+      link.download = `${i}.json`; 
+      link.click();
+      }
+    }
+}
   async function main(){
 
   await khhyl.FontManager.load('/server/fontjson/root.json',true);
@@ -49,7 +72,7 @@ import * as webjs from "./web_js/deps.js";
     object.style.display ="block";
     object.value = "jsonとして出力";
     object.name = "export";
-    object.addEventListener("click",() => {khhyl.FontManager.export();},true);
+    object.addEventListener("click",() => {export_();},true);
     $("div.area_tb#export")[0].appendChild(object);
 
     

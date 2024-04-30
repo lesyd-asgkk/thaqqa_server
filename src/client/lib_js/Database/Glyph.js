@@ -65,7 +65,7 @@ class GlyphArray{
         const text = this.name.replaceAll(new RegExp(r_, "g"),"$1Sep()$2").replaceAll(new RegExp(r_, "g"),"$1Sep()$2");
         const pSVGData = text.split("Sep()");
         pSVGData.forEach((i)=> this.childList.push(new Glyph(i , this.vec,this.font)))
-        if(this.vec==-1) this.childList.reverse();
+        if(this.vec == -1) this.childList.reverse();
     }
     toPath(defaultsize,_prev,_next){//_prevは今後用
         const vec_ = this.vec;
@@ -182,7 +182,6 @@ class Glyph{
         this.toPath();
     }
     initSvg(name){
-
         const partname = this.partitionName(name);
         if(partname.length == 0){this.isroot = true;
             if( (name ?? "") == ""){this.d = [] ,this.aligment = {x:0,y:0};return [];}
@@ -193,7 +192,7 @@ class Glyph{
             
             let offx = 0;let offy = 0;
             if(LetterManager.getLetter(this.name).length > 0){offx = LetterManager.getLetter(this.name)[0].getVal("x_Align");offy = LetterManager.getLetter(this.name)[0].getVal("y_Align");}
-            this.aligment = {x:(offx),y:(offy)};
+            this.aligment = {x:offx,y:offy};
         }
         else{//分割できたら
             this.isroot = false;

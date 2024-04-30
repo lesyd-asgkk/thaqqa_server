@@ -27,10 +27,7 @@ class FontManager {
     static fontList = [];
     static staticTableList = [];
 
-    
     static import(data,isroot,filename) {
-        //console.log(data);
-        
         if(!isroot){
             const font = FontManager.createFont(filename);
             for(const i in data)
@@ -54,33 +51,8 @@ class FontManager {
     })
     .catch(error => console.error('Error fetching data:', error));
     }
-  
-    //*
-    static export(){
-      const binaryArrayList = FontManager.export_as_Json();
-      {
-      const binaryArray = binaryArrayList[0];
-      const blob = new Blob([JSON.stringify(binaryArray, null, '  ')], {type: 'application\/json'});
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url; 
-      link.download = "root.json"; 
-      link.click();
-      }
-      {
-        const binaryArray_ = binaryArrayList[1];
-        for(const i in binaryArray_){
-            const binaryArray = binaryArray_[i];
-          const blob = new Blob([JSON.stringify(binaryArray, null, '  ')], {type: 'application\/json'});
-          const url = URL.createObjectURL(blob);
-          const link = document.createElement("a");
-          link.href = url; 
-          link.download = `${i}.json`; 
-          link.click();
-          }
-        }
-    }
-      static export_as_Json() {
+    
+    static export_as_Json() {
       const json_data_common= {};
       const json_data= {};
       for (const j in FontManager.staticTableList) {
@@ -118,7 +90,6 @@ class FontManager {
         }
       return [json_data_common,json_data];
     }
-     //*/
 
     static getFont(name,debug) { //nameのテーブルを返す。無かったらnullで
       debug??=false;
@@ -128,7 +99,6 @@ class FontManager {
       if(debug)throw new Error(`${name}は存在しません`);else return null;
     }
   
-    
     static createFont(name) {
       try {
           if (FontManager.getFont(name) != null) {
@@ -155,7 +125,7 @@ class FontManager {
       try {
         const errmessage = [];
         const table_rewrite = FontManager.getFont(name);
-        if (table_rewrite==null) errmessage.push(`${name}は存在しません`);
+        if (table_rewrite == null) errmessage.push(`${name}は存在しません`);
         if (FontManager.getFont(name_alt) != null) errmessage.push(`${name_alt}は既に存在します`);
         if (errmessage.length != 0) throw new Error(errmessage.join("\n"));
         
@@ -164,17 +134,13 @@ class FontManager {
         throw e;
       }
     }
-
-
     static getStaticTable(name,debug) { //nameのテーブルを返す。無かったらnullで
         debug??=false;
         for (const i in FontManager.staticTableList) {
           if (FontManager.staticTableList[i].name == name) return FontManager.staticTableList[i];
         }
-        
         if(debug)throw new Error(`${name}は存在しません`);else return null;
       }
-    
       static createStaticTable(name) {
         try {
             if (FontManager.getStaticTable(name) != null) {
@@ -201,18 +167,16 @@ class FontManager {
         try {
           const errmessage = [];
           const table_rewrite = FontManager.getStaticTable(name);
-          if (table_rewrite==null) errmessage.push(`${name}は存在しません`);
+          if (table_rewrite == null) errmessage.push(`${name}は存在しません`);
           if (FontManager.getStaticTable(name_alt) != null) errmessage.push(`${name_alt}は既に存在します`);
           if (errmessage.length != 0) throw new Error(errmessage.join("\n"));
           
           if (table_rewrite != null) table_rewrite.name = name_alt;
         } catch (e) {
           throw e;
-        }
       }
-
-      
-}
+    }
+  }
 class Font {
     constructor(name){
         this.name=name;
@@ -225,7 +189,7 @@ class Font {
           if (this.tableList[i].name == name) return this.tableList[i];
         }
         if(debug)throw new Error(`${name}は存在しません`);else return null;
-      }
+    }
     
     createTable(name) {
         try {
@@ -239,7 +203,7 @@ class Font {
         } catch (e) {
           throw e;
         }
-      }
+    }
     deleteTable(name) {
         try {
           const deletion = this.getTable(name,true);
@@ -248,19 +212,20 @@ class Font {
         } catch (e) {
           throw e;
         }
-      }
+    }
     rewriteTable(name, name_alt) {
         try {
           const errmessage = [];
           const table_rewrite = this.getTable(name);
-          if (table_rewrite==null) errmessage.push(`${name}は存在しません`);
-          if (this.getTable(name_alt) != null) errmessage.push(`${name_alt}は既に存在します`);
-          if (errmessage.length != 0) throw new Error(errmessage.join("\n"));
-          
-          if (table_rewrite != null) table_rewrite.name = name_alt;
+
+          if (table_rewrite == null) errmessage.push(`${name}は存在しません`);
+          if (this.getTable(name_alt)) errmessage.push(`${name_alt}は既に存在します`);
+          if (errmessage.length > 0) throw new Error(errmessage.join("\n"));
+
+          table_rewrite.name = name_alt;
         } catch (e) {
           throw e;
         }
-      }
+    }
 }
 export{FontManager,Font}

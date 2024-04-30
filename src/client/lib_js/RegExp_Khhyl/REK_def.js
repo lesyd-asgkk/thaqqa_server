@@ -1,5 +1,5 @@
 import { RegExp_Khhyl,LetterManager } from "../deps.js";
-
+import { REK_cond } from "./REK_cond.js";
 class REK_def {
   static rule_form = {
     ["\\*"]: (self, ans, pattern, msg) => {
@@ -40,8 +40,8 @@ class REK_def {
         for (const a_ of AL) {
           if(table[str] != a_.parent.name) continue;
           const k = a_.valueList;
-          const val = Function("_", `return ${msg}`);
-          const val2 = val(k);
+          //const val = //Function("_", `return ${msg}`);
+          const val2 = REK_cond.pc(k,msg);
           if (typeof val2 == "boolean" && val2 == true) {
             hensuu.push(a_.getVal("Name").toString());
           }
@@ -333,8 +333,8 @@ class REK_def {
     const intent_after = { ...self.intent };
     let i = 1; let j = 1;
     for (i = letter.length; i < pattern.length; i++) {
-      if (pattern.slice(i, i + 1) == "[") j++;
-      else if (pattern.slice(i, i + 1) == "]") j--;
+        if (pattern[i] == "[") j++;
+        else if (pattern[i] == "]") j--;
       if (j == 0) break;
     }
     if(j!=0) throw Error(`${pattern}([任意の文字列])のような括弧類が閉じていません`);
@@ -350,8 +350,8 @@ class REK_def {
     let i = 1; //カッコの閉じる場所
     let j = 1; 
     for (i = letter.length; i < pattern.length; i++) {
-      if (pattern.slice(i, i + 1) == "(") j++;
-      else if (pattern.slice(i, i + 1) == ")") j--;
+      if (pattern[i] == "(") j++;
+      else if (pattern[i] == ")") j--;
       if (j == 0) break;
     }
     if(j!=0) throw Error("S()のような括弧類が閉じていません");
@@ -367,8 +367,8 @@ class REK_def {
     let i = 1;
     let j = 1;
     for (i = 1; i < pattern.length; i++) {
-      if (pattern.slice(i, i + 1) == "(") j++;
-      else if (pattern.slice(i, i + 1) == ")") j--;
+      if (pattern[i] == "(") j++;
+      else if (pattern[i] == ")") j--;
       if (j == 0) break;
     }
     if(j!=0) throw Error("(?<=y)、(?=y)のような括弧類が閉じていません");
@@ -386,8 +386,8 @@ class REK_def {
     let j = 1; // 
     const br_start = letter.length; // ?:や<Name>:とか
     for (i = 1; i < pattern.length; i++) {
-      if (pattern.slice(i, i + 1) == "(") j++;
-      else if (pattern.slice(i, i + 1) == ")") j--;
+      if (pattern[i] == "(") j++;
+      else if (pattern[i] == ")") j--;
       if (j == 0) break;
     }
     if(j!=0) throw Error(`${pattern}(<任意の文字列>)のような括弧類が閉じていません`);
