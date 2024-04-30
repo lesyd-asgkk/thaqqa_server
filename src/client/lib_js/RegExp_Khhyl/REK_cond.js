@@ -40,8 +40,6 @@ class REK_cond {
                     break;
                 default:break;
             }
-            
-
         //console.log(`${rec} : ${stack}`);
         }
         return stack[0];

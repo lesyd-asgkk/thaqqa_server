@@ -144,7 +144,6 @@ class REK_def {
     [" "]: (self, ans, pattern, msg) => {
       return REK_def.PREsub_END(self, ans, pattern, "", msg);
     },
-    
   };
 
   static rule_r = {
