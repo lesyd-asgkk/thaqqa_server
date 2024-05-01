@@ -264,7 +264,6 @@ class REK_def {
         ["*,*,*,*", "S"]
       ];
       const letter = hensuu.map((i) => `${i[1]}(${i[0]})`).join("|");
-      console.log(letter);
       return REK_def.PREsub_lower(self, ans, pattern, letter, _msg, "");
     },
   };

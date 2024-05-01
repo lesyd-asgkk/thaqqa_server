@@ -1,7 +1,8 @@
 
 export  { DataTable,Data } from "./Database/DataTable.js";
 export  { FontManager,Font } from "./Database/FontManager.js";
-export  { Glyph ,GlyphManager ,GlyphArray } from "./Database/Glyph.js";
+export  { Glyph ,GlyphArray } from "./Glyph.js";
+export  { GlyphManager } from "./Database/GlyphManager.js";
 export { GPOSManager } from "./Database/GPOS.js";
 export { F_GSUBManager } from "./Database/F_GSUB.js";
 export { GSUBManager } from "./Database/GSUB.js";
