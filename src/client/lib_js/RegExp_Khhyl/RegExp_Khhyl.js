@@ -96,14 +96,14 @@ class RegExp_Khhyl {
         this.child = [];
     }
     //Tokenize -> Parse -> Tokenize（変更点が無くなるまで繰り返す）
-    toNormalRegExp(parentlist) {
+    toNormalRegExp() {//parentlist
         
-        parentlist ??= []; 
+        //parentlist ??= []; 
         let ans = "";
-        /*const j = {"g":0,"G":0,"C":0,"Cd":0,"V":0,"Vd":0,"P":0,"Pd":0,"S":0,"R":0,"X":0,"L":0};
-        let prev = "";
+        //const j = {"g":0,"G":0,"C":0,"Cd":0,"V":0,"Vd":0,"P":0,"Pd":0,"S":0,"R":0,"X":0,"L":0};
+        //let prev = "";
         for (let i = 0; i < this.child.length; i++) {
-            let k = [];
+            /*let k = [];
             if(this.intent.isoutofBrancket){
                 const cldtype = this.child[i].intent.type;
                 const cldtype_ = (this.intent.type == cldtype&&cldtype == "G") ? "g":cldtype;
@@ -123,11 +123,11 @@ class RegExp_Khhyl {
                     
                 break;
                 }
-            }
+            }*/
 
-                ans += this.child[i].toNormalRegExp(k);
+                ans += this.child[i].toNormalRegExp();
                 ans += (this.intent.type.match(/[SRX]|[CVP]d?/g)!=null)&&(i!=this.child.length-1)?",":"";
-        }*/
+        }
         ans += this.pattern;
         switch(this.intent.type){
             case "R":

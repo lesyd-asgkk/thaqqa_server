@@ -63,6 +63,7 @@ class GlyphArray{
     initSvg(){
         const r_ = new RegExp_Khhyl("(L())(L())",{}).ParseRegExp().toNormalRegExp();
         const text = this.name.replaceAll(new RegExp(r_, "g"),"$1Sep()$2").replaceAll(new RegExp(r_, "g"),"$1Sep()$2");
+
         const pSVGData = text.split("Sep()");
         pSVGData.forEach((i)=> this.childList.push(new Glyph(i , this.vec,this.font)))
         if(this.vec == -1) this.childList.reverse();
@@ -244,6 +245,7 @@ class Glyph{
             }
         }
         else{
+            console.log(name);
             const temp = name.match(/\((.+?)\)/)[1].split(",");
             this.glyphname = temp.slice(1).join(",");
             this.form = temp[0];
