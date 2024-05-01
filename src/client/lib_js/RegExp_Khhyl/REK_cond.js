@@ -1,17 +1,15 @@
 
 class REK_cond {
         //[ a,b,[c],d,[e,[f,g],h]] = a b (c) d (e (f g) h) のようになってる
-
     static pc(underbar,rec){
         return REK_cond.calc(underbar,REK_cond.parse(rec));
     }
-
     static calc(underbar,rec){
         const op_list = ["||","&&","!=","=="];
         const stack = [];
         for(let i_ = 0 ; i_<rec.length ; i_++){const i = rec[i_];
             if(i == "!"){rec[i_]=!REK_cond.calc(underbar,[rec[i_+1]]);
-                rec[i_+1]=null;}
+            rec[i_+1]=null;}
         }
         rec = rec.filter(i => i);
         //console.log(rec);
@@ -24,7 +22,6 @@ class REK_cond {
             else stack.push(i);
             if(stack.length && op_list.includes(j) && op_list.includes(i)) throw Error(`1 REK_COND:不正な値:${rec}`);
             if(stack.length && j && !op_list.includes(j) && !op_list.includes(i)) throw Error(`2 REK_COND:不正な値:${rec}`);
-            
             switch(j){
                 case "||":
                     stack.unshift( stack[0] || stack[2] );stack.splice(1,Infinity);
@@ -59,7 +56,8 @@ class REK_cond {
                         const k0 = k[0];const k1 = k[1];
                         if(Array.isArray(k0)) ans = k0;
                         if(typeof k1 == "string") str = k1;
-                        continue patternloop;}
+                        continue patternloop;
+                    }
                 }
             }
             break patternloop; //通らなかった場合。
@@ -88,7 +86,6 @@ class REK_cond {
           return REK_cond.PREsub_END(ans, pattern, "", msg);
         },
     };
-
     static PREsub_END(ans,pattern,letter,msg){
         const t = letter;
         ans.push(t);
@@ -96,8 +93,8 @@ class REK_cond {
         return [ans, pattern];
     };
     static PREsub_br_B(ans,pattern,letter){
+        const br_start = letter.length;
         let i = 1; // br_end
-        const br_start = letter.length; // ?:や<Name>:とか
         for (i = 1; i < pattern.length; i++) {
           if (pattern[i-1]!="\\"&&pattern[i] == letter) break;
           if(i==pattern.length-1) throw Error(`${pattern}『${letter}』が閉じていません`);
@@ -108,9 +105,9 @@ class REK_cond {
         return [ans, pattern];
     };
     static PREsub_br_A(ans,pattern,letter){
+        const br_start = letter.length; // ?:や<Name>:とか
         let i = 1; // br_end
         let j = 1; // 
-        const br_start = letter.length; // ?:や<Name>:とか
         for (i = 1; i < pattern.length; i++) {
           if (pattern[i] == "(") j++;
           else if (pattern[i] == ")") j--;

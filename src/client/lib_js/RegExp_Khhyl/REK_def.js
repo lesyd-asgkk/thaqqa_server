@@ -353,7 +353,7 @@ class REK_def {
       else if (pattern[i] == ")") j--;
       if (j == 0) break;
     }
-    if(j!=0) throw Error("S()のような括弧類が閉じていません");
+    if(j!=0) throw Error(`${type}(...) が不正です`);
     intent_after.type = type;intent_after.subtypeb = "none";
     const t = new RegExp_Khhyl(pattern.slice(letter.length, i), intent_after);
     ans.push(t);
@@ -381,9 +381,9 @@ class REK_def {
   //() クソ厄介 (?: (?<Name>: の例外処理も要る
    static PREsub_br_A(self,ans,pattern,letter){
     const intent_after = { ...self.intent };
+    const br_start = letter.length;
     let i = 1; // br_end
     let j = 1; // 
-    const br_start = letter.length; // ?:や<Name>:とか
     for (i = 1; i < pattern.length; i++) {
       if (pattern[i] == "(") j++;
       else if (pattern[i] == ")") j--;

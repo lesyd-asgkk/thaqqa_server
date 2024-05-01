@@ -100,7 +100,7 @@ class RegExp_Khhyl {
         
         parentlist ??= []; 
         let ans = "";
-        const j = {"g":0,"G":0,"C":0,"Cd":0,"V":0,"Vd":0,"P":0,"Pd":0,"S":0,"R":0,"X":0,"L":0};
+        /*const j = {"g":0,"G":0,"C":0,"Cd":0,"V":0,"Vd":0,"P":0,"Pd":0,"S":0,"R":0,"X":0,"L":0};
         let prev = "";
         for (let i = 0; i < this.child.length; i++) {
             let k = [];
@@ -127,7 +127,7 @@ class RegExp_Khhyl {
 
                 ans += this.child[i].toNormalRegExp(k);
                 ans += (this.intent.type.match(/[SRX]|[CVP]d?/g)!=null)&&(i!=this.child.length-1)?",":"";
-        }
+        }*/
         ans += this.pattern;
         switch(this.intent.type){
             case "R":
@@ -148,11 +148,9 @@ class RegExp_Khhyl {
                 break;
         }
         //if(parentlist.length != 0) ans = `(?<${parentlist.join("")}>${ans})`;
-        
 
         if((this.intent.subtypeb??"").match(/^\(/)!=null) ans = `${this.intent.subtypeb.slice(0,-1)}${ans})`; 
         else if((this.intent.subtypeb??"").match(/^\[/)!=null)ans = `(?:${ans})`; 
-        
         return ans;
     }
 
@@ -216,7 +214,8 @@ class RegExp_Khhyl {
                         const k0 = k[0];const k1 = k[1];
                         if(Array.isArray(k0)) ans = k0;
                         if(typeof k1 == "string") this.pattern = k1;
-                        continue patternloop;}
+                        continue patternloop;
+                    }
                 }
             }
             break patternloop; //通らなかった場合。
