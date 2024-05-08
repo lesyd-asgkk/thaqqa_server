@@ -39,10 +39,8 @@ class REK_def {
         if (AL == null || AL instanceof Error) throw AL;
         for (const a_ of AL) {
           if(table[str] != a_.parent.name) continue;
-          const k = a_.valueList;
-          //const val = //Function("_", `return ${msg}`);
-          const val2 = REK_cond.pc(k,msg);
-          if (typeof val2 == "boolean" && val2 == true) {
+          const val2 = REK_cond.pc(a_,msg);
+          if (val2 === true) {
             hensuu.push(a_.getVal("Name").toString());
           }
         }
@@ -360,7 +358,7 @@ class REK_def {
     pattern = pattern.slice(i + 1);
     return [ans, pattern];
   }
-  //前方の(?<=y) (?<!y)と後方の(?=y) (?!y)  クソ厄介
+  //前方の(?<=y) (?<!y)と後方の(?=y) (?!y) 
   static PREsub_br_B(self,ans,pattern,letter){
     const intent_after = { ...self.intent };
     let i = 1;
@@ -378,7 +376,7 @@ class REK_def {
     pattern = pattern.slice(i + 1);
     return [ans, pattern];
   }
-  //() クソ厄介 (?: (?<Name>: の例外処理も要る
+  //() 
    static PREsub_br_A(self,ans,pattern,letter){
     const intent_after = { ...self.intent };
     const br_start = letter.length;
@@ -397,7 +395,7 @@ class REK_def {
     pattern = pattern.slice(i + 1);
     return [ans, pattern];
   }
-  //{}とか 
+  //{} 
   static PREsub_kazu(self,ans,pattern,letter){
     const intent_after = { ...self.intent };
     intent_after.type = "{n}";

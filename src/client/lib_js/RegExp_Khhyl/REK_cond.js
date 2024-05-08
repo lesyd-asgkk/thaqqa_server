@@ -1,7 +1,8 @@
 
 class REK_cond {
         //[ a,b,[c],d,[e,[f,g],h]] = a b (c) d (e (f g) h) のようになってる
-    static pc(underbar,rec){
+        // _に入れる値は
+        static pc(underbar,rec){
         return REK_cond.calc(underbar,REK_cond.parse(rec));
     }
     static calc(underbar,rec){
@@ -18,7 +19,7 @@ class REK_cond {
             if(Array.isArray(i)) stack.push(underbar,REK_cond.calc(i));
             else if(typeof i =="boolean") stack.push(i);
             else if(i.startsWith("\'")) stack.push(slice=="'true");
-            else if(i.startsWith("_")) stack.push(underbar[i.slice(2)]);
+            else if(i.startsWith("_")) stack.push(underbar.valueList[i.slice(2)]);
             else stack.push(i);
             if(stack.length && op_list.includes(j) && op_list.includes(i)) throw Error(`1 REK_COND:不正な値:${rec}`);
             if(stack.length && j && !op_list.includes(j) && !op_list.includes(i)) throw Error(`2 REK_COND:不正な値:${rec}`);
