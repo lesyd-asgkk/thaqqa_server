@@ -13,7 +13,7 @@ class GPOSManager {
         table_.rewriteData({ID:i.getVal("ID")},{Parsed:r_});})
     }
     static getGPOS(param,font) {
-        if(param instanceof RegExp) param = {Name:param.Name};
+        if(param instanceof RegExp) param = {Name:param};
         if(typeof param == "string") param = {Name:param};
 
             const table_ = FontManager.getFont(font).getTable("GPOS");
@@ -21,7 +21,7 @@ class GPOSManager {
             return data;
         }
     static rewriteGPOS(param,param2,font){
-        if(param instanceof RegExp) param = {Name:param.Name};
+        if(param instanceof RegExp) param = {Name:param};
         if(typeof param == "string") param = {Name:param};
 
         if(typeof param2 == "string") param2 = {Name:param2};

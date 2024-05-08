@@ -3,7 +3,7 @@ class LetterManager{
     static #tablelist_name_ = ["VOWEL","CONSONANT","DIACRITIC_C","DIACRITIC_V","PUNCTUATION","DIACRITIC_P"];
     static getLetter(param){
         const t = LetterManager.#tablelist_name_.map((i)=>FontManager.getStaticTable(i));
-        if(param instanceof RegExp) param = {Name:param.Name};
+        if(param instanceof RegExp) param = {Name:param};
         if(typeof param == "string") param = {Name:param};
 
         const ans = [];
@@ -17,7 +17,7 @@ class LetterManager{
     }
     static rewriteLetter(param,param2){
         const t = LetterManager.#tablelist_name_.map((i)=>FontManager.getStaticTable(i));
-        if(param instanceof RegExp) param = {Name:param.Name};
+        if(param instanceof RegExp) param = {Name:param};
         if(typeof param == "string") param = {Name:param};
 
         if(typeof param2 == "string") param2 = {Name:param2};
@@ -34,7 +34,7 @@ class LetterManager{
     static deleteLetter(param,safety){
         const t = LetterManager.#tablelist_name_.map((i)=>FontManager.getStaticTable(i));
         safety ??= true;
-        if(param instanceof RegExp) param = {Name:param.Name};
+        if(param instanceof RegExp) param = {Name:param};
         if(typeof param == "string") param = {Name:param};
         
         if(safety && LetterManager.getLetter(param).length > 1) throw new Error("削除対象が2つ以上あります。まとめて削除したい場合はsafetyをfalseに指定してください");

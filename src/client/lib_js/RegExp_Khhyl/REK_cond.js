@@ -15,7 +15,7 @@ class REK_cond {
         //console.log(rec);
         for(let i_ = 0 ; i_<rec.length ; i_++){const i = rec[i_];
             const j = stack.length>0?rec[stack.length-1]:null;
-            if(Array.isArray(i)) stackh.push(underbar,REK_cond.calc(i));
+            if(Array.isArray(i)) stack.push(underbar,REK_cond.calc(i));
             else if(typeof i =="boolean") stack.push(i);
             else if(i.startsWith("\'")) stack.push(slice=="'true");
             else if(i.startsWith("_")) stack.push(underbar[i.slice(2)]);

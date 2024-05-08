@@ -35,7 +35,6 @@ class GlyphManager{
             resolve("done");
         });
       }
-     
     static getSVG(name,font){
         const ans = [];
         const table = FontManager.getFont(font).getTable("GLYPH");

@@ -35,7 +35,7 @@ class GSUBManager {
         if(typeof param == "string") param = {Name:param};
         if(GSUBManager.getGSUB(param).length != 0) return new Error(param+"はすでに存在しています");
         if(typeof param == "string") param ={Name: param, Pattern:"u",Pattern_sub:"DIAC",OffsetX0: 0, OffsetY0: 0,OffsetX1: 0,OffsetY1: 0, Priority:0};
-        const table_ = FontManager.getStaticTable(table);
+        const table_ = FontManager.getStaticTable("GSUB");
         table_.createData(param);
     }
     static setGSUBColumnAll(){

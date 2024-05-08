@@ -8,7 +8,6 @@ class Update{
             //アップデート内容（具体的に 別関数に纏めることとする）
             //本体のversionの更新
             return null;
-
         }
         catch(e){
             throw e;
@@ -20,7 +19,6 @@ class Update{
 
     static UpdateTEMP(version){
         //とりあえず用のアプデ
-
     }
 }
 
