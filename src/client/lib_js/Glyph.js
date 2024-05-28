@@ -262,7 +262,7 @@ class Glyph{
                 }   
         } else{
         path = SVG.toRelative(path);
-        path = SVG.createGap(path,0,VH+vt);
+        path = SVG.createGap(path,0,VH-vt);
         path = SVG.toRelative(path);
         this.gap = {top:VH-vt,middle:VH,bottom:VH+vt};
         }

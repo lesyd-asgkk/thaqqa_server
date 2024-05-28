@@ -326,142 +326,80 @@ class SVG {
         }
         if (q == undefined) throw Error();
         answer.push(q);
-        if (abspos.x != null) {left = Math.min(left, abspos.x);right = Math.max(right, abspos.x);}
-        if (abspos.y != null) {top = Math.min(top, abspos.y); bottom = Math.max(bottom, abspos.y);}
+
+        if (abspos.x != undefined) {left = Math.min(left, abspos.x);right = Math.max(right, abspos.x);}
+        if (abspos.y != undefined) {top = Math.min(top, abspos.y); bottom = Math.max(bottom, abspos.y);}
       }
+      
       if(left == Infinity) left = 0;if(top == Infinity) top = 0;
       if(right == -Infinity) right = 0;if(bottom == -Infinity) bottom = 0;
       return { d: answer, top: top, left: left, right: right, bottom: bottom };
     }
-  
+    //string型
     static ParseD(str) {
       const str_proto= str;
-      const regf = function(reg,reg2,loop,flag){return RegExp( new Array(loop).fill(reg.source).join(reg2.source),flag);}
+      //const regf = function(reg,reg2,loop,flag){return RegExp( new Array(loop).fill(reg.source).join(reg2.source),flag);}
       
-      const str_b = str.split(" ");
+      const str_b = str.split(/([A-Za-z])/g).join(" ").split(/(?: |,)/g).filter((x) => ![" ",""].includes(x));
       str = "";
-      for (let i = 0; i < str_b.length; i++) {
-        str += str_b[i];
-        if (i != str_b.length - 1) {
-          if (str_b[i].match(/\d$/) && str_b[i + 1].match(/^(-|\d)/)) str += " ";
-          }
-        }
       const answer = [];
-      const REGn = /-?\d+(\.\d+)?(e-?\d+)?/g; //数字判定 (\d|\.|e|-)+ -> -?\d+(\.\d+)?(e-?\d+)?
+      //const REGn = /-?\d+(\.\d+)?(e-?\d+)?/g; //数字判定 (\d|\.|e|-)+ -> -?\d+(\.\d+)?(e-?\d+)?
       let precommand = "";
-      while ((str ?? "")!= "") {
-        if (str.match(/^( )/g) != null) {
-          str = str.slice(1);
-          continue;
+      let i = 0;
+      while (i < str_b.length) {
+        if ([" ",""].includes(str_b[i])) {
+          i++;
         }
-        if (str.match(/^(Z|z)/g) != null) {
-          const type = str.match(/^(Z|z)/g);
-          if (type != null) {
-            answer.push(new Point(type[0]));
-            str = str.slice(1);
-            continue;
+        else{switch(str_b[i]){
+          case "Z": case "z": case "A":case "a": case "C": case "c":
+          case "Q": case "q": case "S": case "s": case "M": case "m":
+          case "L": case "l": case "H": case "h": case "V": case "v":
+            precommand = str_b[i];
+            i++;
+            break;
+          default:break;
           }
-        } else if (str.match(/^(M|m|L|l|V|v|H|h|C|c|S|s|Q|q|T|t|A|a)/g) != null) {
-          const type = str.match(/^(M|m|L|l|V|v|H|h|C|c|S|s|Q|q|T|t|A|a)/g);
-          if (type != null) {
-            precommand = type[0];
-            str = str.slice(1);
-            continue;
-          } else break;
-        }
-        if (str.match(regf(REGn,/( |,)/,7,"g")) != null) {
-          const type = precommand.match(/^(A|a)/g);
-          const len = str.match(regf(REGn,/( |,)/,7,"g"));
-          if (type != null && len != null) {
-            const n = len[0].match(REGn);
-            if (n != null) {
-              answer.push(
-                new Point(precommand,
-                  Number(n[5]),Number(n[6]),
-                  Number(n[0]),Number(n[1]),
-                  Number(n[2]),Number(n[3]),
-                  Number(n[4])
-                ),
-              );
-              str = str.slice(len[0].length);
-            }
-            continue;
+          switch(precommand){
+            case "Z": case "z": 
+              answer.push(new Point(precommand));
+              precommand = "";
+            break;
+            case "A":case "a":
+              answer.push(new Point(precommand,str_b[i+5],str_b[i+6],str_b[i],str_b[i+1],str_b[i+2],str_b[i+3],str_b[i+4]));
+              i+=7;
+            break;
+            case "C": case "c":
+              answer.push(new Point(precommand,str_b[i+4],str_b[i+5],str_b[i],str_b[i+1],str_b[i+2],str_b[i+3]));
+              i+=6;
+            break;
+            case "Q": case "q": 
+              answer.push(new Point(precommand,str_b[i+2],str_b[i+3],str_b[i],str_b[i+1]));
+              i+=4;
+            break;
+            case "S": case "s": 
+              answer.push(new Point(precommand,str_b[i+2],str_b[i+3],null,null,str_b[i],str_b[i+1]));
+              i+=4;
+            break;
+            case "M": case "m":
+            case "L": case "l": 
+              answer.push(new Point(precommand,str_b[i],str_b[i+1]));
+              precommand = ["M","L"].includes(precommand)?"L":"l";
+              i+=2;
+            break;
+            case "H": case "h": 
+              answer.push(new Point(precommand,str_b[i]));
+              i+=1;
+            break;
+            case "V": case "v":
+              answer.push(new Point(precommand,null,str_b[i]));
+              i+=1;
+            break;
+            default:
+            throw Error(`SVG要素にエラーがあります: ${str_proto}`);
           }
-        }
-        if (str.match(regf(REGn,/( |,)/,6,"g")) != null) {
-          const type = precommand.match(/^(C|c)/g);
-          const len = str.match(regf(REGn,/( |,)/,6,"g"))
-          if (type != null && len != null) {
-            const n = len[0].match(/-?\d+(\.\d+)?(e-?\d+)?/g);
-            if (n != null) {
-              answer.push(
-                new Point(precommand,
-                  Number(n[4]),Number(n[5]),
-                  Number(n[0]),Number(n[1]),
-                  Number(n[2]),Number(n[3])
-                ),
-              );
-              str = str.slice(len[0].length);
-            }
-            continue;
-          }
-        }
-        if (str.match(regf(REGn,/( |,)/,4,"g")) != null) {
-          const type = precommand.match(/^(S|s|Q|q)/g);
-          const len = str.match(regf(REGn,/( |,)/,4,"g"));
-          if (type != null && len != null) {
-            const n = len[0].match(REGn);
-            const type2 = precommand.match(/^(S|s)/g);
-            if (n != null) {
-              if (type2 != null) {
-                answer.push(
-                  new Point(precommand,
-                    Number(n[2]),Number(n[3]),
-                    Number(n[0]),Number(n[1])
-                  ),
-                );
-              } else {answer.push(
-                  new Point(
-                    precommand,
-                    Number(n[2]),Number(n[3]),
-                    undefined,undefined,
-                    Number(n[0]),Number(n[1])
-                  ),
-                );}
-              str = str.slice(len[0].length);
-            }
-            continue;
-          }
-        }
-        if (str.match(regf(REGn,/( |,)/,2,"g")) != null) {
-          const type = precommand.match(/^(M|m|L|l|T|t)/g);
-          const len = str.match(regf(REGn,/( |,)/,2,"g"));
-          if (type != null && len != null) {
-            const n = len[0].match(REGn);
-            if (n != null) {
-              answer.push(new Point(precommand, Number(n[0]), Number(n[1])));
-              if (precommand == "M") precommand = "L";
-              else if (precommand == "m") precommand = "l";
-              str = str.slice(len[0].length);
-            }
-            continue;
-          }
-        }
-        if (str.match(REGn) != null) {
-          const type = precommand.match(/^(H|h|V|v)/g);
-          const len = str.match(REGn);
-          if (type != null && len != null) {
-            const type2 = precommand.match(/^(V|v)/g);
-            if (type2 != null) {
-              answer.push(new Point(precommand, undefined, Number(len[0])));
-            } else answer.push(new Point(precommand, Number(len[0])));
-            str = str.slice(len[0].length);
-            continue;
-          } else break;
-        } else break;
       }
-      if (str != null && str != "") throw Error(`SVG要素にエラーがあります: ${str_proto}`);
-      return answer;
+     }
+     return answer;
     }
   }
   export {SVG};

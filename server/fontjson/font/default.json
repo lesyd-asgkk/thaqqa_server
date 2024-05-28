@@ -6,55 +6,64 @@
         "name": "Thickness",
         "type": "float",
         "order": 0,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       },
       "WidthH": {
         "name": "WidthH",
         "type": "float",
         "order": 100,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       },
       "WidthV": {
         "name": "WidthV",
         "type": "float",
         "order": 101,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       },
       "isWidthHRel": {
         "name": "isWidthHRel",
         "type": "bool",
         "order": 110,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       },
       "Height": {
         "name": "Height",
         "type": "float",
         "order": 200,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       },
       "TopGapH": {
         "name": "TopGapH",
         "type": "float",
         "order": 300,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       },
       "VersionMajor": {
         "name": "VersionMajor",
         "type": "INTEGER",
         "order": 400,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       },
       "VersionMinor": {
         "name": "VersionMinor",
         "type": "INTEGER",
         "order": 401,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       },
       "VersionPatch": {
         "name": "VersionPatch",
         "type": "INTEGER",
         "order": 402,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       }
     },
     "data": {
@@ -78,55 +87,71 @@
         "name": "ID",
         "type": "INTEGER",
         "order": 0,
-        "subtype": "ID"
+        "subtype": "ID",
+        "dev": true
       },
       "Pattern": {
         "name": "Pattern",
         "type": "char",
         "order": 1,
-        "subtype": "AligWhole"
+        "subtype": "AligWhole",
+        "dev": false
       },
       "Pattern_sub": {
         "name": "Pattern_sub",
         "type": "char",
         "order": 2,
-        "subtype": "GPOS"
+        "subtype": "GPOS",
+        "dev": false
       },
       "Order": {
         "name": "Order",
         "type": "INTEGER",
-        "order": 3
+        "order": 3,
+        "subtype": "none",
+        "dev": true
       },
       "Name": {
         "name": "Name",
         "type": "char",
-        "order": 4
+        "order": 4,
+        "subtype": "none",
+        "dev": true
       },
       "OffsetX0": {
         "name": "OffsetX0",
         "type": "float",
-        "order": 5
+        "order": 5,
+        "subtype": "none",
+        "dev": false
       },
       "OffsetY0": {
         "name": "OffsetY0",
         "type": "float",
-        "order": 6
+        "order": 6,
+        "subtype": "none",
+        "dev": false
       },
       "OffsetX1": {
         "name": "OffsetX1",
         "type": "float",
-        "order": 7
+        "order": 7,
+        "subtype": "none",
+        "dev": false
       },
       "OffsetY1": {
         "name": "OffsetY1",
         "type": "float",
-        "order": 8
+        "order": 8,
+        "subtype": "none",
+        "dev": false
       },
       "Parsed": {
         "name": "Parsed",
         "type": "char",
         "order": 9,
-        "subtype": "PARSED"
+        "subtype": "PARSED",
+        "dev": false
       }
     },
     "data": {
@@ -6243,12 +6268,12 @@
         "Pattern": "u",
         "Pattern_sub": "IN",
         "Order": 10050,
-        "Name": "S(mid,*,e_-*,(k|c|n|qh|r|tl)_-*)",
+        "Name": "S(mid,*,e_-*,(c|n|qh|r|tl)_-*)",
         "OffsetX0": 0,
         "OffsetY0": 0,
         "OffsetX1": 0,
-        "OffsetY1": -9,
-        "Parsed": "S\\(mid,(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),e\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(k|c|n|qh|r|tl)\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)"
+        "OffsetY1": -4,
+        "Parsed": "S\\(mid,(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),e\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(c|n|qh|r|tl)\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)"
       },
       "510": {
         "ID": 510,
@@ -8381,15 +8406,24 @@
     "columnList": {
       "ID": {
         "name": "ID",
-        "type": "INTEGER"
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "none",
+        "dev": true
       },
       "Name": {
         "name": "Name",
-        "type": "char"
+        "type": "char",
+        "order": 1,
+        "subtype": "name",
+        "dev": false
       },
       "Path": {
         "name": "Path",
-        "type": "char"
+        "type": "char",
+        "order": 2,
+        "subtype": "none",
+        "dev": false
       }
     },
     "data": {
@@ -9217,38 +9251,50 @@
         "name": "ID",
         "type": "INTEGER",
         "order": 0,
-        "subtype": "ID"
+        "subtype": "ID",
+        "dev": true
       },
       "Pattern": {
         "name": "Pattern",
         "type": "char",
         "order": 1,
-        "subtype": "AligWhole"
+        "subtype": "AligWhole",
+        "dev": false
       },
       "Order": {
         "name": "Order",
         "type": "INTEGER",
-        "order": 2
+        "order": 2,
+        "subtype": "char",
+        "dev": false
       },
       "Priority": {
         "name": "Priority",
         "type": "INTEGER",
-        "order": 3
+        "order": 3,
+        "subtype": "none",
+        "dev": false
       },
       "Name": {
         "name": "Name",
         "type": "char",
-        "order": 4
+        "order": 4,
+        "subtype": "char",
+        "dev": true
       },
       "NameAlt": {
         "name": "NameAlt",
         "type": "char",
-        "order": 5
+        "order": 5,
+        "subtype": "char",
+        "dev": false
       },
       "Parsed": {
         "name": "Parsed",
         "type": "char",
-        "order": 6
+        "order": 6,
+        "subtype": "PARSED",
+        "dev": false
       }
     },
     "data": {

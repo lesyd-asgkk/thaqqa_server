@@ -45,4 +45,5 @@ class GlyphManager{
         return ans;
     }
 }
+
 export {GlyphManager};

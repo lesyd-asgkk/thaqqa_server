@@ -58,7 +58,7 @@ class FontManager {
       for (const j in FontManager.staticTableList) {
             const table = FontManager.staticTableList[j];
             const table_data= {};const column_data = {};
-            table.columnList.forEach((h) => {column_data[h.name] = {name:h.name,id:h.id,type:h.type,order:h.order,subtype:h.subtype};});
+            table.columnList.forEach((h) => {column_data[h.name] = {name:h.name,id:h.id,type:h.type,order:h.order,subtype:h.subtype,dev:h.dev};});
             table_data.name = table.name;
             table_data.columnList = column_data;
             const data_data = {};
@@ -75,7 +75,7 @@ class FontManager {
             const table = font.tableList[j];
             const table_data= {};const column_data = {};
             
-            table.columnList.forEach((h) => {column_data[h.name] = {name:h.name,id:h.id,type:h.type,order:h.order,subtype:h.subtype};});
+            table.columnList.forEach((h) => {column_data[h.name] = {name:h.name,id:h.id,type:h.type,order:h.order,subtype:h.subtype,dev:h.dev};});
             table_data.name = table.name;
             table_data.columnList = column_data;
         

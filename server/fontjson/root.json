@@ -5,19 +5,22 @@
         "name": "VersionMajor",
         "type": "INTEGER",
         "order": 400,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       },
       "VersionMinor": {
         "name": "VersionMinor",
         "type": "INTEGER",
         "order": 401,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       },
       "VersionPatch": {
         "name": "VersionPatch",
         "type": "INTEGER",
         "order": 402,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       }
     },
     "data": {
@@ -35,79 +38,92 @@
         "name": "ID",
         "type": "INTEGER",
         "order": 0,
-        "subtype": "ID"
+        "subtype": "ID",
+        "dev": true
       },
       "Name": {
         "name": "Name",
         "type": "char",
         "order": 2,
-        "subtype": "NAME"
+        "subtype": "NAME",
+        "dev": false
       },
       "LoadName": {
         "name": "LoadName",
         "type": "char",
         "order": 3,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": true
       },
       "SolGlyphNum": {
         "name": "SolGlyphNum",
         "type": "INTEGER",
         "order": 4,
-        "subtype": "n>=0"
+        "subtype": "n>=0",
+        "dev": false
       },
       "InitGlyphNum": {
         "name": "InitGlyphNum",
         "type": "INTEGER",
         "order": 5,
-        "subtype": "n>=0"
+        "subtype": "n>=0",
+        "dev": false
       },
       "MidGlyphNum": {
         "name": "MidGlyphNum",
         "type": "INTEGER",
         "order": 6,
-        "subtype": "n>=0"
+        "subtype": "n>=0",
+        "dev": false
       },
       "FinGlyphNum": {
         "name": "FinGlyphNum",
         "type": "INTEGER",
         "order": 7,
-        "subtype": "n>=0"
+        "subtype": "n>=0",
+        "dev": false
       },
       "isVowel": {
         "name": "isVowel",
         "type": "bool",
         "order": 8,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       },
       "isNullVowel": {
         "name": "isNullVowel",
         "type": "bool",
         "order": 9,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       },
       "hasGreedyBond": {
         "name": "hasGreedyBond",
         "type": "bool",
         "order": 10,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       },
       "isBondtoPrev": {
         "name": "isBondtoPrev",
         "type": "bool",
         "order": 11,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       },
       "isBondtoNext": {
         "name": "isBondtoNext",
         "type": "bool",
         "order": 12,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       },
       "Order": {
         "name": "Order",
         "type": "INTEGER",
         "order": 1,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       }
     },
     "data": {
@@ -300,49 +316,57 @@
         "name": "ID",
         "type": "INTEGER",
         "order": 0,
-        "subtype": "ID"
+        "subtype": "ID",
+        "dev": true
       },
       "Name": {
         "name": "Name",
         "type": "char",
         "order": 2,
-        "subtype": "NAME"
+        "subtype": "NAME",
+        "dev": false
       },
       "LoadName": {
         "name": "LoadName",
         "type": "char",
         "order": 3,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       },
       "OnsetGlyphNum": {
         "name": "OnsetGlyphNum",
         "type": "INTEGER",
         "order": 4,
-        "subtype": "n>=0"
+        "subtype": "n>=0",
+        "dev": false
       },
       "CodaGlyphNum": {
         "name": "CodaGlyphNum",
         "type": "INTEGER",
         "order": 5,
-        "subtype": "n>=0"
+        "subtype": "n>=0",
+        "dev": false
       },
       "isBondAsFirst": {
         "name": "isBondAsFirst",
         "type": "bool",
         "order": 6,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       },
       "isBondAsLast": {
         "name": "isBondAsLast",
         "type": "bool",
         "order": 7,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       },
       "Order": {
         "name": "Order",
         "type": "INTEGER",
         "order": 1,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       }
     },
     "data": {
@@ -535,37 +559,43 @@
         "name": "ID",
         "type": "INTEGER",
         "order": 0,
-        "subtype": "ID"
+        "subtype": "ID",
+        "dev": true
       },
       "Name": {
         "name": "Name",
         "type": "char",
         "order": 2,
-        "subtype": "NAME"
+        "subtype": "NAME",
+        "dev": false
       },
       "LoadName": {
         "name": "LoadName",
         "type": "char",
         "order": 3,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       },
       "GlyphNum": {
         "name": "GlyphNum",
         "type": "INTEGER",
         "order": 4,
-        "subtype": "n>=0"
+        "subtype": "n>=0",
+        "dev": false
       },
       "IsNewline": {
         "name": "IsNewline",
         "type": "bool",
         "order": 5,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       },
       "Order": {
         "name": "Order",
         "type": "INTEGER",
         "order": 1,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": true
       }
     },
     "data": {
@@ -626,61 +656,71 @@
         "name": "ID",
         "type": "INTEGER",
         "order": 0,
-        "subtype": "ID"
+        "subtype": "ID",
+        "dev": true
       },
       "Name": {
         "name": "Name",
         "type": "char",
         "order": 2,
-        "subtype": "NAME"
+        "subtype": "NAME",
+        "dev": false
       },
       "LoadName": {
         "name": "LoadName",
         "type": "char",
         "order": 3,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       },
       "SolGlyphNum": {
         "name": "SolGlyphNum",
         "type": "INTEGER",
         "order": 4,
-        "subtype": "n>=0"
+        "subtype": "n>=0",
+        "dev": false
       },
       "InitGlyphNum": {
         "name": "InitGlyphNum",
         "type": "INTEGER",
         "order": 5,
-        "subtype": "n>=0"
+        "subtype": "n>=0",
+        "dev": false
       },
       "MidGlyphNum": {
         "name": "MidGlyphNum",
         "type": "INTEGER",
         "order": 6,
-        "subtype": "n>=0"
+        "subtype": "n>=0",
+        "dev": false
       },
       "FinGlyphNum": {
         "name": "FinGlyphNum",
         "type": "INTEGER",
         "order": 7,
-        "subtype": "n>=0"
+        "subtype": "n>=0",
+        "dev": false
       },
       "x_Align": {
         "name": "x_Align",
         "type": "INTEGER",
         "order": 8,
-        "subtype": "AligX"
+        "subtype": "AligX",
+        "dev": false
       },
       "y_Align": {
         "name": "y_Align",
         "type": "INTEGER",
         "order": 9,
-        "subtype": "AligY"
+        "subtype": "AligY",
+        "dev": false
       },
       "Order": {
         "name": "Order",
         "type": "INTEGER",
         "order": 1,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       }
     },
     "data": {}
@@ -692,49 +732,57 @@
         "name": "ID",
         "type": "INTEGER",
         "order": 0,
-        "subtype": "ID"
+        "subtype": "ID",
+        "dev": true
       },
       "Name": {
         "name": "Name",
         "type": "char",
         "order": 2,
-        "subtype": "NAME"
+        "subtype": "NAME",
+        "dev": false
       },
       "LoadName": {
         "name": "LoadName",
         "type": "char",
         "order": 3,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       },
       "OnsetGlyphNum": {
         "name": "OnsetGlyphNum",
         "type": "INTEGER",
         "order": 4,
-        "subtype": "n>=0"
+        "subtype": "n>=0",
+        "dev": false
       },
       "CodaGlyphNum": {
         "name": "CodaGlyphNum",
         "type": "INTEGER",
         "order": 5,
-        "subtype": "n>=0"
+        "subtype": "n>=0",
+        "dev": false
       },
       "x_Align": {
         "name": "x_Align",
         "type": "INTEGER",
         "order": 6,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       },
       "y_Align": {
         "name": "y_Align",
         "type": "INTEGER",
         "order": 7,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       },
       "Order": {
         "name": "Order",
         "type": "INTEGER",
         "order": 1,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       }
     },
     "data": {
@@ -787,43 +835,50 @@
         "name": "ID",
         "type": "INTEGER",
         "order": 0,
-        "subtype": "ID"
+        "subtype": "ID",
+        "dev": true
       },
       "Name": {
         "name": "Name",
         "type": "char",
         "order": 2,
-        "subtype": "NAME"
+        "subtype": "NAME",
+        "dev": false
       },
       "LoadName": {
         "name": "LoadName",
         "type": "char",
         "order": 3,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       },
       "GlyphNum": {
         "name": "GlyphNum",
         "type": "INTEGER",
         "order": 4,
-        "subtype": "n>=0"
+        "subtype": "n>=0",
+        "dev": false
       },
       "x_Align": {
         "name": "x_Align",
         "type": "INTEGER",
         "order": 5,
-        "subtype": "AligX"
+        "subtype": "AligX",
+        "dev": false
       },
       "y_Align": {
         "name": "y_Align",
         "type": "INTEGER",
         "order": 6,
-        "subtype": "AligY"
+        "subtype": "AligY",
+        "dev": false
       },
       "Order": {
         "name": "Order",
         "type": "INTEGER",
         "order": 1,
-        "subtype": "none"
+        "subtype": "none",
+        "dev": false
       }
     },
     "data": {}
@@ -835,38 +890,45 @@
         "name": "ID",
         "type": "INTEGER",
         "order": 0,
-        "subtype": "ID"
+        "subtype": "ID",
+        "dev": true
       },
       "Pattern": {
         "name": "Pattern",
         "type": "char",
         "order": 1,
-        "subtype": "LANG"
+        "subtype": "LANG",
+        "dev": false
       },
       "Order": {
         "name": "Order",
         "type": "INTEGER",
-        "order": 2
+        "order": 2,
+        "dev": false
       },
       "Priority": {
         "name": "Priority",
         "type": "INTEGER",
-        "order": 3
+        "order": 3,
+        "dev": false
       },
       "Name": {
         "name": "Name",
         "type": "char",
-        "order": 4
+        "order": 4,
+        "dev": true
       },
       "NameAlt": {
         "name": "NameAlt",
         "type": "char",
-        "order": 5
+        "order": 5,
+        "dev": false
       },
       "Parsed": {
         "name": "Parsed",
         "type": "char",
-        "order": 6
+        "order": 6,
+        "dev": false
       }
     },
     "data": {
@@ -2094,38 +2156,45 @@
         "name": "ID",
         "type": "INTEGER",
         "order": 0,
-        "subtype": "ID"
+        "subtype": "ID",
+        "dev": true
       },
       "Pattern": {
         "name": "Pattern",
         "type": "char",
         "order": 1,
-        "subtype": "AligWhole"
+        "subtype": "AligWhole",
+        "dev": false
       },
       "Order": {
         "name": "Order",
         "type": "INTEGER",
-        "order": 2
+        "order": 2,
+        "dev": false
       },
       "Priority": {
         "name": "Priority",
         "type": "INTEGER",
-        "order": 3
+        "order": 3,
+        "dev": false
       },
       "Name": {
         "name": "Name",
         "type": "char",
-        "order": 4
+        "order": 4,
+        "dev": true
       },
       "NameAlt": {
         "name": "NameAlt",
         "type": "char",
-        "order": 5
+        "order": 5,
+        "dev": false
       },
       "Parsed": {
         "name": "Parsed",
         "type": "char",
-        "order": 6
+        "order": 6,
+        "dev": false
       }
     },
     "data": {
@@ -2715,83 +2784,5 @@
         "Parsed": "S\\(((?:init|mid|fin|sol|null)),,a(\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),\\)"
       }
     }
-  },
-  "PRERENDER_GLYPH": {
-    "name": "PRERENDER_GLYPH",
-    "columnList": {
-      "ID": {
-        "name": "ID",
-        "type": "INTEGER"
-      },
-      "fullname": {
-        "name": "fullname",
-        "type": "char"
-      },
-      "name": {
-        "name": "name",
-        "type": "char"
-      },
-      "val": {
-        "name": "val",
-        "type": "char"
-      },
-      "vec": {
-        "name": "vec",
-        "type": "INTEGER"
-      },
-      "d": {
-        "name": "d",
-        "type": "char"
-      },
-      "vtop": {
-        "name": "vtop",
-        "type": "INTEGER"
-      },
-      "vbottom": {
-        "name": "vbottom",
-        "type": "INTEGER"
-      },
-      "top": {
-        "name": "top",
-        "type": "INTEGER"
-      },
-      "bottom": {
-        "name": "bottom",
-        "type": "INTEGER"
-      },
-      "child0": {
-        "name": "child0",
-        "type": "char"
-      },
-      "child1": {
-        "name": "child1",
-        "type": "char"
-      },
-      "child2": {
-        "name": "child2",
-        "type": "char"
-      },
-      "offx0": {
-        "name": "offx0",
-        "type": "INTEGER"
-      },
-      "offy0": {
-        "name": "offy0",
-        "type": "INTEGER"
-      },
-      "aligx": {
-        "name": "aligx",
-        "type": "INTEGER"
-      },
-      "aligy": {
-        "name": "aligy",
-        "type": "INTEGER"
-      },
-      "type": {
-        "name": "type",
-        "type": "char"
-      }
-    },
-    "data": {}
   }
 }

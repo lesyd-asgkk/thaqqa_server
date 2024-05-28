@@ -16,7 +16,7 @@ class DataTable {
     const DATA = dt.data;
     for(const cn in COLUMN){
       const c = COLUMN[cn];
-      const k = {name:c.name,type:c.type,desc:c.desc,order:c.order,subtype:c.subtype};
+      const k = {name:c.name,type:c.type,desc:c.desc,order:c.order,subtype:c.subtype,dev:c.dev};
       this.columnList.push(k);
     }
     for(const dn in DATA){
@@ -69,7 +69,7 @@ class DataTable {
           }
       if (errmessage.length != 0) throw new Error(errmessage.join("\n"));
       
-      this.columnList.push({ name: name, type: type ,desc : desc,priorty : priorty});
+      this.columnList.push({ name: name, type: type ,desc : desc,priorty : priorty,dev:false});
       for (let i = 0; i < this.dataList.length; i++) {
         this.dataList[i].valueList[name] = val_init;
       }

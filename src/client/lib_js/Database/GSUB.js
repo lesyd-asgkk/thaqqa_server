@@ -51,10 +51,11 @@ class GSUBManager {
         const table_ = FontManager.getStaticTable("GSUB");
         const array = table_.getData({Pattern:(vec==0?/(u|v)/:/(u|h)/)});
         const sortalg = function(first, second ){//Priorityの大きい順に並び替える
-            const l_ = Math.sign(first.getVal("Order")-second.getVal("Order"));
-            return !l_?l_:Math.sign(first.getVal("Priority")-second.getVal("Priority"));
+            const l_ = -Math.sign(first.getVal("Order")-second.getVal("Order"));
+            return !l_?l_:-Math.sign(first.getVal("Priority")-second.getVal("Priority"));
             }
         array.sort(sortalg);
+        console.log(array);
         array.forEach((i)=>{ text = text.replaceAll(new RegExp(i.getVal("Parsed"), "g"),i.getVal("NameAlt"))})
     return text;
     }
