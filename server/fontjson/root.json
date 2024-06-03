@@ -2784,5 +2784,88 @@
         "Parsed": "S\\(((?:init|mid|fin|sol|null)),,a(\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),\\)"
       }
     }
+  },
+  "REGEX": {
+    "name": "REGEX",
+    "columnList": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "ID",
+        "dev": true
+      },
+      "Name": {
+        "name": "Name",
+        "type": "char",
+        "order": 1,
+        "subtype": "char",
+        "dev": false
+      },
+      "Parsed": {
+        "name": "Parsed",
+        "type": "char",
+        "order": 2,
+        "subtype": "PARSED",
+        "dev": false
+      }
+    },
+    "data": {
+      "0": {
+        "ID": 0,
+        "Name": "(L()L())",
+        "Parsed": "(C\\((?:onset|coda|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|V\\((?:init|mid|fin|sol|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|Cd\\((?:onset|coda|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|Vd\\((?:onset|coda|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|P\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|Pd\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|S\\((?:init|mid|fin|sol|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\))(C\\((?:onset|coda|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|V\\((?:init|mid|fin|sol|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|Cd\\((?:onset|coda|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|Vd\\((?:onset|coda|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|P\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|Pd\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)|S\\((?:init|mid|fin|sol|null),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\))"
+      },
+      "1": {
+        "ID": 1,
+        "Name": "Seperate",
+        "Parsed": "Sep\\(\\)"
+      },
+      "2": {
+        "ID": 2,
+        "Name": "P(a",
+        "Parsed": "^P\\(([A-Za-z]+)"
+      },
+      "3": {
+        "ID": 3,
+        "Name": "*(sol",
+        "Parsed": "^(((P|Pd)\\()|((S|V|Vd)\\(sol,))"
+      },
+      "4": {
+        "ID": 4,
+        "Name": "h|u",
+        "Parsed": "h|u"
+      },
+      "5": {
+        "ID": 5,
+        "Name": "v|u",
+        "Parsed": "v|u"
+      },
+      "6": {
+        "ID": 6,
+        "Name": "extract_name",
+        "Parsed": "^([A-Za-z]+)"
+      },
+      "7": {
+        "ID": 7,
+        "Name": "c|u",
+        "Parsed": "c|u"
+      },
+      "8": {
+        "ID": 8,
+        "Name": "o|u",
+        "Parsed": "o|u"
+      },
+      "9":{
+        "ID": 9,
+        "Name": "Sep_Parser",
+        "Parsed": "(.|\n)"
+      },
+      "10":{
+        "ID": 10,
+        "Name": "Sep_SVG",
+        "Parsed": "( |,)+"
+      }
+    }
   }
 }
