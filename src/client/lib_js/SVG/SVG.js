@@ -340,7 +340,8 @@ class SVG {
       const str_proto= str;
       //const regf = function(reg,reg2,loop,flag){return RegExp( new Array(loop).fill(reg.source).join(reg2.source),flag);}
       
-      const str_b = str.split(/([A-Za-z])/g).join(" ").split(/(?: |,)/g).filter((x) => ![" ",""].includes(x));
+      const str_b = str.split(/([ZzAaCcQqSsMmLlHhVv, ])/g).join(" ").split(/(?: |,)/g).filter((x) => ![" ",""].includes(x));
+
       str = "";
       const answer = [];
       //const REGn = /-?\d+(\.\d+)?(e-?\d+)?/g; //数字判定 (\d|\.|e|-)+ -> -?\d+(\.\d+)?(e-?\d+)?

@@ -2823,7 +2823,7 @@
       },
       "2": {
         "ID": 2,
-        "Name": "P(a",
+        "Name": "P(*)",
         "Parsed": "^P\\(([A-Za-z]+)"
       },
       "3": {
@@ -2856,15 +2856,20 @@
         "Name": "o|u",
         "Parsed": "o|u"
       },
-      "9":{
+      "9": {
         "ID": 9,
         "Name": "Sep_Parser",
         "Parsed": "(.|\n)"
       },
-      "10":{
+      "10": {
         "ID": 10,
         "Name": "Sep_SVG",
         "Parsed": "( |,)+"
+      },
+      "11": {
+        "ID": 11,
+        "Name": "P(newline)",
+        "Parsed": "P\\((?:newline)\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)"
       }
     }
   }

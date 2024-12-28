@@ -12,7 +12,6 @@ class GlyphManager{
           d += b_ + "M0,0";
         }
       }
-    //table.createData({Name:data,Path:SVG.convertSVG(data[d])});
     }
     static async loadAll(font){
         await fetch('/server/FontData.svg')
@@ -20,13 +19,15 @@ class GlyphManager{
       .then(data => {
         try{
         FontManager.getFont(font).getTable("GLYPH",true);
-        }
+      console.log("done");  
+      }
         catch(_e){
             FontManager.getFont(font).createTable({name:"GLYPH"});
             const table = FontManager.getFont(font).getTable("GLYPH");
             table.createColumn("ID","INTEGER","",0);
             table.createColumn("Name","char","",1);
             table.createColumn("Path","char","",2);
+            
             for(const d in data) table.createData({Name:d,Path:SVG.convertSVG(data[d])});
         }
       })

@@ -30,10 +30,11 @@ function export_(){
 
   await khhyl.FontManager.load('/server/fontjson/root.json',true);
   await khhyl.FontManager.load('/server/fontjson/font/default.json',false);
-  
+  await khhyl.GlyphManager.loadAll("default");
     
-    await khhyl.GlyphManager.loadAll("default");
-
+    
+    const r_ = new khhyl.RegExp_Khhyl("P([_.IsNewline]_-*)",{}).ParseRegExp().toNormalRegExp();
+    console.log(r_);
     let ta = new webjs.Table_web("VOWEL",$("div.area_tb#vowel")[0]);
     ta.draw();
     ta = new webjs.Table_web("DIACRITIC_V",$("div.area_tb#voweld")[0]);

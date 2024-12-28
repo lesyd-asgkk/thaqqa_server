@@ -55,7 +55,7 @@ class DataTable {
           errmessage.push(`${name}は既に存在します`);
         }
       }
-      if (this.isavailableType(type) == false) { //そんな型指定できない時の処理
+      if (DataTable.isavailableType(type) == false) { //そんな型指定できない時の処理
         errmessage.push(`${type}という型は指定できません`);
       }
       else if(val_init == null){ //空だったら

@@ -28,7 +28,7 @@ class GPOSManager {
         const table_ = FontManager.getFont(font).getTable("GPOS");
         const GPOS_a = GPOSManager.getGPOS(param.Name);
         const GPOS_b = GPOSManager.getGPOS(param.Name);
-        if(param.Name != null && GPOS_a.length >= 2 && param2.Name!=null)throw new Error("変更後に重複が発生します");
+        if(param.Name != null && GPOS_a.length >= 2 && param2.Name!=null)throw new Error("変更対象がありません");
         if(param2.Name != null && GPOS_b.length != 0)throw new Error("変更後に重複が発生します");
         
         const b = table_.rewriteData(param,param2,-1);

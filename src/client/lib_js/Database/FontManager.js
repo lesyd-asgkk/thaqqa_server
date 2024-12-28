@@ -30,16 +30,13 @@ class FontManager {
     static import(data,isroot,filename) {
         if(!isroot){
             const font = FontManager.createFont(filename);
-            for(const i in data)
-            {
-            font.tableList.push(new DataTable(data[i],font));
-        }
+            for(const i in data) font.tableList.push(new DataTable(data[i],font));
         }
         else{
         for(const i in data)
         {
-            if(!FontManager.getStaticTable(data[i].name))
-            {FontManager.staticTableList.push(new DataTable(data[i],FontManager));}} 
+            if(!FontManager.getStaticTable(data[i].name)) FontManager.staticTableList.push(new DataTable(data[i],FontManager));
+        }
       }
     }
   

@@ -69,7 +69,7 @@ for (const entry of entry_) {
   });
 }
 router.get(`/server/FontData.svg`, async (ctx) => {
-  const data = LoadFile.loadAllGlyph("./server/Font_Data_linear");
+  const data = LoadFile.loadAllGlyph("./server/Font_Data_Fude");
   ctx.response.body = data; // Uint8Arrayをバイナリデータとしてクライアントに送信
   ctx.response.headers.set("Content-Type", "application/octet-stream"); // コンテンツタイプを設定
 });

@@ -1,7 +1,7 @@
 
 class REK_cond {
         //[ a,b,[c],d,[e,[f,g],h]] = a b (c) d (e (f g) h) のようになってる
-        // _に入れる値は
+        // _に入れる値はunderbar引数にシュートする
         static pc(underbar,rec){
         return REK_cond.calc(underbar,REK_cond.parse(rec));
     }
