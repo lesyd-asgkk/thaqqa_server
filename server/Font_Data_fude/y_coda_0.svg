@@ -27,14 +27,14 @@
      inkscape:deskcolor="#505050"
      inkscape:document-units="px"
      showgrid="false"
-     inkscape:zoom="3.7415825"
-     inkscape:cx="2.5390326"
-     inkscape:cy="-15.768729"
-     inkscape:window-width="1350"
-     inkscape:window-height="728"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="0"
+     inkscape:zoom="10.582793"
+     inkscape:cx="-26.883261"
+     inkscape:cy="22.347597"
+     inkscape:window-width="1920"
+     inkscape:window-height="1111"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
      showguides="false" />
   <defs
@@ -44,8 +44,9 @@
      inkscape:groupmode="layer"
      id="layer1">
     <path
-       style="color:#000000;fill:#000000;-inkscape-stroke:none"
-       d="m -20.34375,0 v 36 h 4.6875 V 0 Z"
-       id="path5065" />
+       style="fill:#000000;stroke-width:2.55;stroke-linecap:round;stroke-linejoin:round"
+       d="m -19.897364,0.09299763 c 0.972935,-0.08723 3.405416,-0.18137148 3.572461,1.63938257 0.06963,0.7589477 -1.273941,8.3377018 -1.281015,16.1115378 -0.0078,8.597189 -0.05344,11.122118 0.345582,13.722096 0.399021,2.599978 1.692457,6.369015 1.007399,7.197625 -0.28636,0.346366 -0.359476,0.371841 -0.710299,0.417762 -0.505001,0.0661 -1.820539,-2.195174 -2.42405,-3.989887 -0.603512,-1.794714 -2.76147,-10.544105 -2.667586,-17.338213 0.111976,-8.1033781 1.064718,-15.0818821 0.852354,-15.7033168 -0.237182,-0.6940571 -0.883091,-1.33870762 -0.415375,-1.60597459 0.467717,-0.267266 0.747595,-0.363784 1.720529,-0.45101198 z"
+       id="path356"
+       sodipodi:nodetypes="zsszsszsssz" />
   </g>
 </svg>
