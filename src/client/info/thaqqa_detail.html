@@ -79,7 +79,7 @@
     <p><span class="khhyl " option="none" letter=" e \n \n vv \n \n lo \n \n ghen \n \n khehyelu \n "></p>
 
     <h3>形状の変化について</h3>
-    <p>尾系の子音字母 <span class="khhyl " letter="C(onset,t0)"> </span> について、尾字に存在し、かつ特定の母音字母・母約物を含むと形状が変化する。</p>
+    <p>尾系の子音字母 <span class="khhyl " letter="C(onset,t0)"> </span> について、尾字に存在し、かつ特定の母音字母・母約物を含むと<span class="khhyl " letter="C(onset,t1)"> </span>という特殊な字形に変化する。</p>
     <p>中系・尾系の母音字母・母約物について、一部は頭系の子音字母 <span class="khhyl " letter="C(onset,t0)"> </span> を含む場合に特殊な字形となる。</p>
     <p>尾系については、尾系の子音字母 <span class="khhyl " letter="C(coda,t0)"> </span> を含む場合にも特殊な字形になるものが存在する。</p>
     <p>変化の対応を纏めると以下の通りとなる。</p>
@@ -113,6 +113,7 @@
         字系変更について、フォント処理においては"-"を用いて頭字、中字、尾字を表現する。普通は改行の際に自動変換しない。</p>
     <p>単独の子音を表記する場合、字形を強制変換する場合には特殊記号を用いる。（未実装）</p>
 
+    <p>東果文字はアルファベット表記をそのまま東果文字の内部表現に適した文字列に変換した上で描画している。詳しくはここ</p>
 
 
 </body>
@@ -155,7 +156,7 @@
         await khhyl.FontManager.load_all(["default","sanserif"]);
         //この辺コードが見苦しいので共通処理にするの考える
         for (const i of $('div.table#vowel_0')) {
-            const vowel = [["abig","a"],["e","e"],["i","i"],["o","o"],["u","u"],["v","v"],["eold","ë(旧)"],["iold","ï(旧)"]]
+            const vowel = [["abig","a /a/"],["e","e /e/"],["i","i /i/"],["o","o /ɤ/"],["u","u /ɯ/"],["v","v /ə/"],["eold","ë(旧) /ɜ/"],["iold","ï(旧) /ɨ/"]]
             const columns = [["sol","単独系"],["init","頭系"],["mid","中系"],["fin","尾系"]];
             const table = document.createElement('table'); 
                 const tbody = document.createElement('tbody'); 
@@ -186,35 +187,35 @@
         }
 
         for (const i of $('div.table#consonant_0')) {
-            const consonant = [["t","t"],["k","k"],["q","q"],["c","'"],
-            ["n","n"],["ng","ng"],
-            ["th","th"],["s","s"],["hy","hy"],["kh","kh"],["qh","qh"],["h","h"]
-            ,["l","l"],["tl","tl(東)/ts(汽)"],["r","r"],["y","y"],["w","w"]]
+            const consonant = [["t","t /t/"],["k","k /k/"],["q","q /q/"],["c","' /ʔ/or/ː/"],
+            ["n","n /n/"],["ng","ng /ŋ/"],
+            ["th","th /θ/"],["s","s /ɬ/(東) /s/(汽)"],["hy","hy /ç/"],["kh","kh /x/"],["qh","qh /χ/"],["h","h /h/"]
+            ,["l","l /l/"],["tl","tl/t͡ɬ/(東) ts/t͡s/(汽)"],["r","r /ɾ/(東) /ɹ/(汽)"],["y","y /j/"],["w","w /ɰ/"]]
 
-            const csy = [["t0-sy","ty(汽)"],["k0-sy","ky(汽)"],,,
-            ["n0-sy","ny(汽)"],["ng0-sy","ngy(汽)"],
-            ,["s0-sy","sy(汽)"],,,,
-            ,,,["r0-sy","ry(汽)"],,]
+            const csy = [["t0-sy","ty(汽) /tʲ/"],["k0-sy","ky(汽) /kʲ/"],,,
+            ["n0-sy","ny(汽) /nʲ/"],["ng0-sy","ngy(汽) /ŋʲ/"],
+            ,["s0-sy","sy(汽) /ɕ/"],,,,
+            ,,,["r0-sy","ry(汽) /ɹʲ/"],,]
 
-            const csw = [,["k0-sw","kw(汽)"],["q0-sw","qw(汽)"],,
-            ,["ng0-sw","ngw(汽)"],
-            ,,,,["qh0-sw","hw(汽)"],
+            const csw = [,,["q0-sw","qw(汽) /qʷ/"],,
+            ,["ng0-sw","ngw(汽) /ŋʷ/"],
+            ,,,,["qh0-sw","hw(汽) /χʷ/"],
             ,,,,,]
 
-            const cd = [["t0-d","d(汽)"],["k0-d","g(汽)"],,,
+            const cd = [["t0-d","d(汽) /d/"],["k0-d","g(汽) /g/"],,,
             ,,
-            ["th0-d","dh"],["s0-d","z"],["hy0-d","zh(東)"],["kh0-d","gh(東)"],["qh0-d","rh(東)"],["h0-d","Hh(東)"]
+            ["th0-d","dh /ð/"],["s0-d","z /ɮ/(東) /z/(汽)"],["hy0-d","zh(東) /ʒ/"],["kh0-d","gh(東) /ɣ/"],["qh0-d","rh(東) /ʁ/"],["h0-d","Hh(東) /ʕ/ or /ːʔ/"]
             ,,,,,]
 
-            const cmisc = [["t0-d0-hd","b(汽)"],,,,
-            ["n0-hd0-sy","my(汽)"],,
-            ["th0-hd0-sy","hpy(汽)"],["th0-hd0-sw","hp(汽)"],,["s0-d0-sy","zy(汽)"],,
-            ,,["tl0-hd0-sy","ch(汽)"],,,]
+            const cmisc = [["t0-d0-hd","b(汽) /b/"],,,,
+            ["n0-hd0-sy","my(汽) /mʲ/"],,
+            ["th0-hd0-sy","hpy(汽) /pʰʲ/"],["th0-hd0-sw","hp(汽) /pʰ/"],,["s0-d0-sy","zy(汽) /ʑ/"],,
+            ,,["tl0-hd0-sy","ch(汽) /t͡ɕ/"],,,]
 
-            const chd = [["t0-hd","p(汽)"],,["q0-hd","hq(汽)"],,
-            ["n0-hd","m(汽)"],,
-            ["th0-hd","f(汽)"],,,,,
-            ,,["tl0-hd","ht(汽)"],,,]
+            const chd = [["t0-hd","p(汽) /p/"],,["q0-hd","hq(汽) /qʰ/"],,
+            ["n0-hd","m(汽) /m/"],,
+            ["th0-hd","f(汽) /ɸ/"],,,,,
+            ,,["tl0-hd","ht(汽) /tʰ/"],,,]
 
             const columns = [["coda","尾系"],["onset","頭系"],["",""]];
             const row = [consonant,cd,chd,csy,csw,cmisc];
