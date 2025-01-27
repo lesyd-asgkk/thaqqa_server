@@ -129,7 +129,7 @@
                 object.append(title, desc)
             }
             //console.log(parseFloat(getComputedStyle(i).fontSize));
-            const d = khhyl.Render.DrawD(letter,0, i.getAttribute("alig") == null ? 0 : 1 ,{size:parseFloat(getComputedStyle(i).fontSize),parse:type,font:"default"});
+            const d = khhyl.Render.DrawD(letter,0, i.getAttribute("alig") == null ? 0 : 1 ,{size:parseFloat(getComputedStyle(i).fontSize),parse:type,font:"sanserif"});
             const path = $("div#storage svg#svgField path").clone()[0];
             path.style.display = "block";
             path.setAttribute("fill", "none");

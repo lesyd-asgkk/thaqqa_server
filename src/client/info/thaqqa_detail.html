@@ -76,7 +76,7 @@
     <p>・尾系の子音字母のみを持つ場合：頭字</p>
     <p>・子音字を持たない場合：単独字</p>
     <p>例：それぞれ、khehyelu(東果)、ghen（雪）、lo（根）、vv（フィラー）、e（土)の場合。</p>
-    <p><span class="khhyl " option="default" letter=" e \n \n vv \n \n lo \n \n ghen \n \n khehyelu \n "></p>
+    <p><span class="khhyl " option="none" letter=" e \n \n vv \n \n lo \n \n ghen \n \n khehyelu \n "></p>
 
     <h3>形状の変化について</h3>
     <p>尾系の子音字母 <span class="khhyl " letter="C(onset,t0)"> </span> について、尾字に存在し、かつ特定の母音字母・母約物を含むと形状が変化する。</p>
@@ -104,9 +104,10 @@
 
     <h3>その他</h3>
     <p>子約物の分離符 <span class="khhyl larger" letter="C(onset,x0)"> </span> について、文字通りの区切りの判別が困難な場合に用いられる。</p>
-    <p><span class="khhyl " option="default" letter="ehi-"></span>と<span class="khhyl " option="default"
-            letter="hei-"></span>等。（具体例は後で書く）</p>
 
+    <p>頭字が頭系の子音字母を持ち、続く文字が頭系の子音字母を持たない時。例：<span class="khhyl " option="none" letter="ehi"></span>と<span class="khhyl " option="none" letter="hei"></span> </p>        
+    <p>頭字或いは中字が尾系の子音字母を持ち、次の文字が尾字かつ頭系の子音字母を持たない時。例：<span class="khhyl " option="none" letter="-rein"></span>と<span class="khhyl " option="none" letter="-ren-i"></span> </p>      
+    <p>分離符は歴史的には小書きにされた<span class="khhyl larger" letter="C(onset,h0)"> </span>に由来する。</p>
     <h3>その他</h3>
     <p>解説の為、或いは単語中に改行せざるを得ない場合は頭字・中字のまま行を終える。
         字系変更について、フォント処理においては"-"を用いて頭字、中字、尾字を表現する。普通は改行の際に自動変換しない。</p>
@@ -132,7 +133,7 @@
                 object.append(title, desc)
             }
             //console.log(parseFloat(getComputedStyle(i).fontSize));
-            const d = khhyl.Render.DrawD(letter,0, i.getAttribute("alig") == null ? 0 : 1 ,{size:parseFloat(getComputedStyle(i).fontSize),parse:type,font:"default"});
+            const d = khhyl.Render.DrawD(letter,0, i.getAttribute("alig") == null ? 0 : 1 ,{size:parseFloat(getComputedStyle(i).fontSize),parse:type,font:"sanserif"});
             const path = $("div#storage svg#svgField path").clone()[0];
             path.style.display = "block";
             path.setAttribute("fill", "none");
@@ -150,8 +151,8 @@
             i.appendChild(object);
     }
     $(document).ready(async function () {
-        await khhyl.FontManager.load('/server/fontjson/root.json',true);
-        await khhyl.FontManager.load('/server/fontjson/font/default.json',false);
+
+        await khhyl.FontManager.load_all(["default","sanserif"]);
         //この辺コードが見苦しいので共通処理にするの考える
         for (const i of $('div.table#vowel_0')) {
             const vowel = [["abig","a"],["e","e"],["i","i"],["o","o"],["u","u"],["v","v"],["eold","ë(旧)"],["iold","ï(旧)"]]

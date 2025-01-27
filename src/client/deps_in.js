@@ -28,8 +28,7 @@ function export_(){
 }
   async function main(){
 
-  await khhyl.FontManager.load('/server/fontjson/root.json',true);
-  await khhyl.FontManager.load('/server/fontjson/font/default.json',false);
+  await khhyl.FontManager.load_all(["default","sanserif"]);
   await khhyl.GlyphManager.loadAll("default");
     
     

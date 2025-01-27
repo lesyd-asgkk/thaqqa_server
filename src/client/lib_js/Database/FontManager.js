@@ -39,11 +39,15 @@ class FontManager {
         }
       }
     }
-  
+    static async load_all(path_list){
+      await FontManager.load('/server/fontjson/root.json',true);
+      for(const i of path_list){ await FontManager.load(`/server/fontjson/font/${i}.json`,false); }
+    }
     static async load(path,isroot){
       await fetch(path)//
     .then(response => response.json())
     .then(data => {
+      console.log(path);
       FontManager.import(data,isroot,isroot?null:path.split("/").slice(-1)[0].split(".")[0]);
     })
     .catch(error => console.error('Error fetching data:', error));

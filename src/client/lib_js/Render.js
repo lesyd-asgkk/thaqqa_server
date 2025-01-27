@@ -11,6 +11,7 @@ class Render{
     //text , lang,alig,{option:,size:,pos:,...}とかの形にしたほうが良さそう
     static DrawD(text,lang,alig,option){
         //option:{font,parse,size,position}
+        console.log(text,lang,alig,option);
         option.font ??= "default";
         switch(option.parse){
             case "parsedperfect":
@@ -26,6 +27,7 @@ class Render{
                 text = Parser.parse(text,lang);
                 text = GSUBManager.gsub(text,alig);
                 text = F_GSUBManager.fgsub(text,alig,option.font);
+                
             break;
         }
         option.position ??={x:0,y:0};

@@ -57,7 +57,7 @@ class Parser {
     let raw_new = "";
     r_.forEach((r) => raw_new += `R(${r})`); 
     const array = table_.getData({Pattern:(type==0?/(u|c)/:/(u|o)/)});
-    const sortalg = function(first, second ){//Priorityの大きい順に並び替える
+    const sortalg = function(first, second ){//Priorityの小さい順に並び替える
       const l_ = Math.sign(first.getVal("Order")-second.getVal("Order"));
       return l_!=0?l_:Math.sign(first.getVal("Priority")-second.getVal("Priority"));
       }

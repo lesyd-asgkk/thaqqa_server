@@ -60,7 +60,7 @@ router.get(`/server/fontjson/root.json`, async (ctx) => {
   ctx.response.body = data.buffer; // Uint8Arrayをバイナリデータとしてクライアントに送信
   ctx.response.headers.set("Content-Type", "application/octet-stream"); // コンテンツタイプを設定
 });
-const entry_ = ["default"];
+const entry_ = ["default", "sanserif"];
 for (const entry of entry_) {
   router.get(`/server/fontjson/font/${entry}.json`, async (ctx) => {
     const data = LoadFile.loadJSON(`./server/fontjson/font/${entry}.json`);
