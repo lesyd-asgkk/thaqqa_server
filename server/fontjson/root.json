@@ -1,5 +1,5 @@
 {
-  "undefined": {
+  "ROOTDATA": {
     "columnList": {
       "VersionMajor": {
         "name": "VersionMajor",
@@ -24,7 +24,7 @@
       }
     },
     "data": {
-      "undefined": {
+      "0": {
         "VersionMajor": 0,
         "VersionMinor": 0,
         "VersionPatch": 0
