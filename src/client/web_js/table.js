@@ -274,7 +274,7 @@ class Table_web{
     constructor(tablename,loc){
         this.tablename = tablename; //
         this.loc = loc; //設置してある場所
-        this.font = "default";
+        this.font = "siddham"; //変更可能にする
         this.row_desc = new RowDesc_web(this); //
         this.row = [];
     }

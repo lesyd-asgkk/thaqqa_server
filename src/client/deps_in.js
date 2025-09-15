@@ -28,8 +28,8 @@ function export_(){
 }
   async function main(){
 
-  await khhyl.FontManager.load_all(["default","sanserif"]);
-  await khhyl.GlyphManager.loadAll("default");
+  await khhyl.FontManager.load_all(["default","sanserif","fude","siddham"]);
+  await khhyl.GlyphManager.loadAll("fude");
     
     
     const r_ = new khhyl.RegExp_Khhyl("P([_.IsNewline]_-*)",{}).ParseRegExp().toNormalRegExp();

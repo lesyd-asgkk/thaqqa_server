@@ -162,7 +162,7 @@
         "Order": 0,
         "Name": "C(*,+-d_)",
         "OffsetX0": 3,
-        "OffsetY0": 20,
+        "OffsetY0": 10,
         "OffsetX1": 0,
         "OffsetY1": 0,
         "Parsed": "C\\((?:onset|coda|null),[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*-d\\d+\\)"
@@ -8372,7 +8372,7 @@
         "OffsetX0": 0,
         "OffsetY0": 0,
         "OffsetX1": 0,
-        "OffsetY1": 12,
+        "OffsetY1": 4,
         "Parsed": "S\\(sol,,[A-Za-z]+0,\\)"
       },
       "685": {

@@ -60,7 +60,7 @@ router.get(`/server/fontjson/root.json`, async (ctx) => {
   ctx.response.body = data.buffer; // Uint8Arrayをバイナリデータとしてクライアントに送信
   ctx.response.headers.set("Content-Type", "application/octet-stream"); // コンテンツタイプを設定
 });
-const entry_ = ["default", "sanserif"];
+const entry_ = ["default", "sanserif", "fude", "siddham"];
 for (const entry of entry_) {
   router.get(`/server/fontjson/font/${entry}.json`, async (ctx) => {
     const data = LoadFile.loadJSON(`./server/fontjson/font/${entry}.json`);
@@ -69,7 +69,7 @@ for (const entry of entry_) {
   });
 }
 router.get(`/server/FontData.svg`, async (ctx) => {
-  const data = LoadFile.loadAllGlyph("./server/Font_Data_Fude");
+  const data = LoadFile.loadAllGlyph("./server/Font_Data_siddham");
   ctx.response.body = data; // Uint8Arrayをバイナリデータとしてクライアントに送信
   ctx.response.headers.set("Content-Type", "application/octet-stream"); // コンテンツタイプを設定
 });
