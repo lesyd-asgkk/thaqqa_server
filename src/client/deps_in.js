@@ -34,33 +34,33 @@ function export_(){
     
     const r_ = new khhyl.RegExp_Khhyl("P([_.IsNewline]_-*)",{}).ParseRegExp().toNormalRegExp();
     console.log(r_);
-    let ta = new webjs.Table_web("VOWEL",$("div.area_tb#vowel")[0]);
+    let ta = new webjs.Table_web("VOWEL",$("div.area_tb#vowel")[0],"default");
     ta.draw();
-    ta = new webjs.Table_web("DIACRITIC_V",$("div.area_tb#voweld")[0]);
+    ta = new webjs.Table_web("DIACRITIC_V",$("div.area_tb#voweld")[0],"default");
     ta.draw();
-    ta = new webjs.Table_web("CONSONANT",$("div.area_tb#consonant")[0]);
+    ta = new webjs.Table_web("CONSONANT",$("div.area_tb#consonant")[0],"default");
     ta.draw();
-    ta = new webjs.Table_web("DIACRITIC_C",$("div.area_tb#consonantd")[0]);
+    ta = new webjs.Table_web("DIACRITIC_C",$("div.area_tb#consonantd")[0],"default");
     ta.draw();
-    ta = new webjs.Table_web("PUNCTUATION",$("div.area_tb#punctuation")[0]);
+    ta = new webjs.Table_web("PUNCTUATION",$("div.area_tb#punctuation")[0],"default");
     ta.draw();
-    ta = new webjs.Table_web("DIACRITIC_P",$("div.area_tb#punctuationd")[0]);
+    ta = new webjs.Table_web("DIACRITIC_P",$("div.area_tb#punctuationd")[0],"default");
     ta.draw();
     let tb;
-    tb = new webjs.Table_web("GSUB",$("div.area_tb#gsub")[0]);
+    tb = new webjs.Table_web("GSUB",$("div.area_tb#gsub")[0],"default");
     tb.draw();
-    tb = new webjs.Table_web("F_GSUB",$("div.area_tb#f_gsub")[0]);
+    tb = new webjs.Table_web("F_GSUB",$("div.area_tb#f_gsub")[0],"default");
     tb.draw();
-    tb = new webjs.Table_web("PARSER",$("div.area_tb#parser")[0]);
-    tb.draw();
-
-    tb = new webjs.Table_web("GPOS",$("div.area_tb#gpos")[0]);
+    tb = new webjs.Table_web("PARSER",$("div.area_tb#parser")[0],"default");
     tb.draw();
 
-    tb = new webjs.Sandbox_web($("div.area_tb#sandbox")[0]);
+    tb = new webjs.Table_web("GPOS",$("div.area_tb#gpos")[0],"default");
     tb.draw();
 
-    tb = new webjs.LayoutDebug_web($("div.area_tb#layouttest")[0]);
+    tb = new webjs.Sandbox_web($("div.area_tb#sandbox")[0],"default");  
+    tb.draw();
+
+    tb = new webjs.LayoutDebug_web($("div.area_tb#layouttest")[0],"default");
     tb.draw();
 
     /*khhyl.Parser.setParserColumnAll();

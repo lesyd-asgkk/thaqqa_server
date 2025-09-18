@@ -92,6 +92,8 @@ class FontManager {
       return [json_data_common,json_data];
     }
 
+    static getAllFonts() { return FontManager.fontList; }
+    static getAllFontName() { return FontManager.fontList.map(font => font.name); }
     static getFont(name,debug) { //nameのテーブルを返す。無かったらnullで
       debug??=false;
       for (const i in FontManager.fontList) {

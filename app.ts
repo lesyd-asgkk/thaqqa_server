@@ -68,11 +68,14 @@ for (const entry of entry_) {
     ctx.response.headers.set("Content-Type", "application/octet-stream"); // コンテンツタイプを設定
   });
 }
-router.get(`/server/FontData.svg`, async (ctx) => {
-  const data = LoadFile.loadAllGlyph("./server/Font_Data_siddham");
-  ctx.response.body = data; // Uint8Arrayをバイナリデータとしてクライアントに送信
-  ctx.response.headers.set("Content-Type", "application/octet-stream"); // コンテンツタイプを設定
-});
+for (const entry of entry_) {
+  router.get(`/server/FontData/${entry}.svg`, async (ctx) => {
+    const data = LoadFile.loadAllGlyph(`./server/Font_Data_${entry}`);
+    ctx.response.body = data; // Uint8Arrayをバイナリデータとしてクライアントに送信
+    ctx.response.headers.set("Content-Type", "application/octet-stream"); // コンテンツタイプを設定
+  });
+}
+
 app.use(router.routes());
 app.use(router.allowedMethods());
 

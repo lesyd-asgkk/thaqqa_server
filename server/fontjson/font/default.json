@@ -8190,9 +8190,9 @@
         "Order": 1000,
         "Name": "S(mid,*,u_-*,)S(fin,*,u_-*,+)",
         "OffsetX0": 0,
-        "OffsetY0": -4,
+        "OffsetY0": 0,
         "OffsetX1": 0,
-        "OffsetY1": -5,
+        "OffsetY1": 0,
         "Parsed": "S\\(mid,(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),u\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),\\)S\\(fin,(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),u\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*\\)"
       },
       "670": {
@@ -8202,9 +8202,9 @@
         "Order": 1000,
         "Name": "S(mid,*,u_-*,)S(fin,*,u_-*,)",
         "OffsetX0": 0,
-        "OffsetY0": -8,
+        "OffsetY0": -1,
         "OffsetX1": 0,
-        "OffsetY1": -8,
+        "OffsetY1": -1,
         "Parsed": "S\\(mid,(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),u\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),\\)S\\(fin,(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),u\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),\\)"
       },
       "671": {
@@ -8430,9 +8430,9 @@
         "Order": 1000,
         "Name": "S(mid,*,u_-*,)S(mid,*,u_,*)",
         "OffsetX0": 0,
-        "OffsetY0": 4,
+        "OffsetY0": 2,
         "OffsetX1": 0,
-        "OffsetY1": 4,
+        "OffsetY1": 2,
         "Parsed": "S\\(mid,(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),u\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),\\)S\\(mid,(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),u\\d+,(?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)"
       },
       "690": {

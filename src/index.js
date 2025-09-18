@@ -5,7 +5,7 @@ import * as webjs from "./client/web_js/deps.js";
   
   async function main(){
     await khhyl.FontManager.load_all(["default","sanserif","fude","siddham"]);
-    await khhyl.GlyphManager.loadAll("default");
+    //await khhyl.GlyphManager.loadAll("default");
 
     const tb = new webjs.Sandbox_web($("div.area_tb#sandbox")[0]);
     tb.draw();

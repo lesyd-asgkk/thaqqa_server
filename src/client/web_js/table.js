@@ -269,12 +269,51 @@ class RowDesc_web{
           this.content.sort(sortalg);
     }
 }
+
+class FontDialogue_web{
+    constructor(parent,font){
+        this.parent = parent;
+        this.font = font;
+    }
+    draw(loc){
+        const select = Khhyl.FontManager.getAllFontName();
+        const object = document.createElement("select");
+        object.contentEditable = false;
+        object.classList.add("fontselect");
+        for(let i = 0;i < select.length;i++){
+            const option = document.createElement("option");
+            option.value = select[i];
+                    option.selected = select[i] == this.font;
+                    option.textContent = select[i];
+                    object.appendChild(option);
+                }
+            object.addEventListener("change",() => {this.redraw_table(this.parent,this,object);},true);
+        loc.appendChild(object);
+        const br =  document.createElement("br");
+        loc.appendChild(br);
+    }
+    redraw_table(parent,obj,font){
+        const older = parent.font;
+        console.log(font.value);
+        const font_ = font.value;
+        try{
+            let _ =  Khhyl.FontManager.getFont(font_);
+            parent.font = font_;
+            this.font = font_;
+            //while(parent.loc.firstChild){parent.loc.removeChild(parent.loc.firstChild);} //リセットする
+            parent.draw(); // 描画しなおし
+        } catch {
+            obj.textContent = older;
+            this.font = font;
+        }
+    }
+}
 //tableのweb。こいつをいじる
 class Table_web{
-    constructor(tablename,loc){
+    constructor(tablename,loc,font){
         this.tablename = tablename; //
         this.loc = loc; //設置してある場所
-        this.font = "siddham"; //変更可能にする
+        this.font = font; //変更可能にする
         this.row_desc = new RowDesc_web(this); //
         this.row = [];
     }
@@ -319,6 +358,9 @@ class Table_web{
         while( this.loc.firstChild ){
             this.loc.removeChild( this.loc.firstChild );
           }
+        const FontDialogue = new FontDialogue_web(this,this.font);
+        FontDialogue.draw(this.loc);
+
         const tb = document.createElement('table');
         this.row_desc = new RowDesc_web(this);
         this.row_desc.SetColumns(this.tablename);

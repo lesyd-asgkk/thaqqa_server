@@ -14,7 +14,7 @@ class GlyphManager{
       }
     }
     static async loadAll(font){
-        await fetch('/server/FontData.svg')
+        await fetch('/server/FontData/' + font + '.svg')
       .then(response => response.json())
       .then(data => {
         try{
