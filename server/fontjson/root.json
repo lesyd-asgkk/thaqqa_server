@@ -767,14 +767,14 @@
         "name": "x_Align",
         "type": "INTEGER",
         "order": 6,
-        "subtype": "none",
+        "subtype": "AligX",
         "dev": false
       },
       "y_Align": {
         "name": "y_Align",
         "type": "INTEGER",
         "order": 7,
-        "subtype": "none",
+        "subtype": "AligY",
         "dev": false
       },
       "Order": {

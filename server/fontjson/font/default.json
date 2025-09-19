@@ -48,21 +48,21 @@
         "name": "VersionMajor",
         "type": "INTEGER",
         "order": 400,
-        "subtype": "none",
+        "subtype": "n>=0",
         "dev": false
       },
       "VersionMinor": {
         "name": "VersionMinor",
         "type": "INTEGER",
         "order": 401,
-        "subtype": "none",
+        "subtype": "n>=0",
         "dev": false
       },
       "VersionPatch": {
         "name": "VersionPatch",
         "type": "INTEGER",
         "order": 402,
-        "subtype": "none",
+        "subtype": "n>=0",
         "dev": false
       }
     },
