@@ -8,7 +8,7 @@
    version="1.1"
    id="svg1035"
    inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
-   sodipodi:docname="five__1.svg"
+   sodipodi:docname="two__3.svg"
    inkscape:export-filename="v_a_1_0.svg"
    inkscape:export-xdpi="96"
    inkscape:export-ydpi="96"
@@ -27,9 +27,9 @@
      inkscape:deskcolor="#505050"
      inkscape:document-units="px"
      showgrid="false"
-     inkscape:zoom="5.2913966"
-     inkscape:cx="46.207083"
-     inkscape:cy="66.995545"
+     inkscape:zoom="7.483165"
+     inkscape:cx="-11.024747"
+     inkscape:cy="55.524634"
      inkscape:window-width="1920"
      inkscape:window-height="1111"
      inkscape:window-x="-9"
@@ -43,9 +43,23 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
+    <g
+       id="path5173"
+       transform="translate(1.3363329,34.203381)">
+      <path
+         style="color:#000000;fill:#000000;fill-opacity:0;stroke-width:4;stroke-linejoin:bevel;-inkscape-stroke:none"
+         d="M -10,1.5617376 10,17.561738"
+         id="path5188" />
+    </g>
     <path
-       style="color:#000000;fill:#000000;-inkscape-stroke:none"
-       d="m -2.34375,0 v 84 h 4.6875 V 0 Z"
-       id="path3207" />
+       style="fill:#000000;stroke:#000000;stroke-width:4.688;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:1"
+       d="m -8.686912,23.215706 20,17"
+       id="path1675"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:#000000;stroke:#000000;stroke-width:4.688;stroke-linejoin:bevel;stroke-dasharray:none;stroke-opacity:1"
+       d="m -8.686912,51.215706 20,17"
+       id="path5919"
+       sodipodi:nodetypes="cc" />
   </g>
 </svg>

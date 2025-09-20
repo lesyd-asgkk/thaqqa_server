@@ -1,6 +1,14 @@
 {
-  "undefined": {
+  "ROOTDATA": {
+    "name": "ROOTDATA",
     "columnList": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "ID",
+        "dev": true
+      },
       "VersionMajor": {
         "name": "VersionMajor",
         "type": "INTEGER",
@@ -24,7 +32,8 @@
       }
     },
     "data": {
-      "undefined": {
+      "0": {
+        "ID": 0,
         "VersionMajor": 0,
         "VersionMinor": 0,
         "VersionPatch": 0
@@ -2257,225 +2266,225 @@
         "Pattern": "h",
         "Order": 5,
         "Priority": 25,
-        "Name": "S(null,(*),iold_-*,(*))",
-        "NameAlt": "S(init,$1,iold0,$2)",
-        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),iold\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
+        "Name": "S(null,(*),iold_(-*),(*))",
+        "NameAlt": "S(init,$1,iold0$2,$3)",
+        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),iold\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
       },
       "7": {
         "ID": 7,
         "Pattern": "h",
         "Order": 5,
         "Priority": 24,
-        "Name": "S(null,,iold_-*,(*))",
-        "NameAlt": "S(init,,iold0,$1)",
-        "Parsed": "S\\(null,,iold\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
+        "Name": "S(null,,iold_(-*),(*))",
+        "NameAlt": "S(init,,iold0$1,$2)",
+        "Parsed": "S\\(null,,iold\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
       },
       "8": {
         "ID": 8,
         "Pattern": "h",
         "Order": 5,
         "Priority": 23,
-        "Name": "S(null,(*),iold_-*,)",
-        "NameAlt": "S(fin,$1,iold0,)",
-        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),iold\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),\\)"
+        "Name": "S(null,(*),iold_(-*),)",
+        "NameAlt": "S(fin,$1,iold0$2,)",
+        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),iold\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),\\)"
       },
       "9": {
         "ID": 9,
         "Pattern": "h",
         "Order": 5,
         "Priority": 2,
-        "Name": "S(null,(*),eold_-*,(*))",
-        "NameAlt": "S(fin,$1,eold0,$2)",
-        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),eold\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
+        "Name": "S(null,(*),eold_(-*),(*))",
+        "NameAlt": "S(fin,$1,eold0$2,$3)",
+        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),eold\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
       },
       "10": {
         "ID": 10,
         "Pattern": "h",
         "Order": 5,
         "Priority": 21,
-        "Name": "S(null,,eold_-*,(*))",
-        "NameAlt": "S(init,,eold0,$1)",
-        "Parsed": "S\\(null,,eold\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
+        "Name": "S(null,,eold_(-*),(*))",
+        "NameAlt": "S(init,,eold0$1,$2)",
+        "Parsed": "S\\(null,,eold\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
       },
       "11": {
         "ID": 11,
         "Pattern": "h",
         "Order": 5,
         "Priority": 20,
-        "Name": "S(null,(*),eold_-*,)",
-        "NameAlt": "S(fin,$1,eold0,)",
-        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),eold\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),\\)"
+        "Name": "S(null,(*),eold_(-*),)",
+        "NameAlt": "S(fin,$1,eold0$2,)",
+        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),eold\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),\\)"
       },
       "12": {
         "ID": 12,
         "Pattern": "h",
         "Order": 5,
         "Priority": 19,
-        "Name": "S(null,(*),v_-*,(*))",
-        "NameAlt": "S(fin,$1,v1,$2)",
-        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),v\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
+        "Name": "S(null,(*),v_(-*),(*))",
+        "NameAlt": "S(fin,$1,v1$2,$3)",
+        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),v\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
       },
       "13": {
         "ID": 13,
         "Pattern": "h",
         "Order": 5,
         "Priority": 18,
-        "Name": "S(null,,v_-*,(*))",
-        "NameAlt": "S(init,,v0,$1)",
-        "Parsed": "S\\(null,,v\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
+        "Name": "S(null,,v_(-*),(*))",
+        "NameAlt": "S(init,,v0$1,$2)",
+        "Parsed": "S\\(null,,v\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
       },
       "14": {
         "ID": 14,
         "Pattern": "h",
         "Order": 5,
         "Priority": 17,
-        "Name": "S(null,(*),v_-*,)",
-        "NameAlt": "S(fin,$1,v1,)",
-        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),v\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),\\)"
+        "Name": "S(null,(*),v_(-*),)",
+        "NameAlt": "S(fin,$1,v1$2,)",
+        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),v\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),\\)"
       },
       "15": {
         "ID": 15,
         "Pattern": "h",
         "Order": 5,
         "Priority": 16,
-        "Name": "S(null,(*),u_-*,(*))",
-        "NameAlt": "S(fin,$1,u1,$2)",
-        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),u\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
+        "Name": "S(null,(*),u_(-*),(*))",
+        "NameAlt": "S(fin,$1,u1$2,$3)",
+        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),u\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
       },
       "16": {
         "ID": 16,
         "Pattern": "h",
         "Order": 5,
         "Priority": 15,
-        "Name": "S(null,,u_-*,(*))",
-        "NameAlt": "S(init,,u0,$1)",
-        "Parsed": "S\\(null,,u\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
+        "Name": "S(null,,u_(-*),(*))",
+        "NameAlt": "S(init,,u0$1,$2)",
+        "Parsed": "S\\(null,,u\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
       },
       "17": {
         "ID": 17,
         "Pattern": "h",
         "Order": 5,
         "Priority": 14,
-        "Name": "S(null,(*),u_-*,)",
-        "NameAlt": "S(fin,$1,u0,)",
-        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),u\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),\\)"
+        "Name": "S(null,(*),u_(-*),)",
+        "NameAlt": "S(fin,$1,u0$2,)",
+        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),u\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),\\)"
       },
       "18": {
         "ID": 18,
         "Pattern": "h",
         "Order": 5,
         "Priority": 13,
-        "Name": "S(null,(*),o_-*,(*))",
-        "NameAlt": "S(init,$1,o0,$2)",
-        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),o\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
+        "Name": "S(null,(*),o_(-*),(*))",
+        "NameAlt": "S(init,$1,o0$2,$3)",
+        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),o\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
       },
       "19": {
         "ID": 19,
         "Pattern": "h",
         "Order": 5,
         "Priority": 12,
-        "Name": "S(null,,o_-*,(*))",
-        "NameAlt": "S(init,,o0,$1)",
-        "Parsed": "S\\(null,,o\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
+        "Name": "S(null,,o_(-*),(*))",
+        "NameAlt": "S(init,,o0$1,$2)",
+        "Parsed": "S\\(null,,o\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
       },
       "20": {
         "ID": 20,
         "Pattern": "h",
         "Order": 5,
         "Priority": 11,
-        "Name": "S(null,(*),o_-*,)",
-        "NameAlt": "S(fin,$1,o0,)",
-        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),o\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),\\)"
+        "Name": "S(null,(*),o_(-*),)",
+        "NameAlt": "S(fin,$1,o0$2,)",
+        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),o\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),\\)"
       },
       "21": {
         "ID": 21,
         "Pattern": "h",
         "Order": 5,
         "Priority": 10,
-        "Name": "S(null,(*),i_-*,(*))",
-        "NameAlt": "S(fin,$1,i1,$2)",
-        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),i\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
+        "Name": "S(null,(*),i_(-*),(*))",
+        "NameAlt": "S(fin,$1,i1$2,$3)",
+        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),i\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
       },
       "22": {
         "ID": 22,
         "Pattern": "h",
         "Order": 5,
         "Priority": 9,
-        "Name": "S(null,,i_-*,(*))",
-        "NameAlt": "S(init,,i0,$1)",
-        "Parsed": "S\\(null,,i\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
+        "Name": "S(null,,i_(-*),(*))",
+        "NameAlt": "S(init,,i0$1,$2)",
+        "Parsed": "S\\(null,,i\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
       },
       "23": {
         "ID": 23,
         "Pattern": "h",
         "Order": 5,
         "Priority": 8,
-        "Name": "S(null,(*),i_-*,)",
-        "NameAlt": "S(fin,$1,i1,)",
-        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),i\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),\\)"
+        "Name": "S(null,(*),i_(-*),)",
+        "NameAlt": "S(fin,$1,i1$2,)",
+        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),i\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),\\)"
       },
       "24": {
         "ID": 24,
         "Pattern": "h",
         "Order": 5,
         "Priority": 7,
-        "Name": "S(null,(*),e_-*,(*))",
-        "NameAlt": "S(fin,$1,e0,$2)",
-        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),e\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
+        "Name": "S(null,(*),e_(-*),(*))",
+        "NameAlt": "S(fin,$1,e0$2,$3)",
+        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),e\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
       },
       "25": {
         "ID": 25,
         "Pattern": "h",
         "Order": 5,
         "Priority": 6,
-        "Name": "S(null,,e_-*,(*))",
-        "NameAlt": "S(fin,x0,e0,$1)",
-        "Parsed": "S\\(null,,e\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
+        "Name": "S(null,,e_(-*),(*))",
+        "NameAlt": "S(fin,x0,e0$1,$2)",
+        "Parsed": "S\\(null,,e\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
       },
       "26": {
         "ID": 26,
         "Pattern": "h",
         "Order": 5,
         "Priority": 5,
-        "Name": "S(null,(*),e_-*,)",
-        "NameAlt": "S(fin,$1,e0,)",
-        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),e\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),\\)"
+        "Name": "S(null,(*),e_(-*),)",
+        "NameAlt": "S(fin,$1,e0$2,)",
+        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),e\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),\\)"
       },
       "27": {
         "ID": 27,
         "Pattern": "h",
         "Order": 5,
         "Priority": 4,
-        "Name": "S(null,(*),(?:a|abig)_,(*))",
-        "NameAlt": "S(mid,$1,a0,$2)",
-        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),(?:a|abig)\\d+,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
+        "Name": "S(null,(*),(?:a|abig)_(-*),(*))",
+        "NameAlt": "S(mid,$1,a0$2,$3)",
+        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),(?:a|abig)\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
       },
       "28": {
         "ID": 28,
         "Pattern": "h",
         "Order": 5,
         "Priority": 3,
-        "Name": "S(null,,(?:a|abig)_,(*))",
-        "NameAlt": "S(init,,abig0,$1)",
-        "Parsed": "S\\(null,,(?:a|abig)\\d+,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
+        "Name": "S(null,,(?:a|abig)_(-*),(*))",
+        "NameAlt": "S(init,,abig0$1,$2)",
+        "Parsed": "S\\(null,,(?:a|abig)\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*))\\)"
       },
       "29": {
         "ID": 29,
         "Pattern": "h",
         "Order": 5,
         "Priority": 2,
-        "Name": "S(null,(*),(?:a|abig)_,)",
-        "NameAlt": "S(mid,$1,abig0,)",
-        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),(?:a|abig)\\d+,\\)"
+        "Name": "S(null,(*),(?:a|abig)_(-*),)",
+        "NameAlt": "S(mid,$1,abig0$2,)",
+        "Parsed": "S\\(null,((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),(?:a|abig)\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),\\)"
       },
       "30": {
         "ID": 30,
         "Pattern": "h",
         "Order": 5,
         "Priority": 0,
-        "Name": "S(null,,a_-*,)",
-        "NameAlt": "S(sol,,abig0,)",
-        "Parsed": "S\\(null,,a\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*),\\)"
+        "Name": "S(null,,a_(-*),)",
+        "NameAlt": "S(sol,,abig1$1,)",
+        "Parsed": "S\\(null,,a\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),\\)"
       },
       "31": {
         "ID": 31,
@@ -2483,7 +2492,7 @@
         "Order": 5,
         "Priority": 1,
         "Name": "S(null,,(.)_(-*),)",
-        "NameAlt": "S(sol,,$10$2,)",
+        "NameAlt": "S(sol,,$11$2,)",
         "Parsed": "S\\(null,,([A-Za-z]+)\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),\\)"
       },
       "32": {

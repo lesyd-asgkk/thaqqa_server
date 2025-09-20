@@ -2,6 +2,13 @@
   "FONTDATA": {
     "name": "FONTDATA",
     "columnList": {
+      "ID": {
+        "name": "ID",
+        "type": "INTEGER",
+        "order": 0,
+        "subtype": "ID",
+        "dev": true
+      },
       "Thickness": {
         "name": "Thickness",
         "type": "float",
@@ -67,7 +74,8 @@
       }
     },
     "data": {
-      "undefined": {
+      "0": {
+        "ID": 0,
         "Thickness": 4,
         "WidthH": 90,
         "WidthV": 85,

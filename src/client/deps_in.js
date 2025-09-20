@@ -34,6 +34,7 @@ function export_(){
     
     const r_ = new khhyl.RegExp_Khhyl("P([_.IsNewline]_-*)",{}).ParseRegExp().toNormalRegExp();
     console.log(r_);
+
     let ta = new webjs.Table_web("VOWEL",$("div.area_tb#vowel")[0],"default");
     ta.draw();
     ta = new webjs.Table_web("DIACRITIC_V",$("div.area_tb#voweld")[0],"default");
@@ -46,6 +47,7 @@ function export_(){
     ta.draw();
     ta = new webjs.Table_web("DIACRITIC_P",$("div.area_tb#punctuationd")[0],"default");
     ta.draw();
+    
     let tb;
     tb = new webjs.Table_web("GSUB",$("div.area_tb#gsub")[0],"default");
     tb.draw();
@@ -57,11 +59,18 @@ function export_(){
     tb = new webjs.Table_web("GPOS",$("div.area_tb#gpos")[0],"default");
     tb.draw();
 
+    tb = new webjs.Table_web("ROOTDATA",$("div.area_tb#rootdata")[0],"default");
+    tb.draw();
+    tb = new webjs.Table_web("FONTDATA",$("div.area_tb#fontdata")[0],"default");
+    tb.draw();
+
     tb = new webjs.Sandbox_web($("div.area_tb#sandbox")[0],"default");  
     tb.draw();
 
     tb = new webjs.LayoutDebug_web($("div.area_tb#layouttest")[0],"default");
     tb.draw();
+
+    
 
     /*khhyl.Parser.setParserColumnAll();
     khhyl.GPOSManager.setGPOSColumnAll("default");
