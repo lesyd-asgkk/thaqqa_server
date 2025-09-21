@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="100"
+   height="100"
+   viewBox="0 0 100 100"
+   version="1.1"
+   id="svg1035"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   sodipodi:docname="sh_coda_0.svg"
+   inkscape:export-filename="v_a_1_0.svg"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1037"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="7.4831654"
+     inkscape:cx="-15.835545"
+     inkscape:cy="15.568278"
+     inkscape:window-width="1920"
+     inkscape:window-height="1111"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showguides="false" />
+  <defs
+     id="defs1032" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="color:#000000;fill:#000000;-inkscape-stroke:none"
+       d="m -15,-2 c -1.984587,0 -3.889115,0.9767784 -5.126953,2.6015625 C -21.364791,2.2263466 -22,4.4189352 -22,7 c 0,2.581065 0.635209,4.773653 1.873047,6.398438 C -18.889115,15.023222 -16.984587,16 -15,16 c 1.726492,0 3.700755,-0.534443 5.0527344,-2.109375 C -8.5952865,12.315693 -8,10.0519 -8,7 -8,3.9481005 -8.5952864,1.6843065 -9.9472656,0.109375 -11.299245,-1.4655565 -13.273508,-2 -15,-2 Z m 0,4 c 1.034926,0 1.559914,0.1817076 2.017578,0.7148438 C -12.524758,3.2479799 -12,4.4841851 -12,7 c 0,2.5158149 -0.524758,3.75202 -0.982422,4.285156 C -13.440086,11.818293 -13.965074,12 -15,12 -15.776831,12 -16.373508,11.725159 -16.945312,10.974609 -17.517117,10.224059 -18,8.9175845 -18,7 -18,5.0824157 -17.517117,3.7759405 -16.945312,3.0253906 -16.373508,2.2748408 -15.776831,2 -15,2 Z"
+       id="path20624" />
+  </g>
+</svg>

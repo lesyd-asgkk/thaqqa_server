@@ -28,8 +28,8 @@
      inkscape:document-units="px"
      showgrid="false"
      inkscape:zoom="5.2913966"
-     inkscape:cx="46.207083"
-     inkscape:cy="66.995545"
+     inkscape:cx="46.963027"
+     inkscape:cy="51.876663"
      inkscape:window-width="1920"
      inkscape:window-height="1111"
      inkscape:window-x="-9"
@@ -43,14 +43,23 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
-    <path
-       style="color:#000000;fill:#000000;-inkscape-stroke:none"
-       d="m -2.34375,0 v 84 h 4.6875 V 0 Z"
-       id="path3207" />
-    <path
-       style="color:#000000;fill:#000000;-inkscape-stroke:none"
-       d="m 22,39.65625 h -44 v 4.6875 h 44 z"
-       id="path629"
-       sodipodi:nodetypes="ccccc" />
+    <g
+       id="path3207-3">
+      <path
+         style="color:#000000;fill:#000000;stroke-width:4.688;-inkscape-stroke:none"
+         d="M 0,0 V 84 Z"
+         id="path1977" />
+      <path
+         id="path1979"
+         style="color:#000000;fill:#000000;-inkscape-stroke:none"
+         d="M -2.34375 0 L -2.34375 39.65625 L -22 39.65625 L -22 44.34375 L -2.34375 44.34375 L -2.34375 84 L 2.34375 84 L 2.34375 44.34375 L 22 44.34375 L 22 39.65625 L 2.34375 39.65625 L 2.34375 0 L -2.34375 0 z " />
+    </g>
+    <g
+       id="path12020">
+      <path
+         style="color:#000000;fill:#000000;stroke-width:4.688;-inkscape-stroke:none"
+         d="M 22,42 H -22 Z"
+         id="path1983" />
+    </g>
   </g>
 </svg>
