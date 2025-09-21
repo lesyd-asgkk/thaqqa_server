@@ -29,10 +29,10 @@ function export_(){
   async function main(){
 
   await khhyl.FontManager.load_all(["default","sanserif","fude","siddham"]);
-  /*await khhyl.GlyphManager.loadAll("default");
+  await khhyl.GlyphManager.loadAll("default");
   await khhyl.GlyphManager.loadAll("fude");
   await khhyl.GlyphManager.loadAll("sanserif");
-  await khhyl.GlyphManager.loadAll("siddham");*/
+  await khhyl.GlyphManager.loadAll("siddham");
 
     const r_ = new khhyl.RegExp_Khhyl("P([_.IsNewline]_-*)",{}).ParseRegExp().toNormalRegExp();
     console.log(r_);
