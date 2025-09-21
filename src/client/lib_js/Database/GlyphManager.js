@@ -19,7 +19,14 @@ class GlyphManager{
       .then(data => {
         try{
         FontManager.getFont(font).getTable("GLYPH",true);
-      console.log("done");  
+            FontManager.getFont(font).deleteTable("GLYPH");
+            FontManager.getFont(font).createTable({name:"GLYPH"});
+            const table = FontManager.getFont(font).getTable("GLYPH");
+            table.createColumn("ID","INTEGER","",0);
+            table.createColumn("Name","char","",1);
+            table.createColumn("Path","char","",2);
+            
+            for(const d in data) table.createData({Name:d,Path:SVG.convertSVG(data[d])});
       }
         catch(_e){
             FontManager.getFont(font).createTable({name:"GLYPH"});

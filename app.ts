@@ -70,6 +70,7 @@ for (const entry of entry_) {
 }
 for (const entry of entry_) {
   router.get(`/server/FontData/${entry}.svg`, async (ctx) => {
+    console.log(entry);
     const data = LoadFile.loadAllGlyph(`./server/Font_Data_${entry}`);
     ctx.response.body = data; // Uint8Arrayをバイナリデータとしてクライアントに送信
     ctx.response.headers.set("Content-Type", "application/octet-stream"); // コンテンツタイプを設定

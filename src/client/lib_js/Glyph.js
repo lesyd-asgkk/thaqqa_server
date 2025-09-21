@@ -121,6 +121,7 @@ class Glyph{
         this.vec = vec;
         this.fullname = name; 
         this.name = ""; 
+        this.d_origin = "";
         this.d = [];
         this.val = -1;
         this.form = "";
@@ -145,7 +146,7 @@ class Glyph{
             const name_ = `${this.name}_${form}_${this.val}`
             const dt = (GlyphManager.getSVG(name_,this.font)[0]) ?? "M 0,0";
             this.d = SVG.toRelative(dt);//this.nameがこれ以上分割できない場合。
-            
+            this.d_origin = SVG.toRelative(dt);
             let offx = 0;let offy = 0;
             if(LetterManager.getLetter(this.name).length > 0){offx = LetterManager.getLetter(this.name)[0].getVal("x_Align");offy = LetterManager.getLetter(this.name)[0].getVal("y_Align");}
             this.aligment = {x:offx,y:offy};
@@ -276,7 +277,8 @@ class Glyph{
             const v = this.childList[1].glyphname.match(/[A-Za-z]+/g)[0];
             const v_null = FontManager.getStaticTable("VOWEL").getData({Name:v})[0].getVal("isNullVowel");
         if(v_null){
-            const stick = SVG.createSkewer(-width/2,top+this.height.top,width/2,this.height.vtop).concat(SVG.createSkewer(-width/2,this.height.vbottom,width/2,bottom+this.height.bottom));
+            const stick = SVG.createSkewer(-width/2,top+this.height.top,width/2,bottom+this.height.bottom);
+            //const stick = SVG.createSkewer(-width/2,top+this.height.top,width/2,this.height.vtop).concat(SVG.createSkewer(-width/2,this.height.vbottom,width/2,bottom+this.height.bottom));
             switch(this.form){
                 case "sol":
                     path = SVG.toRelative(path);
@@ -337,14 +339,15 @@ class Glyph{
         if(this.type == "S"){
             const c0 = this.childList[0].toPath();
             const v = this.childList[1].toPath();
+            const v_alt = this.childList[1].d_origin;
             const c1 = this.childList[2].toPath();
-            const offs = this.getoffset(this.childList[1],true,true)
+            const offs = this.getoffset()
             const off0 = offs[0];//this.childList[0].name_b.glyphname == null ? {x:0,y:0} :this.childList[0].getoffset(v,true);//parentd
             const off1 = offs[1];//this.childList[2].name_b.glyphname == null ? {x:0,y:0} :this.childList[2].getoffset(v,true);
             ans = SVG.Domerge3(v,c0,c1,0,off0.y,0,off1.y);
             ans = SVG.toRelative(ans);
-            this.height.vtop = SVG.getTop(v);
-            this.height.vbottom = SVG.getBottom(v);
+            this.height.vtop = SVG.getTop(v_alt);
+            this.height.vbottom = SVG.getBottom(v_alt);
             this.height.bottom = SVG.getBottom(ans);
             this.height.top = SVG.getTop(ans);
             this.d = ans;
@@ -357,7 +360,7 @@ class Glyph{
                 const dir_ = {onset:1,coda:-1,sol:1,init:1,mid:1,fin:1};
             while(p.parent != null && p.parent.type != "S"){
                 const dir  = p.type.startsWith("C") ? dir_[p.form] : 1;
-                const off = p.parent.getoffset("",false,true);
+                const off = p.parent.getoffset();
                 const child_d = p.parent.childList[1].d;
                 const off_childx = dir*(SVG.getRight(child_d)+SVG.getLeft(child_d))/2;
                 const off_childy = (SVG.getTop(child_d)-SVG.getBottom(child_d)/2);
@@ -382,7 +385,7 @@ class Glyph{
             const topgap = c0d !=null?(c2d!=null ? Math.min(SVG.getTop(c0d),SVG.getTop(c2d)):SVG.getTop(c2d)):(c2d!=null ? SVG.getTop(c2d):0);
             const bottomgap = c0d !=null?(c2d!=null ? Math.max(SVG.getBottom(c0d),SVG.getBottom(c2d)):SVG.getBottom(c2d)):(c2d!=null ? SVG.getBottom(c2d):0);
             if(v_null){
-                return [{x:c0offset.x,y:SVG.getBottom(c1d)+topgap+c0offset.y},{x:c2offset.x,y:SVG.getBottom(c1d)+topgap+c2offset.y}];
+                return [{x:c0offset.x,y:SVG.getBottom(c1d)+topgap-bottomgap+c0offset.y},{x:c2offset.x,y:SVG.getBottom(c1d)+topgap-bottomgap+c2offset.y}];
             }
             else{
                 switch(this.form){
@@ -408,8 +411,8 @@ class Glyph{
                 const y =  (SVG.getTop(parentd)*(1-alig1.y)/2+SVG.getBottom(parentd) *(1+alig1.y)/2)+off1.y;
                 return{x:x,y:y};
             } else{
-                const x =  (SVG.getLeft(parentd)*(1-alig1.x)/2+SVG.getRight(parentd)*(1+alig1.x)/2)+off1.x;
-                const y =  (SVG.getTop(parentd)*(1-alig1.y)/2+SVG.getBottom(parentd)*(1+alig1.y)/2)+off1.y;
+                const x =  (SVG.getLeft(parentd)*alig1.x/2+SVG.getRight(parentd)*-alig1.x/2)+off1.x;
+                const y =  (SVG.getTop(parentd)*(1-alig1.y)/2+SVG.getBottom(parentd) *(1+alig1.y)/2)+off1.y;
                 return{x:x,y:y};
             }
         }

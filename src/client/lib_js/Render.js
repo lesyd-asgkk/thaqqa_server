@@ -25,7 +25,9 @@ class Render{
                 break;
             default:
                 text = Parser.parse(text,lang);
+                //console.log(text);
                 text = GSUBManager.gsub(text,alig);
+                //console.log(text);
                 text = F_GSUBManager.fgsub(text,alig,option.font);
                 
             break;

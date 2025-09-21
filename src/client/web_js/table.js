@@ -11,7 +11,8 @@ class Row_web{
     setContent(value,table){
         const DTTB = Khhyl.FontManager.getStaticTable(table) ?? Khhyl.FontManager.getFont(this.parent.font).getTable(table);
         const sublistlist = {
-            "AligX":[[-1,"□→‖←□(-1)"],[0,"・｜・(0)"],[1,"⇐■｜■⇒(1)"]],
+            "AligX0":[[-1,"□→‖←□(-1)"],[0,"・｜・(0)"],[1,"⇐■｜■⇒(1)"]],
+            "AligX1":[[-1,"□→(-1)"],[0,"・(0)"],[1,"⇐■(1)"]],
             "AligY":[[-1,"↑(-1)"],[0,"・(0)"],[1,"⇓(1)"]],
             "LANG":[["u","共通(u)"],["c","🐍東(c)"],["o","汽🐟(o)"]],
             "GPOS":[["DIAC","字母構成"],["IN","音節内カーニング"],["INEX","音節上下長・左右幅"],["EX","音節間カーニング"]],
@@ -24,7 +25,7 @@ class Row_web{
             switch(type){
                 case "INTEGER":
                     switch(subtype){
-                        case "AligX":case "AligY":
+                        case "AligX0":case "AligX1":case "AligY":
                             this.content.push(new DIVselect_web(this.parent,this.id,value[v],v,"select",subtype,sublistlist[subtype]));
                         break;
                         default:

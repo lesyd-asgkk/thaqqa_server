@@ -27,9 +27,9 @@
      inkscape:deskcolor="#505050"
      inkscape:document-units="px"
      showgrid="false"
-     inkscape:zoom="7.4831654"
-     inkscape:cx="-15.835545"
-     inkscape:cy="15.434645"
+     inkscape:zoom="1.3228493"
+     inkscape:cx="-56.317831"
+     inkscape:cy="140.98356"
      inkscape:window-width="1920"
      inkscape:window-height="1111"
      inkscape:window-x="-9"
@@ -45,8 +45,8 @@
      id="layer1">
     <path
        style="color:#000000;fill:none;stroke:#000000;stroke-width:4;stroke-dasharray:none;stroke-opacity:1"
-       d="m -10,7 c 0,5.56772 -2.238579,7 -5,7 -2.761421,0 -5,-2.501346 -5,-7 C -20,2.5013464 -17.761421,5e-7 -15,5e-7 -12.238579,5e-7 -10,1.4322801 -10,7 Z"
+       d="m -8,8 c 0,6.181924 -2.577128,8 -6,8 -3.422872,0 -6,-2.272937 -6,-8 C -20,2.2729373 -17.470119,2.5e-7 -14,2.5e-7 -10.529881,2.5e-7 -8,1.8180755 -8,8 Z"
        id="path20624"
-       sodipodi:nodetypes="zszsz" />
+       sodipodi:nodetypes="zzzzz" />
   </g>
 </svg>
