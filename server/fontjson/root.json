@@ -2722,6 +2722,15 @@
         "Name": "R(\\=)",
         "NameAlt": "P(equal0)",
         "Parsed": "R\\(\\=\\)"
+      },
+      "175": {
+        "ID": 175,
+        "Pattern": "u",
+        "Order": 0,
+        "Priority": 140,
+        "Name": "R(ー)",
+        "NameAlt": "P(minus0)",
+        "Parsed": "R\\(ー\\)"
       }
     }
   },
