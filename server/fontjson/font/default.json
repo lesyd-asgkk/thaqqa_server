@@ -7276,32 +7276,8 @@
         "OffsetX0": -30,
         "OffsetY0": 0,
         "OffsetX1": 30,
-        "OffsetY1": 35,
+        "OffsetY1": 85,
         "Parsed": "P\\(comma1\\)"
-      },
-      "593": {
-        "ID": 593,
-        "Pattern": "h",
-        "Pattern_sub": "INEX",
-        "Order": 0,
-        "Name": "P(exclamation1)",
-        "OffsetX0": 0,
-        "OffsetY0": 0,
-        "OffsetX1": 0,
-        "OffsetY1": -40,
-        "Parsed": "P\\(exclamation1\\)"
-      },
-      "594": {
-        "ID": 594,
-        "Pattern": "h",
-        "Pattern_sub": "INEX",
-        "Order": 0,
-        "Name": "P(question1)",
-        "OffsetX0": 0,
-        "OffsetY0": 0,
-        "OffsetX1": 0,
-        "OffsetY1": -40,
-        "Parsed": "P\\(question1\\)"
       },
       "595": {
         "ID": 595,
@@ -8490,6 +8466,18 @@
         "OffsetX1": 0,
         "OffsetY1": 0,
         "Parsed": "V\\((?:init|mid|fin|sol|null),(?:a|hyphen)\\d+(?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)-(sone\\d+|stwo\\d+|sthree\\d+|sfour\\d+)\\)"
+      },
+      "694": {
+        "ID": 694,
+        "Pattern": "h",
+        "Pattern_sub": "INEX",
+        "Order": 0,
+        "Name": "P(*)",
+        "OffsetX0": 0,
+        "OffsetY0": 0,
+        "OffsetX1": 0,
+        "OffsetY1": -40,
+        "Parsed": "P\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)"
       }
     }
   },
