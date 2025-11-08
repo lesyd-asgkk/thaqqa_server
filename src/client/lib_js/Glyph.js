@@ -62,12 +62,10 @@ class GlyphArray{
             gap_right += tmp_for_gap.x1; gap_left += tmp_for_gap.x0;
 
             //左側の隙間。前の文字と照らし合わせて調整
-            if(i == 0) gap_left += GPOSManager.gpos((_prev??"Null()")+this.childList[i].fullname,this.vec,"EX",this.font).x1;
-            else gap_left += GPOSManager.gpos(this.childList[i-1].fullname+this.childList[i].fullname,this.vec,"EX",this.font).x1;
+            gap_left += GPOSManager.gpos( (i == 0 ? (_prev??"Null()") :this.childList[i-1].fullname)+this.childList[i].fullname,this.vec,"EX",this.font).x1;
 
             //右側の隙間。前の文字と照らし合わせて調整
-            if(i != this.childList.length-1) gap_right += GPOSManager.gpos(this.childList[i].fullname+this.childList[i+1].fullname,this.vec,"EX",this.font).x0;
-            else gap_right += GPOSManager.gpos(this.childList[i].fullname+(_next??"Null()"),this.vec,"EX",this.font).x0;
+            gap_right += GPOSManager.gpos(this.childList[i].fullname+(i != this.childList.length-1 ? this.childList[i+1].fullname:(_next??"Null()")),this.vec,"EX",this.font).x0;
 
             x += glyph_width/2 +(is_dir_right?gap_left:gap_right)*size_em;
             this.path = this.path.concat(SVG.fromPosition(x,y)).concat(SVG.toRelativeAll(glyph_path)); //文字情報を繋げる
