@@ -813,6 +813,14 @@
         "GlyphNum": 2,
         "IsNewline": false,
         "Order": 0
+      },
+      "22": {
+        "ID": 22,
+        "Name": "underbar",
+        "LoadName": "underbar",
+        "GlyphNum": 2,
+        "IsNewline": false,
+        "Order": 0
       }
     }
   },
@@ -3059,7 +3067,7 @@
         "Order": 5,
         "Priority": 0,
         "Name": "S(null,,a_(-*),)",
-        "NameAlt": "S(sol,,abig1$1,)",
+        "NameAlt": "S(sol,,abig0$1,)",
         "Parsed": "S\\(null,,a\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),\\)"
       },
       "31": {
@@ -3068,7 +3076,7 @@
         "Order": 5,
         "Priority": 1,
         "Name": "S(null,,(.)_(-*),)",
-        "NameAlt": "S(sol,,$11$2,)",
+        "NameAlt": "S(sol,,$10$2,)",
         "Parsed": "S\\(null,,([A-Za-z]+)\\d+((?:|-[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)),\\)"
       },
       "32": {

@@ -1,73 +1,360 @@
 
+
+//※計算上都合が良いので
+//終点x,y 第一制御点x1,y1 第二制御点x2,y2で統一している
+//
+
+
+  
+//もういっそstrで管理するの辞めて
+//普通にSVGクラスでpathデータ管理したい
+//staticも当然外すしSVGクラス関わってる他クラスの部分も見直す
+//Render（少）、Glyph（大）、GlyphArray（大）、GlyphManager（少）が対象
+
+
+
 class Point {
-    constructor(type,x,y,x1,y1,x2,y2,val) {
-      this.type = type;
-      this.x = this.setPos(x);this.y = this.setPos(y);
-      this.x1 = this.setPos(x1);this.y1 = this.setPos(y1);
-      this.x2 = this.setPos(x2);this.y2 = this.setPos(y2);
-      this.val = this.setPos(val);this.digit = 8;
+    constructor(type,x,y,x1,y1,x2,y2,rx,ry,angle,laf,sf) {
+      this.#set_val(type,x,y,x1,y1,x2,y2,rx,ry,angle,laf,sf);
+      this.digit = 8;
     }
-    setPos(val){
+    #set_val(type,x,y,x1,y1,x2,y2,rx,ry,angle,laf,sf){
+      this.type = type;
+      this.x = this.#setNumber(x);this.y = this.#setNumber(y);
+      this.x1 = this.#setNumber(x1);this.y1 = this.#setNumber(y1);
+      this.x2 = this.#setNumber(x2);this.y2 = this.#setNumber(y2);
+
+      this.rx = this.#setNumber(rx);this.ry = this.#setNumber(ry);this.angle = this.#setNumber(angle);
+      this.laf = this.#setBool(laf);this.sf = this.#setBool(sf);
+    }
+
+    #add_val(dx,dy){
+      this.x = this.#addNumber(this.x,dx); this.y = this.#addNumber(this.y,dy);
+      this.x1 = this.#addNumber(this.x1,dx); this.y1 = this.#addNumber(this.y1,dy);
+      this.x2 = this.#addNumber(this.x2,dx); this.y2 = this.#addNumber(this.y2,dy);
+      this.rx = this.#addNumber(this.rx,dx); this.ry = this.#addNumber(this.ry,dy);
+    }
+
+    static AbsZ(){ return new Point("Z"); }
+    static RelZ(){ return new Point("z"); }
+
+    static AbsM(x,y){ return new Point("M",x,y); }
+    static RelM(x,y){ return new Point("m",x,y); }
+    static AbsL(x,y){ return new Point("L",x,y); }
+    static RelL(x,y){ return new Point("l",x,y); }
+    static AbsV(y){ return new Point("V",null,y); }
+    static RelV(y){ return new Point("v",null,y); }
+    static AbsH(x){ return new Point("H",x); }
+    static RelH(x){ return new Point("h",x); }
+
+    static AbsQ(x,y,x1,y1){ return new Point("Q",x,y,x1,y1); }
+    static RelQ(x,y,x1,y1){ return new Point("q",x,y,x1,y1); }
+    static AbsT(x,y){ return new Point("T",x,y); }
+    static RelT(x,y){ return new Point("t",x,y); }
+    static AbsC(x,y,x1,y1,x2,y2){ return new Point("C",x,y,x1,y1,x2,y2); }
+    static RelC(x,y,x1,y1,x2,y2){ return new Point("c",x,y,x1,y1,x2,y2); }
+    static AbsS(x,y,x2,y2){ return new Point("S",x,y,null,null,x2,y2); }
+    static RelS(x,y,x2,y2){ return new Point("s",x,y,null,null,x2,y2); }
+    static AbsA(rx,ry,angle,laf,sf,x,y){ return new Point("A",x,y,null,null,null,null,rx,ry,angle,laf,sf); }
+    static RelA(rx,ry,angle,laf,sf,x,y){ return new Point("a",x,y,null,null,null,null,rx,ry,angle,laf,sf); }
+
+    clone(){
+      return new Point(this.type,this.x,this.y,this.x1,this.y1,this.x2,this.y2,this.rx,this.ry,this.angle,this.laf,this.sf);
+    }
+    #setBool(val){
+      return val != undefined ? Boolean(val) : undefined;
+    }
+    #addNumber(val0,val1){
+      return val0 != undefined ? (val1 != undefined ? Number(val0+val1): Number(val0)) : undefined;
+    }
+    #setNumber(val){
       return val != undefined ? Number(val) : undefined;
     }
-    roundAll() {
+    roundValue() {
       this.x = this.roundN(this.x);this.y = this.roundN(this.y);
       this.x1 = this.roundN(this.x1);this.y1 = this.roundN(this.y1);
       this.x2 = this.roundN(this.x2);this.y2 = this.roundN(this.y2);
+      this.rx = this.roundN(this.rx);this.ry = this.roundN(this.ry);
+      this.angle = this.roundN(this.angle);
     }
   
-    roundN(val, n) { //現在機能なし
+    roundN(val, n) { 
       n = n != undefined ? n : this.digit;
-      return val ;//!= undefined ? Math.round(val * (10 ^ n)) / (10 ^ n) : undefined;
+      return val != undefined ? Math.round(val * (10 ** n)) / (10 ** n) : undefined;
+    }
+
+    get_border(prev){
+
+      /*
+      z、Z：null(直前の点の情報での特定が出来ないため)
+      m、M：そのまま座標を返す
+      h、H：yはprevのy、xはそのまま返す
+      v、V：xはprevのx、yはそのまま返す
+      l、L：それぞれの座標のうち最小・最大を整理して返す
+
+      Q,q：ベジェ曲線の実際の(x,y)それぞれの最小値・最大値を返す
+      T,t：ベジェ曲線の実際の(x,y)それぞれの最小値・最大値を返す(制御点はprevとする)
+      C,c：ベジェ曲線の実際の(x,y)それぞれの最小値・最大値を返す
+      S,s：ベジェ曲線の実際の(x,y)それぞれの最小値・最大値を返す(制御点はprevとする)
+
+      A,a：楕円弧の実際の(x,y)それぞれの最小値・最大値を返す。
+      正直、計算式がかなり難しい。単に楕円だけの最大値・最小値を取った上で実際の描画の最大値・最小値を考慮する……？
+      楕円だけの最大値・最小値も中々に厄介
+      */
+    }
+
+    is_z(){ return this.type == "z" || this.type == "Z"; }
+    is_relative(){ return this.type.toLowerCase() == this.type;}
+    is_absolute(){ return this.type.toUpperCase() == this.type; }
+    to_absolute(currentPos){
+      if(this.is_relative){
+        this.type = this.type.toUpperCase();
+        this.#add_val(currentPos.x,currentPos.y)
+      }
+     }
+    to_relative(currentPos) {
+      if(this.is_absolute){
+        this.type = this.type.toLowerCase();
+        this.#add_val(-currentPos.x,-currentPos.y)
+      }
+    }
+    to_String(){
+      switch (this.type.toUpperCase()) {
+          case "V":case "v:": return `${this.type}${this.y}`;
+          case "H": return `${this.type}${this.x}`;
+          case "L": return `${this.type}${this.x},${this.y}`;
+          case "M": return `${this.type}${this.x},${this.y}`;
+          case "S": return `${this.type}${this.x2},${this.y2} ${this.x},${this.y}`;
+          case "C": return `${this.type}${this.x1},${this.y1} ${this.x2},${this.y2} ${this.x},${this.y}`;
+          case "T": return `${this.type}${this.x},${this.y}`;
+          case "Q": return `${this.type}${this.x1},${this.y1} ${this.x},${this.y}`;
+          case "A": return `${this.type}${this.rx},${this.ry},${this.angle},${this.laf?1:0},${this.sf?1:0},${this.x},${this.y}`;
+          case "Z": return `${this.type}`;
+        }
     }
   }
-  
-class SVG {
-    static toStr(param) {
-      let type;
-      let answer = "";
 
+  class Path{
+    #point_left = 0; //点座標としての最果て
+    #point_right = 0;
+    #point_bottom = 0;
+    #point_top = 0;
+    #border_left = 0; //実際のSVGの最果て（曲線の演算がクソダルそう）
+    #border_right = 0;
+    #border_top = 0;
+    #border_bottom = 0;
+    constructor(d) { //dはpointsの配列
+    this.d = d ?? [];
+    /*this.#first_point_abs = new Point("n",0.,0.); //絶対座標としての最初の点
+    this.#last_point_abs = new Point("n",0.,0.); //絶対座標としての最後の点*/
+    this.#updateBounds();
+  }
+  clone(){
+    const d_array = [];
+    this.d.forEach( (p) => {d_array.push(p.clone())});
+    return new Path(d_array);
+  }
+  roundValue(){ this.d.forEach( (p) => { p.roundValue(); } ); }
+
+  getLeft(){return this.#point_left;}
+  getTop(){return this.#point_top;}
+  getBottom(){return this.#point_bottom;}
+  getRight(){return this.#point_right;}
+
+  static parseString(str) {
+
+    const new_path = new Path();
+    const str_proto= str;
+
+    const str_b = str.split(/([ZzAaCcQqSsMmLlHhVv, ])/g).join(" ").split(/(?: |,)/g).filter((x) => ![" ",""].includes(x));
+
+    str = "";
+    //const REGn = /-?\d+(\.\d+)?(e-?\d+)?/g; //数字判定 (\d|\.|e|-)+ -> -?\d+(\.\d+)?(e-?\d+)?
+    let precommand = "";
+    let i = 0;
+    while (i < str_b.length) {
+      if ([" ",""].includes(str_b[i])) {
+         i++;
+      }
+      else{switch(str_b[i]){
+        case "Z": case "z": case "A":case "a": case "C": case "c":
+          case "Q": case "q": case "S": case "s": case "M": case "m":
+          case "L": case "l": case "H": case "h": case "V": case "v":
+            precommand = str_b[i];
+            i++;
+            break;
+          default:break;
+          }
+          switch(precommand){
+            case "Z": case "z": 
+              new_path.d.push(new Point(precommand));
+              precommand = "";
+            break;
+            case "A":case "a":
+              new_path.d.push(new Point(precommand,str_b[i+5],str_b[i+6],null,null,null,null,str_b[i],str_b[i+1],str_b[i+2],str_b[i+3],str_b[i+4]));
+              i+=7;
+            break;
+            case "C": case "c":
+              new_path.d.push(new Point(precommand,str_b[i+4],str_b[i+5],str_b[i],str_b[i+1],str_b[i+2],str_b[i+3]));
+              i+=6;
+            break;
+            case "Q": case "q": 
+              new_path.d.push(new Point(precommand,str_b[i+2],str_b[i+3],str_b[i],str_b[i+1]));
+              i+=4;
+            break;
+            case "S": case "s": 
+              new_path.d.push(new Point(precommand,str_b[i+2],str_b[i+3],null,null,str_b[i],str_b[i+1]));
+              i+=4;
+            break;
+            case "M": case "m":
+            case "L": case "l": 
+              new_path.d.push(new Point(precommand,str_b[i],str_b[i+1]));
+              precommand = ["M","L"].includes(precommand)?"L":"l";
+              i+=2;
+            break;
+            case "H": case "h": 
+              new_path.d.push(new Point(precommand,str_b[i]));
+              i+=1;
+            break;
+            case "V": case "v":
+              new_path.d.push(new Point(precommand,null,str_b[i]));
+              i+=1;
+            break;
+            default:
+            throw Error(`SVG要素にエラーがあります: ${str_proto}`);
+          }
+      }
+     }
+     new_path.#updateBounds();
+     return new_path;
+    }
+
+  to_String(){
       let j = 0;
+      /*for (let i = 0; i<this.d.length-1;i++) {
+        if(this.d[i+j].type == "m" && this.d[i+1].type == "m"){//連続するmをまとめる
+          this.d[i+j].x += this.d[i+1].x; this.d[i+j].y += this.d[i+1].y;
+          this.d[i+1] = new Point("n", 0, 0); //空にする
+          j--;
+        }
+        else if(this.d[i+j].type == "M" && this.d[i+1].type == "M"){//連続するMをまとめる
+          this.d[i+j].x += this.d[i+1].x;this.d[i+j].y += this.d[i+1].y;
+          this.d[i+1] = new Point("n", 0, 0); //空にする
+          j--;
+        }
+        else j = 0;
+      }*/
+      this.d = this.d.filter((i) => (i.type!="n"));
+      const temp = [];
+      this.d.forEach( (p) => { temp.push(p.to_String()); });
+
+      return temp.join(" ");
+    }
+
+    #get_internal(mode,brdr,_concat) { //brdrフラグは左右上下を(再)計算する場合に用いる。_concatは結合処理用(将来用)
+        const temp = [];
+        let q;
+        const currentPos = new Point("n", 0, 0);
+        let left = Infinity;let top = Infinity;let right = -Infinity;let bottom = -Infinity;
+        const subPos = new Point("n", undefined, undefined);
+        //this.#firstPos.x = null; this.#firstPos.y = null;
+        for (const p of this.d) {
+          /*if (typeof this.firstPos.x != "number" && typeof this.firstPos.y != "number") {
+            if (typeof p.x == "number") this.#firstPos.x = p.x;
+            if (typeof p.y == "number") this.#firstPos.y = p.y;
+          }*/
+          if(p.is_z()){
+            q = p.clone();
+            currentPos.x = subPos.x;currentPos.y = subPos.y;
+            subPos.x = undefined;subPos.y = undefined;
+          }
+          else if(p.is_relative()){
+            q = p.clone();
+            if(mode == "abs") {q.to_absolute(currentPos);}
+            if (typeof p.x == "number") currentPos.x += p.x; //currentPosを更新
+            if (typeof p.y == "number") currentPos.y += p.y;
+            if (p.type == "m") {subPos.x = currentPos.x;subPos.y = currentPos.y;}
+          }
+          else if(p.is_absolute()){
+            q = p.clone();
+            if(mode == "rel") {q.to_relative(currentPos);}
+            if (typeof p.x == "number") currentPos.x = p.x;
+            if (typeof p.y == "number") currentPos.y = p.y;
+            if (p.type == "M") {subPos.x = currentPos.x;subPos.y = currentPos.y;}
+          }
+          if (q == undefined) throw Error();
+          
+          temp.push(q);
+          if (currentPos.x != null) {left = Math.min(left, currentPos.x);right = Math.max(right, currentPos.x);}
+          if (currentPos.y != null) {top = Math.min(top, currentPos.y); bottom = Math.max(bottom, currentPos.y);}
+        }
+  
+        //this.#lastPos.x = currentPos.x; this.#lastPos.y = currentPos.y;
+
+        if(left == Infinity) left = 0;if(top == Infinity) top = 0;
+        if(right == -Infinity) right = 0;if(bottom == -Infinity) bottom = 0;
+
+        if(brdr){this.#point_left = left; this.#point_right = right; this.#point_top = top; this.#point_bottom = bottom; }
+        else{this.d = temp;} return this;
+      }
+
+    toAbsoluteAll() { return this.#get_internal("abs",false); }
+    toRelativeAll() { return this.#get_internal("rel",false); }
+    #updateBounds() { return this.#get_internal("nop",true); }
+
+    static fromPosition(x0,y0){
+        return new Path([Point.AbsM(x0,y0)]);}
+    static createSkewer(x0,y0,x1,y1){
+      if(x1<x0 || y1<y0) return new Path([Point.RelM(0.,0.)]);
+     return new Path([Point.AbsM(x0,y0),Point.AbsV(y1),Point.AbsH(x1),Point.AbsV(y0),Point.AbsZ(),Point.AbsM(0,y0)]); 
+    }
+    concat(path){
+      this.d = this.d.concat(path.d);
+      this.#updateBounds();
+      return this;
+    }
+    append_point_list(point_list){
+      this.d = this.d.concat(point_list);
+      this.#updateBounds();
+      return this;
+    }
+    append_point(point){
+      this.d.push(point);
+      this.#updateBounds();
+      return this;
+    }
+    setDrawPosition(x0,y0){ 
+      this.d.unshift(Point.AbsM(x0,y0));
+      this.#updateBounds();
+      return this;
+    }
+    //merge系が上手くいってなかった（過去形）
+
+    mergePaths2(path0,x0,y0){return this.append_point_list([Point.AbsM(x0,y0)].concat(path0.d));}
+    mergePaths3(path0,path1,x0,y0,x1,y1){
+      const points = [Point.AbsM(x0,y0)].concat(path0.d,[Point.AbsM(x1,y1)],path1.d);return this.append_point_list(points);}
+}
+
+class SVG {
+    static to_String(param) {
+           let j = 0;
       for (let i = 0; i<param.length-1;i++) {
-        if(param[i+j].type == "m" && param[i+1].type == "m"){
-          param[i+j].x += param[i+1].x;param[i+j].y += param[i+1].y;
+        if(param[i+j].type == "m" && param[i+1].type == "m"){//連続するmをまとめる
+          param[i+j].x += param[i+1].x; param[i+j].y += param[i+1].y;
           param[i+1] = new Point("n", 0, 0); //空にする
           j--;
         }
-        else if(param[i+j].type == "M" && param[i+1].type == "M"){
+        else if(param[i+j].type == "M" && param[i+1].type == "M"){//連続するMをまとめる
           param[i+j].x += param[i+1].x;param[i+j].y += param[i+1].y;
           param[i+1] = new Point("n", 0, 0); //空にする
           j--;
         }
         else j = 0;
       }
-
       param = param.filter((i) => (i.type!="n"));
-      /*
-      const eps = 1e-8;
-      const f_abs = function(i_){let ans = 0;i_.forEach(j => ans+=j*j);return ans;}
-      param = param.filter((i) => (i.type!="m" || !(f_abs([i.x,i.y]) < eps) ));
-      param = param.filter((i) => (i.type!="l" || !(f_abs([i.x,i.y]) < eps) ));
-      param = param.filter((i) => (i.type!="h" || !(Math.abs(i.x) < eps )));
-      param = param.filter((i) => (i.type!="v" || !(Math.abs(i.y) < eps )));
-      param = param.filter((i) => (i.type!="c" || !(f_abs([i.x,i.y]) < eps && f_abs([i.x1,i.y1]) < eps && f_abs([i.x2,i.y2]) < eps )));
-      */
-      for (const p of param) {
-        type = p.type;
-        switch (type) {
-          case "v": answer += `v${p.y} `; break;
-          case "h": answer += `h${p.x} `; break;
-          case "l": answer += `l${p.x},${p.y} `; break;
-          case "m": answer += `m${p.x},${p.y} `; break;
-          case "s": answer += `s${p.x2},${p.y2} ${p.x},${p.y} `; break;
-          case "c": answer += `c${p.x1},${p.y1} ${p.x2},${p.y2} ${p.x},${p.y} `;break;
-          case "t": answer += `t${p.x},${p.y} `; break;
-          case "q": answer += `q${p.x1},${p.y1} ${p.x},${p.y} `; break;
-          case "a": answer += `a${p.x1},${p.y1},${p.x2},${p.y2},${p.val},${p.x},${p.y} `; break;
-          case "z":case "Z":answer += "z"; break;
-        }
-      }
-      return answer;
+      const temp = [];
+      param.forEach( (p) => { temp.push(p.to_String()); });
+      return temp.join(' ');
     }
     static roundAll(param) {
       /*for (const p of param) {
@@ -76,13 +363,13 @@ class SVG {
       return param;
     }
     static convertSVG(param) {
-        return SVG.toStr( SVG.toRelative(param));
+        return SVG.toStr( SVG.toRelativeAll(param));
       }
-    static toRelative(param) {
+    static toRelativeAll(param) {
         if(typeof param == "string") return SVG.AbbervM(SVG.toRel(SVG.roundAll(SVG.ParseD(param))).d);
         else return SVG.AbbervM(SVG.toRel(SVG.roundAll(param)).d);
     }
-    static toAbsolute(param) {
+    static toAbsoluteAll(param) {
         if(typeof param == "string") return SVG.AbbervM(SVG.toAbs(SVG.roundAll(SVG.ParseD(param))).d);
         else return SVG.AbbervM(SVG.toAbs(SVG.roundAll(param)).d);
     }
@@ -113,228 +400,78 @@ class SVG {
         return SVG.roundAll(SVG.ParseD(` M ${x0},${y0} V ${y1} H ${x1} V ${y0} H ${x0} M 0,${y0}`));
     }
 
-    static createM(x0,y0){
+    static fromPosition(x0,y0){
         const M = SVG.roundAll(SVG.ParseD(`M ${x0},${y0}`));
         return M;}
-    static createGap(d0,x0,y0){
+    static setPosition(d0,x0,y0){
         const M = SVG.roundAll(SVG.ParseD(`M ${x0},${y0}`));
         return M.concat(d0);
     }
-    static Domerge2(d0,d1,x0, y0){
+    static mergePath2(d0,d1,x0, y0){ //mergePath2
         const M = SVG.roundAll(SVG.ParseD(`M ${x0},${y0}`));
         return d0.concat(M).concat(d1);
     }
 
-    static Domerge3(d0,d1,d2,x0,y0,x1,y1){
+    static mergePath3(d0,d1,d2,x0,y0,x1,y1){
         const M = SVG.roundAll(SVG.ParseD(`M ${x0},${y0}`));
         const M1 = SVG.roundAll(SVG.ParseD(`M ${x1},${y1}`));
         return d0.concat(M).concat(d1).concat(M1).concat(d2);
     }
 
     static AbbervM(param){return param}
-    static toAbs(param) {
-        const answer = [];
+
+    static get_internal(param,mode,_brdr,_concat) { //brdrフラグは左右上下を(再)計算する場合に用いる。_concatは結合処理用(将来用)
+        const temp = [];
         let q;
-        let type;
-        const abspos = new Point("n", 0, 0);
-        let left = Infinity;
-        let top = Infinity;
-        let right = -Infinity;
-        let bottom = -Infinity;
-        const absposb = new Point("n", undefined, undefined);
+        const currentPos = new Point("n", 0, 0);
+        let left = Infinity;let top = Infinity;let right = -Infinity;let bottom = -Infinity;
+        const subPos = new Point("n", undefined, undefined);
+        //this.#firstPos.x = null; this.#firstPos.y = null;
         for (const p of param) {
-          type = p.type;
-          switch (type) {
-            case "M":
-              q = p;
-              if (typeof p.x == "number") absposb.x = p.x;
-              if (typeof p.y == "number") abspos.y = p.y;
-              absposb.x = abspos.x;absposb.y = abspos.y;
-              break;
-            case "L":
-            case "V":
-            case "H":
-            case "C":
-            case "S":
-            case "Q":
-            case "A":
-            case "T":
-              q = p;
-              if (typeof p.x == "number") abspos.x = p.x;
-              if (typeof p.y == "number") abspos.y = p.y;
-              break;
-            case "m":
-              q = new Point("M", p.x + abspos.x, p.y + abspos.y);
-              abspos.x += p.x;abspos.y += p.y;
-              absposb.x = abspos.x;absposb.y = abspos.y;
-              break;
-            case "v":
-              q = new Point("V", undefined, p.y + abspos.y);
-              abspos.y += p.y;
-              break;
-            case "h":
-              q = new Point("H", p.x + abspos.x, undefined);
-              abspos.x += p.x;
-              break;
-            case "a":
-              q = new Point("A",
-              p.x - abspos.x,p.y + abspos.y,p.x1,p.y1,p.x2,p.y2,p.val);
-              abspos.x += p.x;abspos.y += p.y;
-              break;
-            case "l":
-              q = new Point("L", p.x + abspos.x, p.y + abspos.y);
-              abspos.x += p.x;abspos.y += p.y;
-              break;
-            case "c":
-              q = new Point("C",
-                p.x + abspos.x,p.y + abspos.y,
-                p.x1 + abspos.x,p.y1 + abspos.y,
-                p.x2 + abspos.x,p.y2 + abspos.y,
-                );
-              abspos.x += p.x;abspos.y += p.y;
-              break;
-            case "s":
-              q = new Point("S",
-                p.x + abspos.x,p.y + abspos.y,
-                undefined,undefined,
-                p.x2 + abspos.x,p.y2 + abspos.y,
-              );
-              abspos.x += p.x;abspos.y += p.y;
-              break;
-            case "q":
-              q = new Point("Q",
-                p.x + abspos.x,p.y + abspos.y,
-                p.x1 + abspos.x,p.y1 + abspos.y,
-              );
-              abspos.x += p.x;abspos.y += p.y;
-              break;
-            case "t":
-              q = new Point("T",
-                p.x + abspos.x,p.y + abspos.y,
-                undefined,undefined
-              );
-              abspos.x += p.x;abspos.y += p.y;
-              break;
-            case "z":
-            case "Z":
-              q = p;
-              abspos.x = absposb.x;abspos.y = absposb.y;
-              absposb.x = undefined;absposb.y = undefined;
-              break;
+          /*if (typeof this.firstPos.x != "number" && typeof this.firstPos.y != "number") {
+            if (typeof p.x == "number") this.#firstPos.x = p.x;
+            if (typeof p.y == "number") this.#firstPos.y = p.y;
+          }*/
+          if(p.is_z()){
+            q = p.clone();
+            currentPos.x = subPos.x;currentPos.y = subPos.y;
+            subPos.x = undefined;subPos.y = undefined;
+          }
+          else if(p.is_relative()){
+            q = p.clone();
+            if(mode == "abs") {q.to_absolute(currentPos);}
+            if (typeof p.x == "number") currentPos.x += p.x; //currentPosを更新
+            if (typeof p.y == "number") currentPos.y += p.y;
+            if (p.type == "m") {subPos.x = currentPos.x;subPos.y = currentPos.y;}
+          }
+          else if(p.is_absolute()){
+            q = p.clone();
+            if(mode == "rel") {q.to_relative(currentPos);}
+            if (typeof p.x == "number") currentPos.x = p.x;
+            if (typeof p.y == "number") currentPos.y = p.y;
+            if (p.type == "M") {subPos.x = currentPos.x;subPos.y = currentPos.y;}
           }
           if (q == undefined) throw Error();
-          answer.push(q);
-          if (abspos.x != null) {left = Math.min(left, abspos.x);right = Math.max(right, abspos.x);}
-          if (abspos.y != null) {top = Math.min(top, abspos.y); bottom = Math.max(bottom, abspos.y);}
+          
+          temp.push(q);
+          if (currentPos.x != null) {left = Math.min(left, currentPos.x);right = Math.max(right, currentPos.x);}
+          if (currentPos.y != null) {top = Math.min(top, currentPos.y); bottom = Math.max(bottom, currentPos.y);}
         }
   
+        //this.#lastPos.x = currentPos.x; this.#lastPos.y = currentPos.y;
+
         if(left == Infinity) left = 0;if(top == Infinity) top = 0;
         if(right == -Infinity) right = 0;if(bottom == -Infinity) bottom = 0;
-        return { d: answer, top: top, left: left, right: right, bottom: bottom };
-      }
-    static toRel(param) {
-      const answer = [];
-      let q;
-      let type;
-      const abspos = new Point("n", 0, 0);
-      let left = Infinity;
-      let top = Infinity;
-      let right = -Infinity;
-      let bottom = -Infinity;
-      const absposb = new Point("n", undefined, undefined);
-      for (const p of param) {
-        type = p.type;
-        switch (type) {
-          case "m":
-            q = p;
-            if (typeof p.x == "number") abspos.x += p.x;
-            if (typeof p.y == "number") abspos.y += p.y;
-            absposb.x = abspos.x;absposb.y = abspos.y;
-            break;
-          case "l":case "v":case "h":
-          case "c":case "s":
-          case "q":case "t":
-          case "a":
-            q = p;
-            if (typeof p.x == "number") abspos.x += p.x;
-            if (typeof p.y == "number") abspos.y += p.y;
-            break;
-          case "M":
-            q = new Point("m", p.x - abspos.x, p.y - abspos.y);
-            abspos.x = p.x;abspos.y = p.y;
-            absposb.x = abspos.x;absposb.y = abspos.y;
-            break;
-          case "V":
-            q = new Point("v", undefined, p.y - abspos.y);
-            abspos.y = p.y;
-            break;
-          case "H":
-            q = new Point("h", p.x - abspos.x, undefined);
-            abspos.x = p.x;
-            break;
-          case "A":
-            q = new Point("a",
-            p.x - abspos.x,p.y - abspos.y,p.x1,p.y1,p.x2,p.y2,p.val);
-            abspos.x = p.x;abspos.y = p.y;
-            break;
-          case "L":
-            q = new Point("l", p.x - abspos.x, p.y - abspos.y);
-            abspos.x = p.x;abspos.y = p.y;
-            break;
-          case "C":
-            q = new Point("c",
-            p.x - abspos.x,p.y - abspos.y,
-            p.x1 - abspos.x,p.y1 - abspos.y,
-            p.x2 - abspos.x,p.y2 - abspos.y
-            );
-            abspos.x = p.x;abspos.y = p.y;
-            break;
-          case "S":
-              q = new Point(
-                "s",
-                p.x - abspos.x,p.y - abspos.y,
-                undefined,undefined,
-                p.x2 - abspos.x,p.y2 - abspos.y
-              );
-            abspos.x = p.x;
-            abspos.y = p.y;
-            break;
-          case "Q":
-              q = new Point(
-                "q",
-                p.x - abspos.x,p.y - abspos.y,
-                p.x1 - abspos.x,p.y1 - abspos.y
-              );
-            abspos.x = p.x;
-            abspos.y = p.y;
-            break;
-          case "T":
-              q = new Point(
-                "t",
-                p.x - abspos.x,p.y - abspos.y,
-                undefined,undefined
-              );
-            abspos.x = p.x;
-            abspos.y = p.y;
-            break;
-          case "z":
-          case "Z":
-            q = p;
-            abspos.x = absposb.x;abspos.y = absposb.y;
-            absposb.x = undefined;absposb.y = undefined;
-            break;
-        }
-        if (q == undefined) throw Error();
-        answer.push(q);
 
-        if (abspos.x != undefined) {left = Math.min(left, abspos.x);right = Math.max(right, abspos.x);}
-        if (abspos.y != undefined) {top = Math.min(top, abspos.y); bottom = Math.max(bottom, abspos.y);}
+        return { d: temp, top: top, left: left, right: right, bottom: bottom }; 
+
       }
-      
-      if(left == Infinity) left = 0;if(top == Infinity) top = 0;
-      if(right == -Infinity) right = 0;if(bottom == -Infinity) bottom = 0;
-      return { d: answer, top: top, left: left, right: right, bottom: bottom };
-    }
+
+    static toAbs(param) { return SVG.get_internal(param,"abs",false); }
+    static toRel(param) { return SVG.get_internal(param,"rel",false); }
+    //#updateBounds() { return this.#get_internal("nop",true); }
+
+    
     //string型
     static ParseD(str) {
       const str_proto= str;
@@ -366,7 +503,7 @@ class SVG {
               precommand = "";
             break;
             case "A":case "a":
-              answer.push(new Point(precommand,str_b[i+5],str_b[i+6],str_b[i],str_b[i+1],str_b[i+2],str_b[i+3],str_b[i+4]));
+              answer.push(new Point(precommand,str_b[i+5],str_b[i+6],null,null,null,null,str_b[i],str_b[i+1],str_b[i+2],str_b[i+3],str_b[i+4]));
               i+=7;
             break;
             case "C": case "c":
@@ -403,4 +540,4 @@ class SVG {
      return answer;
     }
   }
-  export {SVG};
+  export {SVG,Path,Point};

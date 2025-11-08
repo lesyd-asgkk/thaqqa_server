@@ -1,4 +1,4 @@
-import { Parser , F_GSUBManager,GSUBManager ,GlyphArray,SVG} from "./deps.js";
+import { Parser,SVG , F_GSUBManager,GSUBManager ,GlyphArray} from "./deps.js";
 
 class Render{
     //text:string型
@@ -11,7 +11,7 @@ class Render{
     //text , lang,alig,{option:,size:,pos:,...}とかの形にしたほうが良さそう
     static DrawD(text,lang,alig,option){
         //option:{font,parse,size,position}
-        console.log(text,lang,alig,option);
+        //console.log(text,lang,alig,option);
         option.font ??= "default";
         switch(option.parse){
             case "parsedperfect":
@@ -25,9 +25,9 @@ class Render{
                 break;
             default:
                 text = Parser.parse(text,lang);
-                console.log(text);
+                //console.log(text);
                 text = GSUBManager.gsub(text,alig);
-                console.log(text);
+                //console.log(text);
                 text = F_GSUBManager.fgsub(text,alig,option.font);
                 
             break;
@@ -35,8 +35,9 @@ class Render{
         option.position ??={x:0,y:0};
         option.align ??= {x:-1,y:-1};option.size ??= 16;
         const glar = new GlyphArray(text,alig,option.font,false,{top:800,right:800,bottom:800,left:800},{x:option.position.x,y:option.position.y},{x:option.align.x,y:option.align.y});
-        const ans = SVG.toRel(glar.toPath(option.size));
-        ans.d_str = SVG.toStr(ans.d);
+        const ans = SVG.toRelativeAll(glar.toPath(option.size));
+        console.log(glar);
+        ans.d_str = SVG.to_String(ans);
         return ans;
     }
 }

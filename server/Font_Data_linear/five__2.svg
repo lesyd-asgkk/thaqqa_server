@@ -42,16 +42,9 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
-    <g
-       id="path3207">
-      <path
-         style="color:#000000;fill:#000000;stroke-width:4.688;-inkscape-stroke:none"
-         d="M 0,0 V 60 C 0,57.854778 0,8.2184476 0,0 Z"
-         id="path1573" />
-      <path
-         style="color:#000000;fill:#000000;-inkscape-stroke:none"
-         d="m -2.34375,0 v 60 h 4.6875 V 0 Z"
-         id="path1575" />
-    </g>
+    <path
+       style="color:#000000;fill:#000000;-inkscape-stroke:none"
+       d="m -0.34375,0 c 0,19.499972 -0.0232398,33.186269 -0.28320312,42.597656 -0.25996337,9.411388 -0.87704558,14.680028 -1.57617188,16.59961 l 4.40625,1.605468 C 3.4113574,57.485307 3.7953978,52.254979 4.0585937,42.726562 4.3217897,33.198146 4.34375,19.503683 4.34375,0 Z"
+       id="path3207" />
   </g>
 </svg>

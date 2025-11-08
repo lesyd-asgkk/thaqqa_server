@@ -34,8 +34,11 @@ function export_(){
   await khhyl.GlyphManager.loadAll("sanserif");
   await khhyl.GlyphManager.loadAll("siddham");
 
+  
+
     const r_ = new khhyl.RegExp_Khhyl("P([_.IsNewline]_-*)",{}).ParseRegExp().toNormalRegExp();
     console.log(r_);
+    console.log(khhyl.FontManager.getFont("default"));
 
     let ta = new webjs.Table_web("VOWEL",$("div.area_tb#vowel")[0],"default");
     ta.draw();

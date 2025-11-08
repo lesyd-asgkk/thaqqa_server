@@ -11,6 +11,6 @@ export { LetterManager } from "./Database/Letter.js";
 export { Parser } from "./Database/Parser.js";
 export { RegExp_Khhyl } from "./RegExp_Khhyl/RegExp_Khhyl.js";
 export { REK_def } from "./RegExp_Khhyl/REK_def.js";
-export { SVG } from "./SVG/SVG.js";
+export { SVG,Path,Point } from "./SVG/SVG.js";
 
 export {Update} from "./Update.js";

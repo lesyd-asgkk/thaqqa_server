@@ -1,5 +1,5 @@
 
-import { FontManager,SVG} from "../deps.js";
+import { FontManager,SVG,Path} from "../deps.js";
 
 class GlyphManager{
     static load(doc){
@@ -16,7 +16,7 @@ class GlyphManager{
     static async loadAll(font){
         await fetch('/server/FontData/' + font + '.svg')
       .then(response => response.json())
-      .then(data => {
+      .then(data => {/*
         try{
         FontManager.getFont(font).getTable("GLYPH",true);
             FontManager.getFont(font).deleteTable("GLYPH");
@@ -26,7 +26,7 @@ class GlyphManager{
             table.createColumn("Name","char","",1);
             table.createColumn("Path","char","",2);
             
-            for(const d in data) table.createData({Name:d,Path:SVG.convertSVG(data[d])});
+            for(const d in data) table.createData({Name:d,Path:Path.parse_string(data[d]).toRelativeAll()});
       }
         catch(_e){
             FontManager.getFont(font).createTable({name:"GLYPH"});
@@ -35,8 +35,8 @@ class GlyphManager{
             table.createColumn("Name","char","",1);
             table.createColumn("Path","char","",2);
             
-            for(const d in data) table.createData({Name:d,Path:SVG.convertSVG(data[d])});
-        }
+            for(const d in data) table.createData({Name:d,Path:Path.parse_string(data[d]).toRelativeAll()});
+        }*/
       })
       .catch(error => console.error('Error fetching data:', error));
       return new Promise(resolve => {

@@ -37,15 +37,18 @@ import { REK_def } from "./REK_def.js";
 
 
     使用可能な文字
-    n := [A-Za-z]+|.
-    v := 0|[1-9][0-9]*|.
+    n0 := [A-Za-z]+ 
+    n1 := [<letterの情報に基づいたcond文>]
+    n := n0|n1
+    v := 0|[1-9][0-9]*
 
     字母の定義 
     
     ↑一旦トークナイズする。理解不能文が一周したらエラーを返す
 
-    g := n_v
-      := n
+    g := nv
+      := n.
+      := _v
       := .
     ↑解釈不能な場合は一旦gに移す
     g_sub := g
@@ -60,75 +63,46 @@ import { REK_def } from "./REK_def.js";
     form_c := (onset|coda)
     
     音節の定義
-    S := \\s[form_v,G?,G?,G?]
-           \\s[form_v,\*]
-           \\s[\*]
+    S := S\(form_v,G?,G?,G?\)
+           S\(form_v,\*\)
+           S\(\*\)
 
     単独字母の定義
-    C := \\c[form_c,G]
-    Cd := \\cd[form_c,G]
+    C := C\(form_c,G\)
+    Cd := Cd(form_c,G\)
     
-    V := \\v[form_v,G]
-    Vd := \\vd[form_v,G]
-    
-    P := \\p[G]
-    Pd := \\pd[G]
+    V := V\(form_v,G\)
+    Vd := Vd\(form_v,G\)
 
-    X := \\x[.*,"type"] 東果世界に存在する東果文字以外の文字。
-    R := \\r[.] 端的に言えば俺らの使ってる文字
+    P := P\(G\)
+    Pd := Pd\(G\)
+
+    X := X\(.*,"type"\) 東果世界に存在する東果文字以外の文字（未実装）
+    R := R\(*\) 現実世界の文字
 
     
     東果文字の全部。「.」的な
-    L := \\l
+    L := L\(\)
 
     あらゆる文字。
-    L_ALL := \\lx
+    L_ALL := Lx\(\)
 
-    L_ALL := \\L
-
-    文
 */
 
 class RegExp_Khhyl {
-    constructor(pattern,intent) {
-        this.pattern = pattern;
+    constructor(regex_string,intent) {
+        this.regex_string = regex_string;
         this.intent = intent; //基本的には指定する
         this.child = [];
     }
     //Tokenize -> Parse -> Tokenize（変更点が無くなるまで繰り返す）
-    toNormalRegExp() {//parentlist
-        
-        //parentlist ??= []; 
-        let ans = "";
-        //const j = {"g":0,"G":0,"C":0,"Cd":0,"V":0,"Vd":0,"P":0,"Pd":0,"S":0,"R":0,"X":0,"L":0};
-        //let prev = "";
+    toNormalRegExp() {
+        let parsed_regex = "";
         for (let i = 0; i < this.child.length; i++) {
-            /*let k = [];
-            if(this.intent.isoutofBrancket){
-                const cldtype = this.child[i].intent.type;
-                const cldtype_ = (this.intent.type == cldtype&&cldtype == "G") ? "g":cldtype;
-                switch(this.intent.type){
-                case "":case "G":case "C":case "Cd":case "V":case "Vd":case "P":case "Pd":case "S":
-                    if(["{n}","FINITE"].includes(cldtype)) break;
-                    if(!["form"].includes(cldtype)){
-                     k = parentlist.concat(`${cldtype_}${j[cldtype_]}`);
-                     prev = cldtype_;
-                     j[cldtype_]++;
-                    }
-                    else{k = parentlist.concat(`${cldtype_}`);prev = cldtype_;}
-                break;
-                case "g":
-                    if(this.child[i].pattern.match(/\d/g) == null && this.child[i].pattern != "\\d+")k = parentlist.concat("n");
-                    else if(this.child[i].pattern.match(/\d/g) != null || this.child[i].pattern  == "\\d+")k = parentlist.concat("v");
-                    
-                break;
-                }
-            }*/
-
-                ans += this.child[i].toNormalRegExp();
-                ans += (this.intent.type.match(/[SRX]|[CVP]d?/g)!=null)&&(i!=this.child.length-1)?",":"";
+            parsed_regex += this.child[i].toNormalRegExp();
+            parsed_regex += (this.intent.type.match(/[SRX]|[CVP]d?/g)!=null)&&(i!=this.child.length-1)?",":"";
         }
-        ans += this.pattern;
+        parsed_regex += this.regex_string;
         switch(this.intent.type){
             case "R":
             case "X":
@@ -139,19 +113,19 @@ class RegExp_Khhyl {
             case "P":
             case "Pd":
             case "S":
-                ans = `${this.intent.type}\\(${ans}\\)`;
-                //ans = `${this.intent.type}\\(\\?<${this.intent.type}>${ans}\\)`;
-                // 例えば、S(ans)に対して、S\\((?\k<S0>ans)\\)のようにするのは
+                parsed_regex = `${this.intent.type}\\(${parsed_regex}\\)`;
+                //parsed_regex = `${this.intent.type}\\(\\?<${this.intent.type}>${parsed_regex}\\)`;
+                // 例えば、S(parsed_regex)に対して、S\\((?\k<S0>parsed_regex)\\)のようにするのは
                 // 要素が『（）』の中にない場合に判定したい
                 // S(*,s0-d0,a0,)のd0は $k<S0G0g1>のように取得
                 //                 dなら$K<S0G0g1_n>
                 break;
         }
-        //if(parentlist.length != 0) ans = `(?<${parentlist.join("")}>${ans})`;
+        //if(parentlist.length != 0) parsed_regex = `(?<${parentlist.join("")}>${parsed_regex})`;
 
-        if((this.intent.subtypeb??"").match(/^\(/)!=null) ans = `${this.intent.subtypeb.slice(0,-1)}${ans})`; 
-        else if((this.intent.subtypeb??"").match(/^\[/)!=null)ans = `(?:${ans})`; 
-        return ans;
+        if((this.intent.subtypeb??"").match(/^\(/)!=null) parsed_regex = `${this.intent.subtypeb.slice(0,-1)}${parsed_regex})`; 
+        else if((this.intent.subtypeb??"").match(/^\[/)!=null)parsed_regex = `(?:${parsed_regex})`; 
+        return parsed_regex;
     }
 
     ParseRegExp(){
@@ -190,7 +164,7 @@ class RegExp_Khhyl {
         }
         if(rule.length != 0){
             const k = this.ParseRegExp_sub(REK_def[rule[0]]);
-            if(k instanceof Error)throw k;
+            if(k instanceof Error) throw k;
             this.child = k; 
             for(const i of this.child){
                 const k = i.ParseRegExp();
@@ -200,28 +174,27 @@ class RegExp_Khhyl {
         return this;
     }
     ParseRegExp_sub(rules) {
-        let ans  = [];
+        let parsed_regex  = [];
         let count = 10000;
-        patternloop:while (this.pattern != "") {
-            //console.log(`${this.intent.type} : ${this.pattern}`);
+        regex_stringloop:while (this.regex_string != "") {
             for(const infi in rules){
-                if(count == 0) throw Error(`変換エラー（無限ループ）: ${this.pattern}${ans}`);
+                if(count == 0) throw Error(`変換エラー（無限ループ）: ${this.regex_string}${parsed_regex}`);
                 count--;
-                if(this.pattern != null && this.pattern.match(new RegExp(`^${infi}`,"g")) != null){
-                    const searched = this.pattern.match(new RegExp(`^${infi}`,"g"));
+                if(this.regex_string != null && this.regex_string.match(new RegExp(`^${infi}`,"g")) != null){
+                    const searched = this.regex_string.match(new RegExp(`^${infi}`,"g"));
                     if(searched != null){
-                        const k = rules[infi](this,ans,this.pattern,searched[0]);
+                        const k = rules[infi](this,parsed_regex,this.regex_string,searched[0]);
                         const k0 = k[0];const k1 = k[1];
-                        if(Array.isArray(k0)) ans = k0;
-                        if(typeof k1 == "string") this.pattern = k1;
-                        continue patternloop;
+                        if(Array.isArray(k0)) parsed_regex = k0;
+                        if(typeof k1 == "string") this.regex_string = k1;
+                        continue regex_stringloop;
                     }
                 }
             }
-            break patternloop; //通らなかった場合。
+            break regex_stringloop; //通らなかった場合。
         }
-        if(![null,""].includes(this.pattern)){throw Error(`変換エラー:${this.pattern}${ans}`)}
-        return ans;
+        if(![null,""].includes(this.regex_string)){throw Error(`変換エラー:${this.regex_string}${parsed_regex}`)}
+        return parsed_regex;
     }
 }
 

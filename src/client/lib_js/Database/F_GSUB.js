@@ -12,7 +12,6 @@ class F_GSUBManager {
     static rewriteFGSUB(param,param2,font){
         if(param instanceof RegExp) param = {Name:param};
         if(typeof param == "string") param = {Name:param};
-
         if(typeof param2 == "string") param2 = {Name:param2};
         const table_ = FontManager.getFont(font).getTable("F_GSUB");
 

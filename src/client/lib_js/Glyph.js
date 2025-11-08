@@ -1,21 +1,23 @@
 
-import { FontManager,SVG,RegExp_Khhyl,GlyphManager,GPOSManager,LetterManager} from "./deps.js";
+import { FontManager,SVG,Path,Point,RegExp_Khhyl,GlyphManager,GPOSManager,LetterManager} from "./deps.js";
+
 
 class GlyphArray{
     constructor(name,vec,font,iswrap,box,pos,alg){
         this.name=name;
         this.font=font;
-        this.d = [];
+        this.path = []; //pathに改名予定、new Path();にもする予定
         this.childList = [];//Glyphの配列 入れ子にします
-        this.attribute = {};//(将来用)
+        this.attribute = {};//(将来に属性を付ける場合の為。)
         this.position = {x:pos.x??0,y:pos.y??0};//（parentに対するthisのoffset）
         this.aligment = {x:alg.x??0,y:alg.y??0};
         this.vec = vec; //-1(右から左),0(上から下),1(左から右)
         this.box = box;//{top:0,right:0,bottom:0,left:0};
-        this.iswrap = iswrap;// 端で折り返すか？
+        this.iswrap = iswrap;// 端で折り返すかどうか(将来用)
         this.initSvg();
     }
     initSvg(){
+        //
         const r_ = new RegExp_Khhyl("(L())(L())",{}).ParseRegExp().toNormalRegExp();
         const text = this.name.replaceAll(new RegExp(r_, "g"),"$1Sep()$2").replaceAll(new RegExp(r_, "g"),"$1Sep()$2");
 
@@ -23,138 +25,161 @@ class GlyphArray{
         pSVGData.forEach((i)=> this.childList.push(new Glyph(i , this.vec,this.font)))
         if(this.vec == -1) this.childList.reverse();
     }
-    toPath(defaultsize,_prev,_next){//_prevは今後用
-        const vec_ = this.vec;
-        const em_ = function (n){return n/(vec_==0?textdata.WidthV:textdata.Height)}
-        // 単に『em_』へと変える
-        const textdata = FontManager.getFont(this.font).getTable("FONTDATA").dataList[0].valueList;
-        const rescale = function(param,size){
-            const s_ = em_(size);
-            const aa = SVG.toAbsolute(param);
+
+    #to_em(n) {  //指定した大きさnに変換する為に倍率をかける関数
+        const textdata = FontManager.getFont(this.font).getTable("FONTDATA").dataList[0].valueList; 
+        return n/(this.vec==0?textdata.WidthV:textdata.Height) 
+    }
+
+    #rescale(svg_list,size){ //スケール変換の為の関数
+            const s_ = this.#to_em(size);
+            const aa = SVG.toAbsoluteAll(svg_list);
                 for(const i of aa){
                     if(i.x!=undefined) i.x*=s_;if(i.y!=undefined) i.y*=s_;
                     if(i.x1!=undefined) i.x1*=s_;if(i.y1!=undefined) i.y1*=s_;
                     if(i.x2!=undefined) i.x2*=s_;if(i.y2!=undefined) i.y2*=s_;
                     if(i.val!=undefined) i.val*=s_;
             }
-            return SVG.toRelative(aa);
+            return SVG.toRelativeAll(aa);
         }
 
-        this.d = SVG.createM(this.position.x,this.position.y);//`M ${this.position.x},${this.position.y}`;
+    #toPath_horizontal(defaultsize,_prev,_next){
+        const textdata = FontManager.getFont(this.font).getTable("FONTDATA").dataList[0].valueList;
+        const newline_list = FontManager.getStaticTable("PUNCTUATION").getData({"IsNewline":true}).map((i) =>i.getVal("Name"));
+        this.path = SVG.fromPosition(this.position.x,this.position.y);//初期位置に移動
         let x = this.position.x;
         let y = this.position.y;
-        const nlist_ = FontManager.getStaticTable("PUNCTUATION").getData({"IsNewline":true}).map((i) =>i.getVal("Name"));
-
-        if(this.vec==0){
-            let isnewline = true;
-            for(let i = 0;i<this.childList.length;i++){
-                //m0 -> gap_above , m1 -> gap_below
-                let gap_above = 0;let gap_below = 0;
-
-                gap_below += GPOSManager.gpos(this.childList[i].fullname,this.vec,"INEX",this.font).y1;
-                gap_above += GPOSManager.gpos(this.childList[i].fullname,this.vec,"INEX",this.font).y0;
-
-                if(i == 0 ) gap_above += GPOSManager.gpos((_prev??"Null()")+this.childList[i].fullname,this.vec,"EX",this.font).y1;
-                else gap_above += GPOSManager.gpos(this.childList[i-1].fullname+this.childList[i].fullname,this.vec,"EX",this.font).y1;
-
-                if(i != this.childList.length-1) gap_below += GPOSManager.gpos(this.childList[i].fullname+this.childList[i+1].fullname,this.vec,"EX",this.font).y0;
-                else gap_below += GPOSManager.gpos(this.childList[i].fullname+(_next??"Null()"),this.vec,"EX",this.font).y0;
-
-                y += gap_above*em_(defaultsize);
-
-                const j_ = (this.childList[i].type == "P")||(this.childList[i].form == "sol")
-                const d = rescale(this.childList[i].toPathB(!j_?-gap_above:(0),gap_below),defaultsize); //16はsize
-                if(isnewline){
-                    y -= (SVG.getTop(this.childList[i].toPathB(0,0))-gap_above)*em_(defaultsize);
-                    isnewline = false;
-                }
-                this.d = this.d.concat(SVG.createM(x,y)).concat(SVG.toRelative(d));
-                y += (SVG.getBottom(this.childList[i].toPathB(0,0))+gap_below)*em_(defaultsize);
-                if(i+1 != this.childList.length){const d2 = rescale(this.childList[i+1].d,defaultsize);y -= SVG.getTop(d2);}
+        const is_dir_right = this.vec == 1;
+        for(let i = 0;i<this.childList.length;i++){
+            const glyph_path = this.#rescale(this.childList[i].toPathAbsolute(textdata.Height,0.5+GPOSManager.gpos(this.childList[i].fullname,this.vec,"INEX",this.font).y1/textdata.Height),defaultsize);
+            const glyph_width = (!textdata.isWidthHRel ? defaultsize*textdata.WidthV:SVG.getLeft(glyph_path)+SVG.getRight(glyph_path)+defaultsize*textdata.WidthV)/textdata.Height;
                 
-                this.childList[i].offset = {x,y};
-                if(nlist_.indexOf(this.childList[i].name)!=-1){
-                    x -= defaultsize;y = 0;isnewline = true;
-                }
+            let gap_left = 0;let gap_right = 0;
+            const size_em = this.#to_em(defaultsize); //将来的に文字サイズを可変にしたいので、単にsize_emと命名。
+            const size = defaultsize;//同上
+
+            const tmp_for_gap = GPOSManager.gpos(this.childList[i].fullname,this.vec,"INEX",this.font);
+            gap_right += tmp_for_gap.x1; gap_left += tmp_for_gap.x0;
+
+            //左側の隙間。前の文字と照らし合わせて調整
+            if(i == 0) gap_left += GPOSManager.gpos((_prev??"Null()")+this.childList[i].fullname,this.vec,"EX",this.font).x1;
+            else gap_left += GPOSManager.gpos(this.childList[i-1].fullname+this.childList[i].fullname,this.vec,"EX",this.font).x1;
+
+            //右側の隙間。前の文字と照らし合わせて調整
+            if(i != this.childList.length-1) gap_right += GPOSManager.gpos(this.childList[i].fullname+this.childList[i+1].fullname,this.vec,"EX",this.font).x0;
+            else gap_right += GPOSManager.gpos(this.childList[i].fullname+(_next??"Null()"),this.vec,"EX",this.font).x0;
+
+            x += glyph_width/2 +(is_dir_right?gap_left:gap_right)*size_em;
+            this.path = this.path.concat(SVG.fromPosition(x,y)).concat(SVG.toRelativeAll(glyph_path)); //文字情報を繋げる
+
+            if(i!=this.childList.length-1) x += glyph_width/2 +(is_dir_right?gap_right:gap_left)*size_em;  //最後の文字で無ければ文字の幅/2分だけ進める
+            this.childList[i].offset = {x,y};  //offsetを指定しておく
+            if(newline_list.indexOf(this.childList[i].name)!=-1){  //改行に差し掛かったときの処理。iswrap対応時はここの条件を追加する。
+                x = 0;y += size*((textdata.Height+textdata.TopGapH)/textdata.Height);
             }
-            this.d = this.d.concat(SVG.createM(x,y));
         }
-        else{
-            const dir_ = this.vec; 
-            for(let i = 0;i<this.childList.length;i++){
-                const h = textdata.Height;
-                const d_new = rescale(this.childList[i].toPathAbs(h,0.5+GPOSManager.gpos(this.childList[i].fullname,this.vec,"INEX",this.font).y1/textdata.Height),defaultsize);
+        this.path = this.path.concat(SVG.fromPosition(x,y));
+    }
 
-                const x_abs = defaultsize*textdata.WidthV/textdata.Height;
-                const x_rel = -SVG.getLeft(d_new)+SVG.getRight(d_new)+defaultsize*textdata.WidthV/textdata.Height;
+    #toPath_vertical(defaultsize,_prev,_next){
+        this.path = SVG.fromPosition(this.position.x,this.position.y);//初期位置に移動
+        let x = this.position.x;
+        let y = this.position.y;
+        const newline_list = FontManager.getStaticTable("PUNCTUATION").getData({"IsNewline":true}).map((i) =>i.getVal("Name"));
+        let isnewline = true;
+        for(let i = 0;i<this.childList.length;i++){
+            //m0 -> gap_above , m1 -> gap_below
+            let gap_above = 0;let gap_below = 0;
+            const size_em = this.#to_em(defaultsize); //将来的に文字サイズを可変にしたいので、単にsize_emと命名。
+            const size = defaultsize;//同上
 
-                let gap_left = 0;let gap_right = 0;
+            const tmp_for_gap = GPOSManager.gpos(this.childList[i].fullname,this.vec,"INEX",this.font);
+            gap_below += tmp_for_gap.y1; gap_above += tmp_for_gap.y0;
 
-                gap_right += GPOSManager.gpos(this.childList[i].fullname,this.vec,"INEX",this.font).x1;
-                gap_left += GPOSManager.gpos(this.childList[i].fullname,this.vec,"INEX",this.font).x0;
+            //上の隙間。前の文字と照らし合わせて調整
+            if(i == 0 ) gap_above += GPOSManager.gpos((_prev??"Null()")+this.childList[i].fullname,this.vec,"EX",this.font).y1;
+            else gap_above += GPOSManager.gpos(this.childList[i-1].fullname+this.childList[i].fullname,this.vec,"EX",this.font).y1;
 
-                if(i == 0) gap_left += GPOSManager.gpos((_prev??"Null()")+this.childList[i].fullname,this.vec,"EX",this.font).x1;
-                else gap_left += GPOSManager.gpos(this.childList[i-1].fullname+this.childList[i].fullname,this.vec,"EX",this.font).x1;
+            //下の隙間。次の文字と照らし合わせて調整
+            if(i != this.childList.length-1) gap_below += GPOSManager.gpos(this.childList[i].fullname+this.childList[i+1].fullname,this.vec,"EX",this.font).y0;
+            else gap_below += GPOSManager.gpos(this.childList[i].fullname+(_next??"Null()"),this.vec,"EX",this.font).y0;
 
-                if(i != this.childList.length-1) gap_right += GPOSManager.gpos(this.childList[i].fullname+this.childList[i+1].fullname,this.vec,"EX",this.font).x0;
-                else gap_right += GPOSManager.gpos(this.childList[i].fullname+(_next??"Null()"),this.vec,"EX",this.font).x0;
+            //当然、上の隙間の分だけ文字情報がズレるので補正
+            y += gap_above*size_em;
 
-                x += (!textdata.isWidthHRel ? x_abs/2 : x_rel/2) +(dir_==1?gap_left:gap_right)*em_(defaultsize); //ここの値は後に修正（gapとか諸々）
-                this.d = this.d.concat(SVG.createM(x,y)).concat(SVG.toRelative(d_new));
-
-                if(i!=this.childList.length-1) x += (!textdata.isWidthHRel ? x_abs/2 : x_rel/2) +(dir_==1?gap_right:gap_left)*em_(defaultsize);//size
-                this.childList[i].offset = {x,y};
-                if(nlist_.indexOf(this.childList[i].name)!=-1){
-                    x = 0;y += defaultsize*((textdata.Height+textdata.TopGapH)/textdata.Height);
-                }
+            const is_isolated = (this.childList[i].type == "P") || (this.childList[i].form == "sol");
+            const glyph_path = this.#rescale(this.childList[i].toPathRelative(!is_isolated?-gap_above:(0),gap_below),size);
+            if(isnewline){ //改行に差し掛かったときの処理。
+                y -= (SVG.getTop(this.childList[i].toPathRelative(0,0))-gap_above)*size_em;
+                isnewline = false;
             }
-            this.d = this.d.concat(SVG.createM(x,y));
+            this.path = this.path.concat(SVG.fromPosition(x,y)).concat(SVG.toRelativeAll(glyph_path)); //文字情報を繋げる
+            y += (SVG.getBottom(this.childList[i].toPathRelative(0,0))+gap_below)*size_em;      //文字の長さの分＋隙間分下に進める
+            if(i+1 != this.childList.length){const d2 = this.#rescale(this.childList[i+1].path,size);y -= SVG.getTop(d2);}
+                
+            this.childList[i].offset = {x,y}; //offsetを指定しておく
+            if(newline_list.indexOf(this.childList[i].name)!=-1){
+                x -= size;y = 0;isnewline = true;
+            }
         }
-        return this.d;
+        this.path = this.path.concat(SVG.fromPosition(x,y));
+    }
+
+    toPath(defaultsize,_prev,_next){//_prevは今後用
+        if(this.vec==0){this.#toPath_vertical(defaultsize,_prev,_next);}
+        else{this.#toPath_horizontal(defaultsize,_prev,_next);}
+        return this.path;
     }
 
 }
-
 class Glyph{
     constructor(name,vec,font){
         this.font = font;
         this.vec = vec;
         this.fullname = name; 
         this.name = ""; 
-        this.d_origin = "";
-        this.d = [];
-        this.val = -1;
-        this.form = "";
-        this.isroot = false;
-        this.parent;
-        this.childList = [];//Glyphの配列 入れ子にします
+        this.path_origin = []; //ダイアクリティカルマークなしの元のパスデータ。ただし、Sタイプの場合はVowelのダイアクリティカルマークなしのパスデータ
+        this.path = []; //pathに改名予定、new Path();にもする予定
+        this.val = -1; //異字体の調整用。なにもない場合は設定しない
+        this.form = "";//init,mid,fin,solなどの形態指定用
+        this.isroot = false;//親がいないかどうか。
+        this.parent;//親Glyphの参照
+        this.child_list = [];//Glyphの配列 入れ子にします
         this.attribute = {};//(将来用)
         this.size = 16;
         this.type = "";//S,P,C,V,Pd,Cd,Vdのいずれか
         this.offset = {x:0,y:0};//（parentに対するthisのoffset）
         this.gap ={top:0,middle:0,bottom:0}; //上棒、中央、下棒
         this.aligment = {x:0,y:0};
-        this.height = {vtop:0,vbottom:0,top:0,bottom:0};
+        this.height_vtop = 0;
+        this.height_vbottom = 0;
+        this.height_bottom = 0;
+        this.height_top = 0;
         this.initSvg(name);
         this.toPath();
     }
     initSvg(name){
-        const partname = this.partitionName(name);
-        if(partname.length == 0){this.isroot = true;
-            if( (name ?? "") == ""){this.d = [] ,this.aligment = {x:0,y:0};return [];}
+        const partname = this.#partitionName(name);
+        if(partname.length == 0){//これ以上分割不能な場合
+            this.isroot = true;
+            if( (name ?? "") == ""){this.path = [] ,this.aligment = {x:0,y:0};return [];} //this.path = Path.new();
             const form = this.form ?? "";
-            const name_ = `${this.name}_${form}_${this.val}`
+            const name_ = `${this.name}_${form}_${this.val}`;
             const dt = (GlyphManager.getSVG(name_,this.font)[0]) ?? "M 0,0";
-            this.d = SVG.toRelative(dt);//this.nameがこれ以上分割できない場合。
-            this.d_origin = SVG.toRelative(dt);
-            let offx = 0;let offy = 0;
-            if(LetterManager.getLetter(this.name).length > 0){offx = LetterManager.getLetter(this.name)[0].getVal("x_Align");offy = LetterManager.getLetter(this.name)[0].getVal("y_Align");}
-            this.aligment = {x:offx,y:offy};
+            // const dt = Path.parseString((GlyphManager.getSVG(name_,this.font)[0]) ?? "M 0,0")にする予定。
+            this.path = SVG.toRelativeAll(dt);//this.nameがこれ以上分割できない場合。
+            this.path_origin = SVG.toRelativeAll(dt);
+            let off_x = 0; let off_y = 0;
+            const letter_temp = LetterManager.getLetter(this.name);
+            if(letter_temp.length > 0){
+                off_x = letter_temp[0].getVal("x_Align");
+                off_y = letter_temp[0].getVal("y_Align");
+            }
+            this.aligment = {x:off_x,y:off_y};
         }
         else{//分割できたら
             this.isroot = false;
-            let x0 = 0;let y0 = 0;
-            let x1;let y1;
+            let x0 = 0;let y0 = 0;let x1;let y1;//いずれもoffsetの為の一時変数
             if(this.type == "S"){
                 const k = GPOSManager.gpos(name,this.vec,"IN",this.font);
                 x0 = k.x0;y0 = k.y0;x1 = k.x1;y1 = k.y1;
@@ -166,244 +191,247 @@ class Glyph{
             for(let i = 0 ; i<partname.length;i++){
                 const new_glyph = new Glyph(partname[i],this.vec,this.font);
                 new_glyph.parent = this;
-                if(x1 != null && y1 != null && i == 2)new_glyph.offset = {x:x1,y:y1};
-                else if(x1 != null && y1 != null && i == 0) new_glyph.offset = {x:x0,y:y0};
-                else if(x1 == null && y1 == null && i == 1) new_glyph.offset = {x:x0,y:y0};
-                this.childList.push(new_glyph);
+
+                if(x1 != null && y1 != null && i == 2)new_glyph.offset = {x:x1,y:y1}; //Sタイプの場合
+                else if(x1 != null && y1 != null && i == 0) new_glyph.offset = {x:x0,y:y0}; //これ以上分割不能な場合
+                else if(x1 == null && y1 == null && i == 1) new_glyph.offset = {x:x0,y:y0}; //Sタイプ以外で分割可能な場合
+                this.child_list.push(new_glyph);
             }
+        this.path_origin = this.child_list[this.type == "S"?1:0].path_origin; //処理の簡略化用に実装。
         } 
     }
 
-    partitionName(name){
+
+    #partitionName(name){ //名前を分割する関数
         this.fullname = name;
-        if(name == "") return [];
+        if(name == "") return []; //空の名前なら[]として返す;
         else{ 
             this.type = name.split("(")[0];
             if(name.startsWith("S")){
             //音節ならCo,V,Ccに。空の場合は何も残さない
-            const temp = name.match(/\((.+?)\)/)[1].split(",");
-            this.glyphname = temp.slice(1).join(",");
-            this.form = temp[0];
-            const onset = temp[1] == "" ? "" : `C(onset,${temp[1]})`;
-            const vowel = temp[2] == "" ? "" : `V(${temp[0]},${temp[2]})`;
-            const coda = temp[3] == "" ? "" : `C(coda,${temp[3]})`;
-            return [onset,vowel,coda];
+                const temp = name.match(/\((.+?)\)/)[1].split(",");//S(form,Co,V,Cc)という形を[form,Co,V,Cc]に分割する
+                this.glyphname = temp.slice(1).join(","); //glyphnameは「Co,V,Cc」という名前として扱う
+                this.form = temp[0];
+                const onset = temp[1] == "" ? "" : `C(onset,${temp[1]})`;
+                const vowel = temp[2] == "" ? "" : `V(${temp[0]},${temp[2]})`;
+                const coda = temp[3] == "" ? "" : `C(coda,${temp[3]})`;
+                return [onset,vowel,coda];
             }
             else if(name.startsWith("P")){
-                const temp = name.match(/\((.+?)\)/)[1];
+                const temp = name.match(/\((.+?)\)/)[1];//P(p)のpだけを取り出す
                 this.glyphname = temp;
-                const temp2 = temp.split("-");
-            if(temp2.length <= 1){this.name = temp2[0].match(/[A-Za-z]+/g)[0]; this.val = temp2[0].match(/\d+/g)[0];return []}//これ以上は分割できない
-            else{
-                const d_ = temp2.join("-");
-            const d = [ `${name.split("(")[0]}(${d_}),Pd(${temp2.slice(-1)})`];
-            return d;
+                const temp2 = temp.split("-"); //-で分解する
+            if(temp2.length <= 1){//これ以上は分割できないとき
+                this.name = temp2[0].match(/[A-Za-z]+/g)[0]; 
+                this.val = temp2[0].match(/\d+/g)[0];
+                return [];
+            }
+            else{  //分割可能の時、(最後以外)と最後で分割する
+                const d_ = temp2.slice(0,-1).join("-");
+                return [`${name.split("(")[0]}(${d_}),Pd(${temp2.slice(-1)})`]; //確定でPdなので下ブロックとは違って変数化していない
             }
         }
-        else{
+        else{ //つまりC,Cd,V,Vdの場合
             const temp = name.match(/\((.+?)\)/)[1].split(",");
             this.glyphname = temp.slice(1).join(",");
             this.form = temp[0];
             const temp2 = temp[1].split("-");
-                if(temp2.length <= 1){this.name = temp2[0].match(/[A-Za-z]+/g)[0];this.val = temp2[0].match(/\d+/g)[0]; return []}//これ以上は分割できない
-                else{
-                    const l = name.split("(")[0];
+                if(temp2.length <= 1){//これ以上は分割できないとき
+                    this.name = temp2[0].match(/[A-Za-z]+/g)[0];
+                    this.val = temp2[0].match(/\d+/g)[0]; 
+                    return []
+                }
+                else{ //分割可能の時、(最後以外)と最後で分割する
+                    const type_ = name.split("(")[0];
+                    const type_sep = type_.length == 2 ? type_ : (type_+"d");
                     const d_ = temp2.slice(0,-1).join("-");
-                    const d = [`${l}(${temp[0]},${d_})`,`${l.length == 2 ? l : (l+"d")}(${temp[0]},${temp2.slice(-1)})`];
+                    const d = [`${type_}(${this.form},${d_})`,`${type_sep}(${this.form},${temp2.slice(-1)})`];
                     return d;
                 }
-            //Co-d0-d1なら例えば(Co-d0)とd1に分割。
             }
         }
-        //音節ならCo,V,Ccに、Co-d0-d1なら例えば(Co-d0)とd1に分割。
-        //これ以上分割不能ならfalseを返す
     }
-    toPathAbs(height,vowelhratio){
-        let path = this.toPath() ?? SVG.createM(0,0); 
-        if(path.length == 0) path = SVG.createM(0,0); 
+    toPath(){//Svgをpathにする
+        const path = this.type == "S" ? this.#toPath_Syllable() : this.#toPath_NonSyllable();
+        return path ?? SVG.fromPosition(0,0); //一応ヌル対策として最悪はM 0,0を返す。
+    }
+    //将来的にget_onset,get_vowel,get_codaはエラー処理をつけようと思う
+    #get_vowel(){ return this.type == "S" ? this.child_list[1] : null; }
+    #get_onset(){ return this.type == "S" ? this.child_list[0] : null; }
+    #get_coda(){ return this.type == "S" ? this.child_list[2] : null;}
+    #get_main_glyph(){ return this.type != "S" ? this.child_list[0] : null; }
+    #get_diacritical(){ return this.type != "S" ? this.child_list[1] : null; }
+    #sub_toPathAbs_Syllable(height,vowelhratio){
         const width = FontManager.getFont(this.font).getTable("FONTDATA").dataList[0].getVal("Thickness");
-        const VH = vowelhratio*height
-        const vt = (this.height.vbottom-this.height.vtop)/2;
-        const vt_b = (-this.height.bottom-this.height.top)/2;
-        if(this.type == "S"){
-            switch(this.form){
-                case "sol":
-                    path = SVG.toRelative(path);
-                    path = SVG.createGap(path,0,VH-vt);
-                    path = SVG.toRelative(path);
-                break;
-                case "init":
-                //initはM 0,0
-                //vbottom~heightの棒
-                    path = SVG.toRelative(path);
-                    path = SVG.createGap(path,0,0);
-                    path = path.concat(SVG.createSkewer(-width/2,this.height.vbottom,width/2,height));
-                    path = SVG.toRelative(path);
-                    this.gap = {top:0,middle:this.height.vbottom,bottom:height};
-                break;
-                case "mid":
-                    path = SVG.toRelative(path);
-                    path = SVG.createGap(path,0,VH+vt_b-vt);
-                    path = path.concat(SVG.createSkewer(-width/2,VH+vt_b+this.height.vtop,width/2,height)).concat(SVG.createSkewer(-width/2,this.height.vbottom,width/2,VH+vt_b-vt));
-                    path = SVG.toRelative(path);
-                    this.gap = {top:VH+vt_b-vt,middle:VH+vt_b-vt,bottom:height};
-        //(midのみ)0~vowelhratio*height-(vbottom-vheight)/2の棒
-        //M 0,(vowelhratio*height+(vbottom-vheight)/2) 
-        //(midのみ)vowelhratio*height+(vbottom-vheight)/2~heightの棒
-                break;
-                case "fin":
-        //finはM 0,height-(bottom-top)
-        //0~max(vbottom,vtop)の棒
-                    path = SVG.toRelative(path);
-                    path = SVG.createGap(path,0,height-(this.height.bottom-this.height.vtop));
-                    path = path.concat(SVG.createSkewer(-width/2,0,width/2,height-(this.height.bottom-this.height.vtop)));
-                    path = SVG.toRelative(path);
-                    this.gap = {top:0,middle:height-(this.height.bottom-this.height.vtop),bottom:0};
-                break;
-                }   
-        } else{
-        path = SVG.toRelative(path);
-        path = SVG.createGap(path,0,VH-vt);
-        path = SVG.toRelative(path);
-        this.gap = {top:VH-vt,middle:VH,bottom:VH+vt};
+        const vowel_position = vowelhratio*height
+        const vowel_height_half = (this.height_vbottom-this.height_vtop)/2;
+        const glyph_height_half = (-this.height_bottom-this.height_top)/2;
+        let path = this.toPath();
+        switch(this.form){
+            case "sol":
+                path = SVG.toRelativeAll(path); path = SVG.setPosition(path,0,vowel_position-vowel_height_half);
+                path = SVG.toRelativeAll(path);
+                this.gap = {top:0,middle:vowel_position,bottom:height};
+            break;
+            case "init":
+                //高さvbottom~heightを占める棒を挿す
+                path = SVG.toRelativeAll(path); path = SVG.setPosition(path,0,0);
+                path = path.concat(SVG.createSkewer(-width/2,this.height_vbottom,width/2,height));
+                path = SVG.toRelativeAll(path);
+                this.gap = {top:0,middle:this.height_vbottom,bottom:height};
+            break;
+            case "mid":
+                //グリフ自体を適切に下にずらした上で
+                //高さ0~vowelhratio*height-(vbottom-vowel_positioneight)/2と
+                //高さvowelhratio*height+(vbottom-vowel_positioneight)/2~heightとを占める棒を挿す
+                path = SVG.toRelativeAll(path); path = SVG.setPosition(path,0,vowel_position+glyph_height_half-vowel_height_half);
+                path = path.concat(SVG.createSkewer(-width/2,vowel_position+glyph_height_half+this.height_vtop,width/2,height)).concat(SVG.createSkewer(-width/2,this.height_vbottom,width/2,vowel_position+glyph_height_half-vowel_height_half));
+                path = SVG.toRelativeAll(path);
+                this.gap = {top:vowel_position+glyph_height_half-vowel_height_half,middle:vowel_position+glyph_height_half-vowel_height_half,bottom:height};
+            break;
+            case "fin":
+                //グリフ自体を適切に下にずらした上で
+                //高さheight-(bottom-vowel_height_halfop)を占める棒を挿す
+                path = SVG.toRelativeAll(path); path = SVG.setPosition(path,0,height-(this.height_bottom-this.height_vtop));
+                path = path.concat(SVG.createSkewer(-width/2,0,width/2,height-(this.height_bottom-this.height_vtop)));
+                path = SVG.toRelativeAll(path);
+                this.gap = {top:0,middle:height-(this.height_bottom-this.height_vtop),bottom:height};
+            break;
         }
-    return path;
+        return path;
     }
-    toPathB(top,bottom){
-        let path = this.toPath() ?? SVG.createM(0,0); 
-        if(path.length == 0)path = SVG.createM(0,0); 
+    #sub_toPathAbs_NonSyllable(height,vowelhratio){
+        //const width = FontManager.getFont(this.font).getTable("FONTDATA").dataList[0].getVal("Thickness");
+        const vowel_position = vowelhratio*height
+        const vowel_height_half = (this.height_vbottom-this.height_vtop)/2;
+        //const glyph_height_half = (-this.height_bottom-this.height_top)/2;
+        let path = this.toPath();
+        console.log(vowel_position-vowel_height_half);
+        path = SVG.toRelativeAll(path);
+        path = SVG.setPosition(path,0,vowel_position-vowel_height_half);
+        path = SVG.toRelativeAll(path);
+        this.gap = {top:vowel_position-vowel_height_half,middle:vowel_position,bottom:vowel_position+vowel_height_half};
+        return path;
+    }
+
+    toPathAbsolute(height,vowelhratio){
+        return this.type == "S" ? this.#sub_toPathAbs_Syllable(height,vowelhratio) : this.#sub_toPathAbs_NonSyllable(height,vowelhratio);
+    }
+
+    #sub_toPathRelative_S_NullVowel(top,bottom){
         const width = FontManager.getFont(this.font).getTable("FONTDATA").dataList[0].getVal("Thickness");
-        if(this.type == "S"){
-            const v = this.childList[1].glyphname.match(/[A-Za-z]+/g)[0];
-            const v_null = FontManager.getStaticTable("VOWEL").getData({Name:v})[0].getVal("isNullVowel");
-        if(v_null){
-            const stick = SVG.createSkewer(-width/2,top+this.height.top,width/2,bottom+this.height.bottom);
-            //const stick = SVG.createSkewer(-width/2,top+this.height.top,width/2,this.height.vtop).concat(SVG.createSkewer(-width/2,this.height.vbottom,width/2,bottom+this.height.bottom));
+        let path = this.toPath();
+         const stick = SVG.createSkewer(-width/2,top+this.height_top,width/2,bottom+this.height_bottom);
             switch(this.form){
                 case "sol":
-                    path = SVG.toRelative(path);
-                    path = SVG.createGap(path);
-                    path = path.concat(SVG.createM(0,bottom+this.height.bottom));
-                    path = SVG.toRelative(path);
-                    path = SVG.createGap(path,0,top+this.height.top);
-                    path = SVG.toRelative(path);
+                    path = SVG.toRelativeAll(path); path = SVG.setPosition(path);
+                    path = path.concat(SVG.fromPosition(0,bottom+this.height_bottom));
+                    path = SVG.toRelativeAll(path); path = SVG.setPosition(path,0,top+this.height_top);
                 break;
                 case "init":case "mid":case "fin":
-                    path = SVG.toRelative(path);
-                    path = SVG.createGap(path,0,0).concat(stick);
-                    path = SVG.toRelative(path);
-                    break;
+                    path = SVG.toRelativeAll(path); path = SVG.setPosition(path,0,0).concat(stick);
+                break;
             }
-        }
-        else {
-            switch(this.form){
-                case "sol":
-                    path = SVG.toRelative(path);
-                    path = path.concat(SVG.createM(0,bottom+this.height.bottom));
-                    path = SVG.toRelative(path);
-                    path = SVG.createGap(path,0,top+this.height.top);
-                    path = SVG.toRelative(path);
-                break;
-                case "init":
-                    path = SVG.toRelative(path);
-                    path = SVG.createGap(path,0,top);
-                    path = path.concat(SVG.createSkewer(-width/2,top+this.height.vbottom,width/2,bottom+this.height.bottom));
-                    path = SVG.toRelative(path);
-                break;
-                case "mid":
-                    path = SVG.toRelative(path);
-                    path = SVG.createGap(path,0,0);
-                    path = path.concat(SVG.createSkewer(-width/2,top+this.height.top,width/2,this.height.vtop));
-                    path = path.concat(SVG.createSkewer(-width/2,this.height.vbottom,width/2,bottom+this.height.bottom));
-                    path = SVG.toRelative(path);
-                break;
-                case "fin":
-                    path = SVG.toRelative(path);
-                    path = SVG.createGap(path,0,0);
-                    path = path.concat(SVG.createSkewer(-width/2,top+this.height.top,width/2,this.height.vtop + (v_null? bottom: 0)));
-                    path = SVG.toRelative(path);
-                break;
-                }
+        return path;
+    }
+
+    #sub_toPathRelative_S_notNullVowel(top,bottom){
+        const width = FontManager.getFont(this.font).getTable("FONTDATA").dataList[0].getVal("Thickness");
+        let path = this.toPath();
+        switch(this.form){
+            case "sol":
+                path = SVG.toRelativeAll(path).concat(SVG.fromPosition(0,bottom+this.height_bottom));
+                path = SVG.toRelativeAll(path); path = SVG.setPosition(path,0,top+this.height_top);
+            break;
+            case "init":
+                path = SVG.toRelativeAll(path); path = SVG .setPosition(path,0,top);
+                path = path.concat(SVG.createSkewer(-width/2,top+this.height_vbottom,width/2,bottom+this.height_bottom));
+            break;
+            case "mid":
+                path = SVG.toRelativeAll(path); path = SVG.setPosition(path,0,0);
+                path = path.concat(SVG.createSkewer(-width/2,top+this.height_top,width/2,this.height_vtop));
+                path = path.concat(SVG.createSkewer(-width/2,this.height_vbottom,width/2,bottom+this.height_bottom));
+            break;
+            case "fin":
+                path = SVG.toRelativeAll(path); path = SVG.setPosition(path,0,0);
+                path = path.concat(SVG.createSkewer(-width/2,top+this.height_top,width/2,this.height_vtop ));
+            break;
             }
-        }        
-        else{
-            path = path.concat(SVG.createM(0,bottom+this.height.bottom));
-            path = SVG.createGap(path,0,top+this.height.top);
-            path = SVG.toRelative(path);
-        }
+        return path;
+    }
+
+    #sub_toPathRelative_Syllable(top,bottom){
+        const v = this.#get_vowel().glyphname.match(/[A-Za-z]+/g)[0];
+        const v_null = FontManager.getStaticTable("VOWEL").getData({Name:v})[0].getVal("isNullVowel");
+        return v_null ? this.#sub_toPathRelative_S_NullVowel(top,bottom) : this.#sub_toPathRelative_S_notNullVowel(top,bottom);
+    }
+
+    #sub_toPathRelative_NonSyllable(top,bottom){
+       let path = this.toPath();
+       path = path.concat(SVG.fromPosition(0,bottom+this.height_bottom)); path = SVG.setPosition(path,0,top+this.height_top);
+       return path;
+    }
+
+    toPathRelative(top,bottom){
+        let path = this.type == "S"? this.#sub_toPathRelative_Syllable(top,bottom) : this.#sub_toPathRelative_NonSyllable(top,bottom);
+        path = SVG.toRelativeAll(path);
         this.gap = {top:top,middle:0,bottom:bottom};
         return path;
     }
-    toPath(){//Svgをpathにする。再帰的に。
-        let ans = [];
-        if(this.type == "S"){
-            const c0 = this.childList[0].toPath();
-            const v = this.childList[1].toPath();
-            const v_alt = this.childList[1].d_origin;
-            const c1 = this.childList[2].toPath();
-            const offs = this.getoffset()
-            const off0 = offs[0];//this.childList[0].name_b.glyphname == null ? {x:0,y:0} :this.childList[0].getoffset(v,true);//parentd
-            const off1 = offs[1];//this.childList[2].name_b.glyphname == null ? {x:0,y:0} :this.childList[2].getoffset(v,true);
-            ans = SVG.Domerge3(v,c0,c1,0,off0.y,0,off1.y);
-            ans = SVG.toRelative(ans);
-            this.height.vtop = SVG.getTop(v_alt);
-            this.height.vbottom = SVG.getBottom(v_alt);
-            this.height.bottom = SVG.getBottom(ans);
-            this.height.top = SVG.getTop(ans);
-            this.d = ans;
-        }
-        else{
-            // deno-lint-ignore no-this-alias
-            let p = this; 
-            while(p.childList.length != 0) p = p.childList[0];
-                ans = p.d;
-                const dir_ = {onset:1,coda:-1,sol:1,init:1,mid:1,fin:1};
-            while(p.parent != null && p.parent.type != "S"){
-                const dir  = p.type.startsWith("C") ? dir_[p.form] : 1;
-                const off = p.parent.getoffset();
-                const child_d = p.parent.childList[1].d;
-                const off_childx = dir*(SVG.getRight(child_d)+SVG.getLeft(child_d))/2;
-                const off_childy = (SVG.getTop(child_d)-SVG.getBottom(child_d)/2);
-                ans = SVG.Domerge2(ans,child_d,off.x+off_childx,off.y+off_childy);
-                ans = SVG.toRelative(ans);
-                p = p.parent;p.d = ans;
-            }
-        }
-        return ans ?? SVG.createM(0,0);
+
+    #mergeNonSyllable(parent,base, child) {
+        const dir = child.type.startsWith("C") ? (child.form === "coda" ? -1 : 1) : 1;
+        const off = parent.#calc_offset();
+        const child_d = parent.#get_diacritical().path;
+        const off_childx = dir*(SVG.getRight(child_d)+SVG.getLeft(child_d))/2;
+        const off_childy = (SVG.getTop(child_d)-SVG.getBottom(child_d))/2;
+        const merged = SVG.mergePath2(base,child_d,off.x+off_childx,off.y+off_childy);
+        return SVG.toRelativeAll(merged);
     }
-    getoffset(){
-        //V-Vd部分のみ動作未検証
-        const thisCL_ = this.childList;
-        if(this.type == "S"){
-            const v = thisCL_[1].glyphname.match(/[A-Za-z]+/g)[0];
-            const v_null = FontManager.getStaticTable("VOWEL").getData({Name:v})[0].getVal("isNullVowel");
-            const c0offset = thisCL_.length>0?thisCL_[0].offset:{x:0,y:0};
-            const c2offset = thisCL_.length>2?thisCL_[2].offset:{x:0,y:0};
-            const c0d = thisCL_.length>0?thisCL_[0].d:null;
-            const c1d = thisCL_[1].d;
-            const c2d = thisCL_.length>2?thisCL_[2].d:null;
-            const topgap = c0d !=null?(c2d!=null ? Math.min(SVG.getTop(c0d),SVG.getTop(c2d)):SVG.getTop(c2d)):(c2d!=null ? SVG.getTop(c2d):0);
-            const bottomgap = c0d !=null?(c2d!=null ? Math.max(SVG.getBottom(c0d),SVG.getBottom(c2d)):SVG.getBottom(c2d)):(c2d!=null ? SVG.getBottom(c2d):0);
-            if(v_null){
-                return [{x:c0offset.x,y:SVG.getBottom(c1d)+topgap-bottomgap+c0offset.y},{x:c2offset.x,y:SVG.getBottom(c1d)+topgap-bottomgap+c2offset.y}];
-            }
-            else{
-                switch(this.form){
-                    case "init":
-                        return [{x:c0offset.x,y:SVG.getBottom(c1d)+topgap+c0offset.y},{x:c2offset.x,y:SVG.getBottom(c1d)+topgap+c2offset.y}];
-                    case "mid":
-                    case "sol":
-                        return [{x:c0offset.x,y:SVG.getTop(c1d)-SVG.getBottom(c0d ?? "M 0,0")+c0offset.y},{x:c2offset.x,y:SVG.getBottom(c1d)+SVG.getTop(c2d ?? "M 0,0")+c2offset.y}];
-                    case "fin":
-                        return [{x:c0offset.x,y:SVG.getTop(c1d)-bottomgap+c0offset.y},{x:c2offset.x,y:SVG.getTop(c1d)-bottomgap+c2offset.y}];
-                }
-            }
-        }
-        else{
-            if(thisCL_.length < 1) return {x:0,y:0};
-            const parentd = thisCL_[0].d
-            const off1 = thisCL_[1].offset;
-            const alig1 = thisCL_[1].aligment;
+
+    #toPath_NonSyllable() {
+        if (this.child_list.length == 0)
+            {this.height_vtop = SVG.getTop(this.path);
+        this.height_vbottom = SVG.getBottom(this.path);
+        this.height_bottom = SVG.getBottom(this.path);
+        this.height_top = SVG.getTop(this.path);
+        return this.path;}
+        const child = this.#get_main_glyph();
+        const base = child.#toPath_NonSyllable();
+        const merged = this.#mergeNonSyllable(this,base, child);
+        this.path = merged;
+        this.height_vtop = SVG.getTop(this.path);
+        this.height_vbottom = SVG.getBottom(this.path);
+        this.height_bottom = SVG.getBottom(this.path);
+        this.height_top = SVG.getTop(this.path);
+        return merged;
+    }
+
+
+    #toPath_Syllable(){
+        let ans = [];
+        const c0 = this.#get_onset().#toPath_NonSyllable();
+        const v = this.#get_vowel().#toPath_NonSyllable();
+        const v_alt = this.#get_vowel().path_origin;
+        const c1 = this.#get_coda().#toPath_NonSyllable();
+        const offs = this.#calc_offset()
+        const off0 = offs[0];//this.child_list[0].name_b.glyphname == null ? {x:0,y:0} :this.child_list[0].#calc_offset(v,true);//parentd
+        const off1 = offs[1];//this.child_list[2].name_b.glyphname == null ? {x:0,y:0} :this.child_list[2].#calc_offset(v,true);
+        ans = SVG.mergePath3(v,c0,c1,0,off0.y,0,off1.y);
+        ans = SVG.toRelativeAll(ans);
+        this.height_vtop = SVG.getTop(v_alt);
+        this.height_vbottom = SVG.getBottom(v_alt);
+        this.height_bottom = SVG.getBottom(ans);
+        this.height_top = SVG.getTop(ans);
+        this.path = ans;
+        return ans;
+    }
+
+    #calc_offset_NonSyllable(){
+        if(this.child_list.length < 1) return {x:0,y:0};
+            const parentd = this.#get_main_glyph().path;
+            const off1 = this.#get_diacritical().offset;
+            const alig1 = this.#get_diacritical().aligment;
              if(this.type.startsWith("C")){
                 const dir_ = {onset:1,coda:-1};
                 const dir = dir_[this.form];
@@ -415,9 +443,50 @@ class Glyph{
                 const y =  (SVG.getTop(parentd)*(1-alig1.y)/2+SVG.getBottom(parentd) *(1+alig1.y)/2)+off1.y;
                 return{x:x,y:y};
             }
-        }
-        return {x:0,y:0};
+    }
+
+    #calc_offset_S_NullVowel(){
+        const c_len = this.child_list.length;
+        const c0offset = c_len > 0 ? this.#get_onset().offset : {x:0,y:0};
+        const c2offset = c_len > 2 ? this.#get_coda().offset : {x:0,y:0};
+        const c0d = c_len > 0 ? this.#get_onset().path : null;
+        const c1d = this.#get_vowel().path;
+        const c2d = c_len > 2 ? this.#get_coda().path : null;
+        const topgap = c0d !=null?(c2d!=null ? Math.min(SVG.getTop(c0d),SVG.getTop(c2d)):SVG.getTop(c2d)):(c2d!=null ? SVG.getTop(c2d):0);
+        const bottomgap = c0d !=null?(c2d!=null ? Math.max(SVG.getBottom(c0d),SVG.getBottom(c2d)):SVG.getBottom(c2d)):(c2d!=null ? SVG.getBottom(c2d):0);
+        return [{x:c0offset.x,y:SVG.getBottom(c1d)+topgap-bottomgap+c0offset.y},{x:c2offset.x,y:SVG.getBottom(c1d)+topgap-bottomgap+c2offset.y}];
+    }
+
+    #calc_offset_S_notNullVowel(){
+        const c_len = this.child_list.length;
+        const c0offset = c_len > 0 ? this.#get_onset().offset : {x:0,y:0};
+        const c2offset = c_len > 2 ? this.#get_coda().offset : {x:0,y:0};
+        const c0d = c_len > 0 ? this.#get_onset().path : null;
+        const c1d = this.#get_vowel().path;
+        const c2d = c_len > 2 ? this.#get_coda().path : null;
+        const topgap = c0d !=null?(c2d!=null ? Math.min(SVG.getTop(c0d),SVG.getTop(c2d)):SVG.getTop(c2d)):(c2d!=null ? SVG.getTop(c2d):0);
+        const bottomgap = c0d !=null?(c2d!=null ? Math.max(SVG.getBottom(c0d),SVG.getBottom(c2d)):SVG.getBottom(c2d)):(c2d!=null ? SVG.getBottom(c2d):0);
+        switch(this.form){
+            case "init":
+                return [{x:c0offset.x,y:SVG.getBottom(c1d)+topgap+c0offset.y},{x:c2offset.x,y:SVG.getBottom(c1d)+topgap+c2offset.y}];
+            case "mid":
+            case "sol":
+                return [{x:c0offset.x,y:SVG.getTop(c1d)-SVG.getBottom(c0d ?? "M 0,0")+c0offset.y},{x:c2offset.x,y:SVG.getBottom(c1d)+SVG.getTop(c2d ?? "M 0,0")+c2offset.y}];
+            case "fin":
+                return [{x:c0offset.x,y:SVG.getTop(c1d)-bottomgap+c0offset.y},{x:c2offset.x,y:SVG.getTop(c1d)-bottomgap+c2offset.y}];
+    }
+    }
+
+    #calc_offset_Syllable(){
+        const v = this.#get_vowel().glyphname.match(/[A-Za-z]+/g)[0];
+        const v_null = FontManager.getStaticTable("VOWEL").getData({Name:v})[0].getVal("isNullVowel");
+        return v_null ? this.#calc_offset_S_NullVowel() : this.#calc_offset_S_notNullVowel();
+    }
+
+    #calc_offset(){
+        return this.type == "S" ? this.#calc_offset_Syllable() : this.#calc_offset_NonSyllable();
     }
 }
+
 
 export {Glyph,GlyphArray};

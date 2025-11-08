@@ -227,8 +227,9 @@ class SVGField_web{
                 i_++;
                 }
             }
-            x0 = Khhyl.SVG.getLeft(d);x1 = Khhyl.SVG.getRight(d);
-            y0 = Khhyl.SVG.getTop(d);y1 = Khhyl.SVG.getBottom(d);
+            const temp = Khhyl.SVG.ParseD(d);
+            x0 = Khhyl.SVG.getLeft(temp);x1 = Khhyl.SVG.getRight(temp);
+            y0 = Khhyl.SVG.getTop(temp);y1 = Khhyl.SVG.getBottom(temp);
         }
         const object = $("div#storage svg#svgField").clone(false,false)[0];
         while(object.firstChild)object.removeChild(object.firstChild);

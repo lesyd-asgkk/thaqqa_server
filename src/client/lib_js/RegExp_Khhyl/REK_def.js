@@ -1,37 +1,45 @@
 import { RegExp_Khhyl,LetterManager } from "../deps.js";
 import { REK_cond } from "./REK_cond.js";
 class REK_def {
+  /*
+  reg_khhyl,ans,reg_string,msgは
+  基本的に
+  reg_khhyl:regexp_khhyl本体
+  ans:結果を格納する配列
+  reg_string:regex_string部分
+  msg:マッチした文字列
+  */
   static rule_form = {
-    ["\\*"]: (self, ans, pattern, msg) => {
-      if (self.intent.subtype == "V") {
-        return REK_def.PREsub_lower(self,ans,pattern,"(?:init|mid|fin|sol|null)",msg,"form");
+    ["\\*"]: (reg_khhyl, ans, reg_string, msg) => {
+      if (reg_khhyl.intent.subtype == "V") {
+        return REK_def.PREsub_lower(reg_khhyl,ans,reg_string,"(?:init|mid|fin|sol|null)",msg,"form");
       }
-      return REK_def.PREsub_lower(self,ans,pattern,"(?:onset|coda|null)",msg,"form");
+      return REK_def.PREsub_lower(reg_khhyl,ans,reg_string,"(?:onset|coda|null)",msg,"form");
     },
     // |記号、または(*+?)? があったら
-    ["(\\\||(\\\*|\\\+|\\\?)\\\??)"]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_END(self, ans, pattern, msg, msg);
+    ["(\\\||(\\\*|\\\+|\\\?)\\\??)"]: (reg_khhyl, ans, reg_string, msg) => {
+      return REK_def.PREsub_END(reg_khhyl, ans, reg_string, msg, msg);
     },//()の類
-    ["\\\((\\\?(<.*?>)?:)?"]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_br_A(self, ans, pattern, msg);
+    ["\\\((\\\?(<.*?>)?:)?"]: (reg_khhyl, ans, reg_string, msg) => {
+      return REK_def.PREsub_br_A(reg_khhyl, ans, reg_string, msg);
     },//文字
-    ["[A-Za-z]+"]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_END(self, ans, pattern, msg, msg);
+    ["[A-Za-z]+"]: (reg_khhyl, ans, reg_string, msg) => {
+      return REK_def.PREsub_END(reg_khhyl, ans, reg_string, msg, msg);
     },
-    [" "]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_END(self, ans, pattern, "", msg);
+    [" "]: (reg_khhyl, ans, reg_string, msg) => {
+      return REK_def.PREsub_END(reg_khhyl, ans, reg_string, "", msg);
     },
   };
 
   static rule_script = {
     [".+"]: //[]
-      (self, ans, pattern, msg) => {
+      (reg_khhyl, ans, reg_string, msg) => {
         
         const hensuu = [];
         const table = {
           "V": "VOWEL","C": "CONSONANT","P": "PUNCTUATION",
           "Vd": "DIACRITIC_V", "Cd": "DIACRITIC_C","Pd": "DIACRITIC_P"};
-        const str = self.intent.subtype;
+        const str = reg_khhyl.intent.subtype;
         let AL;
         if (typeof str == "string") {
           AL = LetterManager.getLetter({ Name: /(|.*)/g });
@@ -46,131 +54,131 @@ class REK_def {
         }
         const letter =(hensuu.length!=0)?hensuu.join("|"):"（無し）";
         //if(letter == "") letter = "（無し）";
-        return REK_def.PREsub_lower(self, ans, pattern, letter, msg, "g");
+        return REK_def.PREsub_lower(reg_khhyl, ans, reg_string, letter, msg, "g");
       },
   };
   static rule_g= {
-    ["(\\\||(\\\*|\\\+|\\\?)\\\??)"]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_END(self, ans, pattern, msg, msg);
+    ["(\\\||(\\\*|\\\+|\\\?)\\\??)"]: (reg_khhyl, ans, reg_string, msg) => {
+      return REK_def.PREsub_END(reg_khhyl, ans, reg_string, msg, msg);
     },
     // [(条件の羅列)]
-    ["\\["]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_br_D(self, ans, pattern, msg, "script");
+    ["\\["]: (reg_khhyl, ans, reg_string, msg) => {
+      return REK_def.PREsub_br_D(reg_khhyl, ans, reg_string, msg, "script");
     },
-    ["\\."]: (self, ans, pattern, msg) => {
-          return REK_def.PREsub_END(self, ans, pattern, "[A-Za-z]+", msg);
+    ["\\."]: (reg_khhyl, ans, reg_string, msg) => {
+          return REK_def.PREsub_END(reg_khhyl, ans, reg_string, "[A-Za-z]+", msg);
     },
-    ["（無し）"]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_END(self, ans, pattern, msg, msg);
+    ["（無し）"]: (reg_khhyl, ans, reg_string, msg) => {
+      return REK_def.PREsub_END(reg_khhyl, ans, reg_string, msg, msg);
     },
-    ["_"]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_END(self, ans, pattern, "\\d+", msg);
+    ["_"]: (reg_khhyl, ans, reg_string, msg) => {
+      return REK_def.PREsub_END(reg_khhyl, ans, reg_string, "\\d+", msg);
     },
-    ["[A-Za-z]+"]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_END(self, ans, pattern, msg, msg);
+    ["[A-Za-z]+"]: (reg_khhyl, ans, reg_string, msg) => {
+      return REK_def.PREsub_END(reg_khhyl, ans, reg_string, msg, msg);
     },
-    ["\\d+"]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_END(self, ans, pattern, msg, msg);
+    ["\\d+"]: (reg_khhyl, ans, reg_string, msg) => {
+      return REK_def.PREsub_END(reg_khhyl, ans, reg_string, msg, msg);
     },
-    ["\\(\\\?<?[=!]"]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_br_B(self, ans, pattern, msg);
+    ["\\(\\\?<?[=!]"]: (reg_khhyl, ans, reg_string, msg) => {
+      return REK_def.PREsub_br_B(reg_khhyl, ans, reg_string, msg);
     },
-    ["\\((\\\?(<.*?>)?:)?"]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_br_A(self, ans, pattern, msg);
+    ["\\((\\\?(<.*?>)?:)?"]: (reg_khhyl, ans, reg_string, msg) => {
+      return REK_def.PREsub_br_A(reg_khhyl, ans, reg_string, msg);
     },
-    ["{\\\d+(,|,\\\d+)?}"]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_kazu(self, ans, pattern, msg);
+    ["{\\\d+(,|,\\\d+)?}"]: (reg_khhyl, ans, reg_string, msg) => {
+      return REK_def.PREsub_kazu(reg_khhyl, ans, reg_string, msg);
     },
-    [" "]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_END(self, ans, pattern, "", msg);
+    [" "]: (reg_khhyl, ans, reg_string, msg) => {
+      return REK_def.PREsub_END(reg_khhyl, ans, reg_string, "", msg);
     },
   };
 
 
 
   static rule_G = {
-    ["-\\*"]: (self, ans, pattern, msg) => {
-      self.intent.isFirst = "TRUE";
-      return REK_def.PREsub_lower(self, ans, pattern, "(?:|-._(?:-._)*)", msg, "G");
+    ["-\\*"]: (reg_khhyl, ans, reg_string, msg) => {
+      reg_khhyl.intent.isFirst = "TRUE";
+      return REK_def.PREsub_lower(reg_khhyl, ans, reg_string, "(?:|-._(?:-._)*)", msg, "G");
     },
-    ["-\\+"]: (self, ans, pattern, msg) => {
-      self.intent.isFirst = "TRUE";
-      return REK_def.PREsub_lower(self, ans, pattern, "(?:|-._(?:-._)*)", msg, "G");
+    ["-\\+"]: (reg_khhyl, ans, reg_string, msg) => {
+      reg_khhyl.intent.isFirst = "TRUE";
+      return REK_def.PREsub_lower(reg_khhyl, ans, reg_string, "(?:|-._(?:-._)*)", msg, "G");
     },
-    ["-\\?"]: (self, ans, pattern, msg) => {
-      self.intent.isFirst = "TRUE";
-      return REK_def.PREsub_lower(self, ans, pattern, "(?:|-._?)", msg, "G");
+    ["-\\?"]: (reg_khhyl, ans, reg_string, msg) => {
+      reg_khhyl.intent.isFirst = "TRUE";
+      return REK_def.PREsub_lower(reg_khhyl, ans, reg_string, "(?:|-._?)", msg, "G");
     },
-    ["\\*"]: (self, ans, pattern, msg) => {
-      if (self.intent.isFirst == "FALSE") {
-        return REK_def.PREsub_END(self, ans, pattern, msg, msg);
+    ["\\*"]: (reg_khhyl, ans, reg_string, msg) => {
+      if (reg_khhyl.intent.isFirst == "FALSE") {
+        return REK_def.PREsub_END(reg_khhyl, ans, reg_string, msg, msg);
       }
-      return REK_def.PREsub_lower(self, ans, pattern, "(?:|._(?:-._)*)", msg, "G");
+      return REK_def.PREsub_lower(reg_khhyl, ans, reg_string, "(?:|._(?:-._)*)", msg, "G");
     },
-    ["\\+"]: (self, ans, pattern, msg) => {
-      if (self.intent.isFirst == "FALSE") {
-        return REK_def.PREsub_END(self, ans, pattern, msg, msg);
+    ["\\+"]: (reg_khhyl, ans, reg_string, msg) => {
+      if (reg_khhyl.intent.isFirst == "FALSE") {
+        return REK_def.PREsub_END(reg_khhyl, ans, reg_string, msg, msg);
       }
-      return REK_def.PREsub_lower(self, ans, pattern, "._(?:-._)*", msg, "G");
+      return REK_def.PREsub_lower(reg_khhyl, ans, reg_string, "._(?:-._)*", msg, "G");
     },
-    ["\\?"]: (self, ans, pattern, msg) => {
-      if (self.intent.isFirst == "FALSE") {
-        return REK_def.PREsub_END(self, ans, pattern, msg, msg);
+    ["\\?"]: (reg_khhyl, ans, reg_string, msg) => {
+      if (reg_khhyl.intent.isFirst == "FALSE") {
+        return REK_def.PREsub_END(reg_khhyl, ans, reg_string, msg, msg);
       }
-      return REK_def.PREsub_lower(self, ans, pattern, "(?:._)?", msg, "G");
+      return REK_def.PREsub_lower(reg_khhyl, ans, reg_string, "(?:._)?", msg, "G");
     },
-    ["(\\\||(\\\*|\\\+|\\\?)\\\??)"]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_END(self, ans, pattern, msg, msg);
+    ["(\\\||(\\\*|\\\+|\\\?)\\\??)"]: (reg_khhyl, ans, reg_string, msg) => {
+      return REK_def.PREsub_END(reg_khhyl, ans, reg_string, msg, msg);
     },
-    ["(\\[.+?\\]|[A-Za-z]|\\d+|_|\\.)+"]: (self, ans, pattern, msg) => {
-      self.intent.isFirst = "FALSE";
-      return REK_def.PREsub_lower(self, ans, pattern, msg, msg, "g");
+    ["(\\[.+?\\]|[A-Za-z]|\\d+|_|\\.)+"]: (reg_khhyl, ans, reg_string, msg) => {
+      reg_khhyl.intent.isFirst = "FALSE";
+      return REK_def.PREsub_lower(reg_khhyl, ans, reg_string, msg, msg, "g");
     },
-    ["-"]: (self, ans, pattern, msg) => {
-      self.intent.isFirst = "TRUE";
-      return REK_def.PREsub_END(self, ans, pattern, msg, msg);
+    ["-"]: (reg_khhyl, ans, reg_string, msg) => {
+      reg_khhyl.intent.isFirst = "TRUE";
+      return REK_def.PREsub_END(reg_khhyl, ans, reg_string, msg, msg);
     },
-    ["\\\(\\\?<?[=!]"]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_br_B(self, ans, pattern, msg);
+    ["\\\(\\\?<?[=!]"]: (reg_khhyl, ans, reg_string, msg) => {
+      return REK_def.PREsub_br_B(reg_khhyl, ans, reg_string, msg);
     },
-    ["\\\((\\\?(<.*?>)?:)?"]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_br_A(self, ans, pattern, msg);
+    ["\\\((\\\?(<.*?>)?:)?"]: (reg_khhyl, ans, reg_string, msg) => {
+      return REK_def.PREsub_br_A(reg_khhyl, ans, reg_string, msg);
     },
-    ["{\\\d+(,|,\\\d+)?}"]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_kazu(self, ans, pattern, msg);
+    ["{\\\d+(,|,\\\d+)?}"]: (reg_khhyl, ans, reg_string, msg) => {
+      return REK_def.PREsub_kazu(reg_khhyl, ans, reg_string, msg);
     },
-    [" "]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_END(self, ans, pattern, "", msg);
+    [" "]: (reg_khhyl, ans, reg_string, msg) => {
+      return REK_def.PREsub_END(reg_khhyl, ans, reg_string, "", msg);
     },
   };
 
   static rule_r = {
-    [".+"]: (self, ans, pattern, msg) => {
-    return REK_def.PREsub_END(self, ans, pattern, msg, msg);
+    [".+"]: (reg_khhyl, ans, reg_string, msg) => {
+    return REK_def.PREsub_END(reg_khhyl, ans, reg_string, msg, msg);
     }
   }
 
   static rule_scvpd = {
-    [".*?,.*?,.*?,.*"]: (self, ans, pattern, msg) => {
+    [".*?,.*?,.*?,.*"]: (reg_khhyl, ans, reg_string, msg) => {
       const seperated = msg.split(",");
       const type = ["form", "G", "G", "G"];
       const subtype = ["V", "C", "V", "C"];
-      const typeB = self.intent.type;
+      const typeB = reg_khhyl.intent.type;
       if (seperated != null && seperated.length == 4 && typeB == "S") {
         for (let i = 0; i < seperated.length; i++) {
-          const intent_after = { ...self.intent };
+          const intent_after = { ...reg_khhyl.intent };
           intent_after.type = type[i];intent_after.isFirst = "TRUE";intent_after.subtype = subtype[i];intent_after.subtypeb = "none";
           const t = new RegExp_Khhyl(seperated[i], intent_after);
           ans.push(t);
         }
-        pattern = pattern.slice(msg.length + 1);
-        return [ans, pattern];
+        reg_string = reg_string.slice(msg.length + 1);
+        return [ans, reg_string];
       }
-      throw Error(`${self.intent.type}(${msg})は不正な正規表現です`);
+      throw Error(`${reg_khhyl.intent.type}(${msg})は不正な正規表現です`);
     },
-    [".*?,.*"]: (self, ans, pattern, msg) => {
+    [".*?,.*"]: (reg_khhyl, ans, reg_string, msg) => {
       const seperated = msg.split(",");
-      const typeB = self.intent.type;
+      const typeB = reg_khhyl.intent.type;
       
       if (seperated != null && seperated.length == 2) {
       if (typeB == "S") {
@@ -178,83 +186,83 @@ class REK_def {
         const subtype = ["V", "C", "V", "C"];
         const sep2 = seperated.concat("*", "*");
           for (let i = 0; i < sep2.length; i++) {
-            const intent_after = { ...self.intent };
+            const intent_after = { ...reg_khhyl.intent };
             intent_after.type = type[i];intent_after.isFirst = "TRUE";
             intent_after.subtype = subtype[i];intent_after.subtypeb = "none";
             const t = new RegExp_Khhyl(sep2[i], intent_after);
             ans.push(t);
           }
-          pattern = pattern.slice(msg.length + 1);
-          return [ans,pattern];
+          reg_string = reg_string.slice(msg.length + 1);
+          return [ans,reg_string];
         }
       else if (typeB == "X") {
         const condition = seperated != null && seperated.length == 1;
-        return condition?REK_def.PREsub_END(self, ans, pattern, seperated[0], msg):[];
+        return condition?REK_def.PREsub_END(reg_khhyl, ans, reg_string, seperated[0], msg):[];
       }
       else if (["V","Vd","C","Cd"].includes(typeB)){
         for (let i = 0; i < seperated.length; i++) {
-          const intent_after = { ...self.intent };
+          const intent_after = { ...reg_khhyl.intent };
           const type = ["form", "G"];
           intent_after.type = type[i];intent_after.isFirst = "TRUE";
           intent_after.subtype = typeB;intent_after.subtypeb = "none";
           const t = new RegExp_Khhyl(seperated[i], intent_after);
           ans.push(t);
         }
-        pattern = pattern.slice(msg.length + 1);
-        return [ans, pattern];
+        reg_string = reg_string.slice(msg.length + 1);
+        return [ans, reg_string];
         }
       }
-      throw Error(`${self.intent.type}(${msg})は不正な正規表現です`);
+      throw Error(`${reg_khhyl.intent.type}(${msg})は不正な正規表現です`);
     },
-    [".+"]: (self, ans, pattern, msg) => {
+    [".+"]: (reg_khhyl, ans, reg_string, msg) => {
       const seperated = msg.split(",");
-      const typeB = self.intent.type;
+      const typeB = reg_khhyl.intent.type;
       if (seperated != null && seperated.length == 1){
       if (typeB == "S") {
         const type = ["form", "G", "G", "G"];
         const subtype = ["V", "C", "V", "C"];
         const sep2 = seperated.concat("*", "*", "*");
         for (let i = 0; i < sep2.length; i++) {
-          const intent_after = { ...self.intent };
+          const intent_after = { ...reg_khhyl.intent };
           intent_after.type = type[i];intent_after.isFirst = "TRUE";
           intent_after.subtype = subtype[i];intent_after.subtypeb = "none";
           const t = new RegExp_Khhyl(sep2[i], intent_after);
           ans.push(t);
         }
-        pattern = pattern.slice(msg.length + 1);
-        return [ans, pattern];
+        reg_string = reg_string.slice(msg.length + 1);
+        return [ans, reg_string];
       }
       else if (["C","Cd","V","Vd"].includes(typeB)) {
         const type = ["form", "G"];
         const sep2 = seperated.concat("*");
         for (let i = 0; i < sep2.length; i++) {
-          const intent_after = { ...self.intent };
+          const intent_after = { ...reg_khhyl.intent };
           intent_after.type = type[i];intent_after.isFirst = "TRUE";
           intent_after.subtype = typeB;intent_after.subtypeb = "none";
           const t = new RegExp_Khhyl(sep2[i], intent_after);
           ans.push(t);
         }
-        pattern = pattern.slice(msg.length + 1);
-        return [ans, pattern];
+        reg_string = reg_string.slice(msg.length + 1);
+        return [ans, reg_string];
       }
       else if (["P","Pd"].includes(typeB)) {
-        const intent_after = { ...self.intent };
+        const intent_after = { ...reg_khhyl.intent };
         intent_after.type = "G";
         intent_after.isFirst = "TRUE";
         intent_after.subtype = typeB;
         intent_after.subtypeb = "none";
         const t = new RegExp_Khhyl(seperated[0], intent_after);
         ans.push(t);
-        pattern = pattern.slice(msg.length + 1);
-        return [ans, pattern];
+        reg_string = reg_string.slice(msg.length + 1);
+        return [ans, reg_string];
       }
       }
-      throw Error(`${self.intent.type}(${msg})は不正な正規表現です`);
+      throw Error(`${reg_khhyl.intent.type}(${msg})は不正な正規表現です`);
     },
   };
 
   static rule_l = {
-    ["L"]: (self, ans, pattern, _msg) => {
+    ["L"]: (reg_khhyl, ans, reg_string, _msg) => {
       const hensuu = [
         ["*,*", "C"],["*,*", "V"],
         ["*,*", "Cd"],["*,*", "Vd"],
@@ -262,156 +270,156 @@ class REK_def {
         ["*,*,*,*", "S"]
       ];
       const letter = hensuu.map((i) => `${i[1]}(${i[0]})`).join("|");
-      return REK_def.PREsub_lower(self, ans, pattern, letter, _msg, "");
+      return REK_def.PREsub_lower(reg_khhyl, ans, reg_string, letter, _msg, "");
     },
   };
   static rule_SEN = {
-    ["\\\^"]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_END(self, ans, pattern, msg, msg);
+    ["\\\^"]: (reg_khhyl, ans, reg_string, msg) => {
+      return REK_def.PREsub_END(reg_khhyl, ans, reg_string, msg, msg);
     },
-    ["\\\$"]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_END(self, ans, pattern, msg, msg);
+    ["\\\$"]: (reg_khhyl, ans, reg_string, msg) => {
+      return REK_def.PREsub_END(reg_khhyl, ans, reg_string, msg, msg);
     },
-    ["(\\\||(\\\*|\\\+|\\\?)\\\??)"]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_END(self, ans, pattern, msg, msg);
+    ["(\\\||(\\\*|\\\+|\\\?)\\\??)"]: (reg_khhyl, ans, reg_string, msg) => {
+      return REK_def.PREsub_END(reg_khhyl, ans, reg_string, msg, msg);
     },
-      ["Null\\(\\)"]: (self, ans, pattern, msg) => {
-        return REK_def.PREsub_END(self, ans, pattern, "Null\(\\)", msg);
+      ["Null\\(\\)"]: (reg_khhyl, ans, reg_string, msg) => {
+        return REK_def.PREsub_END(reg_khhyl, ans, reg_string, "Null\(\\)", msg);
       },
-      ["Sep\\(\\)"]: (self, ans, pattern, msg) => {
-        return REK_def.PREsub_END(self, ans, pattern, "Sep\\(\\)", msg);
+      ["Sep\\(\\)"]: (reg_khhyl, ans, reg_string, msg) => {
+        return REK_def.PREsub_END(reg_khhyl, ans, reg_string, "Sep\\(\\)", msg);
       },
     ["L\\(\\)"]: //PREsub_br_Cを用いる。
-      (self, ans, pattern, msg) => {
-        return REK_def.PREsub_lower(self, ans, pattern, "L", msg, "L");
+      (reg_khhyl, ans, reg_string, msg) => {
+        return REK_def.PREsub_lower(reg_khhyl, ans, reg_string, "L", msg, "L");
       },
     ["(R|X|S|[CVP]d?)\\("]: //PREsub_br_Cを用いる。
-      (self, ans, pattern, msg) => {
+      (reg_khhyl, ans, reg_string, msg) => {
         const type = msg.match(/^L|R|X|S|[CVP]d?/g);
         if (type != null) {
-          return REK_def.PREsub_br_C(self, ans, pattern, msg, type[0]);
+          return REK_def.PREsub_br_C(reg_khhyl, ans, reg_string, msg, type[0]);
         } else throw Error(`不正な値です：${msg}`);
       },
-    ["\\\(\\\?<?[=!]"]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_br_B(self, ans, pattern, msg);
+    ["\\\(\\\?<?[=!]"]: (reg_khhyl, ans, reg_string, msg) => {
+      return REK_def.PREsub_br_B(reg_khhyl, ans, reg_string, msg);
     },
-    ["\\\((\\\?(<.*?>)?:)?"]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_br_A(self, ans, pattern, msg);
+    ["\\\((\\\?(<.*?>)?:)?"]: (reg_khhyl, ans, reg_string, msg) => {
+      return REK_def.PREsub_br_A(reg_khhyl, ans, reg_string, msg);
     },
-    ["{\\\d+(,|,\\\d+)?}"]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_kazu(self, ans, pattern, msg);
+    ["{\\\d+(,|,\\\d+)?}"]: (reg_khhyl, ans, reg_string, msg) => {
+      return REK_def.PREsub_kazu(reg_khhyl, ans, reg_string, msg);
     },
-    [" "]: (self, ans, pattern, msg) => {
-      return REK_def.PREsub_END(self, ans, pattern, "", msg);
+    [" "]: (reg_khhyl, ans, reg_string, msg) => {
+      return REK_def.PREsub_END(reg_khhyl, ans, reg_string, "", msg);
     },
   };
-//self,ans,pattern,何という文字列に変換するか,msg
-  static PREsub_END(self,ans,pattern,letter,msg){
-    const intent_after = { ...self.intent };
+//reg_khhyl,ans,reg_string,何という文字列に変換するか,msg
+  static PREsub_END(reg_khhyl,ans,reg_string,letter,msg){
+    const intent_after = { ...reg_khhyl.intent };
     intent_after.type = "FINITE";intent_after.isend = "TRUE";
     intent_after.subtypeb = "none";
     const t = new RegExp_Khhyl(letter, intent_after);
     ans.push(t);
-    pattern = pattern.slice(msg.length);
-    return [ans, pattern];
+    reg_string = reg_string.slice(msg.length);
+    return [ans, reg_string];
   }
-  //self,ans,pattern,何という文字列に変換するか,msg,type(次の階層)
-  static PREsub_lower(self,ans,pattern,letter,msg,type){
-    const intent_after = { ...self.intent };
+  //reg_khhyl,ans,reg_string,何という文字列に変換するか,msg,type(次の階層)
+  static PREsub_lower(reg_khhyl,ans,reg_string,letter,msg,type){
+    const intent_after = { ...reg_khhyl.intent };
     intent_after.type = type;intent_after.subtypeb = "none";
-    if(self.intent.type == type && type == "G") intent_after.isoutofBrancket = false;
+    if(reg_khhyl.intent.type == type && type == "G") intent_after.isoutofBrancket = false;
     const t = new RegExp_Khhyl(letter, intent_after);
     ans.push(t);
-    pattern = pattern.slice(msg.length);
-    return [ans, pattern];
+    reg_string = reg_string.slice(msg.length);
+    return [ans, reg_string];
   }
   //[] とか。
-  static PREsub_br_D(self,ans,pattern,letter,type) {
-    const intent_after = { ...self.intent };
+  static PREsub_br_D(reg_khhyl,ans,reg_string,letter,type) {
+    const intent_after = { ...reg_khhyl.intent };
     let i = 1; let j = 1;
-    for (i = letter.length; i < pattern.length; i++) {
-        if (pattern[i] == "[") j++;
-        else if (pattern[i] == "]") j--;
+    for (i = letter.length; i < reg_string.length; i++) {
+        if (reg_string[i] == "[") j++;
+        else if (reg_string[i] == "]") j--;
       if (j == 0) break;
     }
-    if(j!=0) throw Error(`${pattern}([任意の文字列])のような括弧類が閉じていません`);
+    if(j!=0) throw Error(`${reg_string}([任意の文字列])のような括弧類が閉じていません`);
     intent_after.type = type;intent_after.subtypeb = "[]";intent_after.isoutofBrancket = false;
-    const t = new RegExp_Khhyl(pattern.slice(letter.length, i), intent_after);
+    const t = new RegExp_Khhyl(reg_string.slice(letter.length, i), intent_after);
     ans.push(t);
-    pattern = pattern.slice(i + 1);
-    return [ans, pattern];
+    reg_string = reg_string.slice(i + 1);
+    return [ans, reg_string];
   }
   //()類 lowerと同じ引数 「S()」とか「L()」みたいなやつ
-  static PREsub_br_C(self,ans,pattern,letter,type){
-    const intent_after = { ...self.intent };
+  static PREsub_br_C(reg_khhyl,ans,reg_string,letter,type){
+    const intent_after = { ...reg_khhyl.intent };
     let i = 1; //カッコの閉じる場所
     let j = 1; 
-    for (i = letter.length; i < pattern.length; i++) {
-      if (pattern[i] == "(") j++;
-      else if (pattern[i] == ")") j--;
+    for (i = letter.length; i < reg_string.length; i++) {
+      if (reg_string[i] == "(") j++;
+      else if (reg_string[i] == ")") j--;
       if (j == 0) break;
     }
     if(j!=0) throw Error(`${type}(...) が不正です`);
     intent_after.type = type;intent_after.subtypeb = "none";
-    const t = new RegExp_Khhyl(pattern.slice(letter.length, i), intent_after);
+    const t = new RegExp_Khhyl(reg_string.slice(letter.length, i), intent_after);
     ans.push(t);
-    pattern = pattern.slice(i + 1);
-    return [ans, pattern];
+    reg_string = reg_string.slice(i + 1);
+    return [ans, reg_string];
   }
   //前方の(?<=y) (?<!y)と後方の(?=y) (?!y) 
-  static PREsub_br_B(self,ans,pattern,letter){
-    const intent_after = { ...self.intent };
+  static PREsub_br_B(reg_khhyl,ans,reg_string,letter){
+    const intent_after = { ...reg_khhyl.intent };
     let i = 1;
     let j = 1;
-    for (i = 1; i < pattern.length; i++) {
-      if (pattern[i] == "(") j++;
-      else if (pattern[i] == ")") j--;
+    for (i = 1; i < reg_string.length; i++) {
+      if (reg_string[i] == "(") j++;
+      else if (reg_string[i] == ")") j--;
       if (j == 0) break;
     }
     if(j!=0) throw Error("(?<=y)、(?=y)のような括弧類が閉じていません");
     intent_after.isoutofBrancket = false;
     intent_after.subtypeb = letter + "y)";
-    const t = new RegExp_Khhyl(pattern.slice(letter.length, i), intent_after);
+    const t = new RegExp_Khhyl(reg_string.slice(letter.length, i), intent_after);
     ans.push(t);
-    pattern = pattern.slice(i + 1);
-    return [ans, pattern];
+    reg_string = reg_string.slice(i + 1);
+    return [ans, reg_string];
   }
   //() 
-   static PREsub_br_A(self,ans,pattern,letter){
-    const intent_after = { ...self.intent };
+   static PREsub_br_A(reg_khhyl,ans,reg_string,letter){
+    const intent_after = { ...reg_khhyl.intent };
     const br_start = letter.length;
     let i = 1; // br_end
     let j = 1; // 
-    for (i = 1; i < pattern.length; i++) {
-      if (pattern[i] == "(") j++;
-      else if (pattern[i] == ")") j--;
+    for (i = 1; i < reg_string.length; i++) {
+      if (reg_string[i] == "(") j++;
+      else if (reg_string[i] == ")") j--;
       if (j == 0) break;
     }
-    if(j!=0) throw Error(`${pattern}(<任意の文字列>)のような括弧類が閉じていません`);
+    if(j!=0) throw Error(`${reg_string}(<任意の文字列>)のような括弧類が閉じていません`);
     intent_after.isoutofBrancket = false;
-    intent_after.subtypeb = pattern.slice(0, br_start) + ")";
-    const t = new RegExp_Khhyl(pattern.slice(br_start, i), intent_after);
+    intent_after.subtypeb = reg_string.slice(0, br_start) + ")";
+    const t = new RegExp_Khhyl(reg_string.slice(br_start, i), intent_after);
     ans.push(t);
-    pattern = pattern.slice(i + 1);
-    return [ans, pattern];
+    reg_string = reg_string.slice(i + 1);
+    return [ans, reg_string];
   }
   //{} 
-  static PREsub_kazu(self,ans,pattern,letter){
-    const intent_after = { ...self.intent };
+  static PREsub_kazu(reg_khhyl,ans,reg_string,letter){
+    const intent_after = { ...reg_khhyl.intent };
     intent_after.type = "{n}";
     intent_after.subtype2 = "none";
     intent_after.subtype = "{n}";
-    let b = pattern.match(/{\d+,\d+}/);
+    let b = reg_string.match(/{\d+,\d+}/);
     if (b != null) intent_after.subtype = "{n,m}";
     else {
-      b = pattern.match(/{\d+,}/);
+      b = reg_string.match(/{\d+,}/);
       if (b != null) intent_after.subtype = "{n,}";
-      else{if(pattern.match(/{\d+}/) == null)throw Error("{n(,m)}の中が不正です"); }
+      else{if(reg_string.match(/{\d+}/) == null)throw Error("{n(,m)}の中が不正です"); }
     }
     const t = new RegExp_Khhyl(letter, intent_after);
     ans.push(t);
-    pattern = pattern.slice(letter.length);
-    return [ans, pattern];
+    reg_string = reg_string.slice(letter.length);
+    return [ans, reg_string];
   }
 }
 export{REK_def};

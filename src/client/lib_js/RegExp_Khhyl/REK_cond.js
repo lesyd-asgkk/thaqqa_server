@@ -2,11 +2,11 @@
 class REK_cond {
         //[ a,b,[c],d,[e,[f,g],h]] = a b (c) d (e (f g) h) のようになってる
         // _に入れる値はunderbar引数にシュートする
-        static pc(underbar,rec){
+    static pc(underbar,rec){
         return REK_cond.calc(underbar,REK_cond.parse(rec));
     }
     static calc(underbar,rec){
-        const op_list = ["||","&&","!=","=="];
+        const op_list = ["||","&&","!=","==","<=",">=","<",">"];
         const stack = [];
         for(let i_ = 0 ; i_<rec.length ; i_++){const i = rec[i_];
             if(i == "!"){rec[i_]=!REK_cond.calc(underbar,[rec[i_+1]]);
@@ -36,7 +36,20 @@ class REK_cond {
                 case "==":
                     stack.unshift( stack[0] == stack[2] );stack.splice(1,Infinity);
                     break;
-                default:break;
+                case "<=":
+                    stack.unshift( stack[0] <= stack[2] );stack.splice(1,Infinity);
+                    break;
+                case "<":
+                    stack.unshift( stack[0] < stack[2] );stack.splice(1,Infinity);
+                    break;
+                case ">=":
+                    stack.unshift( stack[0] >= stack[2] );stack.splice(1,Infinity);
+                    break;
+                case ">":
+                    stack.unshift( stack[0] > stack[2] );stack.splice(1,Infinity);
+                    break;
+                default:
+                    break;
             }
         //console.log(`${rec} : ${stack}`);
         }

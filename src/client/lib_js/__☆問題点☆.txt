@@ -1,4 +1,32 @@
 
+/*
+☆本体
+FontManager：Font群の管理
+Font：フォントごとのDataTable群の管理
+DataTable：各テーブルのDataとcolumnの表の管理
+Column：各テーブルの列データ
+Data：データの中身
+
+以下はラッパークラス群
+GPOSManager、GSUBManager、LetterManager：主にGPOS、GSUB、Letter(Vowelなど)の読み込みと各テーブルのラッパー
+ParserManager：PARSERテーブルのラッパーにして（Regex_khhylに沿った）パーサーの本体
+GlyphManager：主にGlyphの読み込みとGLYPHテーブルのラッパー
+
+☆正規処理パーサエンジン関連(個別に使用可能)
+  RegExp_Khhyl：正規表現拡張ライブラリ本体
+  REK_def：RegExp_Khhylの定義部分
+  REK_cond：RegExp_Khhylの条件式処理部分
+
+☆SVGのパーサ・処理・変換関連(個別に使用可能)
+  SVG：SVGパスデータをいじったり色々出来ます
+
+☆描画関連
+  Render：描画(というかパスデータ出力)の本体  
+
+☆その他
+　Update：データ構造に変更があった（例えばあるcolumnが増えたりした）場合にデータを更新するためのクラス
+*/
+
 ひとつめ　コードがゴミ　まとめろ
 　　　　　特に変数や仕様が纏まってないのはゴミ以外の何物でも無いので直せ
 
