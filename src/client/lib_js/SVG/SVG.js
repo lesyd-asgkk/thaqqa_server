@@ -83,7 +83,7 @@ class Point {
       return val != undefined ? Math.round(val * (10 ** n)) / (10 ** n) : undefined;
     }
 
-    get_border(prev){
+    get_border(_prev){
 
       /*
       z、Z：null(直前の点の情報での特定が出来ないため)
@@ -228,28 +228,29 @@ class Point {
      new_path.#updateBounds();
      return new_path;
     }
-
-  to_String(){
-      let j = 0;
-      /*for (let i = 0; i<this.d.length-1;i++) {
-        if(this.d[i+j].type == "m" && this.d[i+1].type == "m"){//連続するmをまとめる
-          this.d[i+j].x += this.d[i+1].x; this.d[i+j].y += this.d[i+1].y;
-          this.d[i+1] = new Point("n", 0, 0); //空にする
-          j--;
+  defrag_m(){
+      let i = 0;
+      for (let j = 1; j<this.d.length;j++) {
+        if(this.d[i].type == "m" && this.d[j].type == "m"){//連続するmをまとめる
+          this.d[i].x += this.d[j].x; 
+          this.d[i].y += this.d[j].y;
+          this.d[j] = new Point("n", 0, 0); //空にする
         }
-        else if(this.d[i+j].type == "M" && this.d[i+1].type == "M"){//連続するMをまとめる
-          this.d[i+j].x += this.d[i+1].x;this.d[i+j].y += this.d[i+1].y;
-          this.d[i+1] = new Point("n", 0, 0); //空にする
-          j--;
+        else if(this.d[i].type == "M" && this.d[j].type == "M"){//連続するMをまとめる
+          this.d[i].x += this.d[j].x;
+          this.d[i].y += this.d[j].y;
+          this.d[j] = new Point("n", 0, 0); //空にする
         }
-        else j = 0;
-      }*/
+        else {i = j;} //連続するm地帯から抜け出したらjを更新する
+      }
       this.d = this.d.filter((i) => (i.type!="n"));
-      const temp = [];
-      this.d.forEach( (p) => { temp.push(p.to_String()); });
-
-      return temp.join(" ");
-    }
+  }
+  to_String(){
+    this.defrag_m();
+    const temp = [];
+    this.d.forEach( (p) => { temp.push(p.to_String()); });
+    return temp.join(" ");
+  }
 
     #get_internal(mode,brdr,_concat) { //brdrフラグは左右上下を(再)計算する場合に用いる。_concatは結合処理用(将来用)
         const temp = [];
@@ -336,22 +337,27 @@ class Point {
 }
 
 class SVG {
-    static to_String(param) {
-           let j = 0;
-      for (let i = 0; i<param.length-1;i++) {
-        if(param[i+j].type == "m" && param[i+1].type == "m"){//連続するmをまとめる
-          param[i+j].x += param[i+1].x; param[i+j].y += param[i+1].y;
-          param[i+1] = new Point("n", 0, 0); //空にする
-          j--;
+
+    static defrag_m(param){
+      let i = 0;
+      for (let j = 1; j<param.length;j++) {
+        if(param[i].type == "m" && param[j].type == "m"){//連続するmをまとめる
+          param[i].x += param[j].x; 
+          param[i].y += param[j].y;
+          param[j] = new Point("n", 0, 0); //空にする
         }
-        else if(param[i+j].type == "M" && param[i+1].type == "M"){//連続するMをまとめる
-          param[i+j].x += param[i+1].x;param[i+j].y += param[i+1].y;
-          param[i+1] = new Point("n", 0, 0); //空にする
-          j--;
+        else if(param[i].type == "M" && param[j].type == "M"){//連続するMをまとめる
+          param[i].x += param[j].x;
+          param[i].y += param[j].y;
+          param[j] = new Point("n", 0, 0); //空にする
         }
-        else j = 0;
+        else {i = j;} //連続するm地帯から抜け出したらjを更新する
       }
       param = param.filter((i) => (i.type!="n"));
+      return param;
+  }
+    static to_String(param) {
+      param = SVG.defrag_m(param);
       const temp = [];
       param.forEach( (p) => { temp.push(p.to_String()); });
       return temp.join(' ');
