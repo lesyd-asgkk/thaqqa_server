@@ -36,7 +36,7 @@ class Render{
         option.align ??= {x:-1,y:-1};option.size ??= 16;
         const glar = new GlyphArray(text,alig,option.font,false,{top:800,right:800,bottom:800,left:800},{x:option.position.x,y:option.position.y},{x:option.align.x,y:option.align.y});
         const ans = glar.toPath(option.size).toRelativeAll();
-        console.log(glar);
+
         ans.d_str = ans.to_String();
         return ans;
     }

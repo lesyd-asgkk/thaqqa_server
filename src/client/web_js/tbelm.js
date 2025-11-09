@@ -227,9 +227,9 @@ class SVGField_web{
                 i_++;
                 }
             }
-            const temp = Khhyl.SVG.ParseD(d);
-            x0 = Khhyl.SVG.getLeft(temp);x1 = Khhyl.SVG.getRight(temp);
-            y0 = Khhyl.SVG.getTop(temp);y1 = Khhyl.SVG.getBottom(temp);
+            const temp = Khhyl.Path.parseString(d);
+            x0 = temp.getLeft();x1 = temp.getRight();
+            y0 = temp.getTop();y1 = temp.getBottom();
         }
         const object = $("div#storage svg#svgField").clone(false,false)[0];
         while(object.firstChild)object.removeChild(object.firstChild);
@@ -259,10 +259,17 @@ class Parsed_web{
     }
     draw(id){
         const DTTB = Khhyl.FontManager.getStaticTable(this.parent.tablename) ?? Khhyl.FontManager.getFont(this.parent.font).getTable(this.parent.tablename);
-        const n = DTTB.getData({ID:id})[0].getVal("Parsed");
+        const n = DTTB.getData({ID:id})[0].getVal("Name");
+        
         const object = document.createElement('div');
         object.classList.add(this.col,"parsed_row");
-        object.textContent = n;
+        try{
+            const p = new Khhyl.RegExp_Khhyl(n,{}).ParseRegExp().toNormalRegExp();
+            object.textContent = p;
+        }
+        catch(err){
+            object.textContent = err;
+        }
         object.name = this.id;
         return object;
     }
