@@ -1,4 +1,4 @@
-import { Parser,SVG , F_GSUBManager,GSUBManager ,GlyphArray} from "./deps.js";
+import { Parser,Path , F_GSUBManager,GSUBManager ,GlyphArray} from "./deps.js";
 
 class Render{
     //text:string型
@@ -35,9 +35,9 @@ class Render{
         option.position ??={x:0,y:0};
         option.align ??= {x:-1,y:-1};option.size ??= 16;
         const glar = new GlyphArray(text,alig,option.font,false,{top:800,right:800,bottom:800,left:800},{x:option.position.x,y:option.position.y},{x:option.align.x,y:option.align.y});
-        const ans = SVG.toRelativeAll(glar.toPath(option.size));
+        const ans = glar.toPath(option.size).toRelativeAll();
         console.log(glar);
-        ans.d_str = SVG.to_String(ans);
+        ans.d_str = ans.to_String();
         return ans;
     }
 }

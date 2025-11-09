@@ -303,8 +303,19 @@ class Point {
     toRelativeAll() { return this.#get_internal("rel",false); }
     #updateBounds() { return this.#get_internal("nop",true); }
 
-    static fromPosition(x0,y0){
-        return new Path([Point.AbsM(x0,y0)]);}
+    static fromPosition(x0,y0){return new Path([Point.AbsM(x0,y0)]);}
+
+    static buildSkewer(x,width0,width1,y0,y1){
+      if(width0<0 || width1<0 || y1<y0) return new Path();
+      const x0 = x-width0/2; const x1 = x-width1/2; 
+      const x2 = x+width1/2; const x3 = x+width0/2;
+      return new Path([Point.AbsM(x0,y0),Point.AbsL(x1,y1),Point.AbsH(x2),Point.AbsL(x3,y0),Point.AbsZ(),Point.AbsM(x,y0)]); 
+    } 
+    static buildRectangle(x,width,y0,y1){
+      if(width<0 || y1<y0) return new Path();
+      const x0 = x-width/2; const x1 = x+width/2;
+      return new Path([Point.AbsM(x0,y0),Point.AbsV(y1),Point.AbsH(x1),Point.AbsV(y0),Point.AbsZ(),Point.AbsM(x,y0)]); 
+    } 
     static createSkewer(x0,y0,x1,y1){
       if(x1<x0 || y1<y0) return new Path([Point.RelM(0.,0.)]);
      return new Path([Point.AbsM(x0,y0),Point.AbsV(y1),Point.AbsH(x1),Point.AbsV(y0),Point.AbsZ(),Point.AbsM(0,y0)]); 
@@ -329,10 +340,34 @@ class Point {
       this.#updateBounds();
       return this;
     }
+    /*
+        static createSkewer(x0,y0,x1,y1){
+      if(x1<x0 || y1<y0) return [];
+        return SVG.roundAll(SVG.ParseD(` M ${x0},${y0} V ${y1} H ${x1} V ${y0} H ${x0} M 0,${y0}`));
+    }
+
+    static fromPosition(x0,y0){
+        const M = SVG.roundAll(SVG.ParseD(`M ${x0},${y0}`));
+        return M;}
+    static setPosition(d0,x0,y0){
+        const M = SVG.roundAll(SVG.ParseD(`M ${x0},${y0}`));
+        return M.concat(d0);
+    }
+    static mergePath2(d0,d1,x0, y0){ //mergePath2
+        const M = SVG.roundAll(SVG.ParseD(`M ${x0},${y0}`));
+        return d0.concat(M).concat(d1);
+    }
+
+    static mergePath3(d0,d1,d2,x0,y0,x1,y1){
+        const M = SVG.roundAll(SVG.ParseD(`M ${x0},${y0}`));
+        const M1 = SVG.roundAll(SVG.ParseD(`M ${x1},${y1}`));
+        return d0.concat(M).concat(d1).concat(M1).concat(d2);
+    }
+    */
     //merge系が上手くいってなかった（過去形）
 
-    mergePaths2(path0,x0,y0){return this.append_point_list([Point.AbsM(x0,y0)].concat(path0.d));}
-    mergePaths3(path0,path1,x0,y0,x1,y1){
+    mergePath2(path0,x0,y0){return this.append_point_list([Point.AbsM(x0,y0)].concat(path0.d));}
+    mergePath3(path0,path1,x0,y0,x1,y1){
       const points = [Point.AbsM(x0,y0)].concat(path0.d,[Point.AbsM(x1,y1)],path1.d);return this.append_point_list(points);}
 }
 

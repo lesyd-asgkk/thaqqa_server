@@ -27,8 +27,8 @@ class Sandbox_web{
         self.SVG.path.setAttribute("d",d.d_str);
 
         const gap_ = 5;
-        const x0 = Khhyl.SVG.getLeft(d);const x1 =  Khhyl.SVG.getRight(d)+gap_;
-        const y0 = Khhyl.SVG.getTop(d);const y1 =  Khhyl.SVG.getBottom(d)+gap_;
+        const x0 = d.getLeft();const x1 =  d.getRight()+gap_;
+        const y0 = d.getTop();const y1 =  d.getBottom()+gap_;
 
         const shrink_x = 32/32;
         const HEIGHT = y1-y0;const WIDTH = x1-x0;

@@ -21,8 +21,8 @@ class GlyphArray{
         const r_ = new RegExp_Khhyl("(L())(L())",{}).ParseRegExp().toNormalRegExp();
         const text = this.name.replaceAll(new RegExp(r_, "g"),"$1Sep()$2").replaceAll(new RegExp(r_, "g"),"$1Sep()$2");
 
-        const pSVGData = text.split("Sep()");
-        pSVGData.forEach((i)=> this.glyphList.push(new Glyph(i , this.vec,this.font)))
+        const pathData = text.split("Sep()");
+        pathData.forEach((i)=> this.glyphList.push(new Glyph(i , this.vec,this.font)))
         if(this.vec == -1) this.glyphList.reverse();
     }
 
@@ -35,10 +35,10 @@ class GlyphArray{
             const s_ = this.#to_em(size);
             const aa = SVG.toAbsoluteAll(svg_list);
                 for(const i of aa){
-                    if(i.x!=undefined) i.x*=s_;if(i.y!=undefined) i.y*=s_;
-                    if(i.x1!=undefined) i.x1*=s_;if(i.y1!=undefined) i.y1*=s_;
-                    if(i.x2!=undefined) i.x2*=s_;if(i.y2!=undefined) i.y2*=s_;
-                    if(i.val!=undefined) i.val*=s_;
+                    if(i.x!=undefined)  i.x*=s_;  if(i.y!=undefined)  i.y*=s_;
+                    if(i.x1!=undefined) i.x1*=s_; if(i.y1!=undefined) i.y1*=s_;
+                    if(i.x2!=undefined) i.x2*=s_; if(i.y2!=undefined) i.y2*=s_;
+                    if(i.rx!=undefined) i.rx*=s_; if(i.ry!=undefined) i.ry*=s_;
             }
             return SVG.toRelativeAll(aa);
         }
@@ -259,6 +259,7 @@ class Glyph{
     #get_coda(){ return this.type == "S" ? this.childGlyphList[2] : null;}
     #get_main_glyph(){ return this.type != "S" ? this.childGlyphList[0] : null; }
     #get_diacritical(){ return this.type != "S" ? this.childGlyphList[1] : null; }
+    
     #sub_toPathAbs_Syllable(height,vowelhratio){
         const width = FontManager.getFont(this.font).getTable("FONTDATA").dataList[0].getVal("Thickness");
         const vowel_position = vowelhratio*height
@@ -283,7 +284,8 @@ class Glyph{
                 //高さ0~vowelhratio*height-(vbottom-vowel_positioneight)/2と
                 //高さvowelhratio*height+(vbottom-vowel_positioneight)/2~heightとを占める棒を挿す
                 path = SVG.toRelativeAll(path); path = SVG.setPosition(path,0,vowel_position+glyph_height_half-vowel_height_half);
-                path = path.concat(SVG.createSkewer(-width/2,vowel_position+glyph_height_half+this.height_vtop,width/2,height)).concat(SVG.createSkewer(-width/2,this.height_vbottom,width/2,vowel_position+glyph_height_half-vowel_height_half));
+                path = path.concat(SVG.createSkewer(-width/2,vowel_position+glyph_height_half+this.height_vtop,width/2,height))
+                .concat(SVG.createSkewer(-width/2,this.height_vbottom,width/2,vowel_position+glyph_height_half-vowel_height_half));
                 path = SVG.toRelativeAll(path);
                 this.gap = {top:vowel_position+glyph_height_half-vowel_height_half,middle:vowel_position+glyph_height_half-vowel_height_half,bottom:height};
             break;
@@ -302,6 +304,7 @@ class Glyph{
         //const width = FontManager.getFont(this.font).getTable("FONTDATA").dataList[0].getVal("Thickness");
         const vowel_position = vowelhratio*height
         const vowel_height_half = (this.height_vbottom-this.height_vtop)/2;
+        
         //const glyph_height_half = (-this.height_bottom-this.height_top)/2;
         let path = this.toPath();
         console.log(vowel_position-vowel_height_half);

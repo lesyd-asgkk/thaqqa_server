@@ -21,38 +21,38 @@ class GlyphArray{
         const r_ = new RegExp_Khhyl("(L())(L())",{}).ParseRegExp().toNormalRegExp();
         const text = this.name.replaceAll(new RegExp(r_, "g"),"$1Sep()$2").replaceAll(new RegExp(r_, "g"),"$1Sep()$2");
 
-        const pSVGData = text.split("Sep()");
-        pSVGData.forEach((i)=> this.glyphList.push(new Glyph(i , this.vec,this.font)))
+        const pathData = text.split("Sep()");
+        pathData.forEach((i)=> this.glyphList.push(new Glyph(i , this.vec,this.font)))
         if(this.vec == -1) this.glyphList.reverse();
     }
 
     #to_em(n) {  //指定した大きさnに変換する為に倍率をかける関数
         const textdata = FontManager.getFont(this.font).getTable("FONTDATA").dataList[0].valueList; 
-        return n/(this.vec==0?textdata.WidthV:textdata.Height) 
+        return n/(this.vec==0?textdata.WidthV:textdata.Height);
     }
 
     #rescale(svg_list,size){ //スケール変換の為の関数
             const s_ = this.#to_em(size);
-            const aa = SVG.toAbsoluteAll(svg_list);
-                for(const i of aa){
-                    if(i.x!=undefined)  i.x*=s_;  if(i.y!=undefined)  i.y*=s_;
-                    if(i.x1!=undefined) i.x1*=s_; if(i.y1!=undefined) i.y1*=s_;
-                    if(i.x2!=undefined) i.x2*=s_; if(i.y2!=undefined) i.y2*=s_;
-                    if(i.rx!=undefined) i.rx*=s_; if(i.ry!=undefined) i.ry*=s_;
+            const aa = svg_list.toAbsoluteAll();
+            for(const i of aa.d){
+                if(i.x!=undefined)  i.x*=s_;  if(i.y!=undefined)  i.y*=s_;
+                if(i.x1!=undefined) i.x1*=s_; if(i.y1!=undefined) i.y1*=s_;
+                if(i.x2!=undefined) i.x2*=s_; if(i.y2!=undefined) i.y2*=s_;
+                if(i.rx!=undefined) i.rx*=s_; if(i.ry!=undefined) i.ry*=s_;
             }
-            return SVG.toRelativeAll(aa);
+            return aa.toRelativeAll();
         }
 
     #toPath_horizontal(defaultsize,_prev,_next){
         const textdata = FontManager.getFont(this.font).getTable("FONTDATA").dataList[0].valueList;
         const newline_list = FontManager.getStaticTable("PUNCTUATION").getData({"IsNewline":true}).map((i) =>i.getVal("Name"));
-        this.path = SVG.fromPosition(this.position.x,this.position.y);//初期位置に移動
+        this.path = Path.fromPosition(this.position.x,this.position.y);//初期位置に移動
         let x = this.position.x;
         let y = this.position.y;
         const is_dir_right = this.vec == 1;
         for(let i = 0;i<this.glyphList.length;i++){
             const glyph_path = this.#rescale(this.glyphList[i].toPathAbsolute(textdata.Height,0.5+GPOSManager.gpos(this.glyphList[i].fullname,this.vec,"INEX",this.font).y1/textdata.Height),defaultsize);
-            const glyph_width = (!textdata.isWidthHRel ? defaultsize*textdata.WidthV:SVG.getLeft(glyph_path)+SVG.getRight(glyph_path)+defaultsize*textdata.WidthV)/textdata.Height;
+            const glyph_width = (!textdata.isWidthHRel ? defaultsize*textdata.WidthV:glyph_path.getLeft()+glyph_path.getRight()+defaultsize*textdata.WidthV)/textdata.Height;
                 
             let gap_left = 0;let gap_right = 0;
             const size_em = this.#to_em(defaultsize); //将来的に文字サイズを可変にしたいので、単にsize_emと命名。
@@ -68,19 +68,20 @@ class GlyphArray{
             gap_right += GPOSManager.gpos(this.glyphList[i].fullname+(i != this.glyphList.length-1 ? this.glyphList[i+1].fullname:(_next??"Null()")),this.vec,"EX",this.font).x0;
 
             x += glyph_width/2 +(is_dir_right?gap_left:gap_right)*size_em;
-            this.path = this.path.concat(SVG.fromPosition(x,y)).concat(SVG.toRelativeAll(glyph_path)); //文字情報を繋げる
+
+            this.path.mergePath2(glyph_path,x,y);
+            //this.path.concat(Path.fromPosition(x,y)).concat(glyph_path.toRelativeAll()); //文字情報を繋げる
 
             if(i!=this.glyphList.length-1) x += glyph_width/2 +(is_dir_right?gap_right:gap_left)*size_em;  //最後の文字で無ければ文字の幅/2分だけ進める
             this.glyphList[i].offset = {x,y};  //offsetを指定しておく
-            if(newline_list.indexOf(this.glyphList[i].name)!=-1){  //改行に差し掛かったときの処理。iswrap対応時はここの条件を追加する。
-                x = 0;y += size*((textdata.Height+textdata.TopGapH)/textdata.Height);
-            }
+            //改行に差し掛かったときの処理。iswrap対応時はここの条件を追加する。
+            if(newline_list.indexOf(this.glyphList[i].name)!=-1){   x = 0;y += size*((textdata.Height+textdata.TopGapH)/textdata.Height); }
         }
-        this.path = this.path.concat(SVG.fromPosition(x,y));
+        this.path.concat(Path.fromPosition(x,y));
     }
 
     #toPath_vertical(defaultsize,_prev,_next){
-        this.path = SVG.fromPosition(this.position.x,this.position.y);//初期位置に移動
+        this.path = Path.fromPosition(this.position.x,this.position.y);//初期位置に移動
         let x = this.position.x;
         let y = this.position.y;
         const newline_list = FontManager.getStaticTable("PUNCTUATION").getData({"IsNewline":true}).map((i) =>i.getVal("Name"));
@@ -95,32 +96,30 @@ class GlyphArray{
             gap_below += tmp_for_gap.y1; gap_above += tmp_for_gap.y0;
 
             //上の隙間。前の文字と照らし合わせて調整
-            if(i == 0 ) gap_above += GPOSManager.gpos((_prev??"Null()")+this.glyphList[i].fullname,this.vec,"EX",this.font).y1;
-            else gap_above += GPOSManager.gpos(this.glyphList[i-1].fullname+this.glyphList[i].fullname,this.vec,"EX",this.font).y1;
-
+            gap_above += GPOSManager.gpos((i == 0 ? (_prev??"Null()") :this.glyphList[i-1].fullname)+this.glyphList[i].fullname,this.vec,"EX",this.font).y1;
+            
             //下の隙間。次の文字と照らし合わせて調整
-            if(i != this.glyphList.length-1) gap_below += GPOSManager.gpos(this.glyphList[i].fullname+this.glyphList[i+1].fullname,this.vec,"EX",this.font).y0;
-            else gap_below += GPOSManager.gpos(this.glyphList[i].fullname+(_next??"Null()"),this.vec,"EX",this.font).y0;
+            gap_below += GPOSManager.gpos(this.glyphList[i].fullname+(i != this.glyphList.length-1 ? this.glyphList[i+1].fullname:(_next??"Null()")),this.vec,"EX",this.font).y0;
 
             //当然、上の隙間の分だけ文字情報がズレるので補正
             y += gap_above*size_em;
 
             const is_isolated = (this.glyphList[i].type == "P") || (this.glyphList[i].form == "sol");
-            const glyph_path = this.#rescale(this.glyphList[i].toPathRelative(!is_isolated?-gap_above:(0),gap_below),size);
+            const glyph_path = this.#rescale(this.glyphList[i].toPathRelative(!is_isolated?-gap_above:0,gap_below),size);
             if(isnewline){ //改行に差し掛かったときの処理。
-                y -= (SVG.getTop(this.glyphList[i].toPathRelative(0,0))-gap_above)*size_em;
+                y -= ((this.glyphList[i].toPathRelative(0,0).getTop())-gap_above)*size_em;
                 isnewline = false;
             }
-            this.path = this.path.concat(SVG.fromPosition(x,y)).concat(SVG.toRelativeAll(glyph_path)); //文字情報を繋げる
-            y += (SVG.getBottom(this.glyphList[i].toPathRelative(0,0))+gap_below)*size_em;      //文字の長さの分＋隙間分下に進める
-            if(i+1 != this.glyphList.length){const d2 = this.#rescale(this.glyphList[i+1].path,size);y -= SVG.getTop(d2);}
-                
+            this.path.mergePath2(glyph_path,x,y);
             this.glyphList[i].offset = {x,y}; //offsetを指定しておく
-            if(newline_list.indexOf(this.glyphList[i].name)!=-1){
-                x -= size;y = 0;isnewline = true;
-            }
+            //this.path = this.path.concat(Path.fromPosition(x,y)).concat(glyph_path.toRelativeAll()); //文字情報を繋げる
+            y += (this.glyphList[i].toPathRelative(0,0).getBottom()+gap_below)*size_em;      //文字の長さの分＋隙間分下に進める
+            if(i+1 != this.glyphList.length){const d2 = this.#rescale(this.glyphList[i+1].path,size);y -= d2.getTop();}
+                
+            
+            if(newline_list.indexOf(this.glyphList[i].name)!=-1){  x -= size;y = 0;isnewline = true; }
         }
-        this.path = this.path.concat(SVG.fromPosition(x,y));
+       this.path.concat(Path.fromPosition(x,y));
     }
 
     toPath(defaultsize,_prev,_next){//_prevは今後用
@@ -136,8 +135,8 @@ class Glyph{
         this.vec = vec;
         this.fullname = name; 
         this.name = ""; 
-        this.pathOrigin = []; //ダイアクリティカルマークなしの元のパスデータ。ただし、Sタイプの場合はVowelのダイアクリティカルマークなしのパスデータ
-        this.path = []; //pathに改名予定、new Path();にもする予定
+        this.pathOrigin = new Path(); //ダイアクリティカルマークなしの元のパスデータ。ただし、Sタイプの場合はVowelのダイアクリティカルマークなしのパスデータ
+        this.path = new Path(); //pathに改名予定、new Path();にもする予定
         this.val = -1; //異字体の調整用。なにもない場合は設定しない
         this.form = "";//init,mid,fin,solなどの形態指定用
         this.isroot = false;//親がいないかどうか。
@@ -160,13 +159,13 @@ class Glyph{
         const partname = this.#partitionName(name);
         if(partname.length == 0){//これ以上分割不能な場合
             this.isroot = true;
-            if( (name ?? "") == ""){this.path = [] ,this.aligment = {x:0,y:0};return [];} //this.path = Path.new();
+            if( (name ?? "") == ""){this.path = new Path() ,this.aligment = {x:0,y:0};return [];} //this.path = Path.new();
             const form = this.form ?? "";
             const name_ = `${this.name}_${form}_${this.val}`;
-            const dt = (GlyphManager.getSVG(name_,this.font)[0]) ?? "M 0,0";
-            // const dt = Path.parseString((GlyphManager.getSVG(name_,this.font)[0]) ?? "M 0,0")にする予定。
-            this.path = SVG.toRelativeAll(dt);//this.nameがこれ以上分割できない場合。
-            this.pathOrigin = SVG.toRelativeAll(dt);
+            //const dt = (GlyphManager.getSVG(name_,this.font)[0]) ?? "M 0,0";
+            const path_temp = Path.parseString((GlyphManager.getSVG(name_,this.font)[0]) ?? "M 0,0").toRelativeAll();//にする予定。
+            this.path = path_temp;//this.nameがこれ以上分割できない場合。
+            this.pathOrigin = path_temp;
             let off_x = 0; let off_y = 0;
             const letter_temp = LetterManager.getLetter(this.name);
             if(letter_temp.length > 0){
@@ -249,50 +248,50 @@ class Glyph{
             }
         }
     }
-    toPath(){//Svgをpathにする
-        const path = this.type == "S" ? this.#toPath_Syllable() : this.#toPath_NonSyllable();
-        return path ?? SVG.fromPosition(0,0); //一応ヌル対策として最悪はM 0,0を返す。
-    }
+
     //将来的にget_onset,get_vowel,get_codaはエラー処理をつけようと思う
     #get_vowel(){ return this.type == "S" ? this.childGlyphList[1] : null; }
     #get_onset(){ return this.type == "S" ? this.childGlyphList[0] : null; }
     #get_coda(){ return this.type == "S" ? this.childGlyphList[2] : null;}
     #get_main_glyph(){ return this.type != "S" ? this.childGlyphList[0] : null; }
     #get_diacritical(){ return this.type != "S" ? this.childGlyphList[1] : null; }
+
     #sub_toPathAbs_Syllable(height,vowelhratio){
         const width = FontManager.getFont(this.font).getTable("FONTDATA").dataList[0].getVal("Thickness");
+        const width2 = width*1.;//将来用。1.のところに倍率指定を置く
         const vowel_position = vowelhratio*height
         const vowel_height_half = (this.height_vbottom-this.height_vtop)/2;
         const glyph_height_half = (-this.height_bottom-this.height_top)/2;
-        let path = this.toPath();
+        const path = this.toPath();
         switch(this.form){
             case "sol":
-                path = SVG.toRelativeAll(path); path = SVG.setPosition(path,0,vowel_position-vowel_height_half);
-                path = SVG.toRelativeAll(path);
+                path.toRelativeAll().setDrawPosition(0,vowel_position-vowel_height_half);
+                path.toRelativeAll();
                 this.gap = {top:0,middle:vowel_position,bottom:height};
             break;
             case "init":
                 //高さvbottom~heightを占める棒を挿す
-                path = SVG.toRelativeAll(path); path = SVG.setPosition(path,0,0);
-                path = path.concat(SVG.createSkewer(-width/2,this.height_vbottom,width/2,height));
-                path = SVG.toRelativeAll(path);
+                path.toRelativeAll().setDrawPosition(0,0);
+                path.concat(Path.buildSkewer(0,width,width2,this.height_vbottom,height));
+                path.toRelativeAll();
                 this.gap = {top:0,middle:this.height_vbottom,bottom:height};
             break;
             case "mid":
                 //グリフ自体を適切に下にずらした上で
                 //高さ0~vowelhratio*height-(vbottom-vowel_positioneight)/2と
                 //高さvowelhratio*height+(vbottom-vowel_positioneight)/2~heightとを占める棒を挿す
-                path = SVG.toRelativeAll(path); path = SVG.setPosition(path,0,vowel_position+glyph_height_half-vowel_height_half);
-                path = path.concat(SVG.createSkewer(-width/2,vowel_position+glyph_height_half+this.height_vtop,width/2,height)).concat(SVG.createSkewer(-width/2,this.height_vbottom,width/2,vowel_position+glyph_height_half-vowel_height_half));
-                path = SVG.toRelativeAll(path);
+                path.toRelativeAll().setDrawPosition(0,vowel_position+glyph_height_half-vowel_height_half);
+                path.concat(Path.buildSkewer(0,width,width2,vowel_position+glyph_height_half+this.height_vtop,height))
+                .concat(Path.buildSkewer(0,width,width2,this.height_vbottom,vowel_position+glyph_height_half-vowel_height_half));
+                path.toRelativeAll();
                 this.gap = {top:vowel_position+glyph_height_half-vowel_height_half,middle:vowel_position+glyph_height_half-vowel_height_half,bottom:height};
             break;
             case "fin":
                 //グリフ自体を適切に下にずらした上で
                 //高さheight-(bottom-vowel_height_halfop)を占める棒を挿す
-                path = SVG.toRelativeAll(path); path = SVG.setPosition(path,0,height-(this.height_bottom-this.height_vtop));
-                path = path.concat(SVG.createSkewer(-width/2,0,width/2,height-(this.height_bottom-this.height_vtop)));
-                path = SVG.toRelativeAll(path);
+                path.toRelativeAll().setDrawPosition(0,height-(this.height_bottom-this.height_vtop));
+                path.concat(Path.buildSkewer(0,width,width,0,height-(this.height_bottom-this.height_vtop)));
+                path.toRelativeAll();
                 this.gap = {top:0,middle:height-(this.height_bottom-this.height_vtop),bottom:height};
             break;
         }
@@ -303,11 +302,9 @@ class Glyph{
         const vowel_position = vowelhratio*height
         const vowel_height_half = (this.height_vbottom-this.height_vtop)/2;
         //const glyph_height_half = (-this.height_bottom-this.height_top)/2;
-        let path = this.toPath();
-        console.log(vowel_position-vowel_height_half);
-        path = SVG.toRelativeAll(path);
-        path = SVG.setPosition(path,0,vowel_position-vowel_height_half);
-        path = SVG.toRelativeAll(path);
+        const path = this.toPath();
+        path.toRelativeAll().setDrawPosition(0,vowel_position-vowel_height_half);
+        path.toRelativeAll();
         this.gap = {top:vowel_position-vowel_height_half,middle:vowel_position,bottom:vowel_position+vowel_height_half};
         return path;
     }
@@ -318,16 +315,17 @@ class Glyph{
 
     #sub_toPathRelative_S_NullVowel(top,bottom){
         const width = FontManager.getFont(this.font).getTable("FONTDATA").dataList[0].getVal("Thickness");
-        let path = this.toPath();
-         const stick = SVG.createSkewer(-width/2,top+this.height_top,width/2,bottom+this.height_bottom);
+        const width2 = width*1.;//将来用。1.のところに倍率指定を置く
+        const path = this.toPath();
+         const stick = Path.buildSkewer(0.,width,width2,top+this.height_top,bottom+this.height_bottom);
             switch(this.form){
                 case "sol":
-                    path = SVG.toRelativeAll(path); path = SVG.setPosition(path);
-                    path = path.concat(SVG.fromPosition(0,bottom+this.height_bottom));
-                    path = SVG.toRelativeAll(path); path = SVG.setPosition(path,0,top+this.height_top);
+                    path.toRelativeAll().setDrawPosition(0.,0.);
+                    path.concat(Path.fromPosition(0,bottom+this.height_bottom));
+                    path.toRelativeAll().setDrawPosition(0,top+this.height_top);
                 break;
                 case "init":case "mid":case "fin":
-                    path = SVG.toRelativeAll(path); path = SVG.setPosition(path,0,0).concat(stick);
+                    path.toRelativeAll().setDrawPosition(0,0).concat(stick);
                 break;
             }
         return path;
@@ -335,24 +333,25 @@ class Glyph{
 
     #sub_toPathRelative_S_notNullVowel(top,bottom){
         const width = FontManager.getFont(this.font).getTable("FONTDATA").dataList[0].getVal("Thickness");
-        let path = this.toPath();
+        const width2 = width*1.;//将来用。1.のところに倍率指定を置く
+        const path = this.toPath();
         switch(this.form){
             case "sol":
-                path = SVG.toRelativeAll(path).concat(SVG.fromPosition(0,bottom+this.height_bottom));
-                path = SVG.toRelativeAll(path); path = SVG.setPosition(path,0,top+this.height_top);
+                path.toRelativeAll().concat(Path.fromPosition(0,bottom+this.height_bottom));
+                path.toRelativeAll().setDrawPosition(0,top+this.height_top);
             break;
             case "init":
-                path = SVG.toRelativeAll(path); path = SVG .setPosition(path,0,top);
-                path = path.concat(SVG.createSkewer(-width/2,top+this.height_vbottom,width/2,bottom+this.height_bottom));
+                path.toRelativeAll().setDrawPosition(0,top);
+                path.concat(Path.buildSkewer(0.,width,width2,top+this.height_vbottom,bottom+this.height_bottom));
             break;
             case "mid":
-                path = SVG.toRelativeAll(path); path = SVG.setPosition(path,0,0);
-                path = path.concat(SVG.createSkewer(-width/2,top+this.height_top,width/2,this.height_vtop));
-                path = path.concat(SVG.createSkewer(-width/2,this.height_vbottom,width/2,bottom+this.height_bottom));
+                path.toRelativeAll().setDrawPosition(0,0);
+                path.concat(Path.buildSkewer(0.,width,width2,top+this.height_top,this.height_vtop));
+                path.concat(Path.buildSkewer(0.,width,width2,this.height_vbottom,bottom+this.height_bottom));
             break;
             case "fin":
-                path = SVG.toRelativeAll(path); path = SVG.setPosition(path,0,0);
-                path = path.concat(SVG.createSkewer(-width/2,top+this.height_top,width/2,this.height_vtop ));
+                path.toRelativeAll().setDrawPosition(0,0);
+                path.concat(Path.buildSkewer(0.,width,width2,top+this.height_top,this.height_vtop));
             break;
             }
         return path;
@@ -365,64 +364,70 @@ class Glyph{
     }
 
     #sub_toPathRelative_NonSyllable(top,bottom){
-       let path = this.toPath();
-       path = path.concat(SVG.fromPosition(0,bottom+this.height_bottom)); path = SVG.setPosition(path,0,top+this.height_top);
+       const path = this.toPath();
+       path.concat(Path.fromPosition(0,bottom+this.height_bottom)).setDrawPosition(0,top+this.height_top);
        return path;
     }
 
     toPathRelative(top,bottom){
-        let path = this.type == "S"? this.#sub_toPathRelative_Syllable(top,bottom) : this.#sub_toPathRelative_NonSyllable(top,bottom);
-        path = SVG.toRelativeAll(path);
+        const path = this.type == "S"? this.#sub_toPathRelative_Syllable(top,bottom) : this.#sub_toPathRelative_NonSyllable(top,bottom);
+        path.toRelativeAll();
         this.gap = {top:top,middle:0,bottom:bottom};
         return path;
     }
 
     #mergeNonSyllable(parent,base, child) {
+        const base_ = base.clone();
         const dir = child.type.startsWith("C") ? (child.form === "coda" ? -1 : 1) : 1;
         const off = parent.#calc_offset();
-        const child_d = parent.#get_diacritical().path;
-        const off_childx = dir*(SVG.getRight(child_d)+SVG.getLeft(child_d))/2;
-        const off_childy = (SVG.getTop(child_d)-SVG.getBottom(child_d))/2;
-        const merged = SVG.mergePath2(base,child_d,off.x+off_childx,off.y+off_childy);
-        return SVG.toRelativeAll(merged);
+        const child_d = parent.#get_diacritical().path.clone();
+        const off_childx = dir*(child_d.getRight()+child_d.getLeft())/2;
+        const off_childy = (child_d.getTop()-child_d.getBottom())/2;
+        const merged = base_.mergePath2(child_d,off.x+off_childx,off.y+off_childy);
+        return merged.toRelativeAll();
     }
 
     #toPath_NonSyllable() {
-        if (this.childGlyphList.length == 0)
-            {this.height_vtop = SVG.getTop(this.path);
-        this.height_vbottom = SVG.getBottom(this.path);
-        this.height_bottom = SVG.getBottom(this.path);
-        this.height_top = SVG.getTop(this.path);
-        return this.path;}
+        if (this.childGlyphList.length == 0) {
+            this.height_vtop = this.path.getTop();
+            this.height_vbottom = this.path.getBottom();
+            this.height_bottom = this.path.getBottom();
+            this.height_top = this.path.getTop();
+            return this.path;
+        }
         const child = this.#get_main_glyph();
         const base = child.#toPath_NonSyllable();
         const merged = this.#mergeNonSyllable(this,base, child);
         this.path = merged;
-        this.height_vtop = SVG.getTop(this.path);
-        this.height_vbottom = SVG.getBottom(this.path);
-        this.height_bottom = SVG.getBottom(this.path);
-        this.height_top = SVG.getTop(this.path);
+        this.height_vtop = this.path.getTop();
+        this.height_vbottom = this.path.getBottom();
+        this.height_bottom = this.path.getBottom();
+        this.height_top = this.path.getTop();
         return merged;
     }
 
 
     #toPath_Syllable(){
         let ans = [];
-        const c0 = this.#get_onset().#toPath_NonSyllable();
-        const v = this.#get_vowel().#toPath_NonSyllable();
+        const c0 = this.#get_onset().#toPath_NonSyllable().clone();
+        const v = this.#get_vowel().#toPath_NonSyllable().clone();
         const v_alt = this.#get_vowel().pathOrigin;
-        const c1 = this.#get_coda().#toPath_NonSyllable();
+        const c1 = this.#get_coda().#toPath_NonSyllable().clone();
         const offs = this.#calc_offset()
         const off0 = offs[0];//this.childGlyphList[0].name_b.glyphname == null ? {x:0,y:0} :this.childGlyphList[0].#calc_offset(v,true);//parentd
         const off1 = offs[1];//this.childGlyphList[2].name_b.glyphname == null ? {x:0,y:0} :this.childGlyphList[2].#calc_offset(v,true);
-        ans = SVG.mergePath3(v,c0,c1,0,off0.y,0,off1.y);
-        ans = SVG.toRelativeAll(ans);
-        this.height_vtop = SVG.getTop(v_alt);
-        this.height_vbottom = SVG.getBottom(v_alt);
-        this.height_bottom = SVG.getBottom(ans);
-        this.height_top = SVG.getTop(ans);
-        this.path = ans;
-        return ans;
+        const merged = v.mergePath3(c0,c1,0,off0.y,0,off1.y).toRelativeAll();
+        this.height_vtop = v_alt.getTop();
+        this.height_vbottom = v_alt.getBottom();
+        this.height_bottom = merged.getBottom();
+        this.height_top = merged.getTop();
+        this.path = merged;
+        return merged;
+    }
+
+    toPath(){//Svgをpathにする
+        const path = this.type == "S" ? this.#toPath_Syllable() : this.#toPath_NonSyllable();
+        return path ?? Path.fromPosition(0,0); //一応ヌル対策として最悪はM 0,0を返す。
     }
 
     #calc_offset_NonSyllable(){
@@ -433,12 +438,12 @@ class Glyph{
              if(this.type.startsWith("C")){
                 const dir_ = {onset:1,coda:-1};
                 const dir = dir_[this.form];
-                const x =  (SVG.getLeft(parentd)*(1-alig1.x*dir)/2+SVG.getRight(parentd) *(1+alig1.x*dir)/2)+off1.x*dir;
-                const y =  (SVG.getTop(parentd)*(1-alig1.y)/2+SVG.getBottom(parentd) *(1+alig1.y)/2)+off1.y;
+                const x =  (parentd.getLeft()*(1-alig1.x*dir)/2+parentd.getRight() *(1+alig1.x*dir)/2)+off1.x*dir;
+                const y =  (parentd.getTop()*(1-alig1.y)/2+parentd.getBottom() *(1+alig1.y)/2)+off1.y;
                 return{x:x,y:y};
             } else{
-                const x =  (SVG.getLeft(parentd)*alig1.x/2+SVG.getRight(parentd)*-alig1.x/2)+off1.x;
-                const y =  (SVG.getTop(parentd)*(1-alig1.y)/2+SVG.getBottom(parentd) *(1+alig1.y)/2)+off1.y;
+                const x =  (parentd.getLeft()*alig1.x/2+parentd.getRight()*-alig1.x/2)+off1.x;
+                const y =  (parentd.getTop()*(1-alig1.y)/2+parentd.getBottom() *(1+alig1.y)/2)+off1.y;
                 return{x:x,y:y};
             }
     }
@@ -447,31 +452,31 @@ class Glyph{
         const c_len = this.childGlyphList.length;
         const c0offset = c_len > 0 ? this.#get_onset().offset : {x:0,y:0};
         const c2offset = c_len > 2 ? this.#get_coda().offset : {x:0,y:0};
-        const c0d = c_len > 0 ? this.#get_onset().path : null;
+        const c0d = c_len > 0 ? this.#get_onset().path : new Path();
         const c1d = this.#get_vowel().path;
-        const c2d = c_len > 2 ? this.#get_coda().path : null;
-        const topgap = c0d !=null?(c2d!=null ? Math.min(SVG.getTop(c0d),SVG.getTop(c2d)):SVG.getTop(c2d)):(c2d!=null ? SVG.getTop(c2d):0);
-        const bottomgap = c0d !=null?(c2d!=null ? Math.max(SVG.getBottom(c0d),SVG.getBottom(c2d)):SVG.getBottom(c2d)):(c2d!=null ? SVG.getBottom(c2d):0);
-        return [{x:c0offset.x,y:SVG.getBottom(c1d)+topgap-bottomgap+c0offset.y},{x:c2offset.x,y:SVG.getBottom(c1d)+topgap-bottomgap+c2offset.y}];
+        const c2d = c_len > 2 ? this.#get_coda().path : new Path();
+        const topgap = Math.min(c0d.getTop(),c2d.getTop());
+        const bottomgap = Math.max(c0d.getBottom(),c2d.getBottom());
+        return [{x:c0offset.x,y:c1d.getBottom()+topgap-bottomgap+c0offset.y},{x:c2offset.x,y:c1d.getBottom()+topgap-bottomgap+c2offset.y}];
     }
 
     #calc_offset_S_notNullVowel(){
         const c_len = this.childGlyphList.length;
         const c0offset = c_len > 0 ? this.#get_onset().offset : {x:0,y:0};
         const c2offset = c_len > 2 ? this.#get_coda().offset : {x:0,y:0};
-        const c0d = c_len > 0 ? this.#get_onset().path : null;
+        const c0d = c_len > 0 ? this.#get_onset().path : new Path();
         const c1d = this.#get_vowel().path;
-        const c2d = c_len > 2 ? this.#get_coda().path : null;
-        const topgap = c0d !=null?(c2d!=null ? Math.min(SVG.getTop(c0d),SVG.getTop(c2d)):SVG.getTop(c2d)):(c2d!=null ? SVG.getTop(c2d):0);
-        const bottomgap = c0d !=null?(c2d!=null ? Math.max(SVG.getBottom(c0d),SVG.getBottom(c2d)):SVG.getBottom(c2d)):(c2d!=null ? SVG.getBottom(c2d):0);
+        const c2d = c_len > 2 ? this.#get_coda().path : new Path();
+        const topgap = Math.min(c0d.getTop(),c2d.getTop());
+        const bottomgap = Math.max(c0d.getBottom(),c2d.getBottom());
         switch(this.form){
             case "init":
-                return [{x:c0offset.x,y:SVG.getBottom(c1d)+topgap+c0offset.y},{x:c2offset.x,y:SVG.getBottom(c1d)+topgap+c2offset.y}];
+                return [{x:c0offset.x,y:c1d.getBottom()+topgap+c0offset.y},{x:c2offset.x,y:c1d.getBottom()+topgap+c2offset.y}];
             case "mid":
             case "sol":
-                return [{x:c0offset.x,y:SVG.getTop(c1d)-SVG.getBottom(c0d ?? "M 0,0")+c0offset.y},{x:c2offset.x,y:SVG.getBottom(c1d)+SVG.getTop(c2d ?? "M 0,0")+c2offset.y}];
+                return [{x:c0offset.x,y:c1d.getTop()-c0d.getBottom()+c0offset.y},{x:c2offset.x,y:c1d.getBottom()+c2d.getTop()+c2offset.y}];
             case "fin":
-                return [{x:c0offset.x,y:SVG.getTop(c1d)-bottomgap+c0offset.y},{x:c2offset.x,y:SVG.getTop(c1d)-bottomgap+c2offset.y}];
+                return [{x:c0offset.x,y:c1d.getTop()-bottomgap+c0offset.y},{x:c2offset.x,y:c1d.getTop()-bottomgap+c2offset.y}];
     }
     }
 
