@@ -8488,7 +8488,7 @@
         "OffsetX0": 0,
         "OffsetY0": 0,
         "OffsetX1": 0,
-        "OffsetY1": -40,
+        "OffsetY1": 0,
         "Parsed": "P\\((?:|[A-Za-z]+\\d+(?:-[A-Za-z]+\\d+)*)\\)"
       }
     }

@@ -31,32 +31,24 @@ class GlyphArray{
         return n/(this.vec==0?textdata.WidthV:textdata.Height);
     }
 
-    #rescale(svg_list,size){ //スケール変換の為の関数
-            const s_ = this.#to_em(size);
-            const aa = svg_list.toAbsoluteAll();
-            for(const i of aa.d){
-                if(i.x!=undefined)  i.x*=s_;  if(i.y!=undefined)  i.y*=s_;
-                if(i.x1!=undefined) i.x1*=s_; if(i.y1!=undefined) i.y1*=s_;
-                if(i.x2!=undefined) i.x2*=s_; if(i.y2!=undefined) i.y2*=s_;
-                if(i.rx!=undefined) i.rx*=s_; if(i.ry!=undefined) i.ry*=s_;
-            }
-            return aa.toRelativeAll();
-        }
-
+    
     #toPath_horizontal(defaultsize,_prev,_next){
         const textdata = FontManager.getFont(this.font).getTable("FONTDATA").dataList[0].valueList;
         const newline_list = FontManager.getStaticTable("PUNCTUATION").getData({"IsNewline":true}).map((i) =>i.getVal("Name"));
-        this.path = Path.fromPosition(this.position.x,this.position.y);//初期位置に移動
-        let x = this.position.x;
-        let y = this.position.y;
+
+        let x = this.position.x; let y = this.position.y;
+        this.path = Path.fromPosition(x,y);//初期位置に移動
+
         const is_dir_right = this.vec == 1;
         for(let i = 0;i<this.glyphList.length;i++){
-            const glyph_path = this.#rescale(this.glyphList[i].toPathAbsolute(textdata.Height,0.5+GPOSManager.gpos(this.glyphList[i].fullname,this.vec,"INEX",this.font).y1/textdata.Height),defaultsize);
-            const glyph_width = (!textdata.isWidthHRel ? defaultsize*textdata.WidthV:glyph_path.getLeft()+glyph_path.getRight()+defaultsize*textdata.WidthV)/textdata.Height;
-                
-            let gap_left = 0;let gap_right = 0;
             const size_em = this.#to_em(defaultsize); //将来的に文字サイズを可変にしたいので、単にsize_emと命名。
             const size = defaultsize;//同上
+
+            const glyph_path = this.glyphList[i].toPathAbsolute(textdata.Height,0.5+GPOSManager.gpos(this.glyphList[i].fullname,this.vec,"INEX",this.font).y1/textdata.Height).rescale(size_em);
+            const glyph_width = (!textdata.isWidthHRel ? size*textdata.WidthV:glyph_path.getLeft()+glyph_path.getRight()+size*textdata.WidthV)/textdata.Height;
+                
+            let gap_left = 0;let gap_right = 0;
+
 
             const tmp_for_gap = GPOSManager.gpos(this.glyphList[i].fullname,this.vec,"INEX",this.font);
             gap_right += tmp_for_gap.x1; gap_left += tmp_for_gap.x0;
@@ -105,7 +97,7 @@ class GlyphArray{
             y += gap_above*size_em;
 
             const is_isolated = (this.glyphList[i].type == "P") || (this.glyphList[i].form == "sol");
-            const glyph_path = this.#rescale(this.glyphList[i].toPathRelative(!is_isolated?-gap_above:0,gap_below),size);
+            const glyph_path = this.glyphList[i].toPathRelative(!is_isolated?-gap_above:0,gap_below).rescale(size_em);
             if(isnewline){ //改行に差し掛かったときの処理。
                 y -= ((this.glyphList[i].toPathRelative(0,0).getTop())-gap_above)*size_em;
                 isnewline = false;
@@ -114,7 +106,7 @@ class GlyphArray{
             this.glyphList[i].offset = {x,y}; //offsetを指定しておく
             //this.path = this.path.concat(Path.fromPosition(x,y)).concat(glyph_path.toRelativeAll()); //文字情報を繋げる
             y += (this.glyphList[i].toPathRelative(0,0).getBottom()+gap_below)*size_em;      //文字の長さの分＋隙間分下に進める
-            if(i+1 != this.glyphList.length){const d2 = this.#rescale(this.glyphList[i+1].path,size);y -= d2.getTop();}
+            if(i+1 != this.glyphList.length){const d2 = this.glyphList[i+1].path;y -= d2.getTop()*size_em;}
                 
             
             if(newline_list.indexOf(this.glyphList[i].name)!=-1){  x -= size;y = 0;isnewline = true; }

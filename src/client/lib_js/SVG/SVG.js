@@ -316,10 +316,18 @@ class Point {
       const x0 = x-width/2; const x1 = x+width/2;
       return new Path([Point.AbsM(x0,y0),Point.AbsV(y1),Point.AbsH(x1),Point.AbsV(y0),Point.AbsZ(),Point.AbsM(x,y0)]); 
     } 
-    static createSkewer(x0,y0,x1,y1){
-      if(x1<x0 || y1<y0) return new Path([Point.RelM(0.,0.)]);
-     return new Path([Point.AbsM(x0,y0),Point.AbsV(y1),Point.AbsH(x1),Point.AbsV(y0),Point.AbsZ(),Point.AbsM(0,y0)]); 
-    }
+    
+    rescale(s_){  //※今の仕様だと全部Relativeとして帰ります
+            this.toAbsoluteAll();
+            for(const i of this.d){
+                if(i.x!=undefined)  i.x*=s_;  if(i.y!=undefined)  i.y*=s_;
+                if(i.x1!=undefined) i.x1*=s_; if(i.y1!=undefined) i.y1*=s_;
+                if(i.x2!=undefined) i.x2*=s_; if(i.y2!=undefined) i.y2*=s_;
+                if(i.rx!=undefined) i.rx*=s_; if(i.ry!=undefined) i.ry*=s_;
+            }
+            return this.toRelativeAll();
+        }
+
     concat(path){
       this.d = this.d.concat(path.d);
       this.#updateBounds();
@@ -340,30 +348,7 @@ class Point {
       this.#updateBounds();
       return this;
     }
-    /*
-        static createSkewer(x0,y0,x1,y1){
-      if(x1<x0 || y1<y0) return [];
-        return SVG.roundAll(SVG.ParseD(` M ${x0},${y0} V ${y1} H ${x1} V ${y0} H ${x0} M 0,${y0}`));
-    }
 
-    static fromPosition(x0,y0){
-        const M = SVG.roundAll(SVG.ParseD(`M ${x0},${y0}`));
-        return M;}
-    static setPosition(d0,x0,y0){
-        const M = SVG.roundAll(SVG.ParseD(`M ${x0},${y0}`));
-        return M.concat(d0);
-    }
-    static mergePath2(d0,d1,x0, y0){ //mergePath2
-        const M = SVG.roundAll(SVG.ParseD(`M ${x0},${y0}`));
-        return d0.concat(M).concat(d1);
-    }
-
-    static mergePath3(d0,d1,d2,x0,y0,x1,y1){
-        const M = SVG.roundAll(SVG.ParseD(`M ${x0},${y0}`));
-        const M1 = SVG.roundAll(SVG.ParseD(`M ${x1},${y1}`));
-        return d0.concat(M).concat(d1).concat(M1).concat(d2);
-    }
-    */
     //merge系が上手くいってなかった（過去形）
 
     mergePath2(path0,x0,y0){return this.append_point_list([Point.AbsM(x0,y0)].concat(path0.d));}
@@ -373,212 +358,5 @@ class Point {
 
 class SVG {
 
-    static defrag_m(param){
-      let i = 0;
-      for (let j = 1; j<param.length;j++) {
-        if(param[i].type == "m" && param[j].type == "m"){//連続するmをまとめる
-          param[i].x += param[j].x; 
-          param[i].y += param[j].y;
-          param[j] = new Point("n", 0, 0); //空にする
-        }
-        else if(param[i].type == "M" && param[j].type == "M"){//連続するMをまとめる
-          param[i].x += param[j].x;
-          param[i].y += param[j].y;
-          param[j] = new Point("n", 0, 0); //空にする
-        }
-        else {i = j;} //連続するm地帯から抜け出したらjを更新する
-      }
-      param = param.filter((i) => (i.type!="n"));
-      return param;
-  }
-    static to_String(param) {
-      param = SVG.defrag_m(param);
-      const temp = [];
-      param.forEach( (p) => { temp.push(p.to_String()); });
-      return temp.join(' ');
-    }
-    static roundAll(param) {
-      /*for (const p of param) {
-        p.roundAll();
-      }*/
-      return param;
-    }
-    static convertSVG(param) {
-        return SVG.toStr( SVG.toRelativeAll(param));
-      }
-    static toRelativeAll(param) {
-        if(typeof param == "string") return SVG.AbbervM(SVG.toRel(SVG.roundAll(SVG.ParseD(param))).d);
-        else return SVG.AbbervM(SVG.toRel(SVG.roundAll(param)).d);
-    }
-    static toAbsoluteAll(param) {
-        if(typeof param == "string") return SVG.AbbervM(SVG.toAbs(SVG.roundAll(SVG.ParseD(param))).d);
-        else return SVG.AbbervM(SVG.toAbs(SVG.roundAll(param)).d);
-    }
-    static getLeft(param) {
-      //console.log(SVG.toRel(SVG.roundAll(SVG.ParseD(param))).left)
-      if(typeof param == "string") return SVG.toRel(SVG.roundAll(SVG.ParseD(param))).left;
-      else return SVG.toRel(SVG.roundAll(param)).left;
-      //SVG.ParseDを省く
-    }
-    static getRight(param) {
-      //console.log(SVG.toRel(SVG.roundAll(SVG.ParseD(param))).right)
-      if(typeof param == "string") return SVG.toRel(SVG.roundAll(SVG.ParseD(param))).right;
-      else return SVG.toRel(SVG.roundAll(param)).right;
-    }
-    static getTop(param) {
-      //console.log(SVG.toRel(SVG.roundAll(SVG.ParseD(param))).top)
-      if(typeof param == "string") return SVG.toRel(SVG.roundAll(SVG.ParseD(param))).top;
-      else return SVG.toRel(SVG.roundAll(param)).top;
-    }
-    static getBottom(param) {
-      //console.log(SVG.toRel(SVG.roundAll(SVG.ParseD(param))).bottom)
-      if(typeof param == "string") return SVG.toRel(SVG.roundAll(SVG.ParseD(param))).bottom;
-      else return SVG.toRel(SVG.roundAll(param)).bottom;
-    }
-  
-    static createSkewer(x0,y0,x1,y1){
-      if(x1<x0 || y1<y0) return [];
-        return SVG.roundAll(SVG.ParseD(` M ${x0},${y0} V ${y1} H ${x1} V ${y0} H ${x0} M 0,${y0}`));
-    }
-
-    static fromPosition(x0,y0){
-        const M = SVG.roundAll(SVG.ParseD(`M ${x0},${y0}`));
-        return M;}
-    static setPosition(d0,x0,y0){
-        const M = SVG.roundAll(SVG.ParseD(`M ${x0},${y0}`));
-        return M.concat(d0);
-    }
-    static mergePath2(d0,d1,x0, y0){ //mergePath2
-        const M = SVG.roundAll(SVG.ParseD(`M ${x0},${y0}`));
-        return d0.concat(M).concat(d1);
-    }
-
-    static mergePath3(d0,d1,d2,x0,y0,x1,y1){
-        const M = SVG.roundAll(SVG.ParseD(`M ${x0},${y0}`));
-        const M1 = SVG.roundAll(SVG.ParseD(`M ${x1},${y1}`));
-        return d0.concat(M).concat(d1).concat(M1).concat(d2);
-    }
-
-    static AbbervM(param){return param}
-
-    static get_internal(param,mode,_brdr,_concat) { //brdrフラグは左右上下を(再)計算する場合に用いる。_concatは結合処理用(将来用)
-        const temp = [];
-        let q;
-        const currentPos = new Point("n", 0, 0);
-        let left = Infinity;let top = Infinity;let right = -Infinity;let bottom = -Infinity;
-        const subPos = new Point("n", undefined, undefined);
-        //this.#firstPos.x = null; this.#firstPos.y = null;
-        for (const p of param) {
-          /*if (typeof this.firstPos.x != "number" && typeof this.firstPos.y != "number") {
-            if (typeof p.x == "number") this.#firstPos.x = p.x;
-            if (typeof p.y == "number") this.#firstPos.y = p.y;
-          }*/
-          if(p.is_z()){
-            q = p.clone();
-            currentPos.x = subPos.x;currentPos.y = subPos.y;
-            subPos.x = undefined;subPos.y = undefined;
-          }
-          else if(p.is_relative()){
-            q = p.clone();
-            if(mode == "abs") {q.to_absolute(currentPos);}
-            if (typeof p.x == "number") currentPos.x += p.x; //currentPosを更新
-            if (typeof p.y == "number") currentPos.y += p.y;
-            if (p.type == "m") {subPos.x = currentPos.x;subPos.y = currentPos.y;}
-          }
-          else if(p.is_absolute()){
-            q = p.clone();
-            if(mode == "rel") {q.to_relative(currentPos);}
-            if (typeof p.x == "number") currentPos.x = p.x;
-            if (typeof p.y == "number") currentPos.y = p.y;
-            if (p.type == "M") {subPos.x = currentPos.x;subPos.y = currentPos.y;}
-          }
-          if (q == undefined) throw Error();
-          
-          temp.push(q);
-          if (currentPos.x != null) {left = Math.min(left, currentPos.x);right = Math.max(right, currentPos.x);}
-          if (currentPos.y != null) {top = Math.min(top, currentPos.y); bottom = Math.max(bottom, currentPos.y);}
-        }
-  
-        //this.#lastPos.x = currentPos.x; this.#lastPos.y = currentPos.y;
-
-        if(left == Infinity) left = 0;if(top == Infinity) top = 0;
-        if(right == -Infinity) right = 0;if(bottom == -Infinity) bottom = 0;
-
-        return { d: temp, top: top, left: left, right: right, bottom: bottom }; 
-
-      }
-
-    static toAbs(param) { return SVG.get_internal(param,"abs",false); }
-    static toRel(param) { return SVG.get_internal(param,"rel",false); }
-    //#updateBounds() { return this.#get_internal("nop",true); }
-
-    
-    //string型
-    static ParseD(str) {
-      const str_proto= str;
-      //const regf = function(reg,reg2,loop,flag){return RegExp( new Array(loop).fill(reg.source).join(reg2.source),flag);}
-      
-      const str_b = str.split(/([ZzAaCcQqSsMmLlHhVv, ])/g).join(" ").split(/(?: |,)/g).filter((x) => ![" ",""].includes(x));
-
-      str = "";
-      const answer = [];
-      //const REGn = /-?\d+(\.\d+)?(e-?\d+)?/g; //数字判定 (\d|\.|e|-)+ -> -?\d+(\.\d+)?(e-?\d+)?
-      let precommand = "";
-      let i = 0;
-      while (i < str_b.length) {
-        if ([" ",""].includes(str_b[i])) {
-          i++;
-        }
-        else{switch(str_b[i]){
-          case "Z": case "z": case "A":case "a": case "C": case "c":
-          case "Q": case "q": case "S": case "s": case "M": case "m":
-          case "L": case "l": case "H": case "h": case "V": case "v":
-            precommand = str_b[i];
-            i++;
-            break;
-          default:break;
-          }
-          switch(precommand){
-            case "Z": case "z": 
-              answer.push(new Point(precommand));
-              precommand = "";
-            break;
-            case "A":case "a":
-              answer.push(new Point(precommand,str_b[i+5],str_b[i+6],null,null,null,null,str_b[i],str_b[i+1],str_b[i+2],str_b[i+3],str_b[i+4]));
-              i+=7;
-            break;
-            case "C": case "c":
-              answer.push(new Point(precommand,str_b[i+4],str_b[i+5],str_b[i],str_b[i+1],str_b[i+2],str_b[i+3]));
-              i+=6;
-            break;
-            case "Q": case "q": 
-              answer.push(new Point(precommand,str_b[i+2],str_b[i+3],str_b[i],str_b[i+1]));
-              i+=4;
-            break;
-            case "S": case "s": 
-              answer.push(new Point(precommand,str_b[i+2],str_b[i+3],null,null,str_b[i],str_b[i+1]));
-              i+=4;
-            break;
-            case "M": case "m":
-            case "L": case "l": 
-              answer.push(new Point(precommand,str_b[i],str_b[i+1]));
-              precommand = ["M","L"].includes(precommand)?"L":"l";
-              i+=2;
-            break;
-            case "H": case "h": 
-              answer.push(new Point(precommand,str_b[i]));
-              i+=1;
-            break;
-            case "V": case "v":
-              answer.push(new Point(precommand,null,str_b[i]));
-              i+=1;
-            break;
-            default:
-            throw Error(`SVG要素にエラーがあります: ${str_proto}`);
-          }
-      }
-     }
-     return answer;
-    }
   }
   export {SVG,Path,Point};
