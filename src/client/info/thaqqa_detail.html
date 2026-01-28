@@ -145,7 +145,7 @@
             path.setAttribute("d", d.d_str);
             object.appendChild(path);
 
-            const x0 = d.left; const x1 = d.right; const y0 = d.top; const y1 = d.bottom;
+            const x0 = d.getLeft(); const x1 = d.getRight(); const y0 = d.getTop(); const y1 = d.getBottom();
             const shrink_x = 1.03; const HEIGHT = y1 - y0; const WIDTH = x1 - x0;
             object.setAttribute("width", (WIDTH * shrink_x).toString());
             object.setAttribute("height", (HEIGHT * shrink_x).toString());
@@ -196,22 +196,22 @@
             const csy = [["t0-sy","ty(汽) /tʲ/"],["k0-sy","ky(汽) /kʲ/"],,,
             ["n0-sy","ny(汽) /nʲ/"],["ng0-sy","ngy(汽) /ŋʲ/"],
             ,["s0-sy","sy(汽) /ɕ/"],,,,
-            ,,,["r0-sy","ry(汽) /ɹʲ/"],,]
+            ,,["tl0-sy","ch(汽) /t͡ɕ/"],["r0-sy","ry(汽) /ɹʲ/"],,["w0-sy","wy(汽) /ɥ/"]]
 
             const csw = [,,["q0-sw","qw(汽) /qʷ/"],,
             ,["ng0-sw","ngw(汽) /ŋʷ/"],
             ,,,,["qh0-sw","hw(汽) /χʷ/"],
             ,,,,,]
 
-            const cd = [["t0-d","d(汽) /d/"],["k0-d","g(汽) /g/"],,,
+            const cd = [["t0-d","d(汽) /d/"],,,,
             ,,
             ["th0-d","dh /ð/"],["s0-d","z /ɮ/(東) /z/(汽)"],["hy0-d","zh(東) /ʒ/"],["kh0-d","gh(東) /ɣ/"],["qh0-d","rh(東) /ʁ/"],["h0-d","Hh(東) /ʕ/ or /ːʔ/"]
-            ,,,,,]
+            ,,["tl0-d","dz(汽) /d͡z/"],["r0-d","rr(汽) /r/"],["y0-d","yy /jj/"],["w0-d","ww /ɰɰ/"]]
 
             const cmisc = [["t0-d0-hd","b(汽) /b/"],,,,
             ["n0-hd0-sy","my(汽) /mʲ/"],,
-            ["th0-hd0-sy","hpy(汽) /pʰʲ/"],["th0-hd0-sw","hp(汽) /pʰ/"],,["s0-d0-sy","zy(汽) /ʑ/"],,
-            ,,["tl0-hd0-sy","ch(汽) /t͡ɕ/"],,,]
+            ["th0-hd0-sy","hpy(汽) /pʰʲ/"],["th0-hd0-sw","hp(汽) /pʰ/"],["th0-d0-hd","bh(汽) /β/"],["s0-d0-sy","zy(汽) /ʑ/"],,
+            ,,,,,]
 
             const chd = [["t0-hd","p(汽) /p/"],,["q0-hd","hq(汽) /qʰ/"],,
             ["n0-hd","m(汽) /m/"],,
