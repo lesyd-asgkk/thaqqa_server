@@ -11,10 +11,14 @@ h1 {
 }
 h2 {
     overflow-wrap : break-word;
-    margin: 5px 40px 0px;
+    margin: 10px 40px 0px;
+}
+h3 {
+    overflow-wrap : break-word;
+    margin: 5px 50px 0px;
 }
 p {
-    margin: 5px 50px 0px;
+    margin: 5px 60px 0px;
 }
 
 li {

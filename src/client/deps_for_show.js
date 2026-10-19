@@ -2,11 +2,13 @@ import * as khhyl from "./lib_js/deps.js";
 import * as webjs from "./web_js/deps.js";
 
 async function main() {
-  await khhyl.Thaqqa_DB.load();
+  await khhyl.FontManager.load("/server/fontjson/root.json", true);
+  await khhyl.FontManager.load(
+    "/server/fontjson/font/SanSerif_0_0_0_0.json",
+    false,
+  );
 
-  await khhyl.GlyphManager.load();
-
-  //khhyl.GPOSManager.setGPOSColumn()
+  await khhyl.GlyphManager.loadAll("SanSerif_0_0_0_0");
 
   let tb;
 

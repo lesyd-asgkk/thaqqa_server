@@ -26,21 +26,20 @@
                  Q 10,60 10,30 z" />
         </svg>
     </div>
-    <h1>東果文字の内部処理 v0.0.0</h1>
-    <p>とりあえず表記できればいいやくらいに思ってるので、全く持って非効率だったりガバガバだったりします</p>
+    <h1>東果文字の内部処理 v0.1.0</h1>
 
-    <h1>ラテン文字入力から実際に描画するまでの過程</h1>
+    <h2>ラテン文字入力から実際に描画するまでの過程</h2>
     <ol>
         <li>Renderクラスに描画させたいラテン文字文字データを打ち込む</li>
-        <li>Parserクラスでラテン文字を取り敢えず東果文字の内部表記に変換してもらう</li>
-        <li>GSUBManagerクラスで東果文字の内部表記を変更してもらう</li>
+        <li>Parserクラスでラテン文字を東果文字の内部表記形式に変換</li>
+        <li>GSUBManagerクラスで東果文字の内部表記をさらに変換/li>
         <li>GlyphArrayにデータを渡した上で、GlyphでGPOSManagerを用いて一音節分のSVGデータを作成する</li>
         <li>GlyphArrayにて文字と文字の間隔の調整をした上で棒線で連結した値を返す</li>
-        <li>Renderが返した値をpathのd属性に打ち込めば出来上がり🐧</li>
+        <li>Renderが返した値をpathのd属性として利用すると描画できます。</li>
     </ol>
 
-    <h1>内部データの構造</h1>
-    <h2>TEXTDATA(Thickness,WidthH,WidthV,isWidthHRel,Height,TopGapV)</h2>
+    <h2>内部データの構造</h2>
+    <h3>TEXTDATA(Thickness,WidthH,WidthV,isWidthHRel,Height,TopGapV)</h3>
     <ul>
         <li>Thicknessの太さの棒線を文字の間で補完するようにする。</li>
         <li>文字の横幅について、横書きの場合はWidthH、縦書きの場合はWidthVにする</li>
@@ -50,7 +49,7 @@
     </ul>
     <p>※これらの処理は、フォントサイズに合わせた拡大縮小前に行われる。</p>
     <p>例えばHeight=100に指定した文字は、最終的には(指定したサイズ)/100倍。</p>
-    <h2>VOWEL(ID,Name,LoadName,SolGlyphNum,InitGlyphNum,MidGlyphNum,FinGlyphNum,isVowel,isNullVowel,hasGreedyBond,isBondtoPrev,isBondtoNext,Order)</h2>
+    <h3>VOWEL(ID,Name,LoadName,SolGlyphNum,InitGlyphNum,MidGlyphNum,FinGlyphNum,isVowel,isNullVowel,hasGreedyBond,isBondtoPrev,isBondtoNext,Order)</h3>
     <ul>
         <li>母音(+母音の形式で表される約物)を表す。</li>
         <li>IDは変更不能で一意に振られる。RegExp_Khhylの[]構文についてはID指定を想定しない。</li>
@@ -58,26 +57,26 @@
         <li>GlyphNumは異体字の数。isVowelとかその辺は内部処理用</li>
         <li>Orderは文字編集webアプリの並び順を指定するため（気にしなくて良い）</li>
     </ul>
-    <h2>CONSONANT(ID,Name,LoadName,OnsetGlyphNum,CodaGlyphNum,isBondAsFirst,isBondAsLast,Order)</h2>
+    <h3>CONSONANT(ID,Name,LoadName,OnsetGlyphNum,CodaGlyphNum,isBondAsFirst,isBondAsLast,Order)</h3>
     <ul>
         <li>子音(+子音の形式で表される約物)を表す。</li>
         <li>isBondAsFirstとかその辺は内部処理用。</li>
     </ul>
-    <h2>PUNCTUATION(ID,Name,LoadName,GlyphNum,IsNewline,Order)</h2>
+    <h3>PUNCTUATION(ID,Name,LoadName,GlyphNum,IsNewline,Order)</h3>
     <ul>
         <li>約物を表す。</li>
         <li>isNewlineがtrueの文字は改行文字であると（内部で）判定する。</li>
     </ul>
 
-    <h2>DIACRITIC_V(ID,Name,LoadName,SolGlyphNum,InitGlyphNum,MidGlyphNum,FinGlyphNum,x_Align,y_Align,Order)</h2>
-    <h2>DIACRITIC_C(ID,Name,LoadName,OnsetGlyphNum,CodaGlyphNum,x_Align,y_Align,Order)</h2>
-    <h2>DIACRITIC_P(ID,Name,LoadName,GlyphNum,x_Align,y_Align,Order)</h2>
+    <h3>DIACRITIC_V(ID,Name,LoadName,SolGlyphNum,InitGlyphNum,MidGlyphNum,FinGlyphNum,x_Align,y_Align,Order)</h3>
+    <h3>DIACRITIC_C(ID,Name,LoadName,OnsetGlyphNum,CodaGlyphNum,x_Align,y_Align,Order)</h3>
+    <h3>DIACRITIC_P(ID,Name,LoadName,GlyphNum,x_Align,y_Align,Order)</h3>
     <ul>
         <li>母音/子音/約物に付く符号を表す。</li>
         <li>x_Align,y_Alignは-1,0,1かの値を取り、それぞれ内側/中央/外側、上側/中央/下側を基準に、記号の座標が指定されるようになる。</li>
     </ul>
 
-    <h2>PARSER(ID,Pattern,Order,Priority,Name,NameAlt,Parsed)</h2>
+    <h3>PARSER(ID,Pattern,Order,Priority,Name,NameAlt,Parsed)</h3>
     <ul>
         <li>（主に現実世界のアルファベットや、C()等で定義された文字群を）東果語の表現手段へと変換する。</li>
         <li>Patternがcの場合は東果語に、vの場合は汽陸語に、oの場合は両方に適応する。</li>
@@ -87,14 +86,14 @@
         <li>（今後は別のファイルとして分離する予定。Patternもどうせ廃止）</li>
     </ul>
 
-    <h2>GSUB(ID,Pattern,Order,Priority,Name,NameAlt,Parsed)</h2>
+    <h3>GSUB(ID,Pattern,Order,Priority,Name,NameAlt,Parsed)</h3>
     <ul>
         <li>東果語の字形を指定・変更する。</li>
         <li>Patternがvの場合は縦書き、hの場合は横書き、oの場合は両方に適応。</li>
         <li>Orderの値が小さい順（等しいもの同士はPriorityの値が小さい順）で実行される。</li>
     </ul>
 
-    <h2>GPOS(ID,Pattern,Pattern_sub,Order,Name,OffsetX0,OffsetY0,OffsetX1,OffsetY1,Parsed)</h2>
+    <h3>GPOS(ID,Pattern,Pattern_sub,Order,Name,OffsetX0,OffsetY0,OffsetX1,OffsetY1,Parsed)</h3>
     <ul>
         <li>東果文字同士や、東果文字のパーツ同士の位置調整をする。</li>
         <li>Patternがvの場合は縦書き、hの場合は横書き、oの場合は両方に適応。</li>
@@ -103,13 +102,123 @@
         <li>Orderは文字編集webアプリの並び順を指定するため（気にしなくて良い）</li>
     </ul>
 
-    <h2>GLYPH(ID,Name,Path)</h2>
+    <h3>GLYPH(ID,Name,Path)</h3>
     <ul>
         <li>Nameという名前の、Pathをsvgのd属性で表示させるGlyphを定義する。</li>
     </ul>
 
-
-
+    <h2>東果文字を表す表現・東果文字について</h2>
+    <p>東果文字は一音節に複数の字母が組み合わさる仕組みであり、通常のフォント置換での表現は困難である。
+    <p>そこで、独自の内部表現体型を持つこととした。
+    <p>例えばS(init,t0,abig0,)ならば<span class="khhyl " letter="S(init,t0,abig0,)"> </span>という音節であるということを示す。
+    <h3>S(form,init,mid,fin)</h3>
+    <p>東果文字のうち一音節分の文字を表す。</p>
+    <p>formはsol(単独字)、init(頭字)、mid(中字)、fin(尾字)の4つを取る。</p>
+    <p>init,mid,finには適切なグリフを取る。</p>
+    <p>例えば
+    <ul>
+        <li> S(sol,,abig0,) ＝<span class="khhyl " letter="S(sol,,abig0,)"> </span> </li>
+        <li> S(init,kh0-d0,a0,) ＝<span class="khhyl " letter="S(init,kh0-d0,a0,)"> </span> </li>
+        <li> S(mid,t0,e1,n0) ＝<span class="khhyl " letter="S(mid,t0,e1,n0)"> </span> </li>
+        <li> S(fin,,u2,t0) ＝<span class="khhyl " letter="S(fin,,u2,t0)"> </span> </li>
+    </ul>
+    <h3>V(form,vowel)</h3>
+    <p>東果文字のうち一つ分の母音を表す。</p>
+    <p>formはsol(単独字)、init(頭字)、mid(中字)、fin(尾字)の4つを取る。</p>
+    <p>vowelには適切なグリフを取る。</p>
+    <h3>C(form,consonant)</h3>
+    <p>東果文字のうち一つ分の子音を表す。</p>
+    <p>formはonset(頭字)、coda(尾字)の2つを取る。</p>
+    <p>consonantには適切なグリフを取る。</p>
+    <h3>P(punctuation)</h3>
+    <p>東果文字のうち一つ分の約物を表す。</p>
+    <p>punctuationには適切なグリフを取る。</p>
+    <h3>Vd(form,diacritic_v)</h3>
+    <p>東果文字のうち一つ分の母音につくダイアクリティカルマークを表す。</p>
+    <p>formはsol(単独字)、init(頭字)、mid(中字)、fin(尾字)の4つを取る。</p>
+    <p>diacritic_vには適切なグリフを取る。</p>
+    <h3>Cd(form,diacritic_c)</h3>
+    <p>東果文字のうち一つ分の子音につくダイアクリティカルマークを表す。</p>
+    <p>formはonset(頭字)、coda(尾字)の2つを取る。</p>
+    <p>diacritic_cには適切なグリフを取る。</p>
+    <h3>Pd(diacritic_p)</h3>
+    <p>東果文字のうち一つ分の約物を表す。</p>
+    <p>diacritic_pには適切なグリフを取る。</p>
+    <h3>グリフについて</h3>
+        <p>擬似的な正規表現的表現となるが、以下のような形式で表現する。</p>
+        <p>glyph := r/ ({glpyhlet}(-{glyphlet})+)?/</p>
+        <p>glyphlet := r/ [A-z]+[0-9]+ / </p>
+        <p>glyphletは文字によるグリフセレクタと数字による異体字セレクタを持つ。</p>
+        <p>glyphはCd,Vd,Pdのグリフとして用いる場合を除き、基本的に メインの文字(-ダイアクリティカルマーク)+ の形式。</p>
+        <p> C(onset,t0-d0-hd0) ＝ <span class="khhyl " letter="C(onset,t0-hd0-sw0)"> </span> のように、複数重ねてもよい。 </p>
+    <h3>文章として</h3>
+    <p>上記の表現を組み合わせて表記する。</p>
+    <p>例： S(init,kh0,e0,)S(mid,hy0,e0,)S(mid,l0,u0,)S(fin,kh0-d0,u0,n0) ＝ <span class="khhyl " letter="S(init,kh0,e0,)S(mid,hy0,e0,)S(mid,l0,u0,)S(fin,kh0-d0,u0,n0)"> </span></p>
+    
+    <h2>東果文字のRegex糖衣構文について</h3>
+    <p>PARSER,GSUB,GPOS段階では特に処理が煩雑となるため、汎用的なマッチ・処理が可能な正規表現の糖衣構文を用意した。
+    <p>例えば、S(sol,*)ならば<span class="khhyl " letter="V(sol,abig0)"> </span> <span class="khhyl " letter="V(sol,u0)"> </span> <span class="khhyl " letter="V(sol,i0)"> </span> などとマッチングする。</p>
+    <h3>基本的な表現について</h3>
+    <p>L()で置換可能な単位、form,glyph,glyphlet、グリフセレクタ、異体字セレクタにおいて、| * + ? *? +? ??は正規表現と同等に扱われる。</p>
+    <p>S(init,,e0,)+は S(init,,e0,) , S(init,,e0,)S(init,,e0,) , S(init,,e0,)S(init,,e0,)S(init,,e0,)  , ... とマッチする。</p>
+    <p>S(*,,e0,)は S(sol,,e0,) S(init,,e0,) S(mid,,e0,) S(fin,,e0,)"> とマッチする。</p>
+    <p>S((init|mid),(n0|ng0),e0,)は S(mid,ng0,e0,) S(init,ng0,e0,) S(mid,n0,e0,) S(init,n0,e0,)" とマッチする。 </p>
+    <p>グルーピングも可能、かつ変換対象として順番が変わることはない。(?:...)も使用可能。</p>
+    <p>グループに名前をつけることは動作の複雑性から非推奨としている。</p>
+    <p>例：S(init,,(e0),)(S(mid,h0,e0,))は$1でe0とマッチし、$2でS(mid,h0,e0,)とマッチする。</p>
+    <h3>L()</h3>
+        <p>任意の一文字の東果文字とマッチする。</p>
+    <h3>S(*)</h3>
+        <p>任意の一音節の東果文字とマッチする。</p>     
+    <h3>S(form,*)</h3>
+        <p>formの一致する任意の一音節の東果文字とマッチする。</p>   
+    <h3>V(*)</h3>
+        <p>任意の東果文字の母音（音節として結合していない）とマッチする。</p>   
+    <h3>V(form,*)</h3>
+        <p>formの一致する任意の東果文字の母音（音節として結合していない）とマッチする。</p>   
+    <h3>C(*)</h3>
+        <p>任意の東果文字の子音（音節として結合していない）とマッチする。</p>   
+    <h3>C(form,*)</h3>
+        <p>formの一致する任意の東果文字の子音（音節として結合していない）とマッチする。</p>   
+    <h3>P(,*)</h3>
+        <p>任意の東果文字の約物とマッチする。</p>   
+    <h3>Vd(*)</h3>
+        <p>任意の東果文字の母音用ダイアクリティカルマーク（音節として、あるいは親字母と結合していない）とマッチする。</p>   
+    <h3>Vd(form,*)</h3>
+        <p>formの一致する任意の東果文字の母音用ダイアクリティカルマーク（音節として、あるいは親字母と結合していない）とマッチする。</p>   
+    <h3>Cd(*)</h3>
+        <p>任意の東果文字の子音用ダイアクリティカルマーク（音節として、あるいは親字母と結合していない）とマッチする。</p>   
+    <h3>Cd(form,*)</h3>
+        <p>formの一致する任意の東果文字の子音用ダイアクリティカルマーク（音節として、あるいは親字母と結合していない）とマッチする。</p>   
+    <h3>glyphの * </h3>
+        <p>任意のglyphletの組み合わせ、または空のものと一致する。</p>
+    <h3>glyphの + </h3>
+        <p>任意のglyphletの組み合わせと一致する。</p>
+    <h3>glyphの *? </h3>
+        <p>任意のglyphletの組み合わせ、または空のものと一致する。極力短いものとマッチする。</p>
+    <h3>glyphの +? </h3>
+        <p>任意のglyphletの組み合わせと一致する。極力短いものとマッチする。</p>
+    <h3>glyphの -* </h3>
+        <p>任意長のダイアクリティカルマーク用glyphletの組み合わせと一致する。</p>
+    <h3>glyphの -+ </h3>
+        <p>1以上の長さのダイアクリティカルマーク用glyphletの組み合わせと一致する。</p>
+    <h3>glyphの -? </h3>
+     <p>1か0の長さのダイアクリティカルマーク用glyphletの組み合わせと一致する。</p>
+    <h3>glyphの -*? </h3>
+        <p>任意長のダイアクリティカルマーク用glyphletの組み合わせと一致する。極力短いものとマッチする。</p>
+    <h3>glyphの -+? </h3>
+        <p>1以上の長さのダイアクリティカルマーク用glyphletの組み合わせと一致する。極力短いものとマッチする。</p>
+    <h3>glyphの -?? </h3>
+         <p>1か0の長さのダイアクリティカルマーク用glyphletの組み合わせと一致する。極力短いものとマッチする。</p>
+    <h3>glyphletの . </h3>
+        <p>任意のグリフセレクタと一致する。[A-Za-z]+と同義。</p>
+    <h3>glyphletの _ </h3>
+        <p>任意の異体字セレクタと一致する。[0-9]+と同義。</p>
+    <h3>glyphletの [(比較文)] </h3>
+        <p>比較文の条件に一致する全てのグリフを返す。[_.isVowel]ならば母音全て。</p>
+        <p>_.は内部データのテーブルのうち適切なものから調べる。</p>
+        <p>当該バージョンではFunctionを内部に用いているが、流出の恐れのあるデータや、不正な入力の影響が拡散される恐れがないことから修正していない。</p>
+        <p>別言語への移植では_.の置換ルールを再構築している。</p>
 </body>
 
 <script type="module">
@@ -118,8 +227,8 @@
     //Khhyl.Render.DrawD(self.textbox.value,lang,(alig==2?0:1),"none",Number(self.sizetext.value));
     //span khhylに関する変換処理
     $(document).ready(async function () {
-        await khhyl.Database.load('/server/init.json');
-
+        await khhyl.FontManager.load('/server/fontjson/root.json',true);
+  await khhyl.FontManager.load('/server/fontjson/font/SanSerif_0_0_0_0.json',false);
         for (const i of $('span.khhyl')) {
             const object = $("div#storage svg#svgField").clone(false, false)[0];
             while (object.firstChild) object.removeChild(object.firstChild);
@@ -133,7 +242,7 @@
                 object.append(title, desc)
             }
             //console.log(parseFloat(getComputedStyle(i).fontSize));
-            const d = khhyl.Render.DrawD(letter, parseFloat(getComputedStyle(i).fontSize), 0, i.getAttribute("alig") == null ? 0 : 1 , type,null);
+const d = khhyl.Render.DrawD(letter,0, i.getAttribute("alig") == null ? 0 : 1 ,{size:parseFloat(getComputedStyle(i).fontSize),parse:type,font:"SanSerif_0_0_0_0"});
             const path = $("div#storage svg#svgField path").clone()[0];
             path.style.display = "block";
             path.setAttribute("fill", "none");

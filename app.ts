@@ -1,78 +1,106 @@
-// app.ts
 Deno.env.set("DENO_VERBOSE_WARNINGS", "1");
 
 import { Application, Router, send } from "./deps.ts";
-import { path } from "./deps.ts";
-import { fs } from "./deps.ts";
+import { fs, path } from "./deps.ts";
 import { LoadFile } from "./LoadFile.ts";
 
 const app = new Application();
 const router = new Router();
-const srcPath_def = path.join(Deno.cwd());
 
-function f(router: Router, srcPath_def: string, path_sub: string) {
-  try {
-    const srcPath = path.join(Deno.cwd(), path_sub);
-    const htmlFiles = fs.walkSync(srcPath, {
-      includeDirs: true,
+const root = Deno.cwd();
+
+// src 側：静的ファイル配信
+function registerStaticRoutes(
+  router: Router,
+  directory: string,
+  urlPrefix = "",
+) {
+  for (
+    const entry of fs.walkSync(directory, {
+      includeDirs: false,
       exts: [".html", ".js", ".css"],
-    });
-    for (const entry of htmlFiles) {
-      const root = Deno.cwd();
-      const relativePath = `/${
-        path.relative(srcPath_def, entry.path).replaceAll("\\", "/")
-      }`;
-      console.log(`root:${root}\nファイル名:${relativePath}\n`);
-      router.get(`${relativePath}`, async (ctx) => { //.replaceAll("\\", "/")
-        await send(ctx, `${relativePath}`, {
-          root: root,
-        });
+    })
+  ) {
+    // ディレクトリを基準にした相対パス
+    const relativePath = path.relative(directory, entry.path)
+      .replaceAll("\\", "/");
+
+    // URL を生成
+    const urlPath = `/${
+      [urlPrefix, relativePath]
+        .filter(Boolean)
+        .join("/")
+    }`;
+
+    console.log(`ファイル名: ${urlPath}`);
+
+    router.get(urlPath, async (ctx) => {
+      await send(ctx, entry.path, {
+        root: "/",
       });
-    }
-  } catch (_e) {
-    const srcPath = path.join(Deno.cwd(), "src/" + path_sub);
-    const htmlFiles = fs.walkSync(srcPath, {
-      includeDirs: true,
-      exts: [".html", ".js", ".css"],
     });
-    for (const entry of htmlFiles) {
-      const root = Deno.cwd();
-      const relativePath = `/${path.relative(srcPath_def, entry.path)}`;
-      console.log(`root:${root}\nファイル名:${relativePath}\n`);
-      router.get(`/${relativePath}`, async (ctx) => { //
-        await send(ctx, `${relativePath}`, {
-          root: root,
-        });
-      });
-    }
   }
 }
 
-f(router, srcPath_def, "client");
-f(router, srcPath_def, "");
-router.get(`/server/init.json`, async (ctx) => {
-  const data = LoadFile.loadJSON("./server/init.json");
-  ctx.response.body = data.buffer; // Uint8Arrayをバイナリデータとしてクライアントに送信
-  ctx.response.headers.set("Content-Type", "application/octet-stream"); // コンテンツタイプを設定
-});
-router.get(`/server/fontjson/root.json`, async (ctx) => {
-  const data = LoadFile.loadJSON("./server/fontjson/root.json");
-  ctx.response.body = data.buffer; // Uint8Arrayをバイナリデータとしてクライアントに送信
-  ctx.response.headers.set("Content-Type", "application/octet-stream"); // コンテンツタイプを設定
-});
-const entry_ = ["SanSerif_0_0_0_0"];
-for (const entry of entry_) {
-  router.get(`/server/fontjson/font/${entry}.json`, async (ctx) => {
-    const data = LoadFile.loadJSON(`./server/fontjson/font/${entry}.json`);
-    ctx.response.body = data.buffer; // Uint8Arrayをバイナリデータとしてクライアントに送信
-    ctx.response.headers.set("Content-Type", "application/octet-stream"); // コンテンツタイプを設定
+// server 側：データ配信
+function registerServerRoutes(router: Router) {
+  router.get("/server/init.json", (ctx) => {
+    const data = LoadFile.loadJSON("./server/init.json");
+    ctx.response.body = data.buffer;
+    ctx.response.headers.set(
+      "Content-Type",
+      "application/octet-stream",
+    );
+  });
+
+  router.get("/server/fontjson/root.json", (ctx) => {
+    const data = LoadFile.loadJSON("./server/fontjson/root.json");
+    ctx.response.body = data.buffer;
+    ctx.response.headers.set(
+      "Content-Type",
+      "application/octet-stream",
+    );
+  });
+
+  const entries = ["SanSerif_0_0_0_0"];
+
+  for (const entry of entries) {
+    router.get(`/server/fontjson/font/${entry}.json`, (ctx) => {
+      const data = LoadFile.loadJSON(
+        `./server/fontjson/font/${entry}.json`,
+      );
+      ctx.response.body = data.buffer;
+      ctx.response.headers.set(
+        "Content-Type",
+        "application/octet-stream",
+      );
+    });
+  }
+
+  router.get("/server/FontData.svg", (ctx) => {
+    const data = LoadFile.loadAllGlyph("./server/Font_Data_linear");
+    ctx.response.body = data;
+    ctx.response.headers.set(
+      "Content-Type",
+      "application/octet-stream",
+    );
   });
 }
-router.get(`/server/FontData.svg`, async (ctx) => {
-  const data = LoadFile.loadAllGlyph("./server/Font_Data_linear");
-  ctx.response.body = data; // Uint8Arrayをバイナリデータとしてクライアントに送信
-  ctx.response.headers.set("Content-Type", "application/octet-stream"); // コンテンツタイプを設定
-});
+
+// ルート登録
+registerStaticRoutes(
+  router,
+  path.join(root, "src", "client"),
+);
+
+registerStaticRoutes(
+  router,
+  root,
+  "",
+);
+
+registerServerRoutes(router);
+
 app.use(router.routes());
 app.use(router.allowedMethods());
 
